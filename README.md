@@ -12,20 +12,21 @@ Wrapper gem for Fortnox AB's version 3 API.
 Quick overview of the current status of this gem vs the API it integrates
 against:
 
-API resource | Status
----------------------
+API resource                               | Status
+------------------------------------------ | --------
 Exchange AuthorizationCode for AccessToken | **DONE**
-Customers | **WIP**
+Customers                                  | **WIP**
 
 ## Requirements
 
-This gem is build for Ruby 2.0 or higher. It uses the keywords argument feature.
+This gem is build for Ruby 2.0 or higher, it's tested agains Rubh 2.0.0 and
+2.1.1. Since it uses the keywords argument feature it won't work on Ruby 1.9.
 
-While porting it to older versions of Ruby is not a prioritie above getting the
-wrapper feature complete, it might happen if demand is high.
+While porting it to older versions of Ruby is not a prioritie, above getting the
+wrapper feature complete, it might happen in the future if demand is high.
 
 If you want or need Ruby 1.9 compatability please contact us or better yet,
-submit a pull request. Instructions are below.
+submit a pull request. Instructions are to be found below :)
 
 ## Installation
 
