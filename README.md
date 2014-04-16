@@ -5,7 +5,7 @@ Wrapper gem for Fortnox AB's version 3 API.
 [![Gem Version](https://badge.fury.io/rb/fortnox-api.png)](http://badge.fury.io/rb/fortnox-api)
 [![Build Status](https://travis-ci.org/my-codeworks/fortnox-api.png)](https://travis-ci.org/my-codeworks/fortnox-api)
 [![Code Climate](https://codeclimate.com/github/my-codeworks/fortnox-api.png)](https://codeclimate.com/github/my-codeworks/fortnox-api)
-
+[![Dependency Status](https://gemnasium.com/my-codeworks/fortnox-api.svg)](https://gemnasium.com/my-codeworks/fortnox-api)
 
 ## Features
 
