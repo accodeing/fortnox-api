@@ -2,7 +2,7 @@ module Fortnox
   module API
     module ClassMethods
 
-      def get_access_token( base_url: base_url, client_secret: client_secret, authorization_code: authorization_code )
+      def get_access_token( base_url: nil, client_secret: nil, authorization_code: nil )
         base_url = validate_base_url( base_url )
         client_secret = validate_client_secret( client_secret )
         authorization_code = validate_authorization_code( authorization_code )
@@ -19,7 +19,7 @@ module Fortnox
         response[ 'Authorisation' ][ 'AccessToken' ]
       end
 
-      def set_header( name: name, value: value )
+      def set_header( name: nil, value: nil )
         headers[ name ] = value
       end
 
@@ -29,7 +29,7 @@ module Fortnox
         end
       end
 
-      def remove_header( name: name )
+      def remove_header( name: nil )
         headers.delete( name )
       end
 

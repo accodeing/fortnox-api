@@ -2,7 +2,7 @@ module Fortnox
   module API
     module InstanceMethods
 
-      def initialize( base_url: base_url, client_secret: client_secret, access_token: access_token )
+      def initialize( base_url: nil, client_secret: nil, access_token: nil )
         base_url = validate_base_url( base_url )
         client_secret = validate_client_secret( client_secret )
         access_token = validate_access_token( access_token )
@@ -16,7 +16,7 @@ module Fortnox
         )
       end
 
-      def set_header( name: name, value: value )
+      def set_header( name: nil, value: nil )
         self.class.set_header( name: name, value: value )
       end
 
@@ -24,7 +24,7 @@ module Fortnox
         self.class.set_headers( headers )
       end
 
-      def remove_header( name: name )
+      def remove_header( name: nil )
         self.class.remove_header( name: name )
       end
 
