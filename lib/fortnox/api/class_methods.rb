@@ -15,7 +15,7 @@ module Fortnox
           'Authorisation-Code' => authorization_code,
         )
 
-        response = get('/').parsed_response
+        response = get('/')
         response[ 'Authorisation' ][ 'AccessToken' ]
       end
 
