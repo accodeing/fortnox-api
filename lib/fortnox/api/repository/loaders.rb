@@ -3,7 +3,7 @@ require "cgi"
 module Fortnox
   module API
     module Repository
-      module Finders
+      module Loaders
 
         def all
           response_hash = get( @base_uri )

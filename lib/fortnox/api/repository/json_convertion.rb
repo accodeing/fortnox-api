@@ -4,7 +4,18 @@ module Fortnox
       module JSONConvertion
 
       private
-      
+
+        def hash_to_entity( entity_json_hash )
+          entity_hash = convert_hash_keys_from_json_format( entity_json_hash )
+          instansiate( entity_hash )
+        end
+
+        def entity_to_hash( entity )
+          entity_hash = entity.to_hash
+          entity_json_hash = convert_hash_keys_to_json_format( entity_hash )
+          { @json_unit_wrapper => entity_json_hash }
+        end
+
         def convert_hash_keys_from_json_format( hash )
           hash.each_with_object( {} ) do |(key, value), json_hash|
             json_hash[ convert_key_from_json( key ) ] = value

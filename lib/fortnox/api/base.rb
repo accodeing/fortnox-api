@@ -6,8 +6,8 @@ module Fortnox
     class Base
 
       include HTTParty
-      extend Fortnox::API::ClassMethods
       extend Forwardable
+      extend Fortnox::API::ClassMethods
 
       def_delegators self, :set_header, :set_headers, :remove_header,
         :remove_headers, :validate_base_url, :validate_client_secret,
@@ -28,6 +28,24 @@ module Fortnox
       end
 
       def get( *args )
+        resp = self.class.get( *args )
+        # Insert error handling here
+        resp.parsed_response
+      end
+
+      def put( *args )
+        resp = self.class.get( *args )
+        # Insert error handling here
+        resp.parsed_response
+      end
+
+      def post( *args )
+        resp = self.class.get( *args )
+        # Insert error handling here
+        resp.parsed_response
+      end
+
+      def delete( *args )
         resp = self.class.get( *args )
         # Insert error handling here
         resp.parsed_response

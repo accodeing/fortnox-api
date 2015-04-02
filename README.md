@@ -19,11 +19,8 @@ Customers                                  | **WIP**
 
 ## Requirements
 
-This gem is build for Ruby 2.0 or higher, it's tested agains Rubh 2.0.0 and
-2.1.1. Since it uses the keywords argument feature it won't work on Ruby 1.9.
-
-While porting it to older versions of Ruby is not a prioritie, above getting the
-wrapper feature complete, it might happen in the future if demand is high.
+This gem is build for Ruby 2.0 or higher, it's tested agains Ruby 2.0.0 and
+2.1.2. Since it uses the keywords argument feature it won't work on Ruby 1.9.
 
 If you want or need Ruby 1.9 compatability please contact us or better yet,
 submit a pull request. Instructions are to be found below :)
@@ -117,14 +114,21 @@ fortnox.customer.find_all_by( name: 'test' ) #=> [<Fortnox::API::Customer:0x007f
 All the above methods return instances or arrays of instances of some resource
 class such as customer, invoice, item, voucher and so on.
 
+Instances are immutable and any update returns a new instance with the
+appropriate attributes changed.
+
 Each entity class has it's own methods and properties but they also all respond
 to a few common methods, such as for persistance.
 
 ```ruby
 customer #=> <Fortnox::API::Customer:0x007fdf228db310>
-customer.name = "Ned Stark"
-customer.save #=> true on success or false on failure
-customer.save! #=> true on success or raises Fortnox::API::RequestFailed exception on failure
+customer.name #=> "Nelly Bloom"
+customer.update( name: "Ned Stark" ) #=> <Fortnox::API::Customer:0x0193a456ff0307>
+customer.name #=> "Nelly Bloom"
+updated_customer = customer.update( name: "Ned Stark" )
+updated_customer.name #=> "Nelly Bloom"
+updated_customer.save #=> true on success or false on failure
+updated_customer.save! #=> true on success or raises Fortnox::API::RequestFailed exception on failure
 ```
 
 ## Contributing
