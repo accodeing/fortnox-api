@@ -2,10 +2,10 @@ PATH
   remote: .
   specs:
     fortnox-api (0.0.1)
-      dotenv (~> 2.0.0)
-      httparty (~> 0.13.3)
-      vanguard (~> 0.0.5)
-      virtus (~> 1.0.5)
+      dotenv (~> 2.0)
+      httparty (~> 0.13)
+      vanguard (~> 0.0)
+      virtus (~> 1.0)
 
 GEM
   remote: https://rubygems.org/
@@ -119,8 +119,8 @@ PLATFORMS
 DEPENDENCIES
   bundler (~> 1.9)
   fortnox-api!
-  guard (~> 2.12.5)
-  guard-rspec (~> 4.5.0)
-  rake (~> 10.4.2)
-  rspec (~> 3.2.0)
-  webmock (~> 1.21.0)
+  guard (~> 2.12)
+  guard-rspec (~> 4.5)
+  rake (~> 10.4)
+  rspec (~> 3.2)
+  webmock (~> 1.21)
