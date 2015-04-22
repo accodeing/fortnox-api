@@ -13,18 +13,15 @@ module Fortnox
       def initialize( hash = {} )
         @unsaved = hash.delete( :unsaved ){ true }
         super
-        create_attribute_setter_methods
         IceNine.deep_freeze( self )
       end
 
       def update( hash )
-        p "Update called with #{hash}"
         attributes = self.to_hash.merge( hash )
-        p "#{attributes} == #{self.to_hash}, returning #{self}" if attributes == self.to_hash
+
         return self if attributes == self.to_hash
-        n = self.class.new( attributes )
-        p "#{attributes} != #{self.to_hash}, returning #{n}"
-        return n
+
+        self.class.new( attributes )
       end
 
       # Generic comparison, by value, use .eql? or .equal? for object identity.
@@ -41,25 +38,6 @@ module Fortnox
           hash[ key ] = value
         end
         hash.to_json
-      end
-
-    private
-
-      def create_attribute_setter_methods
-        attribute_set.each do |attribute|
-          name = attribute.options[ :name ]
-
-          create_attribute_setter_method( name )
-        end
-      end
-
-      def create_attribute_setter_method( name )
-        self.define_singleton_method "#{name}=" do | value |
-          p "Called as :#{name}=, redirecting to update( #{name}: '#{value}' )"
-          r = self.update( name => value )
-          p "Got #{r} back from update"
-          return r
-        end
       end
 
     end

@@ -59,31 +59,4 @@ describe Fortnox::API::Entity do
     end
   end
 
-  describe '.attr=', focus: true do
-    context 'with new, simple value' do
-      it 'returns a new object' do
-        original = TestEntity.new( string: 'Test' )
-        variant = original.string = 'Variant'
-
-        expect( variant ).to_not eql( original )
-      end
-
-      it 'returns a object of the same class' do
-        original = TestEntity.new( string: 'Test' )
-        variant = original.string = 'Variant'
-
-        expect( variant.class ).to eql( original.class )
-      end
-    end
-
-    context 'with the same, simple value' do
-      it 'returns the same object' do
-        original = TestEntity.new( string: 'Test' )
-        variant = original[:string] = 'Test'
-
-        expect( variant ).to eql( original )
-      end
-    end
-  end
-
 end
