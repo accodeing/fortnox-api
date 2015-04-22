@@ -2,25 +2,31 @@ require 'spec_helper'
 
 describe Fortnox::API::Customer::Validator do
 
-  describe 'basic creation with only name' do
-    let( :customer ){ Fortnox::API::Customer.new( name: 'Test' ) }
-    let( :validator ){ Fortnox::API::Customer::Validator }
-    subject { validator.validate( customer ) }
-    it { should be_true }
-  end
+  describe '.validate' do
+    context 'Customer with valid, simple attributes' do
+      it 'is valid' do
+        customer = Fortnox::API::Customer.new( name: 'Test' )
+        validator = Fortnox::API::Customer::Validator
 
-  describe 'creation sales_account out of range' do
-    let( :customer ){ Fortnox::API::Customer.new( sales_account: 99999 ) }
-    let( :validator ){ Fortnox::API::Customer::Validator }
-    subject { validator.validate( customer ) }
-    it { should be_false }
-  end
+        expect( validator.validate( customer )).to eql( true )
+      end
+    end
 
-  describe 'creation sales_account out of range message' do
-    let( :customer ){ Fortnox::API::Customer.new( sales_account: 99999 ) }
-    let( :validator ){ Fortnox::API::Customer::Validator }
-    subject { validator.validate( customer ); validator.violations.inspect }
-    it { should include 'sales_account' }
+    context 'Customer with invalid sales_account' do
+
+      let( :customer ){ Fortnox::API::Customer.new( sales_account: 99999 )}
+      let( :validator ){ Fortnox::API::Customer::Validator }
+
+      it 'is invalid' do
+        expect( validator.validate( customer )).to eql( false )
+      end
+
+      it 'includes "sales_account" in violations' do
+        validator.validate( customer )
+
+        expect( validator.violations.inspect ).to include( 'sales_account' )
+      end
+    end
   end
 
 end
