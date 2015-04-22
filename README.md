@@ -14,8 +14,12 @@ against:
 
 API resource                               | Status
 ------------------------------------------ | --------
-Exchange AuthorizationCode for AccessToken | **DONE**
-Customers                                  | **WIP**
+Exchange AuthorizationCode for AccessToken | :white_check_mark:
+Entity base class with immutability        | :white_check_mark:
+Validator base class based on Vanguard     | :white_check_mark:
+Customer::Validator                        | :white_check_mark:
+Customers                                  | :hourglass:
+Repository READ from API functionality     | :hourglass:
 
 ## Requirements
 
@@ -68,7 +72,7 @@ every time you instansiate a Fortnox::API object.
 ### Using environment variables
 
 You can save your settings in environment variables that will be used by the gem
-when you instansiate it. The following variables are recognized:
+when you instantiate it. The following variables are recognized:
 
 ```
 FORTNOX_API_BASE_URL
@@ -83,7 +87,7 @@ above.
 
 ### Collections
 
-To get something to work with you instansiate a new Fortnox::API object
+To get something to work with you instantiate a new Fortnox::API object
 
 ```ruby
 fortnox = Fortnox::API.new(
@@ -105,7 +109,7 @@ fortnox.customer.find( 5 ) #=> <Fortnox::API::Customer:0x007fdf21100b00>
 # Get single customer by customer number
 fortnox.customer.find_by( customer_number: 5 ) #=> <Fortnox::API::Customer:0x007fdf22949298>
 
-# Get all customers matching some criterino
+# Get all customers matching some criteria
 fortnox.customer.find_all_by( name: 'test' ) #=> [<Fortnox::API::Customer:0x007fdf22949298>, ... ]
 ```
 
@@ -117,8 +121,17 @@ class such as customer, invoice, item, voucher and so on.
 Instances are immutable and any update returns a new instance with the
 appropriate attributes changed.
 
+> :warning: Ruby implements assignment statements so that `LHS = RHS`
+> always returns `RHS`. This is regardless of what an assignment method is
+> implemented to return.
+>
+> This means that assignments like `customer.name = 'Test'` will return
+> `'Test'` and not a new instance of `Customer`, which is what you want in this
+> case. So assignment methods to update objects is not possible. Use the
+> `.update()` method instead.
+
 Each entity class has it's own methods and properties but they also all respond
-to a few common methods, such as for persistance.
+to a few common methods, such as for persistence.
 
 ```ruby
 customer #=> <Fortnox::API::Customer:0x007fdf228db310>
