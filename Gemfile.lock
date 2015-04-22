@@ -121,6 +121,7 @@ DEPENDENCIES
   fortnox-api!
   guard (~> 2.12)
   guard-rspec (~> 4.5)
+  pry
   rake (~> 10.4)
   rspec (~> 3.2)
   webmock (~> 1.21)
