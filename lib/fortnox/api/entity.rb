@@ -49,12 +49,16 @@ module Fortnox
         attribute_set.each do |attribute|
           name = attribute.options[ :name ]
 
-          self.define_singleton_method "#{name}=" do | value |
-            p "Called as :#{name}=, redirecting to update( #{name}: #{value} )"
-            r = self.update( name => value )
-            p "Got #{r} back from update"
-            return r
-          end
+          create_attribute_setter_method( name )
+        end
+      end
+
+      def create_attribute_setter_method( name )
+        self.define_singleton_method "#{name}=" do | value |
+          p "Called as :#{name}=, redirecting to update( #{name}: '#{value}' )"
+          r = self.update( name => value )
+          p "Got #{r} back from update"
+          return r
         end
       end
 
