@@ -1,4 +1,4 @@
-Copyright (c) 2014 Jonas Schubert Erlandsson
+Copyright (c) 2014-2015 Jonas Schubert Erlandsson
 
 MIT License
 
