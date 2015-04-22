@@ -13,7 +13,7 @@ module Fortnox
       def initialize( hash = {} )
         @unsaved = hash.delete( :unsaved ){ true }
         super
-        alias_attribute_accessors
+        create_attribute_setter_methods
         IceNine.deep_freeze( self )
       end
 
@@ -43,18 +43,14 @@ module Fortnox
         hash.to_json
       end
 
-      def string=( value )
-        self.update( "string" => value )
-      end
-
     private
 
-      def alias_attribute_accessors
+      def create_attribute_setter_methods
         attribute_set.each do |attribute|
           name = attribute.options[ :name ]
-  
+
           self.define_singleton_method "#{name}=" do | value |
-            p "Called as #{name}=, redirecting to update( #{name} => #{value} )"
+            p "Called as :#{name}=, redirecting to update( #{name}: #{value} )"
             r = self.update( name => value )
             p "Got #{r} back from update"
             return r
