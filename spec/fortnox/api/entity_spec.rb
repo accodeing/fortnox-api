@@ -8,53 +8,81 @@ end
 
 describe Fortnox::API::Entity do
 
-  describe 'basic creation with only name' do
-    let( :test ){ TestEntity.new( string: 'Test' ) }
-    subject { test.class }
-    it { should == TestEntity }
-  end
+  describe '.new' do
+    context 'with basic attribute' do
+      it 'works' do
+        test = TestEntity.new( string: 'Test' )
 
-  describe 'updateing attribute with `update`' do
-    context 'to a different value' do
-      let( :original ){ TestEntity.new( string: 'Test' ) }
-      let( :variant ){ original.update( string: 'Variant' ) }
-      subject { variant.eql? original }
-      it { should be_false }
-    end
-
-    context 'to the same value' do
-      let( :original ){ TestEntity.new( string: 'Test' ) }
-      let( :variant ){ original.update( string: 'Test' ) }
-      subject { variant.eql? original }
-      it { should be_true }
+        expect( test.class ).to eql( TestEntity )
+      end
     end
   end
 
-  describe 'setting attribute with `attr=`' do
-    context 'to a different value, object equality' do
-      let( :original ){ TestEntity.new( string: 'Test' ) }
-      subject { original.string = 'Variant' }
-      it { should be_eql original }
+  describe '.update' do
+    context 'with new, simple value' do
+      it 'returns a new object' do
+        original = TestEntity.new( string: 'Test' )
+        variant = original.update( string: 'Variant' )
+
+        expect( variant ).to_not eql( original )
+      end
+
+      it 'returns a object of the same class' do
+        original = TestEntity.new( string: 'Test' )
+        variant = original.update( string: 'Variant' )
+
+        expect( variant.class ).to eql( original.class )
+      end
+
+      it 'returns a object with the new value' do
+        original = TestEntity.new( string: 'Test' )
+        variant = original.update( string: 'Variant' )
+
+        expect( variant.string ).to eql( 'Variant' )
+      end
     end
 
-    context 'to a different value, object class' do
-      let( :original ){ TestEntity.new( string: 'Test' ) }
-      let( :variant ){ original.string=('Variant') }
-      subject { variant.class }
-      it { should == TestEntity }
+    context 'with the same, simple value' do
+      it 'returns the same object' do
+        original = TestEntity.new( string: 'Test' )
+        variant = original.update( string: 'Test' )
+
+        expect( variant ).to eql( original )
+      end
+
+      it 'returns a object with the same value' do
+        original = TestEntity.new( string: 'Test' )
+        variant = original.update( string: 'Test' )
+
+        expect( variant.string ).to eql( 'Test' )
+      end
+    end
+  end
+
+  describe '.attr=', focus: true do
+    context 'with new, simple value' do
+      it 'returns a new object' do
+        original = TestEntity.new( string: 'Test' )
+        variant = original.string = 'Variant'
+
+        expect( variant ).to_not eql( original )
+      end
+
+      it 'returns a object of the same class' do
+        original = TestEntity.new( string: 'Test' )
+        variant = original.string = 'Variant'
+
+        expect( variant.class ).to eql( original.class )
+      end
     end
 
-    context 'to the same value, object equality' do
-      let( :original ){ TestEntity.new( string: 'Test' ) }
-      subject{ original[:string]='Test' }
-      it { shouldnt be_eql original }
-    end
+    context 'with the same, simple value' do
+      it 'returns the same object' do
+        original = TestEntity.new( string: 'Test' )
+        variant = original[:string] = 'Test'
 
-    context 'to the same value, object class' do
-      let( :original ){ TestEntity.new( string: 'Test' ) }
-      let( :variant ){ original.string=('Test'); }
-      subject { variant.class }
-      it { should == TestEntity }
+        expect( variant ).to eql( original )
+      end
     end
   end
 
