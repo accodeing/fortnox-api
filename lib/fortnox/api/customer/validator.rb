@@ -12,7 +12,7 @@ module Fortnox
           validates_presence_of :name
 
           validates_length_of :currency, length: 3, if: :currency
-          validates_length_of :country_code, length: 2, if: :currency
+          validates_length_of :country_code, length: 2, if: :country_code
 
           validates_inclusion_of :sales_account, within: (0..9999), if: :sales_account
           validates_inclusion_of :type, within: ['PRIVATE', 'COMPANY'], if: :type

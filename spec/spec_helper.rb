@@ -14,6 +14,3 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = 'random'
 end
-
-# Force disable the dotenv gem
-ENV = {}

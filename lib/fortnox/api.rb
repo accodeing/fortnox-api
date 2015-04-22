@@ -1,7 +1,7 @@
 require "set"
 require "dotenv"
 require "fortnox/api/version"
-require "fortnox/api/customer"
+require "fortnox/api/entities/customer"
 
 Dotenv.load unless ENV['RUBY_ENV'] == 'test'
 

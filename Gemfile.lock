@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    fortnox-api (0.0.1)
+    fortnox-api (0.0.2)
       dotenv (~> 2.0)
       httparty (~> 0.13)
       vanguard (~> 0.0)

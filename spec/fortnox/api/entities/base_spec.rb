@@ -1,12 +1,12 @@
 require 'spec_helper'
 
-class TestEntity < Fortnox::API::Entity
+class TestEntity < Fortnox::API::Entities::Base
   attribute :private, String, writer: :private
   attribute :string, String
   attribute :number, Integer, default: 42
 end
 
-describe Fortnox::API::Entity do
+describe Fortnox::API::Entities::Base do
 
   describe '.new' do
     context 'with basic attribute' do
