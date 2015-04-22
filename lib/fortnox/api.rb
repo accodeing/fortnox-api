@@ -3,7 +3,7 @@ require "dotenv"
 require "fortnox/api/version"
 require "fortnox/api/customer"
 
-Dotenv.load
+Dotenv.load unless ENV['RUBY_ENV'] == 'test'
 
 module Fortnox
   module API
