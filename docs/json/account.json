@@ -1,0 +1,77 @@
+{
+    "url": {
+        "type": "string",
+        "validations": "read-only",
+        "description": "Direct URL to the record"
+    },
+    "acitve": {
+        "type": "boolean",
+        "validations": null,
+        "description": "If the account is actve"
+    },
+    "balancebroughtforward": {
+        "type": "float",
+        "validations": null,
+        "description": "Opening balance of the account"
+    },
+    "balancecarriedforward": {
+        "type": "float",
+        "validations": "read-only",
+        "description": "Closing balance of the account"
+    },
+    "costcenter": {
+        "type": "string",
+        "validations": null,
+        "description": "Code of the proposed cost center. The code must be of an existing cost center."
+    },
+    "costcentersettings": {
+        "type": "string",
+        "validations": null,
+        "description": "Cost center settings for the account. Can be ALLOWED MANDATORY or NOTALLOWED"
+    },
+    "description": {
+        "type": "string",
+        "validations": "200 characters, required",
+        "description": "Account description"
+    },
+    "number": {
+        "type": "integer",
+        "validations": "4 digits, sortable, required",
+        "description": "Account number"
+    },
+    "project": {
+        "type": "integer",
+        "validations": null,
+        "description": "Number of the proposed project. The number must be of an existing project."
+    },
+    "projectsettings": {
+        "type": "string",
+        "validations": null,
+        "description": "Project settings for the account. Can be ALLOWED MANDATORY or NOTALLOWED"
+    },
+    "sru": {
+        "type": "string",
+        "validations": "4 or 5 digits, searchable",
+        "description": "SRU code"
+    },
+    "transactioninformation": {
+        "type": "string",
+        "validations": "100 characters",
+        "description": "Proposed transaction information"
+    },
+    "transactioninformationsettings": {
+        "type": "string",
+        "validations": null,
+        "description": "Transaction information settings for the account. Can be ALLOWED MANDATORY or NOTALLOWED"
+    },
+    "vatcode": {
+        "type": "string",
+        "validations": null,
+        "description": "VAT code"
+    },
+    "year": {
+        "type": "integer",
+        "validations": "read-only",
+        "description": "Id of the financial year."
+    }
+}
