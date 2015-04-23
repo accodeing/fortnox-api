@@ -2,8 +2,8 @@ require "fortnox/api/repository/base"
 
 module Fortnox
   module API
-    module Customer
-      class Repository < Fortnox::API::Repository::Base
+    module Repositories
+      class Customer < Fortnox::API::Repository::Base
 
         def initialize
           super(

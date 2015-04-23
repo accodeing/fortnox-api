@@ -57,7 +57,7 @@ Unless you have an AccessToken already you will need to exchange your
 AuthorizationCode for one to make calls. In a ruby shell do the following
 
 ```ruby
-require 'fortnox-api' # Load the gem, it needs to be installed first
+require 'fortnox' # Load the gem, it needs to be installed first
 Fortnox::API.get_access_token(
   base_url: 'https://api.fortnox.se/3',
   client_secret: 'P5K5wE3Kun',

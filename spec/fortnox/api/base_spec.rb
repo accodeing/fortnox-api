@@ -86,7 +86,7 @@ describe Fortnox::API do
         authorization_code: 'ea3862b0-189c-464b-8e23-1b9702365ea1',
       )
 
-      response.should == "3f08d038-f380-4893-94a0-a08f6e60e67a"
+      expect( response).to eql( "3f08d038-f380-4893-94a0-a08f6e60e67a" )
     end
   end
 
