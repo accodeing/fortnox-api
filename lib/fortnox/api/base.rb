@@ -11,7 +11,7 @@ module Fortnox
 
       def_delegators self, :set_header, :set_headers, :remove_header,
         :remove_headers, :validate_base_url, :validate_client_secret,
-        :validate_access_token, :validate_authorization_code
+        :validate_response, :validate_access_token, :validate_authorization_code
 
       def initialize( base_url: nil, client_secret: nil, access_token: nil )
         base_url = validate_base_url( base_url )
@@ -29,33 +29,26 @@ module Fortnox
 
       def get( *args )
         response = self.class.get( *args )
-        raise_hell( response ) if response.code != 200
+        validate_response( response )
         response.parsed_response
       end
 
       def put( *args )
         response = self.class.get( *args )
-        raise_hell( response ) if response.code != 200
+        validate_response( response )
         response.parsed_response
       end
 
       def post( *args )
         response = self.class.get( *args )
-        raise_hell( response ) if response.code != 200
+        validate_response( response )
         response.parsed_response
       end
 
       def delete( *args )
         response = self.class.get( *args )
-        raise_hell( response ) if response.code != 200
+        validate_response( response )
         response.parsed_response
-      end
-
-    private
-
-      def raise_hell( response )
-        api_error = response.parsed_response[ 'ErrorInformation' ]
-        raise api_error[ 'message' ] if api_error
       end
 
     end

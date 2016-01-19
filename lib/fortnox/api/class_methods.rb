@@ -16,6 +16,7 @@ module Fortnox
         )
 
         response = get('/')
+        validate_response( response )
         response[ 'Authorisation' ][ 'AccessToken' ]
       end
 
@@ -55,6 +56,12 @@ module Fortnox
         authorization_code ||= ENV['FORTNOX_API_AUTHORIZATION_CODE']
         fail ArgumentError, 'You have to provide your access token.' unless authorization_code
         authorization_code
+      end
+
+      def validate_response( response )
+        return if response.code != 200
+        api_error = response.parsed_response[ 'ErrorInformation' ]
+        raise api_error[ 'message' ] if api_error
       end
 
     end
