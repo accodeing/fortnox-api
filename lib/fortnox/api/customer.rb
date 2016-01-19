@@ -1,6 +1,6 @@
-require "fortnox/api/entities/customer/entity"
-require "fortnox/api/entities/customer/repository"
-require "fortnox/api/entities/customer/validator"
+require "fortnox/api/models/customer/entity"
+require "fortnox/api/models/customer/repository"
+require "fortnox/api/models/customer/validator"
 
 module Fortnox
   module API

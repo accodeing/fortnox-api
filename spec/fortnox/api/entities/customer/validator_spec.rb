@@ -1,6 +1,6 @@
 require 'spec_helper'
-require 'fortnox/api/entities/customer/validator'
-require 'fortnox/api/entities/customer/entity'
+require 'fortnox/api/models/customer/validator'
+require 'fortnox/api/models/customer/entity'
 
 describe Fortnox::API::Validators::Customer do
 

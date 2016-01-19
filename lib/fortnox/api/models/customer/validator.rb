@@ -1,4 +1,4 @@
-require "fortnox/api/entities/base_validator"
+require "fortnox/api/models/base_validator"
 
 module Fortnox
   module API

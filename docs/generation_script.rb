@@ -7,7 +7,7 @@ json = File.read( 'json/account.json' )
 hash = JSON.parse( json )
 
 header = <<-RB
-require "fortnox/api/entities/base"
+require "fortnox/api/models/base"
 
 module Fortnox
   module API
