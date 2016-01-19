@@ -10,8 +10,16 @@ module Fortnox
       @@repository = Fortnox::API::Repositories::Customer.new
       @@validator = Fortnox::API::Validators::Customer.new
 
-      delegate [:save, :find, :all] => :@@repository
+      delegate [:save] => :@@repository
       delegate [:valid?] => :@@validator
+
+      def self.all
+        @@repository.all
+      end
+
+      def self.find( *args )
+        @@repository.find( *args )
+      end
     end
   end
 end
