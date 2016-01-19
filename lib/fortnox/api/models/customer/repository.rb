@@ -1,4 +1,4 @@
-require "fortnox/api/repository/base"
+require "fortnox/api/models/repository/base"
 require "fortnox/api/models/customer/entity"
 
 module Fortnox

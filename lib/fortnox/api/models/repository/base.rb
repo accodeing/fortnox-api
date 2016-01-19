@@ -1,7 +1,7 @@
 require "fortnox/api/base"
-require "fortnox/api/repository/json_convertion"
-require "fortnox/api/repository/loaders"
-require "fortnox/api/repository/savers"
+require "fortnox/api/models/repository/json_convertion"
+require "fortnox/api/models/repository/loaders"
+require "fortnox/api/models/repository/savers"
 
 module Fortnox
   module API
