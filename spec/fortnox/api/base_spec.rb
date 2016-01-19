@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'fortnox/api'
 
 describe Fortnox::API do
 

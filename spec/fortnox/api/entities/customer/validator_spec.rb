@@ -1,11 +1,13 @@
 require 'spec_helper'
+require 'fortnox/api/entities/customer/validator'
+require 'fortnox/api/entities/customer/entity'
 
 describe Fortnox::API::Validators::Customer do
 
   describe '.validate' do
     context 'Customer with valid, simple attributes' do
       it 'is valid' do
-        customer = Fortnox::API::Customer.new( name: 'Test' )
+        customer = Fortnox::API::Enteties::Customer.new( name: 'Test' )
         validator = Fortnox::API::Validators::Customer
 
         expect( validator.validate( customer )).to eql( true )
@@ -14,7 +16,7 @@ describe Fortnox::API::Validators::Customer do
 
     context 'Customer with invalid sales_account' do
 
-      let( :customer ){ Fortnox::API::Customer.new( sales_account: 99999 )}
+      let( :customer ){ Fortnox::API::Enteties::Customer.new( sales_account: 99999 )}
       let( :validator ){ Fortnox::API::Validators::Customer }
 
       it 'is invalid' do

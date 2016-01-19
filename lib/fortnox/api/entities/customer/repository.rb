@@ -1,4 +1,5 @@
 require "fortnox/api/repository/base"
+require "fortnox/api/entities/customer/entity"
 
 module Fortnox
   module API
@@ -19,7 +20,7 @@ module Fortnox
       private
 
         def instansiate( hash )
-          Fortnox::API::Customer::Entity.new( hash )
+          Fortnox::API::Enteties::Customer.new( hash )
         end
 
       end

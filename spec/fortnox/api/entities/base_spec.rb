@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'fortnox/api/entities/base'
 
 class TestEntity < Fortnox::API::Entities::Base
   attribute :private, String, writer: :private

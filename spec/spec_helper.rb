@@ -1,6 +1,5 @@
 ENV['RUBY_ENV'] = 'test'
 
-require 'fortnox/api'
 require 'webmock/rspec'
 require 'pry'
 

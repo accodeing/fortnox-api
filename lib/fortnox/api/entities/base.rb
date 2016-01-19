@@ -18,11 +18,12 @@ module Fortnox
         end
 
         def update( hash )
-          attributes = self.to_hash.merge( hash )
+          old_attributes = self.to_hash
+          new_attributes = old_attributes.merge( hash )
 
-          return self if attributes == self.to_hash
+          return self if new_attributes == old_attributes
 
-          self.class.new( attributes )
+          self.class.new( new_attributes )
         end
 
         # Generic comparison, by value, use .eql? or .equal? for object identity.
@@ -31,15 +32,15 @@ module Fortnox
           self.to_hash == other.to_hash
         end
 
-        def to_json
-          hash = attribute_set.each_with_object({}) do |attribute, hash|
-            name = attribute.options[ :name ]
-            key = attribute.options[ :json_name ] || attribute_name_to_json( name )
-            value = attributes[name]
-            hash[ key ] = value
-          end
-          hash.to_json
-        end
+        # def to_json
+        #   hash = attribute_set.each_with_object({}) do |attribute, hash|
+        #     name = attribute.options[ :name ]
+        #     key = attribute.options[ :json_name ] || attribute_name_to_json( name )
+        #     value = attributes[name]
+        #     hash[ key ] = value
+        #   end
+        #   hash.to_json
+        # end
 
       end
     end

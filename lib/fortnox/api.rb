@@ -2,16 +2,12 @@ require "set"
 require "dotenv"
 require "fortnox/api/base"
 require "fortnox/api/version"
-require "fortnox/api/entities/customer/customer"
-require "fortnox/api/entities/customer/repository"
-require "fortnox/api/entities/customer/validator"
+#require "fortnox/api/customer"
 
 Dotenv.load unless ENV['RUBY_ENV'] == 'test'
 
 module Fortnox
   module API
-
-    # Customer = Entities::Customer::Entity
 
     class << self
       extend Forwardable
