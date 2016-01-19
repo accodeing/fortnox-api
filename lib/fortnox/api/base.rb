@@ -28,27 +28,34 @@ module Fortnox
       end
 
       def get( *args )
-        resp = self.class.get( *args )
-        # Insert error handling here
-        resp.parsed_response
+        response = self.class.get( *args )
+        raise_hell( response ) if response.code != 200
+        response.parsed_response
       end
 
       def put( *args )
-        resp = self.class.get( *args )
-        # Insert error handling here
-        resp.parsed_response
+        response = self.class.get( *args )
+        raise_hell( response ) if response.code != 200
+        response.parsed_response
       end
 
       def post( *args )
-        resp = self.class.get( *args )
-        # Insert error handling here
-        resp.parsed_response
+        response = self.class.get( *args )
+        raise_hell( response ) if response.code != 200
+        response.parsed_response
       end
 
       def delete( *args )
-        resp = self.class.get( *args )
-        # Insert error handling here
-        resp.parsed_response
+        response = self.class.get( *args )
+        raise_hell( response ) if response.code != 200
+        response.parsed_response
+      end
+
+    private
+
+      def raise_hell( response )
+        api_error = response.parsed_response[ 'ErrorInformation' ]
+        raise api_error[ 'message' ] if api_error
       end
 
     end
