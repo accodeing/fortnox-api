@@ -4,22 +4,29 @@ require "fortnox/api/models/customer/validator"
 
 module Fortnox
   module API
-    Customer = Fortnox::API::Enteties::Customer
-
-    class Customer
-      @@repository = Fortnox::API::Repositories::Customer.new
-      @@validator = Fortnox::API::Validators::Customer.new
+    class Customer < Fortnox::API::Enteties::Customer
 
       delegate [:save] => :@@repository
       delegate [:valid?] => :@@validator
 
+      def valid?
+        Fortnox::API::Validators::Customer.validate( self )
+      end
+
       def self.all
-        @@repository.all
+        repository.all
       end
 
       def self.find( *args )
-        @@repository.find( *args )
+        repository.find( *args )
       end
+
+    private
+
+      def self.repository
+        @repository ||= Fortnox::API::Repositories::Customer.new
+      end
+
     end
   end
 end
