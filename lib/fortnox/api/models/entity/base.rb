@@ -12,7 +12,9 @@ module Fortnox
         attr_accessor :unsaved
 
         def initialize( hash = {} )
-          @unsaved = hash.delete( :unsaved ){ true }
+          unsaved = hash.delete( :unsaved ){ true }
+          @saved = !unsaved
+          @new = hash.delete( :new ){ true }
           super
           IceNine.deep_freeze( self )
         end
@@ -32,15 +34,13 @@ module Fortnox
           self.to_hash == other.to_hash
         end
 
-        # def to_json
-        #   hash = attribute_set.each_with_object({}) do |attribute, hash|
-        #     name = attribute.options[ :name ]
-        #     key = attribute.options[ :json_name ] || attribute_name_to_json( name )
-        #     value = attributes[name]
-        #     hash[ key ] = value
-        #   end
-        #   hash.to_json
-        # end
+        def new?
+          @new
+        end
+
+        def saved?
+          @saved
+        end
 
       end
     end

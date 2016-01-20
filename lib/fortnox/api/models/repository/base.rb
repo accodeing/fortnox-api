@@ -13,7 +13,6 @@ module Fortnox
         include Savers
 
         def initialize( options = {} )
-          super()
           @base_uri = options.fetch( :base_uri ){ '/' }
           @json_list_wrapper = options.fetch( :json_list_wrapper ){ '' }
           @json_unit_wrapper = options.fetch( :json_unit_wrapper ){ '' }
