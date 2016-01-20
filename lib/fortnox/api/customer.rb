@@ -6,11 +6,12 @@ module Fortnox
   module API
     class Customer < Fortnox::API::Enteties::Customer
 
-      delegate [:save] => :@@repository
-      delegate [:valid?] => :@@validator
-
       def valid?
         Fortnox::API::Validators::Customer.validate( self )
+      end
+
+      def save
+        self.class.repository.save( self )
       end
 
       def self.all
