@@ -64,11 +64,13 @@ module Fortnox
         return if response.code == 200
 
         api_error = response.parsed_response[ 'ErrorInformation' ]
-        raise_api_error( api_error ) if api_error
+        raise_api_error( api_error, response ) if api_error
       end
 
-      def raise_api_error( error )
+      def raise_api_error( error, response )
         message = ( error[ 'message' ] || error[ 'Message' ] || 'Okänt fel' )
+
+        message += "\n\n#{response.request.inspect}"
 
         raise message
       end
