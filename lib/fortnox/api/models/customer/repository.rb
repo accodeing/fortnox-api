@@ -11,10 +11,21 @@ module Fortnox
             base_uri: '/customers/',
             json_list_wrapper: 'Customers',
             json_unit_wrapper: 'Customer',
-            key_map: {
+            unique_id: 'CustomerNumber',
+            attribut_name_to_json_key_map: {
               vat_type: 'VATType',
+              vat_number: 'VATNumber',
+              email_invoice_bcc: 'EmailInvoiceBCC',
+              email_invoice_cc: 'EmailInvoiceCC',
+              email_offer_bcc: 'EmailOfferBCC',
+              email_offer_cc: 'EmailOfferCC',
+              email_order_bcc: 'EmailOrderBCC',
+              email_order_cc: 'EmailOrderCC',
+              show_price_vat_included: 'ShowPriceVATIncluded',
             },
-            unique_id: 'CustomerNumber'
+            keys_filtered_on_save: [
+              :url,
+            ]
           )
         end
 

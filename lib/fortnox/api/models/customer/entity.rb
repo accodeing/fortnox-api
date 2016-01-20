@@ -138,10 +138,10 @@ module Fortnox
         attribute :show_price_vat_included, Boolean
 
         #TermsOfDeliveryCode	Terms of delivery code of the customer
-        attribute :terms_of_delivery_code, String
+        attribute :terms_of_delivery, String
 
         #TermsOfPaymentCode	Terms of payment code of the customer
-        attribute :terms_of_payment_code, String
+        attribute :terms_of_payment, String
 
         #Type	Customer type, PRIVATE / COMPANY
         attribute :type, String
@@ -153,19 +153,19 @@ module Fortnox
         attribute :vat_type, String
 
         #VisitAddress	Visit address of the customer
-        attribute :visit_address, String
+        attribute :visiting_address, String
 
         #VisitCity	Visit city of the customer
-        attribute :visit_city, String
+        attribute :visiting_city, String
 
         #VisitCountry	Visit country of the customer
-        attribute :visit_country, String
+        attribute :visiting_country, String
 
         #VisitZipCode	Visit zip code of the customer
-        attribute :visit_zip_code, String
+        attribute :visiting_zip_code, String
 
         #WayOfDeliveryCode	Way of delivery code of the customer
-        attribute :way_of_delivery_code, String
+        attribute :way_of_delivery, String
 
         #YourReference	Your reference of the customer
         attribute :your_reference, String

@@ -21,11 +21,11 @@ module Fortnox
       private
 
         def save_new( json )
-          post( @base_uri, json )
+          post( @base_uri, { body: json } )
         end
 
         def update_existing( json )
-          put( @base_uri, json )
+          put( @base_uri, { body: json } )
         end
 
       end
