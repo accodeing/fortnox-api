@@ -9,6 +9,8 @@ module Fortnox
       extend Forwardable
       extend Fortnox::API::ClassMethods
 
+      HTTParty::Parser::SupportedFormats["text/html"] = :json
+
       def_delegators self, :set_header, :set_headers, :remove_header,
         :remove_headers, :validate_base_url, :validate_client_secret,
         :validate_response, :validate_access_token, :validate_authorization_code
@@ -21,6 +23,7 @@ module Fortnox
         self.class.base_uri( base_url )
 
         set_headers(
+          'Content-Type' => 'application/json',
           'Accept' => 'application/json',
           'Client-Secret' => client_secret,
           'Access-Token' => access_token,
@@ -28,25 +31,24 @@ module Fortnox
       end
 
       def get( *args )
-        response = self.class.get( *args )
-        validate_response( response )
-        response.parsed_response
+        validate_and_parse_response self.class.get( *args )
       end
 
       def put( *args )
-        response = self.class.get( *args )
-        validate_response( response )
-        response.parsed_response
+        validate_and_parse_response self.class.put( *args )
       end
 
       def post( *args )
-        response = self.class.get( *args )
-        validate_response( response )
-        response.parsed_response
+        validate_and_parse_response self.class.post( *args )
       end
 
       def delete( *args )
-        response = self.class.get( *args )
+        validate_and_parse_response self.class.delete( *args )
+      end
+
+    private
+
+      def validate_and_parse_response( response )
         validate_response( response )
         response.parsed_response
       end
