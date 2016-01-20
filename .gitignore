@@ -2,3 +2,6 @@
 .env
 .rspec
 *.gem
+
+# Vim swap files
+*.swp
