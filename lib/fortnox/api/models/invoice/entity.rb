@@ -1,13 +1,12 @@
 require "fortnox/api/models/entity/base"
+require "fortnox/api/models/invoice/edi_information"
+require "fortnox/api/models/invoice/email_information"
+require "fortnox/api/models/row/entity"
 
 module Fortnox
   module API
     module Enteties
-      module Invoice < Fortnox::API::Entities::Base
-
-        include Fortnox::API::Entities::Invoice::EDIInformation
-        include Fortnox::API::Entities::Invoice::EmailInformation
-        include Fortnox::API::Entities::Row
+      class Invoice < Fortnox::API::Entities::Base
 
         #Url Direct url to the record.
         attribute :url, String, writer: :private
@@ -148,7 +147,7 @@ module Fortnox
         attribute :invoice_period_end, Date, writer: :private
 
         #InvoiceRows Separate Row object
-        attribute :invoice_rows Array[Row]
+        attribute :invoice_rows, Array[Row]
 
         #InvoiceType The type of invoice.
         attribute :invoice_type, String
