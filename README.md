@@ -23,11 +23,12 @@ Repository READ from API functionality     | :hourglass:
 
 ## Requirements
 
-This gem is build for Ruby 2.0 or higher, it's tested agains Ruby 2.0.0 and
-2.1.2. Since it uses the keywords argument feature it won't work on Ruby 1.9.
+This gem is build for Ruby 2.0 or higher, it's tested agains Ruby 2.1.8, 2.2.4
+and 2.3.0. Since it uses the keywords argument feature it won't work on older
+versions.
 
-If you want or need Ruby 1.9 compatability please contact us or better yet,
-submit a pull request. Instructions are to be found below :)
+If you want or need Ruby 1.9 compatability please submit a pull request.
+Instructions can be found below :)
 
 ## Installation
 
