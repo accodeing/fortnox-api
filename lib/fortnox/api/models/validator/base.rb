@@ -19,7 +19,7 @@ module Fortnox
         end
 
         def using_validations &block
-          @validator = Vanguard::Validator.build &block
+          @validator = Vanguard::Validator.build( &block )
         end
 
         def instance

@@ -22,8 +22,6 @@ module Fortnox
         repository.find( *args )
       end
 
-    private
-
       def self.repository
         @repository ||= Fortnox::API::Repositories::Customer.new
       end
