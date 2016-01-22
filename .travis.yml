@@ -5,3 +5,9 @@ rvm:
 addons:
   code_climate:
     repo_token: 397c19af63ca3467cff6fd640b0460b691f687118332b5989f530d28f82adcb8
+notifications:
+  slack:
+    secure: BvKRwkE3WTHDj74oJHNM4rkGnpUqJO2RAf6O0P+PqE8P/6t6VPC/8GubOTe8pum2ll7+rfQ59OqAJ0pivNtmbZsGNgVMVrKaRYPUPGLyC9NORtwhCIAhNhDNnYQDWwxYanyPmWsAmJaFNl7VhJ14EC4RfGNY1nFiLcCZG7qhSGE=
+    on_success: always
+    on_failure: change
+  email: false
