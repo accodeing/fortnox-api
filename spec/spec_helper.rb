@@ -2,6 +2,9 @@ ENV['RUBY_ENV'] = 'test'
 
 require 'webmock/rspec'
 require 'pry'
+require "codeclimate-test-reporter"
+
+CodeClimate::TestReporter.start
 
 RSpec.configure do |config|
   config.run_all_when_everything_filtered = true
