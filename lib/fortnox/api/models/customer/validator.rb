@@ -5,14 +5,14 @@ module Fortnox
     module Validators
       class Customer < Fortnox::API::Validators::Base
 
-        attribute :name, presence: true
+        validates :name, presence: true
 
-        attribute :currency, size: 3
-        attribute :country_code, size: 2
+        validates :currency, size: 3
+        validates :country_code, size: 2
 
-        attribute :sales_account, inclusion: (0..9999)
-        attribute :type, inclusion: ['PRIVATE', 'COMPANY']
-        attribute :vat_type, inclusion: ['SEVAT', 'SEREVERSEDVAT', 'EUREVERSEDVAT', 'EUVAT', 'EXPORT']
+        validates :sales_account, inclusion: (0..9999)
+        validates :type, inclusion: ['PRIVATE', 'COMPANY']
+        validates :vat_type, inclusion: ['SEVAT', 'SEREVERSEDVAT', 'EUREVERSEDVAT', 'EUVAT', 'EXPORT']
 
       end
     end
