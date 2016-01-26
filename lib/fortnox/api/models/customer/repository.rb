@@ -33,7 +33,7 @@ module Fortnox
 
         def instansiate( hash )
           hash[ 'new' ] = false
-          Fortnox::API::Enteties::Customer.new( hash )
+          Fortnox::API::Entities::Customer.new( hash )
         end
 
       end

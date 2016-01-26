@@ -20,7 +20,7 @@ describe Fortnox::API::Repositories::Customer do
 
   describe '#save' do
     context 'unsaved, new customer' do
-      let( :customer ){ Fortnox::API::Enteties::Customer.new( unsaved: false ) }
+      let( :customer ){ Fortnox::API::Entities::Customer.new( unsaved: false ) }
 
       it 'doesn\'t make an API request' do
         expect( repository ).not_to receive( :save_new )

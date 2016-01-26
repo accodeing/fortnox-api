@@ -2,7 +2,7 @@ require "fortnox/api/models/entity/base"
 
 module Fortnox
   module API
-    module Enteties
+    module Entities
       class Customer < Fortnox::API::Entities::Base
 
         #Url	Direct URL to the record

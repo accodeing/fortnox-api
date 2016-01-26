@@ -4,7 +4,7 @@ require "fortnox/api/models/customer/validator"
 
 module Fortnox
   module API
-    class Customer < Fortnox::API::Enteties::Customer
+    class Customer < Fortnox::API::Entities::Customer
 
       def valid?
         Fortnox::API::Validators::Customer.validate( self )
