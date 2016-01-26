@@ -8,7 +8,7 @@ class TestEntity < Fortnox::API::Entities::Base
 end
 
 describe Fortnox::API::Entities::Base do
-  let(:original) { TestEntity.new( string: 'Test' ) }
+  let(:original){ TestEntity.new( string: 'Test' ) }
 
   describe '.new' do
     context 'with basic attribute' do
@@ -22,7 +22,7 @@ describe Fortnox::API::Entities::Base do
 
   describe '.update' do
     context 'with new, simple value' do
-      let(:variant) { original.update( string: 'Variant' ) }
+      let(:variant){ original.update( string: 'Variant' ) }
 
       it 'returns a new object' do
         expect( variant ).to_not eql( original )
@@ -38,7 +38,7 @@ describe Fortnox::API::Entities::Base do
     end
 
     context 'with the same, simple value' do
-      let(:variant) { original.update( string: 'Test' ) }
+      let(:variant){ original.update( string: 'Test' ) }
 
       it 'returns the same object' do
         expect( variant ).to eql( original )

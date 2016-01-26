@@ -25,8 +25,8 @@ module Fortnox
       def lookup_modules
         glob = '/api/entities/*'
         all_files_in_entities_directory = Dir.glob( root + glob )
-        directories = all_files_in_entities_directory.select { |f| File.directory? f }
-        directories.map { |d| d.split('/').last }
+        directories = all_files_in_entities_directory.select{ |f| File.directory? f }
+        directories.map{ |d| d.split('/').last }
       end
 
     end

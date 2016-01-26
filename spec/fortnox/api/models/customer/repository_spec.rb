@@ -4,19 +4,19 @@ require 'fortnox/api/models/customer/entity'
 
 describe Fortnox::API::Repositories::Customer do
 
-  before {
+  before{
     ENV['FORTNOX_API_BASE_URL'] = ''
     ENV['FORTNOX_API_CLIENT_SECRET'] = ''
     ENV['FORTNOX_API_ACCESS_TOKEN'] = ''
   }
 
-  after {
+  after{
     ENV['FORTNOX_API_BASE_URL'] = nil
     ENV['FORTNOX_API_CLIENT_SECRET'] = nil
     ENV['FORTNOX_API_ACCESS_TOKEN'] = nil
   }
 
-  let( :repository ) { Fortnox::API::Repositories::Customer.new }
+  let( :repository ){ Fortnox::API::Repositories::Customer.new }
 
   describe '#save' do
     context 'unsaved, new customer' do

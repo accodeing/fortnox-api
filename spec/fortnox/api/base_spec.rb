@@ -6,7 +6,7 @@ describe Fortnox::API do
   describe 'creation' do
     context 'without parameters' do
       it 'fails when given as argument' do
-        expect {
+        expect{
           Fortnox::API.new()
         }.to raise_error(
           ArgumentError,
@@ -17,7 +17,7 @@ describe Fortnox::API do
 
     context 'with only client_secret' do
       it 'fails when given as argument' do
-        expect {
+        expect{
           Fortnox::API.new(
             base_url: ''
           )
@@ -29,7 +29,7 @@ describe Fortnox::API do
 
       it 'fails when given as ENV' do
         stub_const('ENV', ENV.to_hash.merge('FORTNOX_API_BASE_URL' => 'xxx'))
-        expect {
+        expect{
           Fortnox::API.new()
         }.to raise_error(
           ArgumentError,
@@ -40,7 +40,7 @@ describe Fortnox::API do
 
     context 'with both base url and client secret' do
       it 'fails when given as argument' do
-        expect {
+        expect{
           Fortnox::API.new(
             base_url: '',
             client_secret: '',
@@ -53,7 +53,7 @@ describe Fortnox::API do
 
       it 'fails when given as ENV' do
         stub_const('ENV', ENV.to_hash.merge('FORTNOX_API_CLIENT_SECRET' => 'xxx', 'FORTNOX_API_ACCESS_TOKEN' => 'xxx'))
-        expect {
+        expect{
           Fortnox::API.new()
         }.to raise_error(
           ArgumentError,
