@@ -3,7 +3,7 @@ require "fortnox/api/models/validator/base"
 module Fortnox
   module API
     module Validators
-      module Row
+      class Row
 
         extend Fortnox::API::Entities::BaseValidator
 
