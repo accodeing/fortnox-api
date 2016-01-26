@@ -6,6 +6,8 @@ require "codeclimate-test-reporter"
 
 CodeClimate::TestReporter.start
 
+Dir[File.expand_path('spec/support/matchers/*.rb')].each { |file| require file }
+
 RSpec.configure do |config|
   config.run_all_when_everything_filtered = true
   config.filter_run :focus
