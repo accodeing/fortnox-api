@@ -1,32 +1,28 @@
-RSpec::Matchers.define :validate_true do |instance|
-  expect_validate( instance, true )
+RSpec::Matchers.define :validate_true do
+  expect_validate( true )
 end
 
-RSpec::Matchers.define :validate_false do |instance|
-  expect_validate( instance, false )
+RSpec::Matchers.define :validate_false do
+  expect_validate( false )
 end
 
-RSpec::Matchers.define :include_violation_on do |instance, attribute|
+RSpec::Matchers.define :include_error_for do |attribute, errors|
   match do
-    validate( instance )
-    expect( described_class.violations.inspect ).to include( attribute )
+    subject.valid?
+    expect( subject.errors.for( attribute ).length ).to eql( errors )
   end
 
-  description { "include violation on #{attribute}" }
+  description { "include error for #{attribute}" }
 
   failure_message do
-    "expected \"#{described_class.violations.inspect}\" to include \"#{attribute}\""
+    "expected \"#{subject.errors.inspect}\" to include #{errors} error(s) for \"#{attribute}\""
   end
 end
 
 private
 
-  def validate( instance )
-    described_class.validate( instance )
-  end
-
-  def expect_validate( instance, expected )
-    match { expect( validate( instance ) ).to eq( expected ) }
+  def expect_validate( expected )
+    match { expect( subject.valid? ).to eq( expected ) }
 
     description { "validate #{expected}" }
 
