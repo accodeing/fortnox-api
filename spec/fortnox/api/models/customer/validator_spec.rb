@@ -15,7 +15,7 @@ describe Fortnox::API::Validators::Customer do
     end
 
     context 'Customer with invalid sales_account' do
-      let( :customer ){ Fortnox::API::Entities::Customer.new( sales_account: 99999 ) }
+      let( :customer ){ Fortnox::API::Entities::Customer.new( name: 'Test', sales_account: 99999 ) }
 
       it 'is invalid' do
         expect( validator.validate( customer )).to eql( false )
