@@ -1,4 +1,6 @@
 require "fortnox/api/models/entity/base"
+require "fortnox/api/attributes/country_code"
+require "fortnox/api/attributes/currency"
 
 module Fortnox
   module API
@@ -24,13 +26,13 @@ module Fortnox
         attribute :comments, String
 
         #Currency	Currency of the customer, 3 letters
-        attribute :currency, String
+        include Attributes::Currency
 
         #CostCenter	Cost center of the customer, Cost center in Fortnox
         attribute :cost_center, String
 
         #CountryCode	Country code of the customer, 2 letters
-        attribute :country_code, String
+        include Attributes::CountryCode
 
         #CustomerNumber	Customer number
         attribute :customer_number, String

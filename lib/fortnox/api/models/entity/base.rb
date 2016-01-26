@@ -6,7 +6,7 @@ module Fortnox
     module Entities
       class Base
 
-        extend Forwardable
+        # extend Forwardable
         include Virtus.model
 
         attr_accessor :unsaved
@@ -15,7 +15,10 @@ module Fortnox
           unsaved = hash.delete( :unsaved ){ true }
           @saved = !unsaved
           @new = hash.delete( :new ){ true }
-          super
+
+          # .each{|a| p a.name}
+
+          super hash
           IceNine.deep_freeze( self )
         end
 
@@ -40,6 +43,12 @@ module Fortnox
 
         def saved?
           @saved
+        end
+
+      private
+
+        def private_attributes
+          @@private_attributes ||= attribute_set.select{ |a| !a.public_writer? }
         end
 
       end
