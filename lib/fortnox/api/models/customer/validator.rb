@@ -3,22 +3,16 @@ require "fortnox/api/models/validator/base"
 module Fortnox
   module API
     module Validators
-      class Customer
+      class Customer < Fortnox::API::Validators::Base
 
-        extend Fortnox::API::Entities::BaseValidator
+        attribute :name, presence: true
 
-        using_validations do
+        attribute :currency, size: 3
+        attribute :country_code, size: 2
 
-          validates_presence_of :name
-
-          validates_length_of :currency, length: 3, if: :currency
-          validates_length_of :country_code, length: 2, if: :country_code
-
-          validates_inclusion_of :sales_account, within: (0..9999), if: :sales_account
-          validates_inclusion_of :type, within: ['PRIVATE', 'COMPANY'], if: :type
-          validates_inclusion_of :vat_type, within: ['SEVAT', 'SEREVERSEDVAT', 'EUREVERSEDVAT', 'EUVAT', 'EXPORT'], if: :vat_type
-
-        end
+        attribute :sales_account, inclusion: (0..9999)
+        attribute :type, inclusion: ['PRIVATE', 'COMPANY']
+        attribute :vat_type, inclusion: ['SEVAT', 'SEREVERSEDVAT', 'EUREVERSEDVAT', 'EUVAT', 'EXPORT']
 
       end
     end
