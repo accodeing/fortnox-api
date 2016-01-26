@@ -3,7 +3,7 @@ require 'fortnox/api/models/customer/validator'
 require 'fortnox/api/models/customer/entity'
 
 describe Fortnox::API::Validators::Customer do
-  let( :validator ){ Fortnox::API::Validators::Customer }
+  let( :validator ) { Fortnox::API::Validators::Customer }
 
   describe '.validate' do
     context 'Customer with valid, simple attributes' do

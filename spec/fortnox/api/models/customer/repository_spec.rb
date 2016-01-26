@@ -16,7 +16,7 @@ describe Fortnox::API::Repositories::Customer do
     ENV['FORTNOX_API_ACCESS_TOKEN'] = nil
   }
 
-  let( :repository ){ Fortnox::API::Repositories::Customer.new }
+  let( :repository ) { Fortnox::API::Repositories::Customer.new }
 
   describe '#save' do
     context 'unsaved, new customer' do

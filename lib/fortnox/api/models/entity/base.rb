@@ -12,9 +12,9 @@ module Fortnox
         attr_accessor :unsaved
 
         def initialize( hash = {} )
-          unsaved = hash.delete( :unsaved ){ true }
+          unsaved = hash.delete( :unsaved ) { true }
           @saved = !unsaved
-          @new = hash.delete( :new ){ true }
+          @new = hash.delete( :new ) { true }
           super
           IceNine.deep_freeze( self )
         end
