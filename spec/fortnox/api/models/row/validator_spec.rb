@@ -59,7 +59,7 @@ describe Fortnox::API::Validators::Row do
 
     context 'invalid' do
       context 'account_number' do
-        it_behaves_like 'invalid', :account_number, [12345]
+        it_behaves_like 'invalid', :account_number, [-1, 12345]
       end
 
       context 'article_number' do
@@ -67,7 +67,7 @@ describe Fortnox::API::Validators::Row do
       end
 
       context 'delivered_quantity' do
-        it_behaves_like 'invalid', :delivered_quantity, [123456789012345]
+        it_behaves_like 'invalid', :delivered_quantity, [-1, 123456789012345]
       end
 
       context 'description' do
@@ -75,15 +75,15 @@ describe Fortnox::API::Validators::Row do
       end
 
       context 'discount' do
-        it_behaves_like 'invalid', :discount, [1234567890123]
+        it_behaves_like 'invalid', :discount, [-1, 1234567890123]
       end
 
       context 'house_work_hours_to_report' do
-        it_behaves_like 'invalid', :house_work_hours_to_report, [123456]
+        it_behaves_like 'invalid', :house_work_hours_to_report, [-1, 123456]
       end
 
       context 'price' do
-        it_behaves_like 'invalid', :price, [1234567890123]
+        it_behaves_like 'invalid', :price, [-1, 1234567890123]
       end
     end
   end
