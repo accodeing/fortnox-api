@@ -5,14 +5,14 @@ require 'fortnox/api/models/row/entity'
 describe Fortnox::API::Validators::Row do
   let( :entity_class ){ Fortnox::API::Entities::Row }
 
-  subject { described_class.new( entity ) }
+  subject{ described_class.new( entity ) }
 
   shared_examples_for 'invalid' do |attribute, values|
     values.each do |value|
       let( :entity ){ entity_class.new( attribute => value ) }
 
-      it { is_expected.to validate_false( entity ) }
-      it { is_expected.to include_error_for( attribute, 1 ) }
+      it{ is_expected.to validate_false( entity ) }
+      it{ is_expected.to include_error_for( attribute, 1 ) }
     end
   end
 
@@ -20,7 +20,7 @@ describe Fortnox::API::Validators::Row do
     values.each do |value|
       let( :entity ){ entity_class.new( attribute => value ) }
 
-      it { is_expected.to validate_true( entity ) }
+      it{ is_expected.to validate_true( entity ) }
     end
   end
 
@@ -28,7 +28,7 @@ describe Fortnox::API::Validators::Row do
     context 'required attributes' do
       let( :entity ){ entity_class.new }
 
-      it { is_expected.to validate_true( entity ) }
+      it{ is_expected.to validate_true( entity ) }
     end
 
     context 'valid' do

@@ -12,7 +12,7 @@ RSpec::Matchers.define :include_error_for do |attribute, errors|
     expect( subject.errors.for( attribute ).length ).to eql( errors )
   end
 
-  description { "include error for #{attribute}" }
+  description{ "include error for #{attribute}" }
 
   failure_message do
     "expected \"#{subject.errors.inspect}\" to include #{errors} error(s) for \"#{attribute}\""
@@ -22,9 +22,9 @@ end
 private
 
   def expect_validate( expected )
-    match { expect( subject.valid? ).to eq( expected ) }
+    match{ expect( subject.valid? ).to eq( expected ) }
 
-    description { "validate #{expected}" }
+    description{ "validate #{expected}" }
 
-    failure_message { "expected validator to validate #{expected}" }
+    failure_message{ "expected validator to validate #{expected}" }
   end
