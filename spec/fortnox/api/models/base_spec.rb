@@ -1,13 +1,13 @@
 require 'spec_helper'
-require 'fortnox/api/models/entity/base'
+require 'fortnox/api/models/base'
 
-class TestEntity < Fortnox::API::Entities::Base
+class TestEntity < Fortnox::API::Model::Base
   attribute :private, String, writer: :private
   attribute :string, String
   attribute :number, Integer, default: 42
 end
 
-describe Fortnox::API::Entities::Base do
+describe Fortnox::API::Model::Base do
   let(:original){ TestEntity.new( string: 'Test' ) }
 
   describe '.new' do

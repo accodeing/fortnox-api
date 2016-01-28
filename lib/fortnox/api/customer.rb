@@ -1,13 +1,13 @@
-require "fortnox/api/models/customer/entity"
-require "fortnox/api/models/customer/repository"
-require "fortnox/api/models/customer/validator"
+require "fortnox/api/models/customer"
+require "fortnox/api/repositories/customer"
+require "fortnox/api/validators/customer"
 
 module Fortnox
   module API
-    class Customer < Fortnox::API::Entities::Customer
+    class Customer < Fortnox::API::Model::Customer
 
       def valid?
-        Fortnox::API::Validators::Customer.validate( self )
+        Fortnox::API::Validator::Customer.validate( self )
       end
 
       def save
@@ -23,10 +23,9 @@ module Fortnox
       end
 
       def self.repository
-        @repository ||= Fortnox::API::Repositories::Customer.new
+        @repository ||= Fortnox::API::Repository::Customer.new
       end
 
     end
   end
 end
-

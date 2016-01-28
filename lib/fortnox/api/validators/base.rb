@@ -2,7 +2,7 @@ require "hanami/validations"
 
 module Fortnox
   module API
-    module Validators
+    module Validator
       class Base < Delegator
 
         include Hanami::Validations

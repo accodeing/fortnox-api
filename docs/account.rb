@@ -4,7 +4,7 @@ module Fortnox
   module API
     module Entities
       module Account
-        class Entity < Fortnox::API::Entities::Base
+        class Entity < Fortnox::API::Model::Base
 
           # Direct URL to the record
           attribute :url, String

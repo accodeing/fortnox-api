@@ -1,11 +1,11 @@
 require 'spec_helper'
-require 'fortnox/api/attributes/currency'
+require 'fortnox/api/models/attributes/currency'
 
-describe Fortnox::API::Attributes::Currency do
+describe Fortnox::API::Model::Attribute::Currency do
 
   class TestCase
     include Virtus.model
-    include Fortnox::API::Attributes::Currency
+    include Fortnox::API::Model::Attribute::Currency
   end
 
   describe '.new' do

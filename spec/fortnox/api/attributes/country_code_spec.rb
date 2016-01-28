@@ -1,11 +1,11 @@
 require 'spec_helper'
-require 'fortnox/api/attributes/country_code'
+require 'fortnox/api/models/attributes/country_code'
 
-describe Fortnox::API::Attributes::CountryCode do
+describe Fortnox::API::Model::Attribute::CountryCode do
 
   class TestCase
     include Virtus.model
-    include Fortnox::API::Attributes::CountryCode
+    include Fortnox::API::Model::Attribute::CountryCode
   end
 
   describe '.new' do

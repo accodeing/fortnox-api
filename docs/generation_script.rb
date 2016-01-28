@@ -13,7 +13,7 @@ module Fortnox
   module API
     module Entities
       module {{ model_name }}
-        class Entity < Fortnox::API::Entities::Base
+        class Entity < Fortnox::API::Model::Base
 
 RB
 

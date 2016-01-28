@@ -3,7 +3,7 @@ require "ice_nine"
 
 module Fortnox
   module API
-    module Entities
+    module Model
       class Base
 
         # extend Forwardable

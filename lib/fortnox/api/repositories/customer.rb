@@ -1,9 +1,9 @@
-require "fortnox/api/models/repository/base"
-require "fortnox/api/models/customer/entity"
+require "fortnox/api/repositories/base"
+require "fortnox/api/models/customer"
 
 module Fortnox
   module API
-    module Repositories
+    module Repository
       class Customer < Fortnox::API::Repository::Base
 
         def initialize
@@ -33,7 +33,7 @@ module Fortnox
 
         def instansiate( hash )
           hash[ 'new' ] = false
-          Fortnox::API::Entities::Customer.new( hash )
+          Fortnox::API::Model::Customer.new( hash )
         end
 
       end

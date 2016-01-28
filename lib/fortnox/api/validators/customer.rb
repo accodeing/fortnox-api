@@ -1,9 +1,9 @@
-require "fortnox/api/models/validator/base"
+require "fortnox/api/validators/base"
 
 module Fortnox
   module API
-    module Validators
-      class Customer < Fortnox::API::Validators::Base
+    module Validator
+      class Customer < Fortnox::API::Validator::Base
 
         validates :name, presence: true
 

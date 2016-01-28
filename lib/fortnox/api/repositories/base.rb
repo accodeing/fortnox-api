@@ -1,7 +1,7 @@
 require "fortnox/api/base"
-require "fortnox/api/models/repository/json_convertion"
-require "fortnox/api/models/repository/loaders"
-require "fortnox/api/models/repository/savers"
+require "fortnox/api/repositories/base/json_convertion"
+require "fortnox/api/repositories/base/loaders"
+require "fortnox/api/repositories/base/savers"
 
 module Fortnox
   module API
@@ -16,7 +16,7 @@ module Fortnox
         # TODO: Add exceptions for missing required arguments.
         def initialize( options = {} )
           super()
-          
+
           @base_uri = options.fetch( :base_uri ){ '/' }
           @json_list_wrapper = options.fetch( :json_list_wrapper ){ '' }
           @json_unit_wrapper = options.fetch( :json_unit_wrapper ){ '' }

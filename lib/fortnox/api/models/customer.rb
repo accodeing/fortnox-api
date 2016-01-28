@@ -1,11 +1,11 @@
-require "fortnox/api/models/entity/base"
-require "fortnox/api/attributes/country_code"
-require "fortnox/api/attributes/currency"
+require "fortnox/api/models/base"
+require "fortnox/api/models/attributes/country_code"
+require "fortnox/api/models/attributes/currency"
 
 module Fortnox
   module API
-    module Entities
-      class Customer < Fortnox::API::Entities::Base
+    module Model
+      class Customer < Fortnox::API::Model::Base
 
         #Url	Direct URL to the record
         attribute :url, String, writer: :private
@@ -26,13 +26,13 @@ module Fortnox
         attribute :comments, String
 
         #Currency	Currency of the customer, 3 letters
-        include Attributes::Currency
+        include Attribute::Currency
 
         #CostCenter	Cost center of the customer, Cost center in Fortnox
         attribute :cost_center, String
 
         #CountryCode	Country code of the customer, 2 letters
-        include Attributes::CountryCode
+        include Attribute::CountryCode
 
         #CustomerNumber	Customer number
         attribute :customer_number, String
