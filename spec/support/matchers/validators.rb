@@ -1,28 +1,38 @@
-RSpec::Matchers.define :be_valid do
-  expect_validate( true )
+RSpec::Matchers.define :be_valid do |model|
+  expect_validate( model, true )
 end
 
-RSpec::Matchers.define :be_invalid do
-  expect_validate( false )
+RSpec::Matchers.define :be_invalid do |model|
+  expect_validate( model, false )
 end
 
-RSpec::Matchers.define :include_error_for do |attribute, errors|
+RSpec::Matchers.define :include_error_for do |model, attribute, error_type|
   match do
-    subject.valid?
-    expect( subject.errors.for( attribute ).length ).to eql( errors )
+    validate( model )
+    error_included = false
+    described_class.violations.any? do |v|
+      if v.rule.attribute_name == attribute && v.rule.type == error_type
+        error_included = true
+      end
+    end
+    expect( error_included ).to eql( true )
   end
 
   description{ "include error for #{attribute}" }
 
   failure_message do
-    "expected \"#{subject.errors.inspect}\" to include #{errors} error(s) for \"#{attribute}\""
+    "expected \"#{described_class.violations.inspect}\" to include #{error_type} error for \"#{attribute}\""
   end
 end
 
 private
 
-  def expect_validate( expected )
-    match{ expect( subject.valid? ).to eq( expected ) }
+  def validate( instance )
+    described_class.validate( instance )
+  end
+
+  def expect_validate( model, expected )
+    match{ expect( validate( model ) ).to eq( expected ) }
 
     description{ "validate #{expected}" }
 
