@@ -5,15 +5,13 @@ require 'fortnox/api/models/row'
 describe Fortnox::API::Validator::Row do
   let( :model_class ){ Fortnox::API::Model::Row }
 
-  subject{ described_class.new( model ) }
-
-  shared_examples_for 'invalid' do |attribute, values|
+  shared_examples_for 'invalid' do |attribute, values, error_type|
     values.each do |value|
       context "when #{attribute} set to #{value}" do
         let( :model ){ model_class.new( attribute => value ) }
 
         it{ is_expected.to be_invalid( model ) }
-        it{ is_expected.to include_error_for( attribute, 1 ) }
+        it{ is_expected.to include_error_for( model, attribute, error_type ) }
       end
     end
   end
@@ -45,13 +43,14 @@ describe Fortnox::API::Validator::Row do
     end
 
     context 'with invalid attributes' do
-      it_behaves_like 'invalid', :account_number, [-1, 12345]
-      it_behaves_like 'invalid', :article_number, ['a' * 51]
-      it_behaves_like 'invalid', :delivered_quantity, [-1, 123456789012345]
-      it_behaves_like 'invalid', :description, ['a' * 51]
-      it_behaves_like 'invalid', :discount, [-1, 1234567890123]
-      it_behaves_like 'invalid', :house_work_hours_to_report, [-1, 123456]
-      it_behaves_like 'invalid', :price, [-1, 1234567890123]
+      it_behaves_like 'invalid', :article_number, ['a' * 51], :length
+      it_behaves_like 'invalid', :description, ['a' * 51], :length
+
+      it_behaves_like 'invalid', :account_number, [-1, 12345], :inclusion
+      it_behaves_like 'invalid', :delivered_quantity, [-1, 123456789012345], :inclusion
+      it_behaves_like 'invalid', :discount, [-1, 1234567890123], :inclusion
+      it_behaves_like 'invalid', :house_work_hours_to_report, [-1, 123456], :inclusion
+      it_behaves_like 'invalid', :price, [-1, 1234567890123], :inclusion
     end
   end
 end

@@ -3,17 +3,20 @@ require "fortnox/api/validators/base"
 module Fortnox
   module API
     module Validator
-      class Row < Fortnox::API::Validator::Base
+      class Row
 
-        validates :article_number, size: 1..50
-        validates :description, size: 1..50
+        extend Fortnox::API::Validator::Base
 
-        validates :account_number, inclusion: (0..9999)
-        validates :delivered_quantity, inclusion: (0..99_999_999_999_999)
-        validates :discount, inclusion: (0..999_999_999_999)
-        validates :house_work_hours_to_report, inclusion: (0..99_999)
-        validates :price, inclusion: (0..999_999_999_999)
+        using_validations do
+          validates_length_of :article_number, length: 0..50, if: :article_number?
+          validates_length_of :description, length: 0..50, if: :description?
 
+          validates_inclusion_of :account_number, within: (0..9999), if: :account_number?
+          validates_inclusion_of :delivered_quantity, within: (0..99_999_999_999_999), if: :delivered_quantity?
+          validates_inclusion_of :discount, within: (0..999_999_999_999), if: :discount?
+          validates_inclusion_of :house_work_hours_to_report, within: (0..99_999), if: :house_work_hours_to_report?
+          validates_inclusion_of :price, within: (0..999_999_999_999), if: :price?
+        end
       end
     end
   end
