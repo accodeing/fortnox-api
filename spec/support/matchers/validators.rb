@@ -1,8 +1,8 @@
-RSpec::Matchers.define :validate_true do
+RSpec::Matchers.define :be_valid do
   expect_validate( true )
 end
 
-RSpec::Matchers.define :validate_false do
+RSpec::Matchers.define :be_invalid do
   expect_validate( false )
 end
 

@@ -12,7 +12,7 @@ describe Fortnox::API::Validator::Row do
       context "when #{attribute} set to #{value}" do
         let( :model ){ model_class.new( attribute => value ) }
 
-        it{ is_expected.to validate_false( model ) }
+        it{ is_expected.to be_invalid( model ) }
         it{ is_expected.to include_error_for( attribute, 1 ) }
       end
     end
@@ -23,7 +23,7 @@ describe Fortnox::API::Validator::Row do
       context "when #{attribute} set to #{value}" do
         let( :model ){ model_class.new( attribute => value ) }
 
-        it{ is_expected.to validate_true( model ) }
+        it{ is_expected.to be_valid( model ) }
       end
     end
   end
@@ -32,7 +32,7 @@ describe Fortnox::API::Validator::Row do
     context 'with required attributes' do
       let( :model ){ model_class.new }
 
-      it{ is_expected.to validate_true( model ) }
+      it{ is_expected.to be_valid( model ) }
     end
 
     context 'with valid attributes' do
