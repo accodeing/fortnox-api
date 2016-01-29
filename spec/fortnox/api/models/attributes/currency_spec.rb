@@ -10,6 +10,11 @@ describe Fortnox::API::Model::Attribute::Currency do
 
   describe '.new' do
     context 'with country code' do
+      it 'ignores empty values' do
+        test_case = TestCase.new()
+        expect( test_case.currency ).to eql( nil )
+      end
+
       it 'upcases lower case' do
         test_case = TestCase.new( currency: 'sek' )
         expect( test_case.currency ).to eql( 'SEK' )

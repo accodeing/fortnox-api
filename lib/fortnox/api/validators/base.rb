@@ -1,19 +1,31 @@
-require "hanami/validations"
+require "vanguard"
 
 module Fortnox
   module API
     module Validator
-      class Base < Delegator
+      module Base
 
-        include Hanami::Validations
+        def validate( instance )
+          raise ArgumentError, "No validator given for #{name}" unless @validator
 
-        def initialize(obj)
-          super
-          @delegate_sd_obj = obj
+          validation_result = @validator.call( instance )
+          @violations = validation_result.violations
+
+          return validation_result.valid?
         end
 
-        def __getobj__
-          @delegate_sd_obj
+        def violations
+          @violations ||= Set.new
+        end
+
+        def using_validations &block
+          @validator = Vanguard::Validator.build( &block )
+        end
+
+        def instance
+          raise ArgumentError, "No validator given for #{name}" unless @validator
+
+          self
         end
 
       end

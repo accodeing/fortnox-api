@@ -10,6 +10,11 @@ describe Fortnox::API::Model::Attribute::CountryCode do
 
   describe '.new' do
     context 'with country code' do
+      it 'ignores empty values' do
+        test_case = TestCase.new()
+        expect( test_case.country_code ).to eql( nil )
+      end
+
       it 'upcases lower case' do
         test_case = TestCase.new( country_code: 'se' )
         expect( test_case.country_code ).to eql( 'SE' )

@@ -11,6 +11,14 @@ module Fortnox
 
         attr_accessor :unsaved
 
+        def self.attribute( name, *args )
+          define_method( "#{name}?" ) do
+            !send( name ).nil?
+          end
+
+          super
+        end
+
         def initialize( hash = {} )
           unsaved = hash.delete( :unsaved ){ true }
           @saved = !unsaved
@@ -28,7 +36,7 @@ module Fortnox
 
           return self if new_attributes == old_attributes
 
-          self.class.new( new_attributes )
+          self.class.new( new_attributes.select{ |_,v| !v.nil? })
         end
 
         # Generic comparison, by value, use .eql? or .equal? for object identity.
