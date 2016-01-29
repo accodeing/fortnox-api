@@ -30,6 +30,8 @@ module Fortnox
         attribute :description, String
 
         # Discount amount. 12 digits (for amount) / 5 digits (for percent)
+        # TODO: Verify that we can send in more than 5 digits through the actual
+        # API for DiscountType PERCENT.
         attribute :discount, Float
 
         #DiscountType The type of discount used for the row.
