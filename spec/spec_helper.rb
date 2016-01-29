@@ -3,10 +3,9 @@ ENV['RUBY_ENV'] = 'test'
 require 'webmock/rspec'
 require 'pry'
 require "codeclimate-test-reporter"
+require 'support/matchers'
 
 CodeClimate::TestReporter.start
-
-Dir[File.expand_path('spec/support/matchers/*.rb')].each{ |file| require file }
 
 RSpec.configure do |config|
   config.run_all_when_everything_filtered = true
