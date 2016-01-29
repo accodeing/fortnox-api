@@ -39,7 +39,7 @@ module Fortnox
         attribute :house_work_hours_to_report, Integer
 
         #HouseWorkType The type of house work.
-        attribute :HouseWorkType, String
+        attribute :house_work_type, String
 
         #Price Price per unit. 12 digits
         attribute :price, Float
