@@ -3,16 +3,16 @@ require 'fortnox/api/validators/row'
 require 'fortnox/api/models/row'
 
 describe Fortnox::API::Validator::Row do
-  let( :entity_class ){ Fortnox::API::Model::Row }
+  let( :model_class ){ Fortnox::API::Model::Row }
 
-  subject{ described_class.new( entity ) }
+  subject{ described_class.new( model ) }
 
   shared_examples_for 'invalid' do |attribute, values|
     values.each do |value|
       context "when #{attribute} set to #{value}" do
-        let( :entity ){ entity_class.new( attribute => value ) }
+        let( :model ){ model_class.new( attribute => value ) }
 
-        it{ is_expected.to validate_false( entity ) }
+        it{ is_expected.to validate_false( model ) }
         it{ is_expected.to include_error_for( attribute, 1 ) }
       end
     end
@@ -21,18 +21,18 @@ describe Fortnox::API::Validator::Row do
   shared_examples_for 'valid' do |attribute, values|
     values.each do |value|
       context "when #{attribute} set to #{value}" do
-        let( :entity ){ entity_class.new( attribute => value ) }
+        let( :model ){ model_class.new( attribute => value ) }
 
-        it{ is_expected.to validate_true( entity ) }
+        it{ is_expected.to validate_true( model ) }
       end
     end
   end
 
   describe '.validate Row' do
     context 'with required attributes' do
-      let( :entity ){ entity_class.new }
+      let( :model ){ model_class.new }
 
-      it{ is_expected.to validate_true( entity ) }
+      it{ is_expected.to validate_true( model ) }
     end
 
     context 'with valid attributes' do
