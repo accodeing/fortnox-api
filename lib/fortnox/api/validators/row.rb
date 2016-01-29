@@ -1,9 +1,9 @@
-require "fortnox/api/models/validator/base"
+require "fortnox/api/validators/base"
 
 module Fortnox
   module API
-    module Validators
-      class Row < Fortnox::API::Validators::Base
+    module Validator
+      class Row < Fortnox::API::Validator::Base
 
         validates :article_number, size: 1..50
         validates :description, size: 1..50

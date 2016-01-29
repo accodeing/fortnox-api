@@ -1,9 +1,10 @@
-require "fortnox/api/models/entity/base"
+require "fortnox/api/models/base"
 
 module Fortnox
   module API
-    module Entities
-      class Row < Fortnox::API::Entities::Base
+    module Model
+      class Row < Base
+
         #AccountNumber Account number. 4 digits
         attribute :account_number, Integer
 

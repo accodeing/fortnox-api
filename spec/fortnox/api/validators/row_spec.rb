@@ -1,9 +1,9 @@
 require 'spec_helper'
-require 'fortnox/api/models/row/validator'
-require 'fortnox/api/models/row/entity'
+require 'fortnox/api/validators/row'
+require 'fortnox/api/models/row'
 
-describe Fortnox::API::Validators::Row do
-  let( :entity_class ){ Fortnox::API::Entities::Row }
+describe Fortnox::API::Validator::Row do
+  let( :entity_class ){ Fortnox::API::Model::Row }
 
   subject{ described_class.new( entity ) }
 
