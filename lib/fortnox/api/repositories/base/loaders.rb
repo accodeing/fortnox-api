@@ -6,9 +6,6 @@ module Fortnox
       module Loaders
 
         def all
-          p '*****'
-          p @base_uri
-          p '*****'
           response_hash = get( @base_uri )
           entities_hash = response_hash[ @json_list_wrapper ]
           entities_hash.map do |entity_hash|
