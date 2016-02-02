@@ -10,7 +10,7 @@ engines:
   eslint:
     enabled: true
   fixme:
-    enabled: true
+    enabled: false
   rubocop:
     enabled: true
 ratings:
