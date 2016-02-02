@@ -3,6 +3,7 @@ ENV['RUBY_ENV'] = 'test'
 require 'webmock/rspec'
 require 'pry'
 require "codeclimate-test-reporter"
+require 'support/matchers'
 
 CodeClimate::TestReporter.start
 
