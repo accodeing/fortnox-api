@@ -1,7 +1,7 @@
 require 'spec_helper'
+require 'fortnox/api/validators/context'
 require 'fortnox/api/validators/row'
 require 'fortnox/api/models/row'
-require 'fortnox/api/validators/context'
 
 describe Fortnox::API::Validator::Row do
   let( :model_class ){ Fortnox::API::Model::Row }
