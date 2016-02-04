@@ -21,15 +21,15 @@ shared_context 'validator context' do
   end
 
   shared_examples_for 'validates length of string' do |attribute, length|
-    context "with #{attribute} set to" do
-      context "0 (empty string)" do
+    context "with #{attribute} set to string with" do
+      context "length 0 (empty string)" do
         let( :updated_model ){ valid_model.update( attribute => value ) }
         let( :value ){ '' }
 
         it{ is_expected.to be_valid( updated_model ) }
       end
 
-      context "1" do
+      context "length 1" do
         let( :updated_model ){ valid_model.update( attribute => value ) }
         let( :value ){ 'a' }
 
