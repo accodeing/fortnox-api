@@ -8,6 +8,9 @@ Dotenv.load unless ENV['RUBY_ENV'] == 'test'
 module Fortnox
   module API
 
+    class RemoteServerError < RuntimeError
+    end
+
     class << self
       extend Forwardable
       delegate [ :new, :get_access_token ] => Fortnox::API::Base

@@ -72,7 +72,7 @@ module Fortnox
 
         message += "\n\n#{response.request.inspect}"
 
-        raise message
+        raise Fortnox::API::RemoteServerError, message
       end
 
     end
