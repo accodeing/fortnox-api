@@ -20,7 +20,7 @@ shared_context 'repository context' do
           expect( repository ).not_to receive( :update_existing )
         end
 
-        specify { expect( repository.save( model )).to eql( true ) }
+        specify{ expect( repository.save( model )).to eql( true ) }
       end
     end
   end
