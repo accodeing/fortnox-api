@@ -11,24 +11,13 @@ describe Fortnox::API::Validator::EmailInformation do
 
   describe '.validate EmailInformation' do
     context 'with required attributes' do
-
       it{ is_expected.to be_valid( valid_model ) }
     end
 
-    context 'with valid attributes' do
-      it_behaves_like 'valid', :email_address_to, ['', 'a', 'a' * 1024]
-      it_behaves_like 'valid', :email_address_cc, ['', 'a', 'a' * 1024]
-      it_behaves_like 'valid', :email_address_bcc, ['', 'a', 'a' * 1024]
-      it_behaves_like 'valid', :email_subject, ['', 'a', 'a' * 100]
-      it_behaves_like 'valid', :email_body, ['', 'a', 'a' * 20000]
-    end
-
-    context 'with invalid attributes' do
-      it_behaves_like 'invalid', :email_address_to, ['a' * 1025], :length
-      it_behaves_like 'invalid', :email_address_cc, ['a' * 1025], :length
-      it_behaves_like 'invalid', :email_address_bcc, ['a' * 1025], :length
-      it_behaves_like 'invalid', :email_subject, ['a' * 101], :length
-      it_behaves_like 'invalid', :email_body, ['a' * 20001], :length
-    end
+    include_examples 'validates length of string', :email_address_to, 1024
+    include_examples 'validates length of string', :email_address_cc, 1024
+    include_examples 'validates length of string', :email_address_bcc, 1024
+    include_examples 'validates length of string', :email_subject, 100
+    include_examples 'validates length of string', :email_body, 20000
   end
 end
