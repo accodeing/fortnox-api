@@ -18,9 +18,6 @@ module Fortnox
         attribute :accounting_method, String
 
         #AdministrationFee The invoice administration fee. 12 digits (incl. decimals)
-        #TODO: Check that 13 digits will be trunkated to 12 digits.
-        #Additionally, validation do not count digits but only checks value
-        #(between 0 and 999_999_999_999).
         attribute :administration_fee, Float
 
         #AdministrationFeeVAT VAT of the invoice administration fee.
