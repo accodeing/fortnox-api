@@ -1,12 +1,12 @@
-require "fortnox/api/models/entity/base"
-require "fortnox/api/models/invoice/edi_information"
-require "fortnox/api/models/invoice/email_information"
-require "fortnox/api/models/row/entity"
+require "fortnox/api/models/base"
+require "fortnox/api/models/edi_information"
+require "fortnox/api/models/email_information"
+require "fortnox/api/models/row"
 
 module Fortnox
   module API
-    module Enteties
-      class Invoice < Fortnox::API::Entities::Base
+    module Model
+      class Invoice < Base
 
         #Url Direct url to the record.
         attribute :url, String, writer: :private
@@ -18,6 +18,9 @@ module Fortnox
         attribute :accounting_method, String
 
         #AdministrationFee The invoice administration fee. 12 digits (incl. decimals)
+        #TODO: Check that 13 digits will be trunkated to 12 digits.
+        #Additionally, validation do not count digits but only checks value
+        #(between 0 and 999_999_999_999).
         attribute :administration_fee, Float
 
         #AdministrationFeeVAT VAT of the invoice administration fee.
@@ -122,8 +125,8 @@ module Fortnox
         #ExternalInvoiceReference1 External invoice reference 1. 80 characters
         attribute :external_invoice_reference1, String
 
-        #ExternalInvoiceReference  External invoice reference 2. 80 characters
-        attribute :external_invoice_reference, String
+        #ExternalInvoiceReference2 External invoice reference 2. 80 characters
+        attribute :external_invoice_reference2, String
 
         #Freight Freight cost of the invoice. 12 digits (incl. decimals)
         attribute :freight, Float
