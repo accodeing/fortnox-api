@@ -3,7 +3,7 @@ require "fortnox/api/models/base"
 module Fortnox
   module API
     module Model
-      class EmailInformation < Base
+      class EmailInformation < Fortnox::API::Model::Base
 
         #EmailAddressTo Customer e-mail address. Must be a valid e-mail address. 1024 characters
         attribute :email_address_to, String

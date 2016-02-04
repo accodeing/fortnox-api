@@ -3,7 +3,7 @@ require "fortnox/api/models/base"
 module Fortnox
   module API
     module Model
-      class EDIInformation < Base
+      class EDIInformation < Fortnox::API::Model::Base
 
         #EDIGlobalLocationNumber Invoice address GLN for EDI
         attribute :edi_global_location_number, String

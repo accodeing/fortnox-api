@@ -6,7 +6,7 @@ require "fortnox/api/models/row"
 module Fortnox
   module API
     module Model
-      class Invoice < Base
+      class Invoice < Fortnox::API::Model::Base
 
         #Url Direct url to the record.
         attribute :url, String, writer: :private
