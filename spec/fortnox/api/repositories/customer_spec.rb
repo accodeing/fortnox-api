@@ -1,14 +1,10 @@
 require 'spec_helper'
+require 'fortnox/api/repositories/context'
 require 'fortnox/api/repositories/customer'
 require 'fortnox/api/models/customer'
 
 describe Fortnox::API::Repository::Customer do
-
-  before{
-    ENV['FORTNOX_API_BASE_URL'] = ''
-    ENV['FORTNOX_API_CLIENT_SECRET'] = ''
-    ENV['FORTNOX_API_ACCESS_TOKEN'] = ''
-  }
+  include_context 'repository context'
 
   let( :repository ){ Fortnox::API::Repository::Customer.new }
 

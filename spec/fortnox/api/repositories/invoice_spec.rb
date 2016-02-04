@@ -1,20 +1,11 @@
 require 'spec_helper'
+require 'fortnox/api/repositories/context'
 require 'fortnox/api/repositories/invoice'
 require 'fortnox/api/models/invoice'
 
 describe Fortnox::API::Repository::Invoice do
 
-  before{
-    ENV['FORTNOX_API_BASE_URL'] = ''
-    ENV['FORTNOX_API_CLIENT_SECRET'] = ''
-    ENV['FORTNOX_API_ACCESS_TOKEN'] = ''
-  }
-
-  after{
-    ENV['FORTNOX_API_BASE_URL'] = nil
-    ENV['FORTNOX_API_CLIENT_SECRET'] = nil
-    ENV['FORTNOX_API_ACCESS_TOKEN'] = nil
-  }
+  include_context 'repository context'
 
   let( :repository ){ Fortnox::API::Repository::Invoice.new }
 
