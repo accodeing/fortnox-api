@@ -1,9 +1,9 @@
-require "fortnox/api/models/repository/base"
-require "fortnox/api/models/invoice/entity"
+require "fortnox/api/repositories/base"
+require "fortnox/api/models/invoice"
 
 module Fortnox
   module API
-    module Repositories
+    module Repository
       class Invoice < Fortnox::API::Repository::Base
 
         def initialize
@@ -26,7 +26,7 @@ module Fortnox
       private
 
         def instansiate( hash )
-          Fortnox::API::Enteties::Invoice.new( hash )
+          Fortnox::API::Model::Invoice.new( hash )
         end
 
       end
