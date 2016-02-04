@@ -5,9 +5,10 @@ require 'fortnox/api/validators/invoice'
 
 describe Fortnox::API::Validator::Invoice do
   let( :model_class ){ Fortnox::API::Model::Invoice }
-  let( :valid_model ){ model_class.new( customer_number: 12345 ) }
 
-  include_context 'validator context'
+  include_context 'validator context' do
+    let( :valid_model ){ model_class.new( customer_number: 12345 ) }
+  end
 
   describe '.validate Invoice' do
     context 'with required attributes' do
@@ -15,9 +16,7 @@ describe Fortnox::API::Validator::Invoice do
     end
 
     context 'without required attributes' do
-      let( :model ){ model_class.new }
-
-      it{ is_expected.to_not be_valid( model ) }
+      it{ is_expected.to_not be_valid( model_class.new ) }
     end
 
     include_examples 'validates length of string', :address1, 1024

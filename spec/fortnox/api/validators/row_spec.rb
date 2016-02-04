@@ -4,10 +4,9 @@ require 'fortnox/api/validators/row'
 require 'fortnox/api/models/row'
 
 describe Fortnox::API::Validator::Row do
-  let( :model_class ){ Fortnox::API::Model::Row }
-  let( :valid_model ){ model_class.new }
-
-  include_context 'validator context'
+  include_context 'validator context' do
+    let( :valid_model ){ Fortnox::API::Model::Row.new }
+  end
 
   describe '.validate Row' do
     context 'with required attributes' do

@@ -5,9 +5,10 @@ require 'fortnox/api/models/email_information'
 
 describe Fortnox::API::Validator::EmailInformation do
   let( :model_class ){ Fortnox::API::Model::EmailInformation }
-  let( :valid_model ){ model_class.new }
 
-  include_context 'validator context'
+  include_context 'validator context' do
+    let( :valid_model ){ model_class.new }
+  end
 
   describe '.validate EmailInformation' do
     context 'with required attributes' do
