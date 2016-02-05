@@ -12,24 +12,20 @@ module Fortnox
         include Loaders
         include Savers
 
-        def initialize(
-          base_uri:,
-          json_list_wrapper:,
-          json_unit_wrapper:,
-          unique_id:,
-          attribut_name_to_json_key_map: {},
-          keys_filtered_on_save: [ :url ],
-        )
+        require "fortnox/api/repositories/base/options"
+
+        def initialize( options )
           super()
 
-          @base_uri = base_uri
-          @json_list_wrapper = json_list_wrapper
-          @json_unit_wrapper = json_unit_wrapper
-          @unique_id = unique_id
-          @attr_to_json_map = attribut_name_to_json_key_map
-          @json_to_attr_map = @attr_to_json_map.invert
-          @keys_filtered_on_save = keys_filtered_on_save
+          @options = options
         end
+
+        private
+
+          def instansiate( hash )
+            hash[ 'new' ] = false
+            self.class.MODEL.new( hash )
+          end
 
       end
     end

@@ -18,6 +18,10 @@ module Fortnox
         repository.all
       end
 
+      def self.only( filter )
+        repository.only( filter )
+      end
+
       def self.find( *args )
         repository.find( *args )
       end

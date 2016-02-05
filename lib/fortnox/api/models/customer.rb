@@ -7,6 +7,23 @@ module Fortnox
     module Model
       class Customer < Fortnox::API::Model::Base
 
+        # searchable_attributes(
+        #     :city, :customer_number, :email, :name, :organisation_number,
+        #     :phone1, :zip_code
+        # )
+        #
+        # sortable_attributes(
+        #   :customer_number, :name
+        # )
+        #
+        # filter(
+        #   :active
+        # )
+        #
+        # actions(
+        #   :hire
+        # )
+
         #Url	Direct URL to the record
         attribute :url, String, writer: :private
 
