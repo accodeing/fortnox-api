@@ -83,7 +83,7 @@ describe Fortnox::API::Base do
         }
       ).to_return(
         status: 500,
-        body: { 'ErrorInformation': { 'error':1, 'message': 'Räkenskapsår finns inte upplagt. För att kunna skapa en faktura krävs det att det finns ett räkenskapsår' }}.to_json,
+        body: { 'ErrorInformation' => { 'error' => 1, 'message' => 'Räkenskapsår finns inte upplagt. För att kunna skapa en faktura krävs det att det finns ett räkenskapsår' }}.to_json,
         headers: { 'Content-Type' => 'application/json' },
       )
     }
