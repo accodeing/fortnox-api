@@ -12,7 +12,7 @@ module Fortnox
       include Fortnox::API::InputValidation
       include Fortnox::API::RequestHandling
 
-      HTTParty::Parser::SupportedFormats["text/html"] = :json
+      HTTParty::Parser::SupportedFormats[ "text/html" ] = :json
 
       DEFAULT_HEADERS = {
         'Content-Type' => 'application/json',
