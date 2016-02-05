@@ -15,6 +15,10 @@ module Fortnox
 
         def only( filter )
           response_hash = get( @uri + "?filter=#{ filter }" )
+          entities_hash = response_hash[ @json_list_wrapper ]
+          entities_hash.map do |entity_hash|
+            hash_to_entity( entity_hash )
+          end
         end
 
         def find( id_or_hash )
