@@ -8,30 +8,16 @@ Dotenv.load unless ENV['RUBY_ENV'] == 'test'
 module Fortnox
   module API
 
-    class RemoteServerError < RuntimeError
+    class RemoteServerError < ::RuntimeError
     end
 
     class << self
-      extend Forwardable
-      delegate [ :new, :get_access_token ] => Fortnox::API::Base
+      @debugging = false
+      attr_accessor :debugging
+    end
 
-      def root
-        File.dirname( __FILE__ ).to_s
-      end
-
-      def modules
-        @@modules ||= lookup_modules
-      end
-
-    private
-
-      def lookup_modules
-        glob = '/api/entities/*'
-        all_files_in_entities_directory = Dir.glob( root + glob )
-        directories = all_files_in_entities_directory.select{ |f| File.directory? f }
-        directories.map{ |d| d.split('/').last }
-      end
-
+    def self.get_access_token( *args )
+      Base.get_access_token( *args )
     end
 
   end
