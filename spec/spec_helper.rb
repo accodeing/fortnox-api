@@ -17,7 +17,11 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = 'random'
 
-  config.after(:suite) do
-    WebMock.disable_net_connect!(:allow => 'codeclimate.com')
+  WebMock.disable_net_connect!( allow: 'codeclimate.com' )
+
+  config.after( :each ) do
+    ENV['FORTNOX_API_BASE_URL'] = nil
+    ENV['FORTNOX_API_CLIENT_SECRET'] = nil
+    ENV['FORTNOX_API_ACCESS_TOKEN'] = nil
   end
 end

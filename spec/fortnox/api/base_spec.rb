@@ -4,75 +4,55 @@ require 'fortnox/api'
 describe Fortnox::API::Base do
 
   describe 'creation' do
+
+    subject{ -> { Fortnox::API::Base.new()}}
+
     context 'without parameters' do
-      it 'fails when given as argument' do
-        expect{
-          Fortnox::API::Base.new()
-        }.to raise_error(
-          ArgumentError,
-          /base url/
-        )
-      end
+      it{ is_expected.to raise_error( ArgumentError, /base url/ )}
     end
 
     context 'with only client_secret' do
-      it 'fails when given as argument' do
-        expect{
-          Fortnox::API::Base.new(
-            base_url: ''
-          )
-        }.to raise_error(
-          ArgumentError,
-          /client secret/
-        )
+      context 'as argument' do
+        subject{ -> { Fortnox::API::Base.new( base_url: '' )}}
+
+        it{ is_expected.to raise_error( ArgumentError, /client secret/ )}
       end
 
-      it 'fails when given as ENV' do
-        stub_const('ENV', ENV.to_hash.merge('FORTNOX_API_BASE_URL' => 'xxx'))
-        expect{
-          Fortnox::API::Base.new()
-        }.to raise_error(
-          ArgumentError,
-          /client secret/
-        )
+      context 'as environment variable' do
+        before do
+          stub_const('ENV', ENV.to_hash.merge('FORTNOX_API_BASE_URL' => 'xxx'))
+        end
+
+        it{ is_expected.to raise_error( ArgumentError, /client secret/ )}
       end
     end
 
-    context 'with both base url and client secret' do
-      it 'fails when given as argument' do
-        expect{
-          Fortnox::API::Base.new(
-            base_url: '',
-            client_secret: '',
-          )
-        }.to raise_error(
-          ArgumentError,
-          /access token/
-        )
+    context 'with some required parameters' do
+      context 'as arguments' do
+        subject{ -> { Fortnox::API::Base.new( base_url: '', client_secret: '' )}}
+
+        it{ is_expected.to raise_error( ArgumentError, /access token/ )}
       end
 
-      it 'fails when given as ENV' do
-        stub_const('ENV', ENV.to_hash.merge('FORTNOX_API_CLIENT_SECRET' => 'xxx', 'FORTNOX_API_ACCESS_TOKEN' => 'xxx'))
-        expect{
-          Fortnox::API::Base.new()
-        }.to raise_error(
-          ArgumentError,
-          /base url/
-        )
+      context 'as environment variables' do
+        before do
+          stub_const('ENV', ENV.to_hash.merge('FORTNOX_API_CLIENT_SECRET' => 'xxx', 'FORTNOX_API_ACCESS_TOKEN' => 'xxx'))
+        end
+
+        it{ is_expected.to raise_error( ArgumentError, /base url/ )}
       end
     end
 
   end
 
-  context 'raising error from remote server' do
-
-    before{
+  context 'making a request including the proper headers' do
+    before do
       ENV['FORTNOX_API_BASE_URL'] = 'http://api.fortnox.se/3'
       ENV['FORTNOX_API_CLIENT_SECRET'] = 'P5K5vE3Kun'
       ENV['FORTNOX_API_ACCESS_TOKEN'] = '3f08d038-f380-4893-94a0-a08f6e60e67a'
 
       stub_request(
-        :post,
+        :get,
         'http://api.fortnox.se/3/test',
       ).with(
         headers: {
@@ -82,36 +62,47 @@ describe Fortnox::API::Base do
           'Accept' => 'application/json',
         }
       ).to_return(
+        status: 200
+      )
+    end
+
+    subject{ Fortnox::API::Base.new.get( '/test', { body: '' })}
+
+    it{ is_expected.to be_nil }
+  end
+
+  context 'raising error from remote server' do
+
+    before do
+      ENV['FORTNOX_API_BASE_URL'] = 'http://api.fortnox.se/3'
+      ENV['FORTNOX_API_CLIENT_SECRET'] = 'P5K5vE3Kun'
+      ENV['FORTNOX_API_ACCESS_TOKEN'] = '3f08d038-f380-4893-94a0-a08f6e60e67a'
+
+      stub_request(
+        :post,
+        'http://api.fortnox.se/3/test',
+      ).to_return(
         status: 500,
         body: { 'ErrorInformation' => { 'error' => 1, 'message' => 'Räkenskapsår finns inte upplagt. För att kunna skapa en faktura krävs det att det finns ett räkenskapsår' }}.to_json,
         headers: { 'Content-Type' => 'application/json' },
       )
-    }
-
-    after{
-      ENV['FORTNOX_API_BASE_URL'] = nil
-      ENV['FORTNOX_API_CLIENT_SECRET'] = nil
-      ENV['FORTNOX_API_ACCESS_TOKEN'] = nil
-    }
-
-    it 'raises a descriptive exception' do
-      expect{ Fortnox::API::Base.new.post( '/test', { body: {}.to_json })}.to raise_error( Fortnox::API::RemoteServerError )
     end
 
-    it 'preserves the original error message' do
-      expect{ Fortnox::API::Base.new.post( '/test', { body: {}.to_json })}.to raise_error( 'Räkenskapsår finns inte upplagt. För att kunna skapa en faktura krävs det att det finns ett räkenskapsår' )
-    end
+    subject{ -> { Fortnox::API::Base.new.post( '/test', { body: '' })}}
+
+    it{ is_expected.to raise_error( Fortnox::API::RemoteServerError )}
+    it{ is_expected.to raise_error( 'Räkenskapsår finns inte upplagt. För att kunna skapa en faktura krävs det att det finns ett räkenskapsår' )}
 
     context 'with debugging enabled' do
 
-      after{
-        Fortnox::API.debugging = false
-      }
-
-      it 'includes the HTTParty request object to aid in debugging' do
+      around(:each) do |example|
         Fortnox::API.debugging = true
-        expect{ Fortnox::API::Base.new.post( '/test', { body: {}.to_json })}.to raise_error( /\<HTTParty\:\:Request\:0x/ )
+        example.run
+        Fortnox::API.debugging = false
       end
+
+      it{ is_expected.to raise_error( /\<HTTParty\:\:Request\:0x/ )}
+
     end
   end
 

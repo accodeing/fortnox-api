@@ -10,12 +10,6 @@ describe Fortnox::API::Repository::Customer do
     ENV['FORTNOX_API_ACCESS_TOKEN'] = ''
   }
 
-  after{
-    ENV['FORTNOX_API_BASE_URL'] = nil
-    ENV['FORTNOX_API_CLIENT_SECRET'] = nil
-    ENV['FORTNOX_API_ACCESS_TOKEN'] = nil
-  }
-
   let( :repository ){ Fortnox::API::Repository::Customer.new }
 
   describe '#save' do
