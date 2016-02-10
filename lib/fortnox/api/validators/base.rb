@@ -6,7 +6,7 @@ module Fortnox
       module Base
 
         def validate( instance )
-          raise ArgumentError, "No validator given for #{name}" unless @validator
+          raise_error_if_no_validator
 
           validation_result = @validator.call( instance )
           @violations = validation_result.violations
@@ -15,6 +15,8 @@ module Fortnox
         end
 
         def violations
+          raise_error_if_no_validator
+
           @violations ||= Set.new
         end
 
@@ -23,11 +25,16 @@ module Fortnox
         end
 
         def instance
-          raise ArgumentError, "No validator given for #{name}" unless @validator
+          raise_error_if_no_validator
 
           self
         end
 
+        private
+
+          def raise_error_if_no_validator
+            raise ArgumentError, "No validator given" unless @validator
+          end
       end
     end
   end
