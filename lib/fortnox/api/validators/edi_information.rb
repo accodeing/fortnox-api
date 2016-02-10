@@ -1,15 +1,11 @@
-require "fortnox/api/validators/base"
+require "fortnox/api/validators/constant"
 
 module Fortnox
   module API
     module Validator
       class EDIInformation
 
-        extend Fortnox::API::Validator::Base
-
-        using_validations do
-          # No validations needed, in other words always valid.
-        end
+        extend Fortnox::API::Validator::Constant
       end
     end
   end
