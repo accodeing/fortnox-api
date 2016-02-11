@@ -11,7 +11,7 @@ module Fortnox
           json_list_wrapper: 'Customers',
           json_unit_wrapper: 'Customer',
           unique_id: 'CustomerNumber',
-          attribut_name_to_json_key_map: {
+          attribute_name_to_json_key_map: {
             vat_type: 'VATType',
             vat_number: 'VATNumber',
             email_invoice_bcc: 'EmailInvoiceBCC',

@@ -13,7 +13,7 @@ module Fortnox
                 json_list_wrapper:,
                 json_unit_wrapper:,
                 unique_id:,
-                attribut_name_to_json_key_map: {},
+                attribute_name_to_json_key_map: {},
                 keys_filtered_on_save: [ :url ]
               )
 
@@ -21,7 +21,7 @@ module Fortnox
             @json_list_wrapper = json_list_wrapper
             @json_unit_wrapper = json_unit_wrapper
             @unique_id = unique_id
-            @attr_to_json_map = attribut_name_to_json_key_map
+            @attr_to_json_map = attribute_name_to_json_key_map
             @json_to_attr_map = @attr_to_json_map.invert
             @keys_filtered_on_save = keys_filtered_on_save
           end
