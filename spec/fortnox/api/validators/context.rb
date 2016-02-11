@@ -51,30 +51,33 @@ shared_context 'validator context' do
   shared_examples_for 'validates inclusion of' do |attribute, min_value, max_value|
     context "with #{attribute} set to" do
       context "minimum value (#{min_value})" do
-        let( :updated_model ){ valid_model.update( attribute => min_value ) }
-
-        it{ is_expected.to be_valid( updated_model ) }
+        include_examples 'behaves like valid', attribute, min_value
       end
 
       context "maximum value (#{max_value})" do
-        let( :updated_model ){ valid_model.update( attribute => max_value ) }
-
-        it{ is_expected.to be_valid( updated_model ) }
+        include_examples 'behaves like valid', attribute, max_value
       end
 
       context "too small value (#{min_value - 1})" do
-        let( :updated_model ){ valid_model.update( attribute => min_value - 1 ) }
-
-        it{ is_expected.to be_invalid( updated_model ) }
-        it{ is_expected.to include_error_for( updated_model, attribute, :inclusion ) }
+        include_examples 'behaves like invalid', attribute, min_value - 1, :inclusion
       end
 
       context "too big value (#{max_value + 1})" do
-        let( :updated_model ){ valid_model.update( attribute => max_value + 1 ) }
-
-        it{ is_expected.to be_invalid( updated_model ) }
-        it{ is_expected.to include_error_for( updated_model, attribute, :inclusion ) }
+        include_examples 'behaves like invalid', attribute, max_value + 1, :inclusion
       end
     end
+  end
+
+  shared_examples_for 'behaves like valid' do |attribute, value|
+    let( :updated_model ){ valid_model.update( attribute => value ) }
+
+    it{ is_expected.to be_valid( updated_model ) }
+  end
+
+  shared_examples_for 'behaves like invalid' do |attribute, value, error_type|
+    let( :updated_model ){ valid_model.update( attribute => value ) }
+
+    it{ is_expected.to be_invalid( updated_model ) }
+    it{ is_expected.to include_error_for( updated_model, attribute, error_type ) }
   end
 end
