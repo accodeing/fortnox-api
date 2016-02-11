@@ -11,8 +11,6 @@ describe Fortnox::API::Validator::EDIInformation do
   end
 
   describe '.validate EDIInformation' do
-    context 'with required attributes' do
-      it{ is_expected.to be_valid( valid_model ) }
-    end
+    it{ is_expected.to be_valid( valid_model ) }
   end
 end
