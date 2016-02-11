@@ -4,9 +4,9 @@ require 'fortnox/api/repositories/customer'
 require 'fortnox/api/models/customer'
 
 describe Fortnox::API::Repository::Customer do
+
   include_context 'repository context' do
-    let( :model ){ Fortnox::API::Model::Customer.new( unsaved: false ) }
-    let( :repository ){ Fortnox::API::Repository::Customer.new }
+    let( :model_class ){ Fortnox::API::Model::Customer }
   end
 
   include_examples '#save', 'Customer'

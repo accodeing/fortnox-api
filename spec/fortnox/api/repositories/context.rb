@@ -14,6 +14,9 @@ shared_context 'repository context' do
   shared_examples '#save' do |klass|
     describe '#save' do
       context "new #{klass}" do
+        let( :repository ){ described_class.new }
+        let( :model ){ model_class.new( unsaved: false ) }
+
         before do
           # Should not make an API request in test!
           expect( repository ).not_to receive( :save_new )
