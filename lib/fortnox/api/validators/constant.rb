@@ -3,7 +3,7 @@ module Fortnox
     module Validator
       module Constant
 
-        def validate( _instance )
+        def validate( _ )
           true
         end
 
