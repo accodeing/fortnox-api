@@ -2,6 +2,16 @@ require 'spec_helper'
 require 'fortnox/api/models/invoice'
 
 describe Fortnox::API::Model::Invoice do
+  shared_examples 'having value objects' do |value_object_class|
+    context "when having an #{value_object_class}" do
+      it "returns the correct object" do
+        value_object = value_object_class.new
+        invoice = described_class.new( attribute => value_object )
+        expect(invoice.send(attribute)).to eq(value_object)
+      end
+    end
+  end
+
   describe 'association with Fortnox::API::Model::Row' do
     context 'when having an Invoice Row' do
       it 'returns the correct Row' do
@@ -13,22 +23,14 @@ describe Fortnox::API::Model::Invoice do
   end
 
   describe 'association with Fortnox::API::Model::EmailInformation' do
-    context 'when having an EmailInformation' do
-      it 'returns the correct EmailInformation' do
-        email_information = Fortnox::API::Model::EmailInformation.new
-        invoice = described_class.new( email_information: email_information )
-        expect(invoice.email_information).to eq(email_information)
-      end
+    include_examples 'having value objects', Fortnox::API::Model::EmailInformation do
+      let( :attribute ){ :email_information }
     end
   end
 
   describe 'association with Fortnox::API::Model::EDIInformation' do
-    context 'when having an EDIInformation' do
-      it 'returns the correct EDIInformation' do
-        edi_information = Fortnox::API::Model::EDIInformation.new
-        invoice = described_class.new( edi_information: edi_information )
-        expect(invoice.edi_information).to eq(edi_information)
-      end
+    include_examples 'having value objects', Fortnox::API::Model::EDIInformation do
+      let( :attribute ){ :edi_information }
     end
   end
 end
