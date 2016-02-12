@@ -1,11 +1,20 @@
 shared_context 'validator context' do
+  shared_examples_for 'behaves like valid' do |attribute, value|
+    let( :updated_model ){ valid_model.update( attribute => value ) }
+
+    it{ is_expected.to be_valid( updated_model ) }
+  end
+
+  shared_examples_for 'behaves like invalid' do |attribute, value, error_type|
+    let( :updated_model ){ valid_model.update( attribute => value ) }
+
+    it{ is_expected.to be_invalid( updated_model ) }
+    it{ is_expected.to include_error_for( updated_model, attribute, error_type ) }
+  end
   shared_examples_for 'invalid' do |attribute, values, error_type|
     values.each do |value|
       context "when #{attribute} set to #{value}" do
-        let( :updated_model ){ valid_model.update( attribute => value ) }
-
-        it{ is_expected.to be_invalid( updated_model ) }
-        it{ is_expected.to include_error_for( updated_model, attribute, error_type ) }
+        include_examples 'behaves like invalid', attribute, value, error_type
       end
     end
   end
@@ -13,9 +22,7 @@ shared_context 'validator context' do
   shared_examples_for 'valid' do |attribute, values|
     values.each do |value|
       context "when #{attribute} set to #{value}" do
-        let( :updated_model ){ valid_model.update( attribute => value ) }
-
-        it{ is_expected.to be_valid( updated_model ) }
+        include_examples 'behaves like valid', attribute, value
       end
     end
   end
@@ -66,18 +73,5 @@ shared_context 'validator context' do
         include_examples 'behaves like invalid', attribute, max_value + 1, :inclusion
       end
     end
-  end
-
-  shared_examples_for 'behaves like valid' do |attribute, value|
-    let( :updated_model ){ valid_model.update( attribute => value ) }
-
-    it{ is_expected.to be_valid( updated_model ) }
-  end
-
-  shared_examples_for 'behaves like invalid' do |attribute, value, error_type|
-    let( :updated_model ){ valid_model.update( attribute => value ) }
-
-    it{ is_expected.to be_invalid( updated_model ) }
-    it{ is_expected.to include_error_for( updated_model, attribute, error_type ) }
   end
 end
