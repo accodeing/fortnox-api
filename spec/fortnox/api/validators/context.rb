@@ -30,27 +30,18 @@ shared_context 'validator context' do
   shared_examples_for 'validates length of string' do |attribute, length|
     context "with #{attribute} set to string with" do
       context "length 0 (empty string)" do
-        let( :updated_model ){ valid_model.update( attribute => '' ) }
-
-        it{ is_expected.to be_valid( updated_model ) }
+        include_examples 'behaves like valid', attribute, ''
       end
 
       context "length 1" do
-        let( :updated_model ){ valid_model.update( attribute => 'a' ) }
-
-        it{ is_expected.to be_valid( updated_model ) }
+        include_examples 'behaves like valid', attribute, 'a'
       end
       context "max length (#{length} chars)" do
-        let( :updated_model ){ valid_model.update( attribute => 'a' * length ) }
-
-        it{ is_expected.to be_valid( updated_model ) }
+        include_examples 'behaves like valid', attribute, 'a' * length
       end
 
       context "max length + 1 (#{length + 1})" do
-        let( :updated_model ){ valid_model.update( attribute => 'a' * (length + 1) ) }
-
-        it{ is_expected.to be_invalid( updated_model ) }
-        it{ is_expected.to include_error_for( updated_model, attribute, :length ) }
+        include_examples 'behaves like invalid', attribute, 'a' * (length + 1), :length
       end
     end
   end
