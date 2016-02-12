@@ -1,56 +1,25 @@
 require 'spec_helper'
+require 'fortnox/api/validators/context'
 require 'fortnox/api/validators/row'
 require 'fortnox/api/models/row'
 
 describe Fortnox::API::Validator::Row do
-  let( :model_class ){ Fortnox::API::Model::Row }
-
-  shared_examples_for 'invalid' do |attribute, values, error_type|
-    values.each do |value|
-      context "when #{attribute} set to #{value}" do
-        let( :model ){ model_class.new( attribute => value ) }
-
-        it{ is_expected.to be_invalid( model ) }
-        it{ is_expected.to include_error_for( model, attribute, error_type ) }
-      end
-    end
-  end
-
-  shared_examples_for 'valid' do |attribute, values|
-    values.each do |value|
-      context "when #{attribute} set to #{value}" do
-        let( :model ){ model_class.new( attribute => value ) }
-
-        it{ is_expected.to be_valid( model ) }
-      end
-    end
+  include_context 'validator context' do
+    let( :valid_model ){ Fortnox::API::Model::Row.new }
   end
 
   describe '.validate Row' do
     context 'with required attributes' do
-      let( :model ){ model_class.new }
-
-      it{ is_expected.to be_valid( model ) }
+      it{ is_expected.to be_valid( valid_model ) }
     end
 
-    context 'with valid attributes' do
-      it_behaves_like 'valid', :article_number, ['', 'a', 'a' * 49, 'a' * 50]
-      it_behaves_like 'valid', :delivered_quantity, [0, 12345678901234]
-      it_behaves_like 'valid', :description, ['', 'a', 'a' * 49, 'a' * 50]
-      it_behaves_like 'valid', :discount, [0, 123456789012]
-      it_behaves_like 'valid', :house_work_hours_to_report, [0, 12345]
-      it_behaves_like 'valid', :price, [0, 123456789012]
-    end
+    include_examples 'validates length of string', :article_number, 50
+    include_examples 'validates length of string', :description, 50
 
-    context 'with invalid attributes' do
-      it_behaves_like 'invalid', :article_number, ['a' * 51], :length
-      it_behaves_like 'invalid', :description, ['a' * 51], :length
-
-      it_behaves_like 'invalid', :account_number, [-1, 12345], :inclusion
-      it_behaves_like 'invalid', :delivered_quantity, [-1, 123456789012345], :inclusion
-      it_behaves_like 'invalid', :discount, [-1, 1234567890123], :inclusion
-      it_behaves_like 'invalid', :house_work_hours_to_report, [-1, 123456], :inclusion
-      it_behaves_like 'invalid', :price, [-1, 1234567890123], :inclusion
-    end
+    include_examples 'validates inclusion of', :account_number, 0, 9999
+    include_examples 'validates inclusion of', :delivered_quantity, 0, 9_999_999_999_999.0
+    include_examples 'validates inclusion of', :discount, 0, 99_999_999_999.0
+    include_examples 'validates inclusion of', :house_work_hours_to_report, 0, 99_999
+    include_examples 'validates inclusion of', :price, 0, 99_999_999_999.0
   end
 end

@@ -24,8 +24,8 @@ describe Fortnox::API::Validator::Customer do
       it 'includes "sales_account" in violations' do
         validator.validate( customer )
 
-        expect( validator.violations.any?{|v| v.rule.attribute_name == :sales_account }).to eql( true )
-        expect( validator.violations.any?{|v| v.rule.type == :inclusion }).to eql( true )
+        expect( validator.violations.any?{ |v| v.rule.attribute_name == :sales_account }).to eql( true )
+        expect( validator.violations.any?{ |v| v.rule.type == :inclusion }).to eql( true )
       end
     end
   end
