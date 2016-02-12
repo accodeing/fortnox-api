@@ -4,10 +4,7 @@ require 'fortnox/api/repositories/invoice'
 require 'fortnox/api/models/invoice'
 
 describe Fortnox::API::Repository::Invoice do
+  include_context 'repository context'
 
-  include_context 'repository context' do
-    let( :model_class ){ Fortnox::API::Model::Invoice }
-  end
-
-  include_examples '#save', 'Invoice'
+  it_behaves_like 'repositories', Fortnox::API::Model::Invoice
 end
