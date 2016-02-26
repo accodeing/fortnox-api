@@ -14,7 +14,7 @@ module Fortnox
 
           def country_code=( raw_country_code )
             country_code = raw_country_code.upcase[0...2]
-            super country_code if ALLOWED.include? country_code
+            super country_code
           end
 
         end

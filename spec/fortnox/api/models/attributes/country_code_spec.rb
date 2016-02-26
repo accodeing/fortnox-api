@@ -24,12 +24,6 @@ describe Fortnox::API::Model::Attribute::CountryCode do
         test_case = TestCase.new( country_code: 'sek' )
         expect( test_case.country_code ).to eql( 'SE' )
       end
-
-      it 'allows only valid ISO 3166-1 two letter country codes' do
-        # Refrense https://en.wikipedia.org/wiki/ISO_3166-1
-        test_case = TestCase.new( country_code: 'zz' )
-        expect( test_case.country_code ).to eql( nil )
-      end
     end
   end
 

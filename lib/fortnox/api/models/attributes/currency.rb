@@ -14,7 +14,7 @@ module Fortnox
 
           def currency=( raw_currency )
             currency = raw_currency.upcase[0...3]
-            super currency if ALLOWED.include? currency
+            super currency
           end
 
         end

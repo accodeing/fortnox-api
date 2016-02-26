@@ -24,12 +24,6 @@ describe Fortnox::API::Model::Attribute::Currency do
         test_case = TestCase.new( currency: 'usdollar' )
         expect( test_case.currency ).to eql( 'USD' )
       end
-
-      it 'allows only valid ISO 4217 three letter currency codes' do
-        # Refrense https://en.wikipedia.org/wiki/ISO_4217
-        test_case = TestCase.new( currency: 'svenska kronor' )
-        expect( test_case.currency ).to eql( nil )
-      end
     end
   end
 
