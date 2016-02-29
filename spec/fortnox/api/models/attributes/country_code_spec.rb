@@ -17,11 +17,6 @@ describe Fortnox::API::Model::Attribute::CountryCode do
         expect( test_case.country_code ).to eql( nil )
       end
 
-      it 'upcases lower case' do
-        test_case = Model.new( country_code: 'se' )
-        expect( test_case.country_code ).to eql( 'SE' )
-      end
-
       it 'truncates to two characters' do
         test_case = Model.new( country_code: 'sek' )
         expect( test_case.country_code ).to eql( 'SE' )
