@@ -46,7 +46,7 @@ shared_context 'validator context' do
     end
   end
 
-  shared_examples_for 'validates inclusion of' do |attribute, min_value, max_value|
+  shared_examples_for 'validates inclusion of number' do |attribute, min_value, max_value|
     context "with #{attribute} set to" do
       context "minimum value (#{min_value})" do
         include_examples 'behaves like valid', attribute, min_value
@@ -63,6 +63,34 @@ shared_context 'validator context' do
       context "too big value (#{max_value + 1})" do
         include_examples 'behaves like invalid', attribute, max_value + 1, :inclusion
       end
+    end
+  end
+
+  shared_examples_for 'validates inclusion of string' do |attribute, valid_strings|
+    context "with #{attribute} set to" do
+      valid_strings.each do |valid_string|
+        context "\"#{valid_string}\"" do
+          include_examples 'behaves like valid', attribute, valid_string
+        end
+      end
+
+      context 'a string not allowed' do
+        # Try first valid string and append nonsense
+        include_examples 'behaves like invalid',
+                         attribute,
+                         valid_strings.first + '123nonsense123',
+                         :inclusion
+      end
+    end
+  end
+
+  shared_examples_for 'required attributes' do |model_class|
+    context 'with required attributes' do
+      it{ is_expected.to be_valid( valid_model ) }
+    end
+
+    context 'without required attributes' do
+      it{ is_expected.to_not be_valid( model_class.new ) }
     end
   end
 end
