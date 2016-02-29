@@ -15,4 +15,6 @@ module Helpers
       end
     end
   end
+
+  alias_method :using_test_class, :using_test_classes
 end

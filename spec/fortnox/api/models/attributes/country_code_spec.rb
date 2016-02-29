@@ -3,7 +3,7 @@ require 'fortnox/api/models/attributes/country_code'
 
 describe Fortnox::API::Model::Attribute::CountryCode do
 
-  using_test_classes do
+  using_test_class do
     class Model
       include Virtus.model
       include Fortnox::API::Model::Attribute::CountryCode
