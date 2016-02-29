@@ -1,5 +1,5 @@
 module Helpers
-  def using_test_classes &block
+  def using_test_classes
     around( :all ) do |example|
       classes_before_examples = Object.constants
 
