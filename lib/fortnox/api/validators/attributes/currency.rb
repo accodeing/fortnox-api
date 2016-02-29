@@ -1,0 +1,38 @@
+require "fortnox/api/validators/base"
+
+module Fortnox
+  module API
+    module Validator
+      module Attribute
+        module Currency
+
+          CURRENCIES = [
+            'AED','AFN','ALL','AMD','ANG','AOA','ARS','AUD','AWG','AZN','BAM',
+            'BBD','BDT','BGN','BHD','BIF','BMD','BND','BOB','BOV','BRL','BSD',
+            'BTN','BWP','BYR','BZD','CAD','CDF','CHE','CHF','CHW','CLF','CLP',
+            'CNY','COP','COU','CRC','CUP','CVE','CZK','DJF','DKK','DOP','DZD',
+            'EGP','ERN','ETB','EUR','FJD','FKP','GBP','GEL','GHS','GIP','GMD',
+            'GNF','GTQ','GYD','HKD','HNL','HRK','HTG','HUF','IDR','ILS','INR',
+            'IQD','IRR','ISK','JMD','JOD','JPY','KES','KGS','KHR','KUR','KMF',
+            'KPW','KRW','KWD','KYD','KZT','LAK','LBP','LKR','LRD','LSL','LYD',
+            'MAD','MDL','MGA','MKD','MMK','MNT','MOP','MRO','MUR','MVR','MWK',
+            'MXN','MXV','MYR','MZN','NAD','NGN','NIO','NOK','NPR','NZD','OMR',
+            'PAB','PEN','PGK','PHP','PKR','PLN','PYG','QAR','RON','RSD','RUB',
+            'RWF','SAR','SBD','SCR','SDG','SEK','SGD','SHP','SLL','SOS','SRD',
+            'SSP','STD','SYP','SZL','THB','TJS','TMM','TND','TOP','TRY','TTD',
+            'TWD','TZS','UAH','UGX','USD','USN','USS','UYU','UZS','VEF','VND',
+            'VUV','WST','XAF','XAG','XAU','XBA','XBB','XBC','XBD','XCD','XDR',
+            'XFU','XOF','XPD','XPF','XPT','XTS','XXX','YER','ZAR','ZMK','ZWD'
+          ]
+
+          def self.included( other )
+            other.using_validations do
+              validates_inclusion_of :currency, within: CURRENCIES, if: :currency?
+            end
+          end
+
+        end
+      end
+    end
+  end
+end
