@@ -5,7 +5,7 @@ require 'fortnox/api/validators/attributes/country_code'
 
 describe Fortnox::API::Validator::Attribute::CountryCode do
 
-  before(:all) do
+  using_test_classes do
     class TestModel < Fortnox::API::Model::Base
       include Fortnox::API::Model::Attribute::CountryCode
     end
@@ -14,11 +14,6 @@ describe Fortnox::API::Validator::Attribute::CountryCode do
       extend Fortnox::API::Validator::Base
       include Fortnox::API::Validator::Attribute::CountryCode
     end
-  end
-
-  after(:all) do
-    Object.send(:remove_const, :TestModel)
-    Object.send(:remove_const, :TestValidator)
   end
 
   describe '.validate' do
