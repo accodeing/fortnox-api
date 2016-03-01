@@ -10,6 +10,9 @@ engines:
     exclude_fingerprints:
     - 6d18a19a385e71c70ea35085bc463f43
     - ccfcd077feb2d6820f935996636da8f3
+    ruby:
+      exclude_paths:
+        - spec/
   eslint:
     enabled: true
   fixme:
