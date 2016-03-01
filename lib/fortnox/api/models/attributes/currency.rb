@@ -1,21 +1,17 @@
 require "virtus"
 
-module Fortnox
-  module API
-    module Model
-      module Attribute
-        module Currency
+module Fortnox::API::Model
+  module Attribute
+    module Currency
 
-          include Virtus.module
+      include Virtus.module
 
-          attribute :currency, String
+      attribute :currency, String
 
-          def currency=( raw_currency )
-            super raw_currency.upcase[0...3]
-          end
-
-        end
+      def currency=( currency )
+        super currency.upcase[0...3]
       end
+
     end
   end
 end

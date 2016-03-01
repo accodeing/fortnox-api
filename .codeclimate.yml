@@ -7,14 +7,6 @@ engines:
     config:
       languages:
       - ruby
-    exclude_fingerprints:
-    - 6d18a19a385e71c70ea35085bc463f43 # Attribute declaration in models/attributes/currency.rb
-    - ccfcd077feb2d6820f935996636da8f3 # Attribute declaration in models/attributes/country_code.rb
-    - f37fc7f29d17dead1bd8394241092101 # Nested module chain in models/attributes/currency.rb
-    - abfe8290c537c99ed1dccde5c1d10cf7 # Nested module chain in models/attributes/country_code.rb
-    ruby:
-      exclude_paths:
-        - spec/
   eslint:
     enabled: true
   fixme:
