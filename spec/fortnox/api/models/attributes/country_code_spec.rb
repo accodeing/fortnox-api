@@ -1,14 +1,10 @@
 require 'spec_helper'
 require 'fortnox/api/models/attributes/country_code'
+require 'fortnox/api/models/attributes/test_classes_context'
 
 describe Fortnox::API::Model::Attribute::CountryCode do
 
-  using_test_class do
-    class Model
-      include Virtus.model
-      include Fortnox::API::Model::Attribute::CountryCode
-    end
-  end
+  include_context 'test classes'
 
   describe '.new' do
     context 'with country code' do
