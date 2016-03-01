@@ -7,6 +7,10 @@ engines:
     config:
       languages:
       - ruby
+      exclude_paths:
+      # Exclude spec/ from duplication engine since too dry specs
+      # reduces readability.
+      - spec/
   eslint:
     enabled: true
   fixme:
