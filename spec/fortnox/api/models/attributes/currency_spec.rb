@@ -1,14 +1,10 @@
 require 'spec_helper'
 require 'fortnox/api/models/attributes/currency'
+require 'fortnox/api/models/attributes/dummy_model_context'
 
 describe Fortnox::API::Model::Attribute::Currency do
 
-  using_test_class do
-    class Model
-      include Virtus.model
-      include Fortnox::API::Model::Attribute::Currency
-    end
-  end
+  include_context 'create dummy Model that includes described_class'
 
   subject{ instance.currency }
 
