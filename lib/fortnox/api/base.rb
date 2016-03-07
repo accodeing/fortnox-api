@@ -23,10 +23,10 @@ module Fortnox
 
       attr_accessor :headers
 
-      def initialize( base_url: nil, client_secret: nil, access_token: nil )
-        base_url = validate_base_url( base_url )
-        client_secret = validate_client_secret( client_secret )
-        access_token = validate_access_token( access_token )
+      def initialize
+        base_url = get_base_url
+        client_secret = get_client_secret
+        access_token = get_access_token
 
         self.class.base_uri( base_url )
 
