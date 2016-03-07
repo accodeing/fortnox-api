@@ -8,8 +8,8 @@ module Fortnox
 
         CONFIGURATION = Fortnox::API::Repository::Base::Options.new(
           uri: '/invoices/',
-          json_list_wrapper: 'Invoices',
-          json_unit_wrapper: 'Invoice',
+          json_collection_wrapper: 'Invoices',
+          json_entity_wrapper: 'Invoice',
           unique_id: 'DocumentNumber',
           attribute_name_to_json_key_map: {
             administration_fee_vat: 'AdministrationFeeVAT',

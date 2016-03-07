@@ -7,7 +7,7 @@ module Fortnox
 
         def all()
           response_hash = get( @options.uri )
-          entities_hash = response_hash[ @options.json_list_wrapper ]
+          entities_hash = response_hash[ @options.json_collection_wrapper ]
           entities_hash.map do |entity_hash|
             hash_to_entity( entity_hash )
           end
@@ -15,7 +15,7 @@ module Fortnox
 
         def only( filter )
           response_hash = get( @options.uri + "?filter=#{ filter }" )
-          entities_hash = response_hash[ @options.json_list_wrapper ]
+          entities_hash = response_hash[ @options.json_collection_wrapper ]
           entities_hash.map do |entity_hash|
             hash_to_entity( entity_hash )
           end
@@ -33,7 +33,7 @@ module Fortnox
 
         def find_one_by( id )
           response_hash = get( @options.uri + id.to_s )
-          entity_hash = response_hash[ @options.json_unit_wrapper ]
+          entity_hash = response_hash[ @options.json_entity_wrapper ]
           hash_to_entity( entity_hash )
         end
 

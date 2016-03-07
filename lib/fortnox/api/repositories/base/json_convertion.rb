@@ -14,7 +14,7 @@ module Fortnox
           entity_hash = entity.to_hash
           clean_entity_hash = sanitise( entity_hash )
           entity_json_hash = convert_hash_keys_to_json_format( clean_entity_hash )
-          { @options.json_unit_wrapper => entity_json_hash }
+          { @options.json_entity_wrapper => entity_json_hash }
         end
 
         def convert_hash_keys_from_json_format( hash )
