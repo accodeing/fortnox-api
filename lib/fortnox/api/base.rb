@@ -24,9 +24,9 @@ module Fortnox
       attr_accessor :headers
 
       def initialize
-        base_url = get_base_url
-        client_secret = get_client_secret
-        access_token = get_access_token
+        base_url = valid_base_url
+        client_secret = valid_client_secret
+        access_token = valid_access_token
 
         self.class.base_uri( base_url )
 
