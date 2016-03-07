@@ -15,11 +15,11 @@ module Fortnox
       private
 
         def save_new( json )
-          post( @uri, { body: json } )
+          post( @options.uri, { body: json } )
         end
 
         def update_existing( json )
-          put( @uri, { body: json } )
+          put( @options.uri, { body: json } )
         end
 
       end

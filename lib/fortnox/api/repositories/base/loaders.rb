@@ -6,7 +6,7 @@ module Fortnox
       module Loaders
 
         def all()
-          response_hash = get( @uri )
+          response_hash = get( @options.uri )
           entities_hash = response_hash[ @json_list_wrapper ]
           entities_hash.map do |entity_hash|
             hash_to_entity( entity_hash )
@@ -14,7 +14,7 @@ module Fortnox
         end
 
         def only( filter )
-          response_hash = get( @uri + "?filter=#{ filter }" )
+          response_hash = get( @options.uri + "?filter=#{ filter }" )
           entities_hash = response_hash[ @json_list_wrapper ]
           entities_hash.map do |entity_hash|
             hash_to_entity( entity_hash )
@@ -32,7 +32,7 @@ module Fortnox
         end
 
         def find_one_by( id )
-          response_hash = get( @uri + id )
+          response_hash = get( @options.uri + id )
           entity_hash = response_hash[ @json_entity_wrapper ]
           hash_to_entity( entity_hash )
         end
