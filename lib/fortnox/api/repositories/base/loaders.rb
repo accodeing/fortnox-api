@@ -32,7 +32,7 @@ module Fortnox
         end
 
         def find_one_by( id )
-          response_hash = get( @options.uri + id )
+          response_hash = get( @options.uri + id.to_s )
           entity_hash = response_hash[ @json_entity_wrapper ]
           hash_to_entity( entity_hash )
         end
