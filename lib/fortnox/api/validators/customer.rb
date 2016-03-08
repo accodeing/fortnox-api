@@ -1,9 +1,14 @@
 require "fortnox/api/validators/base"
+require "fortnox/api/validators/attributes/country_code"
+require "fortnox/api/validators/attributes/currency"
 
 module Fortnox
   module API
     module Validator
       class Customer < Fortnox::API::Validator::Base
+
+        include Fortnox::API::Validator::Attribute::CountryCode
+        include Fortnox::API::Validator::Attribute::Currency
 
         using_validations do
 

@@ -23,5 +23,11 @@ describe Fortnox::API::Validator::Customer do
     include_examples 'validates inclusion of string',
                      :vat_type,
                      described_class::VAT_TYPES
+    include_examples 'validates inclusion of string',
+                     :country_code,
+                     described_class::COUNTRY_CODES
+    include_examples 'validates inclusion of string',
+                     :currency,
+                     described_class::CURRENCIES
   end
 end
