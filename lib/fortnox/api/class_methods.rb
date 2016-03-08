@@ -1,19 +1,19 @@
+require 'fortnox/api/environment_validation'
+
 module Fortnox
   module API
     module ClassMethods
 
-      def get_access_token( base_url: nil, client_secret: nil, authorization_code: nil )
-        repository = self.new(
-          base_url: base_url,
-          client_secret: client_secret,
-          access_token: authorization_code,
-        )
+      include Fortnox::API::EnvironmentValidation
+
+      def get_access_token
+        repository = self.new
 
         repository.headers = {
           'Content-Type' => 'application/json',
           'Accept' => 'application/json',
-          'Authorisation-Code' => authorization_code,
-          'Client-Secret' => client_secret,
+          'Authorization-Code' => get_authorization_code,
+          'Client-Secret' => get_client_secret,
         }
 
         response = repository.get('/')

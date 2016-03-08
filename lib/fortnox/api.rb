@@ -16,8 +16,8 @@ module Fortnox
       attr_accessor :debugging
     end
 
-    def self.get_access_token( *args )
-      Base.get_access_token( *args )
+    def self.get_access_token
+      Base.get_access_token
     end
 
   end
