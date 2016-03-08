@@ -17,9 +17,11 @@ describe Fortnox::API::Validator::Customer do
 
     include_examples 'validates inclusion of number', :sales_account, 0, 9999.0
 
-    TYPES = ['PRIVATE', 'COMPANY']
-    VAT_TYPES = ['SEVAT', 'SEREVERSEDVAT', 'EUREVERSEDVAT', 'EUVAT', 'EXPORT']
-    include_examples 'validates inclusion of string', :type, TYPES
-    include_examples 'validates inclusion of string', :vat_type, VAT_TYPES
+    include_examples 'validates inclusion of string',
+                     :type,
+                     described_class::TYPES
+    include_examples 'validates inclusion of string',
+                     :vat_type,
+                     described_class::VAT_TYPES
   end
 end
