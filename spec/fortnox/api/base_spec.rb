@@ -7,40 +7,27 @@ describe Fortnox::API::Base do
 
     subject{ ->{ Fortnox::API::Base.new() } }
 
-    context 'without parameters' do
+    context 'without FORTNOX_API_BASE_URL' do
+      before { ENV['FORTNOX_API_BASE_URL'] = nil }
+
       it{ is_expected.to raise_error( ArgumentError, /base url/ ) }
     end
 
-    context 'with only client_secret' do
-      context 'as argument' do
-        subject{ ->{ Fortnox::API::Base.new( base_url: '' ) } }
-
-        it{ is_expected.to raise_error( ArgumentError, /client secret/ ) }
+    context 'without FORTNOX_API_CLIENT_SECRET' do
+      before do
+        stub_const('ENV', ENV.to_hash.merge('FORTNOX_API_BASE_URL' => 'xxx'))
       end
 
-      context 'as environment variable' do
-        before do
-          stub_const('ENV', ENV.to_hash.merge('FORTNOX_API_BASE_URL' => 'xxx'))
-        end
-
-        it{ is_expected.to raise_error( ArgumentError, /client secret/ ) }
-      end
+      it{ is_expected.to raise_error( ArgumentError, /client secret/ ) }
     end
 
-    context 'with some required parameters' do
-      context 'as arguments' do
-        subject{ ->{ Fortnox::API::Base.new( base_url: '', client_secret: '' ) } }
-
-        it{ is_expected.to raise_error( ArgumentError, /access token/ ) }
+    context 'without FORTNOX_API_ACCESS_TOKEN' do
+      before do
+        stub_const('ENV', ENV.to_hash.merge('FORTNOX_API_BASE_URL' => 'xxx',
+                                            'FORTNOX_API_CLIENT_SECRET' => 'xxx'))
       end
 
-      context 'as environment variables' do
-        before do
-          stub_const('ENV', ENV.to_hash.merge('FORTNOX_API_CLIENT_SECRET' => 'xxx', 'FORTNOX_API_ACCESS_TOKEN' => 'xxx'))
-        end
-
-        it{ is_expected.to raise_error( ArgumentError, /base url/ ) }
-      end
+      it{ is_expected.to raise_error( ArgumentError, /access token/ ) }
     end
 
   end
