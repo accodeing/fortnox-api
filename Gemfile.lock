@@ -107,6 +107,7 @@ GEM
       anima (~> 0.2.0)
       descendants_tracker (~> 0.0.1)
       equalizer (~> 0.0.9)
+    vcr (3.0.1)
     virtus (1.0.5)
       axiom-types (~> 0.1)
       coercible (~> 1.0)
@@ -129,6 +130,7 @@ DEPENDENCIES
   pry
   rake (~> 10.4)
   rspec (~> 3.2)
+  vcr (~> 3.0)
   webmock (~> 1.21)
 
 BUNDLED WITH
