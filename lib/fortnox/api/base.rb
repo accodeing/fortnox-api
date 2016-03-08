@@ -24,15 +24,11 @@ module Fortnox
       attr_accessor :headers
 
       def initialize
-        base_url = get_base_url
-        client_secret = get_client_secret
-        access_token = get_access_token
-
-        self.class.base_uri( base_url )
+        self.class.base_uri( get_base_url )
 
         self.headers = DEFAULT_HEADERS.merge({
-          'Client-Secret' => client_secret,
-          'Access-Token' => access_token,
+          'Client-Secret' => get_client_secret,
+          'Access-Token' => get_access_token,
         })
       end
 
