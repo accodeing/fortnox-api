@@ -47,7 +47,7 @@ describe Fortnox::API::Customer do
   describe '#find' do
     include_context 'environment'
 
-    subject { find_request }
+    subject{ find_request }
 
     specify 'returns correct class' do
       expect( subject.class ).to be model_class
@@ -74,7 +74,7 @@ describe Fortnox::API::Customer do
       let( :response ){ send_request }
 
       specify 'return true' do
-        expect( response ).to include ('Customer')
+        expect( response ).to include('Customer')
       end
 
       specify 'record is saved' do
@@ -84,9 +84,9 @@ describe Fortnox::API::Customer do
     end
 
     describe 'old (update)' do
-      let( :send_request ) { find_request }
+      let( :send_request ){ find_request }
 
-      it { puts send_request }
+      it{ puts send_request }
     end
   end
 end
