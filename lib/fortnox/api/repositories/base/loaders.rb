@@ -27,7 +27,7 @@ module Fortnox
           id = Integer( id_or_hash )
           find_one_by( id )
 
-        catch ArgumentError
+        rescue ArgumentError
           raise ArgumentError, "find only accepts a number or hash as argument"
         end
 
