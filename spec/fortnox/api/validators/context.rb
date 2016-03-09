@@ -74,7 +74,7 @@ shared_context 'validator context' do
         end
       end
 
-      context 'a string not allowed' do
+      context 'a nonsense string' do
         # Try first valid string and append nonsense
         include_examples 'behaves like invalid',
                          attribute,
