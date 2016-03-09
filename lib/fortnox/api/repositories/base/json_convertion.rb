@@ -6,6 +6,7 @@ module Fortnox
       private
 
         def hash_to_entity( entity_json_hash )
+          remove_nil_values(entity_json_hash)
           entity_hash = convert_hash_keys_from_json_format( entity_json_hash )
           instansiate( entity_hash )
         end
@@ -55,6 +56,10 @@ module Fortnox
             next false if @options.keys_filtered_on_save.include?( key )
             value != nil
           end
+        end
+
+        def remove_nil_values( hash )
+          hash.delete_if{ |key, value| value.nil? }
         end
 
       end
