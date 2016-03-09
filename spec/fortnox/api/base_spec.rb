@@ -8,7 +8,7 @@ describe Fortnox::API::Base do
     subject{ ->{ Fortnox::API::Base.new() } }
 
     context 'without FORTNOX_API_BASE_URL' do
-      before { ENV['FORTNOX_API_BASE_URL'] = nil }
+      before{ ENV['FORTNOX_API_BASE_URL'] = nil }
 
       it{ is_expected.to raise_error( ArgumentError, /base url/ ) }
     end
