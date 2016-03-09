@@ -17,7 +17,7 @@ describe Fortnox::API::Customer do
   describe 'creation' do
     include_context 'new customer'
 
-    specify{ expect( subject.valid? ).to be true }
+    it{ is_expected.to be_valid }
   end
 
   shared_context 'environment' do
@@ -28,7 +28,7 @@ describe Fortnox::API::Customer do
     end
   end
 
-  describe '#all' do
+  describe '.all' do
     include_context 'environment'
 
     let(:response) do
@@ -44,7 +44,7 @@ describe Fortnox::API::Customer do
     end
   end
 
-  describe '#find' do
+  describe '.find' do
     include_context 'environment'
 
     subject{ find_request }
@@ -54,11 +54,7 @@ describe Fortnox::API::Customer do
     end
 
     specify 'returns correct Customer' do
-      expect( subject.id ).to be find_id
-    end
-
-    specify 'returned record is valid' do
-      expect( subject.valid? )
+      expect( subject.customer_number.to_i ).to eq( find_id )
     end
   end
 
@@ -84,9 +80,9 @@ describe Fortnox::API::Customer do
     end
 
     describe 'old (update)' do
-      let( :send_request ){ find_request }
+      let( :old_record ){ find_request }
 
-      it{ puts send_request }
+      it{ old_record.save }
     end
   end
 end
