@@ -10,8 +10,7 @@ describe Fortnox::API::Validator::Attribute::Currency do
       include Fortnox::API::Model::Attribute::Currency
     end
 
-    class Validator
-      extend Fortnox::API::Validator::Base
+    class Validator < Fortnox::API::Validator::Base
       include Fortnox::API::Validator::Attribute::Currency
     end
   end
@@ -20,9 +19,9 @@ describe Fortnox::API::Validator::Attribute::Currency do
     context 'model with invalid currency attribute' do
       let( :instance ){ Model.new( currency: '-_-' ) }
 
-      it 'is invalid' do
-        expect( Validator.validate( instance )).to eql( false )
-      end
+      subject{ Validator.new }
+
+      specify{ expect(subject.validate( instance )).to eql( false ) }
     end
   end
 
