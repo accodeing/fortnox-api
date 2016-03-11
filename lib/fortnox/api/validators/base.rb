@@ -3,9 +3,29 @@ require "vanguard"
 module Fortnox
   module API
     module Validator
+
+      module Mixin
+        class << self
+          def included( base )
+            base.extend ClassMethods
+          end
+        end
+
+        module ClassMethods
+          def using_validations &block
+            @validators ||= []
+            @validators << Vanguard::Validator.build( &block )
+          end
+
+          def validators
+            @validators || []
+          end
+        end
+      end
+
       class Base
 
-        @validators = []
+        include Mixin
 
         def validate( instance )
           raise_error_if_no_validator
@@ -25,10 +45,6 @@ module Fortnox
           raise_error_if_no_validator
 
           @violations ||= Set.new
-        end
-
-        def self.using_validations &block
-          @validators << Vanguard::Validator.build( &block )
         end
 
         def instance
