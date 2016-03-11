@@ -2,6 +2,7 @@ require 'spec_helper'
 require 'fortnox/api/models/base'
 require 'fortnox/api/models/attributes/currency'
 require 'fortnox/api/validators/attributes/currency'
+require 'fortnox/api/validators/attributes/examples_for_validate'
 
 describe Fortnox::API::Validator::Attribute::Currency do
 
@@ -15,14 +16,10 @@ describe Fortnox::API::Validator::Attribute::Currency do
     end
   end
 
-  describe '.validate' do
-    context 'model with invalid currency attribute' do
-      let( :instance ){ Model.new( currency: '-_-' ) }
-
-      subject{ Validator.new }
-
-      specify{ expect(subject.validate( instance )).to eql( false ) }
-    end
+  include_examples '.validate', :currency do
+    let( :invalid_attribute ) { '-_-' }
+    let( :valid_attribute ) { 'SEK' }
+    let( :validator_class ) { Validator }
+    let( :model_class ) { Model }
   end
-
 end
