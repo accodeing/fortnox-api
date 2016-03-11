@@ -21,7 +21,7 @@ describe Fortnox::API::Validator::Base do
 
   it_behaves_like 'validators'
 
-  it 'it does not keep violations' do
+  it 'does not keep violations' do
     invalid_model = Model.new
     valid_model = Model.new(test_attribute: 'test')
 
