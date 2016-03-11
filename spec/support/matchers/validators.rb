@@ -8,9 +8,9 @@ end
 
 RSpec::Matchers.define :include_error_for do |model, attribute, error_type|
   match do
-    validate( model )
+    subject.validate( model )
     error_included = false
-    described_class.violations.any? do |v|
+    subject.violations.any? do |v|
       if v.rule.attribute_name == attribute && v.rule.type == error_type
         error_included = true
       end
@@ -21,18 +21,14 @@ RSpec::Matchers.define :include_error_for do |model, attribute, error_type|
   description{ "include error for #{attribute}" }
 
   failure_message do
-    "expected \"#{described_class.violations.inspect}\" to include #{error_type} error for \"#{attribute}\""
+    "expected \"#{subject.violations.inspect}\" to include #{error_type} error for \"#{attribute}\""
   end
 end
 
 private
 
-  def validate( instance )
-    described_class.validate( instance )
-  end
-
   def expect_validate( model, expected )
-    match{ expect( validate( model ) ).to eq( expected ) }
+    match{ expect( subject.validate( model ) ).to eq( expected ) }
 
     description{ "validate #{expected}" }
 

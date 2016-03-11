@@ -3,9 +3,7 @@ require "fortnox/api/validators/base"
 module Fortnox
   module API
     module Validator
-      class Invoice
-
-        extend Fortnox::API::Validator::Base
+      class Invoice < Fortnox::API::Validator::Base
 
         using_validations do
           validates_presence_of :customer_number
@@ -28,6 +26,7 @@ module Fortnox
           validates_length_of :your_reference,               length: 0..50,    if: :your_reference?
           validates_length_of :zip_code,                     length: 0..1024,  if: :zip_code?
         end
+        
       end
     end
   end

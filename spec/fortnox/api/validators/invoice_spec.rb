@@ -6,6 +6,8 @@ require 'fortnox/api/validators/invoice'
 describe Fortnox::API::Validator::Invoice do
   let( :model_class ){ Fortnox::API::Model::Invoice }
 
+  subject{ described_class.new }
+
   include_context 'validator context' do
     let( :valid_model ){ model_class.new( customer_number: 12345 ) }
   end
