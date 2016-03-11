@@ -5,9 +5,5 @@ require 'fortnox/api/validators/attributes/country_code'
 require 'fortnox/api/validators/attributes/examples_for_validate'
 
 describe Fortnox::API::Validator::Attribute::CountryCode do
-
-  include_examples '.validate', :country_code do
-    let( :invalid_attribute ){ 'aaa' }
-    let( :valid_attribute ){ 'SE' }
-  end
+  include_examples '.validate', :country_code, 'aaa', 'SE'
 end
