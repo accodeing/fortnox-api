@@ -17,9 +17,9 @@ describe Fortnox::API::Validator::Attribute::Currency do
   end
 
   include_examples '.validate', :currency do
-    let( :invalid_attribute ) { '-_-' }
-    let( :valid_attribute ) { 'SEK' }
-    let( :validator_class ) { Validator }
-    let( :model_class ) { Model }
+    let( :invalid_attribute ){ '-_-' }
+    let( :valid_attribute ){ 'SEK' }
+    let( :validator_class ){ Validator }
+    let( :model_class ){ Model }
   end
 end

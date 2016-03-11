@@ -9,9 +9,9 @@ shared_examples_for '.validate' do |attribute|
     end
 
     context "with valid #{attribute}" do
-      let( :valid_model ){ model_class.new( attribute => valid_attribute  )}
+      let( :valid_model ){ model_class.new( attribute => valid_attribute  ) }
 
-      specify{ expect( subject.validate( valid_model )).to eql( true )}
+      specify{ expect( subject.validate( valid_model )).to eql( true ) }
     end
   end
 end
