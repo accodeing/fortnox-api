@@ -19,19 +19,26 @@ describe Fortnox::API::Validator::Base do
 
   subject{ Validator.new }
 
-  it_behaves_like 'validators'
+  it_behaves_like 'validators' do
+    let( :valid_model ){ Model.new( test_attribute: 'something' ) }
+  end
 
-  it 'does not keep violations' do
-    invalid_model = Model.new
-    valid_model = Model.new(test_attribute: 'test')
+  describe 'violations' do
+    let( :invalid_model ){ Model.new }
+    let( :valid_model ){ Model.new(test_attribute: 'test') }
 
-    expect(subject.validate( invalid_model )).to be false
-    expect(subject.validate( valid_model )).to be true
+    specify 'are not kept between validations' do
+      expect( subject.validate( invalid_model ) ).to be false
+      expect( subject.validate( valid_model ) ).to be true
+    end
 
-    another_validator = described_class.new
+    specify 'are not kept between instances' do
+      expect( subject.validate( invalid_model ) ).to be false
+      another_validator = Validator.new
 
-    expect( another_validator.validate( invalid_model ) ).to be false
-    expect( another_validator.validate( valid_model ) ).to be true
+      expect( another_validator.validate( valid_model ) ).to be true
+      expect( another_validator.validate( invalid_model ) ).to be false
+    end
   end
 
   context 'when no validator given' do

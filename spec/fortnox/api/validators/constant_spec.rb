@@ -6,6 +6,7 @@ describe Fortnox::API::Validator::Constant do
 
   subject{ Fortnox::API::Validator::Constant.new }
 
-  it_behaves_like 'validators'
-  
+  it_behaves_like 'validators' do
+    let( :valid_model ){ Class.new{}.new }
+  end
 end

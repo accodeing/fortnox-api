@@ -10,8 +10,7 @@ shared_examples_for 'validators' do
     end
 
     specify '#validate returns true when model valid' do
-      dummy_model = Class.new{}.new
-      expect(subject.validate( dummy_model )).to be true
+      expect(subject.validate( valid_model )).to be true
     end
 
     specify '#instance returns self' do
