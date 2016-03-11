@@ -12,7 +12,5 @@ describe Fortnox::API::Validator::Attribute::CountryCode do
                    Fortnox::API::Validator::Attribute::CountryCode do
     let( :invalid_attribute ){ 'aaa' }
     let( :valid_attribute ){ 'SE' }
-    let( :validator_class ){ Validator }
-    let( :model_class ){ Model }
   end
 end
