@@ -1,12 +1,14 @@
-shared_examples_for '.validate' do |attribute, model_class, validator_class|
+shared_examples_for '.validate' do |attribute|
   using_test_classes do
+    const_name = attribute.to_s.split('_').map(&:capitalize).join
+
     class Model < Fortnox::API::Model::Base
     end
-    Model.send( :include, model_class )
+    Model.send( :include, Fortnox::API::Model::Attribute. const_get( const_name ) )
 
     class Validator < Fortnox::API::Validator::Base
     end
-    Validator.send( :include, validator_class )
+    Validator.send( :include, Fortnox::API::Validator::Attribute. const_get( const_name ) )
   end
 
   describe '.validate' do
