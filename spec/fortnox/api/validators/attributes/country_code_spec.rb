@@ -13,6 +13,10 @@ describe Fortnox::API::Validator::Attribute::CountryCode do
     class TestValidator
       extend Fortnox::API::Validator::Base
       include Fortnox::API::Validator::Attribute::CountryCode
+
+      using_validations do
+
+      end
     end
   end
 

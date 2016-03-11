@@ -3,9 +3,7 @@ require "fortnox/api/validators/base"
 module Fortnox
   module API
     module Validator
-      class Customer
-
-        extend Fortnox::API::Validator::Base
+      class Customer < Fortnox::API::Validator::Base
 
         using_validations do
 

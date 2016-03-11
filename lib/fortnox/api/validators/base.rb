@@ -3,14 +3,21 @@ require "vanguard"
 module Fortnox
   module API
     module Validator
-      module Base
+      class Base
+
+        @@validators = []
+
+        def initialize
+          @validators = @@validators
+          @@validators = []
+        end
 
         def validate( instance )
           raise_error_if_no_validator
 
           valid = true
 
-          validators.each do |validator|
+          @validators.each do |validator|
             validation_result = validator.call( instance )
             violations.merge( validation_result.violations )
             valid = valid && validation_result.valid?
@@ -25,8 +32,9 @@ module Fortnox
           @violations ||= Set.new
         end
 
-        def using_validations &block
-          validators << Vanguard::Validator.build( &block )
+        def self.using_validations &block
+          @@validators ||= []
+          @@validators << Vanguard::Validator.build( &block )
         end
 
         def instance
@@ -37,12 +45,9 @@ module Fortnox
 
       private
 
-        def validators
-          @validators ||= []
-        end
-
         def raise_error_if_no_validator
-          raise ArgumentError, "No validator given" unless validators.length > 0
+          return if @validators.length > 0
+          raise ArgumentError, "No validator given"
         end
 
       end

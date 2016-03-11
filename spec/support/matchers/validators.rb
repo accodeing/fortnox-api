@@ -28,7 +28,7 @@ end
 private
 
   def validate( instance )
-    described_class.validate( instance )
+    described_class.new.validate( instance )
   end
 
   def expect_validate( model, expected )

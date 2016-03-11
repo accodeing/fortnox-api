@@ -3,9 +3,7 @@ require "fortnox/api/validators/base"
 module Fortnox
   module API
     module Validator
-      class Row
-
-        extend Fortnox::API::Validator::Base
+      class Row < Fortnox::API::Validator::Base
 
         using_validations do
           validates_length_of :article_number,  length: 0..50,  if: :article_number?
@@ -17,6 +15,7 @@ module Fortnox
           validates_inclusion_of :house_work_hours_to_report,  within: (0..99_999), if: :house_work_hours_to_report?
           validates_inclusion_of :price,                       within: (0..99_999_999_999.0), if: :price?
         end
+        
       end
     end
   end

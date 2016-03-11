@@ -1,7 +1,7 @@
 module Fortnox
   module API
     module Validator
-      module Constant
+      class Constant
 
         def validate( _ )
           true
@@ -14,6 +14,7 @@ module Fortnox
         def instance
           self
         end
+
       end
     end
   end
