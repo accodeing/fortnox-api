@@ -13,21 +13,19 @@ describe Fortnox::API::Validator::Customer do
   end
 
   describe '.validate Customer' do
-    include_examples 'required attributes', Fortnox::API::Model::Customer
+   include_examples 'required attributes', Fortnox::API::Model::Customer
 
-    include_examples 'validates inclusion of number', :sales_account, 0, 9999.0
+   include_examples 'validates inclusion of number', :sales_account, 0, 9999.0
 
-    include_examples 'validates inclusion of string',
-                     :type,
-                     described_class::TYPES
-    include_examples 'validates inclusion of string',
-                     :vat_type,
-                     described_class::VAT_TYPES
-    include_examples 'validates inclusion of string',
-                     :country_code,
-                     described_class::COUNTRY_CODES
-    include_examples 'validates inclusion of string',
-                     :currency,
-                     described_class::CURRENCIES
+   include_examples 'validates inclusion of string', :type, described_class::TYPES
+   include_examples 'validates inclusion of string', :vat_type, described_class::VAT_TYPES
+   include_examples 'validates inclusion of string',
+                    :country_code,
+                    described_class::COUNTRY_CODES,
+                    'aaa'
+   include_examples 'validates inclusion of string',
+                    :currency,
+                    described_class::CURRENCIES,
+                    '-_-'
   end
 end

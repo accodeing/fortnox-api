@@ -66,19 +66,25 @@ shared_context 'validator context' do
     end
   end
 
-  shared_examples_for 'validates inclusion of string' do |attribute, valid_strings|
-    context "with #{attribute} set to" do
+  shared_examples_for 'validates inclusion of string' do |attribute, valid_strings, invalid_string|
+    context "with :#{attribute} set to" do
       valid_strings.each do |valid_string|
         context "\"#{valid_string}\"" do
           include_examples 'behaves like valid', attribute, valid_string
         end
       end
 
-      context 'a nonsense string' do
+      if invalid_string.nil?
+        self::NONSENSE_STRING = valid_strings.first + '123nonsense123'
+      else
+        self::NONSENSE_STRING = invalid_string
+      end
+
+      context "nonsense string '#{self::NONSENSE_STRING}'" do
         # Try first valid string and append nonsense
         include_examples 'behaves like invalid',
                          attribute,
-                         valid_strings.first + '123nonsense123',
+                         self::NONSENSE_STRING,
                          :inclusion
       end
     end
