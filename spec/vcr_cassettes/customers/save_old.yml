@@ -1,11 +1,12 @@
 ---
 http_interactions:
 - request:
-    method: post
+    method: put
     uri: http://api.fortnox.se/3/customers/
     body:
       encoding: UTF-8
-      string: '{"Customer":{"Currency":"SEK","CustomerNumber":"1","Email":"","EmailInvoice":"","EmailInvoiceBCC":"","EmailInvoiceCC":"","EmailOffer":"","EmailOfferBCC":"","EmailOfferCC":"","EmailOrder":"","EmailOrderBCC":"","EmailOrderCC":"","InvoiceRemark":"","Name":"Test","OrganisationNumber":"","OurReference":"","PriceList":"A","Project":"","ShowPriceVATIncluded":false,"TermsOfDelivery":"","TermsOfPayment":"","Type":"COMPANY","VATNumber":"","VATType":"SEVAT","WayOfDelivery":"","YourReference":""}}'
+      string: '{"Customer":{"Currency":"SEK","CustomerNumber":"1","Email":"","EmailInvoice":"","EmailInvoiceBCC":"","EmailInvoiceCC":"","EmailOffer":"","EmailOfferBCC":"","EmailOfferCC":"","EmailOrder":"","EmailOrderBCC":"","EmailOrderCC":"","InvoiceRemark":"","Name":"Updated
+        customer","OrganisationNumber":"","OurReference":"","PriceList":"A","Project":"","ShowPriceVATIncluded":false,"TermsOfDelivery":"","TermsOfPayment":"","Type":"COMPANY","VATNumber":"","VATType":"SEVAT","WayOfDelivery":"","YourReference":""}}'
     headers:
       Content-Type:
       - application/json
@@ -23,23 +24,23 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Mon, 14 Mar 2016 10:33:56 GMT
+      - Mon, 14 Mar 2016 16:04:52 GMT
       Content-Type:
       - application/json
       Connection:
       - close
       X-Rack-Responsetime:
-      - '580'
+      - '257'
       X-Uid:
-      - 87c8233a
+      - a0455e76
       X-Build:
       - 954341dc68
       X-Powered-By:
       - Rack 1.1
     body:
       encoding: UTF-8
-      string: '{"ErrorInformation":{"error":1,"message":"Kundnummer 1 anv\u00e4nds
-        redan.","code":2000637}}'
+      string: '{"ErrorInformation":{"error":1,"message":"A valid identifier was not
+        provided.","code":2000729}}'
     http_version: 
-  recorded_at: Mon, 14 Mar 2016 10:33:56 GMT
+  recorded_at: Mon, 14 Mar 2016 16:04:52 GMT
 recorded_with: VCR 3.0.1
