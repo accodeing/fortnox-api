@@ -6,10 +6,10 @@ require 'fortnox/api/validators/customer'
 describe Fortnox::API::Validator::Customer do
   subject{ described_class.new }
 
-  let( :model_class ){ Fortnox::API::Model::Customer }
-
   include_context 'validator context' do
-    let( :valid_model ){ model_class.new( name: 'A customer' ) }
+    let( :valid_model ) do
+      Fortnox::API::Model::Customer.new( name: 'A customer' )
+    end
   end
 
   describe '.validate Customer' do
