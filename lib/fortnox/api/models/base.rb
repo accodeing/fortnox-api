@@ -36,7 +36,9 @@ module Fortnox
 
           return self if new_attributes == old_attributes
 
-          self.class.new( new_attributes.select{ |_,v| !v.nil? })
+          new_hash = new_attributes.select{ |_,v| !v.nil? }
+          new_hash[:new] = @new
+          self.class.new( new_hash )
         end
 
         # Generic comparison, by value, use .eql? or .equal? for object identity.
