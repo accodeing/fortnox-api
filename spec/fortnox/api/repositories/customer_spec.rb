@@ -39,22 +39,16 @@ describe Fortnox::API::Repository::Customer do
     end
 
     specify 'returned Customer is marked as saved' do
-      expect( find_customer_1.saved? ).to be true
+      expect( find_customer_1 ).to be_saved
     end
 
     specify 'returned Customer is not markes as new' do
-      expect( find_customer_1.new? ).to be false
+      expect( find_customer_1 ).to_not be_new
     end
   end
 
   describe '.save' do
-
     shared_examples_for 'save' do |attribute|
-      specify 'record is saved' do
-        send_request
-        expect( model ).to be_saved
-      end
-
       specify "include updated #{attribute.inspect}" do
         send_request
         expect( response['Customer'][attribute] ).to eql( updated_attribute )
