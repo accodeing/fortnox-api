@@ -56,6 +56,21 @@ describe Fortnox::API::Model::Base do
       it{ is_expected.to be_new }
       it{ is_expected.to_not be_saved }
     end
+
+    context 'a saved entity' do
+      let( :saved_entry ){ TestEntity.new( string: 'Saved', new: false, unsaved: false) }
+
+      subject{ saved_entry.update( string: 'Updated' )}
+
+      before do
+        expect(saved_entry).to_not be_new
+        expect(saved_entry).to be_saved
+      end
+
+      specify{ expect(subject.string).to eq( 'Updated' )}
+      it{ is_expected.to_not be_new }
+      it{ is_expected.to_not be_saved }
+    end
   end
 
 end
