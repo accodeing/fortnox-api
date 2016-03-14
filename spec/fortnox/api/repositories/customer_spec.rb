@@ -39,7 +39,7 @@ describe Fortnox::API::Repository::Customer do
     end
   end
 
-  describe '#save' do
+  describe '.save' do
 
     shared_examples_for 'save' do |attribute|
       specify 'record is saved' do
