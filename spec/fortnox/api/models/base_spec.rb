@@ -1,52 +1,60 @@
 require 'spec_helper'
 require 'fortnox/api/models/base'
 
-class TestEntity < Fortnox::API::Model::Base
-  attribute :private, String, writer: :private
-  attribute :string, String
-  attribute :number, Integer, default: 42
-end
-
 describe Fortnox::API::Model::Base do
-  let(:original){ TestEntity.new( string: 'Test' ) }
+  using_test_classes do
+    class TestEntity < Fortnox::API::Model::Base
+      attribute :private, String, writer: :private
+      attribute :string, String
+      attribute :number, Integer, default: 42
+    end
+  end
 
   describe '.new' do
     context 'with basic attribute' do
-      it 'works' do
-        test = TestEntity.new( string: 'Test' )
+      subject { TestEntity.new( string: 'Test' ) }
 
-        expect( test.class ).to eql( TestEntity )
-      end
+      it{ is_expected.to be_a TestEntity }
+      it{ is_expected.to be_new }
+      it{ is_expected.to_not be_saved }
     end
   end
 
   describe '.update' do
+    let(:original){ TestEntity.new( string: 'Test' ) }
+
     context 'with new, simple value' do
-      let(:variant){ original.update( string: 'Variant' ) }
+      subject{ original.update( string: 'Variant' ) }
 
       it 'returns a new object' do
-        expect( variant ).to_not eql( original )
+        is_expected.to_not eql( original )
       end
 
       it 'returns a object of the same class' do
-        expect( variant.class ).to eql( original.class )
+        expect( subject.class ).to eql( original.class )
       end
 
       it 'returns a object with the new value' do
-        expect( variant.string ).to eql( 'Variant' )
+        expect( subject.string ).to eql( 'Variant' )
       end
+
+      it{ is_expected.to be_new }
+      it{ is_expected.to_not be_saved }
     end
 
     context 'with the same, simple value' do
-      let(:variant){ original.update( string: 'Test' ) }
+      subject{ original.update( string: 'Test' ) }
 
       it 'returns the same object' do
-        expect( variant ).to eql( original )
+        is_expected.to eql( original )
       end
 
       it 'returns a object with the same value' do
-        expect( variant.string ).to eql( 'Test' )
+        expect( subject.string ).to eql( 'Test' )
       end
+
+      it{ is_expected.to be_new }
+      it{ is_expected.to_not be_saved }
     end
   end
 
