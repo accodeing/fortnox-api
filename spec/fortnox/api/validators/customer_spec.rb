@@ -1,33 +1,31 @@
 require 'spec_helper'
-require 'fortnox/api/validators/customer'
 require 'fortnox/api/models/customer'
+require 'fortnox/api/validators/context'
+require 'fortnox/api/validators/customer'
 
 describe Fortnox::API::Validator::Customer do
   subject{ described_class.new }
 
-  describe '.validate' do
-    context 'Customer with valid, simple attributes' do
-      let( :customer ){ Fortnox::API::Model::Customer.new( name: 'Test' ) }
-
-      it 'is valid' do
-        expect( subject.validate( customer )).to eql( true )
-      end
-    end
-
-    context 'Customer with invalid sales_account' do
-      let( :customer ){ Fortnox::API::Model::Customer.new( name: 'Test', sales_account: 99999 ) }
-
-      it 'is invalid' do
-        expect( subject.validate( customer )).to eql( false )
-      end
-
-      it 'includes "sales_account" in violations' do
-        subject.validate( customer )
-
-        expect( subject.violations.any?{ |v| v.rule.attribute_name == :sales_account }).to eql( true )
-        expect( subject.violations.any?{ |v| v.rule.type == :inclusion }).to eql( true )
-      end
+  include_context 'validator context' do
+    let( :valid_model ) do
+      Fortnox::API::Model::Customer.new( name: 'A customer' )
     end
   end
 
+  describe '.validate Customer' do
+   include_examples 'required attributes', Fortnox::API::Model::Customer
+
+   include_examples 'validates inclusion of number', :sales_account, 0, 9999.0
+
+   include_examples 'validates inclusion of string', :type, described_class::TYPES
+   include_examples 'validates inclusion of string', :vat_type, described_class::VAT_TYPES
+   include_examples 'validates inclusion of string',
+                    :country_code,
+                    described_class::COUNTRY_CODES,
+                    'aaa'
+   include_examples 'validates inclusion of string',
+                    :currency,
+                    described_class::CURRENCIES,
+                    '-_-'
+  end
 end
