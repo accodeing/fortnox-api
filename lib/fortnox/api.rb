@@ -23,4 +23,6 @@ module Fortnox
   end
 end
 
-require "fortnox/api/customer"
+require "fortnox/api/models"
+require "fortnox/api/repositories"
+require "fortnox/api/validators"
