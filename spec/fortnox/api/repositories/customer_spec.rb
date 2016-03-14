@@ -11,7 +11,7 @@ describe Fortnox::API::Repository::Customer do
   it_behaves_like 'repositories', Fortnox::API::Model::Customer
 
   let( :find_id ){ 1 }
-  let( :find_request ) do
+  let( :find_customer_1 ) do
     VCR.use_cassette( 'customers/find_id_1' ){ subject.find( find_id ) }
   end
 
@@ -31,11 +31,19 @@ describe Fortnox::API::Repository::Customer do
 
   describe '.find' do
     specify 'returns correct class' do
-      expect( find_request.class ).to be Fortnox::API::Model::Customer
+      expect( find_customer_1.class ).to be Fortnox::API::Model::Customer
     end
 
     specify 'returns correct Customer' do
-      expect( find_request.customer_number.to_i ).to eq( find_id )
+      expect( find_customer_1.customer_number.to_i ).to eq( find_id )
+    end
+
+    specify 'returned Customer is marked as saved' do
+      expect( find_customer_1.saved? ).to be true
+    end
+
+    specify 'returned Customer is not markes as new' do
+      expect( find_customer_1.new? ).to be false
     end
   end
 
@@ -71,7 +79,7 @@ describe Fortnox::API::Repository::Customer do
     describe 'old (update existing)' do
       include_examples 'save', 'Name' do
         let( :updated_attribute ){ 'Updated customer' }
-        let( :model ){ find_request.update( name: updated_attribute ) }
+        let( :model ){ find_customer_1.update( name: updated_attribute ) }
 
         let( :send_request ) do
           VCR.use_cassette( 'customers/save_old' ){ subject.save( model ) }

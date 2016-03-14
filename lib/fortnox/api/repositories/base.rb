@@ -23,7 +23,8 @@ module Fortnox
         private
 
           def instansiate( hash )
-            hash[ 'new' ] = false
+            hash[ :new ] = false
+            hash[ :unsaved ] = false
             self.class::MODEL.new( hash )
           end
 
