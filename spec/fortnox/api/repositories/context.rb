@@ -1,4 +1,5 @@
 require 'fortnox/api/repositories/examples'
+require 'fortnox/api'
 
 shared_context 'repository context' do
   before(:each){
