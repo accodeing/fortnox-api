@@ -1,0 +1,45 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://api.fortnox.se/3/customers/
+    body:
+      encoding: UTF-8
+      string: '{"Customer":{"Currency":"SEK","CustomerNumber":"1","Email":"","EmailInvoice":"","EmailInvoiceBCC":"","EmailInvoiceCC":"","EmailOffer":"","EmailOfferBCC":"","EmailOfferCC":"","EmailOrder":"","EmailOrderBCC":"","EmailOrderCC":"","InvoiceRemark":"","Name":"Test","OrganisationNumber":"","OurReference":"","PriceList":"A","Project":"","ShowPriceVATIncluded":false,"TermsOfDelivery":"","TermsOfPayment":"","Type":"COMPANY","VATNumber":"","VATType":"SEVAT","WayOfDelivery":"","YourReference":""}}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      Client-Secret:
+      - 9aBA8ZgsvR
+      Access-Token:
+      - ccaef817-d5d8-4b1c-a316-54f3e55c5c54
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Mon, 14 Mar 2016 10:33:56 GMT
+      Content-Type:
+      - application/json
+      Connection:
+      - close
+      X-Rack-Responsetime:
+      - '580'
+      X-Uid:
+      - 87c8233a
+      X-Build:
+      - 954341dc68
+      X-Powered-By:
+      - Rack 1.1
+    body:
+      encoding: UTF-8
+      string: '{"ErrorInformation":{"error":1,"message":"Kundnummer 1 anv\u00e4nds
+        redan.","code":2000637}}'
+    http_version: 
+  recorded_at: Mon, 14 Mar 2016 10:33:56 GMT
+recorded_with: VCR 3.0.1
