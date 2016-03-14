@@ -13,7 +13,7 @@ shared_context 'validator context' do
   end
   shared_examples_for 'invalid' do |attribute, values, error_type|
     values.each do |value|
-      context "when #{attribute} set to #{value}" do
+      context "when :#{attribute} set to #{value}" do
         include_examples 'behaves like invalid', attribute, value, error_type
       end
     end
@@ -21,14 +21,14 @@ shared_context 'validator context' do
 
   shared_examples_for 'valid' do |attribute, values|
     values.each do |value|
-      context "when #{attribute} set to #{value}" do
+      context "when :#{attribute} set to #{value}" do
         include_examples 'behaves like valid', attribute, value
       end
     end
   end
 
   shared_examples_for 'validates length of string' do |attribute, length|
-    context "with #{attribute} set to string with" do
+    context "with :#{attribute} set to string with" do
       context "length 0 (empty string)" do
         include_examples 'behaves like valid', attribute, ''
       end
@@ -47,7 +47,7 @@ shared_context 'validator context' do
   end
 
   shared_examples_for 'validates inclusion of number' do |attribute, min_value, max_value|
-    context "with #{attribute} set to" do
+    context "with :#{attribute} set to" do
       context "minimum value (#{min_value})" do
         include_examples 'behaves like valid', attribute, min_value
       end
