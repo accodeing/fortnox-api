@@ -3,7 +3,7 @@ require 'fortnox/api/models/base'
 
 describe Fortnox::API::Model::Base do
   using_test_classes do
-    class TestEntity < Fortnox::API::Model::Base
+    class Entity < Fortnox::API::Model::Base
       attribute :private, String, writer: :private
       attribute :string, String
       attribute :number, Integer, default: 42
@@ -12,16 +12,16 @@ describe Fortnox::API::Model::Base do
 
   describe '.new' do
     context 'with basic attribute' do
-      subject{ TestEntity.new( string: 'Test' ) }
+      subject{ Entity.new( string: 'Test' ) }
 
-      it{ is_expected.to be_a TestEntity }
+      it{ is_expected.to be_a Entity }
       it{ is_expected.to be_new }
       it{ is_expected.to_not be_saved }
     end
   end
 
   describe '.update' do
-    let(:original){ TestEntity.new( string: 'Test' ) }
+    let(:original){ Entity.new( string: 'Test' ) }
 
     context 'with new, simple value' do
       subject{ original.update( string: 'Variant' ) }
@@ -58,7 +58,7 @@ describe Fortnox::API::Model::Base do
     end
 
     context 'a saved entity' do
-      let( :saved_entry ){ TestEntity.new( string: 'Saved', new: false, unsaved: false) }
+      let( :saved_entry ){ Entity.new( string: 'Saved', new: false, unsaved: false) }
 
       subject{ saved_entry.update( string: 'Updated' ) }
 
