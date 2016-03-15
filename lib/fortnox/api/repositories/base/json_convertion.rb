@@ -6,6 +6,7 @@ module Fortnox
       private
 
         def hash_to_entity( entity_json_hash )
+          remove_nil_values(entity_json_hash)
           entity_hash = convert_hash_keys_from_json_format( entity_json_hash )
           instansiate( entity_hash )
         end
@@ -14,7 +15,7 @@ module Fortnox
           entity_hash = entity.to_hash
           clean_entity_hash = sanitise( entity_hash )
           entity_json_hash = convert_hash_keys_to_json_format( clean_entity_hash )
-          { @json_unit_wrapper => entity_json_hash }
+          { @options.json_entity_wrapper => entity_json_hash }
         end
 
         def convert_hash_keys_from_json_format( hash )
@@ -24,7 +25,7 @@ module Fortnox
         end
 
         def convert_key_from_json( key )
-          @json_to_attr_map.fetch( key ){ default_key_from_json_transform( key ) }
+          @options.json_to_attr_map.fetch( key ){ default_key_from_json_transform( key ) }
         end
 
         def default_key_from_json_transform( key )
@@ -43,7 +44,7 @@ module Fortnox
         end
 
         def convert_key_to_json( key )
-          @attr_to_json_map.fetch( key ){ default_key_to_json_transform( key ) }
+          @options.attr_to_json_map.fetch( key ){ default_key_to_json_transform( key ) }
         end
 
         def default_key_to_json_transform( key )
@@ -52,9 +53,13 @@ module Fortnox
 
         def sanitise( hash )
           hash.select do |key, value|
-            next false if @keys_filtered_on_save.include?( key )
+            next false if @options.keys_filtered_on_save.include?( key )
             value != nil
           end
+        end
+
+        def remove_nil_values( hash )
+          hash.delete_if{ |_, value| value.nil? }
         end
 
       end

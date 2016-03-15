@@ -29,6 +29,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "guard", "~> 2.12"
   spec.add_development_dependency "guard-rspec", "~> 4.5"
   spec.add_development_dependency "webmock", "~> 1.21"
+  spec.add_development_dependency "vcr", "~> 3.0"
   spec.add_development_dependency "pry"
   spec.add_development_dependency "codeclimate-test-reporter"
 

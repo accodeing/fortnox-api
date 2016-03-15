@@ -52,7 +52,7 @@ GEM
       guard (~> 2.1)
       guard-compat (~> 1.1)
       rspec (>= 2.99.0, < 4.0)
-    hashdiff (0.2.3)
+    hashdiff (0.3.0)
     httparty (0.13.7)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
@@ -107,12 +107,13 @@ GEM
       anima (~> 0.2.0)
       descendants_tracker (~> 0.0.1)
       equalizer (~> 0.0.9)
+    vcr (3.0.1)
     virtus (1.0.5)
       axiom-types (~> 0.1)
       coercible (~> 1.0)
       descendants_tracker (~> 0.0, >= 0.0.3)
       equalizer (~> 0.0, >= 0.0.9)
-    webmock (1.22.6)
+    webmock (1.24.2)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
       hashdiff
@@ -129,6 +130,7 @@ DEPENDENCIES
   pry
   rake (~> 10.4)
   rspec (~> 3.2)
+  vcr (~> 3.0)
   webmock (~> 1.21)
 
 BUNDLED WITH
