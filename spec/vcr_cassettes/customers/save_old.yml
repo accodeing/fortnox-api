@@ -2,10 +2,10 @@
 http_interactions:
 - request:
     method: put
-    uri: http://api.fortnox.se/3/customers/
+    uri: http://api.fortnox.se/3/customers/1
     body:
       encoding: UTF-8
-      string: '{"Customer":{"Currency":"SEK","CustomerNumber":"1","Email":"","EmailInvoice":"","EmailInvoiceBCC":"","EmailInvoiceCC":"","EmailOffer":"","EmailOfferBCC":"","EmailOfferCC":"","EmailOrder":"","EmailOrderBCC":"","EmailOrderCC":"","InvoiceRemark":"","Name":"Updated
+      string: '{"Customer":{"Currency":"SEK","Email":"","EmailInvoice":"","EmailInvoiceBCC":"","EmailInvoiceCC":"","EmailOffer":"","EmailOfferBCC":"","EmailOfferCC":"","EmailOrder":"","EmailOrderBCC":"","EmailOrderCC":"","InvoiceRemark":"","Name":"Updated
         customer","OrganisationNumber":"","OurReference":"","PriceList":"A","Project":"","ShowPriceVATIncluded":false,"TermsOfDelivery":"","TermsOfPayment":"","Type":"COMPANY","VATNumber":"","VATType":"SEVAT","WayOfDelivery":"","YourReference":""}}'
     headers:
       Content-Type:
@@ -18,29 +18,32 @@ http_interactions:
       - ccaef817-d5d8-4b1c-a316-54f3e55c5c54
   response:
     status:
-      code: 400
-      message: Bad Request
+      code: 200
+      message: OK
     headers:
       Server:
       - nginx
       Date:
-      - Mon, 14 Mar 2016 16:04:52 GMT
+      - Tue, 15 Mar 2016 06:00:34 GMT
       Content-Type:
       - application/json
       Connection:
       - close
+      Vary:
+      - Accept-Encoding
+      - Accept-Encoding
       X-Rack-Responsetime:
-      - '257'
+      - '687'
       X-Uid:
-      - a0455e76
+      - 5374e40c
       X-Build:
       - 954341dc68
       X-Powered-By:
       - Rack 1.1
     body:
       encoding: UTF-8
-      string: '{"ErrorInformation":{"error":1,"message":"A valid identifier was not
-        provided.","code":2000729}}'
+      string: '{"Customer":{"@url":"https:\/\/api.fortnox.se\/3\/customers\/1","Address1":null,"Address2":null,"City":null,"Country":null,"Comments":null,"Currency":"SEK","CostCenter":null,"CountryCode":null,"CustomerNumber":"1","DefaultDeliveryTypes":{"Invoice":"PRINT","Order":"PRINT","Offer":"PRINT"},"DefaultTemplates":{"Order":"DEFAULTTEMPLATE","Offer":"DEFAULTTEMPLATE","Invoice":"DEFAULTTEMPLATE","CashInvoice":"DEFAULTTEMPLATE"},"DeliveryAddress1":null,"DeliveryAddress2":null,"DeliveryCity":null,"DeliveryCountry":null,"DeliveryCountryCode":null,"DeliveryFax":null,"DeliveryName":null,"DeliveryPhone1":null,"DeliveryPhone2":null,"DeliveryZipCode":null,"Email":"","EmailInvoice":"","EmailInvoiceBCC":"","EmailInvoiceCC":"","EmailOffer":"","EmailOfferBCC":"","EmailOfferCC":"","EmailOrder":"","EmailOrderBCC":"","EmailOrderCC":"","Fax":null,"InvoiceAdministrationFee":null,"InvoiceDiscount":null,"InvoiceFreight":null,"InvoiceRemark":"","Name":"Updated
+        customer","OrganisationNumber":"","OurReference":"","Phone1":null,"Phone2":null,"PriceList":"A","Project":"","SalesAccount":null,"ShowPriceVATIncluded":false,"TermsOfDelivery":"","TermsOfPayment":"","Type":"COMPANY","VATNumber":"","VATType":"SEVAT","VisitingAddress":null,"VisitingCity":null,"VisitingCountry":null,"VisitingCountryCode":null,"VisitingZipCode":null,"WayOfDelivery":"","WWW":"","YourReference":"","ZipCode":null}}'
     http_version: 
-  recorded_at: Mon, 14 Mar 2016 16:04:52 GMT
+  recorded_at: Tue, 15 Mar 2016 06:00:34 GMT
 recorded_with: VCR 3.0.1

@@ -9,7 +9,7 @@ module Fortnox
           hash = entity_to_hash( entity )
           json = hash.to_json
 
-          response = entity.new? ? save_new( json ) : update_existing( json )
+          response = entity.new? ? save_new( json ) : update_existing( hash )
         end
 
       private
@@ -18,10 +18,21 @@ module Fortnox
           post( @options.uri, { body: json } )
         end
 
-        def update_existing( json )
-          put( @options.uri, { body: json } )
+        def update_existing( hash )
+          put(
+              entity_url( hash ),
+              { body: hash.to_json }
+            )
         end
 
+        def entity_url( hash )
+          id = cut_id_from_hash( hash )
+          "#{ @options.uri }#{ id }"
+        end
+
+        def cut_id_from_hash( hash )
+          hash[ @options.json_entity_wrapper ].delete( @options.unique_id )
+        end
       end
     end
   end
