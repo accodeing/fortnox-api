@@ -36,7 +36,7 @@ module Fortnox
 
           return self if new_attributes == old_attributes
 
-          new_hash = new_attributes.select{ |_,v| !v.nil? }
+          new_hash = new_attributes.delete_if{ |_, value| value.nil? }
           new_hash[:new] = @new
           self.class.new( new_hash )
         end
