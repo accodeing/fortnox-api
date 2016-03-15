@@ -59,7 +59,7 @@ module Fortnox
         end
 
         def remove_nil_values( hash )
-          hash.delete_if{ |key, value| value.nil? }
+          hash.delete_if{ |_, value| value.nil? }
         end
 
       end

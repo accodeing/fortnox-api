@@ -9,7 +9,7 @@ module Fortnox
           hash = entity_to_hash( entity )
           json = hash.to_json
 
-          response = entity.new? ? save_new( json ) : update_existing( hash )
+          entity.new? ? save_new( json ) : update_existing( hash )
         end
 
       private

@@ -37,9 +37,9 @@ module Fortnox
           hash_to_entity( entity_hash )
         end
 
-        def find_all_by( hash )
+        # def find_all_by( hash )
 
-        end
+        # end
 
         def to_query( hash )
           hash.collect do |key, value|

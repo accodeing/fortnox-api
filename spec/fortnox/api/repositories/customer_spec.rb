@@ -6,7 +6,7 @@ require 'fortnox/api/models/customer'
 describe Fortnox::API::Repository::Customer do
   include_context 'repository context'
 
-  subject { described_class.new }
+  subject{ described_class.new }
 
   it_behaves_like 'repositories', Fortnox::API::Model::Customer
 
