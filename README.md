@@ -5,6 +5,7 @@
 [![Gem Version](https://badge.fury.io/rb/fortnox-api.png)](http://badge.fury.io/rb/fortnox-api)
 [![Build Status](https://travis-ci.org/my-codeworks/fortnox-api.png)](https://travis-ci.org/my-codeworks/fortnox-api)
 [![Code Climate](https://codeclimate.com/github/my-codeworks/fortnox-api.png)](https://codeclimate.com/github/my-codeworks/fortnox-api)
+[![Test Coverage](https://codeclimate.com/github/my-codeworks/fortnox-api/badges/coverage.svg)](https://codeclimate.com/github/my-codeworks/fortnox-api/coverage)
 [![Dependency Status](https://gemnasium.com/my-codeworks/fortnox-api.svg)](https://gemnasium.com/my-codeworks/fortnox-api)
 
 The rough status of this project is as follows (as of Marsh 2016):
