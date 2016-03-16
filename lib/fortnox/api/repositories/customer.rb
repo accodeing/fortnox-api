@@ -8,8 +8,8 @@ module Fortnox
 
         CONFIGURATION = Fortnox::API::Repository::Base::Options.new(
           uri: '/customers/',
-          json_list_wrapper: 'Customers',
-          json_unit_wrapper: 'Customer',
+          json_collection_wrapper: 'Customers',
+          json_entity_wrapper: 'Customer',
           unique_id: 'CustomerNumber',
           attribute_name_to_json_key_map: {
             vat_type: 'VATType',

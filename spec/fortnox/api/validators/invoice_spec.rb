@@ -6,18 +6,14 @@ require 'fortnox/api/validators/invoice'
 describe Fortnox::API::Validator::Invoice do
   let( :model_class ){ Fortnox::API::Model::Invoice }
 
+  subject{ described_class.new }
+
   include_context 'validator context' do
     let( :valid_model ){ model_class.new( customer_number: 12345 ) }
   end
 
   describe '.validate Invoice' do
-    context 'with required attributes' do
-      it{ is_expected.to be_valid( valid_model ) }
-    end
-
-    context 'without required attributes' do
-      it{ is_expected.to_not be_valid( model_class.new ) }
-    end
+    include_examples 'required attributes', Fortnox::API::Model::Invoice
 
     include_examples 'validates length of string', :address1, 1024
     include_examples 'validates length of string', :address2, 1024
@@ -32,9 +28,9 @@ describe Fortnox::API::Validator::Invoice do
     include_examples 'validates length of string', :your_reference, 50
     include_examples 'validates length of string', :zip_code, 1024
 
-    include_examples 'validates inclusion of', :administration_fee, 0, 99_999_999_999.0
-    include_examples 'validates inclusion of', :currency_rate, 0, 999_999_999_999_999.0
-    include_examples 'validates inclusion of', :currency_unit, 0, 999_999_999_999_999.0
-    include_examples 'validates inclusion of', :freight, 0, 99_999_999_999.0
+    include_examples 'validates inclusion of number', :administration_fee, 0, 99_999_999_999.0
+    include_examples 'validates inclusion of number', :currency_rate, 0, 999_999_999_999_999.0
+    include_examples 'validates inclusion of number', :currency_unit, 0, 999_999_999_999_999.0
+    include_examples 'validates inclusion of number', :freight, 0, 99_999_999_999.0
   end
 end

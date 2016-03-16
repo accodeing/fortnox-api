@@ -6,16 +6,16 @@ module Fortnox
       module Loaders
 
         def all()
-          response_hash = get( @uri )
-          entities_hash = response_hash[ @json_list_wrapper ]
+          response_hash = get( @options.uri )
+          entities_hash = response_hash[ @options.json_collection_wrapper ]
           entities_hash.map do |entity_hash|
             hash_to_entity( entity_hash )
           end
         end
 
         def only( filter )
-          response_hash = get( @uri + "?filter=#{ filter }" )
-          entities_hash = response_hash[ @json_list_wrapper ]
+          response_hash = get( @options.uri + "?filter=#{ filter }" )
+          entities_hash = response_hash[ @options.json_collection_wrapper ]
           entities_hash.map do |entity_hash|
             hash_to_entity( entity_hash )
           end
@@ -27,19 +27,19 @@ module Fortnox
           id = Integer( id_or_hash )
           find_one_by( id )
 
-        catch ArgumentError
+        rescue ArgumentError
           raise ArgumentError, "find only accepts a number or hash as argument"
         end
 
         def find_one_by( id )
-          response_hash = get( @uri + id )
-          entity_hash = response_hash[ @json_entity_wrapper ]
+          response_hash = get( "#{@options.uri}#{id}" )
+          entity_hash = response_hash[ @options.json_entity_wrapper ]
           hash_to_entity( entity_hash )
         end
 
-        def find_all_by( hash )
+        # def find_all_by( hash )
 
-        end
+        # end
 
         def to_query( hash )
           hash.collect do |key, value|
