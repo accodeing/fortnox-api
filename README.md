@@ -1,5 +1,5 @@
 # Fortnox API
- > Wrapper gem for Fortnox AB's version 3 REST(ish) API. If you need to integrate an existing or new Ruby or Rails app against Fortnox this gem will save you a lot of time, you are welcome. Feel free to repay the community with some nice PRs of your own :simple_smile:
+ > Wrapper gem for Fortnox AB's version 3 REST(ish) API. If you need to integrate an existing or new Ruby or Rails app against Fortnox this gem will save you a lot of time, you are welcome. Feel free to repay the community with some nice PRs of your own :simple_smile: 
 
 # Status
 [![Gem Version](https://badge.fury.io/rb/fortnox-api.png)](http://badge.fury.io/rb/fortnox-api)
