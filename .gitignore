@@ -2,6 +2,7 @@
 .env
 .rspec
 *.gem
+Gemfile.lock
 
 # Vim swap files
 *.swp
