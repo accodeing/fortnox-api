@@ -1,0 +1,49 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://api.fortnox.se/3/invoices/
+    body:
+      encoding: UTF-8
+      string: '{"Invoice":{"Comments":"An invoice comment","CustomerNumber":"1","InvoiceRows":[]}}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      Client-Secret:
+      - 9aBA8ZgsvR
+      Access-Token:
+      - ccaef817-d5d8-4b1c-a316-54f3e55c5c54
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Wed, 16 Mar 2016 16:09:36 GMT
+      Content-Type:
+      - application/json
+      Connection:
+      - close
+      Location:
+      - invoices
+      X-Rack-Responsetime:
+      - '80'
+      X-Uid:
+      - '69774122'
+      X-Build:
+      - ee15096bc2
+      X-Powered-By:
+      - Rack 1.1
+    body:
+      encoding: UTF-8
+      string: '{"Invoice":{"@url":"https:\/\/api.fortnox.se\/3\/invoices\/5","@urlTaxReductionList":"https:\/\/api.fortnox.se\/3\/taxreductions?filter=invoices&referencenumber=5","AdministrationFee":0,"AdministrationFeeVAT":0,"Address1":"","Address2":"","Balance":0,"BasisTaxReduction":0,"Booked":false,"Cancelled":false,"City":"","Comments":"An
+        invoice comment","ContractReference":0,"ContributionPercent":0,"ContributionValue":0,"Country":"","CostCenter":"","Credit":"false","CreditInvoiceReference":0,"Currency":"SEK","CurrencyRate":1,"CurrencyUnit":1,"CustomerName":"Updated
+        customer","CustomerNumber":"1","DeliveryAddress1":"","DeliveryAddress2":"","DeliveryCity":"","DeliveryCountry":"","DeliveryDate":null,"DeliveryName":"","DeliveryZipCode":"","DocumentNumber":"5","DueDate":"2016-03-16","EDIInformation":{"EDIGlobalLocationNumber":"","EDIGlobalLocationNumberDelivery":"","EDIInvoiceExtra1":"","EDIInvoiceExtra2":"","EDIOurElectronicReference":"","EDIYourElectronicReference":""},"EmailInformation":{"EmailAddressFrom":null,"EmailAddressTo":"","EmailAddressCC":null,"EmailAddressBCC":null,"EmailSubject":"Faktura
+        {no} bifogas","EmailBody":" "},"EUQuarterlyReport":false,"ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","Freight":0,"FreightVAT":0,"Gross":0,"HouseWork":false,"InvoiceDate":"2016-03-16","InvoicePeriodStart":"","InvoicePeriodEnd":"","InvoiceReference":0,"InvoiceRows":[],"InvoiceType":"INVOICE","Labels":[],"Language":"SV","LastRemindDate":null,"Net":0,"NotCompleted":false,"NoxFinans":false,"OCR":"539","OfferReference":0,"OrderReference":0,"OrganisationNumber":"","OurReference":"","PaymentWay":"","Phone1":"","Phone2":"","PriceList":"A","PrintTemplate":"st","Project":"","Remarks":"","Reminders":0,"RoundOff":0,"Sent":false,"TaxReduction":null,"TermsOfDelivery":"","TermsOfPayment":0,"Total":0,"TotalToPay":0,"TotalVAT":0,"VATIncluded":false,"VoucherNumber":null,"VoucherSeries":null,"VoucherYear":null,"WayOfDelivery":"","YourOrderNumber":"","YourReference":"","ZipCode":"","AccountingMethod":"ACCRUAL"}}'
+    http_version: 
+  recorded_at: Wed, 16 Mar 2016 16:09:36 GMT
+recorded_with: VCR 3.0.1
