@@ -2,6 +2,7 @@ rvm:
   - "2.1.8"
   - "2.2.4"
   - "2.3.0"
+bundler_args: --development
 addons:
   code_climate:
     repo_token: 397c19af63ca3467cff6fd640b0460b691f687118332b5989f530d28f82adcb8
