@@ -1,14 +1,14 @@
 shared_examples_for '.save' do |attribute_hash_name|
   describe '.save' do
+    include_context 'JSONHelper'
+
     let( :vcr_dir ){ subject.options.json_collection_wrapper.downcase }
     let( :find_id ){ 1 }
     let( :find_id_1 ) do
       VCR.use_cassette( "#{vcr_dir}/find_id_1" ){ subject.find( find_id ) }
     end
     let( :attribute_json_name ) do
-      map_value = subject.options.attr_to_json_map[attribute_hash_name]
-      camelized_value = attribute_hash_name.to_s.split('_').map(&:capitalize).join('')
-      map_value || camelized_value
+      JSONHelper.new.convert_to_json( attribute_hash_name )
     end
 
     shared_examples_for 'save' do

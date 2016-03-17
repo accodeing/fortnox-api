@@ -10,7 +10,7 @@ describe Fortnox::API::Repository::Customer do
 
   include_examples '.all'
 
-  include_examples '.find', :customer_number
+  include_examples '.find'
 
   include_examples '.save', :name do
     let( :value ){ 'A customer' }

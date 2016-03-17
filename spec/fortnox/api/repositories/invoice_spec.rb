@@ -10,7 +10,7 @@ describe Fortnox::API::Repository::Invoice do
 
   include_examples '.all'
 
-  include_examples '.find', :document_number
+  include_examples '.find'
 
   include_examples '.save', :comments do
     let( :value ){ 'An invoice comment' }

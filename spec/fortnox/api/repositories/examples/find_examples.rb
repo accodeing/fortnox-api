@@ -1,4 +1,7 @@
-shared_examples_for '.find' do |id_attribute|
+require 'fortnox/api/repositories/base/json_convertion'
+require 'fortnox/api/repositories/json_helper_context'
+
+shared_examples_for '.find' do
   let( :find_id ){ 1 }
   let( :find_id_1 ) do
     vcr_dir = subject.options.json_collection_wrapper.downcase
@@ -6,11 +9,15 @@ shared_examples_for '.find' do |id_attribute|
   end
 
   describe '.find' do
+    include_context 'JSONHelper'
+
     specify 'returns correct class' do
       expect( find_id_1.class ).to be described_class::MODEL
     end
 
     specify 'returns correct Customer' do
+      id_attribute_json = subject.options.unique_id
+      id_attribute = JSONHelper.new.convert_from_json(id_attribute_json)
       expect( find_id_1.send(id_attribute).to_i ).to eq( find_id )
     end
 
