@@ -19,6 +19,7 @@ shared_examples_for '.save' do |attribute, fortnox_attribute|
         let( :value ){ attribute_value }
 
         let( :send_request ) do
+          valid_model = described_class::MODEL.new( model_hash )
           VCR.use_cassette( "#{vcr_dir}/save_new" ){ subject.save( valid_model ) }
         end
 

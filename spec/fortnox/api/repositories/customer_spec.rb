@@ -17,6 +17,6 @@ describe Fortnox::API::Repository::Customer do
   include_examples '.save', :name, 'Name' do
     let( :attribute_value ){ 'A customer' }
     let( :updated_attribute_value ){ 'Updated customer' }
-    let( :valid_model ){ described_class::MODEL.new( name: attribute_value ) }
+    let( :model_hash ){ { name: attribute_value } }
   end
 end
