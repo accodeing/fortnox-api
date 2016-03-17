@@ -21,8 +21,6 @@ shared_examples_for '.save' do |attribute_hash_name|
 
     describe 'new' do
       include_examples 'save' do
-        let( :value ){ attribute_value }
-
         let( :send_request ) do
           valid_model = described_class::MODEL.new( model_hash )
           VCR.use_cassette( "#{vcr_dir}/save_new" ){ subject.save( valid_model ) }
@@ -34,7 +32,7 @@ shared_examples_for '.save' do |attribute_hash_name|
 
     describe 'old (update existing)' do
       include_examples 'save' do
-        let( :value ){ updated_attribute_value }
+        let( :value ){ updated_value }
         let( :model ){ find_id_1.update( attribute_hash_name => value ) }
 
         let( :send_request ) do
