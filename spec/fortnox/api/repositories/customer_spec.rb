@@ -1,14 +1,12 @@
 require 'spec_helper'
-require 'fortnox/api/repositories/context'
+require 'fortnox/api/repositories/environment_context'
 require 'fortnox/api/repositories/customer'
 require 'fortnox/api/repositories/examples/all_examples'
 require 'fortnox/api/repositories/examples/find_examples'
 require 'fortnox/api/repositories/examples/save_examples'
 
 describe Fortnox::API::Repository::Customer do
-  include_context 'repository context'
-
-  it_behaves_like 'repositories'
+  include_context 'environment context'
 
   include_examples '.all'
 
