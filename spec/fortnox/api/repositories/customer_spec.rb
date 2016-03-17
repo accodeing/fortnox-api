@@ -9,15 +9,15 @@ require 'fortnox/api/repositories/save_examples'
 describe Fortnox::API::Repository::Customer do
   include_context 'repository context'
 
-  it_behaves_like 'repositories', Fortnox::API::Model::Customer
+  it_behaves_like 'repositories'
 
-  include_examples '.all', Fortnox::API::Model::Customer, 'customers'
+  include_examples '.all', 'customers'
 
-  include_examples '.find', Fortnox::API::Model::Customer, :customer_number, 'customers'
+  include_examples '.find', 'customers', :customer_number
 
   include_examples '.save', 'customers', 'Customer', :name, 'Name' do
     let( :attribute_value ){ 'A customer' }
     let( :updated_attribute_value ){ 'Updated customer' }
-    let( :valid_model ){ Fortnox::API::Model::Customer.new( name: attribute_value ) }
+    let( :valid_model ){ described_class::MODEL.new( name: attribute_value ) }
   end
 end

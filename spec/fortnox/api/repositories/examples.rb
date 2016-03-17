@@ -1,8 +1,8 @@
-shared_examples_for 'repositories' do |model_class|
+shared_examples_for 'repositories' do
   describe '#save' do
-    context "new #{model_class}" do
+    context "new #{described_class::MODEL}" do
       let( :repository ){ described_class.new }
-      let( :model ){ model_class.new( unsaved: false ) }
+      let( :model ){ described_class::MODEL.new( unsaved: false ) }
 
       before do
         # Should not make an API request in test!

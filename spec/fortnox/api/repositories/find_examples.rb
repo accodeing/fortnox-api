@@ -1,4 +1,4 @@
-shared_examples_for '.find' do |model_class, id_attribute, cassette_dir|
+shared_examples_for '.find' do |cassette_dir, id_attribute|
   let( :find_id ){ 1 }
   let( :find_id_1 ) do
     VCR.use_cassette( "#{cassette_dir}/find_id_1" ){ subject.find( find_id ) }
@@ -6,7 +6,7 @@ shared_examples_for '.find' do |model_class, id_attribute, cassette_dir|
 
   describe '.find' do
     specify 'returns correct class' do
-      expect( find_id_1.class ).to be model_class
+      expect( find_id_1.class ).to be described_class::MODEL
     end
 
     specify 'returns correct Customer' do
