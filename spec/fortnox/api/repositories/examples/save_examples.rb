@@ -8,7 +8,7 @@ shared_examples_for '.save' do |attribute_hash_name|
     let( :attribute_json_name ) do
       map_value = subject.options.attr_to_json_map[attribute_hash_name]
       camelized_value = attribute_hash_name.to_s.split('_').map(&:capitalize).join('')
-      json_name = map_value || camelized_value
+      map_value || camelized_value
     end
 
     shared_examples_for 'save' do
