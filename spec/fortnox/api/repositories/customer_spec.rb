@@ -11,11 +11,11 @@ describe Fortnox::API::Repository::Customer do
 
   it_behaves_like 'repositories'
 
-  include_examples '.all', 'customers'
+  include_examples '.all'
 
-  include_examples '.find', 'customers', :customer_number
+  include_examples '.find', :customer_number
 
-  include_examples '.save', 'customers', 'Customer', :name, 'Name' do
+  include_examples '.save', :name, 'Name' do
     let( :attribute_value ){ 'A customer' }
     let( :updated_attribute_value ){ 'Updated customer' }
     let( :valid_model ){ described_class::MODEL.new( name: attribute_value ) }
