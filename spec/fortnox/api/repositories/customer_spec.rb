@@ -14,7 +14,7 @@ describe Fortnox::API::Repository::Customer do
 
   include_examples '.find', :customer_number
 
-  include_examples '.save', :name, 'Name' do
+  include_examples '.save', :name do
     let( :attribute_value ){ 'A customer' }
     let( :updated_attribute_value ){ 'Updated customer' }
     let( :model_hash ){ { name: attribute_value } }
