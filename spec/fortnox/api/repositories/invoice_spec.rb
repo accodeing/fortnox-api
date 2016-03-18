@@ -15,4 +15,6 @@ describe Fortnox::API::Repository::Invoice, order: :defined, integration: true d
   include_examples '.all', 12
 
   include_examples '.find'
+
+  include_examples '.search', :customername, 'Test'
 end

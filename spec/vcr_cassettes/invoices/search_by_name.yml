@@ -1,0 +1,47 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://api.fortnox.se/3/invoices/?customername=Test
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      Client-Secret:
+      - 9aBA8ZgsvR
+      Access-Token:
+      - ccaef817-d5d8-4b1c-a316-54f3e55c5c54
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Fri, 18 Mar 2016 21:37:59 GMT
+      Content-Type:
+      - application/json
+      Connection:
+      - close
+      Vary:
+      - Accept-Encoding
+      - Accept-Encoding
+      X-Rack-Responsetime:
+      - '153'
+      X-Uid:
+      - 3730ab92
+      X-Build:
+      - ee15096bc2
+      X-Powered-By:
+      - Rack 1.1
+    body:
+      encoding: UTF-8
+      string: '{"MetaInformation":{"@TotalResources":1,"@TotalPages":1,"@CurrentPage":1},"Invoices":[{"@url":"https:\/\/api.fortnox.se\/3\/invoices\/1","Balance":0,"Booked":false,"Cancelled":false,"Currency":"SEK","CurrencyRate":"1","CurrencyUnit":1,"CustomerName":"Test","CustomerNumber":"1","DocumentNumber":"1","DueDate":"2016-02-04","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","InvoiceDate":"2016-02-04","NoxFinans":false,"OCR":"133","WayOfDelivery":"","TermsOfPayment":"0","Project":"","Sent":false,"Total":0}]}'
+    http_version: 
+  recorded_at: Fri, 18 Mar 2016 21:38:00 GMT
+recorded_with: VCR 3.0.1
