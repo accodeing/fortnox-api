@@ -14,7 +14,16 @@ module Fortnox
         end
 
         def only( filter )
-          response_hash = get( @options.uri + "?filter=#{ filter }" )
+          response_hash = get( "#{ @options.uri }?filter=#{ filter }" )
+          entities_hash = response_hash[ @options.json_collection_wrapper ]
+          entities_hash.map do |entity_hash|
+            hash_to_entity( entity_hash )
+          end
+        end
+
+        def search( hash )
+          attribute, value = hash.first
+          response_hash = get( "#{ @options.uri }?#{ attribute }=#{ value }" )
           entities_hash = response_hash[ @options.json_collection_wrapper ]
           entities_hash.map do |entity_hash|
             hash_to_entity( entity_hash, @options.json_to_attr_map )
