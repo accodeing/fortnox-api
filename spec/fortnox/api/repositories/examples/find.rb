@@ -11,9 +11,8 @@ shared_examples_for '.find' do
     end
 
     specify 'returns correct Customer' do
-      id_attribute_json = subject.options.unique_id
       id_attribute = Fortnox::API::Repository::JSONConvertion.convert_key_from_json(
-        id_attribute_json,
+        subject.options.unique_id,
         subject.options.attr_to_json_map
       )
       expect( find_id_1.send(id_attribute).to_i ).to eq( find_id )
