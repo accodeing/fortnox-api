@@ -1,7 +1,6 @@
 # Assumes that attribute_hash_name holds a string without restrictions.
 shared_examples_for '.save' do |attribute_hash_name, required_attributes = {}|
   describe '.save' do
-    include_context 'JSONHelper'
 
     let( :vcr_dir ){ subject.options.json_collection_wrapper.downcase }
     let( :find_id ){ 1 }
@@ -9,7 +8,10 @@ shared_examples_for '.save' do |attribute_hash_name, required_attributes = {}|
       VCR.use_cassette( "#{vcr_dir}/find_id_1" ){ subject.find( find_id ) }
     end
     let( :attribute_json_name ) do
-      JSONHelper.new.convert_to_json( attribute_hash_name )
+      Fortnox::API::Repository::JSONConvertion.convert_key_to_json(
+        attribute_hash_name,
+        subject.options.attr_to_json_map
+      )
     end
 
     shared_examples_for 'save' do
