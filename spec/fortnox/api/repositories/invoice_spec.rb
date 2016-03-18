@@ -12,5 +12,17 @@ describe Fortnox::API::Repository::Invoice do
 
   include_examples '.find'
 
-  include_examples '.save', :comments, { customer_number: 1 }
+  include_examples '.save', :comments, { invoice_number: 1 }
+
+  describe 'writer private' do
+    let( :repository ){ described_class.new }
+    let( :vcr_dir ){ repository.options.json_collection_wrapper.downcase }
+    subject do
+      VCR.use_cassette( "#{vcr_dir}/find_id_1" ) do
+        repository.find( 1 ).total
+      end
+    end
+
+    it{ is_expected.to eql( 100.0 ) }
+  end
 end

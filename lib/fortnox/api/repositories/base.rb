@@ -27,6 +27,7 @@ module Fortnox
           def instansiate( hash )
             hash[ :new ] = false
             hash[ :unsaved ] = false
+            hash[ :from_repository ] = true
             self.class::MODEL.new( hash )
           end
 
