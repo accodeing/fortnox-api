@@ -1,0 +1,49 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://api.fortnox.se/3/customers/?name=Test
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      Client-Secret:
+      - 9aBA8ZgsvR
+      Access-Token:
+      - ccaef817-d5d8-4b1c-a316-54f3e55c5c54
+      Authorization-Code:
+      - ea3862b0-189c-464b-8e23-1b9702365ea1
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Fri, 18 Mar 2016 21:18:00 GMT
+      Content-Type:
+      - application/json
+      Connection:
+      - close
+      Vary:
+      - Accept-Encoding
+      - Accept-Encoding
+      X-Rack-Responsetime:
+      - '25'
+      X-Uid:
+      - 387757bc
+      X-Build:
+      - ee15096bc2
+      X-Powered-By:
+      - Rack 1.1
+    body:
+      encoding: UTF-8
+      string: '{"MetaInformation":{"@TotalResources":0,"@TotalPages":0,"@CurrentPage":1},"Customers":[{"@url":"https:\/\/api.fortnox.se\/3\/customers\/1","Address1":"","Address2":"","City":"","CustomerNumber":"1","Email":"","Name":"Test","OrganisationNumber":"","Phone":"","ZipCode":""}]}'
+    http_version:
+  recorded_at: Fri, 18 Mar 2016 21:18:00 GMT
+recorded_with: VCR 3.0.1
