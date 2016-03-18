@@ -4,6 +4,7 @@ require 'fortnox/api/repositories/invoice'
 require 'fortnox/api/repositories/examples/all'
 require 'fortnox/api/repositories/examples/find'
 require 'fortnox/api/repositories/examples/save'
+require 'fortnox/api/repositories/examples/only'
 
 describe Fortnox::API::Repository::Invoice do
   include_context 'environment'
@@ -13,4 +14,6 @@ describe Fortnox::API::Repository::Invoice do
   include_examples '.find'
 
   include_examples '.save', :comments, { customer_number: 1 }
+
+  include_examples '.only', :fullypaid, :unpaid
 end
