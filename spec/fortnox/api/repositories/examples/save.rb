@@ -1,5 +1,5 @@
 # Assumes that attribute_hash_name holds a string without restrictions.
-shared_examples_for '.save' do |attribute_hash_name, required_attributes|
+shared_examples_for '.save' do |attribute_hash_name, required_attributes = {}|
   describe '.save' do
     include_context 'JSONHelper'
 

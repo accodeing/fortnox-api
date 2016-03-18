@@ -12,5 +12,5 @@ describe Fortnox::API::Repository::Customer do
 
   include_examples '.find'
 
-  include_examples '.save', :name, {}
+  include_examples '.save', :name
 end
