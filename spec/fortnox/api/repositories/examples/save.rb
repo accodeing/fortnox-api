@@ -48,7 +48,7 @@ shared_examples_for '.save' do |attribute_hash_name, required_attributes = {}|
       end
     end
 
-    describe 'old (update existing)' do
+    describe 'old (update existing)', focus: true do
       include_examples 'save' do
         let( :value ){ 'An updated value' }
         let( :model ){ find_id_1.update( attribute_hash_name => value ) }

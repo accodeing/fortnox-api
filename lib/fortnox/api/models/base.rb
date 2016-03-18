@@ -23,9 +23,10 @@ module Fortnox
           @saved = !unsaved
           @new = hash.delete( :new ){ true }
 
-          # .each{|a| p a.name}
-
           super hash
+
+          initialize_private_attributes( hash )
+
           IceNine.deep_freeze( self )
         end
 
@@ -57,7 +58,15 @@ module Fortnox
       private
 
         def private_attributes
-          @@private_attributes ||= attribute_set.select{ |a| !a.public_writer? }
+          @private_attributes ||= attribute_set.to_a.select{ |a| a.options[:writer] == :private }
+        end
+
+        def initialize_private_attributes( hash )
+          return unless hash[ :from_repository ]
+
+          private_attributes.map(&:name).each do |private_attribute_name|
+            self.send( "#{ private_attribute_name }=", hash[ private_attribute_name.to_sym ] )
+          end
         end
 
       end

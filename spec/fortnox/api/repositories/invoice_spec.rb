@@ -12,7 +12,7 @@ describe Fortnox::API::Repository::Invoice do
 
   include_examples '.find'
 
-  include_examples '.save', :comments, { customer_number: 1 }
+  include_examples '.save', :comments, { invoice_number: 1 }
 
   describe 'writer private' do
     let( :repository ){ described_class.new }
@@ -23,6 +23,6 @@ describe Fortnox::API::Repository::Invoice do
       end
     end
 
-    it{ is_expected.to eql( 100 ) }
+    it{ is_expected.to eql( 100.0 ) }
   end
 end
