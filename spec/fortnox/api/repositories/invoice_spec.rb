@@ -1,10 +1,16 @@
 require 'spec_helper'
-require 'fortnox/api/repositories/context'
+require 'fortnox/api/repositories/contexts/environment'
 require 'fortnox/api/repositories/invoice'
-require 'fortnox/api/models/invoice'
+require 'fortnox/api/repositories/examples/all'
+require 'fortnox/api/repositories/examples/find'
+require 'fortnox/api/repositories/examples/save'
 
 describe Fortnox::API::Repository::Invoice do
-  include_context 'repository context'
+  include_context 'environment'
 
-  it_behaves_like 'repositories', Fortnox::API::Model::Invoice
+  include_examples '.all'
+
+  include_examples '.find'
+
+  include_examples '.save', :comments, { customer_number: 1 }
 end
