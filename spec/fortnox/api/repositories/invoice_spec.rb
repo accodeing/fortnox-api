@@ -12,9 +12,5 @@ describe Fortnox::API::Repository::Invoice do
 
   include_examples '.find'
 
-  include_examples '.save', :comments do
-    let( :value ){ 'An invoice comment' }
-    let( :updated_value ){ 'An updated invoice comment' }
-    let( :model_hash ){ { comments: value, customer_number: 1 } }
-  end
+  include_examples '.save', :comments, { customer_number: 1 }
 end

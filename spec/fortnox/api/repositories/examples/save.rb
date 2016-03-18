@@ -1,4 +1,5 @@
-shared_examples_for '.save' do |attribute_hash_name|
+# Assumes that attribute_hash_name holds a string without restrictions.
+shared_examples_for '.save' do |attribute_hash_name, required_attributes|
   describe '.save' do
     include_context 'JSONHelper'
 
@@ -21,8 +22,10 @@ shared_examples_for '.save' do |attribute_hash_name|
 
     describe 'new' do
       include_examples 'save' do
+        let( :value ){ 'A value' }
         let( :send_request ) do
-          valid_model = described_class::MODEL.new( model_hash )
+          hash = required_attributes.merge( attribute_hash_name => value )
+          valid_model = described_class::MODEL.new( hash )
           VCR.use_cassette( "#{vcr_dir}/save_new" ){ subject.save( valid_model ) }
         end
 
@@ -45,7 +48,7 @@ shared_examples_for '.save' do |attribute_hash_name|
 
     describe 'old (update existing)' do
       include_examples 'save' do
-        let( :value ){ updated_value }
+        let( :value ){ 'An updated value' }
         let( :model ){ find_id_1.update( attribute_hash_name => value ) }
 
         let( :send_request ) do
