@@ -1,5 +1,3 @@
-require 'fortnox/api/repositories/contexts/json_helper'
-
 shared_examples_for '.find' do
   let( :find_id ){ 1 }
   let( :find_id_1 ) do
@@ -8,15 +6,15 @@ shared_examples_for '.find' do
   end
 
   describe '.find' do
-    include_context 'JSONHelper'
-
     specify 'returns correct class' do
       expect( find_id_1.class ).to be described_class::MODEL
     end
 
     specify 'returns correct Customer' do
-      id_attribute_json = subject.options.unique_id
-      id_attribute = JSONHelper.new.convert_from_json(id_attribute_json)
+      id_attribute = Fortnox::API::Repository::JSONConvertion.convert_key_from_json(
+        subject.options.unique_id,
+        subject.options.attr_to_json_map
+      )
       expect( find_id_1.send(id_attribute).to_i ).to eq( find_id )
     end
 
