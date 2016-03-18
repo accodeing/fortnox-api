@@ -1,5 +1,5 @@
 require 'fortnox/api/repositories/base/json_convertion'
-require 'fortnox/api/repositories/json_helper_context'
+require 'fortnox/api/repositories/contexts/json_helper'
 
 shared_examples_for '.find' do
   let( :find_id ){ 1 }

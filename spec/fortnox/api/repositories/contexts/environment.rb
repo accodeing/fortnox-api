@@ -1,6 +1,6 @@
 require 'fortnox/api'
 
-shared_context 'environment context' do
+shared_context 'environment' do
   before(:each) do
     ENV['FORTNOX_API_BASE_URL'] = 'http://api.fortnox.se/3'
     ENV['FORTNOX_API_CLIENT_SECRET'] = '9aBA8ZgsvR'
