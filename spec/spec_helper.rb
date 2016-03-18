@@ -1,5 +1,6 @@
 ENV['RUBY_ENV'] = 'test'
 
+require 'rspec/collection_matchers'
 require 'webmock/rspec'
 require 'pry'
 require "codeclimate-test-reporter"

@@ -26,11 +26,12 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "bundler", "~> 1.9"
   spec.add_development_dependency "rake", "~> 10.4"
   spec.add_development_dependency "rspec", "~> 3.2"
+  spec.add_development_dependency "rspec-collection_matchers", "~> 0"
   spec.add_development_dependency "guard", "~> 2.12"
   spec.add_development_dependency "guard-rspec", "~> 4.5"
   spec.add_development_dependency "webmock", "~> 1.21"
   spec.add_development_dependency "vcr", "~> 3.0"
-  spec.add_development_dependency "pry"
-  spec.add_development_dependency "codeclimate-test-reporter"
+  spec.add_development_dependency "pry", "~> 0"
+  spec.add_development_dependency "codeclimate-test-reporter", "~> 0"
 
 end
