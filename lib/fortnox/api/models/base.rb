@@ -6,7 +6,6 @@ module Fortnox
     module Model
       class Base
 
-        # extend Forwardable
         include Virtus.model
 
         attr_accessor :unsaved
