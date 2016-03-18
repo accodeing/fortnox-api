@@ -3,7 +3,7 @@ module Fortnox
     module Repository
       module JSONConvertion
 
-      private
+      module_function
 
         def hash_to_entity( entity_json_hash, key_map )
           remove_nil_values(entity_json_hash)
