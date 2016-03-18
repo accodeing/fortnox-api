@@ -5,7 +5,7 @@ require 'fortnox/api/repositories/examples/all'
 require 'fortnox/api/repositories/examples/find'
 require 'fortnox/api/repositories/examples/save'
 
-describe Fortnox::API::Repository::Invoice, order: :defined do
+describe Fortnox::API::Repository::Invoice, order: :defined, integration: true do
   include_context 'environment'
 
   include_examples '.save', :comments, { customer_number: 1 }
