@@ -29,11 +29,11 @@ shared_examples_for '.only' do |matching_filter, missing_filter|
 
     context "with invalid filter" do
       subject do
-        ->{
+        when_performing do
           VCR.use_cassette( "#{vcr_dir}/filter_invalid" ) do
             repository.only( 'doesntexist' )
           end
-        }
+        end
       end
 
       it{ is_expected.to raise_error( Fortnox::API::RemoteServerError, /ogiltigt filter/ ) }
