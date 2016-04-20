@@ -4,7 +4,7 @@ require "fortnox/api/models/email_information"
 module Fortnox
   module API
     module Model
-      module OrderBase
+      module DocumentBase
         def self.included(base)
           # Url Direct url to the record.
           base.attribute :url, String, writer: :private

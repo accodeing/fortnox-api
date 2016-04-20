@@ -1,4 +1,4 @@
-require "fortnox/api/models/order_base"
+require "fortnox/api/models/document_base"
 require "fortnox/api/models/edi_information"
 require "fortnox/api/models/invoice_row"
 
@@ -6,7 +6,7 @@ module Fortnox
   module API
     module Model
       class Invoice < Fortnox::API::Model::Base
-        include OrderBase
+        include DocumentBase
 
         #UrlTaxReductionList Direct url to the tax reduction for the invoice.
         attribute :url_tax_reduction_list, String, writer: :private
