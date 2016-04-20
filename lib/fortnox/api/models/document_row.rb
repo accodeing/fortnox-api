@@ -4,8 +4,18 @@ module Fortnox
   module API
     module Model
       module DocumentRow
-          DISCOUNT_TYPES = %w(AMOUNT PERCENT)
-          HOUSE_WORK_TYPES = %w(CONSTRUCTION ELECTRICITY GLASSMETALWORK GROUNDDRAINAGEWORK MASONRY PAINTINGWALLPAPERING HVAC CLEANING TEXTILECLOTHING COOKING SNOWPLOWING GARDENING BABYSITTING OTHERCARE TUTORING OTHERCOSTS)
+        DISCOUNT_TYPES = %w(AMOUNT PERCENT)
+        HOUSE_WORK_TYPES = %w(CONSTRUCTION ELECTRICITY GLASSMETALWORK GROUNDDRAINAGEWORK MASONRY PAINTINGWALLPAPERING HVAC CLEANING TEXTILECLOTHING COOKING SNOWPLOWING GARDENING BABYSITTING OTHERCARE TUTORING OTHERCOSTS)
+
+        def discount_type=( raw_discount_type )
+          discount_type = raw_discount_type.upcase
+          super discount_type if DISCOUNT_TYPES.include? discount_type
+        end
+
+        def house_work_type=( raw_house_work_type )
+          house_work_type = raw_house_work_type.upcase
+          super house_work_type if HOUSE_WORK_TYPES.include? house_work_type
+        end
 
         def self.included(base)
 
@@ -62,16 +72,6 @@ module Fortnox
 
           #VAT VAT percentage of the row.
           base.attribute :vat, Integer
-
-          def discount_type=( raw_discount_type )
-            discount_type = raw_discount_type.upcase
-            super discount_type if DISCOUNT_TYPES.include? discount_type
-          end
-
-          def house_work_type=( raw_house_work_type )
-            house_work_type = raw_house_work_type.upcase
-            super house_work_type if HOUSE_WORK_TYPES.include? house_work_type
-          end
         end
       end
     end
