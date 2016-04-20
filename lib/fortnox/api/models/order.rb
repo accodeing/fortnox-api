@@ -4,7 +4,9 @@ require "fortnox/api/models/order_row"
 module Fortnox
   module API
     module Model
-      class Order < Fortnox::API::Model::OrderBase
+      class Order < Fortnox::API::Model::Base
+        include OrderBase
+
         #CopyRemarks I remarks shall copies from order to invoice
         attribute :copy_remarks, Boolean
 
