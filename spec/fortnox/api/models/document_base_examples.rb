@@ -1,6 +1,6 @@
 require 'fortnox/api/models/context'
 
-shared_examples_for 'DocumentBase' do |row_class|
+shared_examples_for 'DocumentBase' do |row_class, row_attribute|
 
   context "when having a(n) #{row_class}" do
     it 'returns the correct object' do

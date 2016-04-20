@@ -6,9 +6,9 @@ require 'fortnox/api/models/document_base_examples'
 describe Fortnox::API::Model::Invoice do
   include_context 'models context'
 
-  it_behaves_like 'DocumentBase', Fortnox::API::Model::InvoiceRow do
-    let( :row_attribute ){ :invoice_rows }
-  end
+  it_behaves_like 'DocumentBase',
+                  Fortnox::API::Model::InvoiceRow,
+                  :invoice_rows
 
   include_examples 'having value objects', Fortnox::API::Model::EDIInformation do
     let( :attribute ){ :edi_information }
