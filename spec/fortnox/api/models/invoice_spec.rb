@@ -6,7 +6,7 @@ require 'fortnox/api/models/document_base_examples'
 describe Fortnox::API::Model::Invoice do
   include_context 'models context'
 
-  it_behaves_like 'DocumentBase',
+  it_behaves_like 'DocumentBase Model',
                   Fortnox::API::Model::InvoiceRow,
                   :invoice_rows
 

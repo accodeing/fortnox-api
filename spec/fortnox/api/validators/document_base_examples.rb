@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'fortnox/api/validators/context'
 
-shared_examples_for 'DocumentBase' do |model_class|
+shared_examples_for 'DocumentBase Validator' do |model_class|
   subject{ described_class.new }
 
   include_context 'validator context' do

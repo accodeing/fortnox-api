@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-shared_examples_for 'DocumentRow' do
+shared_examples_for 'DocumentRow Model' do
   describe '.new' do
     it{ is_expected.to upcase_lower_case_for( :discount_type, 'amount' ) }
     it{ is_expected.to upcase_lower_case_for( :house_work_type, 'cooking' ) }
