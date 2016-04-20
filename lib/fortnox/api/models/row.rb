@@ -49,17 +49,12 @@ module Fortnox
         #Price Price per unit. 12 digits
         attribute :price, Float
 
-        #PriceExcludingVAT Price per unit excluding VAT.
-        attribute :price_excluding_vat, Float, writer: :private
 
         #Project Code of the project for the row.
         attribute :project, String
 
         #Total Total amount for the row.
         attribute :total, Float, writer: :private
-
-        #TotalExcludingVAT  Total amount for the row excluding VAT.
-        attribute :total_excluding_vat, Float, writer: :private
 
         #Unit Code of the unit for the row.
         attribute :unit, String

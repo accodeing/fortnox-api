@@ -14,6 +14,8 @@ module Fortnox
 
         require "fortnox/api/repositories/base/options"
 
+        attr_reader :options
+
         def initialize( options )
           super()
 
