@@ -1,7 +1,6 @@
 require 'spec_helper'
-require 'fortnox/api/models/row'
 
-describe Fortnox::API::Model::Row do
+shared_examples_for 'DocumentRow' do
   describe '.new' do
     it{ is_expected.to upcase_lower_case_for( :discount_type, 'amount' ) }
     it{ is_expected.to upcase_lower_case_for( :house_work_type, 'cooking' ) }

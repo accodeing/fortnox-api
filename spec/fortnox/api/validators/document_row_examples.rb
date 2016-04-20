@@ -1,13 +1,11 @@
 require 'spec_helper'
 require 'fortnox/api/validators/context'
-require 'fortnox/api/validators/row'
-require 'fortnox/api/models/row'
 
-describe Fortnox::API::Validator::Row do
+shared_examples_for 'DocumentRow' do
   subject{ described_class.new }
 
   include_context 'validator context' do
-    let( :valid_model ){ Fortnox::API::Model::Row.new }
+    let( :valid_model ){ valid_row_model }
   end
 
   describe '.validate Row' do
