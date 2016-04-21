@@ -1,4 +1,4 @@
-shared_examples_for '.all' do
+shared_examples_for '.all' do |count|
   describe '.all' do
     let(:response) do
       vcr_dir = subject.options.json_collection_wrapper.downcase
@@ -6,7 +6,7 @@ shared_examples_for '.all' do
     end
 
     specify 'returns correct number of records' do
-      expect( response.size ).to be 1
+      expect( response.size ).to be count
     end
 
     specify 'returns correct class' do

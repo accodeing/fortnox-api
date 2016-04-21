@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://api.fortnox.se/3/invoices/
+    uri: https://api.fortnox.se/3/invoices/
     body:
       encoding: US-ASCII
       string: ''
@@ -23,7 +23,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Wed, 16 Mar 2016 15:48:08 GMT
+      - Thu, 21 Apr 2016 08:35:28 GMT
       Content-Type:
       - application/json
       Connection:
@@ -32,16 +32,25 @@ http_interactions:
       - Accept-Encoding
       - Accept-Encoding
       X-Rack-Responsetime:
-      - '57'
+      - '133'
       X-Uid:
-      - aaa30f43
+      - 312ac86b
       X-Build:
-      - ee15096bc2
-      X-Powered-By:
-      - Rack 1.1
+      - 1cc1a0cd58
     body:
       encoding: UTF-8
-      string: '{"MetaInformation":{"@TotalResources":1,"@TotalPages":1,"@CurrentPage":1},"Invoices":[{"@url":"https:\/\/api.fortnox.se\/3\/invoices\/1","Balance":0,"Booked":false,"Cancelled":false,"Currency":"SEK","CurrencyRate":"1","CurrencyUnit":1,"CustomerName":"Test","CustomerNumber":"1","DocumentNumber":"1","DueDate":"2016-02-04","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","InvoiceDate":"2016-02-04","NoxFinans":false,"OCR":"133","WayOfDelivery":"","TermsOfPayment":"0","Project":"","Sent":false,"Total":0}]}'
+      string: '{"MetaInformation":{"@TotalResources":12,"@TotalPages":1,"@CurrentPage":1},"Invoices":[{"@url":"https:\/\/api.fortnox.se\/3\/invoices\/1","Balance":0,"Booked":false,"Cancelled":false,"Currency":"SEK","CurrencyRate":"1","CurrencyUnit":1,"CustomerName":"Test","CustomerNumber":"1","DocumentNumber":"1","DueDate":"2016-02-04","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","InvoiceDate":"2016-02-04","NoxFinans":false,"OCR":"133","WayOfDelivery":"","TermsOfPayment":"0","Project":"","Sent":false,"Total":0},{"@url":"https:\/\/api.fortnox.se\/3\/invoices\/2","Balance":0,"Booked":false,"Cancelled":false,"Currency":"SEK","CurrencyRate":"1","CurrencyUnit":1,"CustomerName":"Updated
+        customer","CustomerNumber":"1","DocumentNumber":"2","DueDate":"2016-03-18","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","InvoiceDate":"2016-03-16","NoxFinans":false,"OCR":"232","WayOfDelivery":"","TermsOfPayment":"0","Project":"","Sent":false,"Total":0},{"@url":"https:\/\/api.fortnox.se\/3\/invoices\/3","Balance":200,"Booked":false,"Cancelled":false,"Currency":"SEK","CurrencyRate":"1","CurrencyUnit":1,"CustomerName":"Updated
+        customer","CustomerNumber":"1","DocumentNumber":"3","DueDate":"2016-03-17","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","InvoiceDate":"2016-03-16","NoxFinans":false,"OCR":"331","WayOfDelivery":"","TermsOfPayment":"0","Project":"","Sent":false,"Total":200},{"@url":"https:\/\/api.fortnox.se\/3\/invoices\/4","Balance":0,"Booked":false,"Cancelled":false,"Currency":"SEK","CurrencyRate":"1","CurrencyUnit":1,"CustomerName":"Updated
+        customer","CustomerNumber":"1","DocumentNumber":"4","DueDate":"2016-04-14","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","InvoiceDate":"2016-03-16","NoxFinans":false,"OCR":"430","WayOfDelivery":"","TermsOfPayment":"0","Project":"","Sent":false,"Total":0},{"@url":"https:\/\/api.fortnox.se\/3\/invoices\/5","Balance":100,"Booked":false,"Cancelled":false,"Currency":"SEK","CurrencyRate":"1","CurrencyUnit":1,"CustomerName":"Updated
+        customer","CustomerNumber":"1","DocumentNumber":"5","DueDate":"2016-03-31","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","InvoiceDate":"2016-03-16","NoxFinans":false,"OCR":"539","WayOfDelivery":"","TermsOfPayment":"0","Project":"","Sent":false,"Total":100},{"@url":"https:\/\/api.fortnox.se\/3\/invoices\/6","Balance":300,"Booked":false,"Cancelled":false,"Currency":"SEK","CurrencyRate":"1","CurrencyUnit":1,"CustomerName":"Arthur
+        Dent","CustomerNumber":"3","DocumentNumber":"6","DueDate":"2016-03-24","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","InvoiceDate":"2016-03-17","NoxFinans":false,"OCR":"638","WayOfDelivery":"","TermsOfPayment":"","Project":"","Sent":false,"Total":300},{"@url":"https:\/\/api.fortnox.se\/3\/invoices\/7","Balance":0,"Booked":false,"Cancelled":false,"Currency":"SEK","CurrencyRate":"1","CurrencyUnit":1,"CustomerName":"Updated
+        customer","CustomerNumber":"1","DocumentNumber":"7","DueDate":"2016-03-18","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","InvoiceDate":"2016-03-18","NoxFinans":false,"OCR":"737","WayOfDelivery":"","TermsOfPayment":"0","Project":"","Sent":false,"Total":0},{"@url":"https:\/\/api.fortnox.se\/3\/invoices\/8","Balance":0,"Booked":false,"Cancelled":false,"Currency":"SEK","CurrencyRate":"1","CurrencyUnit":1,"CustomerName":"An
+        updated value","CustomerNumber":"1","DocumentNumber":"8","DueDate":"2016-04-20","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","InvoiceDate":"2016-04-20","NoxFinans":false,"OCR":"836","WayOfDelivery":"","TermsOfPayment":"0","Project":"","Sent":false,"Total":0},{"@url":"https:\/\/api.fortnox.se\/3\/invoices\/9","Balance":0,"Booked":false,"Cancelled":false,"Currency":"SEK","CurrencyRate":"1","CurrencyUnit":1,"CustomerName":"An
+        updated value","CustomerNumber":"1","DocumentNumber":"9","DueDate":"2016-04-20","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","InvoiceDate":"2016-04-20","NoxFinans":false,"OCR":"935","WayOfDelivery":"","TermsOfPayment":"0","Project":"","Sent":false,"Total":0},{"@url":"https:\/\/api.fortnox.se\/3\/invoices\/10","Balance":0,"Booked":false,"Cancelled":false,"Currency":"SEK","CurrencyRate":"1","CurrencyUnit":1,"CustomerName":"An
+        updated value","CustomerNumber":"1","DocumentNumber":"10","DueDate":"2016-04-21","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","InvoiceDate":"2016-04-21","NoxFinans":false,"OCR":"1040","WayOfDelivery":"","TermsOfPayment":"0","Project":"","Sent":false,"Total":0},{"@url":"https:\/\/api.fortnox.se\/3\/invoices\/11","Balance":0,"Booked":false,"Cancelled":false,"Currency":"SEK","CurrencyRate":"1","CurrencyUnit":1,"CustomerName":"Updated
+        name","CustomerNumber":"1","DocumentNumber":"11","DueDate":"2016-04-21","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","InvoiceDate":"2016-04-21","NoxFinans":false,"OCR":"1149","WayOfDelivery":"","TermsOfPayment":"0","Project":"","Sent":false,"Total":0},{"@url":"https:\/\/api.fortnox.se\/3\/invoices\/12","Balance":0,"Booked":false,"Cancelled":false,"Currency":"SEK","CurrencyRate":"1","CurrencyUnit":1,"CustomerName":"Old
+        name","CustomerNumber":"1","DocumentNumber":"12","DueDate":"2016-04-21","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","InvoiceDate":"2016-04-21","NoxFinans":false,"OCR":"1248","WayOfDelivery":"","TermsOfPayment":"0","Project":"","Sent":false,"Total":0}]}'
     http_version: 
-  recorded_at: Wed, 16 Mar 2016 15:48:08 GMT
+  recorded_at: Thu, 21 Apr 2016 08:35:28 GMT
 recorded_with: VCR 3.0.1

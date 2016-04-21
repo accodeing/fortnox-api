@@ -5,12 +5,14 @@ require 'fortnox/api/repositories/examples/all'
 require 'fortnox/api/repositories/examples/find'
 require 'fortnox/api/repositories/examples/save'
 
-describe Fortnox::API::Repository::Customer do
+describe Fortnox::API::Repository::Customer, order: :defined do
   include_context 'environment'
 
-  include_examples '.all'
+  include_examples '.save', :name
+
+  # It is not yet possible to delete Customers. Therefore, expected nr of
+  # Customers when running .all will continue to increase.
+  include_examples '.all', 39
 
   include_examples '.find'
-
-  include_examples '.save', :name
 end
