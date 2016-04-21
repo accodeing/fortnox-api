@@ -316,7 +316,7 @@ Performance/StringReplacement:
 
 ################## Style #################################
 
-Style/SpaceBeforeFirstArg:
+Lint/SpaceBeforeFirstArg:
   Description: >-
                  Put a space between a method name and the first argument
                  in a method call without parentheses.
