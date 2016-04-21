@@ -5,6 +5,7 @@ module Fortnox
   module API
     module Model
       module DocumentBase
+        #rubocop:disable Metrics/MethodLength
         def self.included(base)
           # Url Direct url to the record.
           base.attribute :url, String, writer: :private
@@ -175,6 +176,7 @@ module Fortnox
           # ZipCode Zip code of the document. 1024 characters
           base.attribute :zip_code, String
         end
+        #rubocop:enable Metrics/MethodLength
       end
     end
   end
