@@ -8,6 +8,7 @@ module Fortnox
                         :unique_id, :attr_to_json_map, :json_to_attr_map,
                         :keys_filtered_on_save
 
+          #rubocop:disable Metrics/ParameterLists
           def initialize(
                 uri:,
                 json_collection_wrapper:,
@@ -25,6 +26,7 @@ module Fortnox
             @json_to_attr_map = @attr_to_json_map.invert
             @keys_filtered_on_save = keys_filtered_on_save
           end
+          #rubocop:enable Metrics/ParameterLists
 
         end
       end

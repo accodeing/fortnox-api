@@ -1,11 +1,11 @@
 ---
 http_interactions:
 - request:
-    method: post
-    uri: https://api.fortnox.se/3/customers/
+    method: get
+    uri: https://api.fortnox.se/3/customers/39
     body:
-      encoding: UTF-8
-      string: '{"Customer":{"Name":"A value"}}'
+      encoding: US-ASCII
+      string: ''
     headers:
       Content-Type:
       - application/json
@@ -17,8 +17,8 @@ http_interactions:
       - ccaef817-d5d8-4b1c-a316-54f3e55c5c54
   response:
     status:
-      code: 201
-      message: Created
+      code: 200
+      message: OK
     headers:
       Server:
       - nginx
@@ -28,12 +28,13 @@ http_interactions:
       - application/json
       Connection:
       - close
-      Location:
-      - customers
+      Vary:
+      - Accept-Encoding
+      - Accept-Encoding
       X-Rack-Responsetime:
-      - '589'
+      - '47'
       X-Uid:
-      - 326687cc
+      - d914dbbc
       X-Build:
       - 1cc1a0cd58
     body:

@@ -1,37 +1,45 @@
+#######################################
+# SPEC IS DEPENDENT ON DEFINED ORDER!
+#######################################
+#
 # Assumes that attribute_hash_name holds a string without restrictions.
 shared_examples_for '.save' do |attribute_hash_name, required_attributes = {}|
   describe '.save' do
-
     let( :vcr_dir ){ subject.options.json_collection_wrapper.downcase }
-    let( :find_id ){ 1 }
-    let( :find_id_1 ) do
-      VCR.use_cassette( "#{vcr_dir}/find_id_1" ){ subject.find( find_id ) }
+    let( :new_model )do
+      hash = required_attributes.merge( attribute_hash_name => value )
+      described_class::MODEL.new( hash )
     end
-    let( :attribute_json_name ) do
-      Fortnox::API::Repository::JSONConvertion.convert_key_to_json(
-        attribute_hash_name,
-        subject.options.attr_to_json_map
-      )
-    end
+    let( :save_new ){ VCR.use_cassette( "#{vcr_dir}/save_new" ){ subject.save( new_model ) } }
+    let( :entity_wrapper ){ subject.options.json_entity_wrapper }
 
     shared_examples_for 'save' do
-      specify "include correct #{attribute_hash_name.inspect} value" do
-        send_request
-        entity_wrapper = subject.options.json_entity_wrapper
+      before do
+        if model.saved?
+          message = 'Test trying to save model, but already marked as saved!'
+          message << " Model: #{model.inspect}"
+          fail(message)
+        end
+      end
+
+      specify "includes correct #{attribute_hash_name.inspect}" do
+        response = send_request
+        attribute_json_name = Fortnox::API::Repository::JSONConvertion
+          .convert_key_to_json(
+            attribute_hash_name,
+            subject.options.attr_to_json_map
+          )
         expect( response[entity_wrapper][attribute_json_name] ).to eql( value )
       end
     end
 
     describe 'new' do
-      include_examples 'save' do
-        let( :value ){ 'A value' }
-        let( :send_request ) do
-          hash = required_attributes.merge( attribute_hash_name => value )
-          valid_model = described_class::MODEL.new( hash )
-          VCR.use_cassette( "#{vcr_dir}/save_new" ){ subject.save( valid_model ) }
+      context 'when not saved' do
+        include_examples 'save' do
+          let( :value ){ 'A value' }
+          let( :model ){ new_model }
+          let( :send_request ){ save_new }
         end
-
-        let( :response ){ send_request }
       end
 
       context "saved #{described_class::MODEL}" do
@@ -50,13 +58,15 @@ shared_examples_for '.save' do |attribute_hash_name, required_attributes = {}|
 
     describe 'old (update existing)' do
       include_examples 'save' do
-        let( :value ){ 'An updated value' }
-        let( :model ){ find_id_1.update( attribute_hash_name => value ) }
-
+        let( :value ){ "Updated #{attribute_hash_name}" }
+        let( :model ) do
+          new_id = save_new[entity_wrapper][subject.options.unique_id]
+          new_record = VCR.use_cassette( "#{vcr_dir}/find_new" ){ subject.find( new_id ) }
+          new_record.update( attribute_hash_name => value )
+        end
         let( :send_request ) do
           VCR.use_cassette( "#{vcr_dir}/save_old" ){ subject.save( model ) }
         end
-        let( :response ){ send_request }
       end
     end
   end

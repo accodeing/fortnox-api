@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://api.fortnox.se/3/customers/1
+    uri: https://api.fortnox.se/3/customers/1
     body:
       encoding: US-ASCII
       string: ''
@@ -23,7 +23,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Wed, 09 Mar 2016 07:20:16 GMT
+      - Thu, 21 Apr 2016 08:33:12 GMT
       Content-Type:
       - application/json
       Connection:
@@ -32,16 +32,15 @@ http_interactions:
       - Accept-Encoding
       - Accept-Encoding
       X-Rack-Responsetime:
-      - '81'
+      - '28'
       X-Uid:
-      - 063c54d1
+      - 280c85e3
       X-Build:
-      - 305b6e2193
-      X-Powered-By:
-      - Rack 1.1
+      - 1cc1a0cd58
     body:
       encoding: UTF-8
-      string: '{"Customer":{"@url":"https:\/\/api.fortnox.se\/3\/customers\/1","Address1":null,"Address2":null,"City":null,"Country":null,"Comments":null,"Currency":"SEK","CostCenter":null,"CountryCode":null,"CustomerNumber":"1","DefaultDeliveryTypes":{"Invoice":"PRINT","Order":"PRINT","Offer":"PRINT"},"DefaultTemplates":{"Order":"DEFAULTTEMPLATE","Offer":"DEFAULTTEMPLATE","Invoice":"DEFAULTTEMPLATE","CashInvoice":"DEFAULTTEMPLATE"},"DeliveryAddress1":null,"DeliveryAddress2":null,"DeliveryCity":null,"DeliveryCountry":null,"DeliveryCountryCode":null,"DeliveryFax":null,"DeliveryName":null,"DeliveryPhone1":null,"DeliveryPhone2":null,"DeliveryZipCode":null,"Email":"","EmailInvoice":"","EmailInvoiceBCC":"","EmailInvoiceCC":"","EmailOffer":"","EmailOfferBCC":"","EmailOfferCC":"","EmailOrder":"","EmailOrderBCC":"","EmailOrderCC":"","Fax":null,"InvoiceAdministrationFee":null,"InvoiceDiscount":null,"InvoiceFreight":null,"InvoiceRemark":"","Name":"Test","OrganisationNumber":"","OurReference":"","Phone1":null,"Phone2":null,"PriceList":"A","Project":"","SalesAccount":null,"ShowPriceVATIncluded":false,"TermsOfDelivery":"","TermsOfPayment":"","Type":"COMPANY","VATNumber":"","VATType":"SEVAT","VisitingAddress":null,"VisitingCity":null,"VisitingCountry":null,"VisitingCountryCode":null,"VisitingZipCode":null,"WayOfDelivery":"","WWW":"","YourReference":"","ZipCode":null}}'
+      string: '{"Customer":{"@url":"https:\/\/api.fortnox.se\/3\/customers\/1","Address1":null,"Address2":null,"City":null,"Country":null,"Comments":null,"Currency":"SEK","CostCenter":null,"CountryCode":null,"CustomerNumber":"1","DefaultDeliveryTypes":{"Invoice":"PRINT","Order":"PRINT","Offer":"PRINT"},"DefaultTemplates":{"Order":"DEFAULTTEMPLATE","Offer":"DEFAULTTEMPLATE","Invoice":"DEFAULTTEMPLATE","CashInvoice":"DEFAULTTEMPLATE"},"DeliveryAddress1":null,"DeliveryAddress2":null,"DeliveryCity":null,"DeliveryCountry":null,"DeliveryCountryCode":null,"DeliveryFax":null,"DeliveryName":null,"DeliveryPhone1":null,"DeliveryPhone2":null,"DeliveryZipCode":null,"Email":"","EmailInvoice":"","EmailInvoiceBCC":"","EmailInvoiceCC":"","EmailOffer":"","EmailOfferBCC":"","EmailOfferCC":"","EmailOrder":"","EmailOrderBCC":"","EmailOrderCC":"","Fax":null,"InvoiceAdministrationFee":null,"InvoiceDiscount":null,"InvoiceFreight":null,"InvoiceRemark":"","Name":"Old
+        name","OrganisationNumber":"","OurReference":"","Phone1":null,"Phone2":null,"PriceList":"A","Project":"","SalesAccount":null,"ShowPriceVATIncluded":false,"TermsOfDelivery":"","TermsOfPayment":"","Type":"COMPANY","VATNumber":"","VATType":"SEVAT","VisitingAddress":null,"VisitingCity":null,"VisitingCountry":null,"VisitingCountryCode":null,"VisitingZipCode":null,"WayOfDelivery":"","WWW":"","YourReference":"","ZipCode":null}}'
     http_version: 
-  recorded_at: Wed, 09 Mar 2016 07:20:16 GMT
+  recorded_at: Thu, 21 Apr 2016 08:33:12 GMT
 recorded_with: VCR 3.0.1

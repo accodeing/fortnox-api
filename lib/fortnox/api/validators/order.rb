@@ -4,7 +4,7 @@ require 'fortnox/api/validators/document_base'
 module Fortnox
   module API
     module Validator
-      class Invoice < Fortnox::API::Validator::Base
+      class Order < Fortnox::API::Validator::Base
         include DocumentBase
       end
     end
