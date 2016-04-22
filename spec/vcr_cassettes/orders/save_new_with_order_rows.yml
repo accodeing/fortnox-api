@@ -5,7 +5,7 @@ http_interactions:
     uri: https://api.fortnox.se/3/orders/
     body:
       encoding: UTF-8
-      string: '{"Order":{"Comments":"A great comment about something","CustomerNumber":"1","OrderRows":["#<Fortnox::API::Model::OrderRow:0x007f564589cbd0>","#<Fortnox::API::Model::OrderRow:0x007f5645880ea8>"]}}'
+      string: '{"Order":{"Comments":"A great comment about something","CustomerNumber":"1","OrderRows":[{"account_number":null,"article_number":null,"contribution_percent":null,"contribution_value":null,"cost_center":null,"delivered_quantity":null,"description":null,"discount":null,"discount_type":null,"house_work":null,"house_work_hours_to_report":null,"house_work_type":null,"price":100.0,"project":null,"total":null,"unit":null,"vat":null,"order_quantity":null},{"account_number":null,"article_number":null,"contribution_percent":null,"contribution_value":null,"cost_center":null,"delivered_quantity":null,"description":null,"discount":null,"discount_type":null,"house_work":null,"house_work_hours_to_report":null,"house_work_type":null,"price":101.5,"project":null,"total":null,"unit":null,"vat":null,"order_quantity":null}]}}'
     headers:
       Content-Type:
       - application/json
@@ -23,20 +23,20 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Fri, 22 Apr 2016 11:09:44 GMT
+      - Fri, 22 Apr 2016 14:04:19 GMT
       Content-Type:
       - application/json
       Connection:
       - close
       X-Rack-Responsetime:
-      - '93'
+      - '301'
       X-Uid:
-      - 64a77c05
+      - 2c8ff646
       X-Build:
       - 42c598a932
     body:
       encoding: UTF-8
-      string: '{"ErrorInformation":{"error":1,"message":"Felaktig datastruktur.","code":2002649}}'
+      string: '{"ErrorInformation":{"error":1,"message":"Felaktigt f\u00e4ltnamn (account_number)","code":2001399}}'
     http_version: 
-  recorded_at: Fri, 22 Apr 2016 11:09:44 GMT
+  recorded_at: Fri, 22 Apr 2016 14:04:19 GMT
 recorded_with: VCR 3.0.1

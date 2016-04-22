@@ -19,6 +19,13 @@ module Fortnox
 
         # OrderRows Separate object
         attribute :order_rows, Array[OrderRow]
+
+        # Override to_hash to convert nested OrderRows to hash correctly.
+        def to_hash *args
+          main_hash = super
+          main_hash[:order_rows] = self.order_rows.map(&:to_hash)
+          main_hash
+        end
       end
     end
   end
