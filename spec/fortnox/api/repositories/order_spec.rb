@@ -7,7 +7,6 @@ require 'fortnox/api/repositories/examples/only'
 require 'fortnox/api/repositories/examples/save'
 require 'fortnox/api/repositories/examples/save_with_nested_model'
 require 'fortnox/api/repositories/examples/search'
-require 'fortnox/api'
 
 describe Fortnox::API::Repository::Order, order: :defined, integration: true do
   include_context 'environment'

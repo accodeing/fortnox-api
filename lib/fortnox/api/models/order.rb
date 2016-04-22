@@ -19,6 +19,14 @@ module Fortnox
 
         # OrderRows Separate object
         attribute :order_rows, Types::Strict::Array.member( OrderRow )
+
+        # Override to_hash to convert nested OrderRows to hash correctly.
+        def to_hash *args
+          hash = super
+          hash[:order_rows] = self.order_rows.map(&:to_hash) unless self.order_rows.nil?
+
+          hash
+        end
       end
     end
   end
