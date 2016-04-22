@@ -1,0 +1,42 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.fortnox.se/3/orders/
+    body:
+      encoding: UTF-8
+      string: '{"Order":{"Comments":"A great comment about something","CustomerNumber":"1","OrderRows":["#<Fortnox::API::Model::OrderRow:0x007f564589cbd0>","#<Fortnox::API::Model::OrderRow:0x007f5645880ea8>"]}}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      Client-Secret:
+      - 9aBA8ZgsvR
+      Access-Token:
+      - ccaef817-d5d8-4b1c-a316-54f3e55c5c54
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Fri, 22 Apr 2016 11:09:44 GMT
+      Content-Type:
+      - application/json
+      Connection:
+      - close
+      X-Rack-Responsetime:
+      - '93'
+      X-Uid:
+      - 64a77c05
+      X-Build:
+      - 42c598a932
+    body:
+      encoding: UTF-8
+      string: '{"ErrorInformation":{"error":1,"message":"Felaktig datastruktur.","code":2002649}}'
+    http_version: 
+  recorded_at: Fri, 22 Apr 2016 11:09:44 GMT
+recorded_with: VCR 3.0.1
