@@ -58,8 +58,12 @@ module Fortnox
           end
         end
 
+        # Removes nil values recursively
         def remove_nil_values( hash )
-          hash.delete_if{ |_, value| value.nil? }
+          hash.each do |key, value|
+            remove_nil_values(value) if value.is_a?(Hash)
+            hash.delete(key) if value.nil?
+          end
         end
 
       end
