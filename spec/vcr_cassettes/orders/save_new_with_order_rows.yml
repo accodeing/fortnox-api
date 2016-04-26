@@ -5,7 +5,7 @@ http_interactions:
     uri: https://api.fortnox.se/3/orders/
     body:
       encoding: UTF-8
-      string: '{"Order":{"Comments":"A great comment about something","CustomerNumber":"1","OrderRows":[{"account_number":null,"article_number":null,"contribution_percent":null,"contribution_value":null,"cost_center":null,"delivered_quantity":null,"description":null,"discount":null,"discount_type":null,"house_work":null,"house_work_hours_to_report":null,"house_work_type":null,"price":100.0,"project":null,"total":null,"unit":null,"vat":null,"order_quantity":null},{"account_number":null,"article_number":null,"contribution_percent":null,"contribution_value":null,"cost_center":null,"delivered_quantity":null,"description":null,"discount":null,"discount_type":null,"house_work":null,"house_work_hours_to_report":null,"house_work_type":null,"price":101.5,"project":null,"total":null,"unit":null,"vat":null,"order_quantity":null}]}}'
+      string: '{"Order":{"Comments":"A great comment about something","CustomerNumber":"1","OrderRows":[{"price":100.0},{"price":101.5}]}}'
     headers:
       Content-Type:
       - application/json
@@ -23,20 +23,20 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Fri, 22 Apr 2016 14:04:19 GMT
+      - Tue, 26 Apr 2016 09:03:59 GMT
       Content-Type:
       - application/json
       Connection:
       - close
       X-Rack-Responsetime:
-      - '301'
+      - '378'
       X-Uid:
-      - 2c8ff646
+      - 66cbb84a
       X-Build:
       - 42c598a932
     body:
       encoding: UTF-8
-      string: '{"ErrorInformation":{"error":1,"message":"Felaktigt f\u00e4ltnamn (account_number)","code":2001399}}'
+      string: '{"ErrorInformation":{"error":1,"message":"Felaktigt f\u00e4ltnamn (price)","code":2001399}}'
     http_version: 
-  recorded_at: Fri, 22 Apr 2016 14:04:19 GMT
+  recorded_at: Tue, 26 Apr 2016 09:03:59 GMT
 recorded_with: VCR 3.0.1

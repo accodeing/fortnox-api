@@ -6,14 +6,14 @@ module Fortnox
       module_function
 
         def hash_to_entity( entity_json_hash, key_map )
-          remove_nil_values(entity_json_hash)
+          entity_json_hash = clean_hash(entity_json_hash)
           entity_hash = convert_hash_keys_from_json_format( entity_json_hash, key_map )
           instansiate( entity_hash )
         end
 
         def entity_to_hash( entity, key_map, json_entity_wrapper, keys_to_filter )
           entity_hash = entity.to_hash
-          clean_entity_hash = remove_nil_values( sanitise( entity_hash, keys_to_filter ) )
+          clean_entity_hash = clean_hash( sanitise( entity_hash, keys_to_filter ) )
           entity_json_hash = convert_hash_keys_to_json_format( clean_entity_hash, key_map )
           { json_entity_wrapper => entity_json_hash }
         end
@@ -58,20 +58,15 @@ module Fortnox
           end
         end
 
-        # Removes nil values recursively from Hash
-        def remove_nil_values( hash )
-          hash.each do |key, value|
-            if value.nil?
-              hash.delete( key )
-            else
-              clean_collection( value )
-            end
+        # Removes nil values and empty collections recursively from Hash
+        def clean_hash( hash )
+          cleaned_hash = hash.select{ |k, v| v != nil }
+          cleaned_hash.each do |k, v|
+            cleaned_hash[k] = clean_collection( v ) if v.respond_to?( :each )
           end
-
-          hash.delete_if{ |_, v| v.empty? if v.respond_to?( :empty? ) }
         end
 
-        def clean_collection ( collection )
+        def clean_collection( collection )
           case collection
           when Array
             collection = clean_array( collection )
@@ -80,28 +75,12 @@ module Fortnox
           end
         end
 
+        # Removes nil values and empty collections recursively from Array
         def clean_array( array )
-          array.each do |element|
-            if element.nil?
-              array.remove( element )
-            else
-              clean_collection( element ) if element.respond_to?( :each )
-            end
+          cleaned_array = array.select{ |e| e != nil }
+          cleaned_array.each_with_index do |e, i|
+            cleaned_array[i] = clean_collection( e ) if e.respond_to?( :each )
           end
-
-          array.delete_if{ |e| e.empty? if e.respond_to?( :empty? )}
-        end
-
-        def clean_hash( hash )
-          hash.each do |key, value|
-            if value.nil?
-              hash.delete( key )
-            else
-              clean_collection( value ) if value.respond_to?( :each )
-            end
-          end
-
-          hash.delete_if{ |_, v| v.empty? if v.respond_to?( :empty )}
         end
       end
     end

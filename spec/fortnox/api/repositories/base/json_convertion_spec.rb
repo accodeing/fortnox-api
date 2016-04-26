@@ -2,8 +2,8 @@ require 'spec_helper'
 require 'fortnox/api/repositories/base/json_convertion'
 
 describe Fortnox::API::Repository::JSONConvertion do
-  describe 'remove_nil_values' do
-    subject{ described_class.remove_nil_values( hash ) }
+  describe 'clean_hash' do
+    subject{ described_class.clean_hash( hash ) }
 
     context 'when empty hash given' do
       let(:hash){ {} }
@@ -95,7 +95,7 @@ describe Fortnox::API::Repository::JSONConvertion do
           is_expected.to eq( hash )
         end
       end
-      context 'with nil values present', focus: true do
+      context 'with nil values present' do
         let(:hash) do
           {
             '1' => '1a',
@@ -109,8 +109,9 @@ describe Fortnox::API::Repository::JSONConvertion do
           is_expected.to eq(
             {
               '1' =>'1a',
-              '2' => [{ a: '2a' }, '2c'],
-              '3' => [{ b: '3b' }]
+              '2' => [{ a: '2a' }, {}, '2c'],
+              '3' => [{}, { b: '3b' }],
+              '4' => [{}, {}]
             }
           )
         end
