@@ -6,7 +6,7 @@ module Fortnox
       class OrderRow < Fortnox::API::Model::Base
         include DocumentRow
         #OrderedQuantity Ordered quantity
-        attribute :order_quantity, Float
+        attribute :ordered_quantity, Float
       end
     end
   end

@@ -50,7 +50,7 @@ describe Fortnox::API::Repository::Order, order: :defined, integration: true do
             { price: 101.5,
               vat: 0,
               article_number: '1',
-              ordered_quantity: 2 }]
+              ordered_quantity: 2.5 }]
         }
       )
 
@@ -65,7 +65,7 @@ describe Fortnox::API::Repository::Order, order: :defined, integration: true do
                        'Price' => 100.0,
                        'VAT' => 6,
                        'ArticleNumber' => '1',
-                       'OrderedQuantity' => 1
+                       'OrderedQuantity' => '1.00'
                      }
 
     include_examples 'OrderRow attributes',
@@ -74,7 +74,7 @@ describe Fortnox::API::Repository::Order, order: :defined, integration: true do
                        'Price' => 101.5,
                        'VAT' => 0,
                        'ArticleNumber' => '1',
-                       'OrderedQuantity' => 2
+                       'OrderedQuantity' => '2.50'
                      }
   end
 end
