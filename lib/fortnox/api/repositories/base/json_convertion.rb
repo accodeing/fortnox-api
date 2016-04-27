@@ -39,7 +39,7 @@ module Fortnox
 
         def convert_hash_keys_to_json_format( hash, key_map )
           hash.each_with_object( {} ) do |(key, value), json_hash|
-            if value.is_a?(Array) # Nested model?
+            if value.is_a?(Array) # Is attribute a nested model?
               nested_models = []
               value.each do |nested_model|
                 nested_key_map = key_map.fetch( key, {} )
@@ -53,7 +53,7 @@ module Fortnox
         end
 
         def convert_key_to_json( key, key_map )
-          translation = key_map.fetch( key ){ default_key_to_json_transform( key ) }
+          key_map.fetch( key ){ default_key_to_json_transform( key ) }
         end
 
         def default_key_to_json_transform( key )
@@ -69,7 +69,7 @@ module Fortnox
 
         # Removes nil values and empty collections recursively from Hash
         def clean_hash( hash )
-          cleaned_hash = hash.select{ |k, v| v != nil }
+          cleaned_hash = hash.select{ |_, v| v != nil }
           cleaned_hash.each do |k, v|
             cleaned_hash[k] = clean_collection( v ) if v.respond_to?( :each )
           end
@@ -82,6 +82,8 @@ module Fortnox
           when Hash
             collection = clean_hash( collection )
           end
+
+          collection
         end
 
         # Removes nil values and empty collections recursively from Array

@@ -14,7 +14,7 @@ describe Fortnox::API::Repository::JSONConvertion do
     end
 
     context 'when no nil values present' do
-      let(:hash){ { a: 'a', b: 'b', c: 'c'} }
+      let(:hash){ { a: 'a', b: 'b', c: 'c' } }
 
       it 'returns equal hash' do
         is_expected.to eq( hash )
@@ -65,7 +65,7 @@ describe Fortnox::API::Repository::JSONConvertion do
           is_expected.to eq(
             {
               a: 'a',
-              b: { a: 'a', c: 'c'},
+              b: { a: 'a', c: 'c' },
               c: { b: 'b' }
             }
           )
@@ -75,7 +75,7 @@ describe Fortnox::API::Repository::JSONConvertion do
 
     context 'when nested array' do
       context 'with empty array' do
-        let(:hash) { { a: [], b: 'b', c: [] } }
+        let(:hash){ { a: [], b: 'b', c: [] } }
 
         it 'returns equal hash' do
           is_expected.to eq( hash )
@@ -108,7 +108,7 @@ describe Fortnox::API::Repository::JSONConvertion do
         it 'returns hash without nil values' do
           is_expected.to eq(
             {
-              '1' =>'1a',
+              '1' => '1a',
               '2' => [{ a: '2a' }, {}, '2c'],
               '3' => [{}, { b: '3b' }],
               '4' => [{}, {}]
