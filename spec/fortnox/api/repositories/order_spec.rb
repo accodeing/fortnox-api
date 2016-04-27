@@ -22,13 +22,15 @@ describe Fortnox::API::Repository::Order, order: :defined, integration: true do
 
   include_examples '.only', :cancelled, 2
 
-  describe 'OrderRow', focus: true do
+  describe 'OrderRow' do
     let(:model) do
       Fortnox::API::Model::Order.new(
         {
           customer_number: '1',
           comments: 'A great comment about something',
-          order_rows: [{price: 100.0}, {price: 101.5}]
+          order_rows: [
+            { price: 100.0, vat: '6', article_number: '1' },
+            { price: 101.5, vat: '0', article_number: '1' }]
         })
     end
 

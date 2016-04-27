@@ -16,7 +16,10 @@ module Fortnox
             edi_information: 'EDIInformation',
             freight_vat: 'FreightVAT',
             total_vat: 'TotalVAT',
-            vat_included: 'VATIncluded'
+            vat_included: 'VATIncluded',
+            order_rows: {
+              vat: 'VAT'
+            }
           },
           keys_filtered_on_save: [
             :url,

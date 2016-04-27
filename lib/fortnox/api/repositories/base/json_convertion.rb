@@ -39,12 +39,21 @@ module Fortnox
 
         def convert_hash_keys_to_json_format( hash, key_map )
           hash.each_with_object( {} ) do |(key, value), json_hash|
-            json_hash[ convert_key_to_json( key, key_map ) ] = value
+            if value.is_a?(Array) # Nested model?
+              nested_models = []
+              value.each do |nested_model|
+                nested_key_map = key_map.fetch( key, {} )
+                nested_models << convert_hash_keys_to_json_format( nested_model,  nested_key_map )
+              end
+              json_hash[ convert_key_to_json( key, {} ) ] = nested_models
+            else # Simple attribute
+              json_hash[ convert_key_to_json( key, key_map ) ] = value
+            end
           end
         end
 
         def convert_key_to_json( key, key_map )
-          key_map.fetch( key ){ default_key_to_json_transform( key ) }
+          translation = key_map.fetch( key ){ default_key_to_json_transform( key ) }
         end
 
         def default_key_to_json_transform( key )
