@@ -23,7 +23,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Tue, 26 Apr 2016 16:05:48 GMT
+      - Wed, 27 Apr 2016 07:38:48 GMT
       Content-Type:
       - application/json
       Connection:
@@ -31,17 +31,17 @@ http_interactions:
       Location:
       - orders
       X-Rack-Responsetime:
-      - '300'
+      - '1982'
       X-Uid:
-      - fb20b585
+      - ba8d8ae8
       X-Build:
       - 42c598a932
     body:
       encoding: UTF-8
-      string: '{"Order":{"@url":"https:\/\/api.fortnox.se\/3\/orders\/18","@urlTaxReductionList":"https:\/\/api.fortnox.se\/3\/taxreductions?filter=orders&referencenumber=18","AdministrationFee":0,"AdministrationFeeVAT":0,"Address1":"","Address2":"","BasisTaxReduction":0,"Cancelled":false,"City":"","Comments":"A
+      string: '{"Order":{"@url":"https:\/\/api.fortnox.se\/3\/orders\/22","@urlTaxReductionList":"https:\/\/api.fortnox.se\/3\/taxreductions?filter=orders&referencenumber=22","AdministrationFee":0,"AdministrationFeeVAT":0,"Address1":"","Address2":"","BasisTaxReduction":0,"Cancelled":false,"City":"","Comments":"A
         great comment about something","ContributionPercent":0,"ContributionValue":0,"CopyRemarks":false,"Country":"","CostCenter":"","Currency":"SEK","CurrencyRate":1,"CurrencyUnit":1,"CustomerName":"Old
-        name","CustomerNumber":"1","DeliveryAddress1":"","DeliveryAddress2":"","DeliveryCity":"","DeliveryCountry":"","DeliveryDate":null,"DeliveryName":"","DeliveryZipCode":"","DocumentNumber":"18","EmailInformation":{"EmailAddressFrom":null,"EmailAddressTo":"","EmailAddressCC":null,"EmailAddressBCC":null,"EmailSubject":"Order
-        {no} bifogas","EmailBody":" "},"ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","Freight":0,"FreightVAT":0,"Gross":0,"HouseWork":false,"InvoiceReference":0,"Labels":[],"Language":"SV","Net":0,"NotCompleted":false,"OfferReference":0,"OrderDate":"2016-04-26","OrderRows":[{"AccountNumber":1030,"ArticleNumber":"1","ContributionPercent":0,"ContributionValue":0,"CostCenter":"","DeliveredQuantity":"0.00","Description":"Testartikel","Discount":0,"DiscountType":"PERCENT","HouseWork":false,"HouseWorkHoursToReport":null,"HouseWorkType":null,"OrderedQuantity":"0.00","Price":100,"Project":"","Total":0,"Unit":"","VAT":6},{"AccountNumber":1030,"ArticleNumber":"1","ContributionPercent":0,"ContributionValue":0,"CostCenter":"","DeliveredQuantity":"0.00","Description":"Testartikel","Discount":0,"DiscountType":"PERCENT","HouseWork":false,"HouseWorkHoursToReport":null,"HouseWorkType":null,"OrderedQuantity":"0.00","Price":101.5,"Project":"","Total":0,"Unit":"","VAT":0}],"OrganisationNumber":"","OurReference":"","Phone1":"","Phone2":"","PriceList":"A","PrintTemplate":"oc","Project":"","Remarks":"","RoundOff":0,"Sent":false,"TaxReduction":null,"TermsOfDelivery":"","TermsOfPayment":0,"Total":0,"TotalToPay":0,"TotalVAT":0,"VATIncluded":false,"WayOfDelivery":"","YourReference":"","YourOrderNumber":"","ZipCode":""}}'
+        name","CustomerNumber":"1","DeliveryAddress1":"","DeliveryAddress2":"","DeliveryCity":"","DeliveryCountry":"","DeliveryDate":null,"DeliveryName":"","DeliveryZipCode":"","DocumentNumber":"22","EmailInformation":{"EmailAddressFrom":null,"EmailAddressTo":"","EmailAddressCC":null,"EmailAddressBCC":null,"EmailSubject":"Order
+        {no} bifogas","EmailBody":" "},"ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","Freight":0,"FreightVAT":0,"Gross":0,"HouseWork":false,"InvoiceReference":0,"Labels":[],"Language":"SV","Net":0,"NotCompleted":false,"OfferReference":0,"OrderDate":"2016-04-27","OrderRows":[{"AccountNumber":1030,"ArticleNumber":"1","ContributionPercent":0,"ContributionValue":0,"CostCenter":"","DeliveredQuantity":"0.00","Description":"Testartikel","Discount":0,"DiscountType":"PERCENT","HouseWork":false,"HouseWorkHoursToReport":null,"HouseWorkType":null,"OrderedQuantity":"0.00","Price":100,"Project":"","Total":0,"Unit":"","VAT":6},{"AccountNumber":1030,"ArticleNumber":"1","ContributionPercent":0,"ContributionValue":0,"CostCenter":"","DeliveredQuantity":"0.00","Description":"Testartikel","Discount":0,"DiscountType":"PERCENT","HouseWork":false,"HouseWorkHoursToReport":null,"HouseWorkType":null,"OrderedQuantity":"0.00","Price":101.5,"Project":"","Total":0,"Unit":"","VAT":0}],"OrganisationNumber":"","OurReference":"","Phone1":"","Phone2":"","PriceList":"A","PrintTemplate":"oc","Project":"","Remarks":"","RoundOff":0,"Sent":false,"TaxReduction":null,"TermsOfDelivery":"","TermsOfPayment":0,"Total":0,"TotalToPay":0,"TotalVAT":0,"VATIncluded":false,"WayOfDelivery":"","YourReference":"","YourOrderNumber":"","ZipCode":""}}'
     http_version: 
-  recorded_at: Tue, 26 Apr 2016 16:05:48 GMT
+  recorded_at: Wed, 27 Apr 2016 07:38:48 GMT
 recorded_with: VCR 3.0.1
