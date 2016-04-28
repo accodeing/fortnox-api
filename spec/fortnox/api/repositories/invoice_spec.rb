@@ -10,6 +10,8 @@ require 'fortnox/api/repositories/examples/only'
 describe Fortnox::API::Repository::Invoice, order: :defined, integration: true do
   include_context 'environment'
 
+  include_examples '.save', :comments, { customer_number: 1 }
+
   # It is not possible to delete Invoces. Therefore, expected nr of Orders
   # when running .all will continue to increase.
   include_examples '.all', 12
@@ -17,8 +19,6 @@ describe Fortnox::API::Repository::Invoice, order: :defined, integration: true d
   include_examples '.find'
 
   include_examples '.search', :customername, 'Test'
-  
-  include_examples '.save', :comments, { customer_number: 1 }
 
-  include_examples '.only', :fullypaid, :unpaid
+  include_examples '.only', :fullypaid, 1, missing_filter: :unpaid
 end
