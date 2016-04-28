@@ -3,6 +3,7 @@ require 'fortnox/api/repositories/contexts/environment'
 require 'fortnox/api/repositories/invoice'
 require 'fortnox/api/repositories/examples/all'
 require 'fortnox/api/repositories/examples/find'
+require 'fortnox/api/repositories/examples/search'
 require 'fortnox/api/repositories/examples/save'
 require 'fortnox/api/repositories/examples/only'
 
