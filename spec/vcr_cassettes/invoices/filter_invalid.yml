@@ -41,6 +41,10 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"ErrorInformation":{"error":1,"message":"Ett ogiltigt filter har anv\u00e4nts.","code":2000587}}'
+<<<<<<< HEAD
     http_version:
+=======
+    http_version:
+>>>>>>> 3a3a1562558f84bed5dd9bab2a976615326e159d
   recorded_at: Fri, 18 Mar 2016 22:03:21 GMT
 recorded_with: VCR 3.0.1

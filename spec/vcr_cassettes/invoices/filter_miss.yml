@@ -44,6 +44,10 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"MetaInformation":{"@TotalResources":0,"@TotalPages":0,"@CurrentPage":1},"Invoices":[]}'
+<<<<<<< HEAD
     http_version:
+=======
+    http_version:
+>>>>>>> 3a3a1562558f84bed5dd9bab2a976615326e159d
   recorded_at: Fri, 18 Mar 2016 22:05:45 GMT
 recorded_with: VCR 3.0.1
