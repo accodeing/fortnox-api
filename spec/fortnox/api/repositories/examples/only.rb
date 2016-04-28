@@ -1,4 +1,4 @@
-shared_examples_for '.only' do |matching_filter, missing_filter|
+shared_examples_for '.only' do |matching_filter, expected_matches, missing_filter: nil|
   describe '.only' do
     def repository_only(vcr_cassette, filter)
       repository = described_class.new
@@ -16,14 +16,16 @@ shared_examples_for '.only' do |matching_filter, missing_filter|
       it{ is_expected.to have(expected_entries).entries }
     end
 
-    context "with no matches" do
-      include_examples '.only response', 'filter_miss', 0 do
-        let(:filter){ missing_filter }
+    unless missing_filter.nil?
+      context "with no matches" do
+        include_examples '.only response', 'filter_miss', 0 do
+          let(:filter){ missing_filter }
+        end
       end
     end
 
-    context "with one match" do
-      include_examples '.only response', 'filter_hit', 1 do
+    context "with matches" do
+      include_examples '.only response', 'filter_hit', expected_matches do
         let(:filter){ matching_filter }
       end
     end
