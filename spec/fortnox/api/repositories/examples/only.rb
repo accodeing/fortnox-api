@@ -9,18 +9,23 @@ shared_examples_for '.only' do |matching_filter, missing_filter|
       end
     end
 
-    context "with no matches" do
-      subject{ repository_only( 'filter_miss', missing_filter ) }
+    shared_examples '.only response' do |vcr_cassette, expected_entries|
+      subject{ repository_only( vcr_cassette, filter )}
 
       it{ is_expected.to be_instance_of( Array ) }
-      it{ is_expected.to have(0).entries }
+      it{ is_expected.to have(expected_entries).entries }
+    end
+
+    context "with no matches" do
+      include_examples '.only response', 'filter_miss', 0 do
+        let(:filter){ missing_filter }
+      end
     end
 
     context "with one match" do
-      subject{ repository_only( 'filter_hit', matching_filter ) }
-
-      it{ is_expected.to be_instance_of( Array ) }
-      it{ is_expected.to have(1).entries }
+      include_examples '.only response', 'filter_hit', 1 do
+        let(:filter){ matching_filter }
+      end
     end
 
     context "with invalid filter" do
