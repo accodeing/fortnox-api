@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://api.fortnox.se/3/invoices/?filter=fullypaid
+    uri: https://api.fortnox.se/3/invoices/?filter=fullypaid
     body:
       encoding: US-ASCII
       string: ''

@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://api.fortnox.se/3/invoices/?filter=doesntexist
+    uri: https://api.fortnox.se/3/invoices/?filter=doesntexist
     body:
       encoding: US-ASCII
       string: ''
@@ -41,6 +41,6 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"ErrorInformation":{"error":1,"message":"Ett ogiltigt filter har anv\u00e4nts.","code":2000587}}'
-    http_version: 
+    http_version:
   recorded_at: Fri, 18 Mar 2016 22:03:21 GMT
 recorded_with: VCR 3.0.1
