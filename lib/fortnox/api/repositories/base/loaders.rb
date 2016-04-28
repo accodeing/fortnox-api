@@ -17,7 +17,7 @@ module Fortnox
           response_hash = get( "#{ @options.uri }?filter=#{ filter }" )
           entities_hash = response_hash[ @options.json_collection_wrapper ]
           entities_hash.map do |entity_hash|
-            hash_to_entity( entity_hash )
+            hash_to_entity( entity_hash, @options.json_to_attr_map )
           end
         end
 
