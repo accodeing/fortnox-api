@@ -73,9 +73,10 @@ Used to load, update, create and delete model instances. This is what's actually
 
 # Requirements
 
-This gem is build for Ruby 2.0 or higher, it's tested agains Ruby 2.1.8, 2.2.4
-and 2.3.0. Since it uses the keywords argument feature it won't work on older
-versions.
+This gem is build for Ruby 2.2 or higher, it's tested agains Ruby 2.2.4
+and 2.3.0. Since it uses the keywords argument feature and since Ruby 2.1
+is [officially outdated and unsupported](https://www.ruby-lang.org/en/news/2016/03/30/ruby-2-1-9-released/)
+it won't work on older versions.
 
 If you want or need Ruby 1.9 compatibility please submit a pull request.
 Instructions can be found below :)
