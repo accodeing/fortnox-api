@@ -10,7 +10,7 @@ shared_examples_for '.only' do |matching_filter, missing_filter|
     end
 
     shared_examples '.only response' do |vcr_cassette, expected_entries|
-      subject{ repository_only( vcr_cassette, filter )}
+      subject{ repository_only( vcr_cassette, filter ) }
 
       it{ is_expected.to be_instance_of( Array ) }
       it{ is_expected.to have(expected_entries).entries }
