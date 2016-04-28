@@ -11,8 +11,6 @@ describe Fortnox::API::Repository::Customer, order: :defined, integration: true 
 
   include_examples '.save', :name
 
-  include_examples '.all'
-
   # It is not yet possible to delete Customers. Therefore, expected nr of
   # Customers when running .all will continue to increase.
   include_examples '.all', 39

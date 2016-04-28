@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://api.fortnox.se/3/customers/?name=Test
+    uri: https://api.fortnox.se/3/customers/?name=Test
     body:
       encoding: US-ASCII
       string: ''
