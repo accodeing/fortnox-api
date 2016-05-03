@@ -9,13 +9,15 @@ module Fortnox
         # rubocop:disable Metrics/MethodLength
         def self.included(base)
           # Url Direct url to the record.
-          base.attribute :url, String, writer: :private
+          # TODO: Writer should be private!
+          base.attribute :url, String
 
           # AdministrationFee The document administration fee. 12 digits (incl. decimals)
           base.attribute :administration_fee, Float
 
           # AdministrationFeeVAT VAT of the document administration fee.
-          base.attribute :administration_fee_vat, Float, writer: :private
+          # TODO: Writer should be private!
+          base.attribute :administration_fee_vat, Float
 
           # Address1 Document address 1. 1024 characters
           base.attribute :address1, String
@@ -24,10 +26,12 @@ module Fortnox
           base.attribute :address2, String
 
           # BasisTaxReduction Basis of tax reduction.
-          base.attribute :basis_tax_reduction, Float, writer: :private
+          # TODO: Writer should be private!
+          base.attribute :basis_tax_reduction, Float
 
           # Cancelled If the document is cancelled.
-          base.attribute :cancelled, base::Boolean, writer: :private
+          # TODO: Writer should be private!
+          base.attribute :cancelled, base::Boolean
 
           # City City for the document address.
           base.attribute :city, String
@@ -36,10 +40,12 @@ module Fortnox
           base.attribute :comments, String
 
           # ContributionPercent Document contribution in percent.
-          base.attribute :contribution_percent, Float, writer: :private
+          # TODO: Writer should be private!
+          base.attribute :contribution_percent, Float
 
           # ContributionValue Document contribution in amount.
-          base.attribute :contribution_value, Float, writer: :private
+          # TODO: Writer should be private!
+          base.attribute :contribution_value, Float
 
           # Country Country for the document address.
           base.attribute :country, String
@@ -99,26 +105,32 @@ module Fortnox
           base.attribute :freight, Float
 
           # FreightVAT VAT of the freight cost.
-          base.attribute :freight_vat, Float, writer: :private
+          # TODO: Writer should be private!
+          base.attribute :freight_vat, Float
 
           # Gross Gross value of the document
-          base.attribute :gross, Float, writer: :private
+          # TODO: Writer should be private!
+          base.attribute :gross, Float
 
           # HouseWork If there is any row of the document marked “house work”.
-          base.attribute :house_work, base::Boolean, writer: :private
+          # TODO: Writer should be private!
+          base.attribute :house_work, base::Boolean
 
           # Net Net amount
-          base.attribute :net, Float, writer: :private
+          # TODO: Writer should be private!
+          base.attribute :net, Float
 
           # NotCompleted If the document is set as not completed.
           base.attribute :not_completed, base::Boolean
 
           # OfferReference Reference to the offer, if one exists.
-          base.attribute :offer_reference, Integer, writer: :private
+          # TODO: Writer should be private!
+          base.attribute :offer_reference, Integer
 
           # OrganisationNumber Organisation number of the customer for the
           # document.
-          base.attribute :organisation_number, String, writer: :private
+          # TODO: Writer should be private!
+          base.attribute :organisation_number, String
 
           # OurReference Our reference. 50 characters
           base.attribute :our_reference, String
@@ -142,13 +154,16 @@ module Fortnox
           base.attribute :remarks, String
 
           # RoundOff Round off amount for the document.
-          base.attribute :round_off, Float, writer: :private
+          # TODO: Writer should be private!
+          base.attribute :round_off, Float
 
           # Sent If the document is printed or sent in any way.
-          base.attribute :sent, base::Boolean, writer: :private
+          # TODO: Writer should be private!
+          base.attribute :sent, base::Boolean
 
           # TaxReduction The amount of tax reduction.
-          base.attribute :tax_reduction, Integer, writer: :private
+          # TODO: Writer should be private!
+          base.attribute :tax_reduction, Integer
 
           # TermsOfDelivery Code of the terms of delivery.
           base.attribute :terms_of_delivery, String
@@ -157,10 +172,12 @@ module Fortnox
           base.attribute :terms_of_payment, String
 
           # Total The total amount of the document.
-          base.attribute :total, Float, writer: :private
+          # TODO: Writer should be private!
+          base.attribute :total, Float
 
           # TotalVAT The total VAT amount of the document.
-          base.attribute :total_vat, Float, writer: :private
+          # TODO: Writer should be private!
+          base.attribute :total_vat, Float
 
           # VATIncluded If the price of the document is including VAT.
           base.attribute :vat_included, base::Boolean

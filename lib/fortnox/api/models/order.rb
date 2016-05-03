@@ -11,7 +11,8 @@ module Fortnox
         attribute :copy_remarks, Boolean
 
         # InvoiceReference Reference if an invoice is created from order
-        attribute :invoice_reference, Integer, writer: :private
+        # TODO: Writer should be private!
+        attribute :invoice_reference, Integer
 
         # OrderDate Date of order
         attribute :order_date, Date

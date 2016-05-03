@@ -7,10 +7,12 @@ module Fortnox
         include DocumentRow
 
         #PriceExcludingVAT Price per unit excluding VAT.
-        attribute :price_excluding_vat, Float, writer: :private
+        #TODO: Writer should be private!
+        attribute :price_excluding_vat, Float
 
         #TotalExcludingVAT  Total amount for the row excluding VAT.
-        attribute :total_excluding_vat, Float, writer: :private
+        #TODO: Writer should be private!
+        attribute :total_excluding_vat, Float
       end
     end
   end
