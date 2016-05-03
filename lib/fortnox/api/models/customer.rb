@@ -25,7 +25,8 @@ module Fortnox
         # )
 
         #Url	Direct URL to the record
-        attribute :url, String, writer: :private
+        # TODO: Writer should be private!
+        attribute :url, String
 
         #Address1	First address of the customer
         attribute :address1, String

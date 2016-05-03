@@ -26,10 +26,12 @@ module Fortnox
           base.attribute :article_number, String
 
           #ContributionPercent Contribution Percent.
-          base.attribute :contribution_percent, Float, writer: :private
+          #TODO: Writer should be private!
+          base.attribute :contribution_percent, Float
 
           #ContributionValue Contribution Value.
-          base.attribute :contribution_value, Float, writer: :private
+          #TODO: Writer should be private!
+          base.attribute :contribution_value, Float
 
           #CostCenter Code of the cost center for the row.
           base.attribute :cost_center, String
@@ -65,7 +67,8 @@ module Fortnox
           base.attribute :project, String
 
           #Total Total amount for the row.
-          base.attribute :total, Float, writer: :private
+          #TODO: Writer should be private!
+          base.attribute :total, Float
 
           #Unit Code of the unit for the row.
           base.attribute :unit, String

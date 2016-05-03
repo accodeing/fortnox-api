@@ -9,25 +9,30 @@ module Fortnox
         include DocumentBase
 
         #UrlTaxReductionList Direct url to the tax reduction for the invoice.
-        attribute :url_tax_reduction_list, String, writer: :private
+        #TODO: Writer should be private!
+        attribute :url_tax_reduction_list, String
 
         #AccountingMethod Accounting Method.
         attribute :accounting_method, String
 
         #Balance Balance of the invoice.
-        attribute :balance, Float, writer: :private
+        #TODO: Writer should be private!
+        attribute :balance, Float
 
         #Booked If the invoice is bookkept.
-        attribute :booked, Boolean, writer: :private
+        #TODO: Writer should be private!
+        attribute :booked, Boolean
 
         #Credit If the invoice is a credit invoice.
-        attribute :credit, Boolean, writer: :private
+        #TODO: Writer should be private!
+        attribute :credit, Boolean
 
         #CreditInvoiceReference Reference to the credit invoice, if one exits.
         attribute :credit_invoice_reference, Integer
 
         #ContractReference Reference to the contract, if one exists.
-        attribute :contract_reference, Integer, writer: :private
+        #TODO: Writer should be private!
+        attribute :contract_reference, Integer
 
         #DueDate Due date of the invoice.
         attribute :due_date, Date
@@ -42,10 +47,12 @@ module Fortnox
         attribute :invoice_date, Date
 
         #InvoicePeriodStart Start date of the invoice period.
-        attribute :invoice_period_start, Date, writer: :private
+        #TODO: Writer should be private!
+        attribute :invoice_period_start, Date
 
         #InvoicePeriodEnd End date of the invoice period.
-        attribute :invoice_period_end, Date, writer: :private
+        #TODO: Writer should be private!
+        attribute :invoice_period_end, Date
 
         #InvoiceRows Separate object
         attribute :invoice_rows, Array[InvoiceRow]
@@ -57,28 +64,35 @@ module Fortnox
         attribute :language, String
 
         #LastRemindDate Date of last reminder.
-        attribute :last_remind_date, Date, writer: :private
+        #TODO: Writer should be private!
+        attribute :last_remind_date, Date
 
         #NoxFinans If the invoice is managed by NoxFinans
-        attribute :nox_finans, Boolean, writer: :private
+        #TODO: Writer should be private!
+        attribute :nox_finans, Boolean
 
         #OCR OCR number of the invoice.
         attribute :ocr, String
 
         #OrderReference Reference to the order, if one exists.
-        attribute :order_reference, Integer, writer: :private
+        #TODO: Writer should be private!
+        attribute :order_reference, Integer
 
         #Reminders Number of reminders sent to the customer.
-        attribute :reminders, Integer, writer: :private
+        #TODO: Writer should be private!
+        attribute :reminders, Integer
 
         #VoucherNumber Voucher number for the invoice.
-        attribute :voucher_number, Integer, writer: :private
+        #TODO: Writer should be private!
+        attribute :voucher_number, Integer
 
         #VoucherSeries Voucher series for the invoice.
-        attribute :voucher_series, String, writer: :private
+        #TODO: Writer should be private!
+        attribute :voucher_series, String
 
         #VoucherYear Voucher year for the invoice.
-        attribute :voucher_year, Integer, writer: :private
+        #TODO: Writer should be private!
+        attribute :voucher_year, Integer
       end
     end
   end
