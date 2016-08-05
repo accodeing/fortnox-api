@@ -55,12 +55,27 @@ module Fortnox
           @saved
         end
 
+        # Override to_hash to manage nested models correctly
+        def to_hash *args
+          hash_nested_models(super)
+        end
+
       private
 
         def private_attributes
           @@private_attributes ||= attribute_set.select{ |a| !a.public_writer? }
         end
 
+        # Turns nested models to hash
+        def hash_nested_models(hash)
+          hash.each do |k,v|
+            if v.respond_to?(:to_hash)
+              hash[k] = v.to_hash
+            elsif v.is_a?(Array)
+              hash[k] = v.map(&:to_hash)
+            end
+          end
+        end
       end
     end
   end
