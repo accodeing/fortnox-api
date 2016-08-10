@@ -26,12 +26,15 @@ module Fortnox
         def first_missing_required_key( attributes )
           all_missing_keys = missing_keys( attributes )
           missing_required = all_missing_keys.select do |name|
-            self.class.schema[ name ].options[:required]
+            attribute = self.class.schema[ name ]
+            next unless attribute.respond_to? :options
+            attribute.options[:required]
           end
 
           missing_required.first
         end
       end
+
     end
   end
 end

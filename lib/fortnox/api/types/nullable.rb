@@ -7,6 +7,7 @@ module Fortnox
         Float = Types::Strict::Float.optional
         Integer = Types::Strict::Int.optional
         Boolean = Types::Bool.optional
+        Date = Types::Date.optional
       end
 
     end
