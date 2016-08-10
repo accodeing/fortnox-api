@@ -129,7 +129,7 @@ module Fortnox
         attribute :invoice_remark, Fortnox::API::Types::Nullable::String
 
         #Name	Name of the customer
-        attribute :name, Fortnox::API::Types::Nullable::String
+        attribute :name, Fortnox::API::Types::Required::String
 
         #OrganisationNumber	Organisation number of the customer
         attribute :organisation_number, Fortnox::API::Types::Nullable::String
