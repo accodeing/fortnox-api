@@ -7,7 +7,7 @@ module Fortnox
   module API
     module Model
       class Invoice < Fortnox::API::Model::SecondBase
-        include DocumentBase
+        DocumentBase.ify( self )
 
         #UrlTaxReductionList Direct url to the tax reduction for the invoice.
         #TODO: Writer should be private!
