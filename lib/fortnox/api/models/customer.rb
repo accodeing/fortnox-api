@@ -1,6 +1,4 @@
 require "fortnox/api/models/second_base"
-require "fortnox/api/models/attributes/country_code"
-require "fortnox/api/models/attributes/currency"
 
 module Fortnox
   module API
