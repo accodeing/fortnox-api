@@ -95,8 +95,10 @@ shared_context 'validator context' do
       it{ is_expected.to be_valid( valid_model ) }
     end
 
-    context 'without required attributes' do
-      it{ is_expected.to_not be_valid( model_class.new ) }
-    end
+    # This now fails due to the fact that models CAN'T be created without
+    # required attributes anymore ...
+    # context 'without required attributes' do
+    #   it{ is_expected.to_not be_valid( model_class.new ) }
+    # end
   end
 end
