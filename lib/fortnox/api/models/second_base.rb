@@ -16,15 +16,12 @@ module Fortnox
           super
         end
 
-        def initialize( hash = {} )
-          unsaved = hash.delete( :unsaved ){ true }
-          @saved = !unsaved
-          @new = hash.delete( :new ){ true }
+        def self.new( hash = {} )
+          obj = preserve_meta_properties( hash ) do
+            super
+          end
 
-          # .each{|a| p a.name}
-
-          super hash
-          IceNine.deep_freeze( self )
+          IceNine.deep_freeze( obj )
         end
 
         def update( hash )
@@ -53,6 +50,23 @@ module Fortnox
         end
 
       private
+
+        # dry-types filter anything that isn't specified as an attribute on the
+        # class that is being instansiated. This wrapper preserves the meta
+        # properties we need to track object state during that initilisation and
+        # sets them on the object after dry-types is done with it.
+        def self.preserve_meta_properties( hash, &block )
+          is_unsaved = hash.delete( :unsaved ){ true }
+          is_new = hash.delete( :new ){ true }
+
+          obj = yield
+
+          obj.instance_variable_set( :@unsaved, is_unsaved )
+          obj.instance_variable_set( :@saved, !is_unsaved )
+          obj.instance_variable_set( :@new, is_new )
+
+          return obj
+        end
 
         def private_attributes
           @@private_attributes ||= attribute_set.select{ |a| !a.public_writer? }
