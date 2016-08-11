@@ -1,6 +1,17 @@
 module Fortnox
   module API
     module Types
+
+      module EnumConstructors
+        def self.sized( size )
+          -> ( value ){ value.to_s.upcase[0...size] unless value.nil? }
+        end
+
+        def self.default
+          -> ( value ){ value.to_s.upcase unless value.nil? }
+        end
+      end
+
       DiscountTypes = Types::Strict::String.enum(
         'AMOUNT','PERCENT'
       )
@@ -47,10 +58,10 @@ module Fortnox
         'XAF','XAG','XAU','XBA','XBB','XBC','XBD','XCD','XDR','XFU','XOF','XPD',
         'XPF','XPT','XTS','XXX','YER','ZAR','ZMK','ZWD'
       )
-      CustomerType = Types::Strict::String.enum(
+      CustomerTypes = Types::Strict::String.enum(
         'PRIVATE', 'COMPANY'
       )
-      VATType = Types::Strict::String.enum(
+      VATTypes = Types::Strict::String.enum(
         'SEVAT', 'SEREVERSEDVAT', 'EUREVERSEDVAT', 'EUVAT', 'EXPORT'
       )
     end
