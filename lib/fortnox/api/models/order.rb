@@ -12,8 +12,7 @@ module Fortnox
         attribute :copy_remarks, Types::Nullable::Boolean
 
         # InvoiceReference Reference if an invoice is created from order
-        # TODO: Writer should be private!
-        attribute :invoice_reference, Types::Nullable::Integer
+        attribute :invoice_reference, Types::Nullable::Integer.with( read_only: true )
 
         # OrderDate Date of order
         attribute :order_date, Types::Nullable::Date

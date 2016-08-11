@@ -1,3 +1,4 @@
+require "fortnox/api/types"
 require "fortnox/api/models/second_base"
 
 module Fortnox
@@ -23,8 +24,7 @@ module Fortnox
         # )
 
         #Url	Direct URL to the record
-        # TODO: Writer should be private!
-        attribute :url, Fortnox::API::Types::Nullable::String
+        attribute :url, Fortnox::API::Types::Nullable::String.with( read_only: true )
 
         #Address1	First address of the customer
         attribute :address1, Fortnox::API::Types::Nullable::String
@@ -150,7 +150,7 @@ module Fortnox
         attribute :project, Fortnox::API::Types::Nullable::Integer
 
         #SalesAccount	Sales account of the customer, 4 digits
-        attribute :sales_account, Fortnox::API::Types::Nullable::Integer
+        attribute :sales_account, Fortnox::API::Types::AccountNumber
 
         #ShowPriceVATIncluded	Show prices with VAT included or not
         attribute :show_price_vat_included, Fortnox::API::Types::Nullable::Boolean
@@ -162,13 +162,13 @@ module Fortnox
         attribute :terms_of_payment, Fortnox::API::Types::Nullable::String
 
         #Type	Customer type, PRIVATE / COMPANY
-        attribute :type, Fortnox::API::Types::Nullable::String
+        attribute :type, Fortnox::API::Types::CustomerType
 
         #VATNumber	VAT number of the customer
         attribute :vat_number, Fortnox::API::Types::Nullable::String
 
         #VATType	VAT type of the customer, SEVAT / SEREVERSEDVAT / EUREVERSEDVAT / EUVAT / EXPORT
-        attribute :vat_type, Fortnox::API::Types::Nullable::String
+        attribute :vat_type, Fortnox::API::Types::VATType
 
         #VisitAddress	Visit address of the customer
         attribute :visiting_address, Fortnox::API::Types::Nullable::String

@@ -10,7 +10,7 @@ module Fortnox
           attribute :account_number, Types::AccountNumber
 
           #ArticleNumber Article number. 50 characters
-          attribute :article_number, Types::ArticleNumber
+          attribute :article_number, Types::Sized::String[ 50 ]
 
           #ContributionPercent Contribution Percent.
           attribute :contribution_percent, Types::Nullable::Float.with( private: true )
@@ -22,15 +22,15 @@ module Fortnox
           attribute :cost_center, Types::Nullable::String
 
           #DeliveredQuantity Delivered quantity. 14 digits
-          attribute :delivered_quantity, Types::Nullable::Float
+          attribute :delivered_quantity, Types::Sized::Float[ 0.0, 9_999_999_999_999.0 ]
 
           #Description Description Row description. 50 characters
-          attribute :description, Types::Nullable::String
+          attribute :description, Types::Sized::String[ 50 ]
 
           # Discount amount. 12 digits (for amount) / 5 digits (for percent)
           # TODO(hannes): Verify that we can send in more than 5 digits through
           # the actual API for DiscountType PERCENT.
-          attribute :discount, Types::Nullable::Float
+          attribute :discount, Types::Sized::Float[ 0.0, 99_999_999_999.0 ]
 
           #DiscountType The type of discount used for the row.
           attribute :discount_type, Types::DiscountType
@@ -39,13 +39,13 @@ module Fortnox
           attribute :house_work, Types::Nullable::Boolean
 
           #HouseWorkHoursToReport Hours to be reported if the quantity of the row should not be used as hours. 5 digits
-          attribute :house_work_hours_to_report, Types::Nullable::Integer
+          attribute :house_work_hours_to_report, Types::Sized::Integer[ 0, 99_999 ]
 
           #HouseWorkType The type of house work.
           attribute :house_work_type, Types::HouseWorkType
 
           #Price Price per unit. 12 digits
-          attribute :price, Types::Nullable::Float
+          attribute :price, Types::Sized::Float[ 0.0, 99_999_999_999.0 ]
 
 
           #Project Code of the project for the row.

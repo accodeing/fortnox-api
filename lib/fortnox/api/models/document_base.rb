@@ -10,29 +10,28 @@ module Fortnox
         def self.ify( base )
           base.class_eval do
             # Url Direct url to the record.
-            # TODO: Writer should be private!
-            base.attribute :url, Types::Nullable::String
+            base.attribute :url, Types::Nullable::String.with( read_only: true )
 
             # AdministrationFee The document administration fee. 12 digits (incl. decimals)
-            base.attribute :administration_fee, Types::Nullable::Float
+            # TODO(hannes): Check if this is actually correct. We can get a lot
+            # more than 12 digits using this unit, will the API correctly
+            # truncate in that case?
+            base.attribute :administration_fee, Types::Sized::Float[ 0.0, 99_999_999_999.0 ]
 
             # AdministrationFeeVAT VAT of the document administration fee.
-            # TODO: Writer should be private!
-            base.attribute :administration_fee_vat, Types::Nullable::Float
+            base.attribute :administration_fee_vat, Types::Nullable::Float.with( read_only: true )
 
             # Address1 Document address 1. 1024 characters
-            base.attribute :address1, Types::Nullable::String
+            base.attribute :address1, Types::Sized::String[ 1024 ]
 
             # Address2 Document address 2. 1024 characters
-            base.attribute :address2, Types::Nullable::String
+            base.attribute :address2, Types::Sized::String[ 1024 ]
 
             # BasisTaxReduction Basis of tax reduction.
-            # TODO: Writer should be private!
-            base.attribute :basis_tax_reduction, Types::Nullable::Float
+            base.attribute :basis_tax_reduction, Types::Nullable::Float.with( read_only: true )
 
             # Cancelled If the document is cancelled.
-            # TODO: Writer should be private!
-            base.attribute :cancelled, Types::Nullable::Boolean
+            base.attribute :cancelled, Types::Nullable::Boolean.with( read_only: true )
 
             # City City for the document address.
             base.attribute :city, Types::Nullable::String
@@ -41,12 +40,10 @@ module Fortnox
             base.attribute :comments, Types::Nullable::String
 
             # ContributionPercent Document contribution in percent.
-            # TODO: Writer should be private!
-            base.attribute :contribution_percent, Types::Nullable::Float
+            base.attribute :contribution_percent, Types::Nullable::Float.with( read_only: true )
 
             # ContributionValue Document contribution in amount.
-            # TODO: Writer should be private!
-            base.attribute :contribution_value, Types::Nullable::Float
+            base.attribute :contribution_value, Types::Nullable::Float.with( read_only: true )
 
             # Country Country for the document address.
             base.attribute :country, Types::Nullable::String
@@ -58,16 +55,22 @@ module Fortnox
             base.attribute :currency, Types::Nullable::String
 
             # CurrencyRate Currency rate used for the document. 16 digits
-            base.attribute :currency_rate, Types::Nullable::Float
+            # TODO(hannes): Check if this is actually correct. We can get a lot
+            # more than 16 digits using this unit, will the API correctly
+            # truncate in that case?
+            base.attribute :currency_rate, Types::Sized::Float[ 0.0, 999_999_999_999_999.0 ]
 
             # CurrencyUnit Currency unit used for the document. 16 digits
-            base.attribute :currency_unit, Types::Nullable::Float
+            # TODO(hannes): Check if this is actually correct. We can get a lot
+            # more than 16 digits using this unit, will the API correctly
+            # truncate in that case?
+            base.attribute :currency_unit, Types::Sized::Float[ 0.0, 999_999_999_999_999.0 ]
 
             # CustomerName Name of the customer. 1024 characters
-            base.attribute :customer_name, Types::Nullable::String
+            base.attribute :customer_name, Types::Sized::String[ 1024 ]
 
             # CustomerNumber Customer number of the customer. Required
-            base.attribute :customer_number, Types::Nullable::String
+            base.attribute :customer_number, Types::Required::String
 
             # DeliveryAddress1 Document delivery address 1.
             base.attribute :delivery_address1, Types::Nullable::String
@@ -97,50 +100,47 @@ module Fortnox
             base.attribute :email_information, EmailInformation
 
             # ExternalInvoiceReference1 External document reference 1. 80 characters
-            base.attribute :external_invoice_reference1, Types::Nullable::String
+            base.attribute :external_invoice_reference1, Types::Sized::String[ 80 ]
 
             # ExternalInvoiceReference2 External document reference 2. 80 characters
-            base.attribute :external_invoice_reference2, Types::Nullable::String
+            base.attribute :external_invoice_reference2, Types::Sized::String[ 80 ]
 
             # Freight Freight cost of the document. 12 digits (incl. decimals)
-            base.attribute :freight, Types::Nullable::Float
+            # TODO(hannes): Check if this is actually correct. We can get a lot
+            # more than 12 digits using this unit, will the API correctly
+            # truncate in that case?
+            base.attribute :freight, Types::Sized::Float[ 0.0, 99_999_999_999.0 ]
 
             # FreightVAT VAT of the freight cost.
-            # TODO: Writer should be private!
-            base.attribute :freight_vat, Types::Nullable::Float
+            base.attribute :freight_vat, Types::Nullable::Float.with( read_only: true )
 
             # Gross Gross value of the document
-            # TODO: Writer should be private!
-            base.attribute :gross, Types::Nullable::Float
+            base.attribute :gross, Types::Nullable::Float.with( read_only: true )
 
             # HouseWork If there is any row of the document marked “house work”.
-            # TODO: Writer should be private!
-            base.attribute :house_work, Types::Nullable::Boolean
+            base.attribute :house_work, Types::Nullable::Boolean.with( read_only: true )
 
             # Net Net amount
-            # TODO: Writer should be private!
-            base.attribute :net, Types::Nullable::Float
+            base.attribute :net, Types::Nullable::Float.with( read_only: true )
 
             # NotCompleted If the document is set as not completed.
             base.attribute :not_completed, Types::Nullable::Boolean
 
             # OfferReference Reference to the offer, if one exists.
-            # TODO: Writer should be private!
-            base.attribute :offer_reference, Types::Nullable::Integer
+            base.attribute :offer_reference, Types::Nullable::Integer.with( read_only: true )
 
             # OrganisationNumber Organisation number of the customer for the
             # document.
-            # TODO: Writer should be private!
-            base.attribute :organisation_number, Types::Nullable::String
+            base.attribute :organisation_number, Types::Nullable::String.with( read_only: true )
 
             # OurReference Our reference. 50 characters
-            base.attribute :our_reference, Types::Nullable::String
+            base.attribute :our_reference, Types::Sized::String[ 50 ]
 
             # Phone1 Phone number 1 of the customer for the document. 1024 characters
-            base.attribute :phone1, Types::Nullable::String
+            base.attribute :phone1, Types::Sized::String[ 1024 ]
 
             # Phone2 Phone number 2 of the customer for the document. 1024 characters
-            base.attribute :phone2, Types::Nullable::String
+            base.attribute :phone2, Types::Sized::String[ 1024 ]
 
             # PriceList Code of the price list.
             base.attribute :price_list, Types::Nullable::String
@@ -152,19 +152,16 @@ module Fortnox
             base.attribute :project, Types::Nullable::String
 
             # Remarks Remarks of the document. 1024 characters
-            base.attribute :remarks, Types::Nullable::String
+            base.attribute :remarks, Types::Sized::String[ 1024 ]
 
             # RoundOff Round off amount for the document.
-            # TODO: Writer should be private!
-            base.attribute :round_off, Types::Nullable::Float
+            base.attribute :round_off, Types::Nullable::Float.with( read_only: true )
 
             # Sent If the document is printed or sent in any way.
-            # TODO: Writer should be private!
-            base.attribute :sent, Types::Nullable::Boolean
+            base.attribute :sent, Types::Nullable::Boolean.with( read_only: true )
 
             # TaxReduction The amount of tax reduction.
-            # TODO: Writer should be private!
-            base.attribute :tax_reduction, Types::Nullable::Integer
+            base.attribute :tax_reduction, Types::Nullable::Integer.with( read_only: true )
 
             # TermsOfDelivery Code of the terms of delivery.
             base.attribute :terms_of_delivery, Types::Nullable::String
@@ -173,12 +170,10 @@ module Fortnox
             base.attribute :terms_of_payment, Types::Nullable::String
 
             # Total The total amount of the document.
-            # TODO: Writer should be private!
-            base.attribute :total, Types::Nullable::Float
+            base.attribute :total, Types::Nullable::Float.with( read_only: true )
 
             # TotalVAT The total VAT amount of the document.
-            # TODO: Writer should be private!
-            base.attribute :total_vat, Types::Nullable::Float
+            base.attribute :total_vat, Types::Nullable::Float.with( read_only: true )
 
             # VATIncluded If the price of the document is including VAT.
             base.attribute :vat_included, Types::Nullable::Boolean
@@ -187,13 +182,13 @@ module Fortnox
             base.attribute :way_of_delivery, Types::Nullable::String
 
             # YourOrderNumber Your order number. 30 characters
-            base.attribute :your_order_number, Types::Nullable::String
+            base.attribute :your_order_number, Types::Sized::String[ 30 ]
 
             # YourReference Your reference. 50 characters
-            base.attribute :your_reference, Types::Nullable::String
+            base.attribute :your_reference, Types::Sized::String[ 50 ]
 
             # ZipCode Zip code of the document. 1024 characters
-            base.attribute :zip_code, Types::Nullable::String
+            base.attribute :zip_code, Types::Sized::String[ 1024 ]
           end
         end
         # rubocop:enable Metrics/MethodLength
