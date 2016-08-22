@@ -1,7 +1,6 @@
 shared_examples_for '.find' do
   let( :find_id ){ 1 }
   let( :find_id_1 ) do
-    vcr_dir = subject.options.json_collection_wrapper.downcase
     VCR.use_cassette( "#{vcr_dir}/find_id_1" ){ subject.find( find_id ) }
   end
 

@@ -1,7 +1,6 @@
 shared_examples_for '.all' do |count|
   describe '.all' do
     let(:response) do
-      vcr_dir = subject.options.json_collection_wrapper.downcase
       VCR.use_cassette( "#{vcr_dir}/all" ){ subject.all }
     end
 

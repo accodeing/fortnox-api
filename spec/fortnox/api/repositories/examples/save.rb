@@ -5,7 +5,6 @@
 # Assumes that attribute_hash_name holds a string without restrictions.
 shared_examples_for '.save' do |attribute_hash_name, required_attributes = {}|
   describe '.save' do
-    let( :vcr_dir ){ subject.options.json_collection_wrapper.downcase }
     let( :new_hash ) do
       required_attributes.merge( attribute_hash_name => value )
     end
