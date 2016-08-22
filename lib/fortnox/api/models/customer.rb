@@ -130,8 +130,7 @@ module Fortnox
         attribute :invoice_remark, Fortnox::API::Types::Sized::String[ 1024 ]
 
         #Name	Name of the customer, 1024 characters
-        # TODO: How to combinate required type with sized?
-        attribute :name, Fortnox::API::Types::Required::String
+        attribute :name, Fortnox::API::Types::Sized::String[ 1024 ].with( required: true )
 
         #OrganisationNumber	Organisation number of the customer. 30 characters
         attribute :organisation_number, Fortnox::API::Types::Sized::String[ 30 ]
