@@ -6,12 +6,13 @@
 shared_examples_for '.save' do |attribute_hash_name, required_attributes = {}|
   describe '.save' do
     let( :vcr_dir ){ subject.options.json_collection_wrapper.downcase }
-    let( :new_model )do
-      hash = required_attributes.merge( attribute_hash_name => value )
-      described_class::MODEL.new( hash )
+    let( :new_hash ) do
+      required_attributes.merge( attribute_hash_name => value )
     end
+    let( :new_model ){ described_class::MODEL.new( new_hash ) }
     let( :save_new ){ VCR.use_cassette( "#{vcr_dir}/save_new" ){ subject.save( new_model ) } }
     let( :entity_wrapper ){ subject.options.json_entity_wrapper }
+    let( :value ){ 'A value' }
 
     shared_examples_for 'save' do
       before do
@@ -36,24 +37,23 @@ shared_examples_for '.save' do |attribute_hash_name, required_attributes = {}|
     describe 'new' do
       context 'when not saved' do
         include_examples 'save' do
-          let( :value ){ 'A value' }
           let( :model ){ new_model }
           let( :send_request ){ save_new }
         end
       end
 
       context "saved #{described_class::MODEL}" do
-        pending('This approach wont work now since models cant be created without their required attributes anymore.')
-        # let( :repository ){ described_class.new }
-        # let( :model ){ described_class::MODEL.new( unsaved: false ) }
-        #
-        # before do
-        #   # Should not make an API request in test!
-        #   expect( repository ).not_to receive( :save_new )
-        #   expect( repository ).not_to receive( :update_existing )
-        # end
-        #
-        # specify{ expect( repository.save( model )).to eql( true ) }
+        let( :repository ){ described_class.new }
+        let( :hash ) { { unsaved: false }.merge(new_hash) }
+        let( :model ){ described_class::MODEL.new( hash ) }
+
+        before do
+          # Should not make an API request in test!
+          expect( repository ).not_to receive( :save_new )
+          expect( repository ).not_to receive( :update_existing )
+        end
+
+        specify{ expect( repository.save( model )).to eql( true ) }
       end
     end
 
