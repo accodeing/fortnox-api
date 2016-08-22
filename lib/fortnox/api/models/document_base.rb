@@ -12,11 +12,8 @@ module Fortnox
             # Url Direct url to the record.
             base.attribute :url, Types::Nullable::String.with( read_only: true )
 
-            # AdministrationFee The document administration fee. 12 digits (incl. decimals)
-            # TODO(hannes): Check if this is actually correct. We can get a lot
-            # more than 12 digits using this unit, will the API correctly
-            # truncate in that case?
-            base.attribute :administration_fee, Types::Sized::Float[ 0.0, 99_999_999_999.0 ]
+            # AdministrationFee The document administration fee.
+            base.attribute :administration_fee, Types::Nullable::Float
 
             # AdministrationFeeVAT VAT of the document administration fee.
             base.attribute :administration_fee_vat, Types::Nullable::Float.with( read_only: true )
@@ -54,17 +51,11 @@ module Fortnox
             # Currency Code of the currency.
             base.attribute :currency, Types::Nullable::String
 
-            # CurrencyRate Currency rate used for the document. 16 digits
-            # TODO(hannes): Check if this is actually correct. We can get a lot
-            # more than 16 digits using this unit, will the API correctly
-            # truncate in that case?
-            base.attribute :currency_rate, Types::Sized::Float[ 0.0, 999_999_999_999_999.0 ]
+            # CurrencyRate Currency rate used for the document
+            base.attribute :currency_rate, Types::Nullable::Float
 
-            # CurrencyUnit Currency unit used for the document. 16 digits
-            # TODO(hannes): Check if this is actually correct. We can get a lot
-            # more than 16 digits using this unit, will the API correctly
-            # truncate in that case?
-            base.attribute :currency_unit, Types::Sized::Float[ 0.0, 999_999_999_999_999.0 ]
+            # CurrencyUnit Currency unit used for the document
+            base.attribute :currency_unit, Types::Nullable::Float
 
             # CustomerName Name of the customer. 1024 characters
             base.attribute :customer_name, Types::Sized::String[ 1024 ]
@@ -106,9 +97,6 @@ module Fortnox
             base.attribute :external_invoice_reference2, Types::Sized::String[ 80 ]
 
             # Freight Freight cost of the document. 12 digits (incl. decimals)
-            # TODO(hannes): Check if this is actually correct. We can get a lot
-            # more than 12 digits using this unit, will the API correctly
-            # truncate in that case?
             base.attribute :freight, Types::Sized::Float[ 0.0, 99_999_999_999.0 ]
 
             # FreightVAT VAT of the freight cost.
