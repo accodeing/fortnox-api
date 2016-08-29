@@ -6,17 +6,25 @@ require 'fortnox/api/repositories/examples/find'
 require 'fortnox/api/repositories/examples/search'
 require 'fortnox/api/repositories/examples/save'
 require 'fortnox/api/repositories/examples/save_with_nested_model'
+require 'fortnox/api/repositories/examples/save_with_specially_named_attribute'
 require 'fortnox/api/repositories/examples/only'
 
 describe Fortnox::API::Repository::Invoice, order: :defined, integration: true do
   include_context 'environment'
 
   required_hash = { customer_number: '1' }
+
   include_examples '.save', :comments, required_hash
+
   include_examples '.save with nested model',
                    required_hash,
                    :invoice_rows,
                    { invoice_row: { price: 10, price_excluding_vat: 7 } }
+
+  include_examples '.save with specially named attribute',
+                   required_hash.merge(ocr: '426523791'),
+                   :ocr,
+                   'OCR'
 
   # It is not possible to delete Invoces. Therefore, expected nr of Orders
   # when running .all will continue to increase.
