@@ -9,7 +9,7 @@ module Fortnox
           response_hash = get( @options.uri )
           entities_hash = response_hash[ @options.json_collection_wrapper ]
           entities_hash.map do |entity_hash|
-            hash_to_entity( entity_hash, @options.json_to_attr_map )
+            instansiate( @mapper.hash_to_entity( entity_hash ) )
           end
         end
 
@@ -17,7 +17,7 @@ module Fortnox
           response_hash = get( "#{ @options.uri }?filter=#{ filter }" )
           entities_hash = response_hash[ @options.json_collection_wrapper ]
           entities_hash.map do |entity_hash|
-            hash_to_entity( entity_hash, @options.json_to_attr_map )
+            instansiate( @mapper.hash_to_entity( entity_hash ) )
           end
         end
 
@@ -26,7 +26,7 @@ module Fortnox
           response_hash = get( "#{ @options.uri }?#{ attribute }=#{ value }" )
           entities_hash = response_hash[ @options.json_collection_wrapper ]
           entities_hash.map do |entity_hash|
-            hash_to_entity( entity_hash, @options.json_to_attr_map )
+            instansiate( @mapper.hash_to_entity( entity_hash ) )
           end
         end
 
@@ -43,7 +43,7 @@ module Fortnox
         def find_one_by( id )
           response_hash = get( "#{ @options.uri }#{ id }" )
           entity_hash = response_hash[ @options.json_entity_wrapper ]
-          hash_to_entity( entity_hash, @options.json_to_attr_map )
+          instansiate( @mapper.hash_to_entity( entity_hash ) )
         end
 
         # def find_all_by( hash )

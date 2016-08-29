@@ -25,9 +25,8 @@ shared_examples_for '.save' do |attribute_hash_name, required_attributes = {}|
 
       specify "includes correct #{ attribute_hash_name.inspect }" do
         response = send_request
-        attribute_json_name =
-          Fortnox::API::Repository::JSONConvertion.convert_key_to_json( attribute_hash_name,
-                                                                        subject.options.attr_to_json_map )
+        attribute_json_name = described_class::MAPPER.new
+          .convert_key_to_json( attribute_hash_name )
         expect( response[entity_wrapper][attribute_json_name] ).to eql( value )
       end
     end

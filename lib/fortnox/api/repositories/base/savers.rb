@@ -6,9 +6,8 @@ module Fortnox
         def save( entity )
           return true if entity.saved?
 
-          hash = entity_to_hash(
+          hash = @mapper.entity_to_hash(
             entity,
-            @options.attr_to_json_map,
             @options.json_entity_wrapper,
             @options.keys_filtered_on_save
           )

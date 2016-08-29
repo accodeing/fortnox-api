@@ -1,5 +1,6 @@
 require "fortnox/api/repositories/base"
 require "fortnox/api/models/order"
+require "fortnox/api/mappers/order"
 
 module Fortnox
   module API
@@ -11,18 +12,12 @@ module Fortnox
           json_collection_wrapper: 'Orders',
           json_entity_wrapper: 'Order',
           unique_id: 'DocumentNumber',
-          attribute_name_to_json_key_map: {
-            administration_fee_vat: 'AdministrationFeeVAT',
-            edi_information: 'EDIInformation',
-            freight_vat: 'FreightVAT',
-            total_vat: 'TotalVAT',
-            vat_included: 'VATIncluded'
-          },
           keys_filtered_on_save: [
             :url,
           ]
         )
         MODEL = Fortnox::API::Model::Order
+        MAPPER = Fortnox::API::Mapper::Order
 
         def initialize
           super( CONFIGURATION )
