@@ -29,7 +29,8 @@ module Fortnox
 
           # Discount amount. 12 digits (for amount) / 5 digits (for percent)
           # TODO(hannes): Verify that we can send in more than 5 digits through
-          # the actual API for DiscountType PERCENT.
+          # the actual API for DiscountType PERCENT. This cannot be done until
+          # we fix issue #62...
           attribute :discount, Types::Sized::Float[ 0.0, 99_999_999_999.0 ]
 
           #DiscountType The type of discount used for the row.
