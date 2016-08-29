@@ -1,4 +1,4 @@
-shared_examples_for 'enum' do |name, values|
+shared_examples_for 'enum' do |name, values, auto_crop: false|
   describe name do
     let( :klass ){ Fortnox::API::Types.const_get(name) }
 
@@ -29,8 +29,14 @@ shared_examples_for 'enum' do |name, values|
 
       context "a string that starts like a random member from the #{name} enum" do
         let( :input ){ enum_value.downcase + 'more string' }
-        subject{ klass[ input ] }
-        it{ is_expected.to eq enum_value }
+
+        if auto_crop
+          subject{ klass[ input ] }
+          it{ is_expected.to eq enum_value }
+        else
+          subject{ -> { klass[ input ] } }
+          it{ is_expected.to raise_error(Dry::Types::ConstraintError) }
+        end
       end
     end
 
