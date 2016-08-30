@@ -55,7 +55,7 @@ module Fortnox
         # class that is being instansiated. This wrapper preserves the meta
         # properties we need to track object state during that initilisation and
         # sets them on the object after dry-types is done with it.
-        def self.preserve_meta_properties( hash, &block )
+        def self.preserve_meta_properties( hash )
           is_unsaved = hash.delete( :unsaved ){ true }
           is_new = hash.delete( :new ){ true }
 
