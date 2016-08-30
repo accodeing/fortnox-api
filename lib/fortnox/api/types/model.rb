@@ -5,7 +5,7 @@ module Fortnox
         constructor_type(:symbolized)
 
         def initialize( input_attributes )
-          if missing_key = first_missing_required_key( input_attributes )
+          if (missing_key = first_missing_required_key( input_attributes ))
             raise Dry::Types::SchemaKeyError.new( missing_key )
           end
 
