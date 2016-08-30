@@ -5,10 +5,6 @@ module Fortnox
     module Mapper
       class Base
         include JSONConversion
-
-        def initialize
-          super
-        end
       end
     end
   end
