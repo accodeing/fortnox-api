@@ -43,7 +43,9 @@ describe Fortnox::API::Types::Sized do
     end
   end
 
-  shared_examples_for 'Sized Numeric' do |min, max, step|
+  shared_examples_for 'Sized Numeric' do |type, min, max, step|
+    let( :described_class ){ Fortnox::API::Types::Sized.const_get(type)[ min, max ] }
+
     it_behaves_like 'Sized Types'
 
     context 'created with value below the lower limit' do
@@ -72,18 +74,10 @@ describe Fortnox::API::Types::Sized do
   end
 
   describe 'Float' do
-    min = 0.0
-    max = 100.0
-    it_behaves_like 'Sized Numeric', min, max, 0.1 do
-      let( :described_class ){ Fortnox::API::Types::Sized::Float[ min, max ] }
-    end
+    it_behaves_like 'Sized Numeric', 'Float', 0.0, 100.0, 0.1
   end
 
   describe 'Integer' do
-    min = 0
-    max = 100
-    it_behaves_like 'Sized Numeric', min, max, 1 do
-      let( :described_class ){ Fortnox::API::Types::Sized::Integer[ min, max ] }
-    end
+    it_behaves_like 'Sized Numeric', 'Integer', 0, 100, 1
   end
 end
