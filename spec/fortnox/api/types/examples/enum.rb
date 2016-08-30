@@ -34,7 +34,7 @@ shared_examples_for 'enum' do |name, values, auto_crop: false|
           subject{ klass[ input ] }
           it{ is_expected.to eq enum_value }
         else
-          subject{ -> { klass[ input ] } }
+          subject{ ->{ klass[ input ] } }
           it{ is_expected.to raise_error(Dry::Types::ConstraintError) }
         end
       end
@@ -42,8 +42,8 @@ shared_examples_for 'enum' do |name, values, auto_crop: false|
 
     context 'created with invalid input' do
       let( :input ){ 'r4nd0m' }
-      subject { -> { klass[ input ] } }
-      it { is_expected.to raise_error(Dry::Types::ConstraintError) }
+      subject{ ->{ klass[ input ] } }
+      it{ is_expected.to raise_error(Dry::Types::ConstraintError) }
     end
   end
 end

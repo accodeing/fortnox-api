@@ -25,8 +25,8 @@ describe Fortnox::API::Types::Sized do
 
     context 'created with more characters than the limit' do
       let( :input ){ 'Too many' }
-      subject{ -> { described_class[ input ] } }
-      it { is_expected.to raise_error(Dry::Types::ConstraintError) }
+      subject{ ->{ described_class[ input ] } }
+      it{ is_expected.to raise_error(Dry::Types::ConstraintError) }
     end
   end
 
@@ -40,8 +40,8 @@ describe Fortnox::API::Types::Sized do
 
     context 'created with value below the lower limit' do
       let( :input ){ -1.0 }
-      subject{ -> { described_class[ input ] } }
-      it { is_expected.to raise_error(Dry::Types::ConstraintError) }
+      subject{ ->{ described_class[ input ] } }
+      it{ is_expected.to raise_error(Dry::Types::ConstraintError) }
     end
 
     context 'created with value at the lower limit' do
@@ -64,8 +64,8 @@ describe Fortnox::API::Types::Sized do
 
     context 'created with value above the upper limit' do
       let( :input ){ 100.1 }
-      subject{ -> { described_class[ input ] } }
-      it { is_expected.to raise_error(Dry::Types::ConstraintError) }
+      subject{ ->{ described_class[ input ] } }
+      it{ is_expected.to raise_error(Dry::Types::ConstraintError) }
     end
   end
 
@@ -79,8 +79,8 @@ describe Fortnox::API::Types::Sized do
 
     context 'created with value below the lower limit' do
       let( :input ){ -1 }
-      subject{ -> { described_class[ input ] } }
-      it { is_expected.to raise_error(Dry::Types::ConstraintError) }
+      subject{ ->{ described_class[ input ] } }
+      it{ is_expected.to raise_error(Dry::Types::ConstraintError) }
     end
 
     context 'created with value at the lower limit' do
@@ -103,8 +103,8 @@ describe Fortnox::API::Types::Sized do
 
     context 'created with value above the upper limit' do
       let( :input ){ 101 }
-      subject{ -> { described_class[ input ] } }
-      it { is_expected.to raise_error(Dry::Types::ConstraintError) }
+      subject{ ->{ described_class[ input ] } }
+      it{ is_expected.to raise_error(Dry::Types::ConstraintError) }
     end
   end
 

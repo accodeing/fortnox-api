@@ -30,7 +30,7 @@ private
 
   def clean_up_dry_types
     container = Dry::Types.container._container
-    (container.keys - @types).each { |key| container.delete(key) }
+    (container.keys - @types).each{ |key| container.delete(key) }
     Dry::Types.instance_variable_set('@type_map', Concurrent::Map.new)
   end
 

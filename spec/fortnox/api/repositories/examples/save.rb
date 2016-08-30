@@ -43,7 +43,7 @@ shared_examples_for '.save' do |attribute_hash_name, required_attributes = {}|
 
       context "saved #{described_class::MODEL}" do
         let( :repository ){ described_class.new }
-        let( :hash ) { { unsaved: false }.merge(new_hash) }
+        let( :hash ){ { unsaved: false }.merge(new_hash) }
         let( :model ){ described_class::MODEL.new( hash ) }
 
         before do

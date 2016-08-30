@@ -13,8 +13,8 @@ describe Fortnox::API::Types do
 
     context 'created with empty string' do
       let( :input ){ '' }
-      subject{ -> { described_class[ input ] } }
-      it { is_expected.to raise_error(Dry::Types::ConstraintError) }
+      subject{ ->{ described_class[ input ] } }
+      it{ is_expected.to raise_error(Dry::Types::ConstraintError) }
     end
 
     context 'created with valid email' do
@@ -24,9 +24,9 @@ describe Fortnox::API::Types do
     end
 
     context 'created with more than 1024 characters' do
-      let( :input ){ (legal_characters*35).shuffle.join + '@example.com' }
-      subject{ -> { described_class[ input ] } }
-      it { is_expected.to raise_error(Dry::Types::ConstraintError) }
+      let( :input ){ (legal_characters * 35).shuffle.join + '@example.com' }
+      subject{ ->{ described_class[ input ] } }
+      it{ is_expected.to raise_error(Dry::Types::ConstraintError) }
     end
   end
 end

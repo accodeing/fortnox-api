@@ -12,8 +12,8 @@ describe Fortnox::API::Types do
 
     context 'created with empty string' do
       let( :input ){ '' }
-      subject{ -> { described_class[ input ] } }
-      it { is_expected.to raise_error(Dry::Types::ConstraintError) }
+      subject{ ->{ described_class[ input ] } }
+      it{ is_expected.to raise_error(Dry::Types::ConstraintError) }
     end
 
     context 'created with valid number' do
@@ -24,14 +24,14 @@ describe Fortnox::API::Types do
 
     context 'created with a too large number' do
       let( :input ){ 10000 }
-      subject{ -> { described_class[ input ] } }
-      it { is_expected.to raise_error(Dry::Types::ConstraintError) }
+      subject{ ->{ described_class[ input ] } }
+      it{ is_expected.to raise_error(Dry::Types::ConstraintError) }
     end
 
     context 'created with a negative number' do
       let( :input ){ -1 }
-      subject{ -> { described_class[ input ] } }
-      it { is_expected.to raise_error(Dry::Types::ConstraintError) }
+      subject{ ->{ described_class[ input ] } }
+      it{ is_expected.to raise_error(Dry::Types::ConstraintError) }
     end
   end
 end
