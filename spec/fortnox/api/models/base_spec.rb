@@ -1,12 +1,13 @@
 require 'spec_helper'
 require 'fortnox/api/models/base'
+require 'fortnox/api/types'
 
 describe Fortnox::API::Model::Base do
   using_test_classes do
     class Entity < Fortnox::API::Model::Base
-      attribute :private, String, writer: :private
-      attribute :string, String
-      attribute :number, Integer, default: 42
+      attribute :private, Fortnox::API::Types::String.with( read_only: true )
+      attribute :string, Fortnox::API::Types::String
+      attribute :number, Fortnox::API::Types::Nullable::Integer
     end
   end
 

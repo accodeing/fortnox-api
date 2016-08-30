@@ -1,10 +1,10 @@
 require "fortnox/api/types"
-require "fortnox/api/models/second_base"
+require "fortnox/api/models/base"
 
 module Fortnox
   module API
     module Model
-      class Customer < Fortnox::API::Model::SecondBase
+      class Customer < Fortnox::API::Model::Base
 
         # searchable_attributes(
         #     :city, :customer_number, :email, :name, :organisation_number,

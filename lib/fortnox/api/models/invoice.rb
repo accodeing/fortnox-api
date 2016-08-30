@@ -1,4 +1,4 @@
-require "fortnox/api/models/second_base"
+require "fortnox/api/models/base"
 require "fortnox/api/models/document_base"
 require "fortnox/api/models/edi_information"
 require "fortnox/api/models/invoice_row"
@@ -6,7 +6,7 @@ require "fortnox/api/models/invoice_row"
 module Fortnox
   module API
     module Model
-      class Invoice < Fortnox::API::Model::SecondBase
+      class Invoice < Fortnox::API::Model::Base
         DocumentBase.ify( self )
 
         #UrlTaxReductionList Direct url to the tax reduction for the invoice.

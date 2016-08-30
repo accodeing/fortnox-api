@@ -1,11 +1,11 @@
-require "fortnox/api/models/second_base"
+require "fortnox/api/models/base"
 require "fortnox/api/models/document_base"
 require "fortnox/api/models/order_row"
 
 module Fortnox
   module API
     module Model
-      class Order < Fortnox::API::Model::SecondBase
+      class Order < Fortnox::API::Model::Base
         DocumentBase.ify( self )
 
         #CopyRemarks I remarks shall copies from order to invoice
