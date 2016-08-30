@@ -3,108 +3,92 @@ require 'fortnox/api/types'
 
 describe Fortnox::API::Types::Sized do
 
-  describe 'String' do
-    let( :described_class ){ Fortnox::API::Types::Sized::String[ 5 ] }
-
+  shared_examples_for 'Sized Types' do
     context 'created with nil' do
       subject{ described_class[ nil ] }
       it{ is_expected.to be_nil }
     end
+  end
+
+  shared_examples_for 'equals input' do |input|
+    subject{ described_class[ input ] }
+    it{ is_expected.to eq input }
+  end
+
+  shared_examples_for 'raises ConstraintError' do |input|
+    subject{ ->{ described_class[ input ] } }
+    it{ is_expected.to raise_error(Dry::Types::ConstraintError) }
+  end
+
+  describe 'String' do
+    let( :described_class ){ Fortnox::API::Types::Sized::String[ 5 ] }
+
+    it_behaves_like 'Sized Types'
 
     context 'created with empty string' do
-      let( :input ){ '' }
-      subject{ described_class[ input ] }
-      it{ is_expected.to eq input }
+      include_examples 'equals input', ''
     end
 
     context 'created with fewer characters than the limit' do
-      let( :input ){ 'Test' }
-      subject{ described_class[ input ] }
-      it{ is_expected.to eq input }
+      include_examples 'equals input', 'Test'
     end
 
     context 'created with more characters than the limit' do
-      let( :input ){ 'Too many' }
-      subject{ ->{ described_class[ input ] } }
-      it{ is_expected.to raise_error(Dry::Types::ConstraintError) }
+      include_examples 'raises ConstraintError', 'Too many'
     end
   end
 
   describe 'Float' do
-    let( :described_class ){ Fortnox::API::Types::Sized::Float[ 0.0, 100.0 ] }
+    max = 100.0
+    let( :described_class ){ Fortnox::API::Types::Sized::Float[ 0.0, max ] }
 
-    context 'created with nil' do
-      subject{ described_class[ nil ] }
-      it{ is_expected.to be_nil }
-    end
+    it_behaves_like 'Sized Types'
 
     context 'created with value below the lower limit' do
-      let( :input ){ -1.0 }
-      subject{ ->{ described_class[ input ] } }
-      it{ is_expected.to raise_error(Dry::Types::ConstraintError) }
+      include_examples 'raises ConstraintError', -1.0
     end
 
     context 'created with value at the lower limit' do
-      let( :input ){ 0.0 }
-      subject{ described_class[ input ] }
-      it{ is_expected.to eq input }
+      include_examples 'equals input', 0.0
     end
 
     context 'created with valid number' do
-      let( :input ){ 50.0 }
-      subject{ described_class[ input ] }
-      it{ is_expected.to eq input }
+      include_examples 'equals input', 50.0
     end
 
     context 'created with value at the upper limit' do
-      let( :input ){ 100.0 }
-      subject{ described_class[ input ] }
-      it{ is_expected.to eq input }
+      include_examples 'equals input', max
     end
 
     context 'created with value above the upper limit' do
-      let( :input ){ 100.1 }
-      subject{ ->{ described_class[ input ] } }
-      it{ is_expected.to raise_error(Dry::Types::ConstraintError) }
+      include_examples 'raises ConstraintError', max + 0.1
     end
   end
 
   describe 'Integer' do
-    let( :described_class ){ Fortnox::API::Types::Sized::Integer[ 0, 100 ] }
+    max = 100
+    let( :described_class ){ Fortnox::API::Types::Sized::Integer[ 0, max ] }
 
-    context 'created with nil' do
-      subject{ described_class[ nil ] }
-      it{ is_expected.to be_nil }
-    end
+    it_behaves_like 'Sized Types'
 
     context 'created with value below the lower limit' do
-      let( :input ){ -1 }
-      subject{ ->{ described_class[ input ] } }
-      it{ is_expected.to raise_error(Dry::Types::ConstraintError) }
+      include_examples 'raises ConstraintError', -1
     end
 
     context 'created with value at the lower limit' do
-      let( :input ){ 0 }
-      subject{ described_class[ input ] }
-      it{ is_expected.to eq input }
+      include_examples 'equals input', 0
     end
 
     context 'created with valid number' do
-      let( :input ){ 50 }
-      subject{ described_class[ input ] }
-      it{ is_expected.to eq input }
+      include_examples 'equals input', 50
     end
 
     context 'created with value at the upper limit' do
-      let( :input ){ 100 }
-      subject{ described_class[ input ] }
-      it{ is_expected.to eq input }
+      include_examples 'equals input', max
     end
 
     context 'created with value above the upper limit' do
-      let( :input ){ 101 }
-      subject{ ->{ described_class[ input ] } }
-      it{ is_expected.to raise_error(Dry::Types::ConstraintError) }
+      include_examples 'raises ConstraintError', max + 1
     end
   end
 
