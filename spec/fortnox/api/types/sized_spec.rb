@@ -1,5 +1,6 @@
 require 'spec_helper'
 require 'fortnox/api/types'
+require 'fortnox/api/types/examples/types'
 
 describe Fortnox::API::Types::Sized do
 
@@ -8,16 +9,6 @@ describe Fortnox::API::Types::Sized do
       subject{ described_class[ nil ] }
       it{ is_expected.to be_nil }
     end
-  end
-
-  shared_examples_for 'equals input' do |input|
-    subject{ described_class[ input ] }
-    it{ is_expected.to eq input }
-  end
-
-  shared_examples_for 'raises ConstraintError' do |input|
-    subject{ ->{ described_class[ input ] } }
-    it{ is_expected.to raise_error(Dry::Types::ConstraintError) }
   end
 
   describe 'String' do

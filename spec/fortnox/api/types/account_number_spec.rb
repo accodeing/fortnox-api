@@ -1,5 +1,6 @@
 require 'spec_helper'
 require 'fortnox/api/types'
+require 'fortnox/api/types/examples/types'
 
 describe Fortnox::API::Types do
   describe 'AccountNumber' do
@@ -11,27 +12,19 @@ describe Fortnox::API::Types do
     end
 
     context 'created with empty string' do
-      let( :input ){ '' }
-      subject{ ->{ described_class[ input ] } }
-      it{ is_expected.to raise_error(Dry::Types::ConstraintError) }
+      include_examples 'raises ConstraintError', ''
     end
 
     context 'created with valid number' do
-      let( :input ){ 1234 }
-      subject{ described_class[ input ] }
-      it{ is_expected.to eq input }
+      include_examples 'equals input', 1234
     end
 
     context 'created with a too large number' do
-      let( :input ){ 10000 }
-      subject{ ->{ described_class[ input ] } }
-      it{ is_expected.to raise_error(Dry::Types::ConstraintError) }
+      include_examples 'raises ConstraintError', 10000
     end
 
     context 'created with a negative number' do
-      let( :input ){ -1 }
-      subject{ ->{ described_class[ input ] } }
-      it{ is_expected.to raise_error(Dry::Types::ConstraintError) }
+      include_examples 'raises ConstraintError', -1
     end
   end
 end
