@@ -43,22 +43,23 @@ describe Fortnox::API::Types::Sized do
     end
   end
 
-  describe 'Float' do
-    max = 100.0
-    let( :described_class ){ Fortnox::API::Types::Sized::Float[ 0.0, max ] }
-
+  shared_examples_for 'Sized Numeric' do |min, max, step|
     it_behaves_like 'Sized Types'
 
     context 'created with value below the lower limit' do
-      include_examples 'raises ConstraintError', -1.0
+      include_examples 'raises ConstraintError', min - step
     end
 
     context 'created with value at the lower limit' do
-      include_examples 'equals input', 0.0
+      include_examples 'equals input', min
     end
 
-    context 'created with valid number' do
-      include_examples 'equals input', 50.0
+    context 'created with valid number near lower limit' do
+      include_examples 'equals input', min + step
+    end
+
+    context 'created with valid number near upper limit' do
+      include_examples 'equals input', max - step
     end
 
     context 'created with value at the upper limit' do
@@ -66,35 +67,23 @@ describe Fortnox::API::Types::Sized do
     end
 
     context 'created with value above the upper limit' do
-      include_examples 'raises ConstraintError', max + 0.1
+      include_examples 'raises ConstraintError', max + step
+    end
+  end
+
+  describe 'Float' do
+    min = 0.0
+    max = 100.0
+    it_behaves_like 'Sized Numeric', min, max, 0.1 do
+      let( :described_class ){ Fortnox::API::Types::Sized::Float[ min, max ] }
     end
   end
 
   describe 'Integer' do
+    min = 0
     max = 100
-    let( :described_class ){ Fortnox::API::Types::Sized::Integer[ 0, max ] }
-
-    it_behaves_like 'Sized Types'
-
-    context 'created with value below the lower limit' do
-      include_examples 'raises ConstraintError', -1
-    end
-
-    context 'created with value at the lower limit' do
-      include_examples 'equals input', 0
-    end
-
-    context 'created with valid number' do
-      include_examples 'equals input', 50
-    end
-
-    context 'created with value at the upper limit' do
-      include_examples 'equals input', max
-    end
-
-    context 'created with value above the upper limit' do
-      include_examples 'raises ConstraintError', max + 1
+    it_behaves_like 'Sized Numeric', min, max, 1 do
+      let( :described_class ){ Fortnox::API::Types::Sized::Integer[ min, max ] }
     end
   end
-
 end
