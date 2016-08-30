@@ -21,7 +21,8 @@ describe Fortnox::API::Types::Sized do
   end
 
   describe 'String' do
-    let( :described_class ){ Fortnox::API::Types::Sized::String[ 5 ] }
+    max_size = 5
+    let( :described_class ){ Fortnox::API::Types::Sized::String[ max_size ] }
 
     it_behaves_like 'Sized Types'
 
@@ -30,11 +31,15 @@ describe Fortnox::API::Types::Sized do
     end
 
     context 'created with fewer characters than the limit' do
-      include_examples 'equals input', 'Test'
+      include_examples 'equals input', 'a' * (max_size - 1)
+    end
+
+    context 'created with valid string' do
+      include_examples 'equals input', 'a' * max_size
     end
 
     context 'created with more characters than the limit' do
-      include_examples 'raises ConstraintError', 'Too many'
+      include_examples 'raises ConstraintError', 'a' * (max_size + 1)
     end
   end
 
