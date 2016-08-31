@@ -9,8 +9,6 @@ module Fortnox
 
         CONFIGURATION = Fortnox::API::Repository::Base::Options.new(
           uri: '/orders/',
-          json_collection_wrapper: 'Orders',
-          json_entity_wrapper: 'Order',
           unique_id: 'DocumentNumber',
           keys_filtered_on_save: [
             :url,

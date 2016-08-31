@@ -3,13 +3,25 @@ module Fortnox
     module Mapper
       module JSONConversion
 
-        # TODO: Needs renaming (does not instansiates the entity any more)
-        def hash_to_entity( entity_json_hash )
-          remove_nil_values(entity_json_hash)
-          entity_hash = convert_hash_keys_from_json_format( entity_json_hash )
+        def wrapped_json_collection_to_entities_hash( json_collection_hash )
+          entities_hash = []
+          json_collection_hash[ json_collection_wrapper ].each do |json_hash|
+            entities_hash << json_hash_to_entity_hash( json_hash )
+          end
+
+          entities_hash
         end
 
-        def entity_to_hash( entity, json_entity_wrapper, keys_to_filter )
+        def wrapped_json_hash_to_entity_hash( json_entity_hash )
+          json_hash_to_entity_hash( json_entity_hash[json_entity_wrapper] )
+        end
+
+        def json_hash_to_entity_hash( entity_json_hash )
+          remove_nil_values( entity_json_hash )
+          convert_hash_keys_from_json_format( entity_json_hash )
+        end
+
+        def entity_to_hash( entity, keys_to_filter )
           entity_hash = entity.to_hash
           clean_entity_hash = sanitise( entity_hash, keys_to_filter )
           entity_json_hash = convert_hash_keys_to_json_format( clean_entity_hash )

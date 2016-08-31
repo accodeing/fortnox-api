@@ -12,7 +12,7 @@ module Fortnox
           }.freeze
 
           def initialize
-            super( KEY_MAP )
+            super( KEY_MAP, 'Order', 'Orders' )
           end
       end
     end

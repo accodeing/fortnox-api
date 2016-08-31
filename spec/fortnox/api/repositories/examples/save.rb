@@ -11,7 +11,7 @@ shared_examples_for '.save' do |attribute_hash_name, required_attributes = {}|
     end
     let( :new_model ){ described_class::MODEL.new( new_hash ) }
     let( :save_new ){ VCR.use_cassette( "#{ vcr_dir }/save_new" ){ subject.save( new_model ) } }
-    let( :entity_wrapper ){ subject.options.json_entity_wrapper }
+    let( :entity_wrapper ){ subject.mapper.json_entity_wrapper }
     let( :value ){ 'A value' }
 
     shared_examples_for 'save' do

@@ -9,8 +9,6 @@ module Fortnox
 
         CONFIGURATION = Fortnox::API::Repository::Base::Options.new(
           uri: '/customers/',
-          json_collection_wrapper: 'Customers',
-          json_entity_wrapper: 'Customer',
           unique_id: 'CustomerNumber',
           keys_filtered_on_save: [
             :url,
@@ -22,7 +20,6 @@ module Fortnox
         def initialize
           super( CONFIGURATION )
         end
-
       end
     end
   end

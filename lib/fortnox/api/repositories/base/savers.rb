@@ -6,11 +6,7 @@ module Fortnox
         def save( entity )
           return true if entity.saved?
 
-          hash = @mapper.entity_to_hash(
-            entity,
-            @options.json_entity_wrapper,
-            @options.keys_filtered_on_save
-          )
+          hash = @mapper.entity_to_hash( entity, @options.keys_filtered_on_save )
 
           return save_new( hash ) if entity.new?
           update_existing( hash )
@@ -35,7 +31,7 @@ module Fortnox
         end
 
         def cut_id_from_hash( hash )
-          hash[ @options.json_entity_wrapper ].delete( @options.unique_id )
+          hash[ @mapper.json_entity_wrapper ].delete( @options.unique_id )
         end
       end
     end

@@ -9,8 +9,6 @@ module Fortnox
 
         CONFIGURATION = Fortnox::API::Repository::Base::Options.new(
           uri: '/invoices/',
-          json_collection_wrapper: 'Invoices',
-          json_entity_wrapper: 'Invoice',
           unique_id: 'DocumentNumber',
           keys_filtered_on_save: [
             :url,

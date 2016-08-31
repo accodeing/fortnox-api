@@ -12,7 +12,7 @@ module Fortnox
 
         require "fortnox/api/repositories/base/options"
 
-        attr_reader :options
+        attr_reader :options, :mapper
 
         def initialize( options )
           super()

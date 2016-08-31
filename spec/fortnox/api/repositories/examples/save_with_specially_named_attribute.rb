@@ -18,7 +18,7 @@ shared_examples_for '.save with specially named attribute' do |attributes, attri
       it{ is_expected.to_not raise_error }
 
       describe 'response' do
-        subject { save_model[repository.options.json_entity_wrapper] }
+        subject { save_model[repository.mapper.json_entity_wrapper] }
         it{ is_expected.to include(json_name => attributes[attribute_name]) }
       end
     end

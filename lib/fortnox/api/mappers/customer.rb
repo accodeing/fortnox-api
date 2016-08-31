@@ -18,7 +18,7 @@ module Fortnox
         }.freeze
 
         def initialize
-          super( KEY_MAP )
+          super( KEY_MAP, 'Customer', 'Customers' )
         end
       end
     end
