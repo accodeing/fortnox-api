@@ -7,27 +7,18 @@ module Fortnox
 
         def all()
           response_hash = get( @options.uri )
-          entities_hash = @mapper.wrapped_json_collection_to_entities_hash( response_hash )
-          entities_hash.map do |entity_hash|
-            instansiate( entity_hash )
-          end
+          instansiate_collection_response( response_hash )
         end
 
         def only( filter )
           response_hash = get( "#{ @options.uri }?filter=#{ filter }" )
-          entities_hash = @mapper.wrapped_json_collection_to_entities_hash( response_hash )
-          entities_hash.map do |entity_hash|
-            instansiate( entity_hash )
-          end
+          instansiate_collection_response( response_hash )
         end
 
         def search( hash )
           attribute, value = hash.first
           response_hash = get( "#{ @options.uri }?#{ attribute }=#{ value }" )
-          entities_hash = @mapper.wrapped_json_collection_to_entities_hash( response_hash )
-          entities_hash.map do |entity_hash|
-            instansiate( entity_hash )
-          end
+          instansiate_collection_response( response_hash )
         end
 
         def find( id_or_hash )
@@ -58,6 +49,15 @@ module Fortnox
         def escape( key, value )
           "#{ CGI.escape(key.to_s) }=#{ CGI.escape(value.to_s) }"
         end
+
+        private
+
+          def instansiate_collection_response( response_hash )
+            entities_hash = @mapper.wrapped_json_collection_to_entities_hash( response_hash )
+            entities_hash.map do |entity_hash|
+              instansiate( entity_hash )
+            end
+          end
 
       end
     end
