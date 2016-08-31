@@ -5,6 +5,12 @@ module Fortnox
     module Mapper
       class Base
         include JSONConversion
+
+        attr_reader :key_map
+
+        def initialize( key_map )
+          @key_map = key_map.freeze
+        end
       end
     end
   end

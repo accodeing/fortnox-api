@@ -23,7 +23,7 @@ module Fortnox
         end
 
         def convert_key_from_json( key )
-          self.class::KEY_MAP.fetch( key ){ default_key_from_json_transform( key ) }
+          key_map.fetch( key ){ default_key_from_json_transform( key ) }
         end
 
         def default_key_from_json_transform( key )
@@ -42,7 +42,7 @@ module Fortnox
         end
 
         def convert_key_to_json( key )
-          self.class::KEY_MAP.fetch( key ){ default_key_to_json_transform( key ) }
+          key_map.fetch( key ){ default_key_to_json_transform( key ) }
         end
 
         def default_key_to_json_transform( key )
