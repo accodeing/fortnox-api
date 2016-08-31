@@ -11,8 +11,8 @@ shared_examples_for '.find' do
     end
 
     specify 'returns correct Customer' do
-      id_attribute = described_class::MAPPER.new.convert_key_from_json(
-        subject.options.unique_id
+      id_attribute = described_class::MAPPER.new.send(
+        :convert_key_from_json, subject.options.unique_id
       )
       expect( find_id_1.send(id_attribute).to_i ).to eq( find_id )
     end
