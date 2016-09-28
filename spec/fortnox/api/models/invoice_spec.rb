@@ -3,7 +3,9 @@ require 'fortnox/api/models/invoice'
 require 'fortnox/api/models/context'
 require 'fortnox/api/models/document_base_examples'
 
-describe Fortnox::API::Model::Invoice do
+describe Fortnox::API::Model::Invoice, type: :model do
+  subject{ described_class }
+
   include_context 'models context'
 
   it_behaves_like 'DocumentBase Model',

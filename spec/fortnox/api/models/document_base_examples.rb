@@ -1,6 +1,7 @@
 require 'fortnox/api/models/context'
 
 shared_examples_for 'DocumentBase Model' do |row_class, row_attribute|
+  it{ is_expected.to require_attribute( :customer_number, { customer_number: '12345' } ) }
 
   context "when having a(n) #{row_class}" do
     it 'returns the correct object' do
