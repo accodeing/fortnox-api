@@ -48,4 +48,6 @@ describe Fortnox::API::Model::Customer, type: :model do
   it{ is_expected.to have_sized_string( :visiting_zip_code, 10, valid_hash ) }
   it{ is_expected.to have_sized_string( :your_reference, 50, valid_hash ) }
   it{ is_expected.to have_sized_string( :zip_code, 10, valid_hash ) }
+
+  it{ is_expected.to have_customer_type( :type, valid_hash ) }
 end
