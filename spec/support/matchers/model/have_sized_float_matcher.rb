@@ -4,34 +4,23 @@ module Matchers
       HaveSizedFloatMatcher.new( attribute, min_value, max_value, valid_hash )
     end
 
-    class HaveSizedFloatMatcher
+    class HaveSizedFloatMatcher < AttributeMatcher
       STEP = 0.1
 
       def initialize( attribute, min_value, max_value, valid_hash )
-        @attribute = attribute
+        super( attribute, valid_hash, 'sized float' )
+
         @min_value = min_value
         @max_value = max_value
-        @valid_hash = valid_hash.dup
-        @errors = ''
       end
 
       def matches?( klass )
-        @klass = klass
+        super
 
         rejects_too_small_value? &&
           accepts_min_value? &&
           accepts_max_value? &&
           rejects_too_big_value?
-      end
-
-      def failure_message
-        "Expected class to have attribute #{@attribute.inspect} defined as sized float, "\
-        "but got following errors: 
-        #{@errors}"
-      end
-
-      def description
-        "have sized float attribute #{@attribute.inspect}"
       end
 
       private
@@ -56,16 +45,6 @@ module Matchers
           expect_error("Exception missing for too big value (#{too_big_value})") do
             @klass.new( @valid_hash.merge( @attriute => too_big_value ) )
           end
-        end
-
-        def expect_error(msg, &block)
-          block.call
-
-          @errors << msg
-          false # Fail test since expected error not thrown
-        rescue Dry::StructError
-          # TODO: check if error message is correct
-          true
         end
     end
   end
