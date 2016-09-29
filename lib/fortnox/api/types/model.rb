@@ -1,7 +1,7 @@
 module Fortnox
   module API
     module Types
-      class Model < Dry::Types::Struct
+      class Model < Dry::Struct
         constructor_type(:symbolized)
 
         def initialize( input_attributes )

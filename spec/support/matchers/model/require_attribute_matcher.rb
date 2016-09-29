@@ -32,13 +32,13 @@ module Matchers
 
           false # Fail test since expected error is not thrown
 
-        rescue Dry::Types::StructError
+        rescue Dry::StructError
           true
         end
 
         def includes_error_message
           @klass.new(@invalid_hash)
-        rescue Dry::Types::StructError => error
+        rescue Dry::StructError => error
           if error.message.include?(expected_error_message)
             return true
           else
@@ -52,7 +52,7 @@ module Matchers
         end
 
         def no_exception_failure_message
-          "Expected class to raise #{Dry::Types::StructError} "\
+          "Expected class to raise #{Dry::StructError} "\
           "when attribute #{@attribute.inspect} is missing."
         end
 
