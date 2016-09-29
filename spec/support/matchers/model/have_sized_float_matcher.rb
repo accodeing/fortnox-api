@@ -63,7 +63,8 @@ module Matchers
 
           @errors << msg
           false # Fail test since expected error not thrown
-        rescue Dry::Types::StructError => error
+        rescue Dry::Types::StructError
+          # TODO: check if error message is correct
           true
         end
     end
