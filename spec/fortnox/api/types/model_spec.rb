@@ -7,24 +7,29 @@ RSpec.describe Fortnox::API::Types::Model do
     module Types
       include Dry::Types.module
 
-      Email = String.constrained(format: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i)
       Age = Int.constrained(gt: 18)
     end
 
-    class FailureUser < Fortnox::API::Types::Model
+    class TypesModelUser < Fortnox::API::Types::Model
       attribute :age, Types::Age
-      attribute :email, Types::Email
     end
 
-    class SuccessUser < Dry::Struct
+    class DryStructUser < Dry::Struct
       attribute :age, Types::Age
-      attribute :email, Types::Email
     end
   end
 
-  it do
-    puts FailureUser.new(age: 19, email: 'hej') # Should raise Dry::Struct::Error!
-    puts SuccessUser.new(age: 19, email: 'hej')
-    fail
+  let(:args){ { age: 17 } }
+
+  describe 'User inheriting directly from Dry::Struct' do
+    subject{ -> { DryStructUser.new(args) } }
+
+    it{ is_expected.to raise_error(Dry::Struct::Error) }
+  end
+
+  describe "User inheriting from #{described_class}" do
+    subject{ -> { TypesModelUser.new(args) } }
+
+    it{ is_expected.to raise_error(Dry::Struct::Error) }
   end
 end
