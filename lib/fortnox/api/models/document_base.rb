@@ -31,10 +31,10 @@ module Fortnox
             base.attribute :cancelled, Types::Nullable::Boolean.with( read_only: true )
 
             # City City for the document address.
-            base.attribute :city, Types::Nullable::String
+            base.attribute :city, Types::Sized::String[ 1024 ]
 
             # Comments Comments of the document
-            base.attribute :comments, Types::Nullable::String
+            base.attribute :comments, Types::Sized::String[ 1024 ]
 
             # ContributionPercent Document contribution in percent.
             base.attribute :contribution_percent, Types::Nullable::Float.with( read_only: true )
@@ -43,13 +43,13 @@ module Fortnox
             base.attribute :contribution_value, Types::Nullable::Float.with( read_only: true )
 
             # Country Country for the document address.
-            base.attribute :country, Types::Nullable::String
+            base.attribute :country, Fortnox::API::Types::CountryCode
 
             # CostCenter Code of the cost center.
             base.attribute :cost_center, Types::Nullable::String
 
             # Currency Code of the currency.
-            base.attribute :currency, Types::Nullable::String
+            base.attribute :currency, Fortnox::API::Types::Currency
 
             # CurrencyRate Currency rate used for the document
             base.attribute :currency_rate, Types::Nullable::Float
@@ -64,25 +64,25 @@ module Fortnox
             base.attribute :customer_number, Types::Required::String
 
             # DeliveryAddress1 Document delivery address 1.
-            base.attribute :delivery_address1, Types::Nullable::String
+            base.attribute :delivery_address1, Types::Sized::String[ 1024 ]
 
             # DeliveryAddress2 Document delivery address 2.
-            base.attribute :delivery_address2, Types::Nullable::String
+            base.attribute :delivery_address2, Types::Sized::String[ 1024 ]
 
             # DeliveryCity City for the document delivery address.
-            base.attribute :delivery_city, Types::Nullable::String
+            base.attribute :delivery_city, Types::Sized::String[ 1024 ]
 
             # DeliveryCountry Country for the document delivery address.
-            base.attribute :delivery_country, Types::Nullable::String
+            base.attribute :delivery_country, Fortnox::API::Types::CountryCode
 
             # DeliveryDate Date of delivery.
             base.attribute :delivery_date, Types::Nullable::Date
 
             # DeliveryName  Name of the recipient of the delivery
-            base.attribute :delivery_name, Types::Nullable::String
+            base.attribute :delivery_name, Types::Sized::String[ 1024 ]
 
             # DeliveryZipCode ZipCode for the document delivery address.
-            base.attribute :delivery_zip_code, Types::Nullable::String
+            base.attribute :delivery_zip_code, Types::Sized::String[ 1024 ]
 
             # DocumentNumber The document number.
             base.attribute :document_number, Types::Nullable::Integer
