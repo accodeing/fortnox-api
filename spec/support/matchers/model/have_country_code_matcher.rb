@@ -6,7 +6,7 @@ module Matchers
 
     class HaveCountryCodeMatcher < EnumMatcher
       def initialize( attribute, valid_hash )
-        super( attribute, valid_hash, 'customer type', 'CountryCode', 'CountryCodes' )
+        super( attribute, valid_hash, 'country code', 'CountryCode', 'CountryCodes' )
       end
     end
   end
