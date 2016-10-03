@@ -1,6 +1,6 @@
 require 'spec_helper'
 require 'fortnox/api/models/order'
-require 'fortnox/api/models/document_base_examples'
+require 'fortnox/api/models/examples/document_base'
 
 describe Fortnox::API::Model::Order, type: :model do
   valid_hash = { customer_number: '12345' }
