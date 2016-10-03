@@ -50,4 +50,5 @@ describe Fortnox::API::Model::Customer, type: :model do
   it{ is_expected.to have_sized_string( :zip_code, 10, valid_hash ) }
 
   it{ is_expected.to have_customer_type( :type, valid_hash ) }
+  it{ is_expected.to have_currency( :currency, valid_hash ) }
 end
