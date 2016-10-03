@@ -56,4 +56,6 @@ describe Fortnox::API::Model::Customer, type: :model do
   it{ is_expected.to have_country_code( :country_code, valid_hash ) }
   it{ is_expected.to have_country_code( :delivery_country_code, valid_hash ) }
   it{ is_expected.to have_country_code( :visiting_country_code, valid_hash ) }
+
+  it{ is_expected.to have_account_number( :sales_account, valid_hash ) }
 end
