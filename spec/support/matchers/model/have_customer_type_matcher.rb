@@ -14,7 +14,7 @@ module Matchers
       def matches?( klass )
         super
 
-        correct_type? && rejects_invalid_value?
+        correct_type? && rejects_invalid_value? && accepts_valid_value?
       end
 
       private
@@ -33,6 +33,11 @@ module Matchers
           expect_error("Exception missing for nonsense value #{NONSENSE_VALUE.inspect}") do
             @klass.new( @valid_hash.merge( @attribute => NONSENSE_VALUE ) )
           end
+        end
+
+        def accepts_valid_value?
+          valid_value = Fortnox::API::Types::Currencies.values.first
+          @klass.new( @valid_hash.merge( @attribute => valid_value ) )
         end
     end
   end
