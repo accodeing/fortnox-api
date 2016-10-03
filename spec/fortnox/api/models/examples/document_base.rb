@@ -1,6 +1,6 @@
 require 'fortnox/api/models/context'
 
-shared_examples_for 'DocumentBase Model' do |row_class, row_attribute, valid_hash|
+shared_examples_for 'DocumentBase Model' do |row_class, row_attribute, valid_hash, valid_row_hash: {}|
   it{ is_expected.to require_attribute( :customer_number, valid_hash ) }
 
   it{ is_expected.to have_sized_string( :address1, 1024, valid_hash ) }
@@ -33,7 +33,7 @@ shared_examples_for 'DocumentBase Model' do |row_class, row_attribute, valid_has
 
   context "when having a(n) #{row_class}" do
     it 'returns the correct object' do
-      row = row_class.new
+      row = row_class.new(valid_row_hash)
       document_base = described_class.new( customer_number: '123', row_attribute => [row] )
       expect(document_base.send(row_attribute)).to eq([row])
     end

@@ -10,5 +10,6 @@ describe Fortnox::API::Model::Order, type: :model do
   it_behaves_like 'DocumentBase Model',
                   Fortnox::API::Model::OrderRow,
                   :order_rows,
-                  valid_hash
+                  valid_hash,
+                  valid_row_hash: { order_quantity: 1.1 }
 end
