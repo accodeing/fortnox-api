@@ -1,6 +1,6 @@
 module Matchers
   module Model
-    def have_email( attribute, valid_hash )
+    def have_email( attribute, valid_hash = {} )
       HaveEmailMatcher.new( attribute, valid_hash )
     end
 

@@ -1,6 +1,6 @@
 module Matchers
   module Model
-    def have_sized_string( attribute, max_size, valid_hash )
+    def have_sized_string( attribute, max_size, valid_hash = {} )
       HaveSizedStringMatcher.new( attribute, max_size, valid_hash )
     end
 

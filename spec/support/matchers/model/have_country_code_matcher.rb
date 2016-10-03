@@ -1,6 +1,6 @@
 module Matchers
   module Model
-    def have_country_code( attribute, valid_hash )
+    def have_country_code( attribute, valid_hash = {} )
       HaveCountryCodeMatcher.new( attribute, valid_hash )
     end
 

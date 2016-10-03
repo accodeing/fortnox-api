@@ -1,6 +1,6 @@
 module Matchers
   module Model
-    def have_currency( attribute, valid_hash )
+    def have_currency( attribute, valid_hash = {} )
       HaveCurrencyMatcher.new( attribute, valid_hash )
     end
 

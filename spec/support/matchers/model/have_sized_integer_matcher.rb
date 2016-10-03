@@ -1,6 +1,6 @@
 module Matchers
   module Model
-    def have_sized_integer( attribute, min_value, max_value, valid_hash )
+    def have_sized_integer( attribute, min_value, max_value, valid_hash = {} )
       HaveSizedIntegerMatcher.new( attribute, min_value, max_value, valid_hash )
     end
 

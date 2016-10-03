@@ -1,6 +1,6 @@
 module Matchers
   module Model
-    def require_attribute(attribute, valid_hash)
+    def require_attribute(attribute, valid_hash = {})
       RequireAttributeMatcher.new(attribute, valid_hash)
     end
 

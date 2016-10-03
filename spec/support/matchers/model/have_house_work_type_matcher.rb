@@ -1,6 +1,6 @@
 module Matchers
   module Model
-    def have_house_work_type( attribute, valid_hash )
+    def have_house_work_type( attribute, valid_hash = {} )
       HaveHouseWorkType.new( attribute, valid_hash )
     end
 
