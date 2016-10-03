@@ -1,5 +1,6 @@
 require 'support/matchers/model/attribute_matcher'
 require 'support/matchers/model/enum_matcher'
+require 'support/matchers/model/have_account_number_matcher'
 require 'support/matchers/model/have_country_code_matcher'
 require 'support/matchers/model/have_currency_matcher'
 require 'support/matchers/model/have_customer_type_matcher'
