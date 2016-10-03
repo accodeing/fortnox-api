@@ -84,34 +84,34 @@ module Fortnox
         attribute :delivery_zip_code, Fortnox::API::Types::Sized::String[ 1024 ]
 
         #Email	Email address of the customer. 1024 characters
-        attribute :email, Fortnox::API::Types::Sized::String[ 1024 ]
+        attribute :email, Types::Email
 
         #EmailInvoice	Invoice email address of the customer. 1024 characters
-        attribute :email_invoice, Fortnox::API::Types::Sized::String[ 1024 ]
+        attribute :email_invoice, Types::Email
 
         #EmailInvoiceBCC	Invoice BCC email address of the customer. 1024 characters
-        attribute :email_invoice_bcc, Fortnox::API::Types::Sized::String[ 1024 ]
+        attribute :email_invoice_bcc, Types::Email
 
         #EmailInvoiceCC	Invoice CC email address of the customer. 1024 characters
-        attribute :email_invoice_cc, Fortnox::API::Types::Sized::String[ 1024 ]
+        attribute :email_invoice_cc, Types::Email
 
         #EmailOffer	Offer email address of the customer. 1024 characters
-        attribute :email_offer, Fortnox::API::Types::Sized::String[ 1024 ]
+        attribute :email_offer, Types::Email
 
         #EmailOfferBCC	Offer BCC email address of the customer. 1024 characters
-        attribute :email_offer_bcc, Fortnox::API::Types::Sized::String[ 1024 ]
+        attribute :email_offer_bcc, Types::Email
 
         #EmailOfferCC	Offer CC email address of the customer. 1024 characters
-        attribute :email_offer_cc, Fortnox::API::Types::Sized::String[ 1024 ]
+        attribute :email_offer_cc, Types::Email
 
         #EmailOrder	Order email address of the customer. 1024 characters
-        attribute :email_order, Fortnox::API::Types::Sized::String[ 1024 ]
+        attribute :email_order, Types::Email
 
         #EmailOrderBCC	Order BCC email address of the customer. 1024 characters
-        attribute :email_order_bcc, Fortnox::API::Types::Sized::String[ 1024 ]
+        attribute :email_order_bcc, Types::Email
 
         #EmailOrderCC	Order CC email address of the customer. 1024 characters
-        attribute :email_order_cc, Fortnox::API::Types::Sized::String[ 1024 ]
+        attribute :email_order_cc, Types::Email
 
         #Fax	Fax number of the customer. 1024 characters
         attribute :fax, Fortnox::API::Types::Sized::String[ 1024 ]

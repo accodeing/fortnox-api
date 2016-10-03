@@ -26,16 +26,6 @@ describe Fortnox::API::Model::Customer, type: :model do
   it{ is_expected.to have_sized_string( :delivery_phone1, 1024, valid_hash ) }
   it{ is_expected.to have_sized_string( :delivery_phone2, 1024, valid_hash ) }
   it{ is_expected.to have_sized_string( :delivery_zip_code, 1024, valid_hash ) }
-  it{ is_expected.to have_sized_string( :email, 1024, valid_hash ) }
-  it{ is_expected.to have_sized_string( :email_invoice, 1024, valid_hash ) }
-  it{ is_expected.to have_sized_string( :email_invoice_bcc, 1024, valid_hash ) }
-  it{ is_expected.to have_sized_string( :email_invoice_cc, 1024, valid_hash ) }
-  it{ is_expected.to have_sized_string( :email_offer, 1024, valid_hash ) }
-  it{ is_expected.to have_sized_string( :email_offer_bcc, 1024, valid_hash ) }
-  it{ is_expected.to have_sized_string( :email_offer_cc, 1024, valid_hash ) }
-  it{ is_expected.to have_sized_string( :email_order, 1024, valid_hash ) }
-  it{ is_expected.to have_sized_string( :email_order_bcc, 1024, valid_hash ) }
-  it{ is_expected.to have_sized_string( :email_order_cc, 1024, valid_hash ) }
   it{ is_expected.to have_sized_string( :fax, 1024, valid_hash ) }
   it{ is_expected.to have_sized_string( :invoice_remark, 1024, valid_hash ) }
   it{ is_expected.to have_sized_string( :name, 1024, valid_hash ) }
@@ -48,6 +38,17 @@ describe Fortnox::API::Model::Customer, type: :model do
   it{ is_expected.to have_sized_string( :visiting_zip_code, 10, valid_hash ) }
   it{ is_expected.to have_sized_string( :your_reference, 50, valid_hash ) }
   it{ is_expected.to have_sized_string( :zip_code, 10, valid_hash ) }
+
+  it{ is_expected.to have_email( :email, valid_hash ) }
+  it{ is_expected.to have_email( :email_invoice, valid_hash ) }
+  it{ is_expected.to have_email( :email_invoice_bcc, valid_hash ) }
+  it{ is_expected.to have_email( :email_invoice_cc, valid_hash ) }
+  it{ is_expected.to have_email( :email_offer, valid_hash ) }
+  it{ is_expected.to have_email( :email_offer_bcc, valid_hash ) }
+  it{ is_expected.to have_email( :email_offer_cc, valid_hash ) }
+  it{ is_expected.to have_email( :email_order, valid_hash ) }
+  it{ is_expected.to have_email( :email_order_bcc, valid_hash ) }
+  it{ is_expected.to have_email( :email_order_cc, valid_hash ) }
 
   it{ is_expected.to have_customer_type( :type, valid_hash ) }
 
