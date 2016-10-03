@@ -1,4 +1,6 @@
 require 'support/matchers/model/attribute_matcher'
+require 'support/matchers/model/enum_matcher'
+require 'support/matchers/model/have_currency_matcher'
 require 'support/matchers/model/have_customer_type_matcher'
 require 'support/matchers/model/have_sized_float_matcher'
 require 'support/matchers/model/have_sized_string_matcher'
