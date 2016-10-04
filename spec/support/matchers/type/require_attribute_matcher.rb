@@ -10,13 +10,13 @@ module Matchers
         super( attribute )
 
         @attr_type = attr_type
-        @exception = Dry::Types::ConstraintError
+        @exception = Dry::Struct::Error
       end
 
       private
 
         def raise_error
-          @klass.new
+          @klass.new({})
 
           false # Fail test since expected error is not thrown
         rescue @exception
@@ -25,7 +25,7 @@ module Matchers
 
 
         def includes_error_message
-          @klass.new
+          @klass.new({})
         rescue @exception => error
           if error.message == expected_error_message
             return true
@@ -36,7 +36,7 @@ module Matchers
         end
 
         def expected_error_message
-          "nil violates constraints (type?(#{@attr_type}, nil) failed)"
+          "[#{@klass}.new] #{@attribute.inspect} is missing in Hash input"
         end
     end
   end
