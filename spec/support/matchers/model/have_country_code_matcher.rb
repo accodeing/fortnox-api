@@ -6,6 +6,8 @@ module Matchers
 
     class HaveCountryCodeMatcher < EnumMatcher
       def initialize( attribute, valid_hash )
+        @nonsense_value = 'XX'.freeze
+
         super( attribute, valid_hash, 'country code', 'CountryCode', 'CountryCodes' )
       end
     end

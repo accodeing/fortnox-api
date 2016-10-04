@@ -1,12 +1,11 @@
 module Matchers
   module Model
     class EnumMatcher < AttributeMatcher
-      NONSENSE_VALUE = 'NONSENSE_VALUE'.freeze
-
       def initialize( attribute, valid_hash, attr_type, enum_type, enum_types )
         super( attribute, valid_hash, attr_type )
         @enum_type = Fortnox::API::Types.const_get(enum_type)
         @enum_values = Fortnox::API::Types.const_get(enum_types).values
+        @nonsense_value ||= 'NONSENSE_VALUE'.freeze
       end
 
       def matches?( klass )
@@ -28,8 +27,9 @@ module Matchers
         end
 
         def rejects_invalid_value?
-          expect_error("Exception missing for nonsense value #{NONSENSE_VALUE.inspect}") do
-            @klass.new( @valid_hash.merge( @attribute => NONSENSE_VALUE ) )
+          expected_message = "Exception missing for nonsense value #{@nonsense_value.inspect}"
+          expect_error(expected_message) do
+            @klass.new( @valid_hash.merge( @attribute => @nonsense_value ) )
           end
         end
 
