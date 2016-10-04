@@ -29,7 +29,7 @@ module Matchers
 
           @errors << msg
           false # Fail test since expected error not thrown
-        rescue Dry::Types::ConstraintError
+        rescue Dry::Struct::Error
           # TODO: check if error message is correct
           true
         end
