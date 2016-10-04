@@ -37,7 +37,7 @@ module Matchers
         def rejects_too_big_value?
           too_big_value = @max_value + @step
           expect_error("Exception missing for too big value (#{too_big_value})") do
-            @klass.new( @valid_hash.merge( @attriute => too_big_value ) )
+            @klass.new( @valid_hash.merge( @attribute => too_big_value ) )
           end
         end
     end
