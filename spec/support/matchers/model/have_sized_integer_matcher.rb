@@ -6,9 +6,7 @@ module Matchers
 
     class HaveSizedIntegerMatcher < NumericMatcher
       def initialize( attribute, min_value, max_value, valid_hash )
-        @step = 1
-
-        super( attribute, min_value, max_value, valid_hash, 'sized integer' )
+        super( attribute, min_value, max_value, valid_hash, 'sized integer', 1 )
       end
     end
   end

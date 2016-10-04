@@ -6,9 +6,7 @@ module Matchers
 
     class HaveSizedFloatMatcher < NumericMatcher
       def initialize( attribute, min_value, max_value, valid_hash )
-        @step = 0.1
-
-        super( attribute, min_value, max_value, valid_hash, 'sized float' )
+        super( attribute, min_value, max_value, valid_hash, 'sized float', 0.1 )
       end
     end
   end
