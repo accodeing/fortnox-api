@@ -21,9 +21,8 @@ module Matchers
 
         def rejects_too_small_value?
           too_small_value = @min_value - @step
-          expect_error("Exception missing for too small value (#{too_small_value})") do
-            @klass.new( @valid_hash.merge( @attribute => too_small_value ) )
-          end
+          expected_error_message = "Exception missing for too small value (#{too_small_value})"
+          rejects_value?(too_small_value, expected_error_message)
         end
 
         def accepts_min_value?
@@ -36,8 +35,13 @@ module Matchers
 
         def rejects_too_big_value?
           too_big_value = @max_value + @step
-          expect_error("Exception missing for too big value (#{too_big_value})") do
-            @klass.new( @valid_hash.merge( @attribute => too_big_value ) )
+          expected_error_message = "Exception missing for too big value (#{too_big_value})"
+          rejects_value?(too_big_value, expected_error_message)
+        end
+
+        def rejects_value?(value, expected_error_message)
+          expect_error(expected_error_message) do
+            @klass.new( @valid_hash.merge( @attribute => value ) )
           end
         end
     end
