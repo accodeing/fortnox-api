@@ -11,7 +11,7 @@ require 'fortnox/api/repositories/examples/search'
 describe Fortnox::API::Repository::Order, order: :defined, integration: true do
   include_context 'environment'
 
-  required_hash = { customer_number: 1 }
+  required_hash = { customer_number: '1' }
   include_examples '.save', :comments, required_hash
   include_examples '.save with nested model',
                    required_hash,
