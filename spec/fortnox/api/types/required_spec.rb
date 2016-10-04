@@ -10,7 +10,7 @@ describe Fortnox::API::Types::Required, type: :type do
     end
   end
 
-  shared_examples_for 'required attribute' do |type, klass|
+  shared_examples_for 'required attribute' do |type|
     it{ is_expected.to require_attribute(:required_attribute, type) }
   end
 
