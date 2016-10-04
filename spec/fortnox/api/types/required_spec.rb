@@ -3,7 +3,7 @@ require 'fortnox/api/types'
 require 'fortnox/api/types/required'
 
 describe Fortnox::API::Types::Required, type: :type do
-  subject { TestClass }
+  subject{ TestClass }
 
   describe 'String' do
     using_test_class do

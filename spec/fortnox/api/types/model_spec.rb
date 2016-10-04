@@ -23,13 +23,13 @@ RSpec.describe Fortnox::API::Types::Model do
     let(:args){ { age: 17 } }
 
     describe 'User inheriting directly from Dry::Struct' do
-      subject{ -> { DryStructUser.new(args) } }
+      subject{ ->{ DryStructUser.new(args) } }
 
       it{ is_expected.to raise_error(Dry::Struct::Error) }
     end
 
     describe "User inheriting from #{described_class}" do
-      subject{ -> { TypesModelUser.new(args) } }
+      subject{ ->{ TypesModelUser.new(args) } }
 
       it{ is_expected.to raise_error(Dry::Struct::Error) }
     end
@@ -50,7 +50,7 @@ RSpec.describe Fortnox::API::Types::Model do
       end
     end
 
-    subject{ -> { User.new() } }
+    subject{ ->{ User.new() } }
 
     it{ is_expected.not_to raise_error }
 
