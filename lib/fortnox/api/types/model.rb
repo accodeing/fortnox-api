@@ -2,7 +2,7 @@ module Fortnox
   module API
     module Types
       class Model < Dry::Struct
-        constructor_type(:symbolized)
+        constructor_type(:schema)
 
         def initialize( input_attributes )
           if (missing_key = first_missing_required_key( input_attributes ))

@@ -118,13 +118,13 @@ module Fortnox
 
         #InvoiceAdministrationFee  Invoice administration fee of the customer, 12 digits (incl. decimals).
         attribute :invoice_administration_fee,
-                  Fortnox::API::Types::Sized::Float[ 0.0, 99_999_999_999.0 ]
+                  Fortnox::API::Types::Sized::Float[ 0.0, 99_999_999_999.9 ]
 
         #InvoiceDiscount	Invoice discount of the customer, 12 digits (incl. decimals)
-        attribute :invoice_discount, Fortnox::API::Types::Sized::Float[ 0.0, 99_999_999_999.0 ]
+        attribute :invoice_discount, Fortnox::API::Types::Sized::Float[ 0.0, 99_999_999_999.9 ]
 
         #InvoiceFreight	Invoice freight fee of the customer, 12 digits (incl. decimals)
-        attribute :invoice_freight, Fortnox::API::Types::Sized::Float[ 0.0, 99_999_999_999.0 ]
+        attribute :invoice_freight, Fortnox::API::Types::Sized::Float[ 0.0, 99_999_999_999.9 ]
 
         #InvoiceRemark	Invoice remark of the customer. 1024 characters
         attribute :invoice_remark, Fortnox::API::Types::Sized::String[ 1024 ]
@@ -148,7 +148,7 @@ module Fortnox
         attribute :price_list, Fortnox::API::Types::Nullable::String
 
         #Project	Project of the customer, Project in Fortnox
-        attribute :project, Fortnox::API::Types::Nullable::Integer
+        attribute :project, Fortnox::API::Types::Nullable::String
 
         #SalesAccount	Sales account of the customer, 4 digits
         attribute :sales_account, Fortnox::API::Types::AccountNumber

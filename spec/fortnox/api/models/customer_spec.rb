@@ -9,9 +9,9 @@ describe Fortnox::API::Model::Customer, type: :model do
 
   it{ is_expected.to require_attribute( :name, valid_hash ) }
 
-  it{ is_expected.to have_sized_float( :invoice_discount, 0.0, 99_999_999_999.0, valid_hash ) }
-  it{ is_expected.to have_sized_float( :invoice_administration_fee, 0.0, 99_999_999_999.0, valid_hash ) }
-  it{ is_expected.to have_sized_float( :invoice_freight, 0.0, 99_999_999_999.0, valid_hash ) }
+  it{ is_expected.to have_sized_float( :invoice_discount, 0.0, 99_999_999_999.9, valid_hash ) }
+  it{ is_expected.to have_sized_float( :invoice_administration_fee, 0.0, 99_999_999_999.9, valid_hash ) }
+  it{ is_expected.to have_sized_float( :invoice_freight, 0.0, 99_999_999_999.9, valid_hash ) }
 
   it{ is_expected.to have_sized_string( :address1, 1024, valid_hash ) }
   it{ is_expected.to have_sized_string( :address2, 1024, valid_hash ) }
@@ -61,4 +61,6 @@ describe Fortnox::API::Model::Customer, type: :model do
   it{ is_expected.to have_account_number( :sales_account, valid_hash ) }
 
   it{ is_expected.to have_vat_type( :vat_type, valid_hash ) }
+
+  it{ is_expected.to have_nullable_string( :project, valid_hash ) }
 end
