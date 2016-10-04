@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.summary       = "Gem to use Fortnox REST API in Ruby."
   spec.description   = "This gem uses the HTTParty library to abstract away the REST calls. It gives you access to a number of objects that behave a lot like ActiveRecord instances, giving you access to methods like `all`, `find`, `find_by_...` and so on. And each individual instance can be easaly persistable to Fortnox again using the `save` method."
   spec.homepage      = "http://github.com/my-codeworks/fortnox-api"
-  spec.license       = "MIT"
+  spec.license       = "LGPL-3.0"
 
   spec.files         = `git ls-files -z`.split("\x0")
   spec.executables   = spec.files.grep(%r{^bin/}){ |f| File.basename(f) }
