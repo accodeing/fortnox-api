@@ -1,6 +1,9 @@
 require 'support/matchers/shared/require_attribute_matcher'
 
 require 'support/matchers/model/attribute_matcher'
+
+require 'support/matchers/model/type_matcher'
+
 require 'support/matchers/model/enum_matcher'
 require 'support/matchers/model/numeric_matcher'
 

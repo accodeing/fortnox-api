@@ -4,38 +4,17 @@ module Matchers
       HaveAccountNumberMatcher.new( attribute, valid_hash )
     end
 
-    class HaveAccountNumberMatcher < AttributeMatcher
+    class HaveAccountNumberMatcher < TypeMatcher
       def initialize( attribute, valid_hash )
-        super( attribute, valid_hash, 'account number' )
-      end
-
-      def matches?( klass )
-        super
-
-        correct_type? && rejects_invalid_value? && accepts_valid_value?
+        super( attribute, valid_hash, 'account number', 1000, -1 )
+        @expected_error = "Exception missing for invalid value #{@invalid_value.inspect}".freeze
       end
 
       private
 
-        def correct_type?
-          actual_type = @klass.schema[@attribute]
-          if actual_type == Fortnox::API::Types::AccountNumber
-            return true
-          else
-            @errors << "Attribute #{@attribute.inspect} was expected to be of type #{@attribute_type}, but was #{actual_type}"
-            return false
-          end
-        end
-
-        def rejects_invalid_value?
-          invalid_value = -1
-          expect_error("Exception missing for invalid value #{invalid_value.inspect}") do
-            @klass.new( @valid_hash.merge( @attribute => invalid_value ) )
-          end
-        end
-
-        def accepts_valid_value?
-          @klass.new( @valid_hash.merge( @attribute => 1000 ) )
+        def expected_type?
+          @actual_type = @klass.schema[@attribute]
+          @actual_type == Fortnox::API::Types::AccountNumber
         end
     end
   end
