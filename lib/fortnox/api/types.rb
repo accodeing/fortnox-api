@@ -6,6 +6,8 @@ module Fortnox
     module Types
       include Dry::Types.module
 
+      THE_TRUTH = { true => true, 'true' => true, false => false, 'false' => false }
+
       require 'fortnox/api/types/required'
       require 'fortnox/api/types/defaulted'
       require 'fortnox/api/types/nullable'

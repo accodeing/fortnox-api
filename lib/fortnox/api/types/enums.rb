@@ -4,11 +4,11 @@ module Fortnox
 
       module EnumConstructors
         def self.sized( size )
-          -> (value){ value.to_s.upcase[0...size] unless value.nil? }
+          -> (value){ return nil if value == ''; value.to_s.upcase[0...size] unless value.nil? }
         end
 
         def self.default
-          -> (value){ value.to_s.upcase unless value.nil? }
+          -> (value){ return nil if value == ''; value.to_s.upcase unless value.nil? }
         end
       end
 
