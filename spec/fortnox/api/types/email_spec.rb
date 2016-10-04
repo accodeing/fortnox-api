@@ -12,7 +12,8 @@ describe Fortnox::API::Types do
     end
 
     context 'created with empty string' do
-      include_examples 'raises ConstraintError', ''
+      subject{ described_class[ '' ] }
+      it{ is_expected.to eq('') }
     end
 
     context 'created with valid email' do

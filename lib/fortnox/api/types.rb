@@ -22,7 +22,7 @@ module Fortnox
 
       DiscountType = Strict::String.constrained( included_in: DiscountTypes.values ).optional.constructor( EnumConstructors.default )
 
-      Email = Strict::String.constrained( max_size: 1024, format: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i ).optional.constructor{ |v| v.to_s.downcase unless v.nil? }
+      Email = Strict::String.constrained( max_size: 1024, format: /\A^$|[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i ).optional.constructor{ |v| v.to_s.downcase unless v.nil? }
 
       HouseWorkType = Strict::String.constrained( included_in: HouseWorkTypes.values ).optional.constructor( EnumConstructors.default )
 
