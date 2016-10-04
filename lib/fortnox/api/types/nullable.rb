@@ -9,7 +9,7 @@ module Fortnox
         Float = Types::Strict::Float.optional.constructor{|value| value.to_f unless value.nil? }
         Integer = Types::Strict::Int.optional.constructor{|value| value.to_i unless value.nil? }
         Boolean = Types::Bool.optional.constructor{|value| THE_TRUTH.fetch( value ){ false }}
-        Date = Types::Date.optional.constructor{|value| ::Date.parse( value ) unless value.nil? or value.is_a? ::Date }
+        Date = Types::Date.optional.constructor{|value| ::Date.parse( value.to_s ) unless value.nil? } #TODO: improve parsing
       end
 
     end

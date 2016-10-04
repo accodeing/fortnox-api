@@ -52,6 +52,6 @@ describe Fortnox::API::Types::Nullable, type: :type do
       end
     end
 
-    it{ is_expected.to have_nullable(:date, Date.new(2016, 1, 1), 'Not a Date!') }
+    it{ is_expected.to have_nullable_date(:date, Date.new(2016, 1, 1), 'Not a Date!') }
   end
 end
