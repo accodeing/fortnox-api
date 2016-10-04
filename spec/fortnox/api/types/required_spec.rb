@@ -5,23 +5,32 @@ require 'fortnox/api/types/required'
 describe Fortnox::API::Types::Required, type: :type do
   subject{ TestClass }
 
+  using_test_class do
+    class TestClass < Dry::Struct
+    end
+  end
+
+  shared_examples_for 'required attribute' do |type, klass|
+    it{ is_expected.to require_attribute(:required_attribute, type) }
+  end
+
   describe 'String' do
-    using_test_class do
-      class TestClass < Dry::Struct
-        attribute :required_string, Fortnox::API::Types::Required::String
+    before do
+      class TestClass
+        attribute :required_attribute, Fortnox::API::Types::Required::String
       end
     end
 
-    it{ is_expected.to require_attribute(:required_string, String) }
+    include_examples 'required attribute', String
   end
 
   describe 'Float' do
-    using_test_class do
-      class TestClass < Dry::Struct
-        attribute :required_float, Fortnox::API::Types::Required::Float
+    before do
+      class TestClass
+        attribute :required_attribute, Fortnox::API::Types::Required::Float
       end
     end
 
-    it{ is_expected.to require_attribute(:required_float, Float) }
+    include_examples 'required attribute', Float, Fortnox::API::Types::Required::Float
   end
 end
