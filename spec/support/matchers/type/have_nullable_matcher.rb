@@ -9,6 +9,9 @@ module Matchers
         @attribute = attribute
         @valid_value = valid_value
         @invalid_value = invalid_value
+        @expected_error ||= Dry::Struct::Error
+        @expected_error_message ||= "#{@invalid_value.inspect} (#{@invalid_value.class}) "\
+                                    "has invalid type for #{@attribute.inspect}"
       end
 
       def matches?( klass )
@@ -38,10 +41,8 @@ module Matchers
 
         def rejects_invalid_value?
           @klass.new(@attribute => @invalid_value)
-        rescue Dry::Struct::Error => error
-          expected_message = "#{@invalid_value.inspect} (#{@invalid_value.class}) "\
-                             "has invalid type for #{@attribute.inspect}"
-          if error.message.include?(expected_message)
+        rescue @expected_error => error
+          if error.message == @expected_error_message
             return true
           else
             fail_message = "Expected error message to include #{expected_message.inspect}, "\

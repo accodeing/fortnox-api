@@ -3,8 +3,8 @@ module Fortnox
     module Types
 
       module Required
-        String = Types::Strict::String.with( required: true ).constructor{|value| value.to_s unless value.nil? }
-        Float = Types::Strict::Float.with( required: true ).constructor{|value| value.to_f unless value.nil? }
+        String = Types::Strict::String.constructor{ |value| value.to_s unless value.nil? }.with( required: true )
+        Float = Types::Strict::Float.constructor{ |value| value.to_f unless value.nil? }.with( required: true )
       end
 
     end

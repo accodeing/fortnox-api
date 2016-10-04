@@ -4,26 +4,13 @@ module Matchers
       RequireAttributeMatcher.new(attribute, valid_hash)
     end
 
-    class RequireAttributeMatcher
+    class RequireAttributeMatcher < Matchers::Shared::RequireAttributeMatcher
       EXCEPTION = KeyError
 
       def initialize(attribute, valid_hash)
-        @attribute = attribute
+        super( attribute )
+
         @invalid_hash = valid_hash.dup.tap{ |hash| hash.delete( attribute ) }
-      end
-
-      def matches?(klass)
-        @klass = klass
-        raise_error && includes_error_message
-      end
-
-      def failure_message
-        return no_exception_failure_message unless raise_error
-        return wrong_error_message unless includes_error_message
-      end
-
-      def description
-        "require attribute #{@attribute.inspect}"
       end
 
       private
