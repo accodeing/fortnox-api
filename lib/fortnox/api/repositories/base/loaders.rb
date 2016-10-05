@@ -41,7 +41,7 @@ module Fortnox
         end
 
         def find_one_by( id )
-          response_hash = get( "#{@options.uri}#{id}" )
+          response_hash = get( "#{ @options.uri }#{ id }" )
           entity_hash = response_hash[ @options.json_entity_wrapper ]
           hash_to_entity( entity_hash, @options.json_to_attr_map )
         end
@@ -57,7 +57,7 @@ module Fortnox
         end
 
         def escape( key, value )
-          "#{CGI.escape(key.to_s)}=#{CGI.escape(value.to_s)}"
+          "#{ CGI.escape(key.to_s) }=#{ CGI.escape(value.to_s) }"
         end
 
       end

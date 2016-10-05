@@ -9,7 +9,7 @@ module Fortnox
         attr_accessor :unsaved
 
         def self.attribute( name, *args )
-          define_method( "#{name}?" ) do
+          define_method( "#{ name }?" ) do
             !send( name ).nil?
           end
 
