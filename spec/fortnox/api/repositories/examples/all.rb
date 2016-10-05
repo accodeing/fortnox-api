@@ -1,4 +1,5 @@
-shared_examples_for '.all' do |count|
+# rubocop:disable RSpec/DescribeClass
+RSpec.shared_examples_for '.all' do |count|
   describe '.all' do
     let(:response) do
       VCR.use_cassette( "#{ vcr_dir }/all" ){ subject.all }
@@ -13,3 +14,4 @@ shared_examples_for '.all' do |count|
     end
   end
 end
+# rubocop:enable RSpec/DescribeClass

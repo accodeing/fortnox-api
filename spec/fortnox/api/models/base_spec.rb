@@ -25,33 +25,37 @@ describe Fortnox::API::Model::Base do
     let(:original){ Entity.new( string: 'Test' ) }
 
     context 'with new, simple value' do
-      subject{ original.update( string: 'Variant' ) }
+      subject{ updated_model }
+
+      let(:updated_model){ original.update( string: 'Variant' ) }
+
+      it{ is_expected.to be_new }
+      it{ is_expected.not_to be_saved }
 
       it 'returns a new object' do
         is_expected.not_to eql( original )
       end
 
-      it 'returns a object of the same class' do
-        expect( subject.class ).to eql( original.class )
+      describe 'updated attribute' do
+        subject{ updated_model.string }
+        it{ is_expected.to eql( 'Variant' ) }
       end
 
-      it 'returns a object with the new value' do
-        expect( subject.string ).to eql( 'Variant' )
+      describe 'returned class' do
+        subject{ updated_model.class }
+        it{ is_expected.to eql( original.class ) }
       end
-
-      it{ is_expected.to be_new }
-      it{ is_expected.not_to be_saved }
     end
 
     context 'with the same, simple value' do
-      subject{ original.update( string: 'Test' ) }
+      subject( :updated_model ){ original.update( string: 'Test' ) }
 
       it 'returns the same object' do
         is_expected.to eql( original )
       end
 
       it 'returns a object with the same value' do
-        expect( subject.string ).to eql( 'Test' )
+        expect( updated_model.string ).to eql( 'Test' )
       end
 
       it{ is_expected.to be_new }
@@ -59,16 +63,16 @@ describe Fortnox::API::Model::Base do
     end
 
     context 'a saved entity' do
-      let( :saved_entry ){ Entity.new( string: 'Saved', new: false, unsaved: false) }
+      subject( :updated_entry ){ saved_entry.update( string: 'Updated' ) }
 
-      subject{ saved_entry.update( string: 'Updated' ) }
+      let( :saved_entry ){ Entity.new( string: 'Saved', new: false, unsaved: false) }
 
       before do
         expect(saved_entry).not_to be_new
         expect(saved_entry).to be_saved
       end
 
-      specify{ expect(subject.string).to eq( 'Updated' ) }
+      specify{ expect(updated_entry.string).to eq( 'Updated' ) }
       it{ is_expected.not_to be_new }
       it{ is_expected.not_to be_saved }
     end

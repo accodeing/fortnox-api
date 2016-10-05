@@ -1,3 +1,4 @@
+# rubocop:disable RSpec/DescribeClass
 #######################################
 # SPEC IS DEPENDENT ON DEFINED ORDER!
 #######################################
@@ -69,3 +70,4 @@ shared_examples_for '.save' do |attribute_hash_name, required_attributes = {}|
     end
   end
 end
+# rubocop:enable RSpec/DescribeClass

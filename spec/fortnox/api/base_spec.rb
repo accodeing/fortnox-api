@@ -96,15 +96,22 @@ describe Fortnox::API::Base do
       )
     end
 
-    it 'works' do
-      api = described_class.new
-      response1 = api.get( '/test', { body: '' })
-      response2 = api.get( '/test', { body: '' })
-      response3 = api.get( '/test', { body: '' })
+    let!(:api){ described_class.new }
+    let!(:response1){ api.get( path, body: '' ) }
+    let!(:response2){ api.get( path, body: '' ) }
+    let!(:response3){ api.get( path, body: '' ) }
 
-      expect( response1 ).not_to eq( response2 )
-      expect( response3 ).not_to eq( response2 )
-      expect( response1 ).to eq( response3 )
+    let(:path){ '/test' }
+
+    describe 'first request' do
+      subject{ response1 }
+      it{ is_expected.not_to eq( response2 ) }
+      it{ is_expected.to eq( response3 ) }
+    end
+
+    describe 'third request' do
+      subject{ response3 }
+      it{ is_expected.not_to eq( response2 ) }
     end
   end
 

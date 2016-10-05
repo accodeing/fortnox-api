@@ -1,3 +1,4 @@
+# rubocop:disable RSpec/DescribeClass
 shared_examples_for '.search' do |attribute_hash_key_name, value|
   describe '.search' do
 
@@ -31,3 +32,4 @@ shared_examples_for '.search' do |attribute_hash_key_name, value|
     end
   end
 end
+# rubocop:enable RSpec/DescribeClass
