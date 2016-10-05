@@ -6,7 +6,7 @@ shared_examples_for '.save with nested model' do |required_hash, nested_key, nes
     required_hash.merge( nested_key => nested_hash )
   end
   let( :response ) do
-    VCR.use_cassette( "#{vcr_dir}/save_with_nested_model" ) do
+    VCR.use_cassette( "#{ vcr_dir }/save_with_nested_model" ) do
       model = described_class::MODEL.new( new_hash )
       repository.save( model )
     end

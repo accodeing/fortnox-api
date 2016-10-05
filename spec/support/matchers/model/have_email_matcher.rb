@@ -7,7 +7,7 @@ module Matchers
     class HaveEmailMatcher < TypeMatcher
       def initialize( attribute, valid_hash )
         super( attribute, valid_hash, 'email', 'valid@email.com', 'invalid@email_without_top_domain' )
-        @expected_error = "Exception missing for invalid value #{@invalid_value.inspect}"
+        @expected_error = "Exception missing for invalid value #{ @invalid_value.inspect }"
         @expected_type = Fortnox::API::Types::Email
       end
 

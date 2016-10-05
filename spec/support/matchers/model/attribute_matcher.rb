@@ -13,19 +13,19 @@ module Matchers
       end
 
       def description
-        "have #{@attribute_type} attribute #{@attribute.inspect}"
+        "have #{ @attribute_type } attribute #{ @attribute.inspect }"
       end
 
       def failure_message
-        "Expected class to have attribute #{@attribute.inspect} defined as #{@attribute_type}, "\
+        "Expected class to have attribute #{ @attribute.inspect } defined as #{ @attribute_type }, "\
         "but got following errors: 
-        #{@errors}"
+        #{ @errors }"
       end
 
       protected
 
-        def expect_error(msg, &block)
-          block.call
+        def expect_error(msg)
+          yield
 
           @errors << msg
           false # Fail test since expected error not thrown

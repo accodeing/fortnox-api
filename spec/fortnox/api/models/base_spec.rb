@@ -17,7 +17,7 @@ describe Fortnox::API::Model::Base do
 
       it{ is_expected.to be_a Entity }
       it{ is_expected.to be_new }
-      it{ is_expected.to_not be_saved }
+      it{ is_expected.not_to be_saved }
     end
   end
 
@@ -28,7 +28,7 @@ describe Fortnox::API::Model::Base do
       subject{ original.update( string: 'Variant' ) }
 
       it 'returns a new object' do
-        is_expected.to_not eql( original )
+        is_expected.not_to eql( original )
       end
 
       it 'returns a object of the same class' do
@@ -40,7 +40,7 @@ describe Fortnox::API::Model::Base do
       end
 
       it{ is_expected.to be_new }
-      it{ is_expected.to_not be_saved }
+      it{ is_expected.not_to be_saved }
     end
 
     context 'with the same, simple value' do
@@ -55,7 +55,7 @@ describe Fortnox::API::Model::Base do
       end
 
       it{ is_expected.to be_new }
-      it{ is_expected.to_not be_saved }
+      it{ is_expected.not_to be_saved }
     end
 
     context 'a saved entity' do
@@ -64,13 +64,13 @@ describe Fortnox::API::Model::Base do
       subject{ saved_entry.update( string: 'Updated' ) }
 
       before do
-        expect(saved_entry).to_not be_new
+        expect(saved_entry).not_to be_new
         expect(saved_entry).to be_saved
       end
 
       specify{ expect(subject.string).to eq( 'Updated' ) }
-      it{ is_expected.to_not be_new }
-      it{ is_expected.to_not be_saved }
+      it{ is_expected.not_to be_new }
+      it{ is_expected.not_to be_saved }
     end
   end
 

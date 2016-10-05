@@ -22,7 +22,7 @@ module Matchers
 
         def rejects_too_small_value?
           too_small_value = @min_value - @step
-          expected_error_message = "Exception missing for too small value (#{too_small_value})"
+          expected_error_message = "Exception missing for too small value (#{ too_small_value })"
           rejects_value?(too_small_value, expected_error_message)
         end
 
@@ -36,7 +36,7 @@ module Matchers
 
         def rejects_too_big_value?
           too_big_value = @max_value + @step
-          expected_error_message = "Exception missing for too big value (#{too_big_value})"
+          expected_error_message = "Exception missing for too big value (#{ too_big_value })"
           rejects_value?(too_big_value, expected_error_message)
         end
 

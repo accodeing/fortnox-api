@@ -3,7 +3,7 @@ shared_examples_for '.only' do |matching_filter, expected_matches, missing_filte
     def repository_only(vcr_cassette, filter)
       repository = described_class.new
 
-      VCR.use_cassette( "#{vcr_dir}/#{vcr_cassette}" ) do
+      VCR.use_cassette( "#{ vcr_dir }/#{ vcr_cassette }" ) do
         repository.only( filter )
       end
     end

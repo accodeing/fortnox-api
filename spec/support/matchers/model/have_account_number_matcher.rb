@@ -7,7 +7,7 @@ module Matchers
     class HaveAccountNumberMatcher < TypeMatcher
       def initialize( attribute, valid_hash )
         super( attribute, valid_hash, 'account number', 1000, -1 )
-        @expected_error = "Exception missing for invalid value #{@invalid_value.inspect}".freeze
+        @expected_error = "Exception missing for invalid value #{ @invalid_value.inspect }".freeze
       end
 
       private

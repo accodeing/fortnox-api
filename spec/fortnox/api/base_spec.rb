@@ -97,13 +97,13 @@ describe Fortnox::API::Base do
     end
 
     it 'works' do
-      api = Fortnox::API::Base.new
+      api = described_class.new
       response1 = api.get( '/test', { body: '' })
       response2 = api.get( '/test', { body: '' })
       response3 = api.get( '/test', { body: '' })
 
-      expect( response1 ).to_not eq( response2 )
-      expect( response3 ).to_not eq( response2 )
+      expect( response1 ).not_to eq( response2 )
+      expect( response3 ).not_to eq( response2 )
       expect( response1 ).to eq( response3 )
     end
   end

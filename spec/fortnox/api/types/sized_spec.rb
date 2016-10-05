@@ -35,7 +35,7 @@ describe Fortnox::API::Types::Sized do
   end
 
   shared_examples_for 'Sized Numeric' do |type, min, max, step|
-    let( :described_class ){ Fortnox::API::Types::Sized.const_get(type)[ min, max ] }
+    let( :described_class ){ described_class.const_get(type)[ min, max ] }
 
     it_behaves_like 'Sized Types'
 

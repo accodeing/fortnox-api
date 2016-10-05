@@ -27,7 +27,7 @@ describe Fortnox::API do
         headers: { 'Content-Type' => 'application/json' },
       )
 
-      response = Fortnox::API.get_access_token
+      response = described_class.get_access_token
 
       expect( response).to eql( "3f08d038-f380-4893-94a0-a08f6e60e67a" )
     end

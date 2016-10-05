@@ -1,7 +1,7 @@
 shared_examples_for '.all' do |count|
   describe '.all' do
     let(:response) do
-      VCR.use_cassette( "#{vcr_dir}/all" ){ subject.all }
+      VCR.use_cassette( "#{ vcr_dir }/all" ){ subject.all }
     end
 
     specify 'returns correct number of records' do
