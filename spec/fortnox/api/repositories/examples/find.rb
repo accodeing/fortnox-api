@@ -1,3 +1,4 @@
+# rubocop:disable RSpec/NamedSubject
 shared_examples_for '.find' do
   let( :find_id ){ 1 }
   let( :find_id_1 ) do
@@ -26,3 +27,4 @@ shared_examples_for '.find' do
     end
   end
 end
+# rubocop:enable RSpec/NamedSubject
