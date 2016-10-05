@@ -3,20 +3,20 @@ module Fortnox
     module Mapper
       class Invoice < Fortnox::API::Mapper::Base
 
-          KEY_MAP = {
-            administration_fee_vat: 'AdministrationFeeVAT',
-            edi_information: 'EDIInformation',
-            eu_quarterly_report: 'EUQuarterlyReport',
-            freight_vat: 'FreightVAT',
-            ocr: 'OCR',
-            total_vat: 'TotalVAT',
-            vat_included: 'VATIncluded'
-          }.freeze
+        KEY_MAP = {
+          administration_fee_vat: 'AdministrationFeeVAT',
+          edi_information: 'EDIInformation',
+          eu_quarterly_report: 'EUQuarterlyReport',
+          freight_vat: 'FreightVAT',
+          ocr: 'OCR',
+          total_vat: 'TotalVAT',
+          vat_included: 'VATIncluded'
+        }.freeze
 
-          def initialize
-            super( KEY_MAP, 'Invoice', 'Invoices' )
-          end
-       end
+        def initialize
+          super( KEY_MAP, 'Invoice', 'Invoices' )
+        end
+      end
     end
   end
 end
