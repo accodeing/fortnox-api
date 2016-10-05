@@ -7,13 +7,7 @@ module Fortnox
     module Repository
       class Customer < Fortnox::API::Repository::Base
 
-        CONFIGURATION = Fortnox::API::Repository::Base::Options.new(
-          uri: '/customers/',
-          unique_id: 'CustomerNumber',
-          keys_filtered_on_save: [
-            :url,
-          ]
-        )
+        CONFIGURATION = superclass::Options.new( '/customers/', 'CustomerNumber' )
         MODEL = Fortnox::API::Model::Customer
         MAPPER = Fortnox::API::Mapper::Customer
 

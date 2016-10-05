@@ -7,13 +7,7 @@ module Fortnox
     module Repository
       class Invoice < Fortnox::API::Repository::Base
 
-        CONFIGURATION = Fortnox::API::Repository::Base::Options.new(
-          uri: '/invoices/',
-          unique_id: 'DocumentNumber',
-          keys_filtered_on_save: [
-            :url,
-          ]
-        )
+        CONFIGURATION = superclass::Options.new( '/invoices/', 'DocumentNumber' )
         MODEL = Fortnox::API::Model::Invoice
         MAPPER = Fortnox::API::Mapper::Invoice
 

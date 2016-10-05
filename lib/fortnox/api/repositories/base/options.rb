@@ -6,11 +6,7 @@ module Fortnox
 
           attr_accessor :uri, :unique_id, :keys_filtered_on_save
 
-          def initialize(
-                uri:,
-                unique_id:,
-                keys_filtered_on_save: [ :url ]
-              )
+          def initialize( uri, unique_id, keys_filtered_on_save: [ :url ] )
 
             @uri = uri
             @unique_id = unique_id

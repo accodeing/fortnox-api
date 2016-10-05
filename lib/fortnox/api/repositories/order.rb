@@ -7,13 +7,7 @@ module Fortnox
     module Repository
       class Order < Fortnox::API::Repository::Base
 
-        CONFIGURATION = Fortnox::API::Repository::Base::Options.new(
-          uri: '/orders/',
-          unique_id: 'DocumentNumber',
-          keys_filtered_on_save: [
-            :url,
-          ]
-        )
+        CONFIGURATION = superclass::Options.new( '/orders/', 'DocumentNumber' )
         MODEL = Fortnox::API::Model::Order
         MAPPER = Fortnox::API::Mapper::Order
 
