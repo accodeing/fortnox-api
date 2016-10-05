@@ -1,3 +1,5 @@
+require "fortnox/api/mappers/base"
+
 module Fortnox
   module API
     module Mapper
