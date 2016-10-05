@@ -1,3 +1,4 @@
+require "fortnox/api/models/base"
 require "fortnox/api/models/document_base"
 require "fortnox/api/models/edi_information"
 require "fortnox/api/models/invoice_row"
@@ -6,93 +7,79 @@ module Fortnox
   module API
     module Model
       class Invoice < Fortnox::API::Model::Base
-        include DocumentBase
+        DocumentBase.ify( self )
 
         #UrlTaxReductionList Direct url to the tax reduction for the invoice.
-        #TODO: Writer should be private!
-        attribute :url_tax_reduction_list, String
+        attribute :url_tax_reduction_list, Types::Nullable::String.with( read_only: true )
 
         #AccountingMethod Accounting Method.
-        attribute :accounting_method, String
+        attribute :accounting_method, Types::Nullable::String
 
         #Balance Balance of the invoice.
-        #TODO: Writer should be private!
-        attribute :balance, Float
+        attribute :balance, Types::Nullable::Float.with( read_only: true )
 
         #Booked If the invoice is bookkept.
-        #TODO: Writer should be private!
-        attribute :booked, Boolean
+        attribute :booked, Types::Nullable::Boolean.with( read_only: true )
 
         #Credit If the invoice is a credit invoice.
-        #TODO: Writer should be private!
-        attribute :credit, Boolean
+        attribute :credit, Types::Nullable::Boolean.with( read_only: true )
 
         #CreditInvoiceReference Reference to the credit invoice, if one exits.
-        attribute :credit_invoice_reference, Integer
+        attribute :credit_invoice_reference, Types::Nullable::Integer
 
         #ContractReference Reference to the contract, if one exists.
-        #TODO: Writer should be private!
-        attribute :contract_reference, Integer
+        attribute :contract_reference, Types::Nullable::Integer.with( read_only: true )
 
         #DueDate Due date of the invoice.
-        attribute :due_date, Date
+        attribute :due_date, Types::Nullable::Date
 
         #EDIInformation Separate EDIInformation object
         attribute :edi_information, EDIInformation
 
         #EUQuarterlyReport EU Quarterly Report On / Off
-        attribute :eu_quarterly_report, Boolean
+        attribute :eu_quarterly_report, Types::Nullable::Boolean
 
         #InvoiceDate Invoice date.
-        attribute :invoice_date, Date
+        attribute :invoice_date, Types::Nullable::Date
 
         #InvoicePeriodStart Start date of the invoice period.
-        #TODO: Writer should be private!
-        attribute :invoice_period_start, Date
+        attribute :invoice_period_start, Types::Nullable::Date.with( read_only: true )
 
         #InvoicePeriodEnd End date of the invoice period.
-        #TODO: Writer should be private!
-        attribute :invoice_period_end, Date
+        attribute :invoice_period_end, Types::Nullable::Date.with( read_only: true )
 
         #InvoiceRows Separate object
-        attribute :invoice_rows, Array[InvoiceRow]
+        attribute :invoice_rows, Types::Strict::Array.member( InvoiceRow )
 
         #InvoiceType The type of invoice.
-        attribute :invoice_type, String
+        attribute :invoice_type, Types::Nullable::String
 
         #Language Language code.
-        attribute :language, String
+        attribute :language, Types::Nullable::String
 
         #LastRemindDate Date of last reminder.
-        #TODO: Writer should be private!
-        attribute :last_remind_date, Date
+        attribute :last_remind_date, Types::Nullable::Date.with( read_only: true )
 
         #NoxFinans If the invoice is managed by NoxFinans
-        #TODO: Writer should be private!
-        attribute :nox_finans, Boolean
+        attribute :nox_finans, Types::Nullable::Boolean.with( read_only: true )
 
         #OCR OCR number of the invoice.
-        attribute :ocr, String
+        attribute :ocr, Types::Nullable::String
 
         #OrderReference Reference to the order, if one exists.
-        #TODO: Writer should be private!
-        attribute :order_reference, Integer
+        attribute :order_reference, Types::Nullable::Integer.with( read_only: true )
 
         #Reminders Number of reminders sent to the customer.
-        #TODO: Writer should be private!
-        attribute :reminders, Integer
+        attribute :reminders, Types::Nullable::Integer.with( read_only: true )
 
         #VoucherNumber Voucher number for the invoice.
-        #TODO: Writer should be private!
-        attribute :voucher_number, Integer
+        attribute :voucher_number, Types::Nullable::Integer.with( read_only: true )
 
         #VoucherSeries Voucher series for the invoice.
-        #TODO: Writer should be private!
-        attribute :voucher_series, String
+        attribute :voucher_series, Types::Nullable::String.with( read_only: true )
 
         #VoucherYear Voucher year for the invoice.
-        #TODO: Writer should be private!
-        attribute :voucher_year, Integer
+        attribute :voucher_year, Types::Nullable::Integer.with( read_only: true )
       end
     end
   end

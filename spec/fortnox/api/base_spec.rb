@@ -58,6 +58,56 @@ describe Fortnox::API::Base do
     it{ is_expected.to be_nil }
   end
 
+  describe 'making requests with multiple access tokens' do
+
+    before do
+      ENV['FORTNOX_API_BASE_URL'] = 'http://api.fortnox.se/3'
+      ENV['FORTNOX_API_CLIENT_SECRET'] = 'P5K5vE3Kun'
+      ENV['FORTNOX_API_ACCESS_TOKEN'] = "3f08d038-f380-4893-94a0-a08f6e60e67a\naaee8217-0bbd-2e16-441f-668931d582cd"
+
+      stub_request(
+        :get,
+        'http://api.fortnox.se/3/test',
+      ).with(
+        headers: {
+          'Access-Token' => '3f08d038-f380-4893-94a0-a08f6e60e67a',
+          'Client-Secret' => 'P5K5vE3Kun',
+          'Content-Type' => 'application/json',
+          'Accept' => 'application/json',
+        }
+      ).to_return(
+        status: 200,
+        body: '1'
+      )
+
+      stub_request(
+        :get,
+        'http://api.fortnox.se/3/test',
+      ).with(
+        headers: {
+          'Access-Token' => 'aaee8217-0bbd-2e16-441f-668931d582cd',
+          'Client-Secret' => 'P5K5vE3Kun',
+          'Content-Type' => 'application/json',
+          'Accept' => 'application/json',
+        }
+      ).to_return(
+        status: 200,
+        body: '2'
+      )
+    end
+
+    it 'works', focus: true do
+      api = Fortnox::API::Base.new
+      response1 = api.get( '/test', { body: '' })
+      response2 = api.get( '/test', { body: '' })
+      response3 = api.get( '/test', { body: '' })
+
+      expect( response1.parsed_response ).to_not eq( response2.parsed_response )
+      expect( response3.parsed_response ).to_not eq( response2.parsed_response )
+      expect( response1.parsed_response ).to eq( response3.parsed_response )
+    end
+  end
+
   context 'raising error from remote server' do
 
     before do

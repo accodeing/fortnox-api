@@ -2,7 +2,6 @@ shared_examples_for '.only' do |matching_filter, expected_matches, missing_filte
   describe '.only' do
     def repository_only(vcr_cassette, filter)
       repository = described_class.new
-      vcr_dir = repository.options.json_collection_wrapper.downcase
 
       VCR.use_cassette( "#{vcr_dir}/#{vcr_cassette}" ) do
         repository.only( filter )

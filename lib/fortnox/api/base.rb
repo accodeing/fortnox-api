@@ -35,7 +35,9 @@ module Fortnox
       HTTP_METHODS.each do |method|
         define_method method do |*args|
           execute do |remote|
-            remote.send( method, *args )
+            response = remote.send( method, *args )
+            self.headers['Access-Token'] = get_access_token
+            return response
           end
         end
       end
