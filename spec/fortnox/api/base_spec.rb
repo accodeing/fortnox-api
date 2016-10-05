@@ -5,7 +5,7 @@ describe Fortnox::API::Base do
 
   describe 'creation' do
 
-    subject{ ->{ Fortnox::API::Base.new() } }
+    subject{ ->{ described_class.new() } }
 
     context 'without FORTNOX_API_BASE_URL' do
       before{ ENV['FORTNOX_API_BASE_URL'] = nil }
@@ -53,7 +53,7 @@ describe Fortnox::API::Base do
       )
     end
 
-    subject{ Fortnox::API::Base.new.get( '/test', { body: '' }) }
+    subject{ described_class.new.get( '/test', { body: '' }) }
 
     it{ is_expected.to be_nil }
   end
@@ -125,14 +125,14 @@ describe Fortnox::API::Base do
       )
     end
 
-    subject{ ->{ Fortnox::API::Base.new.post( '/test', { body: '' }) } }
+    subject{ ->{ described_class.new.post( '/test', { body: '' }) } }
 
     it{ is_expected.to raise_error( Fortnox::API::RemoteServerError ) }
     it{ is_expected.to raise_error( 'Räkenskapsår finns inte upplagt. För att kunna skapa en faktura krävs det att det finns ett räkenskapsår' ) }
 
     context 'with debugging enabled' do
 
-      around(:each) do |example|
+      around do |example|
         Fortnox::API.debugging = true
         example.run
         Fortnox::API.debugging = false
