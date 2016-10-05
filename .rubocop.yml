@@ -1,5 +1,6 @@
+require: rubocop-rspec
+
 AllCops:
-  DisabledByDefault: true
   TargetRubyVersion: 2.1
 
 #################### Lint ################################
@@ -976,11 +977,10 @@ Style/SpaceInsideHashLiteralBraces:
   EnforcedStyleForEmptyBraces: no_space
   Enabled: true
 
-# Style/SpaceInsideParens:
-#   Description: 'Require spaces after ( or before ).'
-#   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#no-spaces-braces'
-#   EnforcedStyle: space
-#   Enabled: true
+Style/SpaceInsideParens:
+  Description: 'Require spaces after ( or before ).'
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#no-spaces-braces'
+  Enabled: false
 
 Style/SpaceInsideRangeLiteral:
   Description: 'No spaces inside range literals.'

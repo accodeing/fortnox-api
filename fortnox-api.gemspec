@@ -34,5 +34,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "pry", "~> 0"
   spec.add_development_dependency "codeclimate-test-reporter", "~> 0"
   spec.add_development_dependency "rubocop", "~> 0.41"
+  spec.add_development_dependency "rubocop-rspec", "~> 1.7"
 
 end
