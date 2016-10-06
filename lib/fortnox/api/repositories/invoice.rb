@@ -7,12 +7,11 @@ module Fortnox
     module Repository
       class Invoice < Fortnox::API::Repository::Base
 
-        CONFIGURATION = superclass::Options.new( '/invoices/', 'DocumentNumber' )
         MODEL = Fortnox::API::Model::Invoice
         MAPPER = Fortnox::API::Mapper::Invoice
 
         def initialize
-          super( CONFIGURATION )
+          super( '/invoices/', 'DocumentNumber' )
         end
       end
     end

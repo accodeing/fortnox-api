@@ -14,10 +14,10 @@ module Fortnox
 
         attr_reader :options, :mapper
 
-        def initialize( options )
+        def initialize( uri, unique_id, keys_filtered_on_save: [ :url ] )
           super()
 
-          @options = options
+          @options = self.class::Options.new( uri, unique_id, keys_filtered_on_save )
           @mapper = self.class::MAPPER.new
         end
 

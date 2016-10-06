@@ -7,12 +7,11 @@ module Fortnox
     module Repository
       class Order < Fortnox::API::Repository::Base
 
-        CONFIGURATION = superclass::Options.new( '/orders/', 'DocumentNumber' )
         MODEL = Fortnox::API::Model::Order
         MAPPER = Fortnox::API::Mapper::Order
 
         def initialize
-          super( CONFIGURATION )
+          super( '/orders/', 'DocumentNumber' )
         end
       end
     end
