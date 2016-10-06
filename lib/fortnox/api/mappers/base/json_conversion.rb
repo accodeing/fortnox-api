@@ -5,7 +5,7 @@ module Fortnox
 
         def wrapped_json_collection_to_entities_hash( json_collection_hash )
           entities_hash = []
-          json_collection_hash[ json_collection_wrapper ].each do |json_hash|
+          json_collection_hash[ self.class::JSON_COLLECTION_WRAPPER ].each do |json_hash|
             entities_hash << json_hash_to_entity_hash( json_hash )
           end
 
@@ -13,14 +13,14 @@ module Fortnox
         end
 
         def wrapped_json_hash_to_entity_hash( json_entity_hash )
-          json_hash_to_entity_hash( json_entity_hash[json_entity_wrapper] )
+          json_hash_to_entity_hash( json_entity_hash[self.class::JSON_ENTITY_WRAPPER] )
         end
 
         def entity_to_hash( entity, keys_to_filter )
           entity_hash = entity.to_hash
           clean_entity_hash = sanitise( entity_hash, keys_to_filter )
           entity_json_hash = convert_hash_keys_to_json_format( clean_entity_hash )
-          { json_entity_wrapper => entity_json_hash }
+          { self.class::JSON_ENTITY_WRAPPER => entity_json_hash }
         end
 
         private
@@ -37,7 +37,7 @@ module Fortnox
           end
 
           def convert_key_from_json( key )
-            key_map.fetch( key ){ default_key_from_json_transform( key ) }
+            self.class::KEY_MAP.fetch( key ){ default_key_from_json_transform( key ) }
           end
 
           def default_key_from_json_transform( key )
@@ -56,7 +56,7 @@ module Fortnox
           end
 
           def convert_key_to_json( key )
-            key_map.fetch( key ){ default_key_to_json_transform( key ) }
+            self.class::KEY_MAP.fetch( key ){ default_key_to_json_transform( key ) }
           end
 
           def default_key_to_json_transform( key )

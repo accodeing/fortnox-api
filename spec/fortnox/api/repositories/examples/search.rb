@@ -5,7 +5,7 @@ shared_examples_for '.search' do |attribute_hash_key_name, value|
     describe 'search' do
 
       let( :repository ){ described_class.new }
-      let( :vcr_dir ){ repository.mapper.json_collection_wrapper.downcase }
+      let( :vcr_dir ){ repository.mapper.class::JSON_COLLECTION_WRAPPER.downcase }
 
       context "with no matches" do
         subject do

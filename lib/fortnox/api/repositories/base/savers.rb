@@ -31,7 +31,7 @@ module Fortnox
         end
 
         def cut_id_from_hash( hash )
-          hash[ @mapper.json_entity_wrapper ].delete( self.class::UNIQUE_ID )
+          hash[ @mapper.class::JSON_ENTITY_WRAPPER ].delete( self.class::UNIQUE_ID )
         end
       end
     end

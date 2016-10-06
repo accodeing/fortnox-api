@@ -14,10 +14,9 @@ module Fortnox
           total_vat: 'TotalVAT',
           vat_included: 'VATIncluded'
         }.freeze
+        JSON_ENTITY_WRAPPER = 'Invoice'
+        JSON_COLLECTION_WRAPPER = 'Invoices'
 
-        def initialize
-          super( KEY_MAP, 'Invoice', 'Invoices' )
-        end
       end
     end
   end
