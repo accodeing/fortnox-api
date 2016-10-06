@@ -24,9 +24,9 @@ module Fortnox
           response.parsed_response
         end
 
-        def execute &request
+        def execute
           self.class.set_headers( @headers )
-          response = request.call( self.class )
+          response = yield( self.class )
           validate_and_parse response
         end
 
