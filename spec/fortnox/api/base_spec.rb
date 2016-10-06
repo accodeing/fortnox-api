@@ -96,15 +96,15 @@ describe Fortnox::API::Base do
       )
     end
 
-    it 'works', focus: true do
+    it 'works' do
       api = Fortnox::API::Base.new
       response1 = api.get( '/test', { body: '' })
       response2 = api.get( '/test', { body: '' })
       response3 = api.get( '/test', { body: '' })
 
-      expect( response1.parsed_response ).to_not eq( response2.parsed_response )
-      expect( response3.parsed_response ).to_not eq( response2.parsed_response )
-      expect( response1.parsed_response ).to eq( response3.parsed_response )
+      expect( response1 ).to_not eq( response2 )
+      expect( response3 ).to_not eq( response2 )
+      expect( response1 ).to eq( response3 )
     end
   end
 

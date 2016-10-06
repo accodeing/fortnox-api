@@ -37,7 +37,7 @@ module Fortnox
           execute do |remote|
             response = remote.send( method, *args )
             self.headers['Access-Token'] = get_access_token
-            return response
+            response
           end
         end
       end
