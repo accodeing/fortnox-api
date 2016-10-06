@@ -1,4 +1,7 @@
 require "fortnox/api/mappers/base"
+require "fortnox/api/mappers/edi_information"
+require "fortnox/api/mappers/email_information"
+require "fortnox/api/mappers/order_row"
 
 module Fortnox
   module API
@@ -7,8 +10,10 @@ module Fortnox
 
           KEY_MAP = {
             administration_fee_vat: 'AdministrationFeeVAT',
-            edi_information: 'EDIInformation',
+            edi_information: Fortnox::API::Mapper::EDIInformation,
+            email_information: Fortnox::API::Mapper::EmailInformation,
             freight_vat: 'FreightVAT',
+            order_rows: Fortnox::API::Mapper::OrderRow,
             total_vat: 'TotalVAT',
             vat_included: 'VATIncluded'
           }.freeze

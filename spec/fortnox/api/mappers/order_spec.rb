@@ -6,8 +6,10 @@ describe Fortnox::API::Mapper::Order do
   key_map =
     {
       administration_fee_vat: 'AdministrationFeeVAT',
-      edi_information: 'EDIInformation',
+      edi_information: Fortnox::API::Mapper::EDIInformation,
+      email_information: Fortnox::API::Mapper::EmailInformation,
       freight_vat: 'FreightVAT',
+      order_rows: Fortnox::API::Mapper::OrderRow,
       total_vat: 'TotalVAT',
       vat_included: 'VATIncluded'
     }

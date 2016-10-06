@@ -1,4 +1,7 @@
 require "fortnox/api/mappers/base"
+require "fortnox/api/mappers/edi_information"
+require "fortnox/api/mappers/email_information"
+require "fortnox/api/mappers/invoice_row"
 
 module Fortnox
   module API
@@ -7,9 +10,11 @@ module Fortnox
 
         KEY_MAP = {
           administration_fee_vat: 'AdministrationFeeVAT',
-          edi_information: 'EDIInformation',
+          edi_information: Fortnox::API::Mapper::EDIInformation,
+          email_information: Fortnox::API::Mapper::EmailInformation,
           eu_quarterly_report: 'EUQuarterlyReport',
           freight_vat: 'FreightVAT',
+          invoice_rows: Fortnox::API::Mapper::InvoiceRow,
           ocr: 'OCR',
           total_vat: 'TotalVAT',
           vat_included: 'VATIncluded'
