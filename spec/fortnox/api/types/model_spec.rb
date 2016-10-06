@@ -28,7 +28,7 @@ RSpec.describe Fortnox::API::Types::Model do
       it{ is_expected.to raise_error(Dry::Struct::Error) }
     end
 
-    describe "User inheriting from #{described_class}" do
+    describe "User inheriting from #{ described_class }" do
       subject{ ->{ TypesModelUser.new(args) } }
 
       it{ is_expected.to raise_error(Dry::Struct::Error) }

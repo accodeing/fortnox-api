@@ -1,7 +1,8 @@
+# rubocop:disable RSpec/NamedSubject
 shared_examples_for '.find' do
   let( :find_id ){ 1 }
   let( :find_id_1 ) do
-    VCR.use_cassette( "#{vcr_dir}/find_id_1" ){ subject.find( find_id ) }
+    VCR.use_cassette( "#{ vcr_dir }/find_id_1" ){ subject.find( find_id ) }
   end
 
   describe '.find' do
@@ -22,7 +23,8 @@ shared_examples_for '.find' do
     end
 
     specify 'returned Customer is not markes as new' do
-      expect( find_id_1 ).to_not be_new
+      expect( find_id_1 ).not_to be_new
     end
   end
 end
+# rubocop:enable RSpec/NamedSubject

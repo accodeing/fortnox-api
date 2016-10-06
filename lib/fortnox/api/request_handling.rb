@@ -7,7 +7,7 @@ module Fortnox
         def raise_api_error( error, response )
           message = ( error[ 'message' ] || error[ 'Message' ] || 'Okänt fel' )
 
-          message += "\n\n#{response.request.inspect}" if Fortnox::API.debugging
+          message += "\n\n#{ response.request.inspect }" if Fortnox::API.debugging
 
           raise Fortnox::API::RemoteServerError, message
         end
@@ -24,9 +24,9 @@ module Fortnox
           response.parsed_response
         end
 
-        def execute &request
+        def execute
           self.class.set_headers( @headers )
-          response = request.call( self.class )
+          response = yield( self.class )
           validate_and_parse response
         end
 

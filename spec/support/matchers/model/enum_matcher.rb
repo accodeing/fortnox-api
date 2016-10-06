@@ -7,7 +7,7 @@ module Matchers
         super( attribute, valid_hash, attr_type, valid_value, nonsense_value )
 
         @enum_type = Fortnox::API::Types.const_get(enum_type)
-        @expected_error = "Exception missing for nonsense value #{@invalid_value.inspect}"
+        @expected_error = "Exception missing for nonsense value #{ @invalid_value.inspect }"
       end
 
       private

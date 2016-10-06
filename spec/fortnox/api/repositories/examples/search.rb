@@ -1,3 +1,4 @@
+# rubocop:disable RSpec/DescribeClass
 shared_examples_for '.search' do |attribute_hash_key_name, value|
   describe '.search' do
 
@@ -8,7 +9,7 @@ shared_examples_for '.search' do |attribute_hash_key_name, value|
 
       context "with no matches" do
         subject do
-          VCR.use_cassette( "#{vcr_dir}/search_miss" ) do
+          VCR.use_cassette( "#{ vcr_dir }/search_miss" ) do
             repository.search( attribute_hash_key_name => 'nothing' )
           end
         end
@@ -19,7 +20,7 @@ shared_examples_for '.search' do |attribute_hash_key_name, value|
 
       context "with one match" do
         subject do
-          VCR.use_cassette( "#{vcr_dir}/search_by_name" ) do
+          VCR.use_cassette( "#{ vcr_dir }/search_by_name" ) do
             repository.search( attribute_hash_key_name => value )
           end
         end
@@ -31,3 +32,4 @@ shared_examples_for '.search' do |attribute_hash_key_name, value|
     end
   end
 end
+# rubocop:enable RSpec/DescribeClass

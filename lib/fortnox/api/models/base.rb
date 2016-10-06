@@ -9,7 +9,7 @@ module Fortnox
         attr_accessor :unsaved
 
         def self.attribute( name, *args )
-          define_method( "#{name}?" ) do
+          define_method( "#{ name }?" ) do
             !send( name ).nil?
           end
 
@@ -49,7 +49,7 @@ module Fortnox
           @saved
         end
 
-      private
+      private_class_method
 
         # dry-types filter anything that isn't specified as an attribute on the
         # class that is being instansiated. This wrapper preserves the meta
@@ -67,6 +67,8 @@ module Fortnox
 
           return obj
         end
+
+      private
 
         def private_attributes
           @@private_attributes ||= attribute_set.select{ |a| !a.public_writer? }

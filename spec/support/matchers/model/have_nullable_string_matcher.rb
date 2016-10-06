@@ -32,13 +32,13 @@ module Matchers
           non_string = 10.0
           @klass.new( @valid_hash.merge( @attribute => non_string ) )
         rescue Dry::Struct::Error => error
-          expected_message = "#{non_string.inspect} (#{non_string.class}) "\
-                             "has invalid type for #{@attribute.inspect}"
+          expected_message = "#{ non_string.inspect } (#{ non_string.class }) "\
+                             "has invalid type for #{ @attribute.inspect }"
           if error.message.include?(expected_message)
             return true
           else
-            fail_message = "Expected error message to include #{expected_message.inspect}, "\
-                           "but was #{error.message.inspect}"
+            fail_message = "Expected error message to include #{ expected_message.inspect }, "\
+                           "but was #{ error.message.inspect }"
             fail(fail_message)
           end
 

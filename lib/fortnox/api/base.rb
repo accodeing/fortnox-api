@@ -17,9 +17,9 @@ module Fortnox
       DEFAULT_HEADERS = {
         'Content-Type' => 'application/json',
         'Accept' => 'application/json',
-      }
+      }.freeze
 
-      HTTP_METHODS = [ :get, :put, :post, :delete ]
+      HTTP_METHODS = [ :get, :put, :post, :delete ].freeze
 
       attr_accessor :headers
 

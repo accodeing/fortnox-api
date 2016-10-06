@@ -36,7 +36,7 @@ module Matchers
         end
 
         def expected_error_message
-          "[#{@klass}.new] #{@attribute.inspect} is missing in Hash input"
+          "[#{ @klass }.new] #{ @attribute.inspect } is missing in Hash input"
         end
     end
   end

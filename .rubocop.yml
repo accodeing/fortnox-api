@@ -1,6 +1,8 @@
+require: rubocop-rspec
+
 AllCops:
-  DisabledByDefault: true
-  TargetRubyVersion: 2.1
+  TargetRubyVersion: 2.2
+  DisplayCopNames: true
 
 #################### Lint ################################
 
@@ -976,16 +978,20 @@ Style/SpaceInsideHashLiteralBraces:
   EnforcedStyleForEmptyBraces: no_space
   Enabled: true
 
-# Style/SpaceInsideParens:
-#   Description: 'Require spaces after ( or before ).'
-#   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#no-spaces-braces'
-#   EnforcedStyle: space
-#   Enabled: true
+Style/SpaceInsideParens:
+  Description: 'Require spaces after ( or before ).'
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#no-spaces-braces'
+  Enabled: false
 
 Style/SpaceInsideRangeLiteral:
   Description: 'No spaces inside range literals.'
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#no-space-inside-range-literals'
   Enabled: false
+
+Style/SpaceInsideStringInterpolation:
+  Description: 'This cop checks for whitespace within string interpolations.'
+  EnforcedStyle: space
+  Enabled: true
 
 Style/SpecialGlobalVars:
   Description: 'Avoid Perl-style global variables.'
@@ -1101,3 +1107,10 @@ Style/WordArray:
   Description: 'Use %w or %W for arrays of words.'
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#percent-w'
   Enabled: false
+
+#################### RSpec ################################
+RSpec/FilePath:
+  Enabled: false
+
+RSpec/NestedGroups:
+    MaxNesting: 4

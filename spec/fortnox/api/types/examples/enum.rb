@@ -2,17 +2,17 @@ require 'fortnox/api/types/examples/types'
 
 shared_examples_for 'enum' do |name, values, auto_crop: false|
   describe name do
-    let( :described_class ){ Fortnox::API::Types.const_get(name) }
+    let( :klass ){ Fortnox::API::Types.const_get(name) }
 
     context 'created with nil' do
-      subject{ described_class[ nil ] }
+      subject{ klass[ nil ] }
       it{ is_expected.to be_nil }
     end
 
     context 'created with' do
-      let( :enum_value ){ Fortnox::API::Types.const_get(values).values.sample }
+      subject{ klass[ input ] }
 
-      subject{ described_class[ input ] }
+      let( :enum_value ){ Fortnox::API::Types.const_get(values).values.sample }
 
       context 'a random member from then enum' do
         let(:input){ enum_value }
@@ -35,7 +35,7 @@ shared_examples_for 'enum' do |name, values, auto_crop: false|
         if auto_crop
           it{ is_expected.to eq enum_value }
         else
-          subject{ ->{ described_class[ input ] } }
+          subject{ ->{ klass[ input ] } }
           it{ is_expected.to raise_error(Dry::Types::ConstraintError) }
         end
       end

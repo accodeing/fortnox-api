@@ -31,7 +31,7 @@ shared_examples_for 'DocumentBase Model' do |row_class, row_attribute, valid_has
 
   it{ is_expected.to have_currency( :currency, valid_hash ) }
 
-  context "when having a(n) #{row_class}" do
+  context "when having a(n) #{ row_class }" do
     it 'returns the correct object' do
       row = row_class.new(valid_row_hash)
       document_base = described_class.new( customer_number: '123', row_attribute => [row] )

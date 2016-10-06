@@ -10,8 +10,8 @@ module Matchers
         @valid_value = valid_value
         @invalid_value = invalid_value
         @expected_error ||= Dry::Struct::Error
-        @expected_error_message ||= "#{@invalid_value.inspect} (#{@invalid_value.class}) "\
-                                    "has invalid type for #{@attribute.inspect}"
+        @expected_error_message ||= "#{ @invalid_value.inspect } (#{ @invalid_value.class }) "\
+                                    "has invalid type for #{ @attribute.inspect }"
       end
 
       def matches?( klass )
@@ -21,11 +21,11 @@ module Matchers
       end
 
       def description
-        "have nullable attribute #{@attribute.inspect}"
+        "have nullable attribute #{ @attribute.inspect }"
       end
 
       def failure_message
-        "Expected class to have nullable attribute #{@attribute.inspect}"
+        "Expected class to have nullable attribute #{ @attribute.inspect }"
       end
 
       private
@@ -45,8 +45,8 @@ module Matchers
           if error.message == @expected_error_message
             return true
           else
-            fail_message = "Expected error message to include #{expected_message.inspect}, "\
-                           "but was #{error.message.inspect}"
+            fail_message = "Expected error message to include #{ expected_message.inspect }, "\
+                           "but was #{ error.message.inspect }"
             fail(fail_message)
           end
         end

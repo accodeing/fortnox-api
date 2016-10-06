@@ -5,7 +5,7 @@ describe Fortnox::API::Base do
 
   describe 'creation' do
 
-    subject{ ->{ Fortnox::API::Base.new() } }
+    subject{ ->{ described_class.new() } }
 
     context 'without FORTNOX_API_BASE_URL' do
       before{ ENV['FORTNOX_API_BASE_URL'] = nil }
@@ -53,7 +53,7 @@ describe Fortnox::API::Base do
       )
     end
 
-    subject{ Fortnox::API::Base.new.get( '/test', { body: '' }) }
+    subject{ described_class.new.get( '/test', { body: '' }) }
 
     it{ is_expected.to be_nil }
   end
@@ -96,15 +96,22 @@ describe Fortnox::API::Base do
       )
     end
 
-    it 'works' do
-      api = Fortnox::API::Base.new
-      response1 = api.get( '/test', { body: '' })
-      response2 = api.get( '/test', { body: '' })
-      response3 = api.get( '/test', { body: '' })
+    let!(:api){ described_class.new }
+    let!(:response1){ api.get( path, body: '' ) }
+    let!(:response2){ api.get( path, body: '' ) }
+    let!(:response3){ api.get( path, body: '' ) }
 
-      expect( response1 ).to_not eq( response2 )
-      expect( response3 ).to_not eq( response2 )
-      expect( response1 ).to eq( response3 )
+    let(:path){ '/test' }
+
+    describe 'first request' do
+      subject{ response1 }
+      it{ is_expected.not_to eq( response2 ) }
+      it{ is_expected.to eq( response3 ) }
+    end
+
+    describe 'third request' do
+      subject{ response3 }
+      it{ is_expected.not_to eq( response2 ) }
     end
   end
 
@@ -125,14 +132,14 @@ describe Fortnox::API::Base do
       )
     end
 
-    subject{ ->{ Fortnox::API::Base.new.post( '/test', { body: '' }) } }
+    subject{ ->{ described_class.new.post( '/test', { body: '' }) } }
 
     it{ is_expected.to raise_error( Fortnox::API::RemoteServerError ) }
     it{ is_expected.to raise_error( 'Räkenskapsår finns inte upplagt. För att kunna skapa en faktura krävs det att det finns ett räkenskapsår' ) }
 
     context 'with debugging enabled' do
 
-      around(:each) do |example|
+      around do |example|
         Fortnox::API.debugging = true
         example.run
         Fortnox::API.debugging = false

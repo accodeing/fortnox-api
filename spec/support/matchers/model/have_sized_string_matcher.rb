@@ -25,7 +25,7 @@ module Matchers
         def rejects_too_long_string?
           too_long = @max_size + 1
           too_long_string = 'a' * too_long
-          expect_error("Exception missing for too long string (#{too_long} characters)") do
+          expect_error("Exception missing for too long string (#{ too_long } characters)") do
             @klass.new( @valid_hash.merge( @attribute => too_long_string ) )
           end
         end

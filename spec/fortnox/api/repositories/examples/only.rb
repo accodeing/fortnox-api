@@ -1,9 +1,10 @@
+# rubocop:disable RSpec/DescribeClass
 shared_examples_for '.only' do |matching_filter, expected_matches, missing_filter: nil|
   describe '.only' do
     def repository_only(vcr_cassette, filter)
       repository = described_class.new
 
-      VCR.use_cassette( "#{vcr_dir}/#{vcr_cassette}" ) do
+      VCR.use_cassette( "#{ vcr_dir }/#{ vcr_cassette }" ) do
         repository.only( filter )
       end
     end
@@ -40,3 +41,4 @@ shared_examples_for '.only' do |matching_filter, expected_matches, missing_filte
     end
   end
 end
+# rubocop:enable RSpec/DescribeClass
