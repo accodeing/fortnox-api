@@ -59,7 +59,7 @@ shared_examples_for '.save' do |attribute_hash_name, required_attributes = {}|
       include_examples 'save' do
         let( :value ){ "Updated #{ attribute_hash_name }" }
         let( :model ) do
-          new_id = save_new[entity_wrapper][subject.options.unique_id]
+          new_id = save_new[entity_wrapper][described_class::UNIQUE_ID]
           new_record = VCR.use_cassette( "#{ vcr_dir }/find_new" ){ subject.find( new_id ) }
           new_record.update( attribute_hash_name => value )
         end

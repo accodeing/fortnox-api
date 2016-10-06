@@ -9,10 +9,9 @@ module Fortnox
 
         MODEL = Fortnox::API::Model::Customer
         MAPPER = Fortnox::API::Mapper::Customer
+        URI = '/customers/'.freeze
+        UNIQUE_ID = 'CustomerNumber'.freeze
 
-        def initialize
-          super( '/customers/', 'CustomerNumber' )
-        end
       end
     end
   end

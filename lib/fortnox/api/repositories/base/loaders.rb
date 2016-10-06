@@ -6,18 +6,18 @@ module Fortnox
       module Loaders
 
         def all()
-          response_hash = get( @options.uri )
+          response_hash = get( self.class::URI )
           instansiate_collection_response( response_hash )
         end
 
         def only( filter )
-          response_hash = get( "#{ @options.uri }?filter=#{ filter }" )
+          response_hash = get( "#{ self.class::URI }?filter=#{ filter }" )
           instansiate_collection_response( response_hash )
         end
 
         def search( hash )
           attribute, value = hash.first
-          response_hash = get( "#{ @options.uri }?#{ attribute }=#{ value }" )
+          response_hash = get( "#{ self.class::URI }?#{ attribute }=#{ value }" )
           instansiate_collection_response( response_hash )
         end
 
@@ -32,7 +32,7 @@ module Fortnox
         end
 
         def find_one_by( id )
-          response_hash = get( "#{ @options.uri }#{ id }" )
+          response_hash = get( "#{ self.class::URI }#{ id }" )
           instansiate( @mapper.wrapped_json_hash_to_entity_hash( response_hash ) )
         end
 

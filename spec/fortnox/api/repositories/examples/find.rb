@@ -12,7 +12,7 @@ shared_examples_for '.find' do
 
     specify 'returns correct Customer' do
       id_attribute = described_class::MAPPER.new.send(
-        :convert_key_from_json, subject.options.unique_id
+        :convert_key_from_json, described_class::UNIQUE_ID
       )
       expect( find_id_1.send(id_attribute).to_i ).to eq( find_id )
     end

@@ -9,10 +9,9 @@ module Fortnox
 
         MODEL = Fortnox::API::Model::Invoice
         MAPPER = Fortnox::API::Mapper::Invoice
+        URI = '/invoices/'.freeze
+        UNIQUE_ID = 'DocumentNumber'.freeze
 
-        def initialize
-          super( '/invoices/', 'DocumentNumber' )
-        end
       end
     end
   end
