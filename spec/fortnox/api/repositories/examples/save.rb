@@ -1,4 +1,4 @@
-# rubocop:disable RSpec/DescribeClass, RSpec/NamedSubject
+# rubocop:disable RSpec/DescribeClass
 #######################################
 # SPEC IS DEPENDENT ON DEFINED ORDER!
 #######################################
@@ -11,7 +11,7 @@ shared_examples_for '.save' do |attribute_hash_name, required_attributes = {}|
     end
     let( :new_model ){ described_class::MODEL.new( new_hash ) }
     let( :save_new ){ VCR.use_cassette( "#{ vcr_dir }/save_new" ){ subject.save( new_model ) } }
-    let( :entity_wrapper ){ subject.options.json_entity_wrapper }
+    let( :entity_wrapper ){ subject.mapper.class::JSON_ENTITY_WRAPPER }
     let( :value ){ 'A value' }
 
     shared_examples_for 'save' do
@@ -25,9 +25,9 @@ shared_examples_for '.save' do |attribute_hash_name, required_attributes = {}|
 
       specify "includes correct #{ attribute_hash_name.inspect }" do
         response = send_request
-        attribute_json_name =
-          Fortnox::API::Repository::JSONConvertion.convert_key_to_json( attribute_hash_name,
-                                                                        subject.options.attr_to_json_map )
+        attribute_json_name = described_class::MAPPER.new.send(
+          :convert_key_to_json, attribute_hash_name
+        )
         expect( response[entity_wrapper][attribute_json_name] ).to eql( value )
       end
     end
@@ -59,7 +59,7 @@ shared_examples_for '.save' do |attribute_hash_name, required_attributes = {}|
       include_examples 'save' do
         let( :value ){ "Updated #{ attribute_hash_name }" }
         let( :model ) do
-          new_id = save_new[entity_wrapper][subject.options.unique_id]
+          new_id = save_new[entity_wrapper][described_class::UNIQUE_ID]
           new_record = VCR.use_cassette( "#{ vcr_dir }/find_new" ){ subject.find( new_id ) }
           new_record.update( attribute_hash_name => value )
         end
@@ -70,4 +70,4 @@ shared_examples_for '.save' do |attribute_hash_name, required_attributes = {}|
     end
   end
 end
-# rubocop:enable RSpec/DescribeClass, RSpec/NamedSubject
+# rubocop:enable RSpec/DescribeClass

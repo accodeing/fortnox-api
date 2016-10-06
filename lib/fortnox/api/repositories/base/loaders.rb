@@ -6,28 +6,19 @@ module Fortnox
       module Loaders
 
         def all()
-          response_hash = get( @options.uri )
-          entities_hash = response_hash[ @options.json_collection_wrapper ]
-          entities_hash.map do |entity_hash|
-            hash_to_entity( entity_hash, @options.json_to_attr_map )
-          end
+          response_hash = get( self.class::URI )
+          instansiate_collection_response( response_hash )
         end
 
         def only( filter )
-          response_hash = get( "#{ @options.uri }?filter=#{ filter }" )
-          entities_hash = response_hash[ @options.json_collection_wrapper ]
-          entities_hash.map do |entity_hash|
-            hash_to_entity( entity_hash, @options.json_to_attr_map )
-          end
+          response_hash = get( "#{ self.class::URI }?filter=#{ filter }" )
+          instansiate_collection_response( response_hash )
         end
 
         def search( hash )
           attribute, value = hash.first
-          response_hash = get( "#{ @options.uri }?#{ attribute }=#{ value }" )
-          entities_hash = response_hash[ @options.json_collection_wrapper ]
-          entities_hash.map do |entity_hash|
-            hash_to_entity( entity_hash, @options.json_to_attr_map )
-          end
+          response_hash = get( "#{ self.class::URI }?#{ attribute }=#{ value }" )
+          instansiate_collection_response( response_hash )
         end
 
         def find( id_or_hash )
@@ -41,9 +32,8 @@ module Fortnox
         end
 
         def find_one_by( id )
-          response_hash = get( "#{ @options.uri }#{ id }" )
-          entity_hash = response_hash[ @options.json_entity_wrapper ]
-          hash_to_entity( entity_hash, @options.json_to_attr_map )
+          response_hash = get( "#{ self.class::URI }#{ id }" )
+          instansiate( @mapper.wrapped_json_hash_to_entity_hash( response_hash ) )
         end
 
         # def find_all_by( hash )
@@ -59,6 +49,15 @@ module Fortnox
         def escape( key, value )
           "#{ CGI.escape(key.to_s) }=#{ CGI.escape(value.to_s) }"
         end
+
+        private
+
+          def instansiate_collection_response( response_hash )
+            entities_hash = @mapper.wrapped_json_collection_to_entities_hash( response_hash )
+            entities_hash.map do |entity_hash|
+              instansiate( entity_hash )
+            end
+          end
 
       end
     end

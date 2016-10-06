@@ -1,4 +1,3 @@
-# rubocop:disable RSpec/NamedSubject
 shared_examples_for '.find' do
   let( :find_id ){ 1 }
   let( :find_id_1 ) do
@@ -11,9 +10,8 @@ shared_examples_for '.find' do
     end
 
     specify 'returns correct Customer' do
-      id_attribute = Fortnox::API::Repository::JSONConvertion.convert_key_from_json(
-        subject.options.unique_id,
-        subject.options.attr_to_json_map
+      id_attribute = described_class::MAPPER.new.send(
+        :convert_key_from_json, described_class::UNIQUE_ID
       )
       expect( find_id_1.send(id_attribute).to_i ).to eq( find_id )
     end
@@ -27,4 +25,3 @@ shared_examples_for '.find' do
     end
   end
 end
-# rubocop:enable RSpec/NamedSubject
