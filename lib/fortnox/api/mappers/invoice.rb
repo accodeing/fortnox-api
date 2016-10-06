@@ -14,8 +14,8 @@ module Fortnox
           total_vat: 'TotalVAT',
           vat_included: 'VATIncluded'
         }.freeze
-        JSON_ENTITY_WRAPPER = 'Invoice'
-        JSON_COLLECTION_WRAPPER = 'Invoices'
+        JSON_ENTITY_WRAPPER = 'Invoice'.freeze
+        JSON_COLLECTION_WRAPPER = 'Invoices'.freeze
 
       end
     end

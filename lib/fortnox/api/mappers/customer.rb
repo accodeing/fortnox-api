@@ -16,8 +16,8 @@ module Fortnox
           email_order_cc: 'EmailOrderCC',
           show_price_vat_included: 'ShowPriceVATIncluded',
         }.freeze
-        JSON_ENTITY_WRAPPER = 'Customer'
-        JSON_COLLECTION_WRAPPER = 'Customers'
+        JSON_ENTITY_WRAPPER = 'Customer'.freeze
+        JSON_COLLECTION_WRAPPER = 'Customers'.freeze
 
       end
     end
