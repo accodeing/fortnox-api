@@ -10,10 +10,7 @@ module Fortnox
 
           KEY_MAP = {
             administration_fee_vat: 'AdministrationFeeVAT',
-            edi_information: Fortnox::API::Mapper::EDIInformation,
-            email_information: Fortnox::API::Mapper::EmailInformation,
             freight_vat: 'FreightVAT',
-            order_rows: Fortnox::API::Mapper::OrderRow,
             total_vat: 'TotalVAT',
             vat_included: 'VATIncluded'
           }.freeze
