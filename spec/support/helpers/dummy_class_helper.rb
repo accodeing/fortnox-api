@@ -1,4 +1,4 @@
-require 'dry-struct'
+require 'dry-types'
 
 module Helpers
   def using_test_classes
