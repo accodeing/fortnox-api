@@ -1,3 +1,5 @@
+require 'dry-struct'
+
 module Helpers
   def using_test_classes
     around( :all ) do |example|
