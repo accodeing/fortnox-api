@@ -42,11 +42,10 @@ module Fortnox
 
           def default_key_from_json_transform( key )
             key = key.to_s
-            return key.downcase if key =~ /\A[A-Z]+\z/
-            key.gsub(/([A-Z]+)([A-Z][a-z])/, '\1_\2').
-              gsub(/([a-z])([A-Z])/, '\1_\2').
-              downcase.
-              to_sym
+            unless key =~ /\A[A-Z]+\z/
+              key = key.gsub(/([A-Z]+)([A-Z][a-z])/, '\1_\2').gsub(/([a-z])([A-Z])/, '\1_\2')
+            end
+            key.downcase.to_sym
           end
 
           def convert_hash_keys_to_json_format( hash )
