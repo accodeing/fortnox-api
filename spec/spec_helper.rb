@@ -42,5 +42,6 @@ RSpec.configure do |config|
 
   config.after do
     Object.send(:remove_const, Test.remove_constants.name)
+    Fortnox::API::Registry._container.clear
   end
 end

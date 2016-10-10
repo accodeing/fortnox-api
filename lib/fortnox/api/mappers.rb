@@ -3,6 +3,8 @@ require "fortnox/api/mappers/base"
 module Fortnox
   module API
     module Mapper
+      require "fortnox/api/mappers/array"
+
       Int = ->( value ){ value }
       Float = ->( value ){ value }
       String = ->( value ){ value }
