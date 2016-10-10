@@ -42,6 +42,12 @@ describe Fortnox::API::Mapper::Base, focus: true do
     it{ is_expected.to eq( '{"string":"test","int":1337,"float":13.37}' )}
   end
 
+  describe 'advanced hash' do
+    let( :mapper ){ Fortnox::API::Registry[ :hash ]}
+    subject{ mapper.call( { string: 'test', int_array: [1,3,3,7], nested_hash:{ float: 13.37 }} )}
+    it{ is_expected.to eq( '{"string":"test","int_array":[1,3,3,7],"nested_hash":{"float":13.37}}' )}
+  end
+
   describe '#canonical_name_sym' do
     subject{ described_class.canonical_name_sym }
     it{ is_expected.to eq( described_class.name.split( '::' ).last.downcase.to_sym ) }
