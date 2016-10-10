@@ -6,14 +6,15 @@ module Fortnox
         def wrapped_json_collection_to_entities_hash( json_collection_hash )
           entities_hash = []
           json_collection_hash[ self.class::JSON_COLLECTION_WRAPPER ].each do |json_hash|
-            entities_hash << json_hash_to_entity_hash( json_hash )
+            entities_hash << json_hash_to_entity_hash( json_hash, self.class::KEY_MAP )
           end
 
           entities_hash
         end
 
         def wrapped_json_hash_to_entity_hash( json_entity_hash )
-          json_hash_to_entity_hash( json_entity_hash[self.class::JSON_ENTITY_WRAPPER] )
+          json_hash_to_entity_hash( json_entity_hash[self.class::JSON_ENTITY_WRAPPER],
+                                    self.class::KEY_MAP )
         end
 
         def entity_to_hash( entity, keys_to_filter )
@@ -23,21 +24,42 @@ module Fortnox
           { self.class::JSON_ENTITY_WRAPPER => entity_json_hash }
         end
 
-        private
+        protected
 
-          def json_hash_to_entity_hash( entity_json_hash )
+          def json_hash_to_entity_hash( entity_json_hash, key_map )
             remove_nil_values( entity_json_hash )
-            convert_hash_keys_from_json_format( entity_json_hash )
+            converted_hash = convert_hash_keys_from_json_format( entity_json_hash, key_map )
+            handle_nested_mappers( converted_hash ) if self.class.const_defined?('NESTED_MAPPERS')
+            converted_hash
           end
 
-          def convert_hash_keys_from_json_format( hash )
-            hash.each_with_object( {} ) do |(key, value), json_hash|
-              json_hash[ convert_key_from_json( key ) ] = value
+        private
+
+          def handle_nested_mappers( hash )
+            nested_mappers = self.class::NESTED_MAPPERS
+
+            nested_mappers.each do |key, mapper|
+              nested_json_data = hash.fetch( key )
+
+              if nested_json_data.is_a?(Array) # Possibly several nested models
+                hash[key] = []
+                nested_json_data.each do |nested_json_hash|
+                  hash[key] << mapper.json_hash_to_entity_hash( nested_json_hash, mapper.class::KEY_MAP )
+                end
+              else # Assume one nested model in a hash
+                 hash[key] = mapper.json_hash_to_entity_hash( nested_json_data, mapper.class::KEY_MAP )
+              end
             end
           end
 
-          def convert_key_from_json( key )
-            self.class::KEY_MAP.fetch( key ){ default_key_from_json_transform( key ) }
+          def convert_hash_keys_from_json_format( hash, key_map )
+            hash.each_with_object( {} ) do |(key, value), json_hash|
+              json_hash[ convert_key_from_json( key, key_map ) ] = value
+            end
+          end
+
+          def convert_key_from_json( key, key_map )
+            key_map.fetch( key ){ default_key_from_json_transform( key ) }
           end
 
           def default_key_from_json_transform( key )
