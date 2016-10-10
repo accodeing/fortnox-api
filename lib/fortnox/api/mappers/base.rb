@@ -6,12 +6,9 @@ module Fortnox
       class Base
         include JSONConversion
 
-        def initialize
-          Fortnox::API::Registry.register( self.class.canonical_name_sym, self )
-        end
-
-        def self.canonical_name_sym
-          self.name.split('::').last.downcase.to_sym
+        def self.canonical_name_sym( value = nil )
+          klass = value ? value.class : self
+          klass.name.split('::').last.downcase.to_sym
         end
       end
     end
