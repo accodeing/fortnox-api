@@ -20,6 +20,7 @@ module Fortnox
       Base.get_access_token
     end
 
+    Registry = Dry::Container.new
   end
 end
 
