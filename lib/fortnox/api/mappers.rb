@@ -29,13 +29,13 @@ module Fortnox
         "{#{pairs.join(',')}}"
       end
 
-      Fortnox::API::Registry.register( :fixnum, Fortnox::API::Mapper::Identity )
-      Fortnox::API::Registry.register( :int, Fortnox::API::Mapper::Identity )
-      Fortnox::API::Registry.register( :float, Fortnox::API::Mapper::Identity )
-      Fortnox::API::Registry.register( :string, Fortnox::API::Mapper::String )
-      Fortnox::API::Registry.register( :boolean, Fortnox::API::Mapper::Boolean )
-      Fortnox::API::Registry.register( :array, Fortnox::API::Mapper::Array )
-      Fortnox::API::Registry.register( :hash, Fortnox::API::Mapper::Hash )
+      Registry.register( :fixnum, Fortnox::API::Mapper::Identity )
+      Registry.register( :int, Fortnox::API::Mapper::Identity )
+      Registry.register( :float, Fortnox::API::Mapper::Identity )
+      Registry.register( :string, Fortnox::API::Mapper::String )
+      Registry.register( :boolean, Fortnox::API::Mapper::Boolean )
+      Registry.register( :array, Fortnox::API::Mapper::Array )
+      Registry.register( :hash, Fortnox::API::Mapper::Hash )
     end
   end
 end
