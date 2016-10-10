@@ -37,27 +37,36 @@ module Fortnox
             nested_mappers = self.class::NESTED_MAPPERS if self.class.const_defined?('NESTED_MAPPERS')
 
             hash.each_with_object( {} ) do |(key, value), json_hash|
-              if !nested_mappers.nil? && nested_mappers.key?( key )
-                mapper = nested_mappers.fetch( key )
-
-                if value.is_a?(Array)
-                  nested_data_key = convert_key_to_json( key, key_map )
-                  nested_key_map = mapper.class::KEY_MAP
-                  json_hash[ nested_data_key ] = []
-                  value.each do |nested_model|
-                    json_hash[ nested_data_key ] << mapper.convert_hash_keys_to_json_format( nested_model, nested_key_map )
-                  end
-                else
-                  nested_model = mapper.convert_hash_keys_to_json_format( value, mapper.class::KEY_MAP )
-                  json_hash[ convert_key_to_json( key, key_map ) ] = nested_model
-                end
-              else
-                json_hash[ convert_key_to_json( key, key_map ) ] = value
-              end
+              json_value = Fortnox::API::Registry[ mapper_name_for( value ) ].call( value )
+              p json_value
             end
+
+            # hash.each_with_object( {} ) do |(key, value), json_hash|
+            #   if !nested_mappers.nil? && nested_mappers.key?( key )
+            #     mapper = nested_mappers.fetch( key )
+
+            #     if value.is_a?(Array)
+            #       nested_data_key = convert_key_to_json( key, key_map )
+            #       nested_key_map = mapper.class::KEY_MAP
+            #       json_hash[ nested_data_key ] = []
+            #       value.each do |nested_model|
+            #         json_hash[ nested_data_key ] << mapper.convert_hash_keys_to_json_format( nested_model, nested_key_map )
+            #       end
+            #     else
+            #       nested_model = mapper.convert_hash_keys_to_json_format( value, mapper.class::KEY_MAP )
+            #       json_hash[ convert_key_to_json( key, key_map ) ] = nested_model
+            #     end
+            #   else
+            #     json_hash[ convert_key_to_json( key, key_map ) ] = value
+            #   end
+            # end
           end
 
         private
+
+          def mapper_name_for( value )
+            value.class.name.split('::').last.downcase.to_sym
+          end
 
           def convert_nested_mappers_from_json_format( hash )
             nested_mappers = self.class::NESTED_MAPPERS

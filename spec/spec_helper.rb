@@ -42,10 +42,5 @@ RSpec.configure do |config|
 
   config.after do
     Object.send(:remove_const, Test.remove_constants.name)
-
-    # Reset Registry between test runs
-    registry_klass = Fortnox::API::Registry.class
-    Fortnox::API.send(:remove_const, 'Registry')
-    Fortnox::API.const_set('Registry', registry_klass.new)
   end
 end

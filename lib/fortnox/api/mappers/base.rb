@@ -11,7 +11,7 @@ module Fortnox
         end
 
         def self.canonical_name_sym
-          self.name.split('::').last.to_sym
+          self.name.split('::').last.downcase.to_sym
         end
       end
     end

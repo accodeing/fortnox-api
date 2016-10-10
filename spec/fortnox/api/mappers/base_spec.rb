@@ -8,6 +8,6 @@ describe Fortnox::API::Mapper::Base do
 
   describe '#canonical_name_sym' do
     subject{ described_class.canonical_name_sym }
-    it{ is_expected.to eq( described_class.name.split( '::' ).last.to_sym ) }
+    it{ is_expected.to eq( described_class.name.split( '::' ).last.downcase.to_sym ) }
   end
 end

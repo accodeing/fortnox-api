@@ -1,5 +1,7 @@
 require 'spec_helper'
 require 'dry-struct'
+require 'fortnox/api'
+require 'fortnox/api/mappers'
 require 'fortnox/api/mappers/base/json_conversion'
 
 describe Fortnox::API::Mapper::JSONConversion do

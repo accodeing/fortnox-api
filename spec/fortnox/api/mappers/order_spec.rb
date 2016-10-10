@@ -4,6 +4,8 @@ require 'fortnox/api/mappers/order'
 require 'fortnox/api/mappers/examples/mapper'
 
 describe Fortnox::API::Mapper::Order do
+  after{ clear_registry }
+
   key_map =
     {
       administration_fee_vat: 'AdministrationFeeVAT',
