@@ -14,6 +14,9 @@ module Fortnox
             total_vat: 'TotalVAT',
             vat_included: 'VATIncluded'
           }.freeze
+          NESTED_MAPPERS = {
+            'OrderRows': Fortnox::API::Mapper::OrderRow
+          }
           JSON_ENTITY_WRAPPER = 'Order'.freeze
           JSON_COLLECTION_WRAPPER = 'Orders'.freeze
 
