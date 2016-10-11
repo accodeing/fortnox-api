@@ -8,17 +8,17 @@ module Fortnox
     module Mapper
       class Order < Fortnox::API::Mapper::Base
 
-          KEY_MAP = {
-            administration_fee_vat: 'AdministrationFeeVAT',
-            freight_vat: 'FreightVAT',
-            total_vat: 'TotalVAT',
-            vat_included: 'VATIncluded'
-          }.freeze
-          NESTED_MAPPERS = {
-            'OrderRows': Fortnox::API::Mapper::OrderRow
-          }
-          JSON_ENTITY_WRAPPER = 'Order'.freeze
-          JSON_COLLECTION_WRAPPER = 'Orders'.freeze
+        KEY_MAP = {
+          administration_fee_vat: 'AdministrationFeeVAT',
+          freight_vat: 'FreightVAT',
+          total_vat: 'TotalVAT',
+          vat_included: 'VATIncluded'
+        }.freeze
+        NESTED_MAPPERS = {
+          'OrderRows': Fortnox::API::Mapper::OrderRow
+        }
+        JSON_ENTITY_WRAPPER = 'Order'.freeze
+        JSON_COLLECTION_WRAPPER = 'Orders'.freeze
       end
 
       Registry.register( Order.canonical_name_sym, Order )
