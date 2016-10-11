@@ -101,7 +101,7 @@ describe Fortnox::API::Mapper::JSONConversion do
   end
 
   describe 'wrapped_json_collection_to_entities_hash' do
-
+    it 'is tested'
   end
 
   describe 'entity_to_hash' do

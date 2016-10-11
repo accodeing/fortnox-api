@@ -1,3 +1,4 @@
+# rubocop:disable RSpec/DescribeClass
 shared_examples_for '.find' do
   describe '.find' do
     let( :find_id ){ 1 }
@@ -27,3 +28,4 @@ shared_examples_for '.find' do
     end
   end
 end
+# rubocop:enable RSpec/DescribeClass
