@@ -6,7 +6,7 @@ module Fortnox
     module Model
       class Base < Fortnox::API::Types::Model
 
-        attr_accessor :unsaved
+        attr_accessor :unsaved, :parent
 
         def self.attribute( name, *args )
           define_method( "#{ name }?" ) do
@@ -16,9 +16,9 @@ module Fortnox
           super
         end
 
-        def self.new( hash = {} )
-          obj = preserve_meta_properties( hash ) do
-            super
+        def self.new( hash = {}, parent = nil )
+          obj = preserve_meta_properties( hash, parent ) do
+            super( hash )
           end
 
           IceNine.deep_freeze( obj )
@@ -32,7 +32,7 @@ module Fortnox
 
           new_hash = new_attributes.delete_if{ |_, value| value.nil? }
           new_hash[:new] = @new
-          self.class.new( new_hash )
+          self.class.new( new_hash, self )
         end
 
         # Generic comparison, by value, use .eql? or .equal? for object identity.
@@ -55,7 +55,7 @@ module Fortnox
         # class that is being instansiated. This wrapper preserves the meta
         # properties we need to track object state during that initilisation and
         # sets them on the object after dry-types is done with it.
-        def self.preserve_meta_properties( hash )
+        def self.preserve_meta_properties( hash, parent )
           is_unsaved = hash.delete( :unsaved ){ true }
           is_new = hash.delete( :new ){ true }
 
@@ -64,6 +64,7 @@ module Fortnox
           obj.instance_variable_set( :@unsaved, is_unsaved )
           obj.instance_variable_set( :@saved, !is_unsaved )
           obj.instance_variable_set( :@new, is_new )
+          obj.instance_variable_set( :@parent, parent )
 
           return obj
         end
