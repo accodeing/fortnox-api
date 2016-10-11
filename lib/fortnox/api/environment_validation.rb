@@ -1,3 +1,5 @@
+require 'forwardable'
+
 module Fortnox
   module API
     module EnvironmentValidation
