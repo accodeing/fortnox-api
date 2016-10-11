@@ -5,7 +5,7 @@ require 'fortnox/api/mappers/base'
 require 'fortnox/api/mappers/examples/mapper'
 
 describe Fortnox::API::Mapper::Base, focus: true do
-  #it_behaves_like 'mapper', nil, nil, nil, check_constants: false
+  it_behaves_like 'mapper', nil, nil, nil, check_constants: false
 
   describe 'string' do
     let( :mapper ){ Fortnox::API::Registry[ :string ]}
