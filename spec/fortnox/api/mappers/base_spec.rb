@@ -1,5 +1,6 @@
 require 'spec_helper'
 require 'fortnox/api'
+require 'fortnox/api/mappers'
 require 'fortnox/api/mappers/base'
 require 'fortnox/api/mappers/examples/mapper'
 

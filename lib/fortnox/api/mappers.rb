@@ -4,8 +4,6 @@ require "fortnox/api/types"
 module Fortnox
   module API
     module Mapper
-      require "fortnox/api/mappers/array"
-
       Identity = ->( value ){ value }
 
       String = ->( value ){ value.inspect }
