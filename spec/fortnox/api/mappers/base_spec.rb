@@ -8,9 +8,9 @@ describe Fortnox::API::Mapper::Base do
   it_behaves_like 'mapper', nil, nil, nil, check_constants: false
 
   shared_examples_for 'simple mapper' do |registry_key, exp_value|
-    let( :mapper ){ Fortnox::API::Registry[ registry_key ]}
-    subject{ mapper.call( value )}
-    it{ is_expected.to eq( exp_value )}
+    let( :mapper ){ Fortnox::API::Registry[ registry_key ] }
+    subject{ mapper.call( value ) }
+    it{ is_expected.to eq( exp_value ) }
   end
 
   describe 'string' do

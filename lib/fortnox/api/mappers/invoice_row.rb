@@ -8,9 +8,9 @@ module Fortnox
           vat: 'VAT',
           price_excluding_vat: 'PriceExcludingVAT',
           total_excluding_vat: 'TotalExcludingVAT'
-        }
-        JSON_ENTITY_WRAPPER = 'InvoiceRow'
-        JSON_COLLECTION_WRAPPER = 'InvoiceRows'
+        }.freeze
+        JSON_ENTITY_WRAPPER = 'InvoiceRow'.freeze
+        JSON_COLLECTION_WRAPPER = 'InvoiceRows'.freeze
       end
 
       Registry.register( InvoiceRow.canonical_name_sym, InvoiceRow )

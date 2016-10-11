@@ -4,9 +4,9 @@ module Fortnox
   module API
     module Mapper
       class OrderRow < Fortnox::API::Mapper::Base
-        KEY_MAP = { vat: 'VAT' }
-        JSON_ENTITY_WRAPPER = 'OrderRow'
-        JSON_COLLECTION_WRAPPER = 'OrderRows'
+        KEY_MAP = { vat: 'VAT' }.freeze
+        JSON_ENTITY_WRAPPER = 'OrderRow'.freeze
+        JSON_COLLECTION_WRAPPER = 'OrderRows'.freeze
       end
 
       Registry.register( OrderRow.canonical_name_sym, OrderRow )

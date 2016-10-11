@@ -36,11 +36,12 @@ describe Fortnox::API::Repository::Order, order: :defined, integration: true do
         {
           customer_number: '1',
           comments: 'A great comment about something',
-          order_rows: [{price: 100.0, order_quantity: 1}, {price: 101.5, order_quantity: 2.5}]
-        })
+          order_rows: [{ price: 100.0, order_quantity: 1 }, { price: 101.5, order_quantity: 2.5 }]
+        }
+)
     end
 
-    it 'should save an Order with OrderRows' do
+    it 'saves an Order with OrderRows' do
       VCR.use_cassette('orders/save_new_with_order_rows') do
         repository.save(model)
       end

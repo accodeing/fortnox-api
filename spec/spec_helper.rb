@@ -34,7 +34,7 @@ RSpec.configure do |config|
   config.before do
     module Test
       def self.remove_constants
-        constants.each { |const| remove_const(const) }
+        constants.each{ |const| remove_const(const) }
         self
       end
     end

@@ -12,24 +12,24 @@ describe Fortnox::API::Mapper::JSONConversion do
       end
 
       class CategoryMapper < BaseMapper
-        KEY_MAP = { id: 'ID' }
+        KEY_MAP = { id: 'ID' }.freeze
       end
 
       class ProductDesignerMapper < BaseMapper
-        KEY_MAP = { id: 'ID' }
+        KEY_MAP = { id: 'ID' }.freeze
       end
 
       class ProductMapper < BaseMapper
         KEY_MAP = {
           vat: 'VAT',
           url: '@url' # TODO: How to handle url attribute?
-        }
-        JSON_ENTITY_WRAPPER = 'Product'
-        JSON_COLLECTION_WRAPPER = 'Products'
+        }.freeze
+        JSON_ENTITY_WRAPPER = 'Product'.freeze
+        JSON_COLLECTION_WRAPPER = 'Products'.freeze
         NESTED_MAPPERS = {
           categories: CategoryMapper.new,
           designer: ProductDesignerMapper.new
-        }
+        }.freeze
       end
 
       class Category < Dry::Struct
@@ -83,7 +83,7 @@ describe Fortnox::API::Mapper::JSONConversion do
 
     context 'with nested models' do
       let( :expected_nested_model_hash ) do
-        [{ name: 'Cars', id: '1' }, { name: 'Fast cars', id: '2'}]
+        [{ name: 'Cars', id: '1' }, { name: 'Fast cars', id: '2' }]
       end
 
       specify 'are converted correctly' do
@@ -116,7 +116,7 @@ describe Fortnox::API::Mapper::JSONConversion do
                          designer: product_designer )
     end
     let( :keys_to_filter ){ [:url] }
-    let( :returned_hash ) { mapper.entity_to_hash( product, keys_to_filter ) }
+    let( :returned_hash ){ mapper.entity_to_hash( product, keys_to_filter ) }
     let( :inner_hash ){ returned_hash['Product'] }
 
     it 'includes JSON entity wrapper' do

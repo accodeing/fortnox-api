@@ -4,20 +4,20 @@ require "fortnox/api/types"
 module Fortnox
   module API
     module Mapper
-      Identity = ->( value ){ value }
+      Identity = ->(value){ value }
 
-      String = ->( value ){ value.inspect }
+      String = ->(value){ value.inspect }
 
-      Boolean = ->( value ){ value.to_s.inspect }
+      Boolean = ->(value){ value.to_s.inspect }
 
-      NilClass = ->( value ){ 'null' }
+      NilClass = ->(_value){ 'null' }
 
-      Array = ->( value ) do
+      Array = ->(value) do
         pairs = value.map do |v|
           name = Fortnox::API::Mapper::Base.canonical_name_sym( v )
           Fortnox::API::Registry[ name ].call( v )
         end
-        "[#{pairs.join(',')}]"
+        "[#{ pairs.join(',') }]"
       end
 
       Registry.register( :fixnum, Fortnox::API::Mapper::Identity )
