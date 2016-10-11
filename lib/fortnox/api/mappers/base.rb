@@ -28,21 +28,35 @@ module Fortnox
           Registry[:hash].call( hash )
         end
 
+        def diff( entity_hash, parent_hash, unique_id )
+          hash_diff( entity_hash[self.class::JSON_ENTITY_WRAPPER],
+                     parent_hash[self.class::JSON_ENTITY_WRAPPER],
+                     unique_id )
+        end
+
         private_class_method
 
-        def self.translate_keys( hash )
-          hash.keys.each do |key|
-            if self::KEY_MAP.key?( key )
-              hash[self::KEY_MAP.fetch( key )] = hash.delete( key )
+          def self.translate_keys( hash )
+            hash.keys.each do |key|
+              if self::KEY_MAP.key?( key )
+                hash[self::KEY_MAP.fetch( key )] = hash.delete( key )
+              end
             end
           end
-        end
 
-        def self.translate_values( hash )
-          hash.each do |key, value|
-            hash[key] = Registry[value.class.name.downcase.to_sym].call( value )
+          def self.translate_values( hash )
+            hash.each do |key, value|
+              hash[key] = Registry[value.class.name.downcase.to_sym].call( value )
+            end
           end
-        end
+
+        private
+
+          def hash_diff(hash1, hash2, unique_id)
+            hash1.dup.
+              delete_if{ |k, v| hash2[k] == v unless k == unique_id }.
+              merge!(hash2.dup.delete_if{ |k, _| hash1.has_key?(k) unless k == unique_id })
+          end
       end
     end
   end
