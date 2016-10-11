@@ -10,6 +10,8 @@ module Fortnox
 
       Boolean = ->( value ){ value.to_s.inspect }
 
+      NilClass = ->( value ){ 'null' }
+
       Array = ->( value ) do
         pairs = value.map do |v|
           name = Fortnox::API::Mapper::Base.canonical_name_sym( v )
@@ -23,6 +25,7 @@ module Fortnox
       Registry.register( :float, Fortnox::API::Mapper::Identity )
       Registry.register( :string, Fortnox::API::Mapper::String )
       Registry.register( :boolean, Fortnox::API::Mapper::Boolean )
+      Registry.register( :nil, Fortnox::API::Mapper::NilClass )
       Registry.register( :array, Fortnox::API::Mapper::Array )
     end
   end
