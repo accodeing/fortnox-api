@@ -10,8 +10,9 @@ module Fortnox
           email_address_cc: 'EmailAddressCC'
         }.freeze
         JSON_ENTITY_WRAPPER = JSON_COLLECTION_WRAPPER = 'EmailInformation'.freeze
-
       end
+
+      Registry.register( EmailInformation.canonical_name_sym, EmailInformation )
     end
   end
 end

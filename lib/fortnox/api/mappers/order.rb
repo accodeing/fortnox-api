@@ -19,8 +19,9 @@ module Fortnox
           }
           JSON_ENTITY_WRAPPER = 'Order'.freeze
           JSON_COLLECTION_WRAPPER = 'Orders'.freeze
-
       end
+
+      Registry.register( Order.canonical_name_sym, Order )
     end
   end
 end

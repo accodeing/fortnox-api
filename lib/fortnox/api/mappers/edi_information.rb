@@ -14,8 +14,9 @@ module Fortnox
           edi_your_electronic_reference: 'EDIYourElectronicReference'
         }.freeze
         JSON_ENTITY_WRAPPER = JSON_COLLECTION_WRAPPER = 'EDIInformation'.freeze
-
       end
+
+      Registry.register( EDIInformation.canonical_name_sym, EDIInformation )
     end
   end
 end

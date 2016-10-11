@@ -21,8 +21,9 @@ module Fortnox
         }.freeze
         JSON_ENTITY_WRAPPER = 'Invoice'.freeze
         JSON_COLLECTION_WRAPPER = 'Invoices'.freeze
-
       end
+
+      Registry.register( Invoice.canonical_name_sym, Invoice )
     end
   end
 end

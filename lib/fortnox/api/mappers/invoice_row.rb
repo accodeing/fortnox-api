@@ -12,6 +12,8 @@ module Fortnox
         JSON_ENTITY_WRAPPER = 'InvoiceRow'
         JSON_COLLECTION_WRAPPER = 'InvoiceRows'
       end
+
+      Registry.register( InvoiceRow.canonical_name_sym, InvoiceRow )
     end
   end
 end

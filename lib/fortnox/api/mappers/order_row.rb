@@ -8,6 +8,8 @@ module Fortnox
         JSON_ENTITY_WRAPPER = 'OrderRow'
         JSON_COLLECTION_WRAPPER = 'OrderRows'
       end
+
+      Registry.register( OrderRow.canonical_name_sym, OrderRow )
     end
   end
 end
