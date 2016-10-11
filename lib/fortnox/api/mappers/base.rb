@@ -17,8 +17,8 @@ module Fortnox
 
         Registry.register( :hash, Fortnox::API::Mapper::Base::Hash )
 
-        def self.canonical_name_sym( *value )
-          klass = value.empty? ? 'nil' : self
+        def self.canonical_name_sym( *values )
+          klass = values.empty? ? self : values.first.class
           klass.name.split('::').last.downcase.to_sym
         end
 
