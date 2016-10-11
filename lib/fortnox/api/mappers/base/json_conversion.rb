@@ -20,7 +20,7 @@ module Fortnox
         def entity_to_hash( entity, keys_to_filter )
           entity_hash = entity.to_hash
           clean_entity_hash = sanitise( entity_hash, keys_to_filter )
-          entity_json_hash = convert_hash_keys_to_json_format( clean_entity_hash, self.class::KEY_MAP )
+          entity_json_hash = Registry[ mapper_name_for( entity ) ].call( entity.to_hash )
           { self.class::JSON_ENTITY_WRAPPER => entity_json_hash }
         end
 
@@ -31,30 +31,6 @@ module Fortnox
             converted_hash = convert_hash_keys_from_json_format( entity_json_hash, key_map )
             convert_nested_mappers_from_json_format( converted_hash ) if self.class.const_defined?('NESTED_MAPPERS')
             converted_hash
-          end
-
-          def convert_hash_keys_to_json_format( hash, key_map )
-            nested_mappers = self.class::NESTED_MAPPERS if self.class.const_defined?('NESTED_MAPPERS')
-
-            hash.each_with_object( {} ) do |(key, value), json_hash|
-              if !nested_mappers.nil? && nested_mappers.key?( key )
-                mapper = nested_mappers.fetch( key )
-
-                if value.is_a?(::Array)
-                  nested_data_key = convert_key_to_json( key, key_map )
-                  json_hash[ nested_data_key ] = []
-                  value.each do |nested_model|
-                    json_hash[ nested_data_key ] << mapper.convert_hash_keys_to_json_format( nested_model,
-                                                                                            mapper.class::KEY_MAP )
-                  end
-                else
-                  nested_model = mapper.convert_hash_keys_to_json_format( value, mapper.class::KEY_MAP )
-                  json_hash[ convert_key_to_json( key, key_map ) ] = nested_model
-                end
-              else
-                json_hash[ convert_key_to_json( key, key_map ) ] = value
-              end
-            end
           end
 
         private
