@@ -11,8 +11,10 @@ shared_examples_for '.find' do
     end
 
     specify 'returns correct Customer' do
-      id_attribute = described_class::MAPPER.new.send(
-        :convert_key_from_json, described_class::UNIQUE_ID
+      id_attribute = repository.mapper.send(
+        :convert_key_from_json,
+        described_class::UNIQUE_ID,
+        repository.mapper.class::KEY_MAP
       )
       expect( find_id_1.send(id_attribute).to_i ).to eq( find_id )
     end
