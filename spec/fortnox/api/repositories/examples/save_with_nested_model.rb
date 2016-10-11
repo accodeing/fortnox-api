@@ -14,9 +14,9 @@ shared_examples_for '.save with nested model' do |required_hash, nested_key, nes
       end
     end
 
-    it 'does not raise any errors' # do
-      # expect{ response }.to_not raise_error
-    # end
+    it 'does not raise any errors' do
+      expect{ response }.to_not raise_error
+    end
 
     describe 'response' do
       subject{ response }
