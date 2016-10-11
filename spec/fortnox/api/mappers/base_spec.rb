@@ -57,6 +57,54 @@ describe Fortnox::API::Mapper::Base do
     end
   end
 
+  describe 'AccountNumber' do
+    include_examples 'simple mapper', :account_number, 1234 do
+      let( :value ){ Fortnox::API::Types::AccountNumber[ 1234 ] }
+    end
+  end
+
+  describe 'CountryCode' do
+    include_examples 'simple mapper', :country_code, '"SE"' do
+      let( :value ){ Fortnox::API::Types::CountryCode[ 'SE' ] }
+    end
+  end
+
+  describe 'Currency' do
+    include_examples 'simple mapper', :currency, '"SEK"' do
+      let( :value ){ Fortnox::API::Types::Currency[ 'SEK' ] }
+    end
+  end
+
+  describe 'CustomerType' do
+    include_examples 'simple mapper', :customer_type, '"PRIVATE"' do
+      let( :value ){ Fortnox::API::Types::CustomerType[ 'PRIVATE' ] }
+    end
+  end
+
+  describe 'DiscountType' do
+    include_examples 'simple mapper', :discount_type, '"PERCENT"' do
+      let( :value ){ Fortnox::API::Types::DiscountType[ 'PERCENT' ] }
+    end
+  end
+
+  describe 'Email' do
+    include_examples 'simple mapper', :email, '"email@example.com"' do
+      let( :value ){ Fortnox::API::Types::Email[ 'email@example.com' ] }
+    end
+  end
+
+  describe 'HouseWorkType' do
+    include_examples 'simple mapper', :house_work_type, '"CONSTRUCTION"' do
+      let( :value ){ Fortnox::API::Types::HouseWorkType[ 'CONSTRUCTION' ] }
+    end
+  end
+
+  describe 'VATType' do
+    include_examples 'simple mapper', :vat_type, '"SEVAT"' do
+      let( :value ){ Fortnox::API::Types::VATType[ 'SEVAT' ] }
+    end
+  end
+
   describe '#canonical_name_sym' do
     subject{ described_class.canonical_name_sym }
     it{ is_expected.to eq( described_class.name.split( '::' ).last.downcase.to_sym ) }
