@@ -16,8 +16,8 @@ module Fortnox
           super
         end
 
-        def self.new( hash = {}, parent = nil )
-          obj = preserve_meta_properties( hash, parent ) do
+        def self.new( hash = {} )
+          obj = preserve_meta_properties( hash ) do
             super( hash )
           end
 
@@ -32,7 +32,8 @@ module Fortnox
 
           new_hash = new_attributes.delete_if{ |_, value| value.nil? }
           new_hash[:new] = @new
-          self.class.new( new_hash, self )
+          new_hash[:parent] = self
+          self.class.new( new_hash )
         end
 
         # Generic comparison, by value, use .eql? or .equal? for object identity.
@@ -55,9 +56,10 @@ module Fortnox
         # class that is being instansiated. This wrapper preserves the meta
         # properties we need to track object state during that initilisation and
         # sets them on the object after dry-types is done with it.
-        def self.preserve_meta_properties( hash, parent )
+        def self.preserve_meta_properties( hash )
           is_unsaved = hash.delete( :unsaved ){ true }
           is_new = hash.delete( :new ){ true }
+          parent = hash.delete( :parent ){ nil }
 
           obj = yield
 
