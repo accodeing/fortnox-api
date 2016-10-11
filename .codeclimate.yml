@@ -8,8 +8,6 @@ engines:
     exclude_fingerprints:
       - e90f5ceaaaf6e613e221ffc4dd84fa37
       - 1fca042e9b232b8f28944f0c89d5f34c
-  eslint:
-    enabled: true
   fixme:
     enabled: false
   rubocop:
