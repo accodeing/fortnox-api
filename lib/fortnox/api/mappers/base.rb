@@ -6,6 +6,17 @@ module Fortnox
       class Base
         include JSONConversion
 
+        Hash = ->( value ) do
+          pairs = value.inject([]) do |pairs,(k,v)|
+            name = Fortnox::API::Mapper::Base.canonical_name_sym( v )
+            value = Fortnox::API::Registry[ name ].call( v )
+            pairs << "\"#{ k }\":#{ value }"
+          end
+          "{#{pairs.join(',')}}"
+        end
+
+        Registry.register( :hash, Fortnox::API::Mapper::Base::Hash )
+
         def self.canonical_name_sym( value = nil )
           klass = value ? value.class : self
           klass.name.split('::').last.downcase.to_sym
