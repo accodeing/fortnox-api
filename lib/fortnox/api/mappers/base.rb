@@ -18,7 +18,7 @@ module Fortnox
         Registry.register( :hash, Fortnox::API::Mapper::Base::Hash )
 
         def self.canonical_name_sym( *value )
-          klass = value.empty? ? value.class : self
+          klass = value.empty? ? 'nil' : self
           klass.name.split('::').last.downcase.to_sym
         end
 
@@ -40,6 +40,8 @@ module Fortnox
             hash.keys.each do |key|
               if self::KEY_MAP.key?( key )
                 hash[self::KEY_MAP.fetch( key )] = hash.delete( key )
+              else
+                key.to_s.inspect
               end
             end
           end
