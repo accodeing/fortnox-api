@@ -31,17 +31,16 @@ RSpec.configure do |config|
     ENV['FORTNOX_API_ACCESS_TOKEN'] = nil
   end
 
-  # config.before do
-  #   module Test
-  #     def self.remove_constants
-  #       constants.each { |const| remove_const(const) }
-  #       self
-  #     end
-  #   end
-  # end
-  #
-  # config.after do
-  #   Object.send(:remove_const, Test.remove_constants.name)
-  #   Fortnox::API::Registry._container.clear
-  # end
+  config.before do
+    module Test
+      def self.remove_constants
+        constants.each { |const| remove_const(const) }
+        self
+      end
+    end
+  end
+
+  config.after do
+    Object.send(:remove_const, Test.remove_constants.name)
+  end
 end
