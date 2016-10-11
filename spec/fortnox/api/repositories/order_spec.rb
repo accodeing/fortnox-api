@@ -18,7 +18,7 @@ describe Fortnox::API::Repository::Order, order: :defined, integration: true do
   include_examples '.save with nested model',
                    required_hash,
                    :order_rows,
-                   { order_row: { price: 10, price_excluding_vat: 7, order_quantity: 1 } }
+                   [{ price: 10, price_excluding_vat: 7, order_quantity: 1 }]
 
   # It is not possible to delete Orders. Therefore, expected nr of Orders
   # when running .all will continue to increase.

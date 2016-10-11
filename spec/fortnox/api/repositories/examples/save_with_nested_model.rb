@@ -1,11 +1,11 @@
 # TODO: This will not work until we solve issue #62.
 # Until then, these tests are pending.
 # rubocop:disable RSpec/DescribeClass
-shared_examples_for '.save with nested model' do |required_hash, nested_key, nested_hash|
+shared_examples_for '.save with nested model' do |required_hash, nested_key, nested_entity|
   describe '.save with nested model' do
     let( :repository ){ described_class.new }
     let( :new_hash ) do
-      required_hash.merge( nested_key => nested_hash )
+      required_hash.merge( nested_key => nested_entity )
     end
     let( :response ) do
       VCR.use_cassette( "#{ vcr_dir }/save_with_nested_model" ) do
