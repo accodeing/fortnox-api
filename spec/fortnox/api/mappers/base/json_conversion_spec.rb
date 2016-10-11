@@ -2,34 +2,42 @@ require 'spec_helper'
 require 'dry-struct'
 require 'fortnox/api'
 require 'fortnox/api/mappers'
+require 'fortnox/api/mappers/base'
 require 'fortnox/api/mappers/base/json_conversion'
 
 describe Fortnox::API::Mapper::JSONConversion do
+  before(:all) do
+    module Test
+      class CategoryMapper < Fortnox::API::Mapper::Base
+      end
+      class ProductDesignerMapper < Fortnox::API::Mapper::Base
+      end
+      class ProductMapper < Fortnox::API::Mapper::Base
+      end
+    end
+
+    Fortnox::API::Registry.register( :category, Test::CategoryMapper )
+    Fortnox::API::Registry.register( :product_designer, Test::ProductDesignerMapper )
+    Fortnox::API::Registry.register( :product, Test::ProductMapper )
+  end
+
   before do
     module Test
-      class BaseMapper
-        include Fortnox::API::Mapper::JSONConversion
-      end
-
-      class CategoryMapper < BaseMapper
+      class CategoryMapper < Fortnox::API::Mapper::Base
         KEY_MAP = { id: 'ID' }.freeze
       end
 
-      class ProductDesignerMapper < BaseMapper
+      class ProductDesignerMapper < Fortnox::API::Mapper::Base
         KEY_MAP = { id: 'ID' }.freeze
       end
 
-      class ProductMapper < BaseMapper
+      class ProductMapper < Fortnox::API::Mapper::Base
         KEY_MAP = {
           vat: 'VAT',
           url: '@url' # TODO: How to handle url attribute?
         }.freeze
         JSON_ENTITY_WRAPPER = 'Product'.freeze
         JSON_COLLECTION_WRAPPER = 'Products'.freeze
-        NESTED_MAPPERS = {
-          categories: CategoryMapper.new,
-          designer: ProductDesignerMapper.new
-        }.freeze
       end
 
       class Category < Dry::Struct
