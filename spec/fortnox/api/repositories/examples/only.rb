@@ -1,16 +1,14 @@
 # rubocop:disable RSpec/DescribeClass
 shared_examples_for '.only' do |matching_filter, expected_matches, missing_filter: nil|
   describe '.only' do
-    def repository_only(vcr_cassette, filter)
-      repository = described_class.new
-
+    def repository_only(repository, vcr_cassette, filter)
       VCR.use_cassette( "#{ vcr_dir }/#{ vcr_cassette }" ) do
         repository.only( filter )
       end
     end
 
     shared_examples '.only response' do |vcr_cassette, expected_entries|
-      subject{ repository_only( vcr_cassette, filter ) }
+      subject{ repository_only( repository, vcr_cassette, filter ) }
 
       it{ is_expected.to be_instance_of( Array ) }
       it{ is_expected.to have(expected_entries).entries }
@@ -33,7 +31,7 @@ shared_examples_for '.only' do |matching_filter, expected_matches, missing_filte
     context "with invalid filter" do
       subject do
         when_performing do
-          repository_only( 'filter_invalid', 'doesntexist' )
+          repository_only( repository, 'filter_invalid', 'doesntexist' )
         end
       end
 

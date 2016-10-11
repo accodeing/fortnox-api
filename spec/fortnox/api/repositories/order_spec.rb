@@ -9,6 +9,8 @@ require 'fortnox/api/repositories/examples/save_with_nested_model'
 require 'fortnox/api/repositories/examples/search'
 
 describe Fortnox::API::Repository::Order, order: :defined, integration: true do
+  subject(:repository){ described_class.new }
+
   include_context 'environment'
 
   required_hash = { customer_number: '1' }
@@ -40,7 +42,7 @@ describe Fortnox::API::Repository::Order, order: :defined, integration: true do
 
     it 'should save an Order with OrderRows' do
       VCR.use_cassette('orders/save_new_with_order_rows') do
-        described_class.new.save(model)
+        repository.save(model)
       end
     end
   end

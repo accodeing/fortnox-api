@@ -2,10 +2,8 @@ shared_examples_for '.find' do
   describe '.find' do
     let( :find_id ){ 1 }
     let( :find_id_1 ) do
-      VCR.use_cassette( "#{ vcr_dir( repository ) }/find_id_1" ){ subject.find( find_id ) }
+      VCR.use_cassette( "#{ vcr_dir }/find_id_1" ){ repository.find( find_id ) }
     end
-
-    it{ p repository }
 
     describe '.find' do
       specify 'returns correct class' do

@@ -8,6 +8,8 @@ require 'fortnox/api/repositories/examples/save_with_specially_named_attribute'
 require 'fortnox/api/repositories/examples/search'
 
 describe Fortnox::API::Repository::Customer, order: :defined, integration: true do
+  subject(:repository){ described_class.new }
+
   include_context 'environment'
 
   include_examples '.save', :name

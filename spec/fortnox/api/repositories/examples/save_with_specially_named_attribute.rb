@@ -9,7 +9,6 @@ shared_examples_for '.save with specially named attribute' do |attributes, attri
       subject{ ->{ save_model } }
 
       let( :new_model ){ described_class::MODEL.new( attributes ) }
-      let( :repository ){ described_class.new }
       let( :save_model )do
         VCR.use_cassette( "#{ vcr_dir }/save_with_specially_named_attribute" ) do
             repository.save( new_model )
