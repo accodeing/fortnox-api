@@ -21,6 +21,28 @@ module Fortnox
           klass = value ? value.class : self
           klass.name.split('::').last.downcase.to_sym
         end
+
+        def self.call( hash )
+          translate_keys( hash )
+          translate_values( hash )
+          Registry[:hash].call( hash )
+        end
+
+        private_class_method
+
+        def self.translate_keys( hash )
+          hash.keys.each do |key|
+            if self::KEY_MAP.key?( key )
+              hash[self::KEY_MAP.fetch( key )] = hash.delete( key )
+            end
+          end
+        end
+
+        def self.translate_values( hash )
+          hash.each do |key, value|
+            hash[key] = Registry[value.class.name.downcase.to_sym].call( value )
+          end
+        end
       end
     end
   end
