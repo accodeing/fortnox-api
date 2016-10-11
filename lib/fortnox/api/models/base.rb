@@ -61,6 +61,7 @@ module Fortnox
 
           obj = yield
 
+          # TODO: remove new, unsaved, saved
           obj.instance_variable_set( :@unsaved, is_unsaved )
           obj.instance_variable_set( :@saved, !is_unsaved )
           obj.instance_variable_set( :@new, is_new )
