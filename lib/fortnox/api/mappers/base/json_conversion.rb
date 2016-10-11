@@ -37,29 +37,24 @@ module Fortnox
             nested_mappers = self.class::NESTED_MAPPERS if self.class.const_defined?('NESTED_MAPPERS')
 
             hash.each_with_object( {} ) do |(key, value), json_hash|
-              json_value = Fortnox::API::Registry[ mapper_name_for( value ) ].call( value )
-              p json_value
+              if !nested_mappers.nil? && nested_mappers.key?( key )
+                mapper = nested_mappers.fetch( key )
+
+                if value.is_a?(::Array)
+                  nested_data_key = convert_key_to_json( key, key_map )
+                  json_hash[ nested_data_key ] = []
+                  value.each do |nested_model|
+                    json_hash[ nested_data_key ] << mapper.convert_hash_keys_to_json_format( nested_model,
+                                                                                            mapper.class::KEY_MAP )
+                  end
+                else
+                  nested_model = mapper.convert_hash_keys_to_json_format( value, mapper.class::KEY_MAP )
+                  json_hash[ convert_key_to_json( key, key_map ) ] = nested_model
+                end
+              else
+                json_hash[ convert_key_to_json( key, key_map ) ] = value
+              end
             end
-
-            # hash.each_with_object( {} ) do |(key, value), json_hash|
-            #   if !nested_mappers.nil? && nested_mappers.key?( key )
-            #     mapper = nested_mappers.fetch( key )
-
-            #     if value.is_a?(Array)
-            #       nested_data_key = convert_key_to_json( key, key_map )
-            #       nested_key_map = mapper.class::KEY_MAP
-            #       json_hash[ nested_data_key ] = []
-            #       value.each do |nested_model|
-            #         json_hash[ nested_data_key ] << mapper.convert_hash_keys_to_json_format( nested_model, nested_key_map )
-            #       end
-            #     else
-            #       nested_model = mapper.convert_hash_keys_to_json_format( value, mapper.class::KEY_MAP )
-            #       json_hash[ convert_key_to_json( key, key_map ) ] = nested_model
-            #     end
-            #   else
-            #     json_hash[ convert_key_to_json( key, key_map ) ] = value
-            #   end
-            # end
           end
 
         private
@@ -74,7 +69,7 @@ module Fortnox
             nested_mappers.each do |key, mapper|
               nested_json_data = hash.fetch( key )
 
-              if nested_json_data.is_a?(Array) # Possibly several nested models
+              if nested_json_data.is_a?(::Array) # Possibly several nested models
                 hash[key] = []
                 nested_json_data.each do |nested_json_hash|
                   hash[key] << mapper.json_hash_to_entity_hash( nested_json_hash, mapper.class::KEY_MAP )

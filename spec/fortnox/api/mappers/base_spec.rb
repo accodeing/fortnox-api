@@ -4,7 +4,7 @@ require 'fortnox/api/mappers'
 require 'fortnox/api/mappers/base'
 require 'fortnox/api/mappers/examples/mapper'
 
-describe Fortnox::API::Mapper::Base, focus: true do
+describe Fortnox::API::Mapper::Base do
   it_behaves_like 'mapper', nil, nil, nil, check_constants: false
 
   describe 'string' do
