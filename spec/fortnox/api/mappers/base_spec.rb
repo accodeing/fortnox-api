@@ -7,46 +7,54 @@ require 'fortnox/api/mappers/examples/mapper'
 describe Fortnox::API::Mapper::Base do
   it_behaves_like 'mapper', nil, nil, nil, check_constants: false
 
+  shared_examples_for 'simple mapper' do |registry_key, exp_value|
+    let( :mapper ){ Fortnox::API::Registry[ registry_key ]}
+    subject{ mapper.call( value )}
+    it{ is_expected.to eq( exp_value )}
+  end
+
   describe 'string' do
-    let( :mapper ){ Fortnox::API::Registry[ :string ]}
-    subject{ mapper.call( Fortnox::API::Types::Nullable::String[ 'test' ] )}
-    it{ is_expected.to eq( '"test"' )}
+    include_examples 'simple mapper', :string, '"test"' do
+      let( :value ){ Fortnox::API::Types::Nullable::String[ 'test' ] }
+    end
   end
 
   describe 'int' do
-    let( :mapper ){ Fortnox::API::Registry[ :int ]}
-    subject{ mapper.call( Fortnox::API::Types::Nullable::Integer[ 1337 ] )}
-    it{ is_expected.to eq( 1337 )}
+    include_examples 'simple mapper', :int, 1337 do
+      let( :value ){ Fortnox::API::Types::Nullable::Integer[ 1337 ] }
+    end
   end
 
   describe 'float' do
-    let( :mapper ){ Fortnox::API::Registry[ :float ]}
-    subject{ mapper.call( Fortnox::API::Types::Nullable::Float[ 13.37 ] )}
-    it{ is_expected.to eq( 13.37 )}
+    include_examples 'simple mapper', :float, 13.37 do
+      let( :value ){ Fortnox::API::Types::Nullable::Float[ 13.37 ] }
+    end
   end
 
   describe 'boolean' do
-    let( :mapper ){ Fortnox::API::Registry[ :boolean ]}
-    subject{ mapper.call( Fortnox::API::Types::Nullable::Boolean[ false ] )}
-    it{ is_expected.to eq( '"false"' )}
+    include_examples 'simple mapper', :boolean, '"false"' do
+      let( :value ){ Fortnox::API::Types::Nullable::Boolean[ false ] }
+    end
   end
 
   describe 'array' do
-    let( :mapper ){ Fortnox::API::Registry[ :array ]}
-    subject{ mapper.call( [1,3,3,7] )}
-    it{ is_expected.to eq( '[1,3,3,7]' )}
+    include_examples 'simple mapper', :array, '[1,3,3,7]' do
+      let( :value ){ [1,3,3,7] }
+    end
   end
 
   describe 'hash' do
-    let( :mapper ){ Fortnox::API::Registry[ :hash ]}
-    subject{ mapper.call( { string: 'test', int: 1337, float: 13.37 } )}
-    it{ is_expected.to eq( '{"string":"test","int":1337,"float":13.37}' )}
+    include_examples 'simple mapper', :hash, '{"string":"test","int":1337,"float":13.37}' do
+      let( :value ){ { string: 'test', int: 1337, float: 13.37 } }
+    end
   end
 
   describe 'advanced hash' do
-    let( :mapper ){ Fortnox::API::Registry[ :hash ]}
-    subject{ mapper.call( { string: 'test', int_array: [1,3,3,7], nested_hash:{ float: 13.37 }} )}
-    it{ is_expected.to eq( '{"string":"test","int_array":[1,3,3,7],"nested_hash":{"float":13.37}}' )}
+    include_examples 'simple mapper',
+                     :hash,
+                     '{"string":"test","int_array":[1,3,3,7],"nested_hash":{"float":13.37}}' do
+      let( :value ){ { string: 'test', int_array: [1,3,3,7], nested_hash:{ float: 13.37 } } }
+    end
   end
 
   describe '#canonical_name_sym' do
