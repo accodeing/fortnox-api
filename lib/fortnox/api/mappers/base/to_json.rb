@@ -6,16 +6,16 @@ module Fortnox
           base.instance_eval do
 
             def call( hash )
-              hash = convert_hash_keys_to_json_format( hash )
-
               hash.each do |key, value|
                 hash[key] =
-                  if self::NESTED_MAPPERS.key?( key )
+                  if Registry.key?( key )
                     delegate_to_nested_mapper( key, value )
                   else
                     convert_value_to_json_format( value )
                   end
               end
+
+              hash = convert_hash_keys_to_json_format( hash )
             end
 
             def convert_hash_keys_to_json_format( hash )
@@ -33,7 +33,7 @@ module Fortnox
             end
 
             def delegate_to_nested_mapper( key, nested_data )
-              nested_mapper = self::NESTED_MAPPERS.fetch( key )
+              nested_mapper = Registry[ key ]
 
               if nested_data.is_a?( ::Array )
                 nested_data.each_with_object( [] ) do |nested_model, array|

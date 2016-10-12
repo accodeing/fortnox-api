@@ -17,7 +17,8 @@ describe Fortnox::API::Mapper::JSONConversion do
     end
 
     Fortnox::API::Registry.register( :category, Test::CategoryMapper )
-    Fortnox::API::Registry.register( :product_designer, Test::ProductDesignerMapper )
+    Fortnox::API::Registry.register( :categories, Test::CategoryMapper )
+    Fortnox::API::Registry.register( :designer, Test::ProductDesignerMapper )
     Fortnox::API::Registry.register( :product, Test::ProductMapper )
   end
 
@@ -25,12 +26,10 @@ describe Fortnox::API::Mapper::JSONConversion do
     module Test
       class CategoryMapper < Fortnox::API::Mapper::Base
         KEY_MAP = { id: 'ID' }.freeze
-        NESTED_MAPPERS = {}
       end
 
       class ProductDesignerMapper < Fortnox::API::Mapper::Base
         KEY_MAP = { id: 'ID' }.freeze
-        NESTED_MAPPERS = {}
       end
 
       class ProductMapper < Fortnox::API::Mapper::Base
@@ -38,10 +37,6 @@ describe Fortnox::API::Mapper::JSONConversion do
           vat: 'VAT',
           url: '@url' # TODO: How to handle url attribute?
         }.freeze
-        NESTED_MAPPERS = {
-          "Categories" => Test::CategoryMapper,
-          "Designer" => Test::ProductDesignerMapper
-        }
         JSON_ENTITY_WRAPPER = 'Product'.freeze
         JSON_COLLECTION_WRAPPER = 'Products'.freeze
       end
