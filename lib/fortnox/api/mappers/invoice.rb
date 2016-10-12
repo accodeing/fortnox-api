@@ -10,11 +10,9 @@ module Fortnox
 
         KEY_MAP = {
           administration_fee_vat: 'AdministrationFeeVAT',
-          edi_information: Fortnox::API::Mapper::EDIInformation,
-          email_information: Fortnox::API::Mapper::EmailInformation,
+          edi_information: 'EDIInformation',
           eu_quarterly_report: 'EUQuarterlyReport',
           freight_vat: 'FreightVAT',
-          invoice_rows: Fortnox::API::Mapper::InvoiceRow,
           ocr: 'OCR',
           total_vat: 'TotalVAT',
           vat_included: 'VATIncluded'
