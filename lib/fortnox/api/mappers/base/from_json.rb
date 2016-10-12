@@ -39,17 +39,25 @@ module Fortnox
           end
 
           def convert_collection( key, collection )
-            nested_mapper = Registry[ key.downcase ]
-            if collection.is_a?(::Array)
-              converted_data = []
-              collection.each do |value|
-                converted_data << convert_hash_keys_from_json_format( value, nested_mapper::KEY_MAP )
-              end
-            else # Assume Hash
-              converted_data = convert_hash_keys_from_json_format( collection, nested_mapper::KEY_MAP )
-            end
+            mapper_name = key.downcase
+            if Registry.key?(mapper_name)
+              nested_mapper = Registry[ key.downcase ]
+              if collection.is_a?(::Array)
+                nested_models = []
+                collection.each do |value|
+                  nested_models << convert_hash_keys_from_json_format( value, nested_mapper::KEY_MAP )
+                end
 
-            converted_data
+                return nested_models
+              else # Assume Hash
+                return convert_hash_keys_from_json_format( collection, nested_mapper::KEY_MAP )
+              end
+            else
+              # NOTE: This probably means this is a nested model that we have not implemented yet,
+              # or that is missing a mapper.
+              # It should probably be implemented as soon as possible to get it's keys correct...
+              return convert_hash_keys_from_json_format( collection, {} )
+            end
           end
 
           def convert_key_from_json( key, key_map )
