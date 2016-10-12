@@ -25,8 +25,11 @@ module Fortnox
       Registry.register( :float, Fortnox::API::Mapper::Identity )
       Registry.register( :string, Fortnox::API::Mapper::String )
       Registry.register( :boolean, Fortnox::API::Mapper::Boolean )
+      Registry.register( :falseclass, Fortnox::API::Mapper::Boolean )
+      Registry.register( :trueclass, Fortnox::API::Mapper::Boolean )
       Registry.register( :nilclass, Fortnox::API::Mapper::NilClass )
       Registry.register( :array, Fortnox::API::Mapper::Array )
+      Registry.register( :date, Fortnox::API::Mapper::String )
 
       Registry.register( :account_number, Fortnox::API::Mapper::Identity )
       Registry.register( :country_code, Fortnox::API::Mapper::String )
