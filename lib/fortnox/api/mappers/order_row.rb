@@ -10,6 +10,7 @@ module Fortnox
       end
 
       Registry.register( OrderRow.canonical_name_sym, OrderRow )
+      Registry.register( :orderrows, OrderRow )
     end
   end
 end

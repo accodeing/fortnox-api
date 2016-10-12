@@ -14,6 +14,7 @@ module Fortnox
       end
 
       Registry.register( InvoiceRow.canonical_name_sym, InvoiceRow )
+      Registry.register( :invoicerows, InvoiceRow )
     end
   end
 end
