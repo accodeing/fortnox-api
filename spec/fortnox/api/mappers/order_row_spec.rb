@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'fortnox/api'
 require 'fortnox/api/mappers/order_row'
 require 'fortnox/api/mappers/examples/mapper'
 
