@@ -5,12 +5,16 @@ module Fortnox
         def self.included(base)
           base.instance_eval do
 
+            # PUBLIC
+
             def call( entity, keys_to_filter = {} )
               entity_hash = entity.to_hash
               clean_entity_hash = sanitise( entity_hash, keys_to_filter )
               clean_entity_hash = convert_hash_keys_to_json_format( clean_entity_hash )
               Registry[:hash].call( clean_entity_hash )
             end
+
+            # PRIVATE
 
             def convert_hash_keys_to_json_format( hash )
               hash.each_with_object( {} ) do |(key, value), json_hash|

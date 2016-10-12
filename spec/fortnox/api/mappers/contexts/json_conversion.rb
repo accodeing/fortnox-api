@@ -1,40 +1,21 @@
 require 'fortnox/api'
 require 'fortnox/api/mappers'
-require 'fortnox/api/models/base'
 
 shared_context 'JSON conversion' do
-  before(:all) do
-    module Test
-      class CategoryMapper < Fortnox::API::Mapper::Base
-      end
-      class ProductDesignerMapper < Fortnox::API::Mapper::Base
-      end
-      class ProductMapper < Fortnox::API::Mapper::Base
-      end
-    end
-
-    def register_mapper( mapper_sym, mapper )
-      unless Fortnox::API::Registry.key? ( mapper_sym )
-        Fortnox::API::Registry.register( mapper_sym, mapper )
-      end
-    end
-
-    register_mapper( :category, Test::CategoryMapper)
-    register_mapper( :productdesigner, Test::ProductDesignerMapper )
-    register_mapper( :product, Test::ProductMapper )
-  end
-
   before do
     module Test
-      class CategoryMapper < Fortnox::API::Mapper::Base
+      class BaseMapper
+      end
+
+      class CategoryMapper < BaseMapper
         KEY_MAP = { id: 'ID' }.freeze
       end
 
-      class ProductDesignerMapper < Fortnox::API::Mapper::Base
+      class ProductDesignerMapper < BaseMapper
         KEY_MAP = { id: 'ID' }.freeze
       end
 
-      class ProductMapper < Fortnox::API::Mapper::Base
+      class ProductMapper < BaseMapper
         KEY_MAP = {
           vat: 'VAT',
           url: '@url' # TODO: How to handle url attribute?
@@ -61,5 +42,15 @@ shared_context 'JSON conversion' do
         attribute :designer, Test::ProductDesigner
       end
     end
+
+    def register_mapper( mapper_sym, mapper )
+      unless Fortnox::API::Registry.key? ( mapper_sym )
+        Fortnox::API::Registry.register( mapper_sym, mapper )
+      end
+    end
+
+    register_mapper( :category, Test::CategoryMapper)
+    register_mapper( :productdesigner, Test::ProductDesignerMapper )
+    register_mapper( :product, Test::ProductMapper )
   end
 end

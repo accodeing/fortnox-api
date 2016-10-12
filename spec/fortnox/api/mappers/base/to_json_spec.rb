@@ -5,6 +5,14 @@ require 'fortnox/api/mappers/contexts/json_conversion'
 describe Fortnox::API::Mapper::ToJSON do
   include_context 'JSON conversion'
 
+  before do
+    module Test
+      class BaseMapper
+        include Fortnox::API::Mapper::ToJSON
+      end
+    end
+  end
+
   let( :mapper ){ Test::ProductMapper.new }
 
   describe 'entity_to_hash' do
@@ -28,7 +36,7 @@ describe Fortnox::API::Mapper::ToJSON do
 
     context 'with keys without mapping' do
       specify 'converts correctly' do
-        expect( inner_hash['"Name"'] ).to eq( '"Ford Mustang"' )
+        expect( inner_hash['Name'] ).to eq( '"Ford Mustang"' )
       end
     end
 
@@ -40,7 +48,7 @@ describe Fortnox::API::Mapper::ToJSON do
 
     context 'with nested models' do
       let( :expected_nested_model_hash ) do
-        [{ 'Name' => '"Cars"', 'ID' => '"1"' }, { 'Name' => '"Fast Cars"', 'ID' => '"2"' }]
+        "[{\"Name\"=>\"\\\"Cars\\\"\", \"ID\"=>\"\\\"1\\\"\"},{\"Name\"=>\"\\\"Fast Cars\\\"\", \"ID\"=>\"\\\"2\\\"\"}]"
       end
 
       specify 'are converted correctly' do

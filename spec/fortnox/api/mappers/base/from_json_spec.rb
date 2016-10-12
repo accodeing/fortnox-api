@@ -5,6 +5,14 @@ require 'fortnox/api/mappers/contexts/json_conversion'
 describe Fortnox::API::Mapper::FromJSON do
   include_context 'JSON conversion'
 
+  before do
+    module Test
+      class BaseMapper
+        include Fortnox::API::Mapper::FromJSON
+      end
+    end
+  end
+
   let( :mapper ){ Test::ProductMapper.new }
 
   describe 'wrapped_json_hash_to_entity_hash' do
