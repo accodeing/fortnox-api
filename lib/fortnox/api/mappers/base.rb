@@ -22,18 +22,17 @@ module Fortnox
           klass.name.split('::').last.downcase.to_sym
         end
 
-        def diff( entity_hash, parent_hash, unique_id )
+        def diff( entity_hash, parent_hash )
           hash_diff( entity_hash[self.class::JSON_ENTITY_WRAPPER],
-                     parent_hash[self.class::JSON_ENTITY_WRAPPER],
-                     unique_id )
+                     parent_hash[self.class::JSON_ENTITY_WRAPPER] )
         end
 
         private
 
-          def hash_diff(hash1, hash2, unique_id)
+          def hash_diff( hash1, hash2 )
             hash1.dup.
-              delete_if{ |k, v| hash2[k] == v unless k == unique_id }.
-              merge!(hash2.dup.delete_if{ |k, _| hash1.has_key?(k) unless k == unique_id })
+              delete_if{ |k, v| hash2[k] == v }.
+              merge!(hash2.dup.delete_if{ |k, _| hash1.has_key?(k) })
           end
       end
     end

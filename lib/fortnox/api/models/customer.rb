@@ -195,6 +195,9 @@ module Fortnox
         #ZipCode	Zip code of the customer. 10 characters
         attribute :zip_code, Fortnox::API::Types::Sized::String[ 10 ]
 
+        def unique_id
+          customer_number
+        end
       end
     end
   end

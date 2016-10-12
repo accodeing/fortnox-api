@@ -15,31 +15,25 @@ module Fortnox
       private
 
         def save_new( hash )
-          post( self.class::URI, { body: hash.to_json } )
+          instansiate_saved( post( self.class::URI, { body: hash.to_json } ) )
         end
 
         def update_existing( entity, hash )
           parent_hash = @mapper.entity_to_hash( entity.parent, @keys_filtered_on_save )
-          diff = @mapper.diff( hash, parent_hash, self.class::UNIQUE_ID )
-          put( entity_url( hash ), { body: diff.to_json } )
+          diff = @mapper.diff( hash, parent_hash )
+          instansiate_saved( put( update_url( entity ), { body: diff.to_json } ) )
         end
 
-        def entity_url( hash )
-          id = cut_id_from_hash( hash )
-          "#{ self.class::URI }#{ id }"
+        def update_url( entity )
+          "#{ self.class::URI }#{ entity.unique_id }"
         end
 
-        def cut_id_from_hash( hash )
-          id = hash[ @mapper.class::JSON_ENTITY_WRAPPER ].delete( self.class::UNIQUE_ID )
-          id = un_jsonify( id ) if id.is_a?(::String)
-          id
-        end
-
-        # Example:
-        # un_jsonify( '"39"' )
-        # => '39'
-        def un_jsonify( string )
-          string.slice(1..-2)
+        def instansiate_saved( wrapped_json_hash )
+          instansiate(
+            @mapper.wrapped_json_hash_to_entity_hash(
+              wrapped_json_hash
+            )
+          )
         end
       end
     end

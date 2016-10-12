@@ -10,8 +10,6 @@ module Fortnox
         MODEL = Fortnox::API::Model::Customer
         MAPPER = Fortnox::API::Mapper::Customer
         URI = '/customers/'.freeze
-        UNIQUE_ID = 'CustomerNumber'.freeze
-
       end
     end
   end

@@ -26,15 +26,15 @@ describe Fortnox::API::Repository::Invoice, order: :defined, integration: true d
                    [ Fortnox::API::Model::InvoiceRow.new( price: 10, price_excluding_vat: 7 ) ]
 
   include_examples '.save with specially named attribute',
-                   required_hash.merge(ocr: '426523791'),
+                   required_hash,
                    :ocr,
-                   'OCR'
+                   '426523791'
 
   # It is not possible to delete Invoces. Therefore, expected nr of Orders
   # when running .all will continue to increase.
   include_examples '.all', 12
 
-  include_examples '.find'
+  include_examples '.find', 1
 
   include_examples '.search', :customername, 'Test'
 

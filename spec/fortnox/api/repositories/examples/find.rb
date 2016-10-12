@@ -1,9 +1,8 @@
 # rubocop:disable RSpec/DescribeClass
-shared_examples_for '.find' do
+shared_examples_for '.find' do |searched_entity_id|
   describe '.find' do
-    let( :find_id ){ 1 }
     let( :find_id_1 ) do
-      VCR.use_cassette( "#{ vcr_dir }/find_id_1" ){ repository.find( find_id ) }
+      VCR.use_cassette( "#{ vcr_dir }/find_id_1" ){ repository.find( searched_entity_id ) }
     end
 
     specify 'returns correct class' do
@@ -11,12 +10,7 @@ shared_examples_for '.find' do
     end
 
     specify 'returns correct Customer' do
-      id_attribute = repository.mapper.send(
-        :convert_key_from_json,
-        described_class::UNIQUE_ID,
-        repository.mapper.class::KEY_MAP
-      )
-      expect( find_id_1.send(id_attribute).to_i ).to eq( find_id )
+      expect( find_id_1.unique_id ).to eq( searched_entity_id )
     end
 
     specify 'returned Customer is marked as saved' do

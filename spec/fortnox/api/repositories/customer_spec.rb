@@ -17,15 +17,15 @@ describe Fortnox::API::Repository::Customer, order: :defined, integration: true 
   include_examples '.save', :name
 
   include_examples '.save with specially named attribute',
-                   { name: 'Test customer', email_invoice_cc: 'test@example.com' },
+                   { name: 'Test customer' },
                    :email_invoice_cc,
-                   'EmailInvoiceCC'
+                   'test@example.com'
 
   # It is not yet possible to delete Customers. Therefore, expected nr of
   # Customers when running .all will continue to increase.
   include_examples '.all', 39
 
-  include_examples '.find'
+  include_examples '.find', '1'
 
   include_examples '.search', :name, 'Test'
 end

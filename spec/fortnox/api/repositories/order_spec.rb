@@ -28,7 +28,7 @@ describe Fortnox::API::Repository::Order, order: :defined, integration: true do
   # when running .all will continue to increase.
   include_examples '.all', 8
 
-  include_examples '.find'
+  include_examples '.find', 1
 
   include_examples '.search', :customername, 'A customer'
 
