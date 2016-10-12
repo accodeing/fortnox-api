@@ -25,10 +25,9 @@ shared_examples_for '.save' do |attribute_hash_name, required_attributes = {}|
 
       specify "includes correct #{ attribute_hash_name.inspect }" do
         response = send_request
-        attribute_json_name = repository.mapper.send(
+        attribute_json_name = repository.mapper.class.send(
           :convert_key_to_json,
-          attribute_hash_name,
-          repository.mapper.class::KEY_MAP
+          attribute_hash_name
         )
         expect( response[entity_wrapper][attribute_json_name] ).to eql( value )
       end
