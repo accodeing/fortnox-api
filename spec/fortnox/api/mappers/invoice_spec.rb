@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'fortnox/api'
 require 'fortnox/api/mappers/invoice'
 require 'fortnox/api/mappers/examples/mapper'
 
@@ -6,11 +7,9 @@ describe Fortnox::API::Mapper::Invoice do
   key_map =
     {
       administration_fee_vat: 'AdministrationFeeVAT',
-      edi_information: Fortnox::API::Mapper::EDIInformation,
-      email_information: Fortnox::API::Mapper::EmailInformation,
+      edi_information: 'EDIInformation',
       eu_quarterly_report: 'EUQuarterlyReport',
       freight_vat: 'FreightVAT',
-      invoice_rows: Fortnox::API::Mapper::InvoiceRow,
       ocr: 'OCR',
       total_vat: 'TotalVAT',
       vat_included: 'VATIncluded'
