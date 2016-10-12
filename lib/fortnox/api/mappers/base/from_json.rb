@@ -52,7 +52,7 @@ module Fortnox
           end
 
           def convert_key_from_json( key, key_map )
-            key_map.fetch( key ){ default_key_from_json_transform( key ) }
+            key_map.key( key ) || default_key_from_json_transform( key )
           end
 
           def default_key_from_json_transform( key )
