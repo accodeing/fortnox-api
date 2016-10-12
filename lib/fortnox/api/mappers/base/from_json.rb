@@ -22,33 +22,34 @@ module Fortnox
           def json_hash_to_entity_hash( entity_json_hash, key_map )
             remove_nil_values( entity_json_hash )
             converted_hash = convert_hash_keys_from_json_format( entity_json_hash, key_map )
-            convert_nested_mappers_from_json_format( converted_hash ) if self.class.const_defined?('NESTED_MAPPERS')
             converted_hash
           end
 
         private
 
-          def convert_nested_mappers_from_json_format( hash )
-            nested_mappers = self.class::NESTED_MAPPERS
-
-            nested_mappers.each do |key, mapper|
-              nested_json_data = hash.fetch( key )
-
-              if nested_json_data.is_a?(::Array) # Possibly several nested models
-                hash[key] = []
-                nested_json_data.each do |nested_json_hash|
-                  hash[key] << mapper.json_hash_to_entity_hash( nested_json_hash, mapper.class::KEY_MAP )
-                end
-              else # Assume one nested model in a hash
-                 hash[key] = mapper.json_hash_to_entity_hash( nested_json_data, mapper.class::KEY_MAP )
+          def convert_hash_keys_from_json_format( hash, key_map )
+            hash.each_with_object( {} ) do |(key, value), json_hash|
+              converted_key = convert_key_from_json( key, key_map )
+              if value.respond_to?(:each)
+                json_hash[ converted_key ] = convert_collection( key, value )
+              else
+                json_hash[ converted_key ] = value
               end
             end
           end
 
-          def convert_hash_keys_from_json_format( hash, key_map )
-            hash.each_with_object( {} ) do |(key, value), json_hash|
-              json_hash[ convert_key_from_json( key, key_map ) ] = value
+          def convert_collection( key, collection )
+            nested_mapper = Registry[ key.downcase ]
+            if collection.is_a?(::Array)
+              converted_data = []
+              collection.each do |value|
+                converted_data << convert_hash_keys_from_json_format( value, nested_mapper::KEY_MAP )
+              end
+            else # Assume Hash
+              converted_data = convert_hash_keys_from_json_format( collection, nested_mapper::KEY_MAP )
             end
+
+            converted_data
           end
 
           def convert_key_from_json( key, key_map )
