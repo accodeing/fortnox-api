@@ -17,13 +17,6 @@ module Fortnox
                                     self.class::KEY_MAP )
         end
 
-        def entity_to_hash( entity, keys_to_filter )
-          entity_hash = entity.to_hash
-          clean_entity_hash = sanitise( entity_hash, keys_to_filter )
-          entity_json_hash = Registry[ mapper_name_for( entity ) ].call( entity.to_hash )
-          { self.class::JSON_ENTITY_WRAPPER => entity_json_hash }
-        end
-
         protected
 
           def json_hash_to_entity_hash( entity_json_hash, key_map )
