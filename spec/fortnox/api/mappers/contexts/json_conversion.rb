@@ -1,5 +1,6 @@
 require 'fortnox/api'
 require 'fortnox/api/mappers'
+require 'fortnox/api/models/base'
 
 shared_context 'JSON conversion' do
   before(:all) do
@@ -19,8 +20,7 @@ shared_context 'JSON conversion' do
     end
 
     register_mapper( :category, Test::CategoryMapper)
-    register_mapper( :categories, Test::CategoryMapper )
-    register_mapper( :designer, Test::ProductDesignerMapper )
+    register_mapper( :productdesigner, Test::ProductDesignerMapper )
     register_mapper( :product, Test::ProductMapper )
   end
 
@@ -43,17 +43,17 @@ shared_context 'JSON conversion' do
         JSON_COLLECTION_WRAPPER = 'Products'.freeze
       end
 
-      class Category < Dry::Struct
+      class Category < Fortnox::API::Model::Base
         attribute :name, 'strict.string'
         attribute :id, 'strict.string'
       end
 
-      class ProductDesigner < Dry::Struct
+      class ProductDesigner < Fortnox::API::Model::Base
         attribute :name, 'strict.string'
         attribute :id, 'strict.string'
       end
 
-      class Product < Dry::Struct
+      class Product < Fortnox::API::Model::Base
         attribute :url, 'strict.string'
         attribute :name, 'strict.string'
         attribute :vat, 'strict.float'

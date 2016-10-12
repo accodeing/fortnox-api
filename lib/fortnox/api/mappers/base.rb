@@ -8,13 +8,11 @@ module Fortnox
         include FromJSON
         include ToJSON
 
-        Hash = ->(value) do
-          pairs = value.inject([]) do |pairs,(k,v)|
-            name = Fortnox::API::Mapper::Base.canonical_name_sym( v )
-            value = Fortnox::API::Registry[ name ].call( v )
-            pairs << "\"#{ k }\":#{ value }"
+        Hash = ->(hash) do
+          hash.each do |key, value|
+            name = Fortnox::API::Mapper::Base.canonical_name_sym( value )
+            hash[key] = Fortnox::API::Registry[ name ].call( value )
           end
-          "{#{ pairs.join(',') }}"
         end
 
         Registry.register( :hash, Fortnox::API::Mapper::Base::Hash )

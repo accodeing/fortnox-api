@@ -44,7 +44,7 @@ describe Fortnox::API::Mapper::Base do
   end
 
   describe 'hash' do
-    include_examples 'simple mapper', :hash, '{"string":"test","int":1337,"float":13.37}' do
+    include_examples 'simple mapper', :hash, { string: '"test"', int: 1337, float: 13.37 } do
       let( :value ){ { string: 'test', int: 1337, float: 13.37 } }
     end
   end
@@ -52,7 +52,7 @@ describe Fortnox::API::Mapper::Base do
   describe 'advanced hash' do
     include_examples 'simple mapper',
                      :hash,
-                     '{"string":"test","int_array":[1,3,3,7],"nested_hash":{"float":13.37}}' do
+                     {string: '"test"', int_array: "[1,3,3,7]", nested_hash: { float: 13.37 } } do
       let( :value ){ { string: 'test', int_array: [1,3,3,7], nested_hash:{ float: 13.37 } } }
     end
   end

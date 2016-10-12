@@ -28,7 +28,7 @@ describe Fortnox::API::Mapper::ToJSON do
 
     context 'with keys without mapping' do
       specify 'converts correctly' do
-        expect( inner_hash['Name'] ).to eq( '"Ford Mustang"' )
+        expect( inner_hash['"Name"'] ).to eq( '"Ford Mustang"' )
       end
     end
 

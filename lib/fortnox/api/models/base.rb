@@ -50,6 +50,14 @@ module Fortnox
           @saved
         end
 
+        def to_hash( recursive = false )
+          return super() if recursive
+
+          self.class.schema.keys.each_with_object({}) do |key, result|
+            result[key] = self[key]
+          end
+        end
+
       private_class_method
 
         # dry-types filter anything that isn't specified as an attribute on the
