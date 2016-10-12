@@ -1,11 +1,11 @@
-require "fortnox/api/mappers/base/json_conversion"
+require "fortnox/api/mappers/base/from_json"
 require "fortnox/api/mappers/base/to_json"
 
 module Fortnox
   module API
     module Mapper
       class Base
-        include JSONConversion
+        include FromJSON
         include ToJSON
 
         Hash = ->(value) do

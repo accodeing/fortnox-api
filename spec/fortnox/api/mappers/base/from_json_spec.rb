@@ -1,8 +1,8 @@
 require 'spec_helper'
-require 'fortnox/api/mappers/base/json_conversion'
+require 'fortnox/api/mappers/base/from_json'
 require 'fortnox/api/mappers/contexts/json_conversion'
 
-describe Fortnox::API::Mapper::JSONConversion do
+describe Fortnox::API::Mapper::FromJSON do
   include_context 'JSON conversion'
 
   let( :mapper ){ Test::ProductMapper.new }

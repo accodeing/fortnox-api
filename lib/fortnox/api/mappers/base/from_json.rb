@@ -1,7 +1,7 @@
 module Fortnox
   module API
     module Mapper
-      module JSONConversion
+      module FromJSON
 
         def wrapped_json_collection_to_entities_hash( json_collection_hash )
           entities_hash = []
