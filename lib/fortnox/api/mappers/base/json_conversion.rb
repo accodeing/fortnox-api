@@ -74,14 +74,6 @@ module Fortnox
             key.downcase.to_sym
           end
 
-          def convert_key_to_json( key, key_map )
-            key_map.fetch( key ){ default_key_to_json_transform( key ) }
-          end
-
-          def default_key_to_json_transform( key )
-            key.to_s.split('_').map(&:capitalize).join('')
-          end
-
           def sanitise( hash, keys_to_filter )
             hash.select do |key, value|
               next false if keys_to_filter.include?( key )

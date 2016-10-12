@@ -25,10 +25,12 @@ describe Fortnox::API::Mapper::JSONConversion do
     module Test
       class CategoryMapper < Fortnox::API::Mapper::Base
         KEY_MAP = { id: 'ID' }.freeze
+        NESTED_MAPPERS = {}
       end
 
       class ProductDesignerMapper < Fortnox::API::Mapper::Base
         KEY_MAP = { id: 'ID' }.freeze
+        NESTED_MAPPERS = {}
       end
 
       class ProductMapper < Fortnox::API::Mapper::Base
@@ -36,6 +38,10 @@ describe Fortnox::API::Mapper::JSONConversion do
           vat: 'VAT',
           url: '@url' # TODO: How to handle url attribute?
         }.freeze
+        NESTED_MAPPERS = {
+          "Categories" => Test::CategoryMapper,
+          "Designer" => Test::ProductDesignerMapper
+        }
         JSON_ENTITY_WRAPPER = 'Product'.freeze
         JSON_COLLECTION_WRAPPER = 'Products'.freeze
       end
@@ -133,7 +139,7 @@ describe Fortnox::API::Mapper::JSONConversion do
 
     context 'with keys without mapping' do
       specify 'converts correctly' do
-        expect( inner_hash['Name'] ).to eq( 'Ford Mustang' )
+        expect( inner_hash['Name'] ).to eq( '"Ford Mustang"' )
       end
     end
 
@@ -145,7 +151,7 @@ describe Fortnox::API::Mapper::JSONConversion do
 
     context 'with nested models' do
       let( :expected_nested_model_hash ) do
-        [{ 'Name' => 'Cars', 'ID' => '1' }, { 'Name' => 'Fast Cars', 'ID' => '2' }]
+        [{ 'Name' => '"Cars"', 'ID' => '"1"' }, { 'Name' => '"Fast Cars"', 'ID' => '"2"' }]
       end
 
       specify 'are converted correctly' do
@@ -154,7 +160,7 @@ describe Fortnox::API::Mapper::JSONConversion do
     end
 
     context 'with nested model' do
-      let( :expected_nested_model_hash ){ { 'Name' => 'John Najjar', 'ID' => '23' } }
+      let( :expected_nested_model_hash ){ { 'Name' => '"John Najjar"', 'ID' => '"23"' } }
 
       specify 'is converted correctly' do
         expect( inner_hash['Designer'] ).to eq( expected_nested_model_hash )

@@ -23,9 +23,16 @@ module Fortnox
         end
 
         def self.call( hash )
-          translate_keys( hash )
-          translate_values( hash )
-          Registry[:hash].call( hash )
+          hash = convert_hash_keys_to_json_format( hash )
+
+          hash.each do |key, value|
+            hash[key] =
+              if self::NESTED_MAPPERS.key?( key )
+                delegate_to_nested_mapper( key, value )
+              else
+                convert_value_to_json_format( value )
+              end
+          end
         end
 
         def diff( entity_hash, parent_hash, unique_id )
@@ -36,20 +43,34 @@ module Fortnox
 
         private_class_method
 
-          def self.translate_keys( hash )
-            hash.keys.each do |key|
-              if self::KEY_MAP.key?( key )
-                hash[self::KEY_MAP.fetch( key )] = hash.delete( key )
-              else
-                key.to_s.inspect
-              end
+          def self.convert_hash_keys_to_json_format( hash )
+            hash.each_with_object( {} ) do |(key, value), json_hash|
+              json_hash[ convert_key_to_json( key ) ] = value
             end
           end
 
-          def self.translate_values( hash )
-            hash.each do |key, value|
-              hash[key] = Registry[value.class.name.downcase.to_sym].call( value )
+          def self.convert_key_to_json( key )
+            self::KEY_MAP.fetch( key ){ default_key_to_json_transform( key ) }
+          end
+
+          def self.default_key_to_json_transform( key )
+            key.to_s.split('_').map(&:capitalize).join('')
+          end
+
+          def self.delegate_to_nested_mapper( key, nested_data )
+            nested_mapper = self::NESTED_MAPPERS.fetch( key )
+
+            if nested_data.is_a?( ::Array )
+              nested_data.each_with_object( [] ) do |nested_model, array|
+                array << nested_mapper.call( nested_model )
+              end
+            else # Hash assumed
+              nested_mapper.call( nested_data )
             end
+          end
+
+          def self.convert_value_to_json_format( value )
+            Fortnox::API::Registry[ canonical_name_sym( value ) ].call( value )
           end
 
         private
