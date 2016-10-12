@@ -30,7 +30,16 @@ module Fortnox
         end
 
         def cut_id_from_hash( hash )
-          hash[ @mapper.class::JSON_ENTITY_WRAPPER ].delete( self.class::UNIQUE_ID )
+          id = hash[ @mapper.class::JSON_ENTITY_WRAPPER ].delete( self.class::UNIQUE_ID )
+          id = un_jsonify( id ) if id.is_a?(::String)
+          id
+        end
+
+        # Example:
+        # un_jsonify( '"39"' )
+        # => '39'
+        def un_jsonify( string )
+          string.slice(1..-2)
         end
       end
     end
