@@ -21,7 +21,7 @@ describe Fortnox::API::Repository::Invoice, order: :defined, integration: true d
   include_examples '.save with nested model',
                    required_hash,
                    :invoice_rows,
-                   [ { price: 10, price_excluding_vat: 7 } ]
+                   [ Fortnox::API::Model::InvoiceRow.new( price: 10, price_excluding_vat: 7 ) ]
 
   include_examples '.save with specially named attribute',
                    required_hash.merge(ocr: '426523791'),
