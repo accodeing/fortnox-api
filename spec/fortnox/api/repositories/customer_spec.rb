@@ -1,4 +1,6 @@
 require 'spec_helper'
+require 'fortnox/api'
+require 'fortnox/api/mappers'
 require 'fortnox/api/repositories/contexts/environment'
 require 'fortnox/api/repositories/customer'
 require 'fortnox/api/repositories/examples/all'
