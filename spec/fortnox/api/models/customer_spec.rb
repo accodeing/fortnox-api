@@ -63,4 +63,6 @@ describe Fortnox::API::Model::Customer, type: :model do
   it{ is_expected.to have_vat_type( :vat_type, valid_hash ) }
 
   it{ is_expected.to have_nullable_string( :project, valid_hash ) }
+
+  it 'has default delivery types attribute'
 end
