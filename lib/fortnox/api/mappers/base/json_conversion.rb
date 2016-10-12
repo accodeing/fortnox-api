@@ -28,10 +28,6 @@ module Fortnox
 
         private
 
-          def mapper_name_for( value )
-            value.class.name.split('::').last.downcase.to_sym
-          end
-
           def convert_nested_mappers_from_json_format( hash )
             nested_mappers = self.class::NESTED_MAPPERS
 
@@ -65,13 +61,6 @@ module Fortnox
               key = key.gsub(/([A-Z]+)([A-Z][a-z])/, '\1_\2').gsub(/([a-z])([A-Z])/, '\1_\2')
             end
             key.downcase.to_sym
-          end
-
-          def sanitise( hash, keys_to_filter )
-            hash.select do |key, value|
-              next false if keys_to_filter.include?( key )
-              value != nil
-            end
           end
 
           def remove_nil_values( hash )

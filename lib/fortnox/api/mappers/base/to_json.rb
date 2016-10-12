@@ -62,6 +62,19 @@ module Fortnox
           entity_json_hash = Registry[ mapper_name_for( entity ) ].call( entity.to_hash )
           { self.class::JSON_ENTITY_WRAPPER => entity_json_hash }
         end
+
+        private
+
+          def sanitise( hash, keys_to_filter )
+            hash.select do |key, value|
+              next false if keys_to_filter.include?( key )
+              value != nil
+            end
+          end
+
+          def mapper_name_for( value )
+            value.class.name.split('::').last.downcase.to_sym
+          end
       end
     end
   end
