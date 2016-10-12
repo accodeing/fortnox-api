@@ -59,7 +59,7 @@ module Fortnox
         def entity_to_hash( entity, keys_to_filter )
           entity_hash = entity.to_hash
           clean_entity_hash = sanitise( entity_hash, keys_to_filter )
-          entity_json_hash = Registry[ mapper_name_for( entity ) ].call( entity.to_hash )
+          entity_json_hash = Registry[ mapper_name_for( entity ) ].call( clean_entity_hash )
           { self.class::JSON_ENTITY_WRAPPER => entity_json_hash }
         end
 
