@@ -61,7 +61,7 @@ module Fortnox
               # Raise exception during test run if this happens so that we can
               # add it before a new release.
               raise MissingModelOrMapperException, "for #{key} with #{collection}" if ENV['RUBY_ENV']
-
+              Fortnox::API.logger.warn( "Missing Model or Mapper implementation for #{key} with attributes: #{collection}" )
               return convert_hash_keys_from_json_format( collection, {} )
             end
           end
@@ -75,7 +75,6 @@ module Fortnox
             unless key =~ /\A[A-Z]+\z/
               key = key.gsub(/([A-Z]+)([A-Z][a-z])/, '\1_\2').gsub(/([a-z])([A-Z])/, '\1_\2')
             end
-            Fortnox::API.logger.warn( "Missing Model or Mapper implementation for #{key} with attributes: #{collection}" )
             key.downcase.to_sym
           end
 
