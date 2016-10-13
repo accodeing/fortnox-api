@@ -2,6 +2,7 @@ require "set"
 require "dotenv"
 require "fortnox/api/base"
 require "fortnox/api/version"
+require 'logger'
 
 Dotenv.load unless ENV['RUBY_ENV'] == 'test'
 
@@ -13,7 +14,11 @@ module Fortnox
 
     class << self
       @debugging = false
+      @logger = Logger.new(STDOUT)
       attr_accessor :debugging
+      attr_accessor :logger
+
+      logger.level = Logger::WARN
     end
 
     def self.get_access_token

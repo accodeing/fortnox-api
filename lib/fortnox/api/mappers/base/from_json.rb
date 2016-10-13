@@ -3,6 +3,9 @@ module Fortnox
     module Mapper
       module FromJSON
 
+        class MissingModelOrMapperException < StandardError
+        end
+
         def wrapped_json_collection_to_entities_hash( json_collection_hash )
           entities_hash = []
           json_collection_hash[ self.class::JSON_COLLECTION_WRAPPER ].each do |json_hash|
@@ -53,9 +56,12 @@ module Fortnox
                 return convert_hash_keys_from_json_format( collection, nested_mapper::KEY_MAP )
               end
             else
-              # NOTE: This probably means this is a nested model that we have not implemented yet,
-              # or that is missing a mapper.
-              # It should probably be implemented as soon as possible to get it's keys correct...
+              # NOTE: This probably means this is a nested model that we have
+              # not implemented yet, or that is missing a mapper.
+              # Raise exception during test run if this happens so that we can
+              # add it before a new release.
+              raise MissingModelOrMapperException, "for #{key} with #{collection}" if ENV['RUBY_ENV']
+
               return convert_hash_keys_from_json_format( collection, {} )
             end
           end
@@ -69,6 +75,7 @@ module Fortnox
             unless key =~ /\A[A-Z]+\z/
               key = key.gsub(/([A-Z]+)([A-Z][a-z])/, '\1_\2').gsub(/([a-z])([A-Z])/, '\1_\2')
             end
+            Fortnox::API.logger.warn( "Missing Model or Mapper implementation for #{key} with attributes: #{collection}" )
             key.downcase.to_sym
           end
 
