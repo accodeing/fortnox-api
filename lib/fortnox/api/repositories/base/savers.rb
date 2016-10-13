@@ -6,25 +6,38 @@ module Fortnox
         def save( entity )
           return true if entity.saved?
 
-          hash = @mapper.entity_to_hash( entity, @keys_filtered_on_save )
-
-          return save_new( hash ) if entity.new?
-          update_existing( entity, hash )
+          return save_new( entity ) if entity.new?
+          update_existing( entity )
         end
 
       private
-
-        def save_new( hash )
-          instansiate_saved( post( self.class::URI, { body: hash.to_json } ) )
+        def execute_save( entity )
+          body = get_changes_on( entity ).to_json
+          result = yield body
+          instansiate_saved( result )
         end
 
-        def update_existing( entity, hash )
+        def save_new( entity )
+          execute_save( entity ) do |body|
+            post( self.class::URI, { body: body })
+          end
+        end
+
+        def update_existing( entity )
+          execute_save( entity ) do |body|
+            put( get_update_url_for( entity ), { body: body })
+          end
+        end
+
+        def get_changes_on( entity )
+          hash = @mapper.entity_to_hash( entity, @keys_filtered_on_save )
+          return hash if entity.parent.nil?
           parent_hash = @mapper.entity_to_hash( entity.parent, @keys_filtered_on_save )
-          diff = @mapper.diff( hash, parent_hash )
-          instansiate_saved( put( update_url( entity ), { body: diff.to_json } ) )
+
+          @mapper.diff( hash, parent_hash )
         end
 
-        def update_url( entity )
+        def get_update_url_for( entity )
           "#{ self.class::URI }#{ entity.unique_id }"
         end
 
