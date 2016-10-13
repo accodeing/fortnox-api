@@ -34,7 +34,7 @@ module Fortnox
           return hash if entity.parent.nil?
           parent_hash = @mapper.entity_to_hash( entity.parent, @keys_filtered_on_save )
 
-          @mapper.diff( hash, parent_hash )
+          @mapper.wrapp_entity_json_hash( @mapper.diff( hash, parent_hash ) )
         end
 
         def get_update_url_for( entity )

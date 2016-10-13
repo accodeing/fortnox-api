@@ -25,7 +25,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Thu, 13 Oct 2016 14:57:47 GMT
+      - Thu, 13 Oct 2016 19:19:09 GMT
       Content-Type:
       - application/json
       Connection:
@@ -34,14 +34,14 @@ http_interactions:
       - Accept-Encoding
       - Accept-Encoding
       X-Rack-Responsetime:
-      - '21'
+      - '35'
       X-Uid:
-      - a312e043
+      - c800949e
       X-Build:
       - 76600b8d0c
     body:
       encoding: UTF-8
-      string: '{"MetaInformation":{"@TotalResources":15,"@TotalPages":1,"@CurrentPage":1},"Customers":[{"@url":"https:\/\/api.fortnox.se\/3\/customers\/3","Address1":"","Address2":"","City":"","CustomerNumber":"3","Email":"","Name":"Test
+      string: '{"MetaInformation":{"@TotalResources":17,"@TotalPages":1,"@CurrentPage":1},"Customers":[{"@url":"https:\/\/api.fortnox.se\/3\/customers\/3","Address1":"","Address2":"","City":"","CustomerNumber":"3","Email":"","Name":"Test
         customer","OrganisationNumber":"400101-8383","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/93","Address1":"testgatan
         6","Address2":"","City":"teststan","CustomerNumber":"93","Email":"","Name":"tester","OrganisationNumber":"","Phone":"","ZipCode":"414141"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/94","Address1":"","Address2":"","City":"1414141","CustomerNumber":"94","Email":"","Name":"test12313","OrganisationNumber":"","Phone":"","ZipCode":"1414141"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/95","Address1":"test","Address2":"","City":"teststan","CustomerNumber":"95","Email":"","Name":"test
         kund utland","OrganisationNumber":"","Phone":"","ZipCode":"12314"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/96","Address1":"","Address2":"","City":"","CustomerNumber":"96","Email":"test@email.com","Name":"test123133","OrganisationNumber":"","Phone":"13132141","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/97","Address1":"","Address2":"","City":"","CustomerNumber":"97","Email":"test@testarn.com","Name":"testata","OrganisationNumber":"","Phone":"0987654","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/98","Address1":"","Address2":"","City":"","CustomerNumber":"98","Email":"test@email.com","Name":"test1231331","OrganisationNumber":"","Phone":"+1313131","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/99","Address1":"testgatan
@@ -54,7 +54,9 @@ http_interactions:
         customer","OrganisationNumber":"","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/112","Address1":"","Address2":"","City":"","CustomerNumber":"112","Email":"","Name":"Test
         customer","OrganisationNumber":"","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/113","Address1":"","Address2":"","City":"","CustomerNumber":"113","Email":"","Name":"Test
         customer","OrganisationNumber":"","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/117","Address1":"","Address2":"","City":"","CustomerNumber":"117","Email":"","Name":"Test
+        customer","OrganisationNumber":"","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/119","Address1":"","Address2":"","City":"","CustomerNumber":"119","Email":"","Name":"Test
+        customer","OrganisationNumber":"","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/121","Address1":"","Address2":"","City":"","CustomerNumber":"121","Email":"","Name":"Test
         customer","OrganisationNumber":"","Phone":"","ZipCode":""}]}'
     http_version: 
-  recorded_at: Thu, 13 Oct 2016 14:57:47 GMT
+  recorded_at: Thu, 13 Oct 2016 19:19:09 GMT
 recorded_with: VCR 3.0.1

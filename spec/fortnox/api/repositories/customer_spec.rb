@@ -27,5 +27,5 @@ describe Fortnox::API::Repository::Customer, order: :defined, integration: true 
 
   include_examples '.find', '1'
 
-  include_examples '.search', :name, 'Test', 15
+  include_examples '.search', :name, 'Test', 17
 end

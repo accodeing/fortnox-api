@@ -8,6 +8,10 @@ describe Fortnox::API::Mapper::ToJSON do
   # "NoMethodError: undefined method `call\' for Test::ProductMapper:Class`"
   it 'should be tested when random error is fixed!'
 
+  describe 'wrapp_entity_json_hash' do
+    it 'should be tested'
+  end
+
   # include_context 'JSON conversion'
 
   # before do

@@ -25,7 +25,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Thu, 13 Oct 2016 14:57:46 GMT
+      - Thu, 13 Oct 2016 19:19:08 GMT
       Content-Type:
       - application/json
       Connection:
@@ -33,15 +33,15 @@ http_interactions:
       Location:
       - customers
       X-Rack-Responsetime:
-      - '33'
+      - '35'
       X-Uid:
-      - 3b294383
+      - 6656a315
       X-Build:
       - 76600b8d0c
     body:
       encoding: UTF-8
-      string: '{"Customer":{"@url":"https:\/\/api.fortnox.se\/3\/customers\/117","Address1":null,"Address2":null,"City":null,"Country":null,"Comments":null,"Currency":"SEK","CostCenter":null,"CountryCode":null,"CustomerNumber":"117","DefaultDeliveryTypes":{"Invoice":"PRINT","Order":"PRINT","Offer":"PRINT"},"DefaultTemplates":{"Order":"DEFAULTTEMPLATE","Offer":"DEFAULTTEMPLATE","Invoice":"DEFAULTTEMPLATE","CashInvoice":"DEFAULTTEMPLATE"},"DeliveryAddress1":null,"DeliveryAddress2":null,"DeliveryCity":null,"DeliveryCountry":null,"DeliveryCountryCode":null,"DeliveryFax":null,"DeliveryName":null,"DeliveryPhone1":null,"DeliveryPhone2":null,"DeliveryZipCode":null,"Email":"","EmailInvoice":"","EmailInvoiceBCC":"","EmailInvoiceCC":"test@example.com","EmailOffer":"","EmailOfferBCC":"","EmailOfferCC":"","EmailOrder":"","EmailOrderBCC":"","EmailOrderCC":"","Fax":null,"InvoiceAdministrationFee":null,"InvoiceDiscount":null,"InvoiceFreight":null,"InvoiceRemark":"","Name":"Test
+      string: '{"Customer":{"@url":"https:\/\/api.fortnox.se\/3\/customers\/121","Address1":null,"Address2":null,"City":null,"Country":null,"Comments":null,"Currency":"SEK","CostCenter":null,"CountryCode":null,"CustomerNumber":"121","DefaultDeliveryTypes":{"Invoice":"PRINT","Order":"PRINT","Offer":"PRINT"},"DefaultTemplates":{"Order":"DEFAULTTEMPLATE","Offer":"DEFAULTTEMPLATE","Invoice":"DEFAULTTEMPLATE","CashInvoice":"DEFAULTTEMPLATE"},"DeliveryAddress1":null,"DeliveryAddress2":null,"DeliveryCity":null,"DeliveryCountry":null,"DeliveryCountryCode":null,"DeliveryFax":null,"DeliveryName":null,"DeliveryPhone1":null,"DeliveryPhone2":null,"DeliveryZipCode":null,"Email":"","EmailInvoice":"","EmailInvoiceBCC":"","EmailInvoiceCC":"test@example.com","EmailOffer":"","EmailOfferBCC":"","EmailOfferCC":"","EmailOrder":"","EmailOrderBCC":"","EmailOrderCC":"","Fax":null,"InvoiceAdministrationFee":null,"InvoiceDiscount":null,"InvoiceFreight":null,"InvoiceRemark":"","Name":"Test
         customer","OrganisationNumber":"","OurReference":"","Phone1":null,"Phone2":null,"PriceList":"A","Project":"","SalesAccount":null,"ShowPriceVATIncluded":false,"TermsOfDelivery":"","TermsOfPayment":"","Type":"COMPANY","VATNumber":"","VATType":"SEVAT","VisitingAddress":null,"VisitingCity":null,"VisitingCountry":null,"VisitingCountryCode":null,"VisitingZipCode":null,"WayOfDelivery":"","WWW":"","YourReference":"","ZipCode":null}}'
     http_version: 
-  recorded_at: Thu, 13 Oct 2016 14:57:46 GMT
+  recorded_at: Thu, 13 Oct 2016 19:19:08 GMT
 recorded_with: VCR 3.0.1

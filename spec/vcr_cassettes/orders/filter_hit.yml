@@ -11,6 +11,8 @@ http_interactions:
       - application/json
       Accept:
       - application/json
+      Authorization-Code:
+      - ea3862b0-189c-464b-8e23-1b9702365ea1
       Client-Secret:
       - 9aBA8ZgsvR
       Access-Token:
@@ -23,7 +25,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Thu, 13 Oct 2016 14:57:45 GMT
+      - Thu, 13 Oct 2016 19:19:07 GMT
       Content-Type:
       - application/json
       Connection:
@@ -32,9 +34,9 @@ http_interactions:
       - Accept-Encoding
       - Accept-Encoding
       X-Rack-Responsetime:
-      - '33'
+      - '41'
       X-Uid:
-      - 2cd555be
+      - d4a16b9a
       X-Build:
       - 76600b8d0c
     body:
@@ -44,5 +46,5 @@ http_interactions:
         updated value","CustomerNumber":"1","DeliveryDate":null,"DocumentNumber":"3","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","OrderDate":"2016-04-20","Project":"","Sent":false,"Total":0},{"@url":"https:\/\/api.fortnox.se\/3\/orders\/69","Cancelled":true,"Currency":"SEK","CustomerName":"Test
         customer","CustomerNumber":"3","DeliveryDate":null,"DocumentNumber":"69","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","OrderDate":"2016-05-15","Project":"2","Sent":false,"Total":0}]}'
     http_version: 
-  recorded_at: Thu, 13 Oct 2016 14:57:45 GMT
+  recorded_at: Thu, 13 Oct 2016 19:19:07 GMT
 recorded_with: VCR 3.0.1
