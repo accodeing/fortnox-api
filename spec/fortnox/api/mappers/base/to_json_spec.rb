@@ -36,7 +36,7 @@ describe Fortnox::API::Mapper::ToJSON do
 
     context 'with keys without mapping' do
       specify 'converts correctly' do
-        expect( inner_hash['Name'] ).to eq( '"Ford Mustang"' )
+        expect( inner_hash['Name'] ).to eq( 'Ford Mustang' )
       end
     end
 
@@ -48,7 +48,7 @@ describe Fortnox::API::Mapper::ToJSON do
 
     context 'with nested models' do
       let( :expected_nested_model_hash ) do
-        "[{\"Name\"=>\"\\\"Cars\\\"\", \"ID\"=>\"\\\"1\\\"\"},{\"Name\"=>\"\\\"Fast Cars\\\"\", \"ID\"=>\"\\\"2\\\"\"}]"
+        [{"Name" => "Cars", "ID" => "1"}, {"Name" => "Fast Cars", "ID" => "2"}]
       end
 
       specify 'are converted correctly' do
@@ -57,7 +57,7 @@ describe Fortnox::API::Mapper::ToJSON do
     end
 
     context 'with nested model' do
-      let( :expected_nested_model_hash ){ { 'Name' => '"John Najjar"', 'ID' => '"23"' } }
+      let( :expected_nested_model_hash ){ { 'Name' => 'John Najjar', 'ID' => '23' } }
 
       specify 'is converted correctly' do
         expect( inner_hash['Designer'] ).to eq( expected_nested_model_hash )
