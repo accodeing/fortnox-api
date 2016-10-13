@@ -1,5 +1,6 @@
 require "fortnox/api/types"
 require 'fortnox/api/models/default_delivery_types'
+require 'fortnox/api/models/default_templates'
 require "fortnox/api/models/base"
 
 module Fortnox
@@ -59,6 +60,9 @@ module Fortnox
 
         #DefaultDeliveryTypes The properties for this object is listed in the table for “Default Delivery Types”.
         attribute :default_delivery_types, DefaultDeliveryTypes
+
+        #The properties for this object is listed in the table for “Default Templates”.
+        attribute :default_templates, DefaultTemplates
 
         #DeliveryAddress1	First delivery address of the customer. 1024 characters
         attribute :delivery_address1, Fortnox::API::Types::Sized::String[ 1024 ]

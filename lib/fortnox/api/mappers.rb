@@ -34,6 +34,7 @@ module Fortnox
       Registry.register( :email, Fortnox::API::Mapper::Identity )
       Registry.register( :house_work_type, Fortnox::API::Mapper::Identity )
       Registry.register( :vat_type, Fortnox::API::Mapper::Identity )
+      Registry.register( :labels, Fortnox::API::Mapper::Array )
     end
   end
 end

@@ -1,4 +1,5 @@
 require "fortnox/api/types"
+require "fortnox/api/models/label"
 require "fortnox/api/models/email_information"
 
 module Fortnox
@@ -108,6 +109,8 @@ module Fortnox
 
             # HouseWork If there is any row of the document marked “house work”.
             base.attribute :house_work, Types::Nullable::Boolean.with( read_only: true )
+
+            base.attribute :labels, Types::Strict::Array.member( Label )
 
             # Net Net amount
             base.attribute :net, Types::Nullable::Float.with( read_only: true )
