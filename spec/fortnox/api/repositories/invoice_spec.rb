@@ -40,5 +40,5 @@ describe Fortnox::API::Repository::Invoice, order: :defined, integration: true d
 
   include_examples '.search', :customername, 'Test', 3
 
-  include_examples '.only', :fullypaid, 1, missing_filter: :unpaid
+  include_examples '.only', :fullypaid, 1
 end

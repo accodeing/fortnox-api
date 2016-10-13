@@ -34,5 +34,5 @@ describe Fortnox::API::Repository::Order, order: :defined, integration: true do
 
   include_examples '.search', :customername, 'A customer', 2
 
-  include_examples '.only', :cancelled, 2
+  include_examples '.only', :cancelled, 3
 end
