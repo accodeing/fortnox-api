@@ -20,10 +20,12 @@ describe Fortnox::API::Repository::Invoice, order: :defined, integration: true d
 
   include_examples '.save', :comments, required_hash
 
+  nested_model_hash = { price: 10, article_number: '0000' }
   include_examples '.save with nested model',
                    required_hash,
                    :invoice_rows,
-                   [ Fortnox::API::Model::InvoiceRow.new( price: 10, price_excluding_vat: 7 ) ]
+                   nested_model_hash,
+                   [ Fortnox::API::Model::InvoiceRow.new( nested_model_hash ) ]
 
   include_examples '.save with specially named attribute',
                    required_hash,

@@ -11,5 +11,5 @@ describe Fortnox::API::Model::Order, type: :model do
                   Fortnox::API::Model::OrderRow,
                   :order_rows,
                   valid_hash,
-                  valid_row_hash: { order_quantity: 1.1 }
+                  valid_row_hash: { ordered_quantity: 1.1 }
 end

@@ -7,7 +7,7 @@ module Fortnox
         DocumentRow.ify self
 
         #OrderedQuantity Ordered quantity
-        attribute :order_quantity, Types::Required::Float
+        attribute :ordered_quantity, Types::Required::Float
       end
     end
   end
