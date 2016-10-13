@@ -11,8 +11,6 @@ http_interactions:
       - application/json
       Accept:
       - application/json
-      Authorization-Code:
-      - ea3862b0-189c-464b-8e23-1b9702365ea1
       Client-Secret:
       - 9aBA8ZgsvR
       Access-Token:
@@ -25,7 +23,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Fri, 18 Mar 2016 22:05:45 GMT
+      - Thu, 13 Oct 2016 14:57:43 GMT
       Content-Type:
       - application/json
       Connection:
@@ -34,16 +32,15 @@ http_interactions:
       - Accept-Encoding
       - Accept-Encoding
       X-Rack-Responsetime:
-      - '101'
+      - '47'
       X-Uid:
-      - a0d582e2
+      - 13b9278f
       X-Build:
-      - ee15096bc2
-      X-Powered-By:
-      - Rack 1.1
+      - 76600b8d0c
     body:
       encoding: UTF-8
-      string: '{"MetaInformation":{"@TotalResources":0,"@TotalPages":0,"@CurrentPage":1},"Invoices":[{"@url":"https:\/\/api.fortnox.se\/3\/invoices\/1","Balance":0,"Booked":false,"Cancelled":false,"Currency":"SEK","CurrencyRate":"1","CurrencyUnit":1,"CustomerName":"Test","CustomerNumber":"1","DocumentNumber":"1","DueDate":"2016-02-04","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","InvoiceDate":"2016-02-04","NoxFinans":false,"OCR":"133","WayOfDelivery":"","TermsOfPayment":"0","Project":"","Sent":false,"Total":0}]}'
-    http_version:
-  recorded_at: Fri, 18 Mar 2016 22:05:45 GMT
+      string: '{"MetaInformation":{"@TotalResources":1,"@TotalPages":1,"@CurrentPage":1},"Invoices":[{"@url":"https:\/\/api.fortnox.se\/3\/invoices\/15","Balance":0,"Booked":true,"Cancelled":false,"Currency":"SEK","CurrencyRate":"1","CurrencyUnit":1,"CustomerName":"Test
+        customer","CustomerNumber":"3","DocumentNumber":"15","DueDate":"2016-05-15","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","InvoiceDate":"2016-05-15","NoxFinans":false,"OCR":"1545","WayOfDelivery":"","TermsOfPayment":"0","Project":"2","Sent":false,"Total":138}]}'
+    http_version: 
+  recorded_at: Thu, 13 Oct 2016 14:57:43 GMT
 recorded_with: VCR 3.0.1

@@ -28,7 +28,7 @@ describe Fortnox::API::Repository::Order, order: :defined, integration: true do
 
   # It is not possible to delete Orders. Therefore, expected nr of Orders
   # when running .all will continue to increase.
-  include_examples '.all', 8
+  include_examples '.all', 100
 
   include_examples '.find', 1
 

@@ -34,7 +34,7 @@ describe Fortnox::API::Repository::Invoice, order: :defined, integration: true d
 
   # It is not possible to delete Invoces. Therefore, expected nr of Orders
   # when running .all will continue to increase.
-  include_examples '.all', 12
+  include_examples '.all', 32
 
   include_examples '.find', 1
 
