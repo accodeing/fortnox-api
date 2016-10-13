@@ -18,7 +18,7 @@ module Fortnox
       attr_accessor :debugging
       attr_accessor :logger
 
-      logger.level = Logger::WARN
+      @logger.level = Logger::WARN
     end
 
     def self.get_access_token
