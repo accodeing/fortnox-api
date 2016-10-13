@@ -16,13 +16,15 @@ describe Fortnox::API::Repository::Order, order: :defined, integration: true do
   include_context 'environment'
 
   required_hash = { customer_number: '1' }
+
   include_examples '.save', :comments, required_hash
+
+  nested_model_hash = { price: 10, article_number: '0000', ordered_quantity: 1 }
   include_examples '.save with nested model',
                    required_hash,
                    :order_rows,
-                   [ Fortnox::API::Model::OrderRow.new( price: 10,
-                                                        price_excluding_vat: 7,
-                                                        order_quantity: 1 ) ]
+                   nested_model_hash,
+                   [ Fortnox::API::Model::OrderRow.new( nested_model_hash ) ]
 
   # It is not possible to delete Orders. Therefore, expected nr of Orders
   # when running .all will continue to increase.
@@ -33,23 +35,4 @@ describe Fortnox::API::Repository::Order, order: :defined, integration: true do
   include_examples '.search', :customername, 'A customer'
 
   include_examples '.only', :cancelled, 2
-
-  describe 'OrderRow' do
-    let(:model) do
-      Fortnox::API::Model::Order.new(
-        {
-          customer_number: '1',
-          comments: 'A great comment about something',
-          order_rows: [Fortnox::API::Model::OrderRow.new( price: 100.0, order_quantity: 1 ),
-                      Fortnox::API::Model::OrderRow.new( price: 101.5, order_quantity: 2.5 )]
-        }
-)
-    end
-
-    it 'saves an Order with OrderRows' do
-      VCR.use_cassette('orders/save_new_with_order_rows') do
-        repository.save(model)
-      end
-    end
-  end
 end
