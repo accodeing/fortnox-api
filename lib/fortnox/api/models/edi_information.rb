@@ -4,6 +4,8 @@ module Fortnox
   module API
     module Model
       class EDIInformation < Types::Model
+        STUB = {}
+        
         #EDIGlobalLocationNumber Invoice address GLN for EDI
         attribute :edi_global_location_number, Types::Nullable::String
 

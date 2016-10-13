@@ -7,6 +7,9 @@ module Fortnox
   module API
     module Model
       class Invoice < Fortnox::API::Model::Base
+        UNIQUE_ID = :document_number
+        STUB = { customer_number: '' }
+
         DocumentBase.ify( self )
 
         #UrlTaxReductionList Direct url to the tax reduction for the invoice.

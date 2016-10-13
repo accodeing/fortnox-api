@@ -18,7 +18,7 @@ module Fortnox
           super
         end
 
-        def self.new( hash = self.class::STUB )
+        def self.new( hash )
           obj = preserve_meta_properties( hash ) do
             super( hash )
           end

@@ -9,6 +9,7 @@ module Fortnox
         # rubocop:disable Metrics/MethodLength
         def self.ify( base )
           base.class_eval do
+
             # Url Direct url to the record.
             base.attribute :url, Types::Nullable::String.with( read_only: true )
 
@@ -177,10 +178,6 @@ module Fortnox
 
             # ZipCode Zip code of the document. 1024 characters
             base.attribute :zip_code, Types::Sized::String[ 1024 ]
-
-            def unique_id
-              document_number
-            end
           end
         end
         # rubocop:enable Metrics/MethodLength

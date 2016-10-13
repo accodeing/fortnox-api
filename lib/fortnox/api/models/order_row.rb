@@ -4,6 +4,8 @@ module Fortnox
   module API
     module Model
       class OrderRow < Fortnox::API::Types::Model
+        STUB = { ordered_quantity: 0 }
+
         DocumentRow.ify self
 
         #OrderedQuantity Ordered quantity

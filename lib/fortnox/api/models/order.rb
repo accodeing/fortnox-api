@@ -6,6 +6,9 @@ module Fortnox
   module API
     module Model
       class Order < Fortnox::API::Model::Base
+        UNIQUE_ID = :document_number
+        STUB = { customer_number: '' }
+
         DocumentBase.ify( self )
 
         #CopyRemarks I remarks shall copies from order to invoice
