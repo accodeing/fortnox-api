@@ -32,7 +32,7 @@ describe Fortnox::API::Repository::Order, order: :defined, integration: true do
 
   include_examples '.find', 1
 
-  include_examples '.search', :customername, 'A customer'
+  include_examples '.search', :customername, 'A customer', 2
 
   include_examples '.only', :cancelled, 2
 end

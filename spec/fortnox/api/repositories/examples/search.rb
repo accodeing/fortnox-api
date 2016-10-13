@@ -1,5 +1,5 @@
 # rubocop:disable RSpec/DescribeClass
-shared_examples_for '.search' do |attribute_hash_key_name, value|
+shared_examples_for '.search' do |attribute_hash_key_name, value, matches|
   describe '.search' do
 
     describe 'search' do
@@ -10,11 +10,11 @@ shared_examples_for '.search' do |attribute_hash_key_name, value|
           end
         end
 
-        it{ is_expected.to be_instance_of( Array) }
+        it{ is_expected.to be_instance_of( Array ) }
         it{ is_expected.to have(0).entries }
       end
 
-      context "with one match" do
+      context "with #{matches} match(es)" do
         subject do
           VCR.use_cassette( "#{ vcr_dir }/search_by_name" ) do
             repository.search( attribute_hash_key_name => value )
@@ -22,7 +22,7 @@ shared_examples_for '.search' do |attribute_hash_key_name, value|
         end
 
         it{ is_expected.to be_instance_of( Array) }
-        it{ is_expected.to have(1).entries }
+        it{ is_expected.to have(matches).entries }
       end
 
     end
