@@ -44,7 +44,7 @@ shared_context 'JSON conversion' do
     end
 
     def register_mapper( mapper_sym, mapper )
-      unless Fortnox::API::Registry.key? ( mapper_sym )
+      unless Fortnox::API::Registry.key? mapper_sym
         Fortnox::API::Registry.register( mapper_sym, mapper )
       end
     end

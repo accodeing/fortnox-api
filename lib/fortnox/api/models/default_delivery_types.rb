@@ -4,7 +4,7 @@ module Fortnox
   module API
     module Model
       class DefaultDeliveryTypes < Types::Model
-        STUB = {}
+        STUB = {}.freeze
 
         #Default delivery type for invoices. Can be PRINT EMAIL or PRINTSERVICE.
         attribute :invoice, Types::DefaultDeliveryType

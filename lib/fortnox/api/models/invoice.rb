@@ -8,7 +8,7 @@ module Fortnox
     module Model
       class Invoice < Fortnox::API::Model::Base
         UNIQUE_ID = :document_number
-        STUB = { customer_number: '' }
+        STUB = { customer_number: '' }.freeze
 
         DocumentBase.ify( self )
 

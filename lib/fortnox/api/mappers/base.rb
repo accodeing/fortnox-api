@@ -19,12 +19,12 @@ module Fortnox
 
         def self.canonical_name_sym( *values )
           klass = if values.empty?
-            self
-          elsif values.first.is_a? Class
-            values.first
-          else
-            values.first.class
-          end
+                    self
+                  elsif values.first.is_a? Class
+                    values.first
+                  else
+                    values.first.class
+                  end
 
           klass.name.split('::').last.downcase.to_sym
         end

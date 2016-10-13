@@ -4,7 +4,7 @@ module Fortnox
   module API
     module Model
       class InvoiceRow < Fortnox::API::Types::Model
-        STUB = {}
+        STUB = {}.freeze
         
         DocumentRow.ify self
 

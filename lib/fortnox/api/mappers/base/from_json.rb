@@ -30,11 +30,12 @@ module Fortnox
           def convert_hash_keys_from_json_format( hash, key_map )
             hash.each_with_object( {} ) do |(key, value), json_hash|
               converted_key = convert_key_from_json( key, key_map )
-              if value.respond_to?(:each)
-                json_hash[ converted_key ] = convert_collection( key, value )
-              else
-                json_hash[ converted_key ] = value
-              end
+              json_hash[converted_key] =
+                if value.respond_to?(:each)
+                  convert_collection( key, value )
+                else
+                  value
+                end
             end
           end
 

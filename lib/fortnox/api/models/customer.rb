@@ -8,7 +8,7 @@ module Fortnox
       class Customer < Fortnox::API::Model::Base
 
         UNIQUE_ID = :customer_number
-        STUB = { name: '' }
+        STUB = { name: '' }.freeze
 
         # searchable_attributes(
         #     :city, :customer_number, :email, :name, :organisation_number,
