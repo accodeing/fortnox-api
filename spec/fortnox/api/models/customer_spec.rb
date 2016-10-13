@@ -1,11 +1,14 @@
 require 'spec_helper'
 require 'fortnox/api/models/customer'
+require 'fortnox/api/models/examples/model'
 
 describe Fortnox::API::Model::Customer, type: :model do
 
   valid_hash = { name: 'Arthur Dent' }
 
   subject{ described_class }
+
+  it_behaves_like 'a model', valid_hash, :customer_number, '5'
 
   it{ is_expected.to require_attribute( :name, valid_hash ) }
 
@@ -65,10 +68,4 @@ describe Fortnox::API::Model::Customer, type: :model do
   it{ is_expected.to have_nullable_string( :project, valid_hash ) }
 
   it 'has default delivery types attribute'
-
-  it 'has unique_id method' do
-    test = described_class.new( valid_hash.merge({ customer_number: 5 }))
-    expect( test.customer_number ).to eq("5")
-    expect( test.unique_id ).to eq("5")
-  end
 end
