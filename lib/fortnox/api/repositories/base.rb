@@ -16,7 +16,7 @@ module Fortnox
           super()
 
           @keys_filtered_on_save = keys_filtered_on_save
-          @mapper = self.class::MAPPER.new
+          @mapper = Registry[ Mapper::Base.canonical_name_sym( self.class::MODEL )].new
         end
 
         private
