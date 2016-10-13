@@ -31,3 +31,4 @@ end
 
 require "fortnox/api/models"
 require "fortnox/api/repositories"
+require "fortnox/api/mappers"

@@ -1,5 +1,4 @@
-require "fortnox/api/mappers/base"
-require "fortnox/api/types"
+require 'fortnox/api/types'
 
 module Fortnox
   module API
@@ -38,3 +37,13 @@ module Fortnox
     end
   end
 end
+
+require 'fortnox/api/mappers/customer'
+require 'fortnox/api/mappers/default_delivery_types'
+require 'fortnox/api/mappers/default_templates'
+require 'fortnox/api/mappers/edi_information'
+require 'fortnox/api/mappers/email_information'
+require 'fortnox/api/mappers/invoice_row'
+require 'fortnox/api/mappers/invoice'
+require 'fortnox/api/mappers/order_row'
+require 'fortnox/api/mappers/order'
