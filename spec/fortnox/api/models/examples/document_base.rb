@@ -1,6 +1,9 @@
 require 'fortnox/api/models/context'
+require 'fortnox/api/models/examples/model'
 
 shared_examples_for 'DocumentBase Model' do |row_class, row_attribute, valid_hash, valid_row_hash: {}|
+  it_behaves_like 'a model', valid_hash, :document_number, 1
+
   it{ is_expected.to require_attribute( :customer_number, valid_hash ) }
 
   it{ is_expected.to have_sized_string( :address1, 1024, valid_hash ) }
