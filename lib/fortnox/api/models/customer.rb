@@ -7,6 +7,9 @@ module Fortnox
     module Model
       class Customer < Fortnox::API::Model::Base
 
+        UNIQUE_ID = :customer_number
+        STUB = { name: '' }
+
         # searchable_attributes(
         #     :city, :customer_number, :email, :name, :organisation_number,
         #     :phone1, :zip_code
@@ -198,10 +201,6 @@ module Fortnox
 
         #ZipCode	Zip code of the customer. 10 characters
         attribute :zip_code, Fortnox::API::Types::Sized::String[ 10 ]
-
-        def unique_id
-          customer_number
-        end
       end
     end
   end

@@ -6,6 +6,8 @@ module Fortnox
     module Model
       class Base < Fortnox::API::Types::Model
 
+        # TODO(jonas): Restructure this class a bit, it is not very readable.
+
         attr_accessor :unsaved, :parent
 
         def self.attribute( name, *args )
@@ -16,12 +18,16 @@ module Fortnox
           super
         end
 
-        def self.new( hash = {} )
+        def self.new( hash = self.class::STUB )
           obj = preserve_meta_properties( hash ) do
             super( hash )
           end
 
           IceNine.deep_freeze( obj )
+        end
+
+        def unique_id
+          send( self.class::UNIQUE_ID )
         end
 
         def update( hash )

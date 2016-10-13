@@ -65,4 +65,10 @@ describe Fortnox::API::Model::Customer, type: :model do
   it{ is_expected.to have_nullable_string( :project, valid_hash ) }
 
   it 'has default delivery types attribute'
+
+  it 'has unique_id method' do
+    test = described_class.new( valid_hash.merge({ customer_number: 5 }))
+    expect( test.customer_number ).to eq("5")
+    expect( test.unique_id ).to eq("5")
+  end
 end
