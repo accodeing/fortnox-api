@@ -3,15 +3,15 @@
 # SPEC IS DEPENDENT ON DEFINED ORDER!
 #######################################
 #
-# Assumes that attribute_hash_name holds a string without restrictions.
-shared_examples_for '.save' do |attribute_hash_name, required_attributes = {}|
+# Assumes that attribute is a string attribute without restrictions.
+shared_examples_for '.save' do |attribute, required_attributes = {}|
   describe '.save' do
     let( :new_hash ) do
-      required_attributes.merge( attribute_hash_name => value )
+      required_attributes.merge( attribute => value )
     end
     let( :new_model ){ described_class::MODEL.new( new_hash ) }
-    let( :save_new ){ VCR.use_cassette( "#{ vcr_dir }/save_new" ){ subject.save( new_model ) } }
-    let( :entity_wrapper ){ subject.mapper.class::JSON_ENTITY_WRAPPER }
+    let( :save_new ){ VCR.use_cassette( "#{ vcr_dir }/save_new" ){ repository.save( new_model ) } }
+    let( :entity_wrapper ){ repository.mapper.class::JSON_ENTITY_WRAPPER }
     let( :value ){ 'A value' }
 
     shared_examples_for 'save' do
@@ -23,12 +23,9 @@ shared_examples_for '.save' do |attribute_hash_name, required_attributes = {}|
         end
       end
 
-      specify "includes correct #{ attribute_hash_name.inspect }" do
-        response = send_request
-        attribute_json_name = described_class::MAPPER.new.send(
-          :convert_key_to_json, attribute_hash_name
-        )
-        expect( response[entity_wrapper][attribute_json_name] ).to eql( value )
+      specify "includes correct #{ attribute.inspect }" do
+        saved_entity = send_request
+        expect( saved_entity.send(attribute) ).to eql( value )
       end
     end
 
@@ -41,7 +38,6 @@ shared_examples_for '.save' do |attribute_hash_name, required_attributes = {}|
       end
 
       context "saved #{ described_class::MODEL }" do
-        let( :repository ){ described_class.new }
         let( :hash ){ { unsaved: false }.merge(new_hash) }
         let( :model ){ described_class::MODEL.new( hash ) }
 
@@ -57,14 +53,14 @@ shared_examples_for '.save' do |attribute_hash_name, required_attributes = {}|
 
     describe 'old (update existing)' do
       include_examples 'save' do
-        let( :value ){ "Updated #{ attribute_hash_name }" }
+        let( :value ){ "Updated #{ attribute }" }
         let( :model ) do
-          new_id = save_new[entity_wrapper][described_class::UNIQUE_ID]
-          new_record = VCR.use_cassette( "#{ vcr_dir }/find_new" ){ subject.find( new_id ) }
-          new_record.update( attribute_hash_name => value )
+          new_id = save_new.unique_id
+          new_record = VCR.use_cassette( "#{ vcr_dir }/find_new" ){ repository.find( new_id ) }
+          new_record.update( attribute => value )
         end
         let( :send_request ) do
-          VCR.use_cassette( "#{ vcr_dir }/save_old" ){ subject.save( model ) }
+          VCR.use_cassette( "#{ vcr_dir }/save_old" ){ repository.save( model ) }
         end
       end
     end

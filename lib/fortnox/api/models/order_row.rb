@@ -4,10 +4,12 @@ module Fortnox
   module API
     module Model
       class OrderRow < Fortnox::API::Types::Model
+        STUB = { ordered_quantity: 0 }.freeze
+
         DocumentRow.ify self
 
         #OrderedQuantity Ordered quantity
-        attribute :order_quantity, Types::Required::Float
+        attribute :ordered_quantity, Types::Required::Float
       end
     end
   end

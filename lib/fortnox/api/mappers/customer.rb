@@ -20,6 +20,8 @@ module Fortnox
         JSON_COLLECTION_WRAPPER = 'Customers'.freeze
 
       end
+
+      Registry.register( Customer.canonical_name_sym, Customer )
     end
   end
 end

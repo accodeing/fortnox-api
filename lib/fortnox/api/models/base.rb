@@ -6,7 +6,9 @@ module Fortnox
     module Model
       class Base < Fortnox::API::Types::Model
 
-        attr_accessor :unsaved
+        # TODO(jonas): Restructure this class a bit, it is not very readable.
+
+        attr_accessor :unsaved, :parent
 
         def self.attribute( name, *args )
           define_method( "#{ name }?" ) do
@@ -16,12 +18,16 @@ module Fortnox
           super
         end
 
-        def self.new( hash = {} )
+        def self.new( hash )
           obj = preserve_meta_properties( hash ) do
-            super
+            super( hash )
           end
 
           IceNine.deep_freeze( obj )
+        end
+
+        def unique_id
+          send( self.class::UNIQUE_ID )
         end
 
         def update( hash )
@@ -32,6 +38,7 @@ module Fortnox
 
           new_hash = new_attributes.delete_if{ |_, value| value.nil? }
           new_hash[:new] = @new
+          new_hash[:parent] = self
           self.class.new( new_hash )
         end
 
@@ -49,6 +56,22 @@ module Fortnox
           @saved
         end
 
+        def parent?
+          not @parent.nil?
+        end
+
+        def parent
+          @parent || self.class.new( self.class::STUB.dup )
+        end
+
+        def to_hash( recursive = false )
+          return super() if recursive
+
+          self.class.schema.keys.each_with_object({}) do |key, result|
+            result[key] = self[key]
+          end
+        end
+
       private_class_method
 
         # dry-types filter anything that isn't specified as an attribute on the
@@ -58,12 +81,15 @@ module Fortnox
         def self.preserve_meta_properties( hash )
           is_unsaved = hash.delete( :unsaved ){ true }
           is_new = hash.delete( :new ){ true }
+          parent = hash.delete( :parent ){ nil }
 
           obj = yield
 
+          # TODO: remove new, unsaved, saved
           obj.instance_variable_set( :@unsaved, is_unsaved )
           obj.instance_variable_set( :@saved, !is_unsaved )
           obj.instance_variable_set( :@new, is_new )
+          obj.instance_variable_set( :@parent, parent )
 
           return obj
         end

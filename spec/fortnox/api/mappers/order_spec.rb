@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'fortnox/api'
 require 'fortnox/api/mappers/order'
 require 'fortnox/api/mappers/examples/mapper'
 
@@ -6,7 +7,6 @@ describe Fortnox::API::Mapper::Order do
   key_map =
     {
       administration_fee_vat: 'AdministrationFeeVAT',
-      edi_information: 'EDIInformation',
       freight_vat: 'FreightVAT',
       total_vat: 'TotalVAT',
       vat_included: 'VATIncluded'

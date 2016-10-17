@@ -9,4 +9,5 @@ describe Fortnox::API::Types do
   it_behaves_like 'enum', 'DiscountType', 'DiscountTypes'
   it_behaves_like 'enum', 'HouseWorkType', 'HouseWorkTypes'
   it_behaves_like 'enum', 'VATType', 'VATTypes'
+  it_behaves_like 'enum', 'DefaultDeliveryType', 'DefaultDeliveryTypes'
 end

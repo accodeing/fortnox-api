@@ -11,12 +11,12 @@ http_interactions:
       - application/json
       Accept:
       - application/json
+      Authorization-Code:
+      - ea3862b0-189c-464b-8e23-1b9702365ea1
       Client-Secret:
       - 9aBA8ZgsvR
       Access-Token:
       - ccaef817-d5d8-4b1c-a316-54f3e55c5c54
-      Authorization-Code:
-      - ea3862b0-189c-464b-8e23-1b9702365ea1
   response:
     status:
       code: 200
@@ -25,7 +25,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Fri, 18 Mar 2016 21:18:00 GMT
+      - Thu, 13 Oct 2016 19:19:08 GMT
       Content-Type:
       - application/json
       Connection:
@@ -34,16 +34,14 @@ http_interactions:
       - Accept-Encoding
       - Accept-Encoding
       X-Rack-Responsetime:
-      - '93'
+      - '31'
       X-Uid:
-      - 4bf63234
+      - '71153613'
       X-Build:
-      - ee15096bc2
-      X-Powered-By:
-      - Rack 1.1
+      - 76600b8d0c
     body:
       encoding: UTF-8
       string: '{"MetaInformation":{"@TotalResources":0,"@TotalPages":0,"@CurrentPage":1},"Customers":[]}'
-    http_version:
-  recorded_at: Fri, 18 Mar 2016 21:18:00 GMT
+    http_version: 
+  recorded_at: Thu, 13 Oct 2016 19:19:08 GMT
 recorded_with: VCR 3.0.1

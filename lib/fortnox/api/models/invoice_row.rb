@@ -4,6 +4,8 @@ module Fortnox
   module API
     module Model
       class InvoiceRow < Fortnox::API::Types::Model
+        STUB = {}.freeze
+        
         DocumentRow.ify self
 
         #PriceExcludingVAT Price per unit excluding VAT.

@@ -1,11 +1,14 @@
 require 'spec_helper'
 require 'fortnox/api/models/customer'
+require 'fortnox/api/models/examples/model'
 
 describe Fortnox::API::Model::Customer, type: :model do
 
   valid_hash = { name: 'Arthur Dent' }
 
   subject{ described_class }
+
+  it_behaves_like 'a model', valid_hash, :customer_number, '5'
 
   it{ is_expected.to require_attribute( :name, valid_hash ) }
 
@@ -63,4 +66,6 @@ describe Fortnox::API::Model::Customer, type: :model do
   it{ is_expected.to have_vat_type( :vat_type, valid_hash ) }
 
   it{ is_expected.to have_nullable_string( :project, valid_hash ) }
+
+  it 'has default delivery types attribute'
 end

@@ -1,3 +1,5 @@
+require 'dry-types'
+
 module Helpers
   def using_test_classes
     around( :all ) do |example|

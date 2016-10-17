@@ -10,8 +10,6 @@ module Fortnox
         MODEL = Fortnox::API::Model::Order
         MAPPER = Fortnox::API::Mapper::Order
         URI = '/orders/'.freeze
-        UNIQUE_ID = 'DocumentNumber' .freeze
-
       end
     end
   end

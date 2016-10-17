@@ -30,6 +30,8 @@ module Fortnox
 
       VATType = Strict::String.constrained( included_in: VATTypes.values ).optional.constructor( EnumConstructors.default )
 
+      DefaultDeliveryType = Strict::String.constrained( included_in: DefaultDeliveryTypes.values ).optional.constructor( EnumConstructors.default )
+
       require 'fortnox/api/types/model'
     end
   end

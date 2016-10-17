@@ -1,10 +1,15 @@
 require "fortnox/api/types"
+require 'fortnox/api/models/default_delivery_types'
+require 'fortnox/api/models/default_templates'
 require "fortnox/api/models/base"
 
 module Fortnox
   module API
     module Model
       class Customer < Fortnox::API::Model::Base
+
+        UNIQUE_ID = :customer_number
+        STUB = { name: '' }.freeze
 
         # searchable_attributes(
         #     :city, :customer_number, :email, :name, :organisation_number,
@@ -52,6 +57,12 @@ module Fortnox
 
         #CustomerNumber	Customer number. 1024 characters
         attribute :customer_number, Fortnox::API::Types::Sized::String[ 1024 ]
+
+        #DefaultDeliveryTypes The properties for this object is listed in the table for “Default Delivery Types”.
+        attribute :default_delivery_types, DefaultDeliveryTypes
+
+        #The properties for this object is listed in the table for “Default Templates”.
+        attribute :default_templates, DefaultTemplates
 
         #DeliveryAddress1	First delivery address of the customer. 1024 characters
         attribute :delivery_address1, Fortnox::API::Types::Sized::String[ 1024 ]
@@ -194,7 +205,6 @@ module Fortnox
 
         #ZipCode	Zip code of the customer. 10 characters
         attribute :zip_code, Fortnox::API::Types::Sized::String[ 10 ]
-
       end
     end
   end
