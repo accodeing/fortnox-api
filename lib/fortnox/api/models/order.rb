@@ -7,7 +7,7 @@ module Fortnox
     module Model
       class Order < Fortnox::API::Model::Base
         UNIQUE_ID = :document_number
-        STUB = { customer_number: '' }.freeze
+        STUB = { customer_number: '', order_rows: [] }.freeze
 
         DocumentBase.ify( self )
 

@@ -56,6 +56,14 @@ module Fortnox
           @saved
         end
 
+        def parent?
+          not @parent.nil?
+        end
+
+        def parent
+          @parent || self.class.new( self.class::STUB.dup )
+        end
+
         def to_hash( recursive = false )
           return super() if recursive
 

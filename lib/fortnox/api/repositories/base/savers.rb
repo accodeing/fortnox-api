@@ -31,7 +31,6 @@ module Fortnox
 
         def get_changes_on( entity )
           hash = @mapper.entity_to_hash( entity, @keys_filtered_on_save )
-          return hash if entity.parent.nil?
           parent_hash = @mapper.entity_to_hash( entity.parent, @keys_filtered_on_save )
 
           @mapper.wrapp_entity_json_hash( @mapper.diff( hash, parent_hash ) )
