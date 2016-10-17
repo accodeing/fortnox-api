@@ -1,12 +1,15 @@
 # Fortnox API
- > Wrapper gem for Fortnox AB's version 3 REST(ish) API. If you need to integrate an existing or new Ruby or Rails app against Fortnox this gem will save you a lot of time, you are welcome. Feel free to repay the community with some nice PRs of your own :simple_smile: 
+ > Wrapper gem for Fortnox AB's version 3 REST(ish) API. If you need to integrate an existing or new Ruby or Rails app against Fortnox this gem will save you a lot of time, you are welcome. Feel free to repay the community with some nice PRs of your own :simple_smile:
 
-# Status
-[![Gem Version](https://badge.fury.io/rb/fortnox-api.png)](http://badge.fury.io/rb/fortnox-api)
-[![Build Status](https://travis-ci.org/my-codeworks/fortnox-api.png)](https://travis-ci.org/my-codeworks/fortnox-api)
-[![Code Climate](https://codeclimate.com/github/my-codeworks/fortnox-api.png)](https://codeclimate.com/github/my-codeworks/fortnox-api)
-[![Test Coverage](https://codeclimate.com/github/my-codeworks/fortnox-api/badges/coverage.svg)](https://codeclimate.com/github/my-codeworks/fortnox-api/coverage)
-[![Dependency Status](https://gemnasium.com/my-codeworks/fortnox-api.svg)](https://gemnasium.com/my-codeworks/fortnox-api)
+# Status for master
+[![Gem version](https://img.shields.io/gem/v/fortnox-api.svg?style=flat-square)](https://rubygems.org/gems/fortnox-api)
+[![Build status](https://img.shields.io/travis/my-codeworks/fortnox-api/master.svg?style=flat-square)](https://travis-ci.org/my-codeworks/fortnox-api)
+[![Dependency status](https://img.shields.io/gemnasium/my-codeworks/fortnox-api.svg?style=flat-square)](https://gemnasium.com/my-codeworks/fortnox-api)
+
+# Status for development
+[![Build status](https://img.shields.io/travis/my-codeworks/fortnox-api/development.svg?style=flat-square)](https://travis-ci.org/my-codeworks/fortnox-api)
+[![Code Climate](https://img.shields.io/codeclimate/github/my-codeworks/fortnox-api.svg?style=flat-square)](https://codeclimate.com/github/my-codeworks/fortnox-api)
+[![Test coverage](https://img.shields.io/codeclimate/coverage/github/my-codeworks/fortnox-api.svg?style=flat-square)](https://codeclimate.com/github/my-codeworks/fortnox-api/coverage)
 
 The rough status of this project is as follows (as of Marsh 2016):
  * In active development (just check out the commit log)
