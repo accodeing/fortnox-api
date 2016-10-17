@@ -21,6 +21,12 @@ module Fortnox
         'COOKING','SNOWPLOWING','GARDENING','BABYSITTING','OTHERCARE',
         'TUTORING','OTHERCOSTS'
       )
+      CurrentHouseWorkTypes = Types::Strict::String.enum(
+        'CONSTRUCTION','ELECTRICITY','GLASSMETALWORK','GROUNDDRAINAGEWORK',
+        'MASONRY','PAINTINGWALLPAPERING','HVAC','CLEANING','TEXTILECLOTHING',
+        'SNOWPLOWING','GARDENING','BABYSITTING','OTHERCARE', 'OTHERCOSTS'
+      )
+      LegacyHouseWorkTypes = Types::Strict::String.enum( 'COOKING', 'TUTORING' )
       CountryCodes = Types::Strict::String.enum(
         'AF','AX','AL','DZ','AS','AD','AO','AI','AQ','AG','AR','AM','AW','AU',
         'AT','AZ','BS','BH','BD','BB','BY','BE','BZ','BJ','BM','BT','BO','BQ',
