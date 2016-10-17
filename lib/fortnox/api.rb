@@ -1,5 +1,6 @@
 require "set"
 require "dotenv"
+require "dry-struct"
 require "fortnox/api/base"
 require "fortnox/api/version"
 require 'logger'
