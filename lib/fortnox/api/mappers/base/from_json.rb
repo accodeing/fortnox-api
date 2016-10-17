@@ -44,13 +44,13 @@ module Fortnox
             # Raise exception during test run if this happens so that we can
             # add it before a new release.
 
-            raise MissingModelOrMapperException, "for #{key} (#{mapper_name}, #{Fortnox::API::Mapper::DefaultTemplates.canonical_name_sym}) with #{collection}" if ENV['RUBY_ENV']
-            Fortnox::API.logger.warn( "Missing Model or Mapper implementation for #{key} with attributes: #{collection}" )
+            raise MissingModelOrMapperException, "for #{ key } (#{ mapper_name }, #{ Fortnox::API::Mapper::DefaultTemplates.canonical_name_sym }) with #{ collection }" if ENV['RUBY_ENV']
+            Fortnox::API.logger.warn( "Missing Model or Mapper implementation for #{ key } with attributes: #{ collection }" )
             return convert_hash_keys_from_json_format( collection, {} )
           end
         end
 
-        def convert_nested_data( mapper_name, key, nested_data )
+        def convert_nested_data( _mapper_name, key, nested_data )
           nested_mapper = Registry[ key.downcase ]
           if nested_data.is_a?(::Array) # Array of nested models
             return nested_data.each_with_object( [] ) do |value, nested_models|

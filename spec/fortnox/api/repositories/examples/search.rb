@@ -14,7 +14,7 @@ shared_examples_for '.search' do |attribute_hash_key_name, value, matches|
         it{ is_expected.to have(0).entries }
       end
 
-      context "with #{matches} match(es)" do
+      context "with #{ matches } match(es)" do
         subject do
           VCR.use_cassette( "#{ vcr_dir }/search_by_name" ) do
             repository.search( attribute_hash_key_name => value )
