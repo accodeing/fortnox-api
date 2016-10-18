@@ -48,7 +48,6 @@ module Fortnox
             #Price Price per unit. 12 digits
             attribute :price, Types::Sized::Float[ 0.0, 99_999_999_999.0 ]
 
-
             #Project Code of the project for the row.
             attribute :project, Types::Nullable::String
 

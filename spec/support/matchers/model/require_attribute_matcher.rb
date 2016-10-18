@@ -1,3 +1,5 @@
+require 'fortnox/api'
+
 module Matchers
   module Model
     def require_attribute(attribute, valid_hash = {})
@@ -5,7 +7,7 @@ module Matchers
     end
 
     class RequireAttributeMatcher < Matchers::Shared::RequireAttributeMatcher
-      EXCEPTION = KeyError
+      EXCEPTION = Fortnox::API::MissingAttributeError
 
       def initialize(attribute, valid_hash)
         super( attribute )

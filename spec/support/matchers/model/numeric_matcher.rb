@@ -41,6 +41,14 @@ module Matchers
         end
 
         def rejects_value?(value, expected_error_message)
+
+          p "*"*20
+          p value.inspect
+          p expected_error_message.inspect
+          p @klass.inspect
+          p @valid_hash.inspect
+          p @attribute.inspect
+
           expect_error(expected_error_message) do
             @klass.new( @valid_hash.merge( @attribute => value ) )
           end

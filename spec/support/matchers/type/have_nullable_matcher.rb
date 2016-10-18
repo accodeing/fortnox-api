@@ -9,7 +9,7 @@ module Matchers
         @attribute = attribute
         @valid_value = valid_value
         @invalid_value = invalid_value
-        @expected_error ||= Dry::Struct::Error
+        @expected_error ||= Fortnox::API::InvalidAttributeValueError
         @expected_error_message ||= "#{ @invalid_value.inspect } (#{ @invalid_value.class }) "\
                                     "has invalid type for #{ @attribute.inspect }"
       end

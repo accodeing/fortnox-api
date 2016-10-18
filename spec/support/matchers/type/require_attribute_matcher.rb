@@ -10,7 +10,7 @@ module Matchers
         super( attribute )
 
         @attr_type = attr_type
-        @exception = Dry::Struct::Error
+        @exception = Fortnox::API::InvalidAttributeValueError
       end
 
       private

@@ -18,7 +18,7 @@ module Matchers
 
       def failure_message
         "Expected class to have attribute #{ @attribute.inspect } defined as #{ @attribute_type }, "\
-        "but got following errors: 
+        "but got following errors:
         #{ @errors }"
       end
 
@@ -29,7 +29,7 @@ module Matchers
 
           @errors << msg
           false # Fail test since expected error not thrown
-        rescue Dry::Struct::Error
+        rescue Fortnox::API::InvalidAttributeValueError
           # TODO: check if error message is correct
           true
         end

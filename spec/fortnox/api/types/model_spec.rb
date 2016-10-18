@@ -25,13 +25,13 @@ RSpec.describe Fortnox::API::Types::Model do
     describe 'User inheriting directly from Dry::Struct' do
       subject{ ->{ DryStructUser.new(args) } }
 
-      it{ is_expected.to raise_error(Dry::Struct::Error) }
+      it{ is_expected.to raise_error(Dry::Types::MissingKeyError) }
     end
 
     describe "User inheriting from #{ described_class }" do
       subject{ ->{ TypesModelUser.new(args) } }
 
-      it{ is_expected.to raise_error(Dry::Struct::Error) }
+      it{ is_expected.to raise_error(Fortnox::API::InvalidAttributeValueError) }
     end
   end
 

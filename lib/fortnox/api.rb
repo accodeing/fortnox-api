@@ -10,7 +10,16 @@ Dotenv.load unless ENV['RUBY_ENV'] == 'test'
 module Fortnox
   module API
 
-    class RemoteServerError < ::RuntimeError
+    class Exception < StandardError
+    end
+
+    class RemoteServerError < Exception
+    end
+
+    class MissingAttributeError < Exception
+    end
+
+    class InvalidAttributeValueError < Exception
     end
 
     class << self
