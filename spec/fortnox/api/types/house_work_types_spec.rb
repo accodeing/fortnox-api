@@ -58,30 +58,4 @@ describe 'HouseWorkTypes', integration: true do
 
   it_behaves_like 'house work type', 'COOKING', legacy: true
   it_behaves_like 'house work type', 'TUTORING', legacy: true
-
-  describe 'legacy types' do
-    specify 'are also included in HouseWorkTypes' do
-      Fortnox::API::Types::LegacyHouseWorkTypes.values.each do |type|
-        expect(Fortnox::API::Types::HouseWorkTypes.values).to include(type)
-      end
-    end
-  end
-
-  describe 'current types' do
-    specify 'are also included in HouseWorkTypes' do
-      Fortnox::API::Types::CurrentHouseWorkTypes.values.each do |type|
-        expect(Fortnox::API::Types::HouseWorkTypes.values).to include(type)
-      end
-    end
-  end
-
-  describe 'all types in HouseWorkTypes' do
-    specify 'are declared as eighter current or legacy type' do
-      Fortnox::API::Types::HouseWorkTypes.values.each do |type|
-        legacy_type = Fortnox::API::Types::LegacyHouseWorkTypes.values.include?(type)
-        current_type = Fortnox::API::Types::CurrentHouseWorkTypes.values.include?(type)
-        expect(legacy_type || current_type).to be true
-      end
-    end
-  end
 end
