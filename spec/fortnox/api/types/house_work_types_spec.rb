@@ -6,6 +6,7 @@ require 'fortnox/api/repositories/contexts/environment'
 require 'fortnox/api/models/order'
 require 'fortnox/api/models/order_row'
 
+# rubocop:disable RSpec/DescribeClass
 describe 'HouseWorkTypes', integration: true do
   include_context 'environment'
 
@@ -18,18 +19,18 @@ describe 'HouseWorkTypes', integration: true do
                                                      house_work_type: house_work_type)}
 
   shared_examples_for 'house work type' do |type, legacy: false|
-    let(:error_message){ 'Skattereduktion för en av de valda husarbetestyperna har upphört.' }
-    let(:house_work_type){ Fortnox::API::Types::HouseWorkTypes[type] }
-
     subject do
       -> do
-        VCR.use_cassette( "orders/house_work_type_#{type.downcase}" ) do
+        VCR.use_cassette( "orders/house_work_type_#{ type.downcase }" ) do
           repository.save(valid_model)
         end
       end
     end
 
-    context "when creating an OrderRow with house_work_type set to #{type}" do
+    let(:error_message){ 'Skattereduktion för en av de valda husarbetestyperna har upphört.' }
+    let(:house_work_type){ Fortnox::API::Types::HouseWorkTypes[type] }
+
+    context "when creating an OrderRow with house_work_type set to #{ type }" do
       if legacy
         it 'raises an error' do
           is_expected.to raise_error(Fortnox::API::RemoteServerError, error_message)
@@ -59,3 +60,4 @@ describe 'HouseWorkTypes', integration: true do
   it_behaves_like 'house work type', 'COOKING', legacy: true
   it_behaves_like 'house work type', 'TUTORING', legacy: true
 end
+# rubocop:enable RSpec/DescribeClass
