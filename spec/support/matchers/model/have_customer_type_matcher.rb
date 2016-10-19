@@ -6,7 +6,7 @@ module Matchers
 
     class HaveCustomerTypeMatcher < EnumMatcher
       def initialize( attribute, valid_hash )
-        super( attribute, valid_hash, 'customer type', 'CustomerType', 'CustomerTypes' )
+        super( attribute, valid_hash, 'CustomerType', 'CustomerTypes' )
       end
     end
   end

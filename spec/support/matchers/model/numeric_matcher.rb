@@ -1,12 +1,12 @@
 module Matchers
   module Model
     class NumericMatcher < AttributeMatcher
-      def initialize( attribute, min_value, max_value, valid_hash, attr_type, step )
+      def initialize( attribute, valid_hash, attr_type, options )
         super( attribute, valid_hash, attr_type )
 
-        @min_value = min_value
-        @max_value = max_value
-        @step = step
+        @min_value = options[:min_value]
+        @max_value = options[:max_value]
+        @step = options[:step]
       end
 
       def matches?( klass )
