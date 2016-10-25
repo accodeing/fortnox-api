@@ -7,8 +7,10 @@ require "codeclimate-test-reporter"
 require 'support/matchers'
 require 'support/helpers'
 require 'support/vcr_setup'
+require 'dotenv'
 
 CodeClimate::TestReporter.start
+Dotenv.load('.env')
 
 RSpec.configure do |config|
   config.run_all_when_everything_filtered = true
@@ -24,12 +26,6 @@ RSpec.configure do |config|
   config.order = 'random'
 
   WebMock.disable_net_connect!( allow: 'codeclimate.com' )
-
-  config.after( :each ) do
-    ENV['FORTNOX_API_BASE_URL'] = nil
-    ENV['FORTNOX_API_CLIENT_SECRET'] = nil
-    ENV['FORTNOX_API_ACCESS_TOKEN'] = nil
-  end
 
   config.before do
     module Test

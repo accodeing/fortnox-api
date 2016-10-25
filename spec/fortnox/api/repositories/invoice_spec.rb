@@ -1,7 +1,6 @@
 require 'spec_helper'
 require 'fortnox/api'
 require 'fortnox/api/mappers'
-require 'fortnox/api/repositories/contexts/environment'
 require 'fortnox/api/repositories/invoice'
 require 'fortnox/api/repositories/examples/all'
 require 'fortnox/api/repositories/examples/find'
@@ -13,8 +12,6 @@ require 'fortnox/api/repositories/examples/only'
 
 describe Fortnox::API::Repository::Invoice, order: :defined, integration: true do
   subject(:repository){ described_class.new }
-
-  include_context 'environment'
 
   required_hash = { customer_number: '1' }
 
@@ -33,8 +30,8 @@ describe Fortnox::API::Repository::Invoice, order: :defined, integration: true d
                    '426523791'
 
   # It is not possible to delete Invoces. Therefore, expected nr of Orders
-  # when running .all will continue to increase.
-  include_examples '.all', 38
+  # when running .all will continue to increase (until 100, which is max by default).
+  include_examples '.all', 60
 
   include_examples '.find', 1
 

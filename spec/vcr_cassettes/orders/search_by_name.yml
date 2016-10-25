@@ -23,7 +23,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Mon, 17 Oct 2016 10:21:08 GMT
+      - Tue, 25 Oct 2016 10:21:57 GMT
       Content-Type:
       - application/json
       Connection:
@@ -32,9 +32,9 @@ http_interactions:
       - Accept-Encoding
       - Accept-Encoding
       X-Rack-Responsetime:
-      - '38'
+      - '34'
       X-Uid:
-      - 3348ce32
+      - 576efab5
       X-Build:
       - 76600b8d0c
     body:
@@ -43,5 +43,5 @@ http_interactions:
         customer","CustomerNumber":"26","DeliveryDate":null,"DocumentNumber":"4","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","OrderDate":"2016-04-21","Project":"1","Sent":false,"Total":0},{"@url":"https:\/\/api.fortnox.se\/3\/orders\/60","Cancelled":false,"Currency":"SEK","CustomerName":"A
         customer","CustomerNumber":"2","DeliveryDate":null,"DocumentNumber":"60","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","OrderDate":"2016-05-09","Project":"1","Sent":false,"Total":19}]}'
     http_version: 
-  recorded_at: Mon, 17 Oct 2016 10:21:08 GMT
+  recorded_at: Tue, 25 Oct 2016 10:21:57 GMT
 recorded_with: VCR 3.0.1

@@ -1,7 +1,6 @@
 require 'spec_helper'
 require 'fortnox/api'
 require 'fortnox/api/mappers'
-require 'fortnox/api/repositories/contexts/environment'
 require 'fortnox/api/repositories/customer'
 require 'fortnox/api/repositories/examples/all'
 require 'fortnox/api/repositories/examples/find'
@@ -12,8 +11,6 @@ require 'fortnox/api/repositories/examples/search'
 describe Fortnox::API::Repository::Customer, order: :defined, integration: true do
   subject(:repository){ described_class.new }
 
-  include_context 'environment'
-
   include_examples '.save', :name
 
   include_examples '.save with specially named attribute',
@@ -22,10 +19,11 @@ describe Fortnox::API::Repository::Customer, order: :defined, integration: true 
                    'test@example.com'
 
   # It is not yet possible to delete Customers. Therefore, expected nr of
-  # Customers when running .all will continue to increase.
+  # Customers when running .all will continue to increase
+  # (until 100, which is max by default).
   include_examples '.all', 100
 
   include_examples '.find', '1'
 
-  include_examples '.search', :name, 'Test', 17
+  include_examples '.search', :name, 'Test', 23
 end

@@ -57,7 +57,7 @@ module Fortnox
         def load_access_tokens
           access_token_string = ENV['FORTNOX_API_ACCESS_TOKEN']
           fail MissingEnvironmentVariable, 'You have to provide your access token.' unless access_token_string
-          access_tokens = access_token_string.split("\n").map(&:strip)
+          access_tokens = access_token_string.split(",").map(&:strip)
           CircularQueue.new( *access_tokens )
         end
 

@@ -11,8 +11,6 @@ http_interactions:
       - application/json
       Accept:
       - application/json
-      Authorization-Code:
-      - ea3862b0-189c-464b-8e23-1b9702365ea1
       Client-Secret:
       - 9aBA8ZgsvR
       Access-Token:
@@ -25,7 +23,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Thu, 13 Oct 2016 19:19:11 GMT
+      - Tue, 25 Oct 2016 10:21:48 GMT
       Content-Type:
       - application/json
       Connection:
@@ -34,9 +32,9 @@ http_interactions:
       - Accept-Encoding
       - Accept-Encoding
       X-Rack-Responsetime:
-      - '74'
+      - '55'
       X-Uid:
-      - 18f995a2
+      - 84a3db9c
       X-Build:
       - 76600b8d0c
     body:
@@ -46,5 +44,5 @@ http_interactions:
         customer","CustomerNumber":"3","DocumentNumber":"24","DueDate":"2016-09-09","ExternalInvoiceReference1":"An
         external reference","ExternalInvoiceReference2":"","InvoiceDate":"2016-09-09","NoxFinans":false,"OCR":"2444","WayOfDelivery":"","TermsOfPayment":"0","Project":"1","Sent":false,"Total":26}]}'
     http_version: 
-  recorded_at: Thu, 13 Oct 2016 19:19:11 GMT
+  recorded_at: Tue, 25 Oct 2016 10:21:48 GMT
 recorded_with: VCR 3.0.1
