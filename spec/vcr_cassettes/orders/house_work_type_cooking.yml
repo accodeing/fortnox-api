@@ -23,15 +23,15 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Mon, 17 Oct 2016 14:38:11 GMT
+      - Tue, 25 Oct 2016 10:21:52 GMT
       Content-Type:
       - application/json
       Connection:
       - close
       X-Rack-Responsetime:
-      - '38'
+      - '27'
       X-Uid:
-      - 16a251f6
+      - 397648b0
       X-Build:
       - 76600b8d0c
     body:
@@ -39,5 +39,5 @@ http_interactions:
       string: '{"ErrorInformation":{"error":1,"message":"Skattereduktion f\u00f6r
         en av de valda husarbetestyperna har upph\u00f6rt.","code":2003151}}'
     http_version: 
-  recorded_at: Mon, 17 Oct 2016 14:38:11 GMT
+  recorded_at: Tue, 25 Oct 2016 10:21:52 GMT
 recorded_with: VCR 3.0.1

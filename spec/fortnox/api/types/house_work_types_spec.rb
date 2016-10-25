@@ -2,14 +2,11 @@ require 'spec_helper'
 require 'fortnox/api'
 require 'fortnox/api/types'
 require 'fortnox/api/repositories/order'
-require 'fortnox/api/repositories/contexts/environment'
 require 'fortnox/api/models/order'
 require 'fortnox/api/models/order_row'
 
 # rubocop:disable RSpec/DescribeClass
 describe 'HouseWorkTypes', integration: true do
-  include_context 'environment'
-
   let(:repository){ Fortnox::API::Repository::Order.new }
   let(:valid_model) do
     Fortnox::API::Model::Order.new(customer_number: '1', order_rows: [order_row])
