@@ -10,7 +10,7 @@ require 'support/vcr_setup'
 require 'dotenv'
 
 CodeClimate::TestReporter.start
-Dotenv.load('.env')
+Dotenv.load('.env.test')
 
 RSpec.configure do |config|
   config.run_all_when_everything_filtered = true
