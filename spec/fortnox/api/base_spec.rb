@@ -116,9 +116,9 @@ describe Fortnox::API::Base do
       )
     end
 
-    let!(:response1) { api.get( '/test', body: '' ) }
-    let!(:response2) { api.get( '/test', body: '' ) }
-    let!(:response3) { api.get( '/test', body: '' ) }
+    let!(:response1){ api.get( '/test', body: '' ) }
+    let!(:response2){ api.get( '/test', body: '' ) }
+    let!(:response3){ api.get( '/test', body: '' ) }
 
     let(:api){ described_class.new }
 
@@ -130,9 +130,9 @@ describe Fortnox::API::Base do
   end
 
   context 'token rotation' do
-    let(:customers_dummy_request) { described_class.new.get( '/customers', body: '' ) }
-    let(:invoices_dummy_request) { described_class.new.get( '/orders', body: '' ) }
-    let(:orders_dummy_request) { described_class.new.get( '/invoices', body: '' ) }
+    let(:customers_dummy_request){ described_class.new.get( '/customers', body: '' ) }
+    let(:invoices_dummy_request){ described_class.new.get( '/orders', body: '' ) }
+    let(:orders_dummy_request){ described_class.new.get( '/invoices', body: '' ) }
 
     def next_index
       Fortnox::API::EnvironmentValidation::CircularQueue.class_variable_get('@@next_index')
@@ -140,11 +140,11 @@ describe Fortnox::API::Base do
 
     it 'is make at class leven (not instance level)' do
       expect(next_index).to be 0
-      VCR.use_cassette( "#{ 'dummies' }/customers" ) { customers_dummy_request }
+      VCR.use_cassette( "dummies/customers" ){ customers_dummy_request }
       expect(next_index).to be 1
-      VCR.use_cassette( "#{ 'dummies' }/orders" ) { orders_dummy_request }
+      VCR.use_cassette( "dummies/orders" ){ orders_dummy_request }
       expect(next_index).to be 0
-      VCR.use_cassette( "#{ 'dummies' }/invoices" ) { invoices_dummy_request }
+      VCR.use_cassette( "dummies/invoices" ){ invoices_dummy_request }
       expect(next_index).to be 1
     end
   end
