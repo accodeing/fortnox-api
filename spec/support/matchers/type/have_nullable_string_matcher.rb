@@ -1,5 +1,5 @@
 module Matchers
-  module Model
+  module Type
     def have_nullable_string( attribute, valid_hash = {} )
       HaveNullableStringMatcher.new( attribute, valid_hash )
     end

@@ -1,5 +1,5 @@
 module Matchers
-  module Model
+  module Type
     class NumericMatcher < AttributeMatcher
       def initialize( attribute, valid_hash, attr_type, options )
         super( attribute, valid_hash, attr_type )

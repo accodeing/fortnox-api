@@ -1,5 +1,5 @@
 module Matchers
-  module Model
+  module Type
     def have_country_code( attribute, valid_hash = {} )
       HaveCountryCodeMatcher.new( attribute, valid_hash )
     end

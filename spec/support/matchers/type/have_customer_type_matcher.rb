@@ -1,5 +1,5 @@
 module Matchers
-  module Model
+  module Type
     def have_customer_type( attribute, valid_hash = {} )
       HaveCustomerTypeMatcher.new( attribute, valid_hash )
     end

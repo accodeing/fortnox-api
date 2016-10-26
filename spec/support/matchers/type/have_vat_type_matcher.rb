@@ -1,5 +1,5 @@
 module Matchers
-  module Model
+  module Type
     def have_vat_type( attribute, valid_hash = {} )
       EnumMatcher.new( attribute, valid_hash, 'VATType', 'VATTypes' )
     end

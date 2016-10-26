@@ -1,5 +1,5 @@
 module Matchers
-  module Model
+  module Type
     def have_currency( attribute, valid_hash = {} )
       EnumMatcher.new( attribute, valid_hash, 'Currency', 'Currencies' )
     end

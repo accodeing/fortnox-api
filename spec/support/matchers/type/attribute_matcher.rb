@@ -1,5 +1,5 @@
 module Matchers
-  module Model
+  module Type
     class AttributeMatcher
       def initialize( attribute, valid_hash, attribute_type )
         @attribute = attribute
@@ -29,7 +29,7 @@ module Matchers
 
           @errors << msg
           false # Fail test since expected error not thrown
-        rescue Fortnox::API::InvalidAttributeValueError
+        rescue Dry::Struct::Error
           # TODO: check if error message is correct
           true
         end

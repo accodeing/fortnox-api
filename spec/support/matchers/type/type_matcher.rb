@@ -1,5 +1,5 @@
 module Matchers
-  module Model
+  module Type
     class TypeMatcher < AttributeMatcher
       def initialize( attr, valid_hash, attr_name, valid_value, invalid_value )
         super( attr, valid_hash, attr_name )

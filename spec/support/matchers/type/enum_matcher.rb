@@ -1,5 +1,5 @@
 module Matchers
-  module Model
+  module Type
     class EnumMatcher < TypeMatcher
       def initialize( attribute, valid_hash, enum_type, enum_types, nonsense_value: 'NONSENSE'.freeze )
         valid_value = Fortnox::API::Types.const_get(enum_types).values.first

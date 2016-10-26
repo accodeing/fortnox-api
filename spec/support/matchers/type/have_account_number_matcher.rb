@@ -1,5 +1,5 @@
 module Matchers
-  module Model
+  module Type
     def have_account_number( attribute, valid_hash = {} )
       HaveAccountNumberMatcher.new( attribute, valid_hash )
     end
