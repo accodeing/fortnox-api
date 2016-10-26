@@ -4,6 +4,14 @@ require 'fortnox/api'
 describe Fortnox::API::Base do
   include Helpers::Environment
 
+  before do
+    # Class variable need to be reset before each test
+    # since we are changing environment variables
+    Fortnox::API::EnvironmentValidation::CircularQueue.class_variable_set(
+      :@@next_index, 0
+    )
+  end
+
   describe 'creation' do
     before do
       stub_environment('FORTNOX_API_BASE_URL' => nil,
@@ -108,22 +116,36 @@ describe Fortnox::API::Base do
       )
     end
 
-    let!(:api){ described_class.new }
-    let!(:response1){ api.get( path, body: '' ) }
-    let!(:response2){ api.get( path, body: '' ) }
-    let!(:response3){ api.get( path, body: '' ) }
+    let!(:response1) { api.get( '/test', body: '' ) }
+    let!(:response2) { api.get( '/test', body: '' ) }
+    let!(:response3) { api.get( '/test', body: '' ) }
 
-    let(:path){ '/test' }
+    let(:api){ described_class.new }
 
-    describe 'first request' do
-      subject{ response1 }
-      it{ is_expected.not_to eq( response2 ) }
-      it{ is_expected.to eq( response3 ) }
+    it 'works'do
+      expect(response1).not_to eq( response2 )
+      expect(response1).to eq( response3 )
+      expect(response3).not_to eq( response2 )
+    end
+  end
+
+  context 'token rotation' do
+    let(:customers_dummy_request) { described_class.new.get( '/customers', body: '' ) }
+    let(:invoices_dummy_request) { described_class.new.get( '/orders', body: '' ) }
+    let(:orders_dummy_request) { described_class.new.get( '/invoices', body: '' ) }
+
+    def next_index
+      Fortnox::API::EnvironmentValidation::CircularQueue.class_variable_get('@@next_index')
     end
 
-    describe 'third request' do
-      subject{ response3 }
-      it{ is_expected.not_to eq( response2 ) }
+    it 'is make at class leven (not instance level)' do
+      expect(next_index).to be 0
+      VCR.use_cassette( "#{ 'dummies' }/customers" ) { customers_dummy_request }
+      expect(next_index).to be 1
+      VCR.use_cassette( "#{ 'dummies' }/orders" ) { orders_dummy_request }
+      expect(next_index).to be 0
+      VCR.use_cassette( "#{ 'dummies' }/invoices" ) { invoices_dummy_request }
+      expect(next_index).to be 1
     end
   end
 
