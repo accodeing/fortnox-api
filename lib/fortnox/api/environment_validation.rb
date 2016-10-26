@@ -10,10 +10,9 @@ module Fortnox
       class CircularQueue
         extend Forwardable
 
-        @@next_index = 0
-
         def initialize *items
           @queue = [ *items ]
+          @@next_index = random_start_index
         end
 
         # support some general Array methods that fit Queues well
@@ -28,6 +27,12 @@ module Fortnox
           end
           return value
         end
+
+        private
+
+          def random_start_index
+            Random.rand(0..@queue.size - 1)
+          end
       end
 
       private

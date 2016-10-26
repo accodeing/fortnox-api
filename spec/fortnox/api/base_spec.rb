@@ -121,18 +121,6 @@ describe Fortnox::API::Base do
         expect(response3).not_to eq( response2 )
       end
     end
-
-    context 'with several objects' do
-      let!(:response1){ described_class.new.get( '/test', body: '' ) }
-      let!(:response2){ described_class.new.get( '/test', body: '' ) }
-      let!(:response3){ described_class.new.get( '/test', body: '' ) }
-
-      it 'works' do
-        expect(response1).not_to eq( response2 )
-        expect(response1).to eq( response3 )
-        expect(response3).not_to eq( response2 )
-      end
-    end
   end
 
   context 'raising error from remote server' do
