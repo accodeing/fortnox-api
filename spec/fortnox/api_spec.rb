@@ -4,14 +4,6 @@ require 'fortnox/api'
 describe Fortnox::API do
   include Helpers::Environment
 
-  before do
-    # Class variable need to be reset before each test
-    # since we are changing environment variables
-    Fortnox::API::EnvironmentValidation::CircularQueue.class_variable_set(
-      :@@next_index, 0
-    )
-  end
-
   context 'get access token' do
     before do
       stub_environment(

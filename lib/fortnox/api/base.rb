@@ -29,6 +29,7 @@ module Fortnox
         self.headers = DEFAULT_HEADERS.merge({
           'Client-Secret' => get_client_secret,
         })
+
         check_access_tokens!
       end
 
