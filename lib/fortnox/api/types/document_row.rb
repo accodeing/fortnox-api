@@ -1,8 +1,6 @@
-require "fortnox/api/models/base"
-
 module Fortnox
   module API
-    module Model
+    module Types
       module DocumentRow
         def self.ify( base )
           base.class_eval do

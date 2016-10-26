@@ -1,6 +1,5 @@
 require "fortnox/api/types"
 require "fortnox/api/models/label"
-require "fortnox/api/models/email_information"
 
 module Fortnox
   module API
@@ -90,7 +89,7 @@ module Fortnox
             base.attribute :document_number, Types::Nullable::Integer
 
             # EmailInformation Separete EmailInformation object
-            base.attribute :email_information, EmailInformation
+            base.attribute :email_information, Types::EmailInformation
 
             # ExternalInvoiceReference1 External document reference 1. 80 characters
             base.attribute :external_invoice_reference1, Types::Sized::String[ 80 ]

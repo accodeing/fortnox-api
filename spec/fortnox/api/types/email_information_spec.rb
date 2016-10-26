@@ -1,7 +1,7 @@
 require 'spec_helper'
-require 'fortnox/api/models/email_information'
+require 'fortnox/api/types/email_information'
 
-RSpec.describe Fortnox::API::Model::EmailInformation, type: :model do
+RSpec.describe Fortnox::API::Types::EmailInformation, type: :type do
   subject{ described_class }
 
   it{ is_expected.to have_email( :email_address_to ) }

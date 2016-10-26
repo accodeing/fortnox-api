@@ -2,7 +2,7 @@ require "fortnox/api/types"
 
 module Fortnox
   module API
-    module Model
+    module Types
       class EmailInformation < Types::Model
         STUB = {}.freeze
 

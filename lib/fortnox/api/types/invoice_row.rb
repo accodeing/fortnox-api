@@ -1,8 +1,8 @@
-require "fortnox/api/models/document_row"
+require "fortnox/api/types/document_row"
 
 module Fortnox
   module API
-    module Model
+    module Types
       class InvoiceRow < Fortnox::API::Types::Model
         STUB = {}.freeze
         

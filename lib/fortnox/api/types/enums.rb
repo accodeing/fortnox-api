@@ -67,7 +67,7 @@ module Fortnox
       VATTypes = Types::Strict::String.enum(
         'SEVAT', 'SEREVERSEDVAT', 'EUREVERSEDVAT', 'EUVAT', 'EXPORT'
       )
-      DefaultDeliveryTypes = Types::Strict::String.enum(
+      DefaultDeliveryTypeValues = Types::Strict::String.enum(
         'PRINT', 'EMAIL', 'PRINTSERVICE'
       )
     end

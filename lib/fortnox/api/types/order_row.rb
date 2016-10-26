@@ -1,8 +1,8 @@
-require "fortnox/api/models/document_row"
+require "fortnox/api/types/document_row"
 
 module Fortnox
   module API
-    module Model
+    module Types
       class OrderRow < Fortnox::API::Types::Model
         STUB = { ordered_quantity: 0 }.freeze
 

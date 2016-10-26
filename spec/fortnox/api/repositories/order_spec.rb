@@ -21,7 +21,7 @@ describe Fortnox::API::Repository::Order, order: :defined, integration: true do
                    required_hash,
                    :order_rows,
                    nested_model_hash,
-                   [ Fortnox::API::Model::OrderRow.new( nested_model_hash ) ]
+                   [ Fortnox::API::Types::OrderRow.new( nested_model_hash ) ]
 
   # It is not possible to delete Orders. Therefore, expected nr of Orders
   # when running .all will continue to increase (until 100, which is max by default).

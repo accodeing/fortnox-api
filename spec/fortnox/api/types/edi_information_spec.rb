@@ -1,7 +1,7 @@
 require 'spec_helper'
-require 'fortnox/api/models/edi_information'
+require 'fortnox/api/types/edi_information'
 
-RSpec.describe Fortnox::API::Model::EDIInformation, type: :model do
+RSpec.describe Fortnox::API::Types::EDIInformation, type: :type do
   subject{ described_class }
 
   it{ is_expected.to have_nullable_string( :edi_global_location_number ) }

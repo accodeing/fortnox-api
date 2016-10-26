@@ -11,11 +11,11 @@ describe Fortnox::API::Model::Invoice, type: :model do
   include_context 'models context'
 
   it_behaves_like 'DocumentBase Model',
-                  Fortnox::API::Model::InvoiceRow,
+                  Fortnox::API::Types::InvoiceRow,
                   :invoice_rows,
                   valid_hash
 
-  include_examples 'having value objects', Fortnox::API::Model::EDIInformation do
+  include_examples 'having value objects', Fortnox::API::Types::EDIInformation do
     let( :attribute ){ :edi_information }
   end
 end

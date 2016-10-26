@@ -1,8 +1,8 @@
 require 'spec_helper'
-require 'fortnox/api/models/order_row'
-require 'fortnox/api/models/examples/document_row'
+require 'fortnox/api/types/order_row'
+require 'fortnox/api/types/examples/document_row'
 
-RSpec.describe Fortnox::API::Model::OrderRow, type: :model, focus: true do
+RSpec.describe Fortnox::API::Types::OrderRow, type: :type do
   valid_hash = { ordered_quantity: 10.5 }
 
   subject{ described_class }

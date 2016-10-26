@@ -44,7 +44,7 @@ shared_examples_for 'DocumentBase Model' do |row_class, row_attribute, valid_has
 
   include_context 'models context'
 
-  include_examples 'having value objects', Fortnox::API::Model::EmailInformation do
+  include_examples 'having value objects', Fortnox::API::Types::EmailInformation do
     let( :attribute ){ :email_information }
   end
 end

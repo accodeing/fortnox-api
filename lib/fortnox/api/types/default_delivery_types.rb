@@ -1,8 +1,8 @@
-require "fortnox/api/types"
+require 'fortnox/api/types'
 
 module Fortnox
   module API
-    module Model
+    module Types
       class DefaultDeliveryTypes < Types::Model
         STUB = {}.freeze
 

@@ -3,7 +3,7 @@ require "fortnox/api/types"
 module Fortnox
   module API
     module Model
-      class Label < Types::Model
+      class Label < Model::Base
         STUB = {}.freeze
 
         # Id	integer, read-only. The ID of the label.

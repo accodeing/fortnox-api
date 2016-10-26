@@ -2,7 +2,7 @@ require "fortnox/api/types"
 
 module Fortnox
   module API
-    module Model
+    module Types
       class DefaultTemplates < Types::Model
         STUB = {}.freeze
 

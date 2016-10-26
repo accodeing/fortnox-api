@@ -2,7 +2,7 @@ require "fortnox/api/types"
 
 module Fortnox
   module API
-    module Model
+    module Types
       class EDIInformation < Types::Model
         STUB = {}.freeze
         
