@@ -31,7 +31,7 @@ module Fortnox
         private
 
           def random_start_index
-            Random.rand(0..@queue.size - 1)
+            Random.rand(@queue.size)
           end
       end
 
