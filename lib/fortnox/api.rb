@@ -22,9 +22,6 @@ module Fortnox
     class MissingAttributeError < Fortnox::API::Exception
     end
 
-    class InvalidAttributeValueError < Fortnox::API::Exception
-    end
-
     class << self
       @debugging = false
       @logger = Logger.new(STDOUT)
