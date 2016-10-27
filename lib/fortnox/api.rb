@@ -13,6 +13,9 @@ module Fortnox
     class Exception < StandardError
     end
 
+    class AttributeError < Fortnox::API::Exception
+    end
+
     class RemoteServerError < Fortnox::API::Exception
     end
 

@@ -23,8 +23,12 @@ module Fortnox
             obj = preserve_meta_properties( hash ) do
               super( hash )
             end
-          rescue Dry::Struct::Error, Dry::Types::ConstraintError, Dry::Types::MissingKeyError => e
-            raise Fortnox::API::InvalidAttributeValueError.new e
+          rescue Dry::Struct::Error => e
+              raise Fortnox::API::AttributeError.new e
+          rescue Dry::Types::ConstraintError => e
+              raise Fortnox::API::InvalidAttributeValueError.new e
+          rescue Dry::Types::MissingKeyError => e
+              raise Fortnox::API::MissingAttributeError.new e
           end
 
           IceNine.deep_freeze( obj )
