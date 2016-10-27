@@ -3,7 +3,7 @@ require 'dry-struct'
 require 'fortnox/api/types/model'
 
 RSpec.describe Fortnox::API::Types::Model do
-  context 'with invalid argument' do
+  shared_examples_for 'raises error' do |dry_error, fortnox_api_error|
     using_test_classes do
       module Types
         include Dry::Types.module
@@ -11,27 +11,37 @@ RSpec.describe Fortnox::API::Types::Model do
         Age = Int.constrained(gt: 18)
       end
 
-      class TypesModelUser < Fortnox::API::Types::Model
+      class DryStructUser < Dry::Struct
         attribute :age, Types::Age
       end
 
-      class DryStructUser < Dry::Struct
+      class TypesModelUser < Fortnox::API::Types::Model
         attribute :age, Types::Age
       end
     end
 
-    let(:args){ { age: 17 } }
-
     describe 'User inheriting directly from Dry::Struct' do
       subject{ ->{ DryStructUser.new(args) } }
 
-      it{ is_expected.to raise_error(Dry::Types::MissingKeyError) }
+      it{ is_expected.to raise_error(dry_error) }
     end
 
     describe "User inheriting from #{ described_class }" do
       subject{ ->{ TypesModelUser.new(args) } }
 
-      it{ is_expected.to raise_error(Fortnox::API::InvalidAttributeValueError) }
+      it{ is_expected.to raise_error(fortnox_api_error) }
+    end
+  end
+
+  context 'with invalid argument' do
+    include_examples 'raises error', Dry::Struct::Error, Fortnox::API::InvalidAttributeValueError do
+      let(:args){ { age: 17 } }
+    end
+  end
+
+  context 'without required keys' do
+    include_examples 'raises error', Dry::Struct::Error, Fortnox::API::MissingAttributeError do
+      let(:args){ {} }
     end
   end
 
