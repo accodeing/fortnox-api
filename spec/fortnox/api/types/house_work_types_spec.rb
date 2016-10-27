@@ -3,7 +3,7 @@ require 'fortnox/api'
 require 'fortnox/api/types'
 require 'fortnox/api/repositories/order'
 require 'fortnox/api/models/order'
-require 'fortnox/api/models/order_row'
+require 'fortnox/api/types/order_row'
 
 # rubocop:disable RSpec/DescribeClass
 describe 'HouseWorkTypes', integration: true do
@@ -11,7 +11,7 @@ describe 'HouseWorkTypes', integration: true do
   let(:valid_model) do
     Fortnox::API::Model::Order.new(customer_number: '1', order_rows: [order_row])
   end
-  let(:order_row){ Fortnox::API::Model::OrderRow.new(ordered_quantity: 1,
+  let(:order_row){ Fortnox::API::Types::OrderRow.new(ordered_quantity: 1,
                                                      article_number: '0000',
                                                      house_work_type: house_work_type)}
 
