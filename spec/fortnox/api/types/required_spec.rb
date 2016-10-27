@@ -3,15 +3,21 @@ require 'fortnox/api/types'
 require 'fortnox/api/types/required'
 
 describe Fortnox::API::Types::Required, type: :type do
-  subject{ TestClass }
-
   using_test_class do
     class TestClass < Dry::Struct
     end
   end
 
   shared_examples_for 'required attribute' do |type|
-    it{ is_expected.to require_attribute(:required_attribute, type) }
+    subject{ -> { TestClass.new({}) } }
+
+    let(:error_message) do
+      "[#{ TestClass }.new] #{ :required_attribute.inspect } is missing in Hash input"
+    end
+
+    it 'raises an error' do
+      is_expected.to raise_error(Dry::Struct::Error, error_message)
+    end
   end
 
   describe 'String' do
@@ -31,6 +37,6 @@ describe Fortnox::API::Types::Required, type: :type do
       end
     end
 
-    include_examples 'required attribute', Float, Fortnox::API::Types::Required::Float
+    include_examples 'required attribute', Float
   end
 end

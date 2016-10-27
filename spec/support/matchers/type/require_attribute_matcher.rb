@@ -2,15 +2,16 @@ require 'fortnox/api'
 
 module Matchers
   module Type
-    def require_attribute( attribute, attr_type )
-      RequireAttributeMatcher.new( attribute, attr_type )
+    def require_attribute(attribute, valid_hash = {})
+      RequireAttributeMatcher.new(attribute, valid_hash)
     end
 
     class RequireAttributeMatcher
-      def initialize( attribute, attr_type )
+      EXCEPTION = Fortnox::API::MissingAttributeError
+
+      def initialize( attribute, valid_hash )
         @attribute = attribute
-        @attr_type = attr_type
-        @exception = Dry::Struct::Error
+        @invalid_hash = valid_hash.dup.tap{ |hash| hash.delete( attribute ) }
       end
 
       def matches?( klass )
@@ -30,39 +31,39 @@ module Matchers
 
       private
 
-      def raise_error
-        @klass.new({})
+        def raise_error
+          @klass.new(@invalid_hash)
 
-        false # Fail test since expected error is not thrown
-      rescue @exception
-        true
-      end
+          false # Fail test since expected error is not thrown
 
-
-      def includes_error_message
-        @klass.new({})
-      rescue @exception => error
-        if error.message == expected_error_message
-          return true
-        else
-          @wrong_error_message = error.message
-          return false
+        rescue EXCEPTION
+          true
         end
-      end
 
-      def expected_error_message
-        "[#{ @klass }.new] #{ @attribute.inspect } is missing in Hash input"
-      end
+        def includes_error_message
+          @klass.new(@invalid_hash)
+        rescue EXCEPTION => error
+          if error.message.include? expected_error_message
+            return true
+          else
+            @wrong_error_message = error.message
+            return false
+          end
+        end
 
-      def no_exception_failure_message
-        "Expected class to raise #{ EXCEPTION } "\
-          "when attribute #{ @attribute.inspect } is missing."
-      end
+        def expected_error_message
+          @attribute.to_s
+        end
 
-      def wrong_error_message
-        "Expected exception to equal #{ expected_error_message.inspect }. "\
-          "Message was #{ @wrong_error_message.inspect }."
-      end
+        def no_exception_failure_message
+          "Expected class to raise #{ EXCEPTION } "\
+            "when attribute #{ @attribute.inspect } is missing."
+        end
+
+        def wrong_error_message
+          "Expected exception to equal #{ expected_error_message.inspect }. "\
+            "Message was #{ @wrong_error_message.inspect }."
+        end
     end
   end
 end
