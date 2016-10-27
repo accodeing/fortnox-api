@@ -115,11 +115,15 @@ describe Fortnox::API::Base do
 
       let(:api){ described_class.new }
 
+      # rubocop:disable RSpec/MultipleExpectations
+      # All these checks must be run in same it-statement because
+      # of the random starting index.
       it 'works' do
         expect(response1).not_to eq( response2 )
         expect(response1).to eq( response3 )
         expect(response3).not_to eq( response2 )
       end
+      # rubocop:enable RSpec/MultipleExpectations
     end
   end
 
