@@ -22,7 +22,7 @@ describe Fortnox::API::Repository::Invoice, order: :defined, integration: true d
                    required_hash,
                    :invoice_rows,
                    nested_model_hash,
-                   [ Fortnox::API::Model::InvoiceRow.new( nested_model_hash ) ]
+                   [ Fortnox::API::Types::InvoiceRow.new( nested_model_hash ) ]
 
   include_examples '.save with specially named attribute',
                    required_hash,

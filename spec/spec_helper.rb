@@ -20,7 +20,6 @@ RSpec.configure do |config|
   config.include Helpers # Allow access to helpers in it and let blocks
 
   config.include Helpers::Repositories, integration: true
-  config.include Matchers::Model, type: :model
   config.include Matchers::Type, type: :type
 
   config.order = 'random'

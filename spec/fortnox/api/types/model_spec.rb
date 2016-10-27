@@ -3,35 +3,29 @@ require 'dry-struct'
 require 'fortnox/api/types/model'
 
 RSpec.describe Fortnox::API::Types::Model do
-  context 'with invalid argument' do
+  shared_examples_for 'raises error' do |error|
     using_test_classes do
       module Types
         include Dry::Types.module
 
-        Age = Int.constrained(gt: 18)
+        Age = Int.constrained(gt: 18).with(required: true)
       end
 
       class TypesModelUser < Fortnox::API::Types::Model
         attribute :age, Types::Age
       end
-
-      class DryStructUser < Dry::Struct
-        attribute :age, Types::Age
-      end
-    end
-
-    let(:args){ { age: 17 } }
-
-    describe 'User inheriting directly from Dry::Struct' do
-      subject{ ->{ DryStructUser.new(args) } }
-
-      it{ is_expected.to raise_error(Dry::Struct::Error) }
     end
 
     describe "User inheriting from #{ described_class }" do
       subject{ ->{ TypesModelUser.new(args) } }
 
-      it{ is_expected.to raise_error(Dry::Struct::Error) }
+      it{ is_expected.to raise_error(error) }
+    end
+  end
+
+  context 'without required keys' do
+    include_examples 'raises error', Fortnox::API::MissingAttributeError do
+      let(:args){ {} }
     end
   end
 

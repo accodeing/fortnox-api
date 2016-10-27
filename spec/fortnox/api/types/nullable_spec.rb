@@ -12,7 +12,7 @@ describe Fortnox::API::Types::Nullable, type: :type do
       end
     end
 
-    it{ is_expected.to have_nullable(:string, 'A simple message', 0) }
+    it{ is_expected.to have_nullable(:string, 'A simple message', 0, '0') }
   end
 
   describe 'Float' do
@@ -22,7 +22,7 @@ describe Fortnox::API::Types::Nullable, type: :type do
       end
     end
 
-    it{ is_expected.to have_nullable(:float, 14.0, 'Not a Float!') }
+    it{ is_expected.to have_nullable(:float, 14.0, 'Not a Float!', 0.0) }
   end
 
   describe 'Integer' do
@@ -32,7 +32,7 @@ describe Fortnox::API::Types::Nullable, type: :type do
       end
     end
 
-    it{ is_expected.to have_nullable(:integer, 14, 14.0) }
+    it{ is_expected.to have_nullable(:integer, 14, 14.0, 14) }
   end
 
   describe 'Boolean' do
@@ -42,7 +42,7 @@ describe Fortnox::API::Types::Nullable, type: :type do
       end
     end
 
-    it{ is_expected.to have_nullable(:boolean, true, 'Not a Boolean!') }
+    it{ is_expected.to have_nullable(:boolean, true, 'Not a Boolean!', false) }
   end
 
   describe 'Date' do

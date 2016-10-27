@@ -6,7 +6,7 @@ module Fortnox
 
         def initialize( input_attributes )
           if (missing_key = first_missing_required_key( input_attributes ))
-            raise KeyError.new( "#{ missing_key } in #{ input_attributes }" )
+            raise Fortnox::API::MissingAttributeError.new( "Missing attribute #{ missing_key.inspect } in attributes: #{ input_attributes }" )
           end
 
           super

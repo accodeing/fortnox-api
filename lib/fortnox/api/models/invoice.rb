@@ -1,7 +1,5 @@
 require "fortnox/api/models/base"
 require "fortnox/api/models/document_base"
-require "fortnox/api/models/edi_information"
-require "fortnox/api/models/invoice_row"
 
 module Fortnox
   module API
@@ -37,7 +35,7 @@ module Fortnox
         attribute :due_date, Types::Nullable::Date
 
         #EDIInformation Separate EDIInformation object
-        attribute :edi_information, EDIInformation
+        attribute :edi_information, Types::EDIInformation
 
         #EUQuarterlyReport EU Quarterly Report On / Off
         attribute :eu_quarterly_report, Types::Nullable::Boolean
@@ -52,7 +50,7 @@ module Fortnox
         attribute :invoice_period_end, Types::Nullable::Date.with( read_only: true )
 
         #InvoiceRows Separate object
-        attribute :invoice_rows, Types::Strict::Array.member( InvoiceRow )
+        attribute :invoice_rows, Types::Strict::Array.member( Types::InvoiceRow )
 
         #InvoiceType The type of invoice.
         attribute :invoice_type, Types::Nullable::String

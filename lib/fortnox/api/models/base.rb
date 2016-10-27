@@ -19,8 +19,12 @@ module Fortnox
         end
 
         def self.new( hash )
-          obj = preserve_meta_properties( hash ) do
-            super( hash )
+          begin
+            obj = preserve_meta_properties( hash ) do
+              super( hash )
+            end
+          rescue Dry::Struct::Error => e
+            raise Fortnox::API::AttributeError.new e
           end
 
           IceNine.deep_freeze( obj )

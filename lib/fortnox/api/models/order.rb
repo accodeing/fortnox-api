@@ -1,6 +1,5 @@
 require "fortnox/api/models/base"
 require "fortnox/api/models/document_base"
-require "fortnox/api/models/order_row"
 
 module Fortnox
   module API
@@ -21,7 +20,7 @@ module Fortnox
         attribute :order_date, Types::Nullable::Date
 
         # OrderRows Separate object
-        attribute :order_rows, Types::Strict::Array.member( OrderRow )
+        attribute :order_rows, Types::Strict::Array.member( Types::OrderRow )
       end
     end
   end
