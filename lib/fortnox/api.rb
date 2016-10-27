@@ -13,13 +13,13 @@ module Fortnox
     class Exception < StandardError
     end
 
-    class RemoteServerError < Exception
+    class RemoteServerError < RuntimeError
     end
 
-    class MissingAttributeError < Exception
+    class MissingAttributeError < RuntimeError
     end
 
-    class InvalidAttributeValueError < Exception
+    class InvalidAttributeValueError < RuntimeError
     end
 
     class << self

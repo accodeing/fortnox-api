@@ -8,8 +8,8 @@ describe Fortnox::API::Types::Required, type: :type do
     end
   end
 
-  shared_examples_for 'required attribute' do |type|
-    subject{ -> { TestClass.new({}) } }
+  shared_examples_for 'required attribute' do |_type|
+    subject{ ->{ TestClass.new({}) } }
 
     let(:error_message) do
       "[#{ TestClass }.new] #{ :required_attribute.inspect } is missing in Hash input"

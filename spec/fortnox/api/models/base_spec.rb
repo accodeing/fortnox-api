@@ -22,7 +22,7 @@ describe Fortnox::API::Model::Base do
     end
 
     context 'without required attribute' do
-      subject{ ->{ Entity.new({}) }}
+      subject{ ->{ Entity.new({}) } }
 
       it{ is_expected.to raise_error Fortnox::API::Exception }
       it{ is_expected.to raise_error Fortnox::API::MissingAttributeError }
@@ -30,7 +30,7 @@ describe Fortnox::API::Model::Base do
     end
 
     context 'with invalid attribute value' do
-      subject{ ->{ Entity.new({ string: 'Test', account: 13337 }) }}
+      subject{ ->{ Entity.new({ string: 'Test', account: 13337 }) } }
 
       it{ is_expected.to raise_error Fortnox::API::Exception }
       it{ is_expected.to raise_error Fortnox::API::InvalidAttributeValueError }
