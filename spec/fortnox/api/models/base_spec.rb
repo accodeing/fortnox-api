@@ -33,8 +33,8 @@ describe Fortnox::API::Model::Base do
       subject{ ->{ Entity.new({ string: 'Test', account: 13337 }) } }
 
       it{ is_expected.to raise_error Fortnox::API::Exception }
-      it{ is_expected.to raise_error Fortnox::API::InvalidAttributeValueError }
-      it{ is_expected.to raise_error Fortnox::API::InvalidAttributeValueError, /invalid type for :account/ }
+      it{ is_expected.to raise_error Fortnox::API::AttributeError }
+      it{ is_expected.to raise_error Fortnox::API::AttributeError, /invalid type for :account/ }
     end
   end
 
