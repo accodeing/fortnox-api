@@ -108,22 +108,22 @@ describe Fortnox::API::Base do
       )
     end
 
-    let!(:api){ described_class.new }
-    let!(:response1){ api.get( path, body: '' ) }
-    let!(:response2){ api.get( path, body: '' ) }
-    let!(:response3){ api.get( path, body: '' ) }
+    context 'with subsequent requests on same object' do
+      let!(:response1){ api.get( '/test', body: '' ) }
+      let!(:response2){ api.get( '/test', body: '' ) }
+      let!(:response3){ api.get( '/test', body: '' ) }
 
-    let(:path){ '/test' }
+      let(:api){ described_class.new }
 
-    describe 'first request' do
-      subject{ response1 }
-      it{ is_expected.not_to eq( response2 ) }
-      it{ is_expected.to eq( response3 ) }
-    end
-
-    describe 'third request' do
-      subject{ response3 }
-      it{ is_expected.not_to eq( response2 ) }
+      # rubocop:disable RSpec/MultipleExpectations
+      # All these checks must be run in same it-statement because
+      # of the random starting index.
+      it 'works' do
+        expect(response1).not_to eq( response2 )
+        expect(response1).to eq( response3 )
+        expect(response3).not_to eq( response2 )
+      end
+      # rubocop:enable RSpec/MultipleExpectations
     end
   end
 
