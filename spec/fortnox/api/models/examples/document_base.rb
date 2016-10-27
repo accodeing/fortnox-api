@@ -1,4 +1,3 @@
-require 'fortnox/api/models/context'
 require 'fortnox/api/models/examples/model'
 
 shared_examples_for 'DocumentBase Model' do |row_class, row_attribute, valid_hash, valid_row_hash: {}|
@@ -10,11 +9,5 @@ shared_examples_for 'DocumentBase Model' do |row_class, row_attribute, valid_has
       document_base = described_class.new( customer_number: '123', row_attribute => [row] )
       expect(document_base.send(row_attribute)).to eq([row])
     end
-  end
-
-  include_context 'models context'
-
-  include_examples 'having value objects', Fortnox::API::Types::EmailInformation do
-    let( :attribute ){ :email_information }
   end
 end
