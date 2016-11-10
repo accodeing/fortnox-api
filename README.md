@@ -108,7 +108,7 @@ $ gem install fortnox-api
 ## Getting an AccessToken
 To make calls to the API server you need a `ClientSecret` and an `AccessToken`. When you sign up for an API-account with Fortnox you should get a client secret and an authorization code. To get the access token, that is reusable, you need to do a one time exchange with the API-server and exchange your authorization code for an access token. This can be done in several ways but we provide a method for it in the gem that you can use.
 
-> :warning: **Do not do this more than once!** If you try to do the auth code/access token exchange more than once, regardless of method, it will lock your API-account! So if you get the token using curl or whatever do not use this method as well. If your account is not working and you think it might be due to this you will have to contact Fortnox support and have them reset the authorization code for you.
+> ​:warning: **Do not do this more than once!** If you try to do the auth code/access token exchange more than once, regardless of method, it will lock your API-account! So if you get the token using curl or whatever do not use this method as well. If your account is not working and you think it might be due to this you will have to contact Fortnox support and have them reset the authorization code for you. If you want to use several access tokens, you need to use a new authorization code for each one of them!
 
 ```ruby
 # Load the special class from the gem. You need to install the gem first ofc.
@@ -137,9 +137,9 @@ Their values should match their name.
 
 The gem only supports the latest API version, version 3, so base URL should be set to `FORTNOX_API_BASE_URL=https://api.fortnox.se/3/` . Note that Fortnox requires `https`!
 
-### Multiple Access Tokens
+### Multiple AccessTokens
 
-Fortnox uses quite low [API rate limits](https://developer.fortnox.se/blog/important-implementation-of-rate-limits/). The limit is for each Access Token, and according to Fortnox you can use as many Tokens as you like to get around this problem. This gem supports multiple Access Tokens automatically. Just separate them with a comma: `FORTNOX_API_ACCESS_TOKEN=a78d35hc-j5b1-ga1b-a1h6-h72n74fj5327,s2b45f67-dh5d-3g5s-2dj5-dku6gn26sh62` and the gem will automatically rotate between these Access Tokens. In theory you can declare as many as you like.
+Fortnox uses quite low [API rate limits](https://developer.fortnox.se/blog/important-implementation-of-rate-limits/). The limit is for each access token, and according to Fortnox you can use as many tokens as you like to get around this problem. This gem supports multiple access tokens automatically. Just separate them with a comma: `FORTNOX_API_ACCESS_TOKEN=a78d35hc-j5b1-ga1b-a1h6-h72n74fj5327,s2b45f67-dh5d-3g5s-2dj5-dku6gn26sh62` and the gem will automatically rotate between these tokens. In theory you can declare as many as you like. Remember that you will need one authorization code for each token! See Getting an AccessToken above.
 
 # Usage
 ## Repositories
