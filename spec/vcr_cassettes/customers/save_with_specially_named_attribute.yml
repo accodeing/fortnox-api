@@ -1,0 +1,45 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.fortnox.se/3/customers/
+    body:
+      encoding: UTF-8
+      string: '{"Customer":{"EmailInvoiceCC":"test@example.com","Name":"Test customer"}}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      Client-Secret:
+      - 9aBA8ZgsvR
+      Access-Token:
+      - ccaef817-d5d8-4b1c-a316-54f3e55c5c54
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 25 Oct 2016 10:21:50 GMT
+      Content-Type:
+      - application/json
+      Connection:
+      - close
+      Location:
+      - customers
+      X-Rack-Responsetime:
+      - '35'
+      X-Uid:
+      - e99dd917
+      X-Build:
+      - 76600b8d0c
+    body:
+      encoding: UTF-8
+      string: '{"Customer":{"@url":"https:\/\/api.fortnox.se\/3\/customers\/146","Address1":null,"Address2":null,"City":null,"Country":null,"Comments":null,"Currency":"SEK","CostCenter":null,"CountryCode":null,"CustomerNumber":"146","DefaultDeliveryTypes":{"Invoice":"PRINT","Order":"PRINT","Offer":"PRINT"},"DefaultTemplates":{"Order":"DEFAULTTEMPLATE","Offer":"DEFAULTTEMPLATE","Invoice":"DEFAULTTEMPLATE","CashInvoice":"DEFAULTTEMPLATE"},"DeliveryAddress1":null,"DeliveryAddress2":null,"DeliveryCity":null,"DeliveryCountry":null,"DeliveryCountryCode":null,"DeliveryFax":null,"DeliveryName":null,"DeliveryPhone1":null,"DeliveryPhone2":null,"DeliveryZipCode":null,"Email":"","EmailInvoice":"","EmailInvoiceBCC":"","EmailInvoiceCC":"test@example.com","EmailOffer":"","EmailOfferBCC":"","EmailOfferCC":"","EmailOrder":"","EmailOrderBCC":"","EmailOrderCC":"","Fax":null,"InvoiceAdministrationFee":null,"InvoiceDiscount":null,"InvoiceFreight":null,"InvoiceRemark":"","Name":"Test
+        customer","OrganisationNumber":"","OurReference":"","Phone1":null,"Phone2":null,"PriceList":"A","Project":"","SalesAccount":null,"ShowPriceVATIncluded":false,"TermsOfDelivery":"","TermsOfPayment":"","Type":"COMPANY","VATNumber":"","VATType":"SEVAT","VisitingAddress":null,"VisitingCity":null,"VisitingCountry":null,"VisitingCountryCode":null,"VisitingZipCode":null,"WayOfDelivery":"","WWW":"","YourReference":"","ZipCode":null}}'
+    http_version: 
+  recorded_at: Tue, 25 Oct 2016 10:21:49 GMT
+recorded_with: VCR 3.0.1

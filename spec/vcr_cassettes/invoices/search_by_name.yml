@@ -1,0 +1,48 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.fortnox.se/3/invoices/?customername=Test
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      Client-Secret:
+      - 9aBA8ZgsvR
+      Access-Token:
+      - ccaef817-d5d8-4b1c-a316-54f3e55c5c54
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 25 Oct 2016 10:21:48 GMT
+      Content-Type:
+      - application/json
+      Connection:
+      - close
+      Vary:
+      - Accept-Encoding
+      - Accept-Encoding
+      X-Rack-Responsetime:
+      - '55'
+      X-Uid:
+      - 84a3db9c
+      X-Build:
+      - 76600b8d0c
+    body:
+      encoding: UTF-8
+      string: '{"MetaInformation":{"@TotalResources":3,"@TotalPages":1,"@CurrentPage":1},"Invoices":[{"@url":"https:\/\/api.fortnox.se\/3\/invoices\/1","Balance":0,"Booked":false,"Cancelled":false,"Currency":"SEK","CurrencyRate":"1","CurrencyUnit":1,"CustomerName":"Test","CustomerNumber":"1","DocumentNumber":"1","DueDate":"2016-02-04","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","InvoiceDate":"2016-02-04","NoxFinans":false,"OCR":"133","WayOfDelivery":"","TermsOfPayment":"0","Project":"","Sent":true,"Total":0},{"@url":"https:\/\/api.fortnox.se\/3\/invoices\/15","Balance":0,"Booked":true,"Cancelled":false,"Currency":"SEK","CurrencyRate":"1","CurrencyUnit":1,"CustomerName":"Test
+        customer","CustomerNumber":"3","DocumentNumber":"15","DueDate":"2016-05-15","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","InvoiceDate":"2016-05-15","NoxFinans":false,"OCR":"1545","WayOfDelivery":"","TermsOfPayment":"0","Project":"2","Sent":false,"Total":138},{"@url":"https:\/\/api.fortnox.se\/3\/invoices\/24","Balance":26,"Booked":false,"Cancelled":false,"Currency":"SEK","CurrencyRate":"1","CurrencyUnit":1,"CustomerName":"Test
+        customer","CustomerNumber":"3","DocumentNumber":"24","DueDate":"2016-09-09","ExternalInvoiceReference1":"An
+        external reference","ExternalInvoiceReference2":"","InvoiceDate":"2016-09-09","NoxFinans":false,"OCR":"2444","WayOfDelivery":"","TermsOfPayment":"0","Project":"1","Sent":false,"Total":26}]}'
+    http_version: 
+  recorded_at: Tue, 25 Oct 2016 10:21:48 GMT
+recorded_with: VCR 3.0.1

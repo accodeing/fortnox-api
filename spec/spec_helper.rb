@@ -1,31 +1,41 @@
 ENV['RUBY_ENV'] = 'test'
 
+require 'rspec/collection_matchers'
 require 'webmock/rspec'
 require 'pry'
 require "codeclimate-test-reporter"
 require 'support/matchers'
 require 'support/helpers'
 require 'support/vcr_setup'
+require 'dotenv'
 
 CodeClimate::TestReporter.start
+Dotenv.load('.env.test')
 
 RSpec.configure do |config|
   config.run_all_when_everything_filtered = true
   config.filter_run :focus
 
-  config.extend Helpers
+  config.extend Helpers # Allow access to helpers in describe and context blocks
+  config.include Helpers # Allow access to helpers in it and let blocks
 
-  # Run specs in random order to surface order dependencies. If you find an
-  # order dependency and want to debug it, you can fix the order by providing
-  # the seed, which is printed after each run.
-  #     --seed 1234
+  config.include Helpers::Repositories, integration: true
+  config.include Matchers::Type, type: :type
+
   config.order = 'random'
 
   WebMock.disable_net_connect!( allow: 'codeclimate.com' )
 
-  config.after( :each ) do
-    ENV['FORTNOX_API_BASE_URL'] = nil
-    ENV['FORTNOX_API_CLIENT_SECRET'] = nil
-    ENV['FORTNOX_API_ACCESS_TOKEN'] = nil
+  config.before do
+    module Test
+      def self.remove_constants
+        constants.each{ |const| remove_const(const) }
+        self
+      end
+    end
+  end
+
+  config.after do
+    Object.send(:remove_const, Test.remove_constants.name)
   end
 end

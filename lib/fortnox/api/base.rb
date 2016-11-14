@@ -17,9 +17,9 @@ module Fortnox
       DEFAULT_HEADERS = {
         'Content-Type' => 'application/json',
         'Accept' => 'application/json',
-      }
+      }.freeze
 
-      HTTP_METHODS = [ :get, :put, :post, :delete ]
+      HTTP_METHODS = [ :get, :put, :post, :delete ].freeze
 
       attr_accessor :headers
 
@@ -28,12 +28,14 @@ module Fortnox
 
         self.headers = DEFAULT_HEADERS.merge({
           'Client-Secret' => get_client_secret,
-          'Access-Token' => get_access_token,
         })
+
+        check_access_tokens!
       end
 
       HTTP_METHODS.each do |method|
         define_method method do |*args|
+          self.headers['Access-Token'] = get_access_token
           execute do |remote|
             remote.send( method, *args )
           end

@@ -1,0 +1,49 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.fortnox.se/3/orders/215
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      Client-Secret:
+      - 9aBA8ZgsvR
+      Access-Token:
+      - 8ed4ae9d-79d0-453e-8f02-79b596369514
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 25 Oct 2016 10:21:55 GMT
+      Content-Type:
+      - application/json
+      Connection:
+      - close
+      Vary:
+      - Accept-Encoding
+      - Accept-Encoding
+      X-Rack-Responsetime:
+      - '52'
+      X-Uid:
+      - 862208e7
+      X-Build:
+      - 76600b8d0c
+    body:
+      encoding: UTF-8
+      string: '{"Order":{"@url":"https:\/\/api.fortnox.se\/3\/orders\/215","@urlTaxReductionList":"https:\/\/api.fortnox.se\/3\/taxreductions?filter=orders&referencenumber=215","AdministrationFee":0,"AdministrationFeeVAT":0,"Address1":"","Address2":"","BasisTaxReduction":0,"Cancelled":false,"City":"","Comments":"A
+        value","ContributionPercent":0,"ContributionValue":0,"CopyRemarks":false,"Country":"","CostCenter":"","Currency":"SEK","CurrencyRate":1,"CurrencyUnit":1,"CustomerName":"Old
+        name","CustomerNumber":"1","DeliveryAddress1":"","DeliveryAddress2":"","DeliveryCity":"","DeliveryCountry":"","DeliveryDate":null,"DeliveryName":"","DeliveryZipCode":"","DocumentNumber":"215","EmailInformation":{"EmailAddressFrom":null,"EmailAddressTo":"","EmailAddressCC":null,"EmailAddressBCC":null,"EmailSubject":"Order
+        {no} bifogas","EmailBody":" "},"ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","Freight":0,"FreightVAT":0,"Gross":0,"HouseWork":false,"InvoiceReference":"0","Labels":[],"Language":"SV","Net":0,"NotCompleted":false,"OfferReference":"0","OrderDate":"2016-10-25","OrderRows":[],"OrganisationNumber":"860101-8735","OurReference":"En
+        Appstudio","Phone1":"","Phone2":"","PriceList":"A","PrintTemplate":"oc","Project":"","Remarks":"","RoundOff":0,"Sent":false,"TaxReduction":null,"TermsOfDelivery":"","TermsOfPayment":"0","Total":0,"TotalToPay":0,"TotalVAT":0,"VATIncluded":false,"WayOfDelivery":"","YourReference":"","YourOrderNumber":"","ZipCode":""}}'
+    http_version: 
+  recorded_at: Tue, 25 Oct 2016 10:21:55 GMT
+recorded_with: VCR 3.0.1

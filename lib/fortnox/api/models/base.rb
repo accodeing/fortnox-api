@@ -1,33 +1,37 @@
-require "virtus"
+require "fortnox/api/types"
 require "ice_nine"
 
 module Fortnox
   module API
     module Model
-      class Base
+      class Base < Fortnox::API::Types::Model
 
-        # extend Forwardable
-        include Virtus.model
+        # TODO(jonas): Restructure this class a bit, it is not very readable.
 
-        attr_accessor :unsaved
+        attr_accessor :unsaved, :parent
 
         def self.attribute( name, *args )
-          define_method( "#{name}?" ) do
+          define_method( "#{ name }?" ) do
             !send( name ).nil?
           end
 
           super
         end
 
-        def initialize( hash = {} )
-          unsaved = hash.delete( :unsaved ){ true }
-          @saved = !unsaved
-          @new = hash.delete( :new ){ true }
+        def self.new( hash )
+          begin
+            obj = preserve_meta_properties( hash ) do
+              super( hash )
+            end
+          rescue Dry::Struct::Error => e
+            raise Fortnox::API::AttributeError.new e
+          end
 
-          # .each{|a| p a.name}
+          IceNine.deep_freeze( obj )
+        end
 
-          super hash
-          IceNine.deep_freeze( self )
+        def unique_id
+          send( self.class::UNIQUE_ID )
         end
 
         def update( hash )
@@ -38,6 +42,7 @@ module Fortnox
 
           new_hash = new_attributes.delete_if{ |_, value| value.nil? }
           new_hash[:new] = @new
+          new_hash[:parent] = self
           self.class.new( new_hash )
         end
 
@@ -53,6 +58,44 @@ module Fortnox
 
         def saved?
           @saved
+        end
+
+        def parent?
+          not @parent.nil?
+        end
+
+        def parent
+          @parent || self.class.new( self.class::STUB.dup )
+        end
+
+        def to_hash( recursive = false )
+          return super() if recursive
+
+          self.class.schema.keys.each_with_object({}) do |key, result|
+            result[key] = self[key]
+          end
+        end
+
+      private_class_method
+
+        # dry-types filter anything that isn't specified as an attribute on the
+        # class that is being instansiated. This wrapper preserves the meta
+        # properties we need to track object state during that initilisation and
+        # sets them on the object after dry-types is done with it.
+        def self.preserve_meta_properties( hash )
+          is_unsaved = hash.delete( :unsaved ){ true }
+          is_new = hash.delete( :new ){ true }
+          parent = hash.delete( :parent ){ nil }
+
+          obj = yield
+
+          # TODO: remove new, unsaved, saved
+          obj.instance_variable_set( :@unsaved, is_unsaved )
+          obj.instance_variable_set( :@saved, !is_unsaved )
+          obj.instance_variable_set( :@new, is_new )
+          obj.instance_variable_set( :@parent, parent )
+
+          return obj
         end
 
       private

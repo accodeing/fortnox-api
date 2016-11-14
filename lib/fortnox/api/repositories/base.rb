@@ -1,5 +1,4 @@
 require "fortnox/api/base"
-require "fortnox/api/repositories/base/json_convertion"
 require "fortnox/api/repositories/base/loaders"
 require "fortnox/api/repositories/base/savers"
 
@@ -8,16 +7,16 @@ module Fortnox
     module Repository
       class Base < Fortnox::API::Base
 
-        include JSONConvertion
         include Loaders
         include Savers
 
-        require "fortnox/api/repositories/base/options"
+        attr_reader :mapper, :keys_filtered_on_save
 
-        def initialize( options )
+        def initialize( keys_filtered_on_save: [ :url ] )
           super()
 
-          @options = options
+          @keys_filtered_on_save = keys_filtered_on_save
+          @mapper = Registry[ Mapper::Base.canonical_name_sym( self.class::MODEL )].new
         end
 
         private

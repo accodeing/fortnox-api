@@ -1,85 +1,29 @@
 require 'spec_helper'
-require 'fortnox/api/repositories/context'
+require 'fortnox/api'
+require 'fortnox/api/mappers'
 require 'fortnox/api/repositories/customer'
-require 'fortnox/api/models/customer'
+require 'fortnox/api/repositories/examples/all'
+require 'fortnox/api/repositories/examples/find'
+require 'fortnox/api/repositories/examples/save'
+require 'fortnox/api/repositories/examples/save_with_specially_named_attribute'
+require 'fortnox/api/repositories/examples/search'
 
-describe Fortnox::API::Repository::Customer do
-  include_context 'repository context'
+describe Fortnox::API::Repository::Customer, order: :defined, integration: true do
+  subject(:repository){ described_class.new }
 
-  subject{ described_class.new }
+  include_examples '.save', :name
 
-  it_behaves_like 'repositories', Fortnox::API::Model::Customer
+  include_examples '.save with specially named attribute',
+                   { name: 'Test customer' },
+                   :email_invoice_cc,
+                   'test@example.com'
 
-  let( :find_id ){ 1 }
-  let( :find_customer_1 ) do
-    VCR.use_cassette( 'customers/find_id_1' ){ subject.find( find_id ) }
-  end
+  # It is not yet possible to delete Customers. Therefore, expected nr of
+  # Customers when running .all will continue to increase
+  # (until 100, which is max by default).
+  include_examples '.all', 100
 
-  describe '.all' do
-    let(:response) do
-      VCR.use_cassette( 'customers/all' ){ subject.all }
-    end
+  include_examples '.find', '1'
 
-    specify 'returns correct number of records' do
-      expect( response.size ).to be 1
-    end
-
-    specify 'returns correct class' do
-      expect( response.first.class ).to be Fortnox::API::Model::Customer
-    end
-  end
-
-  describe '.find' do
-    specify 'returns correct class' do
-      expect( find_customer_1.class ).to be Fortnox::API::Model::Customer
-    end
-
-    specify 'returns correct Customer' do
-      expect( find_customer_1.customer_number.to_i ).to eq( find_id )
-    end
-
-    specify 'returned Customer is marked as saved' do
-      expect( find_customer_1 ).to be_saved
-    end
-
-    specify 'returned Customer is not markes as new' do
-      expect( find_customer_1 ).to_not be_new
-    end
-  end
-
-  describe '.save' do
-    shared_examples_for 'save' do |attribute|
-      specify "include updated #{attribute.inspect}" do
-        send_request
-        expect( response['Customer'][attribute] ).to eql( updated_attribute )
-      end
-    end
-
-    describe 'new' do
-      include_examples 'save', 'Name' do
-        let( :updated_attribute ){ 'A customer' }
-        let( :model ) do
-          Fortnox::API::Model::Customer.new( name: updated_attribute )
-        end
-
-        let( :send_request ) do
-          VCR.use_cassette( 'customers/save_new' ){ subject.save( model ) }
-        end
-
-        let( :response ){ send_request }
-      end
-    end
-
-    describe 'old (update existing)' do
-      include_examples 'save', 'Name' do
-        let( :updated_attribute ){ 'Updated customer' }
-        let( :model ){ find_customer_1.update( name: updated_attribute ) }
-
-        let( :send_request ) do
-          VCR.use_cassette( 'customers/save_old' ){ subject.save( model ) }
-        end
-        let( :response ){ send_request }
-      end
-    end
-  end
+  include_examples '.search', :name, 'Test', 23
 end
