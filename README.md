@@ -17,7 +17,7 @@ The rough status of this project is as follows (as of November 2016):
 * Basic structure complete. Things like getting customers and invoices, updating and saving etc.
 * Some advanced features implemented, for instance support for multiple Access Tokens and filtering entities.
 * Advanced features around the corner. Things like sorting entities, pagination of results etc.
-* A few models implemented. Right now we have nearly full support for `Customer`, `Invoice` and `Order`. Adding more models in general is quick and easy, see the developer guid further down.
+* A few models implemented. Right now we have nearly full support for `Customer`, `Invoice` and `Order`. Adding more models in general is quick and easy, see the developer guide further down.
 * Massive refactorings no longer occurs weakly :) We are running this gem in production for live test.
 
 The goal is to have a production ready version that covers at least the `Invoice`, `Order`,  `Customer` and `Project` models by January.
@@ -27,7 +27,7 @@ The gem is structured with distinct models for the tasks of data, JSON mapping a
 
 If you come from a Rails background and have not been exposed to other ways of structuring the solution to the CRUD problem this might seem strange to you since ActiveRecord merges these roles into the `ActiveRecord::Base` class.
 
-To keep it simple: The active record pattern (as implemented by Rails) is easier to work with if you only have one data source, the database, in your application. The data mapper pattern is easier to work with if you have several data sources, such ass different databases, external APIs and flat files on disk etc, in your application. It's also easier to compose the data mapper components into active record like classes than to separate active records parts to get a data mapper style structure.
+To keep it simple: The active record pattern (as implemented by Rails) is easier to work with if you only have one data source, the database, in your application. The data mapper pattern is easier to work with if you have several data sources, such as different databases, external APIs and flat files on disk etc, in your application. It's also easier to compose the data mapper components into active record like classes than to separate active records parts to get a data mapper style structure.
 
 If you are interested in a more detailed description of the difference between the two architectures you can read this post that explains it well using simple examples: [What’s the difference between Active Record and Data Mapper?](http://culttt.com/2014/06/18/whats-difference-active-record-data-mapper/)
 
@@ -54,8 +54,8 @@ customer = customer.name = 'New Name' # => "New Name"
 But if you are familiar with chaining assignments in Ruby you will see that this does not work. The result of any assignment, `LHS = RHS`, operation in Ruby is `RHS`. Even if you implement your own `=` method and explicitly return something else. This is a feature of the language and not something we can get around. So instead you have to do:
 ```ruby
 customer.name # => "Old Name"
-customer = customer.update( name: 'New Name' ) # => <Fortnox::API::Model::Customer:0x007fdf22949298 ... >
-customer.name == "New Name" # => true
+updated_customer = customer.update( name: 'New Name' ) # => <Fortnox::API::Model::Customer:0x007fdf22949298 ... >
+updated_customer.name == "New Name" # => true
 ```
 And note that:
 ```ruby
@@ -64,15 +64,15 @@ customer.update( name: 'New Name' ) # => <Fortnox::API::Model::Customer:0x007fdf
 customer.name == "New Name" # => false
 ```
 This is how all the models work, they are all immutable.
+
 ## Type
-The types automatically enforce the constraints on values, lengths and, in some cases, content of the model attributes. Types forces your models to be correct before sending data to the API, which saves you a lot of API calls and rescuing the exception we throw when we get a 4xx/5xx response from the server (you can still get errors from the server; our implementation is not perfect . Also, Fortnox sometimes requires a specific combination of attributes).
-
-## Mappers
-
-These are responsible for the mapping between our Ruby models and Fortnox JSON objects.
+The types automatically enforce the constraints on values, lengths and, in some cases, content of the model attributes. Types forces your models to be correct before sending data to the API, which saves you a lot of API calls and rescuing the exception we throw when we get a 4xx/5xx response from the server (you can still get errors from the server; our implementation is not perfect. Also, Fortnox sometimes requires a specific combination of attributes).
 
 ## Repositories
-Used to load, update, create and delete model instances. This is what's actually wrapping the HTTP REST API actions.
+Used to load, update, create and delete model instances. These are what is actually wrapping the HTTP REST API requests against Fortnox's server.
+
+## Mappers
+These are responsible for the mapping between our plain old Ruby object models and Fortnox JSON requests. The repositories use the mappers to map models to JSON requests and JSON to model instances when working with the Fortnox API, you will not need to use them directly.
 
 # Requirements
 
@@ -120,6 +120,8 @@ Fortnox::API::AccessToken.new(
   authorization_code: 'ea3862b1-189c-464b-8e25-1b9702365fa1', # Replace with your auth code
 )
 ```
+> ​:info: **This will be made into an executable part of the gem for version 1.0
+
 This will output a new token like `3f08d038-f380-4893-94a0a0-8f6e60e67a` that is your access token, **save it!** Set it in the environment by following the instructions in the next step.
 
 ## Environment variables
@@ -136,6 +138,8 @@ FORTNOX_API_ACCESS_TOKEN
 Their values should match their name.
 
 The gem only supports the latest API version, version 3, so base URL should be set to `FORTNOX_API_BASE_URL=https://api.fortnox.se/3/` . Note that Fortnox requires `https`!
+
+> ​:info: ** FORTNOX_API_BASE_URL is deprecated and will be gone in version 1.0, it will be static in the gem instead.
 
 ### Multiple AccessTokens
 
@@ -160,7 +164,11 @@ repo.find_by( customer_number: 5 ) #=> <Fortnox::API::Collection:0x007fdf2299431
 ```
 If you are eagle eyed you might have spotted the different classes for the entities returned in a collection vs the one we get from find. The `Simple` version of a class is used in thouse cases where the API-server doesn't return a full set of attributes for an entity. For customers the simple version has 10 attributes while the full have over 40.
 
+> ​:info: ** Collections not implemented yet.
+
 You should try to get by using the simple versions for as long as possible. Both the `Collection` and `Simple` classes have a `.full` method that will give you full versions of the entities. Bare in mind though that a collection of 20 simple models that you run `.full` on will call out to the server 20 times, in sequence.
+
+> ​:info: ** We have opened a dialog with Fortnox about this API practice to allow for full models in the list request, on demand, and/or the ability for the client to specify the fields of interest when making the request, as per usual in REST APIs with partial load.
 
 ## Entities
 All the repository methods return instances or collections of instances of some resource
@@ -180,5 +188,6 @@ updated_customer.name #=> "Ned Stark"
 ```
 
 The update method takes an implicit hash of attributes to update, so you can update as many as you like in one go.
+
 # Contributing
 See the [CONTRIBUTE](CONTRIBUTE.md) readme.
