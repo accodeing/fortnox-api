@@ -1,0 +1,45 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.fortnox.se/3/invoices/?customername=special%20char%20%C3%A5
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      Client-Secret:
+      - 9aBA8ZgsvR
+      Access-Token:
+      - ccaef817-d5d8-4b1c-a316-54f3e55c5c54
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Fri, 16 Jun 2017 13:06:57 GMT
+      Content-Type:
+      - application/json
+      Connection:
+      - close
+      Vary:
+      - Accept-Encoding
+      - Accept-Encoding
+      X-Rack-Responsetime:
+      - '55'
+      X-Uid:
+      - 77f70371
+      X-Build:
+      - 2efa532288
+    body:
+      encoding: UTF-8
+      string: '{"MetaInformation":{"@TotalResources":0,"@TotalPages":0,"@CurrentPage":1},"Invoices":[]}'
+    http_version: 
+  recorded_at: Fri, 16 Jun 2017 13:06:57 GMT
+recorded_with: VCR 3.0.1

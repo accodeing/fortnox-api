@@ -17,7 +17,9 @@ module Fortnox
 
         def search( hash )
           attribute, value = hash.first
-          response_hash = get( "#{ self.class::URI }?#{ attribute }=#{ value }" )
+          uri_encoded_value = URI.encode(value)
+          uri = "#{ self.class::URI }?#{ attribute }=#{ uri_encoded_value }".freeze
+          response_hash = get( uri )
           instansiate_collection_response( response_hash )
         end
 
