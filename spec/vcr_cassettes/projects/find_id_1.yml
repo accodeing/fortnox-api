@@ -1,0 +1,46 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.fortnox.se/3/projects/1
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      Client-Secret:
+      - 9aBA8ZgsvR
+      Access-Token:
+      - ccaef817-d5d8-4b1c-a316-54f3e55c5c54
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Wed, 12 Jul 2017 19:16:12 GMT
+      Content-Type:
+      - application/json
+      Connection:
+      - close
+      Vary:
+      - Accept-Encoding
+      - Accept-Encoding
+      X-Rack-Responsetime:
+      - '13'
+      X-Uid:
+      - 60201d99
+      X-Build:
+      - 401ff9d5e0
+    body:
+      encoding: UTF-8
+      string: '{"Project":{"@url":"https:\/\/api.fortnox.se\/3\/projects\/1","Comments":null,"ContactPerson":null,"Description":"Test
+        project","EndDate":null,"ProjectLeader":null,"ProjectNumber":"1","Status":"ONGOING","StartDate":"2016-05-02"}}'
+    http_version: 
+  recorded_at: Wed, 12 Jul 2017 19:16:12 GMT
+recorded_with: VCR 3.0.3

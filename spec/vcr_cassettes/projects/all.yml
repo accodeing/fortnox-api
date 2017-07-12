@@ -1,0 +1,52 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.fortnox.se/3/projects/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      Client-Secret:
+      - 9aBA8ZgsvR
+      Access-Token:
+      - ccaef817-d5d8-4b1c-a316-54f3e55c5c54
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Wed, 12 Jul 2017 19:13:42 GMT
+      Content-Type:
+      - application/json
+      Connection:
+      - close
+      Vary:
+      - Accept-Encoding
+      - Accept-Encoding
+      X-Rack-Responsetime:
+      - '13'
+      X-Uid:
+      - bcdb41d9
+      X-Build:
+      - 401ff9d5e0
+    body:
+      encoding: UTF-8
+      string: '{"MetaInformation":{"@TotalResources":8,"@TotalPages":1,"@CurrentPage":1},"Projects":[{"@url":"https:\/\/api.fortnox.se\/3\/projects\/1","Description":"Test
+        project","EndDate":null,"ProjectNumber":"1","Status":"ONGOING","StartDate":"2016-05-02"},{"@url":"https:\/\/api.fortnox.se\/3\/projects\/17","Description":"Benjamin
+        Andersson","EndDate":null,"ProjectNumber":"17","Status":"ONGOING","StartDate":"2017-06-16"},{"@url":"https:\/\/api.fortnox.se\/3\/projects\/18","Description":"Andrea
+        Johansson","EndDate":null,"ProjectNumber":"18","Status":"ONGOING","StartDate":"2017-06-16"},{"@url":"https:\/\/api.fortnox.se\/3\/projects\/2","Description":"BolagsKraft","EndDate":null,"ProjectNumber":"2","Status":"ONGOING","StartDate":"2016-05-13"},{"@url":"https:\/\/api.fortnox.se\/3\/projects\/3","Description":"AK
+        Bolagskraft","EndDate":null,"ProjectNumber":"3","Status":"ONGOING","StartDate":"2016-09-01"},{"@url":"https:\/\/api.fortnox.se\/3\/projects\/5568","Description":"Thom
+        Andersson","EndDate":null,"ProjectNumber":"5568","Status":"ONGOING","StartDate":"2016-12-28"},{"@url":"https:\/\/api.fortnox.se\/3\/projects\/5569","Description":"Nji
+        Nij","EndDate":null,"ProjectNumber":"5569","Status":"ONGOING","StartDate":"2017-05-18"},{"@url":"https:\/\/api.fortnox.se\/3\/projects\/5570","Description":"Some
+        important project","EndDate":null,"ProjectNumber":"5570","Status":"ONGOING","StartDate":null}]}'
+    http_version: 
+  recorded_at: Wed, 12 Jul 2017 19:13:42 GMT
+recorded_with: VCR 3.0.3
