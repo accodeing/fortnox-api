@@ -6,3 +6,6 @@ Gemfile.lock
 
 # Vim swap files
 *.swp
+
+# rbenv Ruby version file
+.ruby-version
