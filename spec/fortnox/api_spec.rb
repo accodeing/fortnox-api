@@ -32,6 +32,8 @@ describe Fortnox::API do
 
     subject{ described_class.get_access_token }
 
-    it{ is_expected.to eql( "3f08d038-f380-4893-94a0-a08f6e60e67a" ) }
+    describe 'test', focus: true do
+      it{ is_expected.to eql( "3f08d038-f380-4893-94a0-a08f6e60e67a" ) }
+    end
   end
 end
