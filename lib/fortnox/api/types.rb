@@ -32,6 +32,8 @@ module Fortnox
 
       DefaultDeliveryType = Strict::String.constrained( included_in: DefaultDeliveryTypeValues.values ).optional.constructor( EnumConstructors.default )
 
+      ProjectStatusType = Strict::String.constrained( included_in: ProjectStatusTypes.values ).optional.constructor( EnumConstructors.default )
+
       require 'fortnox/api/types/model'
       require 'fortnox/api/types/default_delivery_types'
       require 'fortnox/api/types/default_templates'
