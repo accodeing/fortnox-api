@@ -1,24 +1,25 @@
 # rubocop:disable RSpec/DescribeClass
 shared_examples_for '.find' do |searched_entity_id|
-  describe '.find' do
+  describe '.find by id' do
     let( :find_id_1 ) do
       VCR.use_cassette( "#{ vcr_dir }/find_id_1" ){ repository.find( searched_entity_id ) }
     end
 
-    specify 'returns correct class' do
-      expect( find_id_1.class ).to be described_class::MODEL
-    end
+    describe 'returned object' do
+      subject(:returned_object){ find_id_1 }
 
-    specify 'returns correct Customer' do
-      expect( find_id_1.unique_id ).to eq( searched_entity_id )
-    end
+      it{ is_expected.to be_saved }
+      it{ is_expected.not_to be_new }
 
-    specify 'returned Customer is marked as saved' do
-      expect( find_id_1 ).to be_saved
-    end
+      describe 'class' do
+        subject{ returned_object.class }
+        it { is_expected.to be described_class::MODEL }
+      end
 
-    specify 'returned Customer is not markes as new' do
-      expect( find_id_1 ).not_to be_new
+      describe 'unique id' do
+        subject{ returned_object.unique_id}
+        it { is_expected.to eq searched_entity_id }
+      end
     end
   end
 end
