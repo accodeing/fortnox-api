@@ -6,7 +6,7 @@ module Fortnox
     module Model
       class Project < Fortnox::API::Model::Base
         UNIQUE_ID = :project_number
-        STUB = { description: '' }
+        STUB = { description: '' }.freeze
 
         # Url Direct URL to the record
         attribute :url, Types::Nullable::String.with( read_only: true )
