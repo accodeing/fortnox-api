@@ -70,6 +70,9 @@ module Fortnox
       DefaultDeliveryTypeValues = Types::Strict::String.enum(
         'PRINT', 'EMAIL', 'PRINTSERVICE'
       )
+      ProjectStatusTypes = Types::Strict::String.enum(
+        'NOTSTARTED', 'ONGOING', 'COMPLETED'
+      )
     end
   end
 end
