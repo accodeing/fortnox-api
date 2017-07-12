@@ -14,7 +14,7 @@ module Fortnox
         def execute_save( entity )
           body = get_changes_on( entity ).to_json
           result = yield body
-          instansiate_saved( result )
+          instantiate_saved( result )
         end
 
         def save_new( entity )
@@ -40,8 +40,8 @@ module Fortnox
           "#{ self.class::URI }#{ entity.unique_id }"
         end
 
-        def instansiate_saved( wrapped_json_hash )
-          instansiate(
+        def instantiate_saved( wrapped_json_hash )
+          instantiate(
             @mapper.wrapped_json_hash_to_entity_hash(
               wrapped_json_hash
             )

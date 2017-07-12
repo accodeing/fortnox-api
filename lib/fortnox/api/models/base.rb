@@ -79,7 +79,7 @@ module Fortnox
       private_class_method
 
         # dry-types filter anything that isn't specified as an attribute on the
-        # class that is being instansiated. This wrapper preserves the meta
+        # class that is being instantiated. This wrapper preserves the meta
         # properties we need to track object state during that initilisation and
         # sets them on the object after dry-types is done with it.
         def self.preserve_meta_properties( hash )
