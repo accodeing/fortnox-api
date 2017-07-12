@@ -28,7 +28,7 @@ describe Fortnox::API::Repository::Order, order: :defined, integration: true do
   include_examples '.all', 100
 
   include_examples '.find', 1 do
-    let( :find_by_hash_failure ) { { yourreference: 'Not found' } }
+    let( :find_by_hash_failure ){ { yourreference: 'Not found' } }
 
     let( :single_param_find_by_hash ) do
       { find_hash: { yourreference: 'Gandalf the Grey' }, matches: 2 }

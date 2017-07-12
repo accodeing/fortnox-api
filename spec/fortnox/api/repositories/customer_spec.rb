@@ -24,7 +24,7 @@ describe Fortnox::API::Repository::Customer, order: :defined, integration: true 
   include_examples '.all', 100
 
   include_examples '.find', '1' do
-    let( :find_by_hash_failure ) { { city: 'Not Found'} }
+    let( :find_by_hash_failure ){ { city: 'Not Found' } }
     let( :single_param_find_by_hash ){ { find_hash: { city: 'New York' }, matches: 2 } }
 
     let( :multi_param_find_by_hash ) do
