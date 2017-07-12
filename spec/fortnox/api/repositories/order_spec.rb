@@ -28,13 +28,13 @@ describe Fortnox::API::Repository::Order, order: :defined, integration: true do
   include_examples '.all', 100
 
   include_examples '.find', 1 do
-    let( :find_by_hash_failure ){ { yourreference: 'Not found' } }
+    let( :find_by_hash_failure ){ { ourreference: 'Not found' } }
 
     let( :single_param_find_by_hash ) do
-      { find_hash: { yourreference: 'Gandalf the Grey' }, matches: 2 }
+      { find_hash: { ourreference: 'Belladonna Took' }, matches: 2 }
     end
     let( :multi_param_find_by_hash ) do
-      { find_hash: { yourreference: 'Gandalf the Grey', ourreference: 'Radagast the Brown' },
+      { find_hash: { ourreference: 'Belladonna Took', yourreference: 'Bodo Proudfoot' },
         matches: 1 }
     end
   end
