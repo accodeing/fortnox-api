@@ -39,7 +39,7 @@ module Fortnox
         end
 
         def find_all_by( hash )
-          response_hash = get( "#{ self.class::URI }?#{ to_query( hash )}" )
+          response_hash = get( "#{ self.class::URI }?#{ to_query( hash ) }" )
           instantiate_collection_response( response_hash )
         end
 
