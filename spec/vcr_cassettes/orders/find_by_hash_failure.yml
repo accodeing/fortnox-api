@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.fortnox.se/3/orders/?yourreference=Not%20found
+    uri: https://api.fortnox.se/3/orders/?ourreference=Not%20found
     body:
       encoding: US-ASCII
       string: ''
@@ -23,7 +23,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Wed, 12 Jul 2017 12:19:00 GMT
+      - Wed, 12 Jul 2017 13:03:37 GMT
       Content-Type:
       - application/json
       Connection:
@@ -32,14 +32,14 @@ http_interactions:
       - Accept-Encoding
       - Accept-Encoding
       X-Rack-Responsetime:
-      - '21'
+      - '25'
       X-Uid:
-      - 85097abe
+      - 95e82329
       X-Build:
       - 401ff9d5e0
     body:
       encoding: UTF-8
       string: '{"MetaInformation":{"@TotalResources":0,"@TotalPages":0,"@CurrentPage":1},"Orders":[]}'
     http_version: 
-  recorded_at: Wed, 12 Jul 2017 12:19:00 GMT
+  recorded_at: Wed, 12 Jul 2017 13:03:37 GMT
 recorded_with: VCR 3.0.3
