@@ -65,9 +65,7 @@ describe Fortnox::API::Base do
 
     subject{ described_class.new.get( '/test', { body: '' }) }
 
-    describe 'test', focus: true do
-      it{ is_expected.to be_nil }
-    end
+    it{ is_expected.to be_nil }
   end
 
   describe 'making requests with multiple access tokens' do
@@ -110,7 +108,7 @@ describe Fortnox::API::Base do
       )
     end
 
-    context 'with subsequent requests on same object', focus: true do
+    context 'with subsequent requests on same object' do
       let!(:response1){ api.get( '/test', body: '' ) }
       let!(:response2){ api.get( '/test', body: '' ) }
       let!(:response3){ api.get( '/test', body: '' ) }
