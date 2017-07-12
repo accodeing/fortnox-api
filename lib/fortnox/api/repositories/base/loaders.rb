@@ -38,9 +38,10 @@ module Fortnox
           instantiate( @mapper.wrapped_json_hash_to_entity_hash( response_hash ) )
         end
 
-        # def find_all_by( hash )
-
-        # end
+        def find_all_by( hash )
+          response_hash = get( "#{ self.class::URI }?#{ to_query( hash )}" )
+          instantiate_collection_response( response_hash )
+        end
 
         def to_query( hash )
           hash.collect do |key, value|
