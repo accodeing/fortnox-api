@@ -1,7 +1,7 @@
 require 'fortnox/api/models/examples/model'
 
-shared_examples_for 'DocumentBase Model' do |row_class, row_attribute, valid_hash, valid_row_hash: {}|
-  it_behaves_like 'a model', valid_hash, :document_number, 1
+shared_examples_for 'DocumentBase Model' do |row_class, row_attribute, valid_row_hash: {}|
+  it_behaves_like 'a model', 1
 
   context "when having a(n) #{ row_class }" do
     it 'returns the correct object' do
