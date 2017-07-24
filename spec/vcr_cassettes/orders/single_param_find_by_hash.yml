@@ -1,0 +1,47 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.fortnox.se/3/orders/?ourreference=Belladonna%20Took
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      Client-Secret:
+      - 9aBA8ZgsvR
+      Access-Token:
+      - ccaef817-d5d8-4b1c-a316-54f3e55c5c54
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Wed, 12 Jul 2017 13:03:27 GMT
+      Content-Type:
+      - application/json
+      Connection:
+      - close
+      Vary:
+      - Accept-Encoding
+      - Accept-Encoding
+      X-Rack-Responsetime:
+      - '28'
+      X-Uid:
+      - '87325977'
+      X-Build:
+      - 401ff9d5e0
+    body:
+      encoding: UTF-8
+      string: '{"MetaInformation":{"@TotalResources":2,"@TotalPages":1,"@CurrentPage":1},"Orders":[{"@url":"https:\/\/api.fortnox.se\/3\/orders\/8","Cancelled":false,"Currency":"SEK","CustomerName":"Old
+        name","CustomerNumber":"1","DeliveryDate":null,"DocumentNumber":"8","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","OrderDate":"2016-04-21","Project":"","Sent":false,"Total":0},{"@url":"https:\/\/api.fortnox.se\/3\/orders\/9","Cancelled":false,"Currency":"SEK","CustomerName":"Old
+        name","CustomerNumber":"1","DeliveryDate":null,"DocumentNumber":"9","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","OrderDate":"2016-04-21","Project":"","Sent":false,"Total":0}]}'
+    http_version: 
+  recorded_at: Wed, 12 Jul 2017 13:03:27 GMT
+recorded_with: VCR 3.0.3

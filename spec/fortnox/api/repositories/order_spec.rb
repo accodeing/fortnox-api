@@ -27,7 +27,17 @@ describe Fortnox::API::Repository::Order, order: :defined, integration: true do
   # when running .all will continue to increase (until 100, which is max by default).
   include_examples '.all', 100
 
-  include_examples '.find', 1
+  include_examples '.find', 1 do
+    let( :find_by_hash_failure ){ { ourreference: 'Not found' } }
+
+    let( :single_param_find_by_hash ) do
+      { find_hash: { ourreference: 'Belladonna Took' }, matches: 2 }
+    end
+    let( :multi_param_find_by_hash ) do
+      { find_hash: { ourreference: 'Belladonna Took', yourreference: 'Bodo Proudfoot' },
+        matches: 1 }
+    end
+  end
 
   include_examples '.search', :customername, 'A customer', 2
 

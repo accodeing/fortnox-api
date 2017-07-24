@@ -7,18 +7,20 @@ module Fortnox
 
         def all()
           response_hash = get( self.class::URI )
-          instansiate_collection_response( response_hash )
+          instantiate_collection_response( response_hash )
         end
 
         def only( filter )
           response_hash = get( "#{ self.class::URI }?filter=#{ filter }" )
-          instansiate_collection_response( response_hash )
+          instantiate_collection_response( response_hash )
         end
 
         def search( hash )
           attribute, value = hash.first
-          response_hash = get( "#{ self.class::URI }?#{ attribute }=#{ value }" )
-          instansiate_collection_response( response_hash )
+          uri_encoded_value = URI.encode(value)
+          uri = "#{ self.class::URI }?#{ attribute }=#{ uri_encoded_value }".freeze
+          response_hash = get( uri )
+          instantiate_collection_response( response_hash )
         end
 
         def find( id_or_hash )
@@ -33,12 +35,13 @@ module Fortnox
 
         def find_one_by( id )
           response_hash = get( "#{ self.class::URI }#{ id }" )
-          instansiate( @mapper.wrapped_json_hash_to_entity_hash( response_hash ) )
+          instantiate( @mapper.wrapped_json_hash_to_entity_hash( response_hash ) )
         end
 
-        # def find_all_by( hash )
-
-        # end
+        def find_all_by( hash )
+          response_hash = get( "#{ self.class::URI }?#{ to_query( hash ) }" )
+          instantiate_collection_response( response_hash )
+        end
 
         def to_query( hash )
           hash.collect do |key, value|
@@ -52,10 +55,10 @@ module Fortnox
 
         private
 
-          def instansiate_collection_response( response_hash )
+          def instantiate_collection_response( response_hash )
             entities_hash = @mapper.wrapped_json_collection_to_entities_hash( response_hash )
             entities_hash.map do |entity_hash|
-              instansiate( entity_hash )
+              instantiate( entity_hash )
             end
           end
 

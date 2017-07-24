@@ -1,0 +1,46 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.fortnox.se/3/projects/5570
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      Client-Secret:
+      - 9aBA8ZgsvR
+      Access-Token:
+      - ccaef817-d5d8-4b1c-a316-54f3e55c5c54
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Wed, 12 Jul 2017 19:12:49 GMT
+      Content-Type:
+      - application/json
+      Connection:
+      - close
+      Vary:
+      - Accept-Encoding
+      - Accept-Encoding
+      X-Rack-Responsetime:
+      - '14'
+      X-Uid:
+      - 739bbdff
+      X-Build:
+      - 401ff9d5e0
+    body:
+      encoding: UTF-8
+      string: '{"Project":{"@url":"https:\/\/api.fortnox.se\/3\/projects\/5570","Comments":"A
+        value","ContactPerson":null,"Description":"Some important project","EndDate":null,"ProjectLeader":null,"ProjectNumber":"5570","Status":"ONGOING","StartDate":null}}'
+    http_version: 
+  recorded_at: Wed, 12 Jul 2017 19:12:49 GMT
+recorded_with: VCR 3.0.3
