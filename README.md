@@ -67,7 +67,7 @@ This is how all the models work, they are all immutable.
 
 ### Exceptions
 
-Models can throw `Fortnox::API::AttributeError` if an attribute is invalid in some way (for instance if you try to assigning an integer to a string attribute) and `Fortnox::API::MissingAttributeError` if a required attribute is missing.
+Models can throw `Fortnox::API::AttributeError` if an attribute is invalid in some way (for instance if you try to assign a too long string to a limited string attribute) and `Fortnox::API::MissingAttributeError` if a required attribute is missing.
 
 ## Type
 The types automatically enforce the constraints on values, lengths and, in some cases, content of the model attributes. Types forces your models to be correct before sending data to the API, which saves you a lot of API calls and rescuing the exception we throw when we get a 4xx/5xx response from the server (you can still get errors from the server; our implementation is not perfect. Also, Fortnox sometimes requires a specific combination of attributes).
