@@ -65,11 +65,19 @@ customer.name == "New Name" # => false
 ```
 This is how all the models work, they are all immutable.
 
+### Exceptions
+
+Models can throw `Fortnox::API::AttributeError` if an attribute is invalid in some way (for instance if you try to assign a too long string to a limited string attribute) and `Fortnox::API::MissingAttributeError` if a required attribute is missing.
+
 ## Type
 The types automatically enforce the constraints on values, lengths and, in some cases, content of the model attributes. Types forces your models to be correct before sending data to the API, which saves you a lot of API calls and rescuing the exception we throw when we get a 4xx/5xx response from the server (you can still get errors from the server; our implementation is not perfect. Also, Fortnox sometimes requires a specific combination of attributes).
 
 ## Repositories
 Used to load, update, create and delete model instances. These are what is actually wrapping the HTTP REST API requests against Fortnox's server.
+
+### Exceptions
+
+Repositories can throw `Fortnox::API::RemoteServerError` if something went wrong at Fortnox.
 
 ## Mappers
 These are responsible for the mapping between our plain old Ruby object models and Fortnox JSON requests. The repositories use the mappers to map models to JSON requests and JSON to model instances when working with the Fortnox API, you will not need to use them directly.
