@@ -1,0 +1,45 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.fortnox.se/3/articles/?description=Testartikel
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      Client-Secret:
+      - 9aBA8ZgsvR
+      Access-Token:
+      - ccaef817-d5d8-4b1c-a316-54f3e55c5c54
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sun, 08 Oct 2017 21:51:45 GMT
+      Content-Type:
+      - application/json
+      Connection:
+      - close
+      Vary:
+      - Accept-Encoding
+      - Accept-Encoding
+      X-Rack-Responsetime:
+      - '19'
+      X-Uid:
+      - d47a06a7
+      X-Build:
+      - e1392b4cf7
+    body:
+      encoding: UTF-8
+      string: '{"MetaInformation":{"@TotalResources":2,"@TotalPages":1,"@CurrentPage":1},"Articles":[{"@url":"https:\/\/api.fortnox.se\/3\/articles\/0000","ArticleNumber":"0000","Description":"Testartikel","DisposableQuantity":"0","EAN":"","Housework":false,"PurchasePrice":"0","SalesPrice":null,"QuantityInStock":"0","ReservedQuantity":"0","StockPlace":"","StockValue":"0","Unit":null,"VAT":null,"WebshopArticle":false},{"@url":"https:\/\/api.fortnox.se\/3\/articles\/1","ArticleNumber":"1","Description":"Testartikel","DisposableQuantity":"0","EAN":"","Housework":false,"PurchasePrice":"0","SalesPrice":"100","QuantityInStock":"0","ReservedQuantity":"0","StockPlace":"","StockValue":"0","Unit":null,"VAT":null,"WebshopArticle":false}]}'
+    http_version: 
+  recorded_at: Sun, 08 Oct 2017 21:51:45 GMT
+recorded_with: VCR 3.0.3

@@ -18,6 +18,8 @@ module Fortnox
 
       AccountNumber = Strict::Int.constrained( gt: 0, lteq: 9999 ).optional
 
+      ArticleType = Strict::String.constrained( included_in: ArticleTypes.values ).optional.constructor( EnumConstructors.default )
+
       CountryCode = Strict::String.constrained( included_in: CountryCodes.values ).optional.constructor( EnumConstructors.sized(2) )
       Currency = Strict::String.constrained( included_in: Currencies.values ).optional.constructor( EnumConstructors.sized(3) )
       CustomerType = Strict::String.constrained( included_in: CustomerTypes.values ).optional.constructor( EnumConstructors.default )
