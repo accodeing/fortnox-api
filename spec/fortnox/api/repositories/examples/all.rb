@@ -1,4 +1,3 @@
-# rubocop:disable RSpec/DescribeClass
 RSpec.shared_examples_for '.all' do |count|
   describe '.all' do
     let(:response) do

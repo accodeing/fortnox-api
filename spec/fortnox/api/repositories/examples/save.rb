@@ -1,4 +1,3 @@
-# rubocop:disable RSpec/DescribeClass
 #######################################
 # SPEC IS DEPENDENT ON DEFINED ORDER!
 #######################################
