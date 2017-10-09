@@ -14,7 +14,7 @@ describe Fortnox::API::Repository::Order, order: :defined, integration: true do
 
   required_hash = { customer_number: '1' }
 
-  include_examples '.save', :comments, required_hash
+  include_examples '.save', :comments, additional_attrs: required_hash
 
   nested_model_hash = { price: 10, article_number: '0000', ordered_quantity: 1 }
   include_examples '.save with nested model',

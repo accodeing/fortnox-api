@@ -9,9 +9,9 @@ require 'fortnox/api/repositories/examples/save'
 describe Fortnox::API::Repository::Project, order: :defined, integration: true do
   subject( :repository ){ described_class.new }
 
-  required_attributes = { description: 'Some important project' }
-
-  include_examples '.save', :comments, required_attributes
+  include_examples '.save',
+                   :comments,
+                   additional_attrs: { description: 'Some important project' }
 
   # It is not yet possible to delete Projects. Therefore, expected nr of
   # Projects when running .all will continue to increase
