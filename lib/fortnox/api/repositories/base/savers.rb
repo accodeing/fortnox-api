@@ -33,7 +33,7 @@ module Fortnox
           hash = @mapper.entity_to_hash( entity, @keys_filtered_on_save )
           parent_hash = @mapper.entity_to_hash( entity.parent, @keys_filtered_on_save )
 
-          @mapper.wrapp_entity_json_hash( @mapper.diff( hash, parent_hash ) )
+          @mapper.wrap_entity_json_hash( @mapper.diff( hash, parent_hash ) )
         end
 
         def get_update_url_for( entity )
