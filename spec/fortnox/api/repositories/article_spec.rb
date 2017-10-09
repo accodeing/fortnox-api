@@ -11,7 +11,9 @@ require 'fortnox/api/repositories/examples/search'
 describe Fortnox::API::Repository::Article, order: :defined, integration: true do
   subject(:repository){ described_class.new }
 
-  # include_examples '.save', :description
+  include_examples '.save',
+                   :description,
+                   additional_attrs: { sales_account: 1250 }
 
   include_examples '.save with specially named attribute',
                    { description: 'Test article' },
