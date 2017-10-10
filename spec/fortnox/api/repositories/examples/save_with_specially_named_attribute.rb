@@ -1,8 +1,9 @@
-# rubocop:disable RSpec/DescribeClass
 # Test saving model with attributes that has specially names that needs to be mapped.
 #
 # NOTE: VCR cassette must be discarded when repositories are updated to reflect
 # the changes!
+
+# rubocop:disable RSpec/DescribeClass
 shared_examples_for '.save with specially named attribute' do |required_hash, attribute, value|
   describe '.save' do
     context 'with specially named attribute' do

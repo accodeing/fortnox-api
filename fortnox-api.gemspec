@@ -3,7 +3,7 @@ lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'fortnox/api/version'
 
-Gem::Specification.new do |spec|
+Gem::Specification.new do |spec| # rubocop:disable Metrics/BlockLength
   spec.name          = "fortnox-api"
   spec.version       = Fortnox::API::VERSION
   spec.authors       = ["Jonas Schubert Erlandsson", "Hannes Elvemyr"]
@@ -35,7 +35,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "vcr", "~> 3.0"
   spec.add_development_dependency "pry", "~> 0"
   spec.add_development_dependency "codeclimate-test-reporter", "~> 0"
-  spec.add_development_dependency "rubocop", "~> 0.41"
-  spec.add_development_dependency "rubocop-rspec", "~> 1.7"
+  spec.add_development_dependency "rubocop", "~> 0.46.0"
+  spec.add_development_dependency "rubocop-rspec", "~> 1.8.0"
 
 end

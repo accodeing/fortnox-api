@@ -1,4 +1,3 @@
-# rubocop:disable RSpec/DescribeClass
 shared_examples_for '.find' do |searched_entity_id|
   describe '.find by id' do
     let( :returned_object ) do
@@ -77,4 +76,3 @@ shared_examples_for '.find' do |searched_entity_id|
     end
   end
 end
-# rubocop:enable RSpec/DescribeClass
