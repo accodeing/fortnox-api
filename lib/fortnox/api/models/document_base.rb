@@ -98,7 +98,7 @@ module Fortnox
             base.attribute :external_invoice_reference2, Types::Sized::String[ 80 ]
 
             # Freight Freight cost of the document. 12 digits (incl. decimals)
-            base.attribute :freight, Types::Sized::Float[ 0.0, 99_999_999_999.0 ]
+            base.attribute :freight, Types::Sized::Float[ 0.0, 99_999_999_999.9 ]
 
             # FreightVAT VAT of the freight cost.
             base.attribute :freight_vat, Types::Nullable::Float.with( read_only: true )

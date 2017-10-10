@@ -4,8 +4,8 @@ shared_examples_for 'DocumentRow' do |valid_hash|
   it{ is_expected.to have_sized_string( :article_number, 50, valid_hash ) }
   it{ is_expected.to have_sized_string( :description, 50, valid_hash ) }
 
-  it{ is_expected.to have_sized_float( :delivered_quantity, 0.0, 9_999_999_999_999.0, valid_hash ) }
-  it{ is_expected.to have_sized_float( :price, 0.0, 99_999_999_999.0, valid_hash ) }
+  it{ is_expected.to have_sized_float( :delivered_quantity, 0.0, 9_999_999_999_999.9, valid_hash ) }
+  it{ is_expected.to have_sized_float( :price, 0.0, 99_999_999_999.9, valid_hash ) }
 
   it{ is_expected.to have_discount_type( :discount_type, valid_hash ) }
 
