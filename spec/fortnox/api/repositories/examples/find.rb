@@ -76,4 +76,3 @@ shared_examples_for '.find' do |searched_entity_id|
     end
   end
 end
-# rubocop:enable RSpec/DescribeClass

@@ -1,5 +1,7 @@
 # TODO: This will not work until we solve issue #62.
 # Until then, these tests are pending.
+
+# rubocop:disable RSpec/DescribeClass
 shared_examples_for '.save with nested model' do |required_hash, nested_model_key, nested_model_hash, nested_entity|
   describe '.save with nested model' do
     let( :repository ){ described_class.new }

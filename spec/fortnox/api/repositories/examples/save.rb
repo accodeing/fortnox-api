@@ -3,6 +3,8 @@
 #######################################
 #
 # Assumes that attribute is a string attribute without restrictions.
+
+# rubocop:disable RSpec/DescribeClass
 shared_examples_for '.save' do |attribute, required_attributes = {}|
   describe '.save' do
     let( :new_hash ) do
