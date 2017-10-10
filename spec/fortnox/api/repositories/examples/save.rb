@@ -5,11 +5,9 @@
 # Assumes that attribute is a string attribute without restrictions.
 
 # rubocop:disable RSpec/DescribeClass
-shared_examples_for '.save' do |attribute, required_attributes = {}|
+shared_examples_for '.save' do |attribute, additional_attrs: {}|
   describe '.save' do
-    let( :new_hash ) do
-      required_attributes.merge( attribute => value )
-    end
+    let( :new_hash ){ additional_attrs.merge( attribute => value ) }
     let( :new_model ){ described_class::MODEL.new( new_hash ) }
     let( :save_new ){ VCR.use_cassette( "#{ vcr_dir }/save_new" ){ repository.save( new_model ) } }
     let( :entity_wrapper ){ repository.mapper.class::JSON_ENTITY_WRAPPER }

@@ -1,0 +1,45 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.fortnox.se/3/articles/
+    body:
+      encoding: UTF-8
+      string: '{"Article":{"Description":"Test article","EAN":"5901234123457"}}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      Client-Secret:
+      - 9aBA8ZgsvR
+      Access-Token:
+      - ccaef817-d5d8-4b1c-a316-54f3e55c5c54
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Mon, 09 Oct 2017 19:39:23 GMT
+      Content-Type:
+      - application/json
+      Connection:
+      - close
+      Location:
+      - articles
+      X-Rack-Responsetime:
+      - '34'
+      X-Uid:
+      - 9213a3b9
+      X-Build:
+      - 5228d322dc
+    body:
+      encoding: UTF-8
+      string: '{"Article":{"@url":"https:\/\/api.fortnox.se\/3\/articles\/16","ArticleNumber":"16","Bulky":false,"ConstructionAccount":0,"Depth":0,"Description":"Test
+        article","DisposableQuantity":0,"EAN":"5901234123457","EUAccount":3200,"EUVATAccount":3231,"ExportAccount":3200,"Height":0,"Housework":false,"HouseworkType":null,"Active":true,"Manufacturer":null,"ManufacturerArticleNumber":"","Note":"","PurchaseAccount":3100,"PurchasePrice":0,"QuantityInStock":0,"ReservedQuantity":0,"SalesAccount":3011,"StockGoods":false,"StockPlace":null,"StockValue":0,"StockWarning":0,"SupplierName":null,"SupplierNumber":null,"Type":"STOCK","Unit":null,"VAT":0,"WebshopArticle":false,"Weight":0,"Width":0,"Expired":false,"SalesPrice":null,"CostCalculationMethod":null,"StockAccount":null,"StockChangeAccount":null,"DirectCost":0,"FreightCost":0,"OtherCost":0}}'
+    http_version: 
+  recorded_at: Mon, 09 Oct 2017 19:39:23 GMT
+recorded_with: VCR 3.0.3

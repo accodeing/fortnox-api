@@ -12,6 +12,9 @@ module Fortnox
         end
       end
 
+      ArticleTypes = Types::Strict::String.enum(
+        'SERVICE','STOCK'
+      )
       DiscountTypes = Types::Strict::String.enum(
         'AMOUNT','PERCENT'
       )

@@ -15,7 +15,7 @@ describe Fortnox::API::Repository::Invoice, order: :defined, integration: true d
 
   required_hash = { customer_number: '1' }
 
-  include_examples '.save', :comments, required_hash
+  include_examples '.save', :comments, additional_attrs: required_hash
 
   nested_model_hash = { price: 10, article_number: '0000' }
   include_examples '.save with nested model',
