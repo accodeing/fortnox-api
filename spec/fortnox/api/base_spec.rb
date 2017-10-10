@@ -154,9 +154,9 @@ describe Fortnox::API::Base do
     context 'with debugging enabled' do
 
       around do |example|
-        Fortnox::API.debugging = true
+        Fortnox::API.config.debugging = true
         example.run
-        Fortnox::API.debugging = false
+        Fortnox::API.config.debugging = false
       end
 
       it{ is_expected.to raise_error( /\<HTTParty\:\:Request\:0x/ ) }

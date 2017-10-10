@@ -7,7 +7,7 @@ module Fortnox
         def raise_api_error( error, response )
           message = ( error[ 'message' ] || error[ 'Message' ] || 'Okänt fel' )
 
-          message += "\n\n#{ response.request.inspect }" if Fortnox::API.debugging
+          message += "\n\n#{ response.request.inspect }" if Fortnox::API.config.debugging
 
           raise Fortnox::API::RemoteServerError, message
         end
