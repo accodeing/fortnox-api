@@ -11,14 +11,14 @@
 [![Code Climate](https://img.shields.io/codeclimate/github/my-codeworks/fortnox-api.svg?style=flat-square)](https://codeclimate.com/github/my-codeworks/fortnox-api)
 [![Test coverage](https://img.shields.io/codeclimate/coverage/github/my-codeworks/fortnox-api.svg?style=flat-square)](https://codeclimate.com/github/my-codeworks/fortnox-api/coverage)
 
-The rough status of this project is as follows (as of November 2016):
+The rough status of this project is as follows (as of October 2017):
 * In active development (just check out the commit log)
-* Two developers. At least twice as good as one.
+* Three developers. At least thrice as good as one.
 * Basic structure complete. Things like getting customers and invoices, updating and saving etc.
 * Some advanced features implemented, for instance support for multiple Access Tokens and filtering entities.
 * Advanced features around the corner. Things like sorting entities, pagination of results etc.
-* A few models implemented. Right now we have nearly full support for `Customer`, `Invoice` and `Order`. Adding more models in general is quick and easy, see the developer guide further down.
-* Massive refactorings no longer occurs weakly :) We are running this gem in production for live test.
+* A few models implemented. Right now we have nearly full support for `Customer`, `Invoice`, `Order`, `Article`, `Label` and `Project`. Adding more models in general is quick and easy, see the developer guide further down.
+* Massive refactorings no longer occurs weekly :) We are running this gem in production for live test.
 
 The goal is to have a production ready version that covers at least the `Invoice`, `Order`,  `Customer` and `Project` models by January.
 
