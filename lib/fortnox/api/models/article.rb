@@ -10,16 +10,16 @@ module Fortnox
         STUB = { description: '' }.freeze
 
         #Url Direct URL to the record
-        attribute :url, Fortnox::API::Types::Nullable::String.with( read_only: true )
+        attribute :url, Types::Nullable::String.with( read_only: true )
 
         #Active If the article is active
-        attribute :active, Fortnox::API::Types::Nullable::Boolean
+        attribute :active, Types::Nullable::Boolean
 
         #ArticleNumber Article number. 50 characters
-        attribute :article_number, Fortnox::API::Types::Sized::String[ 50 ]
+        attribute :article_number, Types::Sized::String[ 50 ]
 
         #Bulky If the article is bulky.
-        attribute :bulky, Fortnox::API::Types::Nullable::Boolean
+        attribute :bulky, Types::Nullable::Boolean
 
         #ConstructionAccount Account number for construction work (special VAT rules in Sweden).
         # The number must be of an existing account.
@@ -29,13 +29,13 @@ module Fortnox
         attribute :depth, Types::Sized::Integer[ 0, 99_999_999 ]
 
         #Description The description of the article
-        attribute :description, Fortnox::API::Types::Sized::String[ 200 ].with( required: true )
+        attribute :description, Types::Sized::String[ 200 ].with( required: true )
 
         #DisposableQuantity Disposable quantity of the article.
-        attribute :disposable_quantity, Fortnox::API::Types::Nullable::Float.with( read_only: true )
+        attribute :disposable_quantity, Types::Nullable::Float.with( read_only: true )
 
         #EAN EAN bar code
-        attribute :ean, Fortnox::API::Types::Sized::String[ 30 ]
+        attribute :ean, Types::Sized::String[ 30 ]
 
         #EUAccount Account number for the sales account to EU.
         # The number must be of an existing account.
@@ -53,71 +53,71 @@ module Fortnox
         attribute :height, Types::Sized::Integer[ 0, 99_999_999 ]
 
         #Housework If the article is housework
-        attribute :housework, Fortnox::API::Types::Nullable::Boolean
+        attribute :housework, Types::Nullable::Boolean
 
         #HouseWorkType The type of house work.
         attribute :house_work_type, Types::HouseWorkType
 
         #Manufacturer The manufacturer of the article
-        attribute :manufacturer, Fortnox::API::Types::Sized::String[ 50 ]
+        attribute :manufacturer, Types::Sized::String[ 50 ]
 
         #ManufacturerArticleNumber The manufacturer's article number
-        attribute :manufacturer_article_number, Fortnox::API::Types::Sized::String[ 50 ]
+        attribute :manufacturer_article_number, Types::Sized::String[ 50 ]
 
         #Note Text note
-        attribute :note, Fortnox::API::Types::Sized::String[ 10_000 ]
+        attribute :note, Types::Sized::String[ 10_000 ]
 
         #PurchaseAccount Account number for purchase.
         # The number must be of an existing account.
         attribute :purchase_account, Types::Sized::Integer[ 0, 9_999 ]
 
         #PurchasePrice Purchase price of the article
-        attribute :purchase_price, Fortnox::API::Types::Sized::Float[ 0.0, 99_999_999_999_999.9 ]
+        attribute :purchase_price, Types::Sized::Float[ 0.0, 99_999_999_999_999.9 ]
 
         #QuantityInStock Quantity in stock of the article
-        attribute :quantity_in_stock, Fortnox::API::Types::Sized::Float[ 0.0, 99_999_999_999_999.9 ]
+        attribute :quantity_in_stock, Types::Sized::Float[ 0.0, 99_999_999_999_999.9 ]
 
         #ReservedQuantity Reserved quantity of the article
-        attribute :reserved_quantity, Fortnox::API::Types::Nullable::Float.with( read_only: true )
+        attribute :reserved_quantity, Types::Nullable::Float.with( read_only: true )
 
         #SalesAccount Account number for the sales account in Sweden.
         # The number must be of an existing account.
         attribute :sales_account, Types::Sized::Integer[ 0, 9_999 ]
 
         #SalesPrice Price of article for its default price list
-        attribute :sales_price, Fortnox::API::Types::Nullable::Float.with( read_only: true )
+        attribute :sales_price, Types::Nullable::Float.with( read_only: true )
 
         #StockGoods If the article is stock goods
-        attribute :stock_goods, Fortnox::API::Types::Nullable::Boolean
+        attribute :stock_goods, Types::Nullable::Boolean
 
         #StockPlace Storage place for the article
-        attribute :stock_place, Fortnox::API::Types::Sized::String[ 100 ]
+        attribute :stock_place, Types::Sized::String[ 100 ]
 
         #StockValue Value in stock of the article
-        attribute :stock_value, Fortnox::API::Types::Nullable::Float.with( read_only: true )
+        attribute :stock_value, Types::Nullable::Float.with( read_only: true )
 
         #StockWarning When to start warning for low quantity in stock
-        attribute :stock_warning, Fortnox::API::Types::Sized::Float[ 0.0, 99_999_999_999_999.9 ]
+        attribute :stock_warning, Types::Sized::Float[ 0.0, 99_999_999_999_999.9 ]
 
         #SupplierName Name of the supplier
-        attribute :supplier_name, Fortnox::API::Types::Nullable::String.with( read_only: true )
+        attribute :supplier_name, Types::Nullable::String.with( read_only: true )
 
         #SupplierNumber Supplier number for the article.
         # The number must be of an existing supplier.
-        attribute :supplier_number, Fortnox::API::Types::Nullable::String
+        attribute :supplier_number, Types::Nullable::String
 
         #Type The type of the article
         attribute :type, Types::ArticleType
 
         #Unit Unit code for the article.
         # The code must be of an existing unit.
-        attribute :unit, Fortnox::API::Types::Nullable::String
+        attribute :unit, Types::Nullable::String
 
         #VAT VAT percent, this is predefined by the VAT for the sales account
-        attribute :vat, Fortnox::API::Types::Nullable::Float
+        attribute :vat, Types::Nullable::Float
 
         #WebshopArticle If the article is a webshop article
-        attribute :webshop_article, Fortnox::API::Types::Nullable::Boolean
+        attribute :webshop_article, Types::Nullable::Boolean
 
         #Weight Weight of the article in grams
         attribute :weight, Types::Sized::Integer[ 0, 99_999_999 ]
@@ -126,7 +126,7 @@ module Fortnox
         attribute :width, Types::Sized::Integer[ 0, 99_999_999 ]
 
         #Expired If the article has expired
-        attribute :expired, Fortnox::API::Types::Nullable::Boolean
+        attribute :expired, Types::Nullable::Boolean
       end
     end
   end

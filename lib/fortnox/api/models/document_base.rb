@@ -44,13 +44,13 @@ module Fortnox
             base.attribute :contribution_value, Types::Nullable::Float.with( read_only: true )
 
             # Country Country for the document address.
-            base.attribute :country, Fortnox::API::Types::CountryCode
+            base.attribute :country, Types::CountryCode
 
             # CostCenter Code of the cost center.
             base.attribute :cost_center, Types::Nullable::String
 
             # Currency Code of the currency.
-            base.attribute :currency, Fortnox::API::Types::Currency
+            base.attribute :currency, Types::Currency
 
             # CurrencyRate Currency rate used for the document
             base.attribute :currency_rate, Types::Nullable::Float
@@ -74,7 +74,7 @@ module Fortnox
             base.attribute :delivery_city, Types::Sized::String[ 1024 ]
 
             # DeliveryCountry Country for the document delivery address.
-            base.attribute :delivery_country, Fortnox::API::Types::CountryCode
+            base.attribute :delivery_country, Types::CountryCode
 
             # DeliveryDate Date of delivery.
             base.attribute :delivery_date, Types::Nullable::Date
