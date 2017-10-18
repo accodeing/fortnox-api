@@ -27,7 +27,7 @@ module Fortnox
         # )
 
         #Url	Direct URL to the record
-        attribute :url, Types::Nullable::String.with( read_only: true )
+        attribute :url, Types::Nullable::String.is( :read_only )
 
         #Address1	First address of the customer. 1024 characters
         attribute :address1, Types::Sized::String[ 1024 ]
