@@ -12,7 +12,7 @@ module Fortnox
           super
         end
 
-        def self.is?(*args) end
+        def self.is?(*_args) end
 
       private
 
