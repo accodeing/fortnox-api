@@ -26,6 +26,9 @@ module Fortnox
                     values.first.class
                   end
 
+          # For Ruby < 2.4, make sure we don't pass Bignum and Fixnum around
+          klass = Integer if %w(Bignum Fixnum).include?(klass.to_s) # Stringify to avoid warnings on 2.4
+
           klass.name.split('::').last.downcase.to_sym
         end
 

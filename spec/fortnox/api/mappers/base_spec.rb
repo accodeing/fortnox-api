@@ -49,6 +49,12 @@ describe Fortnox::API::Mapper::Base do
     end
   end
 
+  describe 'array with very large int (Bigint if Ruby <2.4)' do
+    include_examples 'identity mapper', :array do
+      let( :value ){ [(100**10)] }
+    end
+  end
+
   describe 'advanced array' do
     include_examples 'simple mapper', :array, [ "2016-01-01", "2016-01-02" ] do
       let( :value ){ [ Date.new(2016, 1, 1), Date.new(2016, 1, 2) ] }

@@ -18,8 +18,7 @@ Gem::Specification.new do |spec| # rubocop:disable Metrics/BlockLength
   spec.test_files    = spec.files.grep(%r{^(spec)/})
   spec.require_paths = ["lib"]
 
-  spec.required_ruby_version = ['> 2.2', '< 2.4'] # TODO: Gem breaks with Ruby 2.4 or higher. See issue #93.
-
+  spec.required_ruby_version = '> 2.2'
   spec.add_dependency "httparty", "~> 0.14.0" # TODO: Temporary lockdown. See issue #103 for more info.
   spec.add_dependency "dotenv", "~> 2.0"
   spec.add_dependency "dry-struct", "~> 0.1"

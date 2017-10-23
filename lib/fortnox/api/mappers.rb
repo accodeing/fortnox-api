@@ -14,7 +14,7 @@ module Fortnox
         end
       end
 
-      Registry.register( :fixnum, Fortnox::API::Mapper::Identity )
+      Registry.register( :integer, Fortnox::API::Mapper::Identity )
       Registry.register( :int, Fortnox::API::Mapper::Identity )
       Registry.register( :float, Fortnox::API::Mapper::Identity )
       Registry.register( :string, Fortnox::API::Mapper::Identity )
