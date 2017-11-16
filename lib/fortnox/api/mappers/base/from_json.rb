@@ -45,7 +45,7 @@ module Fortnox
             # add it before a new release.
 
             raise MissingModelOrMapperException, "for #{ key } (#{ mapper_name }, #{ Fortnox::API::Mapper::DefaultTemplates.canonical_name_sym }) with #{ collection }" if ENV['RUBY_ENV']
-            Fortnox::API.logger.warn( "Missing Model or Mapper implementation for #{ key } with attributes: #{ collection }" )
+            Fortnox::API.config.logger.warn( "Missing Model or Mapper implementation for #{ key } with attributes: #{ collection }" )
             return convert_hash_keys_from_json_format( collection, {} )
           end
         end

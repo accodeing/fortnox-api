@@ -122,36 +122,51 @@ To make calls to the API server you need a `ClientSecret` and an `AccessToken`. 
 # Load the special class from the gem. You need to install the gem first ofc.
 require 'fortnox/api/access_token'
 
-Fortnox::API::AccessToken.new(
-  base_url: 'https://api.fortnox.se/3',
+puts Fortnox::API::AccessToken.get(
   client_secret: 'P5K5wE3Kun', # Replace with your client secret
-  authorization_code: 'ea3862b1-189c-464b-8e25-1b9702365fa1', # Replace with your auth code
+  authorization_code: 'ea3862b1-189c-464b-8e25-1b9702365fa1' # Replace with your auth code
 )
 ```
+
 > ​:info: **This will be made into an executable part of the gem for version 1.0
 
-This will output a new token like `3f08d038-f380-4893-94a0a0-8f6e60e67a` that is your access token, **save it!** Set it in the environment by following the instructions in the next step.
+This will output a new token like `3f08d038-f380-4893-94a0a0-8f6e60e67a` that is your access token, **save it!** Set it in the configuration by following the instructions in the next step.
 
-## Environment variables
-The authentication for this gem is stored in the environment. See the documentation for your OS to get instructions for how to set environment variables in it.
+## Configuration
+To configure the gem you can use the `configure` block. A `client_secret` and `access_token` are required configurations for the gem to work so at the very minimum you will need something like:
 
-You can choose to use the [`dotenv` gem](https://github.com/bkeepers/dotenv) that we include for development but it is NOT recommended to use in production. You should set proper environment variables in production so you don't have to commit the environment file to source control.
-
-The environment variables we use are:
-```bash
-FORTNOX_API_BASE_URL
-FORTNOX_API_CLIENT_SECRET
-FORTNOX_API_ACCESS_TOKEN
+```ruby
+Fortnox::API.configure do
+  client_secret 'P5K5wE3Kun'
+  access_token '3f08d038-f380-4893-94a0a0-8f6e60e67a'
+end
 ```
-Their values should match their name.
-
-The gem only supports the latest API version, version 3, so base URL should be set to `FORTNOX_API_BASE_URL=https://api.fortnox.se/3/` . Note that Fortnox requires `https`!
-
-> ​:info: ** FORTNOX_API_BASE_URL is deprecated and will be gone in version 1.0, it will be static in the gem instead.
+Before you start using the gem.
 
 ### Multiple AccessTokens
 
-Fortnox uses quite low [API rate limits](https://developer.fortnox.se/blog/important-implementation-of-rate-limits/). The limit is for each access token, and according to Fortnox you can use as many tokens as you like to get around this problem. This gem supports multiple access tokens automatically. Just separate them with a comma: `FORTNOX_API_ACCESS_TOKEN=a78d35hc-j5b1-ga1b-a1h6-h72n74fj5327,s2b45f67-dh5d-3g5s-2dj5-dku6gn26sh62` and the gem will automatically rotate between these tokens. In theory you can declare as many as you like. Remember that you will need one authorization code for each token! See Getting an AccessToken above.
+Fortnox uses quite low [API rate limits](https://developer.fortnox.se/blog/important-implementation-of-rate-limits/). The limit is for each access token, and according to Fortnox you can use as many tokens as you like to get around this problem. This gem supports handeling multiple access tokens natively. Just set them using the `access_tokens` helper as a list of strings:
+```ruby
+Fortnox::API.configure do
+  client_secret 'P5K5wE3Kun'
+  access_tokens 'a78d35hc-j5b1-ga1b-a1h6-h72n74fj5327', 's2b45f67-dh5d-3g5s-2dj5-dku6gn26sh62'
+end
+```
+The gem will then automatically rotate between these tokens. In theory you can declare as many as you like. Remember that you will need to use one authorization code to get each token! See "Getting an AccessToken" above.
+
+### AccessTokens for multiple Fortnox accounts
+Yes, we support working with several accounts at once as well. This is when you need to understand the token store that is used internally. All the access tokens are stored in the token store. The store is a hash with arrays of strings, the tokens, as values. In the previous two cases, single and multiple tokens for a single Fortnox account, the tokens are simply stored under the `default` key. Any constructor knows to fall back to that store if no store is specifically given but you can also give the constructors a specific store to use:
+
+```ruby
+Fortnox::API.configure do
+  client_secret 'P5K5wE3Kun'
+  token_store default: ['3f08d038-f380-4893-94a0a0-8f6e60e67a', 'a78d35hc-j5b1-ga1b-a1h6-h72n74fj5327'], another: ['s2b45f67-dh5d-3g5s-2dj5-dku6gn26sh62']
+end
+
+Fortnox::API::Repository::Customer.new # Using default
+Fortnox::API::Repository::Customer.new( store: :another ) # Using another
+```
+The tokens per store are rotated between calls to the backend as well. That way you can create a web app that connects to multiple Fortnox accounts and uses multiple tokens for each account as well.
 
 # Usage
 ## Repositories
