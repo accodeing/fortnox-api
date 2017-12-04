@@ -7,10 +7,8 @@ require "codeclimate-test-reporter"
 require 'support/matchers'
 require 'support/helpers'
 require 'support/vcr_setup'
-require 'dotenv'
 
 CodeClimate::TestReporter.start
-Dotenv.load('.env.test')
 
 RSpec.configure do |config|
   config.run_all_when_everything_filtered = true
@@ -37,5 +35,12 @@ RSpec.configure do |config|
 
   config.after do
     Object.send(:remove_const, Test.remove_constants.name)
+  end
+
+  # Reset configuration after each test run
+  config.after do
+    Fortnox::API::DEFAULT_CONFIGURATION.each do |key, value|
+      Fortnox::API.config.send("#{key}=", value)
+    end
   end
 end

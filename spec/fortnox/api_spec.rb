@@ -2,36 +2,47 @@ require 'spec_helper'
 require 'fortnox/api'
 
 describe Fortnox::API do
-  include Helpers::Environment
+  before do
+    module Fortnox
+      module API
+        class TestBase
+        end
+      end
+    end
+  end
 
-  context 'get access token' do
-    before do
-      stub_environment(
-        'FORTNOX_API_BASE_URL' => 'http://api.fortnox.se/3/',
-        'FORTNOX_API_CLIENT_SECRET' => 'P5K5vE3Kun',
-        'FORTNOX_API_ACCESS_TOKEN' => '3f08d038-f380-4893-94a0-a08f6e60e67a',
-        'FORTNOX_API_AUTHORIZATION_CODE' => 'ea3862b0-189c-464b-8e23-1b9702365ea1'
-      )
+  describe 'configuration defaults' do
+    subject(:config_value){ Fortnox::API.config[config_key]}
+    before { Fortnox::API::TestBase.new }
 
-      stub_request(
-        :get,
-        'http://api.fortnox.se/3/',
-      ).with(
-        headers: {
-          'Authorization-Code' => 'ea3862b0-189c-464b-8e23-1b9702365ea1',
-          'Client-Secret' => 'P5K5vE3Kun',
-          'Accept' => 'application/json',
-        }
-        ).to_return(
-          status: 200,
-          body: { 'Authorisation' => { 'AccessToken' => '3f08d038-f380-4893-94a0-a08f6e60e67a' } }.to_json,
-          headers: { 'Content-Type' => 'application/json' },
-        )
+    describe 'base_url' do
+      let( :config_key ){ :base_url }
+      it{ is_expected.to eql 'https://api.fortnox.se/3/' }
     end
 
+    describe 'client_secret' do
+      let( :config_key ){ :client_secret }
+      it{ is_expected.to be_nil }
+    end
 
-    subject{ described_class.get_access_token }
+    describe 'token_store' do
+      let( :config_key ){ :token_store }
+      it{ is_expected.to eql Hash.new }
+    end
 
-    it{ is_expected.to eql( "3f08d038-f380-4893-94a0-a08f6e60e67a" ) }
+    describe 'debugging' do
+      let( :config_key ){ :debugging }
+      it{ is_expected.to eql false }
+    end
+
+    describe 'logger' do
+      let( :config_key ){ :logger }
+      it{ is_expected.to be_a Logger }
+
+      describe 'level' do
+        subject{ config_value.level }
+        it{ is_expected.to be Logger::WARN }
+      end
+    end
   end
 end

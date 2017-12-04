@@ -7,6 +7,10 @@ require 'fortnox/api/types/order_row'
 
 # rubocop:disable RSpec/DescribeClass
 describe 'HouseWorkTypes', integration: true do
+  include Helpers::Configuration
+
+  before { set_api_test_configuration }
+
   let(:repository){ Fortnox::API::Repository::Order.new }
   let(:valid_model) do
     Fortnox::API::Model::Order.new(customer_number: '1', order_rows: [order_row])

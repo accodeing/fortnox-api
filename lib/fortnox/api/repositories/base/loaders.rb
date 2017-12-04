@@ -6,12 +6,12 @@ module Fortnox
       module Loaders
 
         def all()
-          response_hash = get( self.class::URI )
+          response_hash = get( self.class::URI, token_store: @token_store )
           instantiate_collection_response( response_hash )
         end
 
         def only( filter )
-          response_hash = get( "#{ self.class::URI }?filter=#{ filter }" )
+          response_hash = get( "#{ self.class::URI }?filter=#{ filter }", token_store: @token_store )
           instantiate_collection_response( response_hash )
         end
 
@@ -19,7 +19,7 @@ module Fortnox
           attribute, value = hash.first
           uri_encoded_value = URI.encode(value)
           uri = "#{ self.class::URI }?#{ attribute }=#{ uri_encoded_value }".freeze
-          response_hash = get( uri )
+          response_hash = get( uri, token_store: @token_store )
           instantiate_collection_response( response_hash )
         end
 
@@ -34,12 +34,12 @@ module Fortnox
         end
 
         def find_one_by( id )
-          response_hash = get( "#{ self.class::URI }#{ id }" )
+          response_hash = get( "#{ self.class::URI }#{ id }", token_store: @token_store )
           instantiate( @mapper.wrapped_json_hash_to_entity_hash( response_hash ) )
         end
 
         def find_all_by( hash )
-          response_hash = get( "#{ self.class::URI }?#{ to_query( hash ) }" )
+          response_hash = get( "#{ self.class::URI }?#{ to_query( hash ) }", token_store: @token_store )
           instantiate_collection_response( response_hash )
         end
 

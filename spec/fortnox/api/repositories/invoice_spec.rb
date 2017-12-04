@@ -11,6 +11,10 @@ require 'fortnox/api/repositories/examples/save_with_specially_named_attribute'
 require 'fortnox/api/repositories/examples/only'
 
 describe Fortnox::API::Repository::Invoice, order: :defined, integration: true do
+  include Helpers::Configuration
+
+  before { set_api_test_configuration }
+
   subject(:repository){ described_class.new }
 
   required_hash = { customer_number: '1' }

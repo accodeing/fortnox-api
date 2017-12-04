@@ -4,7 +4,7 @@ module Fortnox
   module API
     class AccessToken < Base
 
-      def self.get( client_secret:, authorization_code: )
+      def self.get( client_secret, authorization_code )
         repository = self.new
 
         repository.headers = {

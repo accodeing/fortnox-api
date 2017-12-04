@@ -12,10 +12,11 @@ module Fortnox
 
         attr_reader :mapper, :keys_filtered_on_save
 
-        def initialize( keys_filtered_on_save: [ :url ] )
+        def initialize( keys_filtered_on_save: [ :url ], token_store: :default )
           super()
 
           @keys_filtered_on_save = keys_filtered_on_save
+          @token_store = token_store
           @mapper = Registry[ Mapper::Base.canonical_name_sym( self.class::MODEL )].new
         end
 
