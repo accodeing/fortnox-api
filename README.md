@@ -114,23 +114,7 @@ $ gem install fortnox-api
 # Usage
 
 ## Getting an AccessToken
-To make calls to the API server you need a `ClientSecret` and an `AccessToken`. When you sign up for an API-account with Fortnox you should get a client secret and an authorization code. To get the access token, that is reusable, you need to do a one time exchange with the API-server and exchange your authorization code for an access token. This can be done in several ways but we provide a method for it in the gem that you can use.
-
-> ​:warning: **Do not do this more than once!** If you try to do the auth code/access token exchange more than once, regardless of method, it will lock your API-account! So if you get the token using curl or whatever do not use this method as well. If your account is not working and you think it might be due to this you will have to contact Fortnox support and have them reset the authorization code for you. If you want to use several access tokens, you need to use a new authorization code for each one of them!
-
-```ruby
-# Load the special class from the gem. You need to install the gem first ofc.
-require 'fortnox/api/access_token'
-
-puts Fortnox::API::AccessToken.get(
-  client_secret: 'P5K5wE3Kun', # Replace with your client secret
-  authorization_code: 'ea3862b1-189c-464b-8e25-1b9702365fa1' # Replace with your auth code
-)
-```
-
-> ​:info: **This will be made into an executable part of the gem for version 1.0
-
-This will output a new token like `3f08d038-f380-4893-94a0a0-8f6e60e67a` that is your access token, **save it!** Set it in the configuration by following the instructions in the next step.
+To make calls to the API server you need a `ClientSecret` and an `AccessToken`. When you sign up for an API-account with Fortnox you should get a client secret and an authorization code. To get the access token, that is reusable, you need to do a one time exchange with the API-server and exchange your authorization code for an access token. For more information about how to get access tokens, see Fortnox developer documentation.
 
 ## Configuration
 To configure the gem you can use the `configure` block. A `client_secret` and `access_token` are required configurations for the gem to work so at the very minimum you will need something like:
@@ -152,7 +136,7 @@ Fortnox::API.configure do
   access_tokens 'a78d35hc-j5b1-ga1b-a1h6-h72n74fj5327', 's2b45f67-dh5d-3g5s-2dj5-dku6gn26sh62'
 end
 ```
-The gem will then automatically rotate between these tokens. In theory you can declare as many as you like. Remember that you will need to use one authorization code to get each token! See "Getting an AccessToken" above.
+The gem will then automatically rotate between these tokens. In theory you can declare as many as you like. Remember that you will need to use one authorization code to get each token! See Fortnox developer documentation for more information about how to get access tokens.
 
 ### AccessTokens for multiple Fortnox accounts
 Yes, we support working with several accounts at once as well. This is when you need to understand the token store that is used internally. All the access tokens are stored in the token store. The store is a hash with arrays of strings, the tokens, as values. In the previous two cases, single and multiple tokens for a single Fortnox account, the tokens are simply stored under the `default` key. Any constructor knows to fall back to that store if no store is specifically given but you can also give the constructors a specific store to use:
