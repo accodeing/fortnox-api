@@ -144,7 +144,7 @@ Yes, we support working with several accounts at once as well. Simply set `acces
 ```ruby
 Fortnox::API.configure do |config|
   config.client_secret = 'P5K5wE3Kun'
-  conig.access_tokens = {
+  config.access_tokens = {
     default: ['3f08d038-f380-4893-94a0a0-8f6e60e67a', 'a78d35hc-j5b1-ga1b-a1h6-h72n74fj5327'],
     another_account: ['s2b45f67-dh5d-3g5s-2dj5-dku6gn26sh62']
   }
