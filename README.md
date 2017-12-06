@@ -117,12 +117,12 @@ $ gem install fortnox-api
 To make calls to the API server you need a `ClientSecret` and an `AccessToken`. When you sign up for an API-account with Fortnox you should get a client secret and an authorization code. To get the access token, that is reusable, you need to do a one time exchange with the API-server and exchange your authorization code for an access token. For more information about how to get access tokens, see Fortnox developer documentation.
 
 ## Configuration
-To configure the gem you can use the `configure` block. A `client_secret` and `access_token` are required configurations for the gem to work so at the very minimum you will need something like:
+To configure the gem you can use the `configure` block. A `client_secret` and `access_tokens` are required configurations for the gem to work so at the very minimum you will need something like:
 
 ```ruby
-Fortnox::API.configure do
-  client_secret 'P5K5wE3Kun'
-  access_token '3f08d038-f380-4893-94a0a0-8f6e60e67a'
+Fortnox::API.configure do |config|
+  config.client_secret = 'P5K5wE3Kun'
+  config.access_tokens = ['3f08d038-f380-4893-94a0a0-8f6e60e67a']
 end
 ```
 Before you start using the gem.
@@ -131,24 +131,27 @@ Before you start using the gem.
 
 Fortnox uses quite low [API rate limits](https://developer.fortnox.se/blog/important-implementation-of-rate-limits/). The limit is for each access token, and according to Fortnox you can use as many tokens as you like to get around this problem. This gem supports handeling multiple access tokens natively. Just set them using the `access_tokens` helper as a list of strings:
 ```ruby
-Fortnox::API.configure do
-  client_secret 'P5K5wE3Kun'
-  access_tokens 'a78d35hc-j5b1-ga1b-a1h6-h72n74fj5327', 's2b45f67-dh5d-3g5s-2dj5-dku6gn26sh62'
+Fortnox::API.configure do |config|
+  config.client_secret = 'P5K5wE3Kun'
+  config.access_tokens ['a78d35hc-j5b1-ga1b-a1h6-h72n74fj5327', 's2b45f67-dh5d-3g5s-2dj5-dku6gn26sh62']
 end
 ```
 The gem will then automatically rotate between these tokens. In theory you can declare as many as you like. Remember that you will need to use one authorization code to get each token! See Fortnox developer documentation for more information about how to get access tokens.
 
 ### AccessTokens for multiple Fortnox accounts
-Yes, we support working with several accounts at once as well. This is when you need to understand the token store that is used internally. All the access tokens are stored in the token store. The store is a hash with arrays of strings, the tokens, as values. In the previous two cases, single and multiple tokens for a single Fortnox account, the tokens are simply stored under the `default` key. Any constructor knows to fall back to that store if no store is specifically given but you can also give the constructors a specific store to use:
+Yes, we support working with several accounts at once as well. Simply set `access_tokens` to a hash where the keys (called a *token store*) represents different fortnox accounts and the value for a specific key is an array or a string with access token(s) linked to that specific Fortnox account. For instance: `{ account1: ['token1', 'token2'], account2: 'token2' }`. If you provide a `:default` token store, this is used as default by all repositories.
 
 ```ruby
-Fortnox::API.configure do
-  client_secret 'P5K5wE3Kun'
-  token_store default: ['3f08d038-f380-4893-94a0a0-8f6e60e67a', 'a78d35hc-j5b1-ga1b-a1h6-h72n74fj5327'], another: ['s2b45f67-dh5d-3g5s-2dj5-dku6gn26sh62']
+Fortnox::API.configure do |config|
+  config.client_secret = 'P5K5wE3Kun'
+  conig.access_tokens = {
+    default: ['3f08d038-f380-4893-94a0a0-8f6e60e67a', 'a78d35hc-j5b1-ga1b-a1h6-h72n74fj5327'],
+    another_account: ['s2b45f67-dh5d-3g5s-2dj5-dku6gn26sh62']
+  }
 end
 
-Fortnox::API::Repository::Customer.new # Using default
-Fortnox::API::Repository::Customer.new( store: :another ) # Using another
+Fortnox::API::Repository::Customer.new # Using token store :default
+Fortnox::API::Repository::Customer.new( token_store: :another_account ) # Using token store :another_account
 ```
 The tokens per store are rotated between calls to the backend as well. That way you can create a web app that connects to multiple Fortnox accounts and uses multiple tokens for each account as well.
 
