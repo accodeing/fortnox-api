@@ -38,21 +38,25 @@ describe Fortnox::API::Repository::Base do
   end
 
   describe 'creation' do
-    subject{ ->{ repository } }
-    let(:error){ Fortnox::API::MissingConfiguration }
-
-    context 'without base url' do
-      before{ Fortnox::API.configure{ |conf| conf.base_url = nil } }
-      let(:message){ 'have to provide a base url' }
+    shared_examples_for 'missing configuration' do
+      subject{ ->{ repository } }
+      let(:error){ Fortnox::API::MissingConfiguration }
 
       it{ is_expected.to raise_error( error, /#{message}/ ) }
     end
 
-    context 'without client secret' do
-      before{ Fortnox::API.configure{ |conf| conf.client_secret = nil } }
-      let(:message){ 'have to provide your client secret' }
+    context 'without base url' do
+      include_examples 'missing configuration' do
+        before{ Fortnox::API.configure{ |conf| conf.base_url = nil } }
+        let(:message){ 'have to provide a base url' }
+      end
+    end
 
-      it{ is_expected.to raise_error( error, /#{message}/ ) }
+    context 'without client secret' do
+      include_examples 'missing configuration' do
+        before{ Fortnox::API.configure{ |conf| conf.client_secret = nil } }
+        let(:message){ 'have to provide your client secret' }
+      end
     end
   end
 
