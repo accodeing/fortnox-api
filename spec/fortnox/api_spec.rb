@@ -45,4 +45,22 @@ describe Fortnox::API do
       end
     end
   end
+
+  describe 'readers for' do
+    describe 'debugging' do
+      subject{ Fortnox::API.debugging }
+
+      it 'is available' do
+        is_expected.to be false
+      end
+    end
+
+    describe 'logger' do
+      subject{ Fortnox::API.logger }
+
+      it 'is available' do
+        is_expected.to be_a Logger
+      end
+    end
+  end
 end

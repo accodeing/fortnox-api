@@ -24,8 +24,8 @@ module Fortnox
     setting :base_url, DEFAULT_CONFIGURATION[:base_url]
     setting :client_secret, DEFAULT_CONFIGURATION[:client_secret]
     setting :access_tokens, DEFAULT_CONFIGURATION[:access_tokens]
-    setting :debugging, DEFAULT_CONFIGURATION[:debugging]
-    setting :logger, DEFAULT_CONFIGURATION[:logger]
+    setting :debugging, DEFAULT_CONFIGURATION[:debugging], reader: true
+    setting :logger, DEFAULT_CONFIGURATION[:logger], reader: true
 
     class Exception < StandardError
     end
