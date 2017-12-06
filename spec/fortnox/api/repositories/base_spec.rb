@@ -7,20 +7,10 @@ describe Fortnox::API::Repository::Base do
       class Test
       end
     end
-  end
 
-  # Note: Could not get this to work with using_test_classes
-  # I get Dry::Container::Error:
-  # There is already an item registered with the key "test"
-  #
-  # It would be better to fix this, because below code is probably leaking to
-  # other specs now...
-  before(:all) do
-    module Mapper
-      class Test < Fortnox::API::Mapper::Base
-        Fortnox::API::Registry.register( Test.canonical_name_sym, Test )
-      end
-    end
+    require 'dry/container/stub'
+    Fortnox::API::Registry.enable_stubs!
+    Fortnox::API::Registry.stub( :test, Model::Test )
   end
 
   let(:access_token){ '3f08d038-f380-4893-94a0-a08f6e60e67a' }
