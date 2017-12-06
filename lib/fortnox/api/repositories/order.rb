@@ -6,10 +6,13 @@ module Fortnox
   module API
     module Repository
       class Order < Fortnox::API::Repository::Base
-
         MODEL = Fortnox::API::Model::Order
         MAPPER = Fortnox::API::Mapper::Order
         URI = '/orders/'.freeze
+
+        def initialize
+          super(MODEL)
+        end
       end
     end
   end

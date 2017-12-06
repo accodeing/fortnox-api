@@ -1,7 +1,6 @@
 require "set"
 require "dry-struct"
 require "fortnox/api/circular_queue"
-require "fortnox/api/base"
 require "fortnox/api/version"
 require 'logger'
 

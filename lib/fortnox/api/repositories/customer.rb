@@ -6,10 +6,13 @@ module Fortnox
   module API
     module Repository
       class Customer < Fortnox::API::Repository::Base
-
         MODEL = Fortnox::API::Model::Customer
         MAPPER = Fortnox::API::Mapper::Customer
         URI = '/customers/'.freeze
+
+        def initialize
+          super(MODEL)
+        end
       end
     end
   end
