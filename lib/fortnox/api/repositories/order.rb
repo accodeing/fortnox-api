@@ -5,9 +5,9 @@ require "fortnox/api/mappers/order"
 module Fortnox
   module API
     module Repository
-      class Order < Fortnox::API::Repository::Base
-        MODEL = Fortnox::API::Model::Order
-        MAPPER = Fortnox::API::Mapper::Order
+      class Order < Repository::Base
+        MODEL = Model::Order
+        MAPPER = Mapper::Order
         URI = '/orders/'.freeze
 
         def initialize
