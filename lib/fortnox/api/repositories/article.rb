@@ -5,7 +5,7 @@ require "fortnox/api/mappers/article"
 module Fortnox
   module API
     module Repository
-      class Article < Repository::Base
+      class Article < Base
         MODEL = Model::Article
         MAPPER = Mapper::Article
         URI = '/articles/'.freeze

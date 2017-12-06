@@ -5,7 +5,7 @@ require "fortnox/api/mappers/customer"
 module Fortnox
   module API
     module Repository
-      class Customer < Repository::Base
+      class Customer < Base
         MODEL = Model::Customer
         MAPPER = Mapper::Customer
         URI = '/customers/'.freeze

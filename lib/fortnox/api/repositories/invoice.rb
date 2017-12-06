@@ -5,7 +5,7 @@ require "fortnox/api/mappers/invoice"
 module Fortnox
   module API
     module Repository
-      class Invoice < Repository::Base
+      class Invoice < Base
         MODEL = Model::Invoice
         MAPPER = Mapper::Invoice
         URI = '/invoices/'.freeze
