@@ -12,7 +12,7 @@ module Fortnox
     DEFAULT_CONFIGURATION = {
       base_url: 'https://api.fortnox.se/3/',
       client_secret: nil,
-      token_store: {},
+      access_tokens: nil,
       debugging: false,
       logger: ->{
         logger = Logger.new(STDOUT)
@@ -23,7 +23,7 @@ module Fortnox
 
     setting :base_url, DEFAULT_CONFIGURATION[:base_url]
     setting :client_secret, DEFAULT_CONFIGURATION[:client_secret]
-    setting :token_store, DEFAULT_CONFIGURATION[:token_store]
+    setting :access_tokens, DEFAULT_CONFIGURATION[:access_tokens]
     setting :debugging, DEFAULT_CONFIGURATION[:debugging]
     setting :logger, DEFAULT_CONFIGURATION[:logger]
 

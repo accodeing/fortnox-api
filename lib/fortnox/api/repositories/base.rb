@@ -56,17 +56,13 @@ module Fortnox
 
         def check_access_tokens!( tokens )
           if tokens == nil or tokens.length.zero?
-            fail MissingConfiguration, "You have not provided any access token(s) in the given store."
+            fail MissingConfiguration, "You have not provided any access tokens in token store #{@token_store.inspect}."
           end
         end
 
         def get_access_tokens
-          begin
-            tokens = config.token_store.fetch( @token_store )
-          rescue KeyError
-            fail MissingConfiguration, "Store #{ @token_store.inspect } is not present in token store."
-          end
-
+          raw_tokens = config.access_tokens
+          tokens = raw_tokens.is_a?(Hash) ? get_hash_access_tokens(raw_tokens) : raw_tokens
           check_access_tokens!( tokens )
           tokens
         end
@@ -93,6 +89,14 @@ module Fortnox
 
           def config
             Fortnox::API.config
+          end
+
+          def get_hash_access_tokens(token_hash)
+            begin
+              tokens = token_hash.fetch( @token_store )
+            rescue KeyError
+              fail MissingConfiguration, "There are no token store named #{ @token_store.inspect }."
+            end
           end
       end
     end

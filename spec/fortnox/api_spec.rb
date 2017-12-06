@@ -25,9 +25,9 @@ describe Fortnox::API do
       it{ is_expected.to be_nil }
     end
 
-    describe 'token_store' do
-      let( :config_key ){ :token_store }
-      it{ is_expected.to eql Hash.new }
+    describe 'access_tokens' do
+      let( :config_key ){ :access_tokens }
+      it{ is_expected.to eql nil }
     end
 
     describe 'debugging' do
