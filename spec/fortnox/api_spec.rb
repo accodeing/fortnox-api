@@ -27,7 +27,7 @@ describe Fortnox::API do
 
     describe 'access_tokens' do
       let( :config_key ){ :access_tokens }
-      it{ is_expected.to eql nil }
+      it{ is_expected.to be nil }
     end
 
     describe 'debugging' do

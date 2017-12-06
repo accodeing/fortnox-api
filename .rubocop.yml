@@ -1113,4 +1113,4 @@ RSpec/FilePath:
   Enabled: false
 
 RSpec/NestedGroups:
-    MaxNesting: 4
+    MaxNesting: 5

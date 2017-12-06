@@ -70,7 +70,7 @@ describe Fortnox::API::Repository::Base do
         it{ is_expected.to eql( access_token ) }
 
         describe 'next request' do
-          before { repository.next_access_token }
+          before{ repository.next_access_token }
           it 'still uses the same token' do
             is_expected.to eql( access_token )
           end
@@ -190,7 +190,7 @@ describe Fortnox::API::Repository::Base do
     subject{ ->{ repository.check_access_tokens!(tokens) } }
     before{ Fortnox::API.configure{ |conf| conf.client_secret = client_secret } }
     let( :error ){ Fortnox::API::MissingConfiguration }
-    let( :message ){ "not provided any access tokens in token store #{token_store.inspect}" }
+    let( :message ){ "not provided any access tokens in token store #{ token_store.inspect }" }
     let( :token_store ){ :default }
 
     context 'with nil' do
