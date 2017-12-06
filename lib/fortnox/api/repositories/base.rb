@@ -29,8 +29,8 @@ module Fortnox
         end
 
         HTTP_METHODS.each do |method|
-          define_method method do |*args, token_store:|
-            self.headers['Access-Token'] = get_access_token(token_store)
+          define_method method do |*args|
+            self.headers['Access-Token'] = next_access_token
             execute do |remote|
               remote.send( method, *args )
             end
@@ -49,12 +49,8 @@ module Fortnox
           @mapper = Registry[ Mapper::Base.canonical_name_sym( model )].new
         end
 
-        def config
-          Fortnox::API.config
-        end
-
-        def get_access_token( store_name )
-          @access_tokens ||= CircularQueue.new( *load_access_tokens( store_name ))
+        def next_access_token
+          @access_tokens ||= CircularQueue.new( *get_access_tokens )
           @access_tokens.next
         end
 
@@ -64,27 +60,15 @@ module Fortnox
           end
         end
 
-        def load_access_tokens( store_name )
+        def get_access_tokens
           begin
-            tokens = config.token_store.fetch( store_name )
+            tokens = config.token_store.fetch( @token_store )
           rescue KeyError
-            fail MissingConfiguration, "Store #{store_name.inspect} is not present in token store."
+            fail MissingConfiguration, "Store #{@token_store.inspect} is not present in token store."
           end
 
           check_access_tokens!( tokens )
           tokens
-        end
-
-        def get_base_url
-          base_url = config.base_url
-          fail MissingConfiguration, 'You have to provide a base url.' unless base_url
-          base_url
-        end
-
-        def get_client_secret
-          client_secret = config.client_secret
-          fail MissingConfiguration, 'You have to provide your client secret.' unless client_secret
-          client_secret
         end
 
         private
@@ -95,6 +79,21 @@ module Fortnox
             self.class::MODEL.new( hash )
           end
 
+          def get_base_url
+            base_url = config.base_url
+            fail MissingConfiguration, 'You have to provide a base url.' unless base_url
+            base_url
+          end
+
+          def get_client_secret
+            client_secret = config.client_secret
+            fail MissingConfiguration, 'You have to provide your client secret.' unless client_secret
+            client_secret
+          end
+
+          def config
+            Fortnox::API.config
+          end
       end
     end
   end

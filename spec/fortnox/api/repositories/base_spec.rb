@@ -26,7 +26,7 @@ describe Fortnox::API::Repository::Base do
   let(:access_token){ '3f08d038-f380-4893-94a0-a08f6e60e67a' }
   let(:access_token2){ '89feajou-sif8-8f8u-29ja-xdfniokeniod' }
   let(:client_secret){ 'P5K5vE3Kun' }
-  let(:repository){ described_class.new(Model::Test) }
+  let(:repository){ described_class.new( Model::Test ) }
   let(:application_json){}
   let(:headers) do
     {
@@ -38,9 +38,8 @@ describe Fortnox::API::Repository::Base do
   end
 
   describe 'creation' do
-    subject{ ->{ repository } }
-
     context 'without base url' do
+      subject{ ->{ repository } }
       before{ Fortnox::API.configure{ |conf| conf.base_url = nil } }
       let(:error){ Fortnox::API::MissingConfiguration }
       let(:message){ 'have to provide a base url' }
@@ -49,6 +48,7 @@ describe Fortnox::API::Repository::Base do
     end
 
     context 'without client secret' do
+      subject{ ->{ repository } }
       before{ Fortnox::API.configure{ |conf| conf.client_secret = nil } }
       let(:error){ Fortnox::API::MissingConfiguration }
       let(:message){ 'have to provide your client secret' }
@@ -57,42 +57,46 @@ describe Fortnox::API::Repository::Base do
     end
   end
 
-  describe '.get_access_token' do
+  describe '#next_access_token' do
     before{ Fortnox::API.configure{ |conf| conf.client_secret = client_secret } }
 
-    context 'with one access token' do
-      subject{ repository.get_access_token(:default) }
-      before{ Fortnox::API.configure{ |conf| conf.token_store = { default: [access_token] } } }
-      it{ is_expected.to eql( access_token ) }
-    end
-
-    context 'with multiple access tokens' do
-      subject{ access_tokens }
-      before{ Fortnox::API.configure{ |conf| conf.token_store = { default: access_tokens } } }
-      let(:access_tokens){ [access_token, access_token2] }
-
-      it{ is_expected.to include(repository.get_access_token(:default)) }
-
-      # rubocop:disable RSpec/MultipleExpectations
-      # All these checks must be run in same it-statement because
-      # of the random starting index.
-      it 'circulates the tokens' do
-        token1 = repository.get_access_token(:default)
-        token2 = repository.get_access_token(:default)
-        token3 = repository.get_access_token(:default)
-
-        expect(token1).to eql(token3)
-        expect(token1).not_to eql(token2)
+    context 'with default token store' do
+      context 'with one access token' do
+        subject{ repository.next_access_token }
+        before{ Fortnox::API.configure{ |conf| conf.token_store = { default: [access_token] } } }
+        it{ is_expected.to eql( access_token ) }
       end
-      # rubocop:enable RSpec/MultipleExpectations
-    end
 
-    context 'without token store (just access token)' do
-      it 'should be tested'
+      context 'with multiple access tokens' do
+        subject{ access_tokens }
+        before{ Fortnox::API.configure{ |conf| conf.token_store = { default: access_tokens } } }
+        let( :access_tokens ){ [access_token, access_token2] }
+
+        it{ is_expected.to include( repository.next_access_token ) }
+
+        # rubocop:disable RSpec/MultipleExpectations
+        # All these checks must be run in same it-statement because
+        # of the random starting index.
+        it 'circulates the tokens' do
+          token1 = repository.next_access_token
+          token2 = repository.next_access_token
+          token3 = repository.next_access_token
+
+          expect( token1 ).to eql( token3 )
+          expect( token1 ).not_to eql( token2 )
+        end
+        # rubocop:enable RSpec/MultipleExpectations
+      end
+
+      context 'without token store (just access token)' do
+        it 'should be tested'
+      end
+
     end
 
     context 'with multiple stores' do
-      subject{ repository.get_access_token(token_store) }
+      subject{ repository.next_access_token }
+
       before do 
         Fortnox::API.configure do |config|
           config.token_store = { store1: access_token, store2: access_token2 }
@@ -100,54 +104,60 @@ describe Fortnox::API::Repository::Base do
       end
 
       describe 'first token store' do
-        let(:token_store){ :store1 }
+        let( :repository ){ described_class.new( Model::Test, token_store: :store1) }
         it{ is_expected.to eql access_token }
       end
 
       describe 'second token store' do
-        let(:token_store){ :store2 }
+        let( :repository ){ described_class.new( Model::Test, token_store: :store2 ) }
         it{ is_expected.to eql access_token2 }
       end
     end
   end
 
-  describe '.load_acces_tokens' do
-    subject(:load_access_tokens){ repository.load_access_tokens(store_name) }
+  describe '#get_access_tokens' do
+    subject(:get_access_tokens){ repository.get_access_tokens }
 
-    before do
-      Fortnox::API.configure do |conf|
-        conf.token_store = { default: [access_token] }
-        conf.client_secret = client_secret
-      end
-    end
+    before{ Fortnox::API.configure{ |conf| conf.client_secret = client_secret } }
 
-    let(:store_name_not_present){ "#{store_name} is not present in token store" }
+    let(:token_store_not_present){ "#{token_store} is not present in token store" }
     let(:error){ Fortnox::API::MissingConfiguration }
 
     context 'with non existing token store' do
-      subject{ ->{ load_access_tokens } }
-      let(:store_name){ :non_existing_store }
+      subject{ ->{ get_access_tokens } }
+      before{ Fortnox::API.configure{ |conf| conf.token_store = { default: [access_token] } } }
+      let( :repository ){ described_class.new( Model::Test, token_store: token_store ) }
+      let(:token_store){ :non_existing_store }
 
-      it{ is_expected.to raise_error( error, /#{store_name_not_present}/ ) }
+      it{ is_expected.to raise_error( error, /#{token_store_not_present}/ ) }
     end
 
     context 'with no tokens set' do
-      subject{ ->{ load_access_tokens } }
+      subject{ ->{ get_access_tokens } }
       before{ Fortnox::API.configure{ |conf| conf.token_store = {} } }
-      let(:store_name){ :whatever }
+      let(:token_store){ :default }
 
-      it{ is_expected.to raise_error( error, /#{store_name_not_present}/) }
+      it{ is_expected.to raise_error( error, /#{token_store_not_present}/) }
     end
 
     context 'with one access token in token store' do
-      let(:store_name){ :default }
+      before{ Fortnox::API.configure{ |conf| conf.token_store = { default: [access_token] } } }
+      let(:token_store){ :default }
       it{ is_expected.to eql( [access_token] ) }
     end
 
-    context 'with multiple access tokens in token store'
+    context 'with multiple access tokens in token store' do
+      before do
+        Fortnox::API.configure do |conf|
+          conf.token_store = { default: [access_token, access_token2] }
+        end
+      end
+      let( :token_store ){ :default }
+      it{ is_expected.to eql( [access_token, access_token2] ) }
+    end
   end
 
-  describe 'check_access_tokens!' do
+  describe '#check_access_tokens!' do
     subject{ ->{ repository.check_access_tokens!(tokens) } }
     before{ Fortnox::API.configure{ |conf| conf.client_secret = client_secret } }
     let(:error){ Fortnox::API::MissingConfiguration }
@@ -169,23 +179,6 @@ describe Fortnox::API::Repository::Base do
     end
   end
 
-  describe '.get_base_url' do
-    before{ Fortnox::API.configure{ |conf| conf.client_secret = client_secret } }
-
-    context 'without setting any base_url' do
-      subject{ repository.get_base_url }
-      it{ is_expected.to eql( 'https://api.fortnox.se/3/' ) }
-    end
-
-    context 'when setting to nil' do
-      before{ Fortnox::API.configure{ |conf| conf.base_url = nil } }
-      subject{ ->{ repository.get_base_url } }
-      let(:msg){ 'have to provide a base url' }
-
-      it{ is_expected.to raise_error( Fortnox::API::MissingConfiguration, /#{msg}/ ) }
-    end
-  end
-
   context 'making a request including the proper headers' do
     before do
       Fortnox::API.configure do |conf|
@@ -203,7 +196,7 @@ describe Fortnox::API::Repository::Base do
       )
     end
 
-    subject{ repository.get( '/test', { body: '' }, token_store: :default ) }
+    subject{ repository.get( '/test', { body: '' } ) }
 
     it{ is_expected.to be_nil }
   end
@@ -247,9 +240,9 @@ describe Fortnox::API::Repository::Base do
     end
 
     context 'with subsequent requests on same object' do
-      let!(:response1){ repository.get( '/test', { body: '' }, token_store: :default ) }
-      let!(:response2){ repository.get( '/test', { body: '' }, token_store: :default ) }
-      let!(:response3){ repository.get( '/test', { body: '' }, token_store: :default ) }
+      let!(:response1){ repository.get( '/test', { body: '' } ) }
+      let!(:response2){ repository.get( '/test', { body: '' } ) }
+      let!(:response3){ repository.get( '/test', { body: '' } ) }
 
       # rubocop:disable RSpec/MultipleExpectations
       # All these checks must be run in same it-statement because
@@ -280,7 +273,7 @@ describe Fortnox::API::Repository::Base do
       )
     end
 
-    subject{ ->{ repository.post( '/test', { body: '' }, token_store: :default ) } }
+    subject{ ->{ repository.post( '/test', { body: '' } ) } }
 
     it{ is_expected.to raise_error( Fortnox::API::RemoteServerError ) }
     it{ is_expected.to raise_error( 'Räkenskapsår finns inte upplagt. För att kunna skapa en faktura krävs det att det finns ett räkenskapsår' ) }

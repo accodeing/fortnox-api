@@ -19,13 +19,13 @@ module Fortnox
 
         def save_new( entity )
           execute_save( entity ) do |body|
-            post( self.class::URI, { body: body }, token_store: @token_store)
+            post( self.class::URI, { body: body } )
           end
         end
 
         def update_existing( entity )
           execute_save( entity ) do |body|
-            put( get_update_url_for( entity ), { body: body }, token_store: @token_store)
+            put( get_update_url_for( entity ), { body: body } )
           end
         end
 
