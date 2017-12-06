@@ -9,7 +9,7 @@ require 'fortnox/api/repositories/examples/save'
 describe Fortnox::API::Repository::Project, order: :defined, integration: true do
   include Helpers::Configuration
 
-  before { set_api_test_configuration }
+  before{ set_api_test_configuration }
 
   subject( :repository ){ described_class.new }
 

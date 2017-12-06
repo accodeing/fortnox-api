@@ -9,7 +9,7 @@ require 'fortnox/api/types/order_row'
 describe 'HouseWorkTypes', integration: true do
   include Helpers::Configuration
 
-  before { set_api_test_configuration }
+  before{ set_api_test_configuration }
 
   let(:repository){ Fortnox::API::Repository::Order.new }
   let(:valid_model) do

@@ -19,7 +19,7 @@ module Fortnox
         logger.level = Logger::WARN
         return logger
       }.call,
-    }
+    }.freeze
 
     setting :base_url, DEFAULT_CONFIGURATION[:base_url]
     setting :client_secret, DEFAULT_CONFIGURATION[:client_secret]

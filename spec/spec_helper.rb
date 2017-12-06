@@ -40,7 +40,7 @@ RSpec.configure do |config|
   # Reset configuration after each test run
   config.after do
     Fortnox::API::DEFAULT_CONFIGURATION.each do |key, value|
-      Fortnox::API.config.send("#{key}=", value)
+      Fortnox::API.config.send("#{ key }=", value)
     end
   end
 end

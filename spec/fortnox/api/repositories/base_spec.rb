@@ -120,7 +120,7 @@ describe Fortnox::API::Repository::Base do
 
     before{ Fortnox::API.configure{ |conf| conf.client_secret = client_secret } }
 
-    let(:token_store_not_present){ "#{token_store} is not present in token store" }
+    let(:token_store_not_present){ "#{ token_store } is not present in token store" }
     let(:error){ Fortnox::API::MissingConfiguration }
 
     context 'with non existing token store' do

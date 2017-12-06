@@ -12,8 +12,8 @@ describe Fortnox::API do
   end
 
   describe 'configuration defaults' do
-    subject(:config_value){ Fortnox::API.config[config_key]}
-    before { Fortnox::API::TestBase.new }
+    subject(:config_value){ described_class.config[config_key] }
+    before{ Fortnox::API::TestBase.new }
 
     describe 'base_url' do
       let( :config_key ){ :base_url }
@@ -32,7 +32,7 @@ describe Fortnox::API do
 
     describe 'debugging' do
       let( :config_key ){ :debugging }
-      it{ is_expected.to eql false }
+      it{ is_expected.to be false }
     end
 
     describe 'logger' do

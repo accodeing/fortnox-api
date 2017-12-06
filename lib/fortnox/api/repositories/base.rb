@@ -64,7 +64,7 @@ module Fortnox
           begin
             tokens = config.token_store.fetch( @token_store )
           rescue KeyError
-            fail MissingConfiguration, "Store #{@token_store.inspect} is not present in token store."
+            fail MissingConfiguration, "Store #{ @token_store.inspect } is not present in token store."
           end
 
           check_access_tokens!( tokens )

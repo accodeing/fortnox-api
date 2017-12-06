@@ -12,7 +12,7 @@ require 'fortnox/api/repositories/examples/search'
 describe Fortnox::API::Repository::Order, order: :defined, integration: true do
   include Helpers::Configuration
 
-  before { set_api_test_configuration }
+  before{ set_api_test_configuration }
 
   subject(:repository){ described_class.new }
 
