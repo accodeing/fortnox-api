@@ -56,7 +56,7 @@ describe Fortnox::API::Repository::Base do
     context 'with default token store' do
       context 'with one access token' do
         subject{ repository.next_access_token }
-        before{ Fortnox::API.configure{ |conf| conf.access_tokens = [access_token] } }
+        before{ Fortnox::API.configure{ |conf| conf.access_token = access_token } }
         it{ is_expected.to eql( access_token ) }
 
         describe 'next request' do
@@ -140,16 +140,14 @@ describe Fortnox::API::Repository::Base do
     end
 
     context 'with one access token in token store' do
-      before{ Fortnox::API.configure{ |conf| conf.access_tokens = [access_token] } }
+      before{ Fortnox::API.configure{ |conf| conf.access_token = access_token } }
       let( :token_store ){ :default }
-      it{ is_expected.to eql( [access_token] ) }
+      it{ is_expected.to eql( access_token ) }
     end
 
     context 'with multiple access tokens' do
       before do
-        Fortnox::API.configure do |conf|
-          conf.access_tokens = [access_token, access_token2]
-        end
+        Fortnox::API.configure{ |conf| conf.access_tokens = [access_token, access_token2] }
       end
       let( :token_store ){ :default }
       it{ is_expected.to eql( [access_token, access_token2] ) }
@@ -158,14 +156,20 @@ describe Fortnox::API::Repository::Base do
     context 'with multiple token stores' do
       before do
         Fortnox::API.configure do |conf|
-          conf.access_tokens = { store_a: store_a_tokens, store_b: ['token_b1', 'token_b2'] }
+          conf.access_tokens = { store_a: store_a_tokens, store_b: store_b_token }
         end
       end
       let( :store_a_tokens ){ ['token_a1', 'token_a2'] }
+      let( :store_b_token ){ 'token_b1' }
 
       context 'with valid store name' do
         let( :repository ){ described_class.new( Model::Test, token_store: :store_a ) }
         it{ is_expected.to eql( store_a_tokens ) }
+      end
+
+      context 'with non collection' do
+        let( :repository ){ described_class.new( Model::Test, token_store: :store_b ) }
+        it{ is_expected.to eql( store_b_token ) }
       end
 
       context 'with invalid store name' do
@@ -211,7 +215,7 @@ describe Fortnox::API::Repository::Base do
     before do
       Fortnox::API.configure do |conf|
         conf.client_secret = client_secret
-        conf.access_tokens = [access_token]
+        conf.access_token = access_token
       end
 
       stub_request(

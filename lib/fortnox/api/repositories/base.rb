@@ -61,8 +61,12 @@ module Fortnox
         end
 
         def get_access_tokens
-          raw_tokens = config.access_tokens
-          tokens = raw_tokens.is_a?(Hash) ? get_hash_access_tokens(raw_tokens) : raw_tokens
+          begin
+            tokens = config.token_store.fetch( @token_store )
+          rescue KeyError
+            no_token_store_found!
+          end
+
           check_access_tokens!( tokens )
           tokens
         end
@@ -91,10 +95,9 @@ module Fortnox
             Fortnox::API.config
           end
 
-          def get_hash_access_tokens(token_hash)
-            token_hash.fetch( @token_store )
-            rescue KeyError
-              fail MissingConfiguration, "There are no token store named #{ @token_store.inspect }."
+          def no_token_store_found!
+            fail MissingConfiguration,
+                 "There are no token store named #{ @token_store.inspect }."
           end
       end
     end
