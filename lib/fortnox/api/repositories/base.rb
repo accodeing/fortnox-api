@@ -55,7 +55,7 @@ module Fortnox
         end
 
         def check_access_tokens!( tokens )
-          if tokens == nil or tokens.length.zero?
+          if tokens == nil or tokens.empty?
             fail MissingConfiguration, "You have not provided any access tokens in token store #{ @token_store.inspect }."
           end
         end
