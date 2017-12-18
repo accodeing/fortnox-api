@@ -9,10 +9,6 @@ module Fortnox
         MODEL = Model::Article
         MAPPER = Mapper::Article
         URI = '/articles/'.freeze
-
-        def initialize
-          super(MODEL)
-        end
       end
     end
   end

@@ -9,10 +9,6 @@ module Fortnox
         MODEL = Model::Customer
         MAPPER = Mapper::Customer
         URI = '/customers/'.freeze
-
-        def initialize
-          super(MODEL)
-        end
       end
     end
   end

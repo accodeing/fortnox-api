@@ -9,10 +9,6 @@ module Fortnox
         MODEL = Model::Invoice
         MAPPER = Mapper::Invoice
         URI = '/invoices/'.freeze
-
-        def initialize
-          super(MODEL)
-        end
       end
     end
   end

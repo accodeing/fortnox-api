@@ -9,10 +9,6 @@ module Fortnox
         MODEL = Model::Project
         MAPPER = Mapper::Project
         URI = '/projects/'.freeze
-
-        def initialize
-          super(MODEL)
-        end
       end
     end
   end

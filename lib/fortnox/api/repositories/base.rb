@@ -37,7 +37,7 @@ module Fortnox
           end
         end
 
-        def initialize( model, keys_filtered_on_save: [ :url ], token_store: :default )
+        def initialize( keys_filtered_on_save: [ :url ], token_store: :default )
           self.class.base_uri( get_base_url )
 
           self.headers = DEFAULT_HEADERS.merge({
@@ -46,7 +46,7 @@ module Fortnox
 
           @keys_filtered_on_save = keys_filtered_on_save
           @token_store = token_store
-          @mapper = Registry[ Mapper::Base.canonical_name_sym( model )].new
+          @mapper = Registry[ Mapper::Base.canonical_name_sym( self.class::MODEL )].new
         end
 
         def next_access_token

@@ -9,10 +9,6 @@ module Fortnox
         MODEL = Model::Order
         MAPPER = Mapper::Order
         URI = '/orders/'.freeze
-
-        def initialize
-          super(MODEL)
-        end
       end
     end
   end

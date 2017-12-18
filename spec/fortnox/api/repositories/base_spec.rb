@@ -7,6 +7,11 @@ describe Fortnox::API::Repository::Base do
       class Test
       end
     end
+    module Repository
+      class Test < Fortnox::API::Repository::Base
+        MODEL = Model::Test
+      end
+    end
 
     require 'dry/container/stub'
     Fortnox::API::Registry.enable_stubs!
@@ -16,7 +21,7 @@ describe Fortnox::API::Repository::Base do
   let(:access_token){ '3f08d038-f380-4893-94a0-a08f6e60e67a' }
   let(:access_token2){ '89feajou-sif8-8f8u-29ja-xdfniokeniod' }
   let(:client_secret){ 'P5K5vE3Kun' }
-  let(:repository){ described_class.new( Model::Test ) }
+  let(:repository){ Repository::Test.new }
   let(:application_json){}
   let(:headers) do
     {
@@ -99,12 +104,12 @@ describe Fortnox::API::Repository::Base do
       end
 
       describe 'first token store' do
-        let( :repository ){ described_class.new( Model::Test, token_store: :store1) }
+        let( :repository ){ Repository::Test.new( token_store: :store1) }
         it{ is_expected.to eql access_token }
       end
 
       describe 'second token store' do
-        let( :repository ){ described_class.new( Model::Test, token_store: :store2 ) }
+        let( :repository ){ Repository::Test.new( token_store: :store2 ) }
         it{ is_expected.to eql access_token2 }
       end
     end
@@ -125,7 +130,7 @@ describe Fortnox::API::Repository::Base do
         Fortnox::API.configure{ |conf| conf.access_tokens = { some_store: [access_token] } }
       end
 
-      let( :repository ){ described_class.new( Model::Test, token_store: token_store ) }
+      let( :repository ){ Repository::Test.new( token_store: token_store ) }
       let( :token_store ){ :non_existing_store }
 
       it{ is_expected.to raise_error( error, /#{token_store_not_present}/ ) }
@@ -163,18 +168,18 @@ describe Fortnox::API::Repository::Base do
       let( :store_b_token ){ 'token_b1' }
 
       context 'with valid store name' do
-        let( :repository ){ described_class.new( Model::Test, token_store: :store_a ) }
+        let( :repository ){ Repository::Test.new( token_store: :store_a ) }
         it{ is_expected.to eql( store_a_tokens ) }
       end
 
       context 'with non collection' do
-        let( :repository ){ described_class.new( Model::Test, token_store: :store_b ) }
+        let( :repository ){ Repository::Test.new( token_store: :store_b ) }
         it{ is_expected.to eql( store_b_token ) }
       end
 
       context 'with invalid store name' do
         subject{ ->{ get_access_tokens } }
-        let( :repository ){ described_class.new( Model::Test, token_store: :nonsence_store ) }
+        let( :repository ){ Repository::Test.new( token_store: :nonsence_store ) }
         it{ is_expected.to raise_error( error ) }
       end
     end
@@ -199,7 +204,7 @@ describe Fortnox::API::Repository::Base do
 
     context 'with an empty, non default, token store' do
       before{ Fortnox::API.configure{ |conf| conf.access_tokens = { token_store => tokens } } }
-      let( :repository ){ described_class.new( Model::Test, token_store: token_store ) }
+      let( :repository ){ Repository::Test.new( token_store: token_store ) }
       let( :tokens ){ [] }
       let( :token_store ){ :store1 }
       it{ is_expected.to raise_error( error, /#{message}/ ) }
