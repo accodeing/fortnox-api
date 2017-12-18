@@ -79,18 +79,20 @@ describe Fortnox::API::Repository::Base do
 
         it{ is_expected.to include( repository.next_access_token ) }
 
-        # rubocop:disable RSpec/MultipleExpectations
-        # All these checks must be run in same it-statement because
-        # of the random starting index.
-        it 'circulates the tokens' do
+        it 'changes token on next request' do
           token1 = repository.next_access_token
           token2 = repository.next_access_token
+
+          expect( token1 ).not_to eql( token2 )
+        end
+
+        it 'circulates tokens' do
+          token1 = repository.next_access_token
+          repository.next_access_token
           token3 = repository.next_access_token
 
           expect( token1 ).to eql( token3 )
-          expect( token1 ).not_to eql( token2 )
         end
-        # rubocop:enable RSpec/MultipleExpectations
       end
     end
 
