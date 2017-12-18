@@ -35,6 +35,7 @@ describe Fortnox::API::Repository::Base do
   describe 'creation' do
     shared_examples_for 'missing configuration' do
       subject{ ->{ repository } }
+
       let(:error){ Fortnox::API::MissingConfiguration }
 
       it{ is_expected.to raise_error( error, /#{message}/ ) }
@@ -61,11 +62,13 @@ describe Fortnox::API::Repository::Base do
     context 'with default token store' do
       context 'with one access token' do
         subject{ repository.next_access_token }
+
         before{ Fortnox::API.configure{ |conf| conf.access_token = access_token } }
         it{ is_expected.to eql( access_token ) }
 
         describe 'next request' do
           before{ repository.next_access_token }
+
           it 'still uses the same token' do
             is_expected.to eql( access_token )
           end
@@ -74,6 +77,7 @@ describe Fortnox::API::Repository::Base do
 
       context 'with multiple access tokens' do
         subject{ access_tokens }
+
         before{ Fortnox::API.configure{ |conf| conf.access_tokens = access_tokens } }
         let( :access_tokens ){ [access_token, access_token2] }
 
@@ -107,11 +111,13 @@ describe Fortnox::API::Repository::Base do
 
       describe 'first token store' do
         let( :repository ){ Repository::Test.new( token_store: :store1) }
+
         it{ is_expected.to eql access_token }
       end
 
       describe 'second token store' do
         let( :repository ){ Repository::Test.new( token_store: :store2 ) }
+
         it{ is_expected.to eql access_token2 }
       end
     end
@@ -140,6 +146,7 @@ describe Fortnox::API::Repository::Base do
 
     context 'with no tokens set' do
       subject{ ->{ get_access_tokens } }
+
       before{ Fortnox::API.configure{ |conf| conf.access_tokens = {} } }
       let( :token_store ){ :default }
 
@@ -149,6 +156,7 @@ describe Fortnox::API::Repository::Base do
     context 'with one access token in token store' do
       before{ Fortnox::API.configure{ |conf| conf.access_token = access_token } }
       let( :token_store ){ :default }
+
       it{ is_expected.to eql( access_token ) }
     end
 
@@ -157,6 +165,7 @@ describe Fortnox::API::Repository::Base do
         Fortnox::API.configure{ |conf| conf.access_tokens = [access_token, access_token2] }
       end
       let( :token_store ){ :default }
+
       it{ is_expected.to eql( [access_token, access_token2] ) }
     end
 
@@ -171,17 +180,21 @@ describe Fortnox::API::Repository::Base do
 
       context 'with valid store name' do
         let( :repository ){ Repository::Test.new( token_store: :store_a ) }
+
         it{ is_expected.to eql( store_a_tokens ) }
       end
 
       context 'with non collection' do
         let( :repository ){ Repository::Test.new( token_store: :store_b ) }
+
         it{ is_expected.to eql( store_b_token ) }
       end
 
       context 'with invalid store name' do
         subject{ ->{ get_access_tokens } }
+
         let( :repository ){ Repository::Test.new( token_store: :nonsence_store ) }
+
         it{ is_expected.to raise_error( error ) }
       end
     end
@@ -189,6 +202,7 @@ describe Fortnox::API::Repository::Base do
 
   describe '#check_access_tokens!' do
     subject{ ->{ repository.check_access_tokens!(tokens) } }
+
     before{ Fortnox::API.configure{ |conf| conf.client_secret = client_secret } }
     let( :error ){ Fortnox::API::MissingConfiguration }
     let( :message ){ "not provided any access tokens in token store #{ token_store.inspect }" }
@@ -196,11 +210,13 @@ describe Fortnox::API::Repository::Base do
 
     context 'with nil' do
       let( :tokens ){ nil }
+
       it{ is_expected.to raise_error( error, /#{message}/ ) }
     end
 
     context 'with empty array' do
       let( :tokens ){ [] }
+
       it{ is_expected.to raise_error( error, /#{message}/ ) }
     end
 
@@ -209,16 +225,18 @@ describe Fortnox::API::Repository::Base do
       let( :repository ){ Repository::Test.new( token_store: token_store ) }
       let( :tokens ){ [] }
       let( :token_store ){ :store1 }
+
       it{ is_expected.to raise_error( error, /#{message}/ ) }
     end
 
     context 'with valid tokens' do
       let( :tokens ){ ['12345', 'abcde'] }
+
       it{ is_expected.not_to raise_error }
     end
   end
 
-  context 'making a request including the proper headers' do
+  context 'when making a request including the proper headers' do
     before do
       Fortnox::API.configure do |conf|
         conf.client_secret = client_secret
@@ -295,7 +313,7 @@ describe Fortnox::API::Repository::Base do
     end
   end
 
-  context 'raising error from remote server' do
+  context 'when raising error from remote server' do
     before do
       Fortnox::API.configure do |conf|
         conf.client_secret = client_secret

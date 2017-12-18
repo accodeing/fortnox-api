@@ -17,36 +17,43 @@ describe Fortnox::API do
 
     describe 'base_url' do
       let( :config_key ){ :base_url }
+
       it{ is_expected.to eql 'https://api.fortnox.se/3/' }
     end
 
     describe 'client_secret' do
       let( :config_key ){ :client_secret }
+
       it{ is_expected.to be_nil }
     end
 
     describe 'access_token' do
       let( :config_key ){ :access_token }
+
       it{ is_expected.to be_nil }
     end
 
     describe 'access_tokens' do
       let( :config_key ){ :access_tokens }
+
       it{ is_expected.to be_nil }
     end
 
     describe 'token_store' do
       let( :config_key ){ :token_store }
+
       it{ is_expected.to eql( {} ) }
     end
 
     describe 'debugging' do
       let( :config_key ){ :debugging }
+
       it{ is_expected.to be false }
     end
 
     describe 'logger' do
       let( :config_key ){ :logger }
+
       it{ is_expected.to be_a Logger }
 
       describe 'level' do
@@ -59,8 +66,10 @@ describe Fortnox::API do
   describe 'access_token' do
     context 'when set to a String' do
       subject{ described_class.config.access_token }
+
       before{ described_class.configure{ |config| config.access_token = value } }
       let( :value ){ '12345' }
+
       it{ is_expected.to eql value }
     end
 
@@ -112,19 +121,22 @@ describe Fortnox::API do
     context 'when access_token set' do
       before{ described_class.configure{ |config| config.access_token = access_token } }
       let( :access_token ){ '12345' }
+
       it{ is_expected.to eql(default: access_token) }
     end
 
     context 'when access_tokens is' do
       before{ described_class.configure{ |config| config.access_tokens = access_tokens } }
 
-      context 'a Hash' do
+      describe 'a Hash' do
         let( :access_tokens ){ { a: '123', b: '456' } }
+
         it{ is_expected.to eql( access_tokens ) }
       end
 
-      context 'an Array' do
+      describe 'an Array' do
         let( :access_tokens ){ ['123', '456'] }
+
         it{ is_expected.to eql( default: access_tokens ) }
       end
     end
