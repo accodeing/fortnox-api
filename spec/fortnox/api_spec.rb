@@ -13,6 +13,7 @@ describe Fortnox::API do
 
   describe 'configuration defaults' do
     subject(:config_value){ described_class.config[config_key] }
+
     before{ Fortnox::API::TestBase.new }
 
     describe 'base_url' do
@@ -58,6 +59,7 @@ describe Fortnox::API do
 
       describe 'level' do
         subject{ config_value.level }
+
         it{ is_expected.to be Logger::WARN }
       end
     end
@@ -75,6 +77,7 @@ describe Fortnox::API do
 
     shared_examples_for 'invalid argument' do
       subject{ ->{ described_class.configure{ |config| config.access_token = value } } }
+
       it{ is_expected.to raise_error(ArgumentError, /expected a String/) }
     end
 
@@ -94,11 +97,13 @@ describe Fortnox::API do
   describe 'access_tokens' do
     context 'when set to a String' do
       subject{ ->{ described_class.configure{ |config| config.access_tokens = '12345' } } }
+
       it{ is_expected.to raise_error(ArgumentError, /expected a Hash or an Array/) }
     end
 
     shared_examples_for 'valid argument' do
       subject{ described_class.configure{ |config| config.access_tokens = value } }
+
       it{ is_expected.to eql( value ) }
     end
 
