@@ -64,7 +64,7 @@ module Fortnox
           begin
             tokens = config.token_store.fetch( @token_store )
           rescue KeyError
-            no_token_store_found!
+            token_store_not_found!( @token_store.inspect )
           end
 
           check_access_tokens!( tokens )
@@ -95,9 +95,9 @@ module Fortnox
             Fortnox::API.config
           end
 
-          def no_token_store_found!
+          def token_store_not_found!( store_name )
             fail MissingConfiguration,
-                 "There are no token store named #{ @token_store.inspect }."
+                 "There is no token store named #{ store_name }."
           end
       end
     end
