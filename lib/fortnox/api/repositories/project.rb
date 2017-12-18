@@ -5,9 +5,9 @@ require "fortnox/api/mappers/project"
 module Fortnox
   module API
     module Repository
-      class Project < Fortnox::API::Repository::Base
-        MODEL = Fortnox::API::Model::Project
-        MAPPER = Fortnox::API::Mapper::Project
+      class Project < Base
+        MODEL = Model::Project
+        MAPPER = Mapper::Project
         URI = '/projects/'.freeze
       end
     end
