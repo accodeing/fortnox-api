@@ -129,7 +129,7 @@ describe Fortnox::API::Repository::Base do
     before{ Fortnox::API.configure{ |conf| conf.client_secret = client_secret } }
 
     let( :token_store_not_present ) do
-      "There is no token store named #{ token_store.inspect }. Available stores are #{available_stores}."
+      "There is no token store named #{ token_store.inspect }. Available stores are #{ available_stores }."
     end
 
     let( :error ){ Fortnox::API::MissingConfiguration }
