@@ -128,7 +128,10 @@ describe Fortnox::API::Repository::Base do
 
     before{ Fortnox::API.configure{ |conf| conf.client_secret = client_secret } }
 
-    let( :token_store_not_present ){ "no token store named #{ token_store.inspect }." }
+    let( :token_store_not_present ) do
+      "There is no token store named #{ token_store.inspect }. Available stores are #{available_stores}."
+    end
+
     let( :error ){ Fortnox::API::MissingConfiguration }
 
     context 'with non existing token store' do
@@ -140,8 +143,9 @@ describe Fortnox::API::Repository::Base do
 
       let( :repository ){ Repository::Test.new( token_store: token_store ) }
       let( :token_store ){ :non_existing_store }
+      let( :available_stores ){ [:some_store] }
 
-      it{ is_expected.to raise_error( error, /#{token_store_not_present}/ ) }
+      it{ is_expected.to raise_error( error, token_store_not_present ) }
     end
 
     context 'with no tokens set' do
@@ -149,8 +153,9 @@ describe Fortnox::API::Repository::Base do
 
       before{ Fortnox::API.configure{ |conf| conf.access_tokens = {} } }
       let( :token_store ){ :default }
+      let( :available_stores ){ [] }
 
-      it{ is_expected.to raise_error( error, /#{token_store_not_present}/) }
+      it{ is_expected.to raise_error( error, token_store_not_present ) }
     end
 
     context 'with one access token in token store' do
