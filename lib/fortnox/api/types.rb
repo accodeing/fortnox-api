@@ -16,7 +16,7 @@ module Fortnox
 
       require 'fortnox/api/types/sized'
 
-      AccountNumber = Strict::Int.constrained( gt: 0, lteq: 9999 ).optional
+      AccountNumber = Strict::Int.constrained( gteq: 0, lteq: 9999 ).optional
 
       ArticleType = Strict::String.constrained( included_in: ArticleTypes.values ).optional.constructor( EnumConstructors.default )
 
