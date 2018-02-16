@@ -33,7 +33,7 @@ Gem::Specification.new do |spec| # rubocop:disable Metrics/BlockLength
   spec.add_development_dependency "vcr", "~> 3.0"
   spec.add_development_dependency "pry", "~> 0"
   spec.add_development_dependency "codeclimate-test-reporter", "~> 0"
-  spec.add_development_dependency "rubocop", "~> 0.46.0"
+  spec.add_development_dependency "rubocop", "~> 0.52.0"
   spec.add_development_dependency "rubocop-rspec", "~> 1.8.0"
 
 end
