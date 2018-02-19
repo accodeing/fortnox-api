@@ -15,7 +15,7 @@ require "fortnox/api"
 # reloaded the gem and all of it's dependancies with their latest versions.
 
 def reload!
-  exec([ File.absolute_path(__FILE__), __FILE__ ], *ARGV)
+  exec([File.absolute_path(__FILE__), __FILE__], *ARGV)
 end
 
 Pry.start
