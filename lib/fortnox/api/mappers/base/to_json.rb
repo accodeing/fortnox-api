@@ -5,43 +5,44 @@ module Fortnox
     module Mapper
       module ToJSON
         def self.included(base)
-          base.instance_eval do
-            # PUBLIC
+          base.send :extend, ClassMethods
 
-            def call(entity, keys_to_filter = {})
-              entity_hash = entity.to_hash
-              clean_entity_hash = sanitise(entity_hash, keys_to_filter)
-              clean_entity_hash = convert_hash_keys_to_json_format(clean_entity_hash)
-              Registry[:hash].call(clean_entity_hash)
+          base.send :private_class_method,
+                    :convert_hash_keys_to_json_format,
+                    :convert_key_to_json,
+                    :default_key_to_json_transform,
+                    :sanitise
+        end
+
+        module ClassMethods
+          def call(entity, keys_to_filter = {})
+            entity_hash = entity.to_hash
+            clean_entity_hash = sanitise(entity_hash, keys_to_filter)
+            clean_entity_hash = convert_hash_keys_to_json_format(clean_entity_hash)
+            Registry[:hash].call(clean_entity_hash)
+          end
+
+          # PRIVATE
+
+          def convert_hash_keys_to_json_format(hash)
+            hash.each_with_object({}) do |(key, value), json_hash|
+              json_hash[convert_key_to_json(key)] = value
             end
+          end
 
-            # PRIVATE
+          def convert_key_to_json(key)
+            self::KEY_MAP.fetch(key) { default_key_to_json_transform(key) }
+          end
 
-            def convert_hash_keys_to_json_format(hash)
-              hash.each_with_object({}) do |(key, value), json_hash|
-                json_hash[convert_key_to_json(key)] = value
-              end
+          def default_key_to_json_transform(key)
+            key.to_s.split('_').map(&:capitalize).join('')
+          end
+
+          def sanitise(hash, keys_to_filter)
+            hash.reject do |key, value|
+              next false if keys_to_filter.include?(key)
+              value.nil?
             end
-
-            def convert_key_to_json(key)
-              self::KEY_MAP.fetch(key) { default_key_to_json_transform(key) }
-            end
-
-            def default_key_to_json_transform(key)
-              key.to_s.split('_').map(&:capitalize).join('')
-            end
-
-            def sanitise(hash, keys_to_filter)
-              hash.reject do |key, value|
-                next false if keys_to_filter.include?(key)
-                value.nil?
-              end
-            end
-
-            private_class_method :convert_hash_keys_to_json_format,
-                                 :convert_key_to_json,
-                                 :default_key_to_json_transform,
-                                 :sanitise
           end
         end
 

@@ -9,7 +9,8 @@ module Fortnox
       class Base < Fortnox::API::Types::Model
         # TODO(jonas): Restructure this class a bit, it is not very readable.
 
-        attr_accessor :unsaved, :parent
+        attr_accessor :unsaved
+        attr_writer :parent
 
         def self.attribute(name, *args)
           define_method("#{name}?") do
@@ -102,7 +103,7 @@ module Fortnox
         private
 
         def private_attributes
-          @@private_attributes ||= attribute_set.reject(&:public_writer?)
+          @private_attributes ||= attribute_set.reject(&:public_writer?)
         end
       end
     end

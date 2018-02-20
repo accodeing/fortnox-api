@@ -1,16 +1,14 @@
 # frozen_string_literal: true
 
 require 'fortnox/api/models/base'
-require 'fortnox/api/models/document_base'
+require 'fortnox/api/models/document'
 
 module Fortnox
   module API
     module Model
-      class Order < Fortnox::API::Model::Base
+      class Order < Document
         UNIQUE_ID = :document_number
         STUB = { customer_number: '', order_rows: [] }.freeze
-
-        DocumentBase.ify(self)
 
         # CopyRemarks I remarks shall copies from order to invoice
         attribute :copy_remarks, Types::Nullable::Boolean

@@ -26,7 +26,7 @@ Gem::Specification.new do |spec| # rubocop:disable Metrics/BlockLength
   spec.test_files    = spec.files.grep(%r{^(spec)/})
   spec.require_paths = ['lib']
 
-  spec.required_ruby_version = '> 2.2'
+  spec.required_ruby_version = '> 2.4'
   spec.add_dependency 'dry-struct', '~> 0.1'
   spec.add_dependency 'dry-types', '~> 0.8'
   # TODO: Temporary lockdown. See issue #103 for more info.

@@ -57,10 +57,10 @@ module Fortnox
         # CustomerNumber	Customer number. 1024 characters
         attribute :customer_number, Types::Sized::String[1024]
 
-        # DefaultDeliveryTypes The properties for this object is listed in the table for “Default Delivery Types”.
+        # DefaultDeliveryTypes The properties for this object is listed in the table for "Default Delivery Types".
         attribute :default_delivery_types, Types::DefaultDeliveryTypes
 
-        # The properties for this object is listed in the table for “Default Templates”.
+        # The properties for this object is listed in the table for "Default Templates".
         attribute :default_templates, Types::DefaultTemplates
 
         # DeliveryAddress1	First delivery address of the customer. 1024 characters

@@ -5,14 +5,14 @@ module Fortnox
     module Types
       module EnumConstructors
         def self.sized(size)
-          lambda(value) do
+          lambda do |value|
             return nil if value == ''
             value.to_s.upcase[0...size] unless value.nil?
           end
         end
 
         def self.default
-          lambda(value) do
+          lambda do |value|
             return nil if value == ''
             value.to_s.upcase unless value.nil?
           end

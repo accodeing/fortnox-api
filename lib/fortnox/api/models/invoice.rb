@@ -1,16 +1,14 @@
 # frozen_string_literal: true
 
 require 'fortnox/api/models/base'
-require 'fortnox/api/models/document_base'
+require 'fortnox/api/models/document'
 
 module Fortnox
   module API
     module Model
-      class Invoice < Fortnox::API::Model::Base
+      class Invoice < Document
         UNIQUE_ID = :document_number
         STUB = { customer_number: '' }.freeze
-
-        DocumentBase.ify(self)
 
         # UrlTaxReductionList Direct url to the tax reduction for the invoice.
         attribute :url_tax_reduction_list, Types::Nullable::String.with(read_only: true)

@@ -1,7 +1,7 @@
 require: rubocop-rspec
 
 AllCops:
-  TargetRubyVersion: 2.2
+  TargetRubyVersion: 2.4
   DisplayCopNames: true
 
 RSpec/FilePath:
@@ -12,3 +12,6 @@ RSpec/NestedGroups:
 
 Style/Documentation:
   Enabled: false
+  
+Metrics/LineLength:
+  Max: 120
