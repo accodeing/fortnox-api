@@ -6,9 +6,8 @@ require 'fortnox/api/types'
 require 'fortnox/api/repositories/order'
 require 'fortnox/api/models/order'
 require 'fortnox/api/types/order_row'
-}  escribeClass
-describe '
-}  ouseWorkTypes', integration: true do
+
+describe 'HouseWorkTypes', integration: true do
   include Helpers::Configuration
 
   before { set_api_test_configuration }
