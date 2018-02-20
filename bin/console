@@ -1,8 +1,9 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
 
-require "bundler/setup"
+require 'bundler/setup'
 
-require "pry"
-require "fortnox/api"
+require 'pry'
+require 'fortnox/api'
 
 Pry.start

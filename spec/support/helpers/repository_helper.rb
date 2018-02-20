@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Helpers
   module Repositories
     # Returns directory for VCR.

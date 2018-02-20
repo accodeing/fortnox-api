@@ -1,5 +1,7 @@
-require "fortnox/api/models/base"
-require "fortnox/api/models/document_base"
+# frozen_string_literal: true
+
+require 'fortnox/api/models/base'
+require 'fortnox/api/models/document_base'
 
 module Fortnox
   module API
@@ -8,19 +10,19 @@ module Fortnox
         UNIQUE_ID = :document_number
         STUB = { customer_number: '', order_rows: [] }.freeze
 
-        DocumentBase.ify( self )
+        DocumentBase.ify(self)
 
-        #CopyRemarks I remarks shall copies from order to invoice
+        # CopyRemarks I remarks shall copies from order to invoice
         attribute :copy_remarks, Types::Nullable::Boolean
 
         # InvoiceReference Reference if an invoice is created from order
-        attribute :invoice_reference, Types::Nullable::Integer.with( read_only: true )
+        attribute :invoice_reference, Types::Nullable::Integer.with(read_only: true)
 
         # OrderDate Date of order
         attribute :order_date, Types::Nullable::Date
 
         # OrderRows Separate object
-        attribute :order_rows, Types::Strict::Array.member( Types::OrderRow )
+        attribute :order_rows, Types::Strict::Array.member(Types::OrderRow)
       end
     end
   end

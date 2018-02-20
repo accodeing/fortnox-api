@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'forwardable'
 
 module Fortnox
@@ -5,8 +7,8 @@ module Fortnox
     class CircularQueue
       extend Forwardable
 
-      def initialize *items
-        @queue = [ *items ]
+      def initialize(*items)
+        @queue = [*items]
         @@next_index = random_start_index
       end
 
@@ -14,20 +16,20 @@ module Fortnox
       def_delegators :@queue, :new, :[], :size
 
       def next
-        value = @queue[ @@next_index ]
+        value = @queue[@@next_index]
         if @@next_index == size - 1
           @@next_index = 0
         else
           @@next_index += 1
         end
-        return value
+        value
       end
 
       private
 
-        def random_start_index
-          Random.rand(@queue.size)
-        end
+      def random_start_index
+        Random.rand(@queue.size)
+      end
     end
   end
 end

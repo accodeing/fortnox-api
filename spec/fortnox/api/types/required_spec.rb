@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 require 'fortnox/api/types'
 require 'fortnox/api/types/required'
@@ -9,10 +11,10 @@ describe Fortnox::API::Types::Required, type: :type do
   end
 
   shared_examples_for 'required attribute' do |_type|
-    subject{ ->{ TestClass.new({}) } }
+    subject { -> { TestClass.new({}) } }
 
     let(:error_message) do
-      "[#{ TestClass }.new] #{ :required_attribute.inspect } is missing in Hash input"
+      "[#{TestClass}.new] #{:required_attribute.inspect} is missing in Hash input"
     end
 
     it 'raises an error' do

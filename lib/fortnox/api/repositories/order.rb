@@ -1,6 +1,8 @@
-require "fortnox/api/repositories/base"
-require "fortnox/api/models/order"
-require "fortnox/api/mappers/order"
+# frozen_string_literal: true
+
+require 'fortnox/api/repositories/base'
+require 'fortnox/api/models/order'
+require 'fortnox/api/mappers/order'
 
 module Fortnox
   module API
@@ -8,7 +10,7 @@ module Fortnox
       class Order < Base
         MODEL = Model::Order
         MAPPER = Mapper::Order
-        URI = '/orders/'.freeze
+        URI = '/orders/'
       end
     end
   end

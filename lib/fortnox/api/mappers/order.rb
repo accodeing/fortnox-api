@@ -1,7 +1,9 @@
-require "fortnox/api/mappers/base"
-require "fortnox/api/mappers/edi_information"
-require "fortnox/api/mappers/email_information"
-require "fortnox/api/mappers/order_row"
+# frozen_string_literal: true
+
+require 'fortnox/api/mappers/base'
+require 'fortnox/api/mappers/edi_information'
+require 'fortnox/api/mappers/email_information'
+require 'fortnox/api/mappers/order_row'
 
 module Fortnox
   module API
@@ -13,11 +15,11 @@ module Fortnox
           total_vat: 'TotalVAT',
           vat_included: 'VATIncluded'
         }.freeze
-        JSON_ENTITY_WRAPPER = 'Order'.freeze
-        JSON_COLLECTION_WRAPPER = 'Orders'.freeze
+        JSON_ENTITY_WRAPPER = 'Order'
+        JSON_COLLECTION_WRAPPER = 'Orders'
       end
 
-      Registry.register( Order.canonical_name_sym, Order )
+      Registry.register(Order.canonical_name_sym, Order)
     end
   end
 end

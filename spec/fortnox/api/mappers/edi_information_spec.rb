@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 require 'fortnox/api'
 require 'fortnox/api/mappers/edi_information'
 require 'fortnox/api/mappers/examples/mapper'
 
 describe Fortnox::API::Mapper::EDIInformation do
-  key_map = { 
+  key_map = {
     edi_global_location_number: 'EDIGlobalLocationNumber',
     edi_global_location_number_delivery: 'EDIGlobalLocationNumberDelivery',
     edi_invoice_extra1: 'EDIInvoiceExtra1',
@@ -16,6 +18,6 @@ describe Fortnox::API::Mapper::EDIInformation do
   json_entity_collection = 'EDIInformation'
 
   it_behaves_like 'mapper', key_map, json_entity_type, json_entity_collection do
-    let(:mapper){ described_class.new }
+    let(:mapper) { described_class.new }
   end
 end

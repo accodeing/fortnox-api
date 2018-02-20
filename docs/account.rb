@@ -1,11 +1,12 @@
-require "fortnox/api/models/base"
+# frozen_string_literal: true
+
+require 'fortnox/api/models/base'
 
 module Fortnox
   module API
     module Entities
       module Account
         class Entity < Fortnox::API::Model::Base
-
           # Direct URL to the record
           attribute :url, String
 
@@ -50,10 +51,8 @@ module Fortnox
 
           # Id of the financial year.
           attribute :year, Integer
-
         end
       end
     end
   end
 end
-

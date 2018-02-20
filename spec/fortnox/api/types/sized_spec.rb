@@ -1,19 +1,21 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 require 'fortnox/api/types'
 require 'fortnox/api/types/examples/types'
 
 describe Fortnox::API::Types::Sized do
-
   shared_examples_for 'Sized Types' do
     context 'created with nil' do
-      subject{ klass[ nil ] }
-      it{ is_expected.to be_nil }
+      subject { klass[nil] }
+
+      it { is_expected.to be_nil }
     end
   end
 
   describe 'String' do
     max_size = 5
-    let( :klass ){ described_class::String[ max_size ] }
+    let(:klass) { described_class::String[max_size] }
 
     it_behaves_like 'Sized Types'
 
@@ -35,7 +37,7 @@ describe Fortnox::API::Types::Sized do
   end
 
   shared_examples_for 'Sized Numeric' do |type, min, max, step|
-    let( :klass ){ described_class.const_get(type)[ min, max ] }
+    let(:klass) { described_class.const_get(type)[min, max] }
 
     it_behaves_like 'Sized Types'
 

@@ -1,4 +1,6 @@
-require "fortnox/api/types/document_row"
+# frozen_string_literal: true
+
+require 'fortnox/api/types/document_row'
 
 module Fortnox
   module API
@@ -8,7 +10,7 @@ module Fortnox
 
         DocumentRow.ify self
 
-        #OrderedQuantity Ordered quantity
+        # OrderedQuantity Ordered quantity
         attribute :ordered_quantity, Types::Required::Float
       end
     end

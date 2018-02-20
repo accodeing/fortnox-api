@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 require 'fortnox/api'
 require 'fortnox/api/mappers'
@@ -12,9 +14,9 @@ require 'fortnox/api/repositories/examples/search'
 describe Fortnox::API::Repository::Order, order: :defined, integration: true do
   include Helpers::Configuration
 
-  before{ set_api_test_configuration }
+  before { set_api_test_configuration }
 
-  subject(:repository){ described_class.new }
+  subject(:repository) { described_class.new }
 
   required_hash = { customer_number: '1' }
 
@@ -25,19 +27,19 @@ describe Fortnox::API::Repository::Order, order: :defined, integration: true do
                    required_hash,
                    :order_rows,
                    nested_model_hash,
-                   [ Fortnox::API::Types::OrderRow.new( nested_model_hash ) ]
+                   [Fortnox::API::Types::OrderRow.new(nested_model_hash)]
 
   # It is not possible to delete Orders. Therefore, expected nr of Orders
   # when running .all will continue to increase (until 100, which is max by default).
   include_examples '.all', 100
 
   include_examples '.find', 1 do
-    let( :find_by_hash_failure ){ { ourreference: 'Not found' } }
+    let(:find_by_hash_failure) { { ourreference: 'Not found' } }
 
-    let( :single_param_find_by_hash ) do
+    let(:single_param_find_by_hash) do
       { find_hash: { ourreference: 'Belladonna Took' }, matches: 2 }
     end
-    let( :multi_param_find_by_hash ) do
+    let(:multi_param_find_by_hash) do
       { find_hash: { ourreference: 'Belladonna Took', yourreference: 'Bodo Proudfoot' },
         matches: 1 }
     end

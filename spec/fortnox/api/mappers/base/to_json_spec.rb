@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 require 'fortnox/api/mappers/base/to_json'
 require 'fortnox/api/mappers/contexts/json_conversion'
