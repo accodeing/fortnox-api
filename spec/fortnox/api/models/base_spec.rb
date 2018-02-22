@@ -84,18 +84,30 @@ describe Fortnox::API::Model::Base do
     end
 
     context 'with a saved entity' do
-      subject(:updated_entry) { saved_entry.update(string: 'Updated') }
+      subject { saved_entry }
 
       let(:saved_entry) { Entity.new(string: 'Saved', new: false, unsaved: false) }
+      let(:updated_entry) { saved_entry.update(string: 'Updated') }
 
       before do
-        expect(saved_entry).not_to be_new
-        expect(saved_entry).to be_saved
+        raise 'Entity expected to be new!' if saved_entry.new?
+        raise 'Entity not expected to be saved!' unless saved_entry.saved?
       end
 
-      specify { expect(updated_entry.string).to eq('Updated') }
-      it { is_expected.not_to be_new }
-      it { is_expected.not_to be_saved }
+      describe 'returned entity' do
+        subject { updated_entry }
+
+        it { is_expected.not_to be_saved }
+        it { is_expected.not_to be_new }
+      end
+
+      describe "returned entity's atttribute value" do
+        subject { updated_entry.string }
+
+        it 'is updated' do
+          is_expected.to eq('Updated')
+        end
+      end
     end
   end
 end
