@@ -18,9 +18,7 @@ module Helpers
 
       clean_up_dry_types
 
-      classes_created_by_block.each do |klass|
-        Object.send(:remove_const, klass)
-      end
+      classes_created_by_block.each { |klass| Object.send(:remove_const, klass) }
     end
   end
 
