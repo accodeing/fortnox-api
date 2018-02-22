@@ -13,7 +13,7 @@ describe Fortnox::API::Mapper::ToJSON do
     it 'should be tested'
   end
 
-  # include_context 'JSON conversion'
+  # include_context 'with JSON conversion'
 
   # before do
   #   module Test

@@ -3,7 +3,7 @@
 require 'fortnox/api'
 require 'fortnox/api/mappers'
 
-shared_context 'JSON conversion' do
+shared_context 'with JSON conversion' do
   before do
     module Test
       class BaseMapper

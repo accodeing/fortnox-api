@@ -5,7 +5,7 @@ require 'fortnox/api/mappers/base/from_json'
 require 'fortnox/api/mappers/contexts/json_conversion'
 
 describe Fortnox::API::Mapper::FromJSON do
-  include_context 'JSON conversion'
+  include_context 'with JSON conversion'
 
   before do
     module Test

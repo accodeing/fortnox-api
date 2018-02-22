@@ -83,7 +83,7 @@ describe Fortnox::API::Model::Base do
       it { is_expected.not_to be_saved }
     end
 
-    context 'a saved entity' do
+    context 'with a saved entity' do
       subject(:updated_entry) { saved_entry.update(string: 'Updated') }
 
       let(:saved_entry) { Entity.new(string: 'Saved', new: false, unsaved: false) }
