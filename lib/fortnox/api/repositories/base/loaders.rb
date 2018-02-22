@@ -26,11 +26,7 @@ module Fortnox
         def find( id_or_hash )
           return find_all_by( id_or_hash ) if id_or_hash.is_a? Hash
 
-          id = Integer( id_or_hash )
-          find_one_by( id )
-
-        rescue ArgumentError
-          raise ArgumentError, "find only accepts a number or hash as argument"
+          find_one_by( id_or_hash )
         end
 
         def find_one_by( id )
