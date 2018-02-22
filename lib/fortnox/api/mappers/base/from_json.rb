@@ -72,10 +72,12 @@ module Fortnox
 
         def default_key_from_json_transform(key)
           key = key.to_s
-          unless key.match?(/\A[A-Z]+\z/)
-            key = key.gsub(/([A-Z]+)([A-Z][a-z])/, '\1_\2').gsub(/([a-z])([A-Z])/, '\1_\2')
-          end
+          key = camelCase_to_underscore(key) unless key =~ /\A[A-Z]+\z/
           key.downcase.to_sym
+        end
+
+        def camelCase_to_underscore(key)
+          key.gsub(/([A-Z]+)([A-Z][a-z])/, '\1_\2').gsub(/([a-z])([A-Z])/, '\1_\2')
         end
       end
     end
