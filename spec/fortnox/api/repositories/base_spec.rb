@@ -316,6 +316,9 @@ describe Fortnox::API::Repository::Base do
   end
 
   context 'when raising error from remote server' do
+    error_message = 'Räkenskapsår finns inte upplagt. '\
+                    'För att kunna skapa en faktura krävs det att det finns ett räkenskapsår'
+
     before do
       Fortnox::API.configure do |conf|
         conf.client_secret = client_secret
@@ -327,7 +330,12 @@ describe Fortnox::API::Repository::Base do
         'https://api.fortnox.se/3/test'
       ).to_return(
         status: 500,
-        body: { 'ErrorInformation' => { 'error' => 1, 'message' => 'Räkenskapsår finns inte upplagt. För att kunna skapa en faktura krävs det att det finns ett räkenskapsår' } }.to_json,
+        body: {
+          'ErrorInformation' => {
+            'error' => 1,
+            'message' => error_message
+          }
+        }.to_json,
         headers: { 'Content-Type' => 'application/json' }
       )
     end
@@ -335,7 +343,7 @@ describe Fortnox::API::Repository::Base do
     subject { -> { repository.post('/test', body: '') } }
 
     it { is_expected.to raise_error(Fortnox::API::RemoteServerError) }
-    it { is_expected.to raise_error('Räkenskapsår finns inte upplagt. För att kunna skapa en faktura krävs det att det finns ett räkenskapsår') }
+    it { is_expected.to raise_error(error_message) }
 
     context 'with debugging enabled' do
       around do |example|

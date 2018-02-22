@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 RSpec.shared_examples_for '.all' do |count|
   describe '.all' do
     let(:response) do

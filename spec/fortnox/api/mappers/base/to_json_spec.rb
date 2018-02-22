@@ -5,8 +5,7 @@ require 'fortnox/api/mappers/base/to_json'
 require 'fortnox/api/mappers/contexts/json_conversion'
 
 describe Fortnox::API::Mapper::ToJSON do
-  # TODO:
-  # Following error is risen sometimes when all specs are run:
+  # TODO: Following error is risen sometimes when all specs are run:
   # "NoMethodError: undefined method `call\' for Test::ProductMapper:Class`"
   it 'should be tested when random error is fixed!'
 

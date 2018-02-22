@@ -6,36 +6,36 @@ shared_examples_for 'enum' do |name, values, auto_crop: false|
   describe name do
     let(:klass) { Fortnox::API::Types.const_get(name) }
 
-    context 'created with nil' do
+    context 'when created with nil' do
       subject { klass[nil] }
 
       it { is_expected.to be_nil }
     end
 
-    context 'created with' do
+    context 'when created' do
       subject { klass[input] }
 
       let(:enum_value) { Fortnox::API::Types.const_get(values).values.sample }
 
-      context 'a random member from then enum' do
+      context 'with a random member from then enum' do
         let(:input) { enum_value }
 
         it { is_expected.to eq enum_value }
       end
 
-      context 'a symoblised, random member from the enum' do
+      context 'with a symoblised, random member from the enum' do
         let(:input) { enum_value.to_sym }
 
         it { is_expected.to eq enum_value }
       end
 
-      context 'a lower case, random member from the enum' do
+      context 'with a lower case, random member from the enum' do
         let(:input) { enum_value.downcase }
 
         it { is_expected.to eq enum_value }
       end
 
-      context 'a string that starts like a random member from the enum' do
+      context 'with a string that starts like a random member from the enum' do
         let(:input) { enum_value.downcase + 'more string' }
 
         if auto_crop
@@ -48,7 +48,7 @@ shared_examples_for 'enum' do |name, values, auto_crop: false|
       end
     end
 
-    context 'created with invalid input' do
+    context 'when created with invalid input' do
       include_examples 'raises ConstraintError', 'r4nd0m'
     end
   end

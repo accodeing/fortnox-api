@@ -21,7 +21,8 @@ module Matchers
       def correct_type?
         return true if expected_type?
 
-        @errors << "Attribute #{@attribute.inspect} was expected to be of type #{@attribute_type}, but was #{@actual_type}"
+        @errors << "Attribute #{@attribute.inspect} was expected to be of type #{@attribute_type}, "\
+                   "but was #{@actual_type}"
         false
       end
 

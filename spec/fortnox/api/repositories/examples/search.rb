@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 shared_examples_for '.search' do |attribute_hash_key_name, value, matches|
   describe '.search' do
     describe 'search' do

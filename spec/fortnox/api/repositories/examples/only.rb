@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 shared_examples_for '.only' do |matching_filter, expected_matches, missing_filter: nil|
   describe '.only' do
     def repository_only(repository, vcr_cassette, filter)
