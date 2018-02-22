@@ -46,9 +46,8 @@ shared_context 'with JSON conversion' do
     end
 
     def register_mapper(mapper_sym, mapper)
-      unless Fortnox::API::Registry.key? mapper_sym
-        Fortnox::API::Registry.register(mapper_sym, mapper)
-      end
+      return if Fortnox::API::Registry.key? mapper_sym
+      Fortnox::API::Registry.register(mapper_sym, mapper)
     end
 
     register_mapper(:category, Test::CategoryMapper)

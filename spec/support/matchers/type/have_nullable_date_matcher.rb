@@ -45,15 +45,13 @@ module Matchers
         @klass.new(@attribute => @invalid_value)
 
         @failure_description << " (Expected #{@expected_error}, but got none)"
-        return false
+        false
       rescue @expected_error => error
-        if error.message == @expected_error_message
-          return true
-        else
-          fail_message = "Expected error message to include #{expected_message.inspect}, "\
-                         "but was #{error.message.inspect}"
-          raise(fail_message)
-        end
+        return true if error.message == @expected_error_message
+
+        fail_message = "Expected error message to include #{expected_message.inspect}, "\
+                       "but was #{error.message.inspect}"
+        raise(fail_message)
       end
     end
   end

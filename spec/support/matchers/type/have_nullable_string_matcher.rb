@@ -36,13 +36,11 @@ module Matchers
       rescue Fortnox::API::InvalidAttributeValueError => error
         expected_message = "#{non_string.inspect} (#{non_string.class}) "\
                            "has invalid type for #{@attribute.inspect}"
-        if error.message.include?(expected_message)
-          return true
-        else
-          fail_message = "Expected error message to include #{expected_message.inspect}, "\
-                         "but was #{error.message.inspect}"
-          raise(fail_message)
-        end
+        return true if error.message.include?(expected_message)
+
+        fail_message = "Expected error message to include #{expected_message.inspect}, "\
+                       "but was #{error.message.inspect}"
+        raise(fail_message)
       end
     end
   end

@@ -44,12 +44,10 @@ module Matchers
       def includes_error_message
         @klass.new(@invalid_hash)
       rescue EXCEPTION => error
-        if error.message.include? expected_error_message
-          return true
-        else
-          @wrong_error_message = error.message
-          return false
-        end
+        return true if error.message.include? expected_error_message
+
+        @wrong_error_message = error.message
+        false
       end
 
       def expected_error_message
