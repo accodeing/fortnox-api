@@ -66,14 +66,20 @@ describe Fortnox::API::Repository::Base do
         subject { repository.next_access_token }
 
         before { Fortnox::API.configure { |conf| conf.access_token = access_token } }
+
         it { is_expected.to eql(access_token) }
+      end
 
-        describe 'next request' do
-          before { repository.next_access_token }
+      context 'with one access token and two subsequent requests' do
+        subject { repository.next_access_token }
 
-          it 'still uses the same token' do
-            is_expected.to eql(access_token)
-          end
+        before do
+          Fortnox::API.configure { |conf| conf.access_token = access_token }
+          repository.next_access_token
+        end
+
+        it 'still uses the same token' do
+          is_expected.to eql(access_token)
         end
       end
 
