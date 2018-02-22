@@ -1,0 +1,48 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.fortnox.se/3/units/blarg
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      Authorization-Code:
+      - ea3862b0-189c-464b-8e23-1b9702365ea1
+      Client-Secret:
+      - 9aBA8ZgsvR
+      Access-Token:
+      - ccaef817-d5d8-4b1c-a316-54f3e55c5c54
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Thu, 22 Feb 2018 15:11:16 GMT
+      Content-Type:
+      - application/json
+      Connection:
+      - close
+      Vary:
+      - Accept-Encoding
+      - Accept-Encoding
+      X-Rack-Responsetime:
+      - '15'
+      X-Uid:
+      - 2954eb0c
+      X-Build:
+      - bec4a33b2e
+    body:
+      encoding: UTF-8
+      string: '{"Unit":{"@url":"https:\/\/api.fortnox.se\/3\/units\/blarg","Code":"blarg","Description":"A
+        value"}}'
+    http_version: 
+  recorded_at: Thu, 22 Feb 2018 15:11:16 GMT
+recorded_with: VCR 3.0.3
