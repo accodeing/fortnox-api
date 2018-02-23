@@ -89,11 +89,6 @@ describe Fortnox::API::Model::Base do
       let(:saved_entry) { Entity.new(string: 'Saved', new: false, unsaved: false) }
       let(:updated_entry) { saved_entry.update(string: 'Updated') }
 
-      before do
-        raise 'Entity expected to be new!' if saved_entry.new?
-        raise 'Entity not expected to be saved!' unless saved_entry.saved?
-      end
-
       describe 'returned entity' do
         subject { updated_entry }
 
