@@ -9,7 +9,7 @@ module Fortnox
     # Shhh Rubocop, we don't need a comment here ... Really
     module Mapper
       describe Unit do
-        describe 'when mapping model' do
+        context 'when mapping model' do
           let(:model) { Model::Unit.new(code: 'lbs', description: 'Pounds') }
           let(:serialised_model_hash) { { 'Unit' => { 'Code' => 'lbs', 'Description' => 'Pounds' }} }
           let(:model_hash) { { code: 'lbs', description: 'Pounds' } }
@@ -27,7 +27,7 @@ module Fortnox
           end
         end
 
-        describe 'when mapping collection' do
+        context 'when mapping collection' do
           let(:serialised_collection_hash) do
             { 'Units' => [
               { 'Unit' => { 'Code' => 'lbs', 'Description' => 'Pounds' } },
