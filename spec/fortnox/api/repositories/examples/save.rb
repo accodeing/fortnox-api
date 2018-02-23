@@ -40,12 +40,6 @@ shared_examples_for '.save' do |attribute, additional_attrs: {}|
         let(:hash) { { unsaved: false }.merge(new_hash) }
         let(:model) { described_class::MODEL.new(hash) }
 
-        before do
-          # Should not make an API request in test!
-          expect(repository).not_to receive(:save_new)
-          expect(repository).not_to receive(:update_existing)
-        end
-
         specify { expect(repository.save(model)).to be(true) }
       end
     end

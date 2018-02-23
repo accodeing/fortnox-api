@@ -7,6 +7,7 @@ require 'fortnox/api/repositories/order'
 require 'fortnox/api/models/order'
 require 'fortnox/api/types/order_row'
 
+# rubocop:disable RSpec/DescribeClass
 describe 'HouseWorkTypes', integration: true do
   include Helpers::Configuration
 
@@ -19,7 +20,8 @@ describe 'HouseWorkTypes', integration: true do
   let(:order_row) do
     Fortnox::API::Types::OrderRow.new(ordered_quantity: 1,
                                       article_number: '0000',
-                                      house_work_type: house_work_type) end
+                                      house_work_type: house_work_type)
+  end
 
   shared_examples_for 'house work type' do |type, legacy: false|
     subject do

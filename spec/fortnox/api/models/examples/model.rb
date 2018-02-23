@@ -11,10 +11,11 @@ shared_examples_for 'a model' do |unique_id|
   describe '.unique_id' do
     subject { model.unique_id }
 
-    before { expect(model.send(unique_id_attribute)).to eq unique_id }
-
-    let(:attributes) { required_attributes.merge(unique_id_attribute => unique_id) }
-    let(:model) { described_class.new(attributes) }
+    let(:model) do
+      described_class.new(
+        required_attributes.merge(unique_id_attribute => unique_id)
+      )
+    end
 
     it { is_expected.to eq unique_id }
   end
