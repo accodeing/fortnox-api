@@ -12,7 +12,7 @@ module Fortnox
         attribute :url, Types::Nullable::String.with(read_only: true)
 
         # Comments Comments on project. 512 characters
-        attribute :code, Types::Nullable::String.with(read_only: true)
+        attribute :code, Types::Required::String.with(read_only: true)
 
         # ContactPerson ContactPerson for project. 50 characters
         attribute :description, Types::Nullable::String
