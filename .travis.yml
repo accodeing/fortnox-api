@@ -2,7 +2,9 @@ rvm:
   - "2.2.5"
   - "2.3.0"
   - "2.3.1"
-  # - "2.4.0" TODO: Ruby 2.4 not supported yet. See issue #93.
+  - "2.4.0"
+  - "2.4.1"
+  - "2.5.0"
 addons:
   code_climate:
     repo_token: 397c19af63ca3467cff6fd640b0460b691f687118332b5989f530d28f82adcb8
