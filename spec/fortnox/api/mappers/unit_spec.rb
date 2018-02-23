@@ -1,15 +1,55 @@
 require 'spec_helper'
 require 'fortnox/api'
-require 'fortnox/api/mappers/customer'
+require 'fortnox/api/mappers/unit'
+require 'fortnox/api/models/unit'
 require 'fortnox/api/mappers/examples/mapper'
 
-describe Fortnox::API::Mapper::Unit do
-  key_map = Fortnox::API::Mapper::Unit::KEY_MAP
+module Fortnox
+  module API
+    # Shhh Rubocop, we don't need a comment here ... Really
+    module Mapper
+      describe Unit do
+        describe 'when mapping model' do
+          let(:model) { Model::Unit.new(code: 'lbs', description: 'Pounds') }
+          let(:serialised_model_hash) { { 'Unit' => { 'Code' => 'lbs', 'Description' => 'Pounds' }} }
+          let(:model_hash) { { code: 'lbs', description: 'Pounds' } }
 
-  json_entity_type = 'Unit'
-  json_entity_collection = 'Units'
+          describe '#entity_to_hash' do
+            subject { Unit.new.entity_to_hash(model, {}) }
 
-  it_behaves_like 'mapper', key_map, json_entity_type, json_entity_collection do
-    let(:mapper){ described_class.new }
+            it { is_expected.to eq(serialised_model_hash) }
+          end
+
+          describe '#wrapped_json_hash_to_entity_hash' do
+            subject { Unit.new.wrapped_json_hash_to_entity_hash(serialised_model_hash) }
+
+            it { is_expected.to eq(model_hash) }
+          end
+        end
+
+        describe 'when mapping collection' do
+          let(:serialised_collection_hash) do
+            { 'Units' => [
+              { 'Unit' => { 'Code' => 'lbs', 'Description' => 'Pounds' } },
+              { 'Unit' => { 'Code' => 'ohm', 'Description' => 'Ω' } },
+              { 'Unit' => { 'Code' => 'A/V', 'Description' => 'Ampere volt' } }
+            ] }
+          end
+          let(:collection_hash) do
+            [
+              { unit: { code: 'lbs', description: 'Pounds' } },
+              { unit: { code: 'ohm', description: 'Ω' } },
+              { unit: { code: 'A/V', description: 'Ampere volt' } }
+            ]
+          end
+
+          describe '#wrapped_json_collection_to_entities_hash' do
+            subject { Unit.new.wrapped_json_collection_to_entities_hash(serialised_collection_hash) }
+
+            it { is_expected.to eq(collection_hash) }
+          end
+        end
+      end
+    end
   end
 end
