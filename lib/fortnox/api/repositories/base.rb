@@ -58,7 +58,8 @@ module Fortnox
 
         def check_access_tokens!(tokens)
           if tokens.nil? || tokens.empty?
-            raise MissingConfiguration, "You have not provided any access tokens in token store #{@token_store.inspect}."
+            error_message = "You have not provided any access tokens in token store #{@token_store.inspect}."
+            raise MissingConfiguration, error_message
           end
         end
 
