@@ -18,7 +18,7 @@ module Fortnox
 
         def search(hash)
           attribute, value = hash.first
-          uri_encoded_value = URI.escape(value)
+          uri_encoded_value = CGI.escape(value)
           uri = "#{self.class::URI}?#{attribute}=#{uri_encoded_value}"
           response_hash = get(uri)
           instantiate_collection_response(response_hash)

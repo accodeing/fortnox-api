@@ -131,8 +131,8 @@ describe Fortnox::API::Repository::Base do
     end
   end
 
-  describe '#get_access_tokens' do
-    subject(:get_access_tokens) { repository.get_access_tokens }
+  describe '#access_tokens' do
+    subject(:access_tokens) { repository.access_tokens }
 
     before { Fortnox::API.configure { |conf| conf.client_secret = client_secret } }
 
@@ -140,7 +140,7 @@ describe Fortnox::API::Repository::Base do
     let(:error) { Fortnox::API::MissingConfiguration }
 
     context 'with non existing token store' do
-      subject { -> { get_access_tokens } }
+      subject { -> { access_tokens } }
 
       before do
         Fortnox::API.configure { |conf| conf.access_tokens = { some_store: [access_token] } }
@@ -153,7 +153,7 @@ describe Fortnox::API::Repository::Base do
     end
 
     context 'with no tokens set' do
-      subject { -> { get_access_tokens } }
+      subject { -> { access_tokens } }
 
       before { Fortnox::API.configure { |conf| conf.access_tokens = {} } }
       let(:token_store) { :default }
@@ -199,7 +199,7 @@ describe Fortnox::API::Repository::Base do
       end
 
       context 'with invalid store name' do
-        subject { -> { get_access_tokens } }
+        subject { -> { access_tokens } }
 
         let(:repository) { Repository::Test.new(token_store: :nonsence_store) }
 

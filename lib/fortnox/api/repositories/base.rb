@@ -26,7 +26,7 @@ module Fortnox
         attr_accessor :headers
         attr_reader :mapper, :keys_filtered_on_save
 
-        def self.set_headers(headers = {})
+        def self.set_headers(headers = {}) # rubocop:disable Naming/AccessorMethodName
           self.headers.merge!(headers)
         end
 
@@ -40,10 +40,10 @@ module Fortnox
         end
 
         def initialize(keys_filtered_on_save: [:url], token_store: :default)
-          self.class.base_uri(get_base_url)
+          self.class.base_uri(base_url)
 
           self.headers = DEFAULT_HEADERS.merge(
-            'Client-Secret' => get_client_secret
+            'Client-Secret' => client_secret
           )
 
           @keys_filtered_on_save = keys_filtered_on_save
@@ -52,7 +52,7 @@ module Fortnox
         end
 
         def next_access_token
-          @access_tokens ||= CircularQueue.new(*get_access_tokens)
+          @access_tokens ||= CircularQueue.new(*access_tokens)
           @access_tokens.next
         end
 
@@ -63,7 +63,7 @@ module Fortnox
           end
         end
 
-        def get_access_tokens
+        def access_tokens
           begin
             tokens = config.token_store.fetch(@token_store)
           rescue KeyError
@@ -82,13 +82,13 @@ module Fortnox
           self.class::MODEL.new(hash)
         end
 
-        def get_base_url
+        def base_url
           base_url = config.base_url
           raise MissingConfiguration, 'You have to provide a base url.' unless base_url
           base_url
         end
 
-        def get_client_secret
+        def client_secret
           client_secret = config.client_secret
           raise MissingConfiguration, 'You have to provide your client secret.' unless client_secret
           client_secret
