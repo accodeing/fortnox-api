@@ -4,7 +4,7 @@ module Fortnox
   module API
     module Types
       module DocumentRow
-        def self.ify(base)
+        def self.ify(base) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
           base.class_eval do
             # AccountNumber Account number. 4 digits
             attribute :account_number, Types::AccountNumber
@@ -39,7 +39,8 @@ module Fortnox
             # HouseWork If the row is housework
             attribute :house_work, Types::Nullable::Boolean
 
-            # HouseWorkHoursToReport Hours to be reported if the quantity of the row should not be used as hours. 5 digits
+            # HouseWorkHoursToReport Hours to be reported if the quantity of the row should not be used as hours.
+            # 5 digits
             attribute :house_work_hours_to_report, Types::Sized::Integer[0, 99_999]
 
             # HouseWorkType The type of house work.

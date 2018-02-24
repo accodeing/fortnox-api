@@ -8,7 +8,8 @@ module Fortnox
 
         def initialize(input_attributes)
           if (missing_key = first_missing_required_key(input_attributes))
-            raise Fortnox::API::MissingAttributeError, "Missing attribute #{missing_key.inspect} in attributes: #{input_attributes}"
+            error_message = "Missing attribute #{missing_key.inspect} in attributes: #{input_attributes}"
+            raise Fortnox::API::MissingAttributeError, error_message
           end
 
           super
