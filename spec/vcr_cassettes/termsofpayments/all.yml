@@ -1,0 +1,51 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.fortnox.se/3/termsofpayments/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      Client-Secret:
+      - 9aBA8ZgsvR
+      Access-Token:
+      - ccaef817-d5d8-4b1c-a316-54f3e55c5c54
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sat, 24 Feb 2018 06:23:28 GMT
+      Content-Type:
+      - application/json
+      Connection:
+      - close
+      Vary:
+      - Accept-Encoding
+      - Accept-Encoding
+      X-Rack-Responsetime:
+      - '18'
+      X-Uid:
+      - a4f6e251
+      X-Build:
+      - bec4a33b2e
+    body:
+      encoding: UTF-8
+      string: '{"MetaInformation":{"@TotalResources":9,"@TotalPages":1,"@CurrentPage":1},"TermsOfPayments":[{"@url":"https:\/\/api.fortnox.se\/3\/termsofpayment\/0","Code":"0","Description":"0
+        dagar"},{"@url":"https:\/\/api.fortnox.se\/3\/termsofpayment\/10","Code":"10","Description":"10
+        dagar"},{"@url":"https:\/\/api.fortnox.se\/3\/termsofpayment\/15","Code":"15","Description":"15
+        dagar"},{"@url":"https:\/\/api.fortnox.se\/3\/termsofpayment\/20","Code":"20","Description":"20
+        dagar"},{"@url":"https:\/\/api.fortnox.se\/3\/termsofpayment\/30","Code":"30","Description":"30
+        dagar"},{"@url":"https:\/\/api.fortnox.se\/3\/termsofpayment\/K","Code":"K","Description":"Kontant"},{"@url":"https:\/\/api.fortnox.se\/3\/termsofpayment\/PF","Code":"PF","Description":"Postf\u00f6rskott"},{"@url":"https:\/\/api.fortnox.se\/3\/termsofpayment\/AG","Code":"AG","Description":"Autogiro"},{"@url":"https:\/\/api.fortnox.se\/3\/termsofpayment\/30DAYS","Code":"30DAYS","Description":"Updated
+        description"}]}'
+    http_version: 
+  recorded_at: Sat, 24 Feb 2018 06:23:28 GMT
+recorded_with: VCR 3.0.3
