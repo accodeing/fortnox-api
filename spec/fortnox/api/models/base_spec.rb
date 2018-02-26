@@ -7,7 +7,7 @@ require 'fortnox/api/types'
 describe Fortnox::API::Model::Base do
   using_test_classes do
     class Entity < Fortnox::API::Model::Base
-      attribute :private, Fortnox::API::Types::String.with(read_only: true)
+      attribute :private, Fortnox::API::Types::String.is(:read_only)
       attribute :string, Fortnox::API::Types::Required::String
       attribute :number, Fortnox::API::Types::Nullable::Integer
       attribute :account, Fortnox::API::Types::AccountNumber
