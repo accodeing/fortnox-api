@@ -2,6 +2,10 @@
 
 ENV['RUBY_ENV'] = 'test'
 
+require 'simplecov'
+
+SimpleCov.start
+
 require 'rspec/collection_matchers'
 require 'webmock/rspec'
 require 'pry'
@@ -9,8 +13,6 @@ require 'codeclimate-test-reporter'
 require 'support/matchers'
 require 'support/helpers'
 require 'support/vcr_setup'
-
-CodeClimate::TestReporter.start
 
 RSpec.configure do |config|
   config.run_all_when_everything_filtered = true
