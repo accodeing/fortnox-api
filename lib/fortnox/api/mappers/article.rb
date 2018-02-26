@@ -6,12 +6,7 @@ module Fortnox
   module API
     module Mapper
       class Article < Fortnox::API::Mapper::Base
-        KEY_MAP = {
-          ean: 'EAN',
-          eu_account: 'EUAccount',
-          eu_vat_account: 'EUVATAccount',
-          vat: 'VAT'
-        }.freeze
+        KEY_MAP = { ean: 'EAN', eu_account: 'EUAccount', eu_vat_account: 'EUVATAccount', vat: 'VAT' }.freeze
         JSON_ENTITY_WRAPPER = 'Article'
         JSON_COLLECTION_WRAPPER = 'Articles'
       end
