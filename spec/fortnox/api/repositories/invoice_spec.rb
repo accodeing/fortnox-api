@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 require 'fortnox/api'
 require 'fortnox/api/mappers'
@@ -11,7 +13,11 @@ require 'fortnox/api/repositories/examples/save_with_specially_named_attribute'
 require 'fortnox/api/repositories/examples/only'
 
 describe Fortnox::API::Repository::Invoice, order: :defined, integration: true do
-  subject(:repository){ described_class.new }
+  include Helpers::Configuration
+
+  before { set_api_test_configuration }
+
+  subject(:repository) { described_class.new }
 
   required_hash = { customer_number: '1' }
 
@@ -22,7 +28,7 @@ describe Fortnox::API::Repository::Invoice, order: :defined, integration: true d
                    required_hash,
                    :invoice_rows,
                    nested_model_hash,
-                   [ Fortnox::API::Types::InvoiceRow.new( nested_model_hash ) ]
+                   [Fortnox::API::Types::InvoiceRow.new(nested_model_hash)]
 
   include_examples '.save with specially named attribute',
                    required_hash,
@@ -34,12 +40,12 @@ describe Fortnox::API::Repository::Invoice, order: :defined, integration: true d
   include_examples '.all', 60
 
   include_examples '.find', 1 do
-    let( :find_by_hash_failure ){ { yourreference: 'Not found' } }
+    let(:find_by_hash_failure) { { yourreference: 'Not found' } }
 
-    let( :single_param_find_by_hash ) do
+    let(:single_param_find_by_hash) do
       { find_hash: { yourreference: 'Gandalf the Grey' }, matches: 2 }
     end
-    let( :multi_param_find_by_hash ) do
+    let(:multi_param_find_by_hash) do
       { find_hash: { yourreference: 'Gandalf the Grey', ourreference: 'Radagast the Brown' },
         matches: 1 }
     end

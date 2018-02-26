@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 require 'dry-struct'
 require 'fortnox/api/types/model'
@@ -16,16 +18,16 @@ RSpec.describe Fortnox::API::Types::Model do
       end
     end
 
-    describe "User inheriting from #{ described_class }" do
-      subject{ ->{ TypesModelUser.new(args) } }
+    describe "User inheriting from #{described_class}" do
+      subject { -> { TypesModelUser.new(args) } }
 
-      it{ is_expected.to raise_error(error) }
+      it { is_expected.to raise_error(error) }
     end
   end
 
   context 'without required keys' do
     include_examples 'raises error', Fortnox::API::MissingAttributeError do
-      let(:args){ {} }
+      let(:args) { {} }
     end
   end
 
@@ -44,13 +46,14 @@ RSpec.describe Fortnox::API::Types::Model do
       end
     end
 
-    subject{ ->{ User.new() } }
+    subject { -> { User.new } }
 
-    it{ is_expected.not_to raise_error }
+    it { is_expected.not_to raise_error }
 
     describe 'optional attribute' do
-      subject{ User.new().optional_string }
-      it{ is_expected.to be nil }
+      subject { User.new.optional_string }
+
+      it { is_expected.to be nil }
     end
   end
 end

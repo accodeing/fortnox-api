@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 require 'fortnox/api'
 require 'fortnox/api/mappers'
@@ -9,7 +11,11 @@ require 'fortnox/api/repositories/examples/save_with_specially_named_attribute'
 require 'fortnox/api/repositories/examples/search'
 
 describe Fortnox::API::Repository::Customer, order: :defined, integration: true do
-  subject(:repository){ described_class.new }
+  include Helpers::Configuration
+
+  before { set_api_test_configuration }
+
+  subject(:repository) { described_class.new }
 
   include_examples '.save', :name
 
@@ -24,10 +30,10 @@ describe Fortnox::API::Repository::Customer, order: :defined, integration: true 
   include_examples '.all', 100
 
   include_examples '.find', '1' do
-    let( :find_by_hash_failure ){ { city: 'Not Found' } }
-    let( :single_param_find_by_hash ){ { find_hash: { city: 'New York' }, matches: 2 } }
+    let(:find_by_hash_failure) { { city: 'Not Found' } }
+    let(:single_param_find_by_hash) { { find_hash: { city: 'New York' }, matches: 2 } }
 
-    let( :multi_param_find_by_hash ) do
+    let(:multi_param_find_by_hash) do
       { find_hash: { city: 'New York', zipcode: '10001' }, matches: 1 }
     end
   end
