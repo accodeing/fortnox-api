@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 require 'fortnox/api'
 require 'fortnox/api/mappers/unit'
@@ -11,7 +13,7 @@ module Fortnox
       describe Unit do
         context 'when mapping model' do
           let(:model) { Model::Unit.new(code: 'lbs', description: 'Pounds') }
-          let(:serialised_model_hash) { { 'Unit' => { 'Code' => 'lbs', 'Description' => 'Pounds' }} }
+          let(:serialised_model_hash) { { 'Unit' => { 'Code' => 'lbs', 'Description' => 'Pounds' } } }
           let(:model_hash) { { code: 'lbs', description: 'Pounds' } }
 
           describe '#entity_to_hash' do

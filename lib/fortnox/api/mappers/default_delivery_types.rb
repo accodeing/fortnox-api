@@ -1,4 +1,6 @@
-require "fortnox/api/mappers/base"
+# frozen_string_literal: true
+
+require 'fortnox/api/mappers/base'
 
 module Fortnox
   module API
@@ -7,7 +9,7 @@ module Fortnox
         KEY_MAP = {}.freeze
       end
 
-      Registry.register( DefaultDeliveryTypes.canonical_name_sym, DefaultDeliveryTypes )
+      Registry.register(DefaultDeliveryTypes.canonical_name_sym, DefaultDeliveryTypes)
     end
   end
 end

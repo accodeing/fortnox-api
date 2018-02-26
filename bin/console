@@ -1,9 +1,10 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
 
-require "bundler/setup"
-require "pry"
+require 'bundler/setup'
 
-require "fortnox/api"
+require 'pry'
+require 'fortnox/api'
 
 ##
 # Starts a new copy of this script, replacing the current session.

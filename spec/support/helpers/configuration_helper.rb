@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Helpers
   module Configuration
     def set_api_test_configuration

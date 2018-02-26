@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 require 'fortnox/api/models/order'
 require 'fortnox/api/models/examples/document_base'

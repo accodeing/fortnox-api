@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 require 'fortnox/api/models/article'
 require 'fortnox/api/models/examples/model'

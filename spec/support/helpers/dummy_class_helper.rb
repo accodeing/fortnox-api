@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 require 'dry-types'
 
 module Helpers
   def using_test_classes
-    around( :all ) do |example|
+    around(:all) do |example|
       classes_before_examples = Object.constants
 
       save_dry_types_state
@@ -16,15 +18,13 @@ module Helpers
 
       clean_up_dry_types
 
-      classes_created_by_block.each do |klass|
-        Object.send(:remove_const, klass)
-      end
+      classes_created_by_block.each { |klass| Object.send(:remove_const, klass) }
     end
   end
 
-  alias_method :using_test_class, :using_test_classes
+  alias using_test_class using_test_classes
 
-private
+  private
 
   def save_dry_types_state
     @types = Dry::Types.container._container.keys
@@ -32,8 +32,7 @@ private
 
   def clean_up_dry_types
     container = Dry::Types.container._container
-    (container.keys - @types).each{ |key| container.delete(key) }
+    (container.keys - @types).each { |key| container.delete(key) }
     Dry::Types.instance_variable_set('@type_map', Concurrent::Map.new)
   end
-
 end

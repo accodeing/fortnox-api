@@ -1,10 +1,11 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 require 'fortnox/api/mappers/base/to_json'
 require 'fortnox/api/mappers/contexts/json_conversion'
 
 describe Fortnox::API::Mapper::ToJSON do
-  # TODO:
-  # Following error is risen sometimes when all specs are run:
+  # TODO: Following error is risen sometimes when all specs are run:
   # "NoMethodError: undefined method `call\' for Test::ProductMapper:Class`"
   it 'should be tested when random error is fixed!'
 
@@ -12,7 +13,7 @@ describe Fortnox::API::Mapper::ToJSON do
     it 'should be tested'
   end
 
-  # include_context 'JSON conversion'
+  # include_context 'with JSON conversion'
 
   # before do
   #   module Test
