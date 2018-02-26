@@ -6,7 +6,6 @@ require 'dry-types'
 module Dry
   module Types
     module Options
-
       def is(*option_names)
         new_options = option_names.each_with_object({}) do |name, hash|
           hash[name] = true
@@ -15,9 +14,8 @@ module Dry
       end
 
       def is?(option_name)
-        @options[ option_name ]
+        @options[option_name]
       end
-
     end
   end
 end
