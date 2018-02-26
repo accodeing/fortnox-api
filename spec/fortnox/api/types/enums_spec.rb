@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 require 'fortnox/api/types'
 require 'fortnox/api/types/examples/enum'

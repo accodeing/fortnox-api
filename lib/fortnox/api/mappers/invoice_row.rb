@@ -1,4 +1,6 @@
-require "fortnox/api/mappers/base"
+# frozen_string_literal: true
+
+require 'fortnox/api/mappers/base'
 
 module Fortnox
   module API
@@ -9,12 +11,12 @@ module Fortnox
           price_excluding_vat: 'PriceExcludingVAT',
           total_excluding_vat: 'TotalExcludingVAT'
         }.freeze
-        JSON_ENTITY_WRAPPER = 'InvoiceRow'.freeze
-        JSON_COLLECTION_WRAPPER = 'InvoiceRows'.freeze
+        JSON_ENTITY_WRAPPER = 'InvoiceRow'
+        JSON_COLLECTION_WRAPPER = 'InvoiceRows'
       end
 
-      Registry.register( InvoiceRow.canonical_name_sym, InvoiceRow )
-      Registry.register( :invoicerows, InvoiceRow )
+      Registry.register(InvoiceRow.canonical_name_sym, InvoiceRow)
+      Registry.register(:invoicerows, InvoiceRow)
     end
   end
 end

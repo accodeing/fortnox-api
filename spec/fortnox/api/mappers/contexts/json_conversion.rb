@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 require 'fortnox/api'
 require 'fortnox/api/mappers'
 
-shared_context 'JSON conversion' do
+shared_context 'with JSON conversion' do
   before do
     module Test
       class BaseMapper
@@ -20,8 +22,8 @@ shared_context 'JSON conversion' do
           vat: 'VAT',
           url: '@url' # TODO: How to handle url attribute?
         }.freeze
-        JSON_ENTITY_WRAPPER = 'Product'.freeze
-        JSON_COLLECTION_WRAPPER = 'Products'.freeze
+        JSON_ENTITY_WRAPPER = 'Product'
+        JSON_COLLECTION_WRAPPER = 'Products'
       end
 
       class Category < Fortnox::API::Model::Base
@@ -38,19 +40,18 @@ shared_context 'JSON conversion' do
         attribute :url, 'strict.string'
         attribute :name, 'strict.string'
         attribute :vat, 'strict.float'
-        attribute :categories, Dry::Types['coercible.array'].member( Test::Category )
+        attribute :categories, Dry::Types['coercible.array'].member(Test::Category)
         attribute :designer, Test::ProductDesigner
       end
     end
 
-    def register_mapper( mapper_sym, mapper )
-      unless Fortnox::API::Registry.key? mapper_sym
-        Fortnox::API::Registry.register( mapper_sym, mapper )
-      end
+    def register_mapper(mapper_sym, mapper)
+      return if Fortnox::API::Registry.key? mapper_sym
+      Fortnox::API::Registry.register(mapper_sym, mapper)
     end
 
-    register_mapper( :category, Test::CategoryMapper)
-    register_mapper( :productdesigner, Test::ProductDesignerMapper )
-    register_mapper( :product, Test::ProductMapper )
+    register_mapper(:category, Test::CategoryMapper)
+    register_mapper(:productdesigner, Test::ProductDesignerMapper)
+    register_mapper(:product, Test::ProductMapper)
   end
 end
