@@ -1,6 +1,8 @@
-require "fortnox/api/repositories/base"
-require "fortnox/api/models/terms_of_payments"
-require "fortnox/api/mappers/terms_of_payments"
+# frozen_string_literal: true
+
+require 'fortnox/api/repositories/base'
+require 'fortnox/api/models/terms_of_payments'
+require 'fortnox/api/mappers/terms_of_payments'
 
 module Fortnox
   module API
@@ -8,7 +10,7 @@ module Fortnox
       class TermsOfPayments < Base
         MODEL = Model::TermsOfPayments
         MAPPER = Mapper::TermsOfPayments
-        URI = '/termsofpayments/'.freeze
+        URI = '/termsofpayments/'
       end
     end
   end

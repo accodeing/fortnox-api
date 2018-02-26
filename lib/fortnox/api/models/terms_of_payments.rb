@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'fortnox/api/types'
 require 'fortnox/api/models/base'
 
