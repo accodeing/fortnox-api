@@ -2,6 +2,8 @@
 
 require 'forwardable'
 
+# rubocop:disable Style/ClassVars
+
 module Fortnox
   module API
     class CircularQueue
@@ -33,3 +35,5 @@ module Fortnox
     end
   end
 end
+
+# rubocop:enable Style/ClassVars
