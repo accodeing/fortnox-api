@@ -20,7 +20,7 @@ module Fortnox
           super
         end
 
-        def self.new(hash)
+        def self.new(hash = {})
           begin
             obj = preserve_meta_properties(hash) do
               super(hash)
@@ -30,6 +30,10 @@ module Fortnox
           end
 
           IceNine.deep_freeze(obj)
+        end
+
+        def self.stub
+          new(self::STUB.dup)
         end
 
         def unique_id

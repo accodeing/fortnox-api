@@ -100,7 +100,7 @@ module Fortnox
 
         def token_store_not_found!(store_name)
           raise MissingConfiguration,
-                "There is no token store named #{store_name}."
+                "There is no token store named #{store_name}. Available stores are #{config.token_store.keys}."
         end
       end
     end

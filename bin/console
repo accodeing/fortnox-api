@@ -6,4 +6,17 @@ require 'bundler/setup'
 require 'pry'
 require 'fortnox/api'
 
+##
+# Starts a new copy of this script, replacing the current session.
+#
+# When run the current process, this script, will be replaced by the result from
+# exec, a new copy of this script.
+#
+# Together with Pry's history this makes it look like you basically just
+# reloaded the gem and all of it's dependancies with their latest versions.
+
+def reload!
+  exec([File.absolute_path(__FILE__), __FILE__], *ARGV)
+end
+
 Pry.start
