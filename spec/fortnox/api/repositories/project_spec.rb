@@ -24,7 +24,7 @@ describe Fortnox::API::Repository::Project, order: :defined, integration: true d
   # (until 100, which is max by default).
   include_examples '.all', 8
 
-  include_examples '.find', '1' do
+  include_examples '.find', '1', find_by_hash: false do
     let(:find_by_hash_failure) { { offset: 10_000 } }
     let(:single_param_find_by_hash) { { find_hash: { limit: 1 }, matches: 1 } }
 

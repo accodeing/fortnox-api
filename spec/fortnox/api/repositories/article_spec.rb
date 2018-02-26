@@ -28,7 +28,7 @@ describe Fortnox::API::Repository::Article, order: :defined, integration: true d
 
   include_examples '.all', 12
 
-  include_examples '.find', '1' do
+  include_examples '.find', '1', find_by_hash: false do
     let(:find_by_hash_failure) { { description: 'Not Found' } }
     let(:single_param_find_by_hash) { { find_hash: { articlenumber: 1 }, matches: 3 } }
 

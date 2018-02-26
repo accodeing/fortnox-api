@@ -29,7 +29,7 @@ describe Fortnox::API::Repository::Customer, order: :defined, integration: true 
   # (until 100, which is max by default).
   include_examples '.all', 100
 
-  include_examples '.find', '1' do
+  include_examples '.find', '1', find_by_hash: false do
     let(:find_by_hash_failure) { { city: 'Not Found' } }
     let(:single_param_find_by_hash) { { find_hash: { city: 'New York' }, matches: 2 } }
 
