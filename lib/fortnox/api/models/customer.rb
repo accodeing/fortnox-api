@@ -27,8 +27,8 @@ module Fortnox
         #   :hire
         # )
 
-        #Url	Direct URL to the record
-        attribute :url, Types::Nullable::String.is( :read_only )
+        # Url Direct URL to the record
+        attribute :url, Types::Nullable::String.is(:read_only)
 
         # Address1	First address of the customer. 1024 characters
         attribute :address1, Types::Sized::String[1024]
@@ -40,7 +40,7 @@ module Fortnox
         attribute :city, Types::Sized::String[1024]
 
         # Country	Country of the customer. Read-only.
-        attribute :country, Types::Nullable::String.with(read_only: true)
+        attribute :country, Types::Nullable::String.is(:read_only)
 
         # Comments	Comments. 1024 characters.
         attribute :comments, Types::Sized::String[1024]
@@ -73,7 +73,7 @@ module Fortnox
         attribute :delivery_city, Types::Sized::String[1024]
 
         # DeliveryCountry	Delivery country of the customer. Read-only.
-        attribute :delivery_country, Types::Nullable::String.with(read_only: true)
+        attribute :delivery_country, Types::Nullable::String.is(:read_only)
 
         # DeliveryCountryCode	Delivery country code of the customer, 2 letters
         attribute :delivery_country_code, Types::CountryCode
@@ -140,7 +140,7 @@ module Fortnox
         attribute :invoice_remark, Types::Sized::String[1024]
 
         # Name	Name of the customer, 1024 characters
-        attribute :name, Types::Sized::String[1024].with(required: true)
+        attribute :name, Types::Sized::String[1024].is(:required)
 
         # OrganisationNumber	Organisation number of the customer. 30 characters
         attribute :organisation_number, Types::Sized::String[30]
@@ -188,7 +188,7 @@ module Fortnox
         attribute :visiting_city, Types::Sized::String[128]
 
         # VisitCountry	Visit country of the customer, read-only
-        attribute :visiting_country, Types::Nullable::String.with(read_only: true)
+        attribute :visiting_country, Types::Nullable::String.is(:read_only)
 
         # VisitingCountryCode Code of the visiting country for the customer, 2 letters
         attribute :visiting_country_code, Types::CountryCode
