@@ -89,14 +89,14 @@ describe Fortnox::API::Model::Base do
         saved_entity.update(string: 'Updated')
       end
 
-      context 'updated entity' do
+      describe 'updated entity' do
         subject { updated_entity }
 
         it { is_expected.not_to be_saved }
         it { is_expected.not_to be_new }
       end
 
-      describe "updated attribute value" do
+      describe 'updated attribute value' do
         subject { updated_entity.string }
 
         it { is_expected.to eq('Updated') }
