@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 require 'fortnox/api'
 require 'fortnox/api/mappers/order'
@@ -15,6 +17,6 @@ describe Fortnox::API::Mapper::Order do
   json_entity_collection = 'Orders'
 
   it_behaves_like 'mapper', key_map, json_entity_type, json_entity_collection do
-    let(:mapper){ described_class.new }
+    let(:mapper) { described_class.new }
   end
 end

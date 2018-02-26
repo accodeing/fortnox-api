@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 require 'fortnox/api'
 require 'fortnox/api/types'
@@ -9,35 +11,37 @@ require 'fortnox/api/types/order_row'
 describe 'HouseWorkTypes', integration: true do
   include Helpers::Configuration
 
-  before{ set_api_test_configuration }
+  before { set_api_test_configuration }
 
-  let(:repository){ Fortnox::API::Repository::Order.new }
+  let(:repository) { Fortnox::API::Repository::Order.new }
   let(:valid_model) do
     Fortnox::API::Model::Order.new(customer_number: '1', order_rows: [order_row])
   end
-  let(:order_row){ Fortnox::API::Types::OrderRow.new(ordered_quantity: 1,
-                                                     article_number: '0000',
-                                                     house_work_type: house_work_type)}
+  let(:order_row) do
+    Fortnox::API::Types::OrderRow.new(ordered_quantity: 1,
+                                      article_number: '0000',
+                                      house_work_type: house_work_type)
+  end
 
   shared_examples_for 'house work type' do |type, legacy: false|
     subject do
-      -> do
-        VCR.use_cassette( "orders/house_work_type_#{ type.downcase }" ) do
+      lambda do
+        VCR.use_cassette("orders/house_work_type_#{type.downcase}") do
           repository.save(valid_model)
         end
       end
     end
 
-    let(:error_message){ 'Skattereduktion för en av de valda husarbetestyperna har upphört.' }
-    let(:house_work_type){ Fortnox::API::Types::HouseWorkTypes[type] }
+    let(:error_message) { 'Skattereduktion för en av de valda husarbetestyperna har upphört.' }
+    let(:house_work_type) { Fortnox::API::Types::HouseWorkTypes[type] }
 
-    context "when creating an OrderRow with house_work_type set to #{ type }" do
+    context "when creating an OrderRow with house_work_type set to #{type}" do
       if legacy
         it 'raises an error' do
           is_expected.to raise_error(Fortnox::API::RemoteServerError, error_message)
         end
       else
-        it{ is_expected.not_to raise_error }
+        it { is_expected.not_to raise_error }
       end
     end
   end

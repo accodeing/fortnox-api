@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'support/matchers/type/attribute_matcher'
 require 'support/matchers/type/type_matcher'
 require 'support/matchers/type/have_nullable_matcher'

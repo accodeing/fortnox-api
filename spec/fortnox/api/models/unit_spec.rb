@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 require 'fortnox/api/models/unit'
 
@@ -9,7 +11,7 @@ module Fortnox
         context 'when created from empty hash' do
           subject { -> { described_class.new } }
 
-          it { is_expected.to raise_error(Fortnox::API::MissingAttributeError,/Missing attribute.*:code/) }
+          it { is_expected.to raise_error(Fortnox::API::MissingAttributeError, /Missing attribute.*:code/) }
         end
 
         context 'when created from stub' do
