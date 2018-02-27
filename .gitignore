@@ -9,3 +9,6 @@ Gemfile.lock
 
 # rbenv Ruby version file
 .ruby-version
+
+# Simplecov
+coverage/
