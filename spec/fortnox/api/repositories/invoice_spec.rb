@@ -39,7 +39,7 @@ describe Fortnox::API::Repository::Invoice, order: :defined, integration: true d
   # when running .all will continue to increase (until 100, which is max by default).
   include_examples '.all', 60
 
-  include_examples '.find', 1, find_by_hash: false do
+  include_examples '.find', 1 do
     let(:find_by_hash_failure) { { yourreference: 'Not found' } }
 
     let(:single_param_find_by_hash) do
