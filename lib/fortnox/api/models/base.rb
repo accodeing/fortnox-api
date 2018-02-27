@@ -36,6 +36,17 @@ module Fortnox
           new(self::STUB.dup)
         end
 
+        # This filtering logic could be improved since it is currently O(N*M).
+        def attributes(*options)
+          return self.class.schema if options.nil?
+
+          options = Array(options)
+
+          self.class.schema.find_all do |_name, attribute|
+            options.all? { |option| attribute.is?(option) }
+          end
+        end
+
         def unique_id
           send(self.class::UNIQUE_ID)
         end

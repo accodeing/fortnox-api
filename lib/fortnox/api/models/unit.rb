@@ -11,10 +11,10 @@ module Fortnox
         STUB = { code: '' }.freeze
 
         # Url Direct URL to the record
-        attribute :url, Types::Nullable::String.with(read_only: true)
+        attribute :url, Types::Nullable::String.is(:read_only)
 
         # Comments Comments on project. 512 characters
-        attribute :code, Types::Required::String.with(read_only: true)
+        attribute :code, Types::Required::String.is(:read_only)
 
         # ContactPerson ContactPerson for project. 50 characters
         attribute :description, Types::Nullable::String

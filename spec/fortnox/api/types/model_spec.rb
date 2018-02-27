@@ -10,7 +10,7 @@ RSpec.describe Fortnox::API::Types::Model do
       module Types
         include Dry::Types.module
 
-        Age = Int.constrained(gt: 18).with(required: true)
+        Age = Int.constrained(gt: 18).is(:required)
       end
 
       class TypesModelUser < Fortnox::API::Types::Model

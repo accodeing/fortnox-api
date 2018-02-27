@@ -11,13 +11,13 @@ module Fortnox
       # This is never used standalone, only included in the respective models.
       class Document < Fortnox::API::Model::Base
         # Url Direct url to the record.
-        attribute :url, Types::Nullable::String.with(read_only: true)
+        attribute :url, Types::Nullable::String.is(:read_only)
 
         # AdministrationFee The document administration fee.
         attribute :administration_fee, Types::Nullable::Float
 
         # AdministrationFeeVAT VAT of the document administration fee.
-        attribute :administration_fee_vat, Types::Nullable::Float.with(read_only: true)
+        attribute :administration_fee_vat, Types::Nullable::Float.is(:read_only)
 
         # Address1 Document address 1. 1024 characters
         attribute :address1, Types::Sized::String[1024]
@@ -26,10 +26,10 @@ module Fortnox
         attribute :address2, Types::Sized::String[1024]
 
         # BasisTaxReduction Basis of tax reduction.
-        attribute :basis_tax_reduction, Types::Nullable::Float.with(read_only: true)
+        attribute :basis_tax_reduction, Types::Nullable::Float.is(:read_only)
 
         # Cancelled If the document is cancelled.
-        attribute :cancelled, Types::Nullable::Boolean.with(read_only: true)
+        attribute :cancelled, Types::Nullable::Boolean.is(:read_only)
 
         # City City for the document address.
         attribute :city, Types::Sized::String[1024]
@@ -38,10 +38,10 @@ module Fortnox
         attribute :comments, Types::Sized::String[1024]
 
         # ContributionPercent Document contribution in percent.
-        attribute :contribution_percent, Types::Nullable::Float.with(read_only: true)
+        attribute :contribution_percent, Types::Nullable::Float.is(:read_only)
 
         # ContributionValue Document contribution in amount.
-        attribute :contribution_value, Types::Nullable::Float.with(read_only: true)
+        attribute :contribution_value, Types::Nullable::Float.is(:read_only)
 
         # Country Country for the document address.
         attribute :country, Types::CountryCode
@@ -101,28 +101,28 @@ module Fortnox
         attribute :freight, Types::Sized::Float[0.0, 99_999_999_999.9]
 
         # FreightVAT VAT of the freight cost.
-        attribute :freight_vat, Types::Nullable::Float.with(read_only: true)
+        attribute :freight_vat, Types::Nullable::Float.is(:read_only)
 
         # Gross Gross value of the document
-        attribute :gross, Types::Nullable::Float.with(read_only: true)
+        attribute :gross, Types::Nullable::Float.is(:read_only)
 
         # HouseWork If there is any row of the document marked "house work".
-        attribute :house_work, Types::Nullable::Boolean.with(read_only: true)
+        attribute :house_work, Types::Nullable::Boolean.is(:read_only)
 
         attribute :labels, Types::Strict::Array.member(Label)
 
         # Net Net amount
-        attribute :net, Types::Nullable::Float.with(read_only: true)
+        attribute :net, Types::Nullable::Float.is(:read_only)
 
         # NotCompleted If the document is set as not completed.
         attribute :not_completed, Types::Nullable::Boolean
 
         # OfferReference Reference to the offer, if one exists.
-        attribute :offer_reference, Types::Nullable::Integer.with(read_only: true)
+        attribute :offer_reference, Types::Nullable::Integer.is(:read_only)
 
         # OrganisationNumber Organisation number of the customer for the
         # document.
-        attribute :organisation_number, Types::Nullable::String.with(read_only: true)
+        attribute :organisation_number, Types::Nullable::String.is(:read_only)
 
         # OurReference Our reference. 50 characters
         attribute :our_reference, Types::Sized::String[50]
@@ -146,13 +146,13 @@ module Fortnox
         attribute :remarks, Types::Sized::String[1024]
 
         # RoundOff Round off amount for the document.
-        attribute :round_off, Types::Nullable::Float.with(read_only: true)
+        attribute :round_off, Types::Nullable::Float.is(:read_only)
 
         # Sent If the document is printed or sent in any way.
-        attribute :sent, Types::Nullable::Boolean.with(read_only: true)
+        attribute :sent, Types::Nullable::Boolean.is(:read_only)
 
         # TaxReduction The amount of tax reduction.
-        attribute :tax_reduction, Types::Nullable::Integer.with(read_only: true)
+        attribute :tax_reduction, Types::Nullable::Integer.is(:read_only)
 
         # TermsOfDelivery Code of the terms of delivery.
         attribute :terms_of_delivery, Types::Nullable::String
@@ -161,10 +161,10 @@ module Fortnox
         attribute :terms_of_payment, Types::Nullable::String
 
         # Total The total amount of the document.
-        attribute :total, Types::Nullable::Float.with(read_only: true)
+        attribute :total, Types::Nullable::Float.is(:read_only)
 
         # TotalVAT The total VAT amount of the document.
-        attribute :total_vat, Types::Nullable::Float.with(read_only: true)
+        attribute :total_vat, Types::Nullable::Float.is(:read_only)
 
         # VATIncluded If the price of the document is including VAT.
         attribute :vat_included, Types::Nullable::Boolean
