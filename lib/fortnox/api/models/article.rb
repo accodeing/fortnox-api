@@ -11,7 +11,7 @@ module Fortnox
         STUB = { description: '' }.freeze
 
         # Url Direct URL to the record
-        attribute :url, Types::Nullable::String.with(read_only: true)
+        attribute :url, Types::Nullable::String.is(:read_only)
 
         # Active If the article is active
         attribute :active, Types::Nullable::Boolean
@@ -30,10 +30,10 @@ module Fortnox
         attribute :depth, Types::Sized::Integer[0, 99_999_999]
 
         # Description The description of the article
-        attribute :description, Types::Sized::String[200].with(required: true)
+        attribute :description, Types::Sized::String[200].is(:required)
 
         # DisposableQuantity Disposable quantity of the article.
-        attribute :disposable_quantity, Types::Nullable::Float.with(read_only: true)
+        attribute :disposable_quantity, Types::Nullable::Float.is(:read_only)
 
         # EAN EAN bar code
         attribute :ean, Types::Sized::String[30]
@@ -79,14 +79,14 @@ module Fortnox
         attribute :quantity_in_stock, Types::Sized::Float[0.0, 99_999_999_999_999.9]
 
         # ReservedQuantity Reserved quantity of the article
-        attribute :reserved_quantity, Types::Nullable::Float.with(read_only: true)
+        attribute :reserved_quantity, Types::Nullable::Float.is(:read_only)
 
         # SalesAccount Account number for the sales account in Sweden.
         # The number must be of an existing account.
         attribute :sales_account, Types::Sized::Integer[0, 9_999]
 
         # SalesPrice Price of article for its default price list
-        attribute :sales_price, Types::Nullable::Float.with(read_only: true)
+        attribute :sales_price, Types::Nullable::Float.is(:read_only)
 
         # StockGoods If the article is stock goods
         attribute :stock_goods, Types::Nullable::Boolean
@@ -95,13 +95,13 @@ module Fortnox
         attribute :stock_place, Types::Sized::String[100]
 
         # StockValue Value in stock of the article
-        attribute :stock_value, Types::Nullable::Float.with(read_only: true)
+        attribute :stock_value, Types::Nullable::Float.is(:read_only)
 
         # StockWarning When to start warning for low quantity in stock
         attribute :stock_warning, Types::Sized::Float[0.0, 99_999_999_999_999.9]
 
         # SupplierName Name of the supplier
-        attribute :supplier_name, Types::Nullable::String.with(read_only: true)
+        attribute :supplier_name, Types::Nullable::String.is(:read_only)
 
         # SupplierNumber Supplier number for the article.
         # The number must be of an existing supplier.

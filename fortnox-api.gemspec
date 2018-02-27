@@ -33,7 +33,6 @@ Gem::Specification.new do |spec| # rubocop:disable Metrics/BlockLength
   spec.add_dependency 'httparty', '~> 0.14.0'
 
   spec.add_development_dependency 'bundler', '~> 1.9'
-  spec.add_development_dependency 'codeclimate-test-reporter', '~> 0'
   spec.add_development_dependency 'guard', '~> 2.12'
   spec.add_development_dependency 'guard-rspec', '~> 4.5'
   spec.add_development_dependency 'pry', '~> 0'
@@ -42,6 +41,7 @@ Gem::Specification.new do |spec| # rubocop:disable Metrics/BlockLength
   spec.add_development_dependency 'rspec-collection_matchers', '~> 0'
   spec.add_development_dependency 'rubocop', '~> 0.52.0'
   spec.add_development_dependency 'rubocop-rspec', '~> 1.22.2'
+  spec.add_development_dependency 'simplecov', '~> 0.15'
   spec.add_development_dependency 'vcr', '~> 3.0'
   spec.add_development_dependency 'webmock', '~> 1.21'
 end

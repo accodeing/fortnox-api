@@ -82,8 +82,6 @@ shared_examples_for '.find' do |searched_entity_id, find_by_hash: true|
 
         it { is_expected.to eq [] }
       end
-
-      it { is_expected.to eq [] }
     end
   end
 end

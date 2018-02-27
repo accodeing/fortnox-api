@@ -15,6 +15,8 @@ module Fortnox
           super
         end
 
+        def self.is?(*_args) end
+
         private
 
         def missing_keys(attributes)
