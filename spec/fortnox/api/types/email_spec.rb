@@ -5,7 +5,7 @@ require 'fortnox/api/types'
 require 'fortnox/api/types/examples/types'
 
 describe Fortnox::API::Types::Email do
-  let(:klass) { Fortnox::API::Types::Email }
+  let(:klass) { described_class }
 
   context 'when created with nil' do
     subject { described_class[nil] }
