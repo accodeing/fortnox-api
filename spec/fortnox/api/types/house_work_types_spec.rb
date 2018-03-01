@@ -8,7 +8,7 @@ require 'fortnox/api/models/order'
 require 'fortnox/api/types/order_row'
 
 # rubocop:disable RSpec/DescribeClass
-describe 'HouseWorkTypes', integration: true do
+describe 'HouseworkTypes', integration: true do
   include Helpers::Configuration
 
   before { set_api_test_configuration }
@@ -33,7 +33,7 @@ describe 'HouseWorkTypes', integration: true do
     end
 
     let(:error_message) { 'Skattereduktion för en av de valda husarbetestyperna har upphört.' }
-    let(:house_work_type) { Fortnox::API::Types::HouseWorkTypes[type] }
+    let(:house_work_type) { Fortnox::API::Types::HouseworkTypes[type] }
 
     context "when creating an OrderRow with house_work_type set to #{type}" do
       if legacy
