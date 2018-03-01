@@ -1,0 +1,46 @@
+---
+http_interactions:
+- request:
+    method: put
+    uri: https://api.fortnox.se/3/termsofpayments/15DAYS
+    body:
+      encoding: UTF-8
+      string: '{"TermsOfPayment":{"Description":"Updated description"}}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      Client-Secret:
+      - 9aBA8ZgsvR
+      Access-Token:
+      - ccaef817-d5d8-4b1c-a316-54f3e55c5c54
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sat, 24 Feb 2018 06:45:42 GMT
+      Content-Type:
+      - application/json
+      Connection:
+      - close
+      Vary:
+      - Accept-Encoding
+      - Accept-Encoding
+      X-Rack-Responsetime:
+      - '23'
+      X-Uid:
+      - 3639a56a
+      X-Build:
+      - bec4a33b2e
+    body:
+      encoding: UTF-8
+      string: '{"TermsOfPayment":{"@url":"https:\/\/api.fortnox.se\/3\/termsofpayment\/15DAYS","Code":"15DAYS","Description":"Updated
+        description"}}'
+    http_version: 
+  recorded_at: Sat, 24 Feb 2018 06:45:42 GMT
+recorded_with: VCR 3.0.3
