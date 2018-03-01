@@ -20,22 +20,22 @@ describe 'HouseworkTypes', integration: true do
   let(:order_row) do
     Fortnox::API::Types::OrderRow.new(ordered_quantity: 1,
                                       article_number: '0000',
-                                      house_work_type: house_work_type)
+                                      housework_type: housework_type)
   end
 
   shared_examples_for 'house work type' do |type, legacy: false|
     subject do
       lambda do
-        VCR.use_cassette("orders/house_work_type_#{type.downcase}") do
+        VCR.use_cassette("orders/housework_type_#{type.downcase}") do
           repository.save(valid_model)
         end
       end
     end
 
-    let(:error_message) { 'Skattereduktion för en av de valda husarbetestyperna har upphört.' }
-    let(:house_work_type) { Fortnox::API::Types::HouseworkTypes[type] }
+    let(:error_message) { 'Skattereduktion för den valda typen av husarbete har upphört.' }
+    let(:housework_type) { Fortnox::API::Types::HouseworkTypes[type] }
 
-    context "when creating an OrderRow with house_work_type set to #{type}" do
+    context "when creating an OrderRow with housework_type set to #{type}" do
       if legacy
         it 'raises an error' do
           is_expected.to raise_error(Fortnox::API::RemoteServerError, error_message)

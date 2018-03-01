@@ -148,7 +148,7 @@ describe Fortnox::API::Mapper::Base do
   end
 
   describe 'HouseWorkType' do
-    include_examples 'identity mapper', :house_work_type do
+    include_examples 'identity mapper', :housework_type do
       let(:value) { Fortnox::API::Types::HouseWorkType['CONSTRUCTION'] }
     end
   end

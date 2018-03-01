@@ -11,7 +11,7 @@ shared_examples_for 'DocumentRow' do |valid_hash|
 
   it { is_expected.to have_discount_type(:discount_type, valid_hash) }
 
-  it { is_expected.to have_sized_integer(:house_work_hours_to_report, 0, 99_999, valid_hash) }
+  it { is_expected.to have_sized_integer(:housework_hours_to_report, 0, 99_999, valid_hash) }
 
-  it { is_expected.to have_house_work_type(:house_work_type, valid_hash) }
+  it { is_expected.to have_housework_type(:housework_type, valid_hash) }
 end

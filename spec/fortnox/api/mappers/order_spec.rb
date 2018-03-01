@@ -10,6 +10,7 @@ describe Fortnox::API::Mapper::Order do
     {
       administration_fee_vat: 'AdministrationFeeVAT',
       freight_vat: 'FreightVAT',
+      housework: 'HouseWork',
       total_vat: 'TotalVAT',
       vat_included: 'VATIncluded'
     }

@@ -35,14 +35,14 @@ module Fortnox
         attribute :discount_type, Types::DiscountType
 
         # HouseWork If the row is housework
-        attribute :house_work, Types::Nullable::Boolean
+        attribute :housework, Types::Nullable::Boolean
 
         # HouseWorkHoursToReport Hours to be reported if the quantity of the row should not be used as hours.
         # 5 digits
-        attribute :house_work_hours_to_report, Types::Sized::Integer[0, 99_999]
+        attribute :housework_hours_to_report, Types::Sized::Integer[0, 99_999]
 
         # HouseWorkType The type of house work.
-        attribute :house_work_type, Types::HouseWorkType
+        attribute :housework_type, Types::HouseWorkType
 
         # Price Price per unit. 12 digits
         attribute :price, Types::Sized::Float[0.0, 99_999_999_999.9]
