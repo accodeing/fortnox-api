@@ -67,7 +67,7 @@ module Fortnox
               .optional
               .constructor { |v| v.to_s.downcase unless v.nil? }
 
-      HouseWorkType = Strict::String
+      HouseworkType = Strict::String
                       .constrained(included_in: HouseworkTypes.values)
                       .optional
                       .constructor(EnumConstructors.default)
