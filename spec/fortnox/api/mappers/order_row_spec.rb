@@ -6,7 +6,12 @@ require 'fortnox/api/mappers/order_row'
 require 'fortnox/api/mappers/examples/mapper'
 
 describe Fortnox::API::Mapper::OrderRow do
-  key_map = { vat: 'VAT' }
+  key_map = {
+    housework: 'HouseWork',
+    housework_hours_to_report: 'HouseWorkHoursToReport',
+    housework_type: 'HouseWorkType',
+    vat: 'VAT'
+  }
   json_entity_type = 'OrderRow'
   json_entity_collection = 'OrderRows'
 

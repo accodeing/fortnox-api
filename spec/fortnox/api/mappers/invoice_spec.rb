@@ -12,6 +12,7 @@ describe Fortnox::API::Mapper::Invoice do
       edi_information: 'EDIInformation',
       eu_quarterly_report: 'EUQuarterlyReport',
       freight_vat: 'FreightVAT',
+      housework: 'HouseWork',
       ocr: 'OCR',
       total_vat: 'TotalVAT',
       vat_included: 'VATIncluded'

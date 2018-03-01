@@ -7,9 +7,12 @@ require 'fortnox/api/mappers/examples/mapper'
 
 describe Fortnox::API::Mapper::InvoiceRow do
   key_map = {
-    vat: 'VAT',
+    housework: 'HouseWork',
+    housework_hours_to_report: 'HouseWorkHoursToReport',
+    housework_type: 'HouseWorkType',
     price_excluding_vat: 'PriceExcludingVAT',
-    total_excluding_vat: 'TotalExcludingVAT'
+    total_excluding_vat: 'TotalExcludingVAT',
+    vat: 'VAT'
   }
 
   json_entity_type = 'InvoiceRow'

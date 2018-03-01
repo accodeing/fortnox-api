@@ -33,7 +33,7 @@ module Fortnox
       Registry.register(:customer_type, Fortnox::API::Mapper::Identity)
       Registry.register(:discount_type, Fortnox::API::Mapper::Identity)
       Registry.register(:email, Fortnox::API::Mapper::Identity)
-      Registry.register(:house_work_type, Fortnox::API::Mapper::Identity)
+      Registry.register(:housework_type, Fortnox::API::Mapper::Identity)
       Registry.register(:vat_type, Fortnox::API::Mapper::Identity)
       Registry.register(:labels, Fortnox::API::Mapper::Array)
     end

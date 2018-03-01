@@ -106,8 +106,8 @@ module Fortnox
         # Gross Gross value of the document
         attribute :gross, Types::Nullable::Float.is(:read_only)
 
-        # HouseWork If there is any row of the document marked "house work".
-        attribute :house_work, Types::Nullable::Boolean.is(:read_only)
+        # HouseWork If there is any row of the document marked "housework".
+        attribute :housework, Types::Nullable::Boolean.is(:read_only)
 
         attribute :labels, Types::Strict::Array.member(Label)
 

@@ -25,15 +25,15 @@ module Fortnox
       DiscountTypes = Types::Strict::String.enum(
         'AMOUNT', 'PERCENT'
       )
-      CURRENT_HOUSE_WORK_TYPES = %w[
+      CURRENT_HOUSEWORK_TYPES = %w[
         CONSTRUCTION ELECTRICITY GLASSMETALWORK GROUNDDRAINAGEWORK
         MASONRY PAINTINGWALLPAPERING HVAC MAJORAPPLIANCEREPAIR
         MOVINGSERVICES ITSERVICES CLEANING TEXTILECLOTHING
         SNOWPLOWING GARDENING BABYSITTING OTHERCARE OTHERCOSTS
       ].freeze
-      LEGACY_HOUSE_WORK_TYPES = %w[COOKING TUTORING].freeze
-      HouseWorkTypes = Types::Strict::String.enum(
-        *(CURRENT_HOUSE_WORK_TYPES + LEGACY_HOUSE_WORK_TYPES)
+      LEGACY_HOUSEWORK_TYPES = %w[COOKING TUTORING].freeze
+      HouseworkTypes = Types::Strict::String.enum(
+        *(CURRENT_HOUSEWORK_TYPES + LEGACY_HOUSEWORK_TYPES)
       )
       CountryCodes = Types::Strict::String.enum(
         'AF', 'AX', 'AL', 'DZ', 'AS', 'AD', 'AO', 'AI', 'AQ', 'AG', 'AR', 'AM',
