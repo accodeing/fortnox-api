@@ -56,7 +56,7 @@ module Fortnox
         # Housework If the article is housework
         attribute :housework, Types::Nullable::Boolean
 
-        # HouseWorkType The type of house work.
+        # HouseWorkType The type of housework.
         attribute :housework_type, Types::HouseWorkType
 
         # Manufacturer The manufacturer of the article

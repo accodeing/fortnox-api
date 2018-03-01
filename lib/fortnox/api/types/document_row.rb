@@ -41,7 +41,7 @@ module Fortnox
         # 5 digits
         attribute :housework_hours_to_report, Types::Sized::Integer[0, 99_999]
 
-        # HouseWorkType The type of house work.
+        # HouseWorkType The type of housework.
         attribute :housework_type, Types::HouseWorkType
 
         # Price Price per unit. 12 digits

@@ -23,7 +23,7 @@ describe 'HouseworkTypes', integration: true do
                                       housework_type: housework_type)
   end
 
-  shared_examples_for 'house work type' do |type, legacy: false|
+  shared_examples_for 'housework type' do |type, legacy: false|
     subject do
       lambda do
         VCR.use_cassette("orders/housework_type_#{type.downcase}") do
@@ -46,23 +46,23 @@ describe 'HouseworkTypes', integration: true do
     end
   end
 
-  it_behaves_like 'house work type', 'CONSTRUCTION'
-  it_behaves_like 'house work type', 'ELECTRICITY'
-  it_behaves_like 'house work type', 'GLASSMETALWORK'
-  it_behaves_like 'house work type', 'GROUNDDRAINAGEWORK'
-  it_behaves_like 'house work type', 'MASONRY'
-  it_behaves_like 'house work type', 'PAINTINGWALLPAPERING'
-  it_behaves_like 'house work type', 'HVAC'
-  it_behaves_like 'house work type', 'CLEANING'
-  it_behaves_like 'house work type', 'TEXTILECLOTHING'
-  it_behaves_like 'house work type', 'CLEANING'
-  it_behaves_like 'house work type', 'SNOWPLOWING'
-  it_behaves_like 'house work type', 'GARDENING'
-  it_behaves_like 'house work type', 'BABYSITTING'
-  it_behaves_like 'house work type', 'OTHERCARE'
-  it_behaves_like 'house work type', 'OTHERCOSTS'
+  it_behaves_like 'housework type', 'CONSTRUCTION'
+  it_behaves_like 'housework type', 'ELECTRICITY'
+  it_behaves_like 'housework type', 'GLASSMETALWORK'
+  it_behaves_like 'housework type', 'GROUNDDRAINAGEWORK'
+  it_behaves_like 'housework type', 'MASONRY'
+  it_behaves_like 'housework type', 'PAINTINGWALLPAPERING'
+  it_behaves_like 'housework type', 'HVAC'
+  it_behaves_like 'housework type', 'CLEANING'
+  it_behaves_like 'housework type', 'TEXTILECLOTHING'
+  it_behaves_like 'housework type', 'CLEANING'
+  it_behaves_like 'housework type', 'SNOWPLOWING'
+  it_behaves_like 'housework type', 'GARDENING'
+  it_behaves_like 'housework type', 'BABYSITTING'
+  it_behaves_like 'housework type', 'OTHERCARE'
+  it_behaves_like 'housework type', 'OTHERCOSTS'
 
-  it_behaves_like 'house work type', 'COOKING', legacy: true
-  it_behaves_like 'house work type', 'TUTORING', legacy: true
+  it_behaves_like 'housework type', 'COOKING', legacy: true
+  it_behaves_like 'housework type', 'TUTORING', legacy: true
 end
 # rubocop:enable RSpec/DescribeClass
