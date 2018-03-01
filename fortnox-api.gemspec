@@ -8,16 +8,13 @@ require 'fortnox/api/version'
 Gem::Specification.new do |spec| # rubocop:disable Metrics/BlockLength
   spec.name          = 'fortnox-api'
   spec.version       = Fortnox::API::VERSION
-  spec.authors       = ['Jonas Schubert Erlandsson', 'Hannes Elvemyr',
-                        'Felix Holmgren']
-  spec.email         = ['jonas.schubert.erlandsson@my-codeworks.com']
+  spec.authors       = ['Jonas Schubert Erlandsson', 'Hannes Elvemyr', 'Felix Holmgren']
+  spec.email         = ['info@my-codeworks.com']
   spec.summary       = 'Gem to use Fortnox REST API in Ruby.'
-  spec.description   = 'This gem uses the HTTParty library to abstract away the
-                        REST calls. It gives you access to a number of objects
-                        that behave a lot like ActiveRecord instances, giving
-                        you access to methods like `all`, `find`, `find_by_...`
-                        and so on. And each individual instance can be easaly
-                        persistable to Fortnox again using the `save` method.'
+  spec.description   = 'This gem uses the HTTParty library to abstract away the REST calls. It gives you access to a '\
+                       'number of objects that behave a lot like ActiveRecord instances, giving you access to methods '\
+                       'like `all`, `find`, `find_by_...` and so on. And each individual instance can be easily'\
+                       'persistable to Fortnox again using the `save` method.'
   spec.homepage      = 'http://github.com/my-codeworks/fortnox-api'
   spec.license       = 'LGPL-3.0'
 
