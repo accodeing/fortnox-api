@@ -8,8 +8,8 @@
 
 # Status for development
 [![Build status](https://img.shields.io/travis/my-codeworks/fortnox-api/development.svg?style=flat-square)](https://travis-ci.org/my-codeworks/fortnox-api)
-[![Maintainability](https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/maintainability)](https://codeclimate.com/github/codeclimate/codeclimate/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/test_coverage)](https://codeclimate.com/github/codeclimate/codeclimate/test_coverage)
+[![Maintainability](https://api.codeclimate.com/v1/badges/50d44a1d00620b4a6bde/maintainability)](https://codeclimate.com/github/my-codeworks/fortnox-api/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/50d44a1d00620b4a6bde/test_coverage)](https://codeclimate.com/github/my-codeworks/fortnox-api/test_coverage)
 
 The rough status of this project is as follows (as of October 2017):
 * In active development (just check out the commit log)
