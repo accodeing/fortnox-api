@@ -20,7 +20,7 @@ module Fortnox
         attribute :cost_center, Types::Nullable::String
 
         # DeliveredQuantity Delivered quantity. 14 digits
-        attribute :delivered_quantity, Types::Sized::Float[0.0, 9_999_999_999_999.9]
+        attribute :delivered_quantity, Types::Sized::Float[-9_999_999_999_999.9, 9_999_999_999_999.9]
 
         # Description Description Row description. 50 characters
         attribute :description, Types::Sized::String[50]
