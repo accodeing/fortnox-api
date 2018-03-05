@@ -6,7 +6,7 @@ require 'fortnox/api/models/base'
 module Fortnox
   module API
     module Model
-      class TermsOfPayments < Fortnox::API::Model::Base
+      class TermsOfPayment < Fortnox::API::Model::Base
         UNIQUE_ID = :code
         STUB = { code: '', description: '' }.freeze
 

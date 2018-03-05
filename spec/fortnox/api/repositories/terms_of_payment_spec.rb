@@ -3,14 +3,14 @@
 require 'spec_helper'
 require 'fortnox/api'
 require 'fortnox/api/mappers'
-require 'fortnox/api/repositories/terms_of_payments'
+require 'fortnox/api/repositories/terms_of_payment'
 require 'fortnox/api/repositories/examples/all'
 require 'fortnox/api/repositories/examples/find'
 require 'fortnox/api/repositories/examples/save'
 require 'fortnox/api/repositories/examples/save_with_specially_named_attribute'
 require 'fortnox/api/repositories/examples/search'
 
-describe Fortnox::API::Repository::TermsOfPayments, order: :defined, integration: true do
+describe Fortnox::API::Repository::TermsOfPayment, order: :defined, integration: true do
   include Helpers::Configuration
 
   subject(:repository) { described_class.new }
