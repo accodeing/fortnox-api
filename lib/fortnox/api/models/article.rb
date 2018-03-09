@@ -73,10 +73,10 @@ module Fortnox
         attribute :purchase_account, Types::Sized::Integer[0, 9_999]
 
         # PurchasePrice Purchase price of the article
-        attribute :purchase_price, Types::Sized::Float[0.0, 99_999_999_999_999.9]
+        attribute :purchase_price, Types::Sized::Float[-99_999_999_999_999.9, 99_999_999_999_999.9]
 
         # QuantityInStock Quantity in stock of the article
-        attribute :quantity_in_stock, Types::Sized::Float[0.0, 99_999_999_999_999.9]
+        attribute :quantity_in_stock, Types::Sized::Float[-99_999_999_999_999.9, 99_999_999_999_999.9]
 
         # ReservedQuantity Reserved quantity of the article
         attribute :reserved_quantity, Types::Nullable::Float.is(:read_only)
@@ -98,7 +98,7 @@ module Fortnox
         attribute :stock_value, Types::Nullable::Float.is(:read_only)
 
         # StockWarning When to start warning for low quantity in stock
-        attribute :stock_warning, Types::Sized::Float[0.0, 99_999_999_999_999.9]
+        attribute :stock_warning, Types::Sized::Float[-99_999_999_999_999.9, 99_999_999_999_999.9]
 
         # SupplierName Name of the supplier
         attribute :supplier_name, Types::Nullable::String.is(:read_only)
