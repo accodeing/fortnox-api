@@ -14,13 +14,5 @@ shared_examples_for 'DocumentRow' do |valid_hash|
 
   it { is_expected.to have_sized_float(:discount, -9_999_999_999.9, 9_999_999_999.9, valid_hash) }
   it { is_expected.to have_sized_float(:price, -9_999_999_999.9, 9_999_999_999.9, valid_hash) }
-
-  it do
-    is_expected.to have_sized_float(
-      :delivered_quantity,
-      -999_999.9,
-      999_999.9,
-      valid_hash
-    )
-  end
+  it { is_expected.to have_sized_float(:delivered_quantity, -999_999.9, 999_999.9, valid_hash) }
 end
