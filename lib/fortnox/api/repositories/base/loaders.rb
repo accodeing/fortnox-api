@@ -53,6 +53,9 @@ module Fortnox
         private
 
         def instantiate_collection_response(response_hash)
+          metadata_hash = @metadata_mapper.wrapped_json_hash_to_entity_hash(response_hash)
+          @metadata = Model::Metadata.new(metadata_hash)
+
           entities_hash = @mapper.wrapped_json_collection_to_entities_hash(response_hash)
           entities_hash.map do |entity_hash|
             instantiate(entity_hash)
