@@ -7,8 +7,15 @@ module Fortnox
     module Repository
       module Loaders
         def all
-          response_hash = get(self.class::URI)
-          instantiate_collection_response(response_hash)
+          results = []
+
+          loop do
+            response_hash = get(self.class::URI, query: { page: next_page })
+            results += instantiate_collection_response(response_hash)
+            break if last_page?
+          end
+
+          results
         end
 
         def only(filter)

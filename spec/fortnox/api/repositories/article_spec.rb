@@ -26,7 +26,7 @@ describe Fortnox::API::Repository::Article, order: :defined, integration: true d
                    :ean,
                    '5901234123457'
 
-  include_examples '.all', 12
+  include_examples '.all', 20
 
   include_examples '.find', '1' do
     let(:find_by_hash_failure) { { description: 'Not Found' } }

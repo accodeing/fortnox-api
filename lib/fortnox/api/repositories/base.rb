@@ -4,6 +4,7 @@ require 'httparty'
 require 'fortnox/api/request_handling'
 require 'fortnox/api/repositories/base/loaders'
 require 'fortnox/api/repositories/base/savers'
+require 'fortnox/api/repositories/base/pagination'
 require 'fortnox/api/mappers/metadata'
 
 module Fortnox
@@ -14,6 +15,7 @@ module Fortnox
         include Fortnox::API::RequestHandling
         include Loaders
         include Savers
+        include Pagination
 
         HTTParty::Parser::SupportedFormats['text/html'] = :json
 

@@ -21,7 +21,7 @@ describe Fortnox::API::Repository::TermsOfPayment, order: :defined, integration:
 
   include_examples '.save', :description, additional_attrs: required_hash
 
-  include_examples '.all', 9
+  include_examples '.all', 10
 
   include_examples '.find', '15DAYS', find_by_hash: false do
     let(:find_by_hash_failure) { { code: '15days' } }

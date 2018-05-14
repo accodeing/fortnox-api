@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.fortnox.se/3/customers/
+    uri: https://api.fortnox.se/3/customers/?page=1
     body:
       encoding: US-ASCII
       string: ''
@@ -23,7 +23,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Tue, 25 Oct 2016 10:21:50 GMT
+      - Mon, 14 May 2018 19:17:34 GMT
       Content-Type:
       - application/json
       Connection:
@@ -32,17 +32,17 @@ http_interactions:
       - Accept-Encoding
       - Accept-Encoding
       X-Rack-Responsetime:
-      - '24'
+      - '20'
       X-Uid:
-      - 325442f1
+      - acfda647
       X-Build:
-      - 76600b8d0c
+      - 06fdff7705
     body:
       encoding: UTF-8
-      string: '{"MetaInformation":{"@TotalResources":146,"@TotalPages":2,"@CurrentPage":1},"Customers":[{"@url":"https:\/\/api.fortnox.se\/3\/customers\/1","Address1":"","Address2":"","City":"","CustomerNumber":"1","Email":"","Name":"Old
-        name","OrganisationNumber":"860101-8735","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/2","Address1":"","Address2":"","City":"","CustomerNumber":"2","Email":"","Name":"A
-        customer","OrganisationNumber":"600102-7447","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/3","Address1":"","Address2":"","City":"","CustomerNumber":"3","Email":"","Name":"Test
-        customer","OrganisationNumber":"400101-8383","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/4","Address1":"","Address2":"","City":"","CustomerNumber":"4","Email":"","Name":"Arthur
+      string: '{"MetaInformation":{"@TotalResources":209,"@TotalPages":3,"@CurrentPage":1},"Customers":[{"@url":"https:\/\/api.fortnox.se\/3\/customers\/1","Address1":"","Address2":"","City":"","CustomerNumber":"1","Email":"","Name":"Old
+        name","OrganisationNumber":"860101-8735","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/2","Address1":"","Address2":"","City":"New
+        York","CustomerNumber":"2","Email":"","Name":"A customer","OrganisationNumber":"600102-7447","Phone":"","ZipCode":"10001"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/3","Address1":"","Address2":"","City":"New
+        York","CustomerNumber":"3","Email":"","Name":"Test customer","OrganisationNumber":"400101-8383","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/4","Address1":"","Address2":"","City":"","CustomerNumber":"4","Email":"","Name":"Arthur
         Dent","OrganisationNumber":"","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/5","Address1":"","Address2":"","City":"","CustomerNumber":"5","Email":"","Name":"Arthur
         Dent","OrganisationNumber":"","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/6","Address1":"","Address2":"","City":"","CustomerNumber":"6","Email":"","Name":"Arthur
         Dent","OrganisationNumber":"","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/7","Address1":"","Address2":"","City":"","CustomerNumber":"7","Email":"","Name":"Arthur
@@ -153,5 +153,275 @@ http_interactions:
         6","Address2":"","City":"teststan","CustomerNumber":"100","Email":"test@email.com","Name":"test12313","OrganisationNumber":"","Phone":"123141","ZipCode":"111
         11"}]}'
     http_version: 
-  recorded_at: Tue, 25 Oct 2016 10:21:50 GMT
-recorded_with: VCR 3.0.1
+  recorded_at: Mon, 14 May 2018 19:17:34 GMT
+- request:
+    method: get
+    uri: https://api.fortnox.se/3/customers/?page=2
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      Client-Secret:
+      - 9aBA8ZgsvR
+      Access-Token:
+      - ccaef817-d5d8-4b1c-a316-54f3e55c5c54
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Mon, 14 May 2018 19:17:34 GMT
+      Content-Type:
+      - application/json
+      Connection:
+      - close
+      Vary:
+      - Accept-Encoding
+      - Accept-Encoding
+      X-Rack-Responsetime:
+      - '16'
+      X-Uid:
+      - dfc7aab9
+      X-Build:
+      - 06fdff7705
+    body:
+      encoding: UTF-8
+      string: '{"MetaInformation":{"@TotalResources":209,"@TotalPages":3,"@CurrentPage":2},"Customers":[{"@url":"https:\/\/api.fortnox.se\/3\/customers\/101","Address1":"F\u00e4llev\u00e4gen
+        7","Address2":"","City":"Kramfors","CustomerNumber":"101","Email":"nilsolofsson@live.se","Name":"Nils
+        Olofsson","OrganisationNumber":"1990-01-01","Phone":"+46761312268","ZipCode":"872
+        43"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/102","Address1":"Some
+        long and complicated address","Address2":"","City":"Paris","CustomerNumber":"102","Email":"an_email-address@email.com","Name":"A
+        company","OrganisationNumber":"","Phone":"Phone number 123","ZipCode":"A zip
+        code"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/103","Address1":"","Address2":"","City":"","CustomerNumber":"103","Email":"","Name":"123","OrganisationNumber":"","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/104","Address1":"","Address2":"","City":"","CustomerNumber":"104","Email":"","Name":"132","OrganisationNumber":"","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/105","Address1":"BOX
+        44","Address2":"","City":"TINGSRYD","CustomerNumber":"105","Email":"","Name":"BolagsBemanning
+        i Tingsryd AB","OrganisationNumber":"556716-1855","Phone":"","ZipCode":"36221"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/106","Address1":"Myrliden
+        10","Address2":"","City":"Mullsj\u00f6","CustomerNumber":"106","Email":"","Name":"Hannes
+        Elvemyr","OrganisationNumber":"1990-01-01","Phone":"","ZipCode":"565 32"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/107","Address1":"BOX
+        44","Address2":"","City":"TINGSRYD","CustomerNumber":"107","Email":"","Name":"BolagsBemanning
+        i Tingsryd AB","OrganisationNumber":"556716-1855","Phone":"","ZipCode":"36221"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/108","Address1":"Myrliden
+        10","Address2":"","City":"Mullsj\u00f6","CustomerNumber":"108","Email":"","Name":"Hannes
+        Elvemyr","OrganisationNumber":"1990-01-01","Phone":"","ZipCode":"565 32"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/109","Address1":"","Address2":"","City":"","CustomerNumber":"109","Email":"","Name":"Test
+        customer","OrganisationNumber":"","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/110","Address1":"","Address2":"","City":"","CustomerNumber":"110","Email":"","Name":"Test
+        customer","OrganisationNumber":"","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/111","Address1":"","Address2":"","City":"","CustomerNumber":"111","Email":"","Name":"Test
+        customer","OrganisationNumber":"","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/112","Address1":"","Address2":"","City":"","CustomerNumber":"112","Email":"","Name":"Test
+        customer","OrganisationNumber":"","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/113","Address1":"","Address2":"","City":"","CustomerNumber":"113","Email":"","Name":"Test
+        customer","OrganisationNumber":"","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/114","Address1":"","Address2":"","City":"","CustomerNumber":"114","Email":"","Name":"Easy
+        Translate Ltd","OrganisationNumber":"","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/115","Address1":"","Address2":"","City":"","CustomerNumber":"115","Email":"","Name":"Updated
+        name","OrganisationNumber":"","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/116","Address1":"","Address2":"","City":"","CustomerNumber":"116","Email":"","Name":"A
+        value","OrganisationNumber":"","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/117","Address1":"","Address2":"","City":"","CustomerNumber":"117","Email":"","Name":"Test
+        customer","OrganisationNumber":"","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/118","Address1":"","Address2":"","City":"","CustomerNumber":"118","Email":"","Name":"A
+        value","OrganisationNumber":"","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/119","Address1":"","Address2":"","City":"","CustomerNumber":"119","Email":"","Name":"Test
+        customer","OrganisationNumber":"","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/120","Address1":"","Address2":"","City":"","CustomerNumber":"120","Email":"","Name":"Updated
+        name","OrganisationNumber":"","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/121","Address1":"","Address2":"","City":"","CustomerNumber":"121","Email":"","Name":"Test
+        customer","OrganisationNumber":"","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/122","Address1":"","Address2":"","City":"","CustomerNumber":"122","Email":"","Name":"Arthur
+        Dent","OrganisationNumber":"","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/123","Address1":"Some
+        long and complicated address","Address2":"","City":"Paris","CustomerNumber":"123","Email":"an_email-address@email.com","Name":"A
+        company","OrganisationNumber":"001122-1122","Phone":"Phone number 123","ZipCode":"A
+        zip code"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/124","Address1":"Some
+        long and complicated address","Address2":"","City":"Paris","CustomerNumber":"124","Email":"an_email-address@email.com","Name":"A
+        company","OrganisationNumber":"","Phone":"Phone number 123","ZipCode":"A zip
+        code"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/125","Address1":"Some
+        long and complicated address","Address2":"","City":"Paris","CustomerNumber":"125","Email":"an_email-address@email.com","Name":"A
+        company","OrganisationNumber":"","Phone":"Phone number 123","ZipCode":"A zip
+        code"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/126","Address1":"Myrliden
+        10","Address2":"","City":"Mullsj\u00f6","CustomerNumber":"126","Email":"","Name":"Hannes
+        Elvemyr","OrganisationNumber":"1990-01-01","Phone":"","ZipCode":"565 32"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/127","Address1":"BOX
+        44","Address2":"","City":"TINGSRYD","CustomerNumber":"127","Email":"","Name":"BolagsBemanning
+        i Tingsryd AB","OrganisationNumber":"556716-1855","Phone":"","ZipCode":"36221"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/128","Address1":"Myrliden
+        10","Address2":"","City":"Mullsj\u00f6","CustomerNumber":"128","Email":"","Name":"Hannes
+        Elvemyr","OrganisationNumber":"1990-01-01","Phone":"","ZipCode":"565 32"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/129","Address1":"BOX
+        44","Address2":"","City":"TINGSRYD","CustomerNumber":"129","Email":"","Name":"BolagsBemanning
+        i Tingsryd AB","OrganisationNumber":"556716-1855","Phone":"","ZipCode":"36221"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/130","Address1":"Some
+        long and complicated address","Address2":"","City":"Paris","CustomerNumber":"130","Email":"an_email-address@email.com","Name":"A
+        company","OrganisationNumber":"","Phone":"Phone number 123","ZipCode":"A zip
+        code"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/131","Address1":"Myrliden
+        10","Address2":"","City":"Mullsj\u00f6","CustomerNumber":"131","Email":"","Name":"Hannes
+        Elvemyr","OrganisationNumber":"1990-01-01","Phone":"","ZipCode":"565 32"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/132","Address1":"Some
+        long and complicated address","Address2":"","City":"Paris","CustomerNumber":"132","Email":"an_email-address@email.com","Name":"A
+        company","OrganisationNumber":"","Phone":"Phone number 123","ZipCode":"A zip
+        code"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/133","Address1":"Some
+        long and complicated address","Address2":"","City":"Paris","CustomerNumber":"133","Email":"an_email-address@email.com","Name":"A
+        company","OrganisationNumber":"001122-1122","Phone":"Phone number 123","ZipCode":"A
+        zip code"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/134","Address1":"","Address2":"","City":"","CustomerNumber":"134","Email":"","Name":"Arthur
+        Dent","OrganisationNumber":"","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/135","Address1":"","Address2":"","City":"","CustomerNumber":"135","Email":"","Name":"Updated
+        name","OrganisationNumber":"","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/136","Address1":"","Address2":"","City":"","CustomerNumber":"136","Email":"","Name":"Test
+        customer","OrganisationNumber":"","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/137","Address1":"","Address2":"","City":"","CustomerNumber":"137","Email":"","Name":"Updated
+        name","OrganisationNumber":"","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/138","Address1":"","Address2":"","City":"","CustomerNumber":"138","Email":"","Name":"Test
+        customer","OrganisationNumber":"","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/139","Address1":"","Address2":"","City":"","CustomerNumber":"139","Email":"","Name":"Updated
+        name","OrganisationNumber":"","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/140","Address1":"","Address2":"","City":"","CustomerNumber":"140","Email":"","Name":"Test
+        customer","OrganisationNumber":"","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/141","Address1":"","Address2":"","City":"","CustomerNumber":"141","Email":"","Name":"Updated
+        name","OrganisationNumber":"","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/142","Address1":"","Address2":"","City":"","CustomerNumber":"142","Email":"","Name":"Test
+        customer","OrganisationNumber":"","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/143","Address1":"","Address2":"","City":"","CustomerNumber":"143","Email":"","Name":"Updated
+        name","OrganisationNumber":"","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/144","Address1":"","Address2":"","City":"","CustomerNumber":"144","Email":"","Name":"Test
+        customer","OrganisationNumber":"","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/145","Address1":"","Address2":"","City":"","CustomerNumber":"145","Email":"","Name":"Updated
+        name","OrganisationNumber":"","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/146","Address1":"","Address2":"","City":"","CustomerNumber":"146","Email":"","Name":"Test
+        customer","OrganisationNumber":"","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/147","Address1":"Some
+        long and complicated address","Address2":"","City":"Paris","CustomerNumber":"147","Email":"an_email-address@email.com","Name":"A
+        company","OrganisationNumber":"001122-1122","Phone":"Phone number 123","ZipCode":"A
+        zip code"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/148","Address1":"","Address2":"","City":"","CustomerNumber":"148","Email":"","Name":"Arthur
+        Dent","OrganisationNumber":"","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/149","Address1":"BOX
+        44","Address2":"","City":"TINGSRYD","CustomerNumber":"149","Email":"","Name":"BolagsBemanning
+        i Tingsryd AB","OrganisationNumber":"556716-1855","Phone":"","ZipCode":"36221"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/150","Address1":"BOX
+        44","Address2":"","City":"TINGSRYD","CustomerNumber":"150","Email":"","Name":"BolagsBemanning
+        i Tingsryd AB","OrganisationNumber":"556716-1855","Phone":"","ZipCode":"36221"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/151","Address1":"Some
+        long and complicated address","Address2":"","City":"Paris","CustomerNumber":"151","Email":"an_email-address@email.com","Name":"A
+        company","OrganisationNumber":"","Phone":"Phone number 123","ZipCode":"A zip
+        code"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/152","Address1":"Myrliden
+        10","Address2":"","City":"Mullsj\u00f6","CustomerNumber":"152","Email":"","Name":"Hannes
+        Elvemyr","OrganisationNumber":"1990-01-01","Phone":"","ZipCode":"565 32"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/153","Address1":"Some
+        long and complicated address","Address2":"","City":"Paris","CustomerNumber":"153","Email":"an_email-address@email.com","Name":"A
+        company","OrganisationNumber":"001122-1122","Phone":"Phone number 123","ZipCode":"A
+        zip code"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/154","Address1":"","Address2":"","City":"","CustomerNumber":"154","Email":"","Name":"Arthur
+        Dent","OrganisationNumber":"","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/155","Address1":"Some
+        long and complicated address","Address2":"","City":"Paris","CustomerNumber":"155","Email":"an_email-address@email.com","Name":"A
+        company","OrganisationNumber":"","Phone":"Phone number 123","ZipCode":"A zip
+        code"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/156","Address1":"Some
+        long and complicated address","Address2":"","City":"Paris","CustomerNumber":"156","Email":"an_email-address@email.com","Name":"A
+        company","OrganisationNumber":"","Phone":"Phone number 123","ZipCode":"A zip
+        code"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/157","Address1":"Myrliden
+        10","Address2":"","City":"Mullsj\u00f6","CustomerNumber":"157","Email":"","Name":"Hannes
+        Elvemyr","OrganisationNumber":"1990-01-01","Phone":"","ZipCode":"565 32"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/158","Address1":"BOX
+        44","Address2":"","City":"TINGSRYD","CustomerNumber":"158","Email":"","Name":"BolagsBemanning
+        i Tingsryd AB","OrganisationNumber":"556716-1855","Phone":"","ZipCode":"36221"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/159","Address1":"Pejlingsv\u00e4gen
+        1 B","Address2":"","City":"Fruf\u00e4llan","CustomerNumber":"159","Email":"","Name":"Anna-Karin
+        Nilsson","OrganisationNumber":"1990-01-01","Phone":"","ZipCode":"506 70"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/160","Address1":"Gullbuskev\u00e4gen
+        5","Address2":"","City":"Fristad","CustomerNumber":"160","Email":"","Name":"Lars
+        Gustafsson","OrganisationNumber":"471206-5517","Phone":"","ZipCode":"513 32"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/161","Address1":"Liev\u00e4gen
+        6","Address2":"","City":"Spars\u00f6r","CustomerNumber":"161","Email":"","Name":"Fanny
+        Dreier","OrganisationNumber":"950619-7061","Phone":"","ZipCode":"513 50"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/162","Address1":"Liev\u00e4gen
+        6","Address2":"","City":"Spars\u00f6r","CustomerNumber":"162","Email":"","Name":"Fanny
+        Dreier","OrganisationNumber":"950619-7061","Phone":"","ZipCode":"513 50"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/163","Address1":"Dill\u00f6
+        Steglan 10","Address2":"","City":"Tors\u00f6","CustomerNumber":"163","Email":"","Name":"Emma
+        Karlsson","OrganisationNumber":"960316-7041","Phone":"","ZipCode":"542 91"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/164","Address1":"BRYGGAREGATAN
+        19","Address2":"","City":"BOR\u00c5S","CustomerNumber":"164","Email":"","Name":"Ertan
+        AB","OrganisationNumber":"556818-2173","Phone":"","ZipCode":"50338"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/165","Address1":"S\u00c5GAREGATAN
+        16","Address2":"","City":"NYBRO","CustomerNumber":"165","Email":"","Name":"D\u00e4ck-City
+        i Nybro AB","OrganisationNumber":"556762-5024","Phone":"","ZipCode":"38245"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/166","Address1":"Myrliden
+        10","Address2":"","City":"Mullsj\u00f6","CustomerNumber":"166","Email":"","Name":"Hannes
+        Eriksson","OrganisationNumber":"1990-01-01","Phone":"","ZipCode":"565 32"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/167","Address1":"Duvgatan
+        23 lgh 1001","Address2":"","City":"J\u00f6nk\u00f6ping","CustomerNumber":"167","Email":"nils@enappstudio.se","Name":"Nils
+        Olofsson","OrganisationNumber":"920916-1992","Phone":"0709501577","ZipCode":"554
+        64"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/168","Address1":"Myrliden
+        10","Address2":"","City":"Mullsj\u00f6","CustomerNumber":"168","Email":"","Name":"Hannes
+        Eriksson","OrganisationNumber":"1990-01-01","Phone":"","ZipCode":"565 32"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/169","Address1":"Grym\u00e4ngsgatan
+        5 lgh 1201","Address2":"","City":"J\u00f6nk\u00f6ping","CustomerNumber":"169","Email":"","Name":"Robin
+        Kochauf","OrganisationNumber":"840218-5659","Phone":"","ZipCode":"554 45"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/170","Address1":"BOX
+        27","Address2":"","City":"J\u00d6NK\u00d6PING","CustomerNumber":"170","Email":"info@enappstudio.se","Name":"En
+        Appstudio i J\u00f6nk\u00f6ping AB","OrganisationNumber":"559093-1530","Phone":"","ZipCode":"55112"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/171","Address1":"","Address2":"","City":"","CustomerNumber":"171","Email":"","Name":"Arthur
+        Dent","OrganisationNumber":"","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/172","Address1":"","Address2":"","City":"","CustomerNumber":"172","Email":"","Name":"Arthur
+        Dent","OrganisationNumber":"","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/173","Address1":"S\u00f6r\u00e4ngsv\u00e4gen
+        1","Address2":"","City":"Huskvarna","CustomerNumber":"173","Email":"isak@enappstudio.se","Name":"Isak
+        Fagerlund","OrganisationNumber":"950519-2139","Phone":"07070707070","ZipCode":"561
+        46"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/174","Address1":"BRYGGAREGATAN
+        19","Address2":"","City":"BOR\u00c5S","CustomerNumber":"174","Email":"","Name":"Ertan
+        AB","OrganisationNumber":"556818-2173","Phone":"","ZipCode":"50338"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/175","Address1":"BRYGGAREGATAN
+        19","Address2":"","City":"BOR\u00c5S","CustomerNumber":"175","Email":"anna@uppdragshuset.nu","Name":"Uppdragshuset
+        i V\u00e4st AB","OrganisationNumber":"556765-1327","Phone":"0723583742","ZipCode":"50338"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/176","Address1":"Gyllby
+        114","Address2":"","City":"\u00d6rbyhus","CustomerNumber":"176","Email":"","Name":"Hannes
+        Elvemyr","OrganisationNumber":"880917-5931","Phone":"","ZipCode":"748 94"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/177","Address1":"BOX
+        44","Address2":"","City":"TINGSRYD","CustomerNumber":"177","Email":"","Name":"BolagsBemanning
+        i Tingsryd AB","OrganisationNumber":"556716-1855","Phone":"","ZipCode":"36221"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/178","Address1":"Myrliden
+        10","Address2":"","City":"Mullsj\u00f6","CustomerNumber":"178","Email":"","Name":"Hannes
+        Eriksson","OrganisationNumber":"1990-01-01","Phone":"","ZipCode":"565 32"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/179","Address1":"Some
+        long and complicated address","Address2":"","City":"Paris","CustomerNumber":"179","Email":"an_email-address@email.com","Name":"A
+        company","OrganisationNumber":"","Phone":"Phone number 123","ZipCode":"A zip
+        code"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/180","Address1":"123","Address2":"","City":"Wee","CustomerNumber":"180","Email":"benjamin@andersson.se","Name":"Lennart
+        Lindeberg","OrganisationNumber":"","Phone":"123","ZipCode":"123"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/181","Address1":"address
+        1","Address2":"","City":"city 1","CustomerNumber":"181","Email":"tennis@test.com","Name":"Tennisklubben","OrganisationNumber":"","Phone":"phone
+        1","ZipCode":"zip 123"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/182","Address1":"","Address2":"","City":"","CustomerNumber":"182","Email":"","Name":"kjh","OrganisationNumber":"","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/183","Address1":"postaddress
+        1234","Address2":"","City":"ort 123","CustomerNumber":"183","Email":"spanien@tennis.se","Name":"Spanska
+        tennisklubbern","OrganisationNumber":"","Phone":"tel 123","ZipCode":"post
+        123"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/184","Address1":"address
+        1","Address2":"","City":"city 1","CustomerNumber":"184","Email":"tennis@test.com","Name":"Tennisklubben","OrganisationNumber":"","Phone":"phone
+        1","ZipCode":"zip 123"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/185","Address1":"123","Address2":"","City":"hee","CustomerNumber":"185","Email":"dsa@tse.se","Name":"Klara
+        Henriksson","OrganisationNumber":"","Phone":"123","ZipCode":"123"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/186","Address1":"Post
+        1","Address2":"","City":"Ort 1","CustomerNumber":"186","Email":"","Name":"Test
+        Testsson","OrganisationNumber":"","Phone":"Tel 123","ZipCode":"Nr 1"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/187","Address1":"BOX
+        27","Address2":"","City":"J\u00d6NK\u00d6PING","CustomerNumber":"187","Email":"test@example.com","Name":"En
+        Appstudio i J\u00f6nk\u00f6ping AB","OrganisationNumber":"559093-1530","Phone":"12345","ZipCode":"55112"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/188","Address1":"post
+        123","Address2":"","City":"ort 123","CustomerNumber":"188","Email":"123@example.com","Name":"Blaha","OrganisationNumber":"","Phone":"tel
+        123","ZipCode":"nr 123"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/189","Address1":"Knutgatan","Address2":"","City":"Kosta","CustomerNumber":"189","Email":"anna@uppdragshuset.nu","Name":"Kajsa
+        Varg","OrganisationNumber":"","Phone":"0726-582500","ZipCode":"52222"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/190","Address1":"Stengatan
+        a","Address2":"","City":"BOR\u00c5S","CustomerNumber":"190","Email":"anna@ertan.nu","Name":"Anna
+        Norman","OrganisationNumber":"","Phone":"0736-379150","ZipCode":"50453"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/191","Address1":"123","Address2":"","City":"67","CustomerNumber":"191","Email":"kor@belgien.se","Name":"Belgiska
+        kor AB","OrganisationNumber":"","Phone":"","ZipCode":"45"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/192","Address1":"123","Address2":"","City":"67","CustomerNumber":"192","Email":"svets@smide.se","Name":"Svets
+        och smide","OrganisationNumber":"","Phone":"","ZipCode":"45"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/193","Address1":"123","Address2":"","City":"123","CustomerNumber":"193","Email":"bank@danmark.se","Name":"Danska
+        handelsbanken","OrganisationNumber":"","Phone":"","ZipCode":"123"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/194","Address1":"123","Address2":"","City":"123","CustomerNumber":"194","Email":"vik@finland.se","Name":"Finska
+        viken","OrganisationNumber":"","Phone":"","ZipCode":"123"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/195","Address1":"123","Address2":"","City":"123","CustomerNumber":"195","Email":"","Name":"F\u00f6retag
+        utan email","OrganisationNumber":"","Phone":"","ZipCode":"123"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/196","Address1":"123","Address2":"","City":"123","CustomerNumber":"196","Email":"farg@estland.est","Name":"Estlands
+        F\u00e4rg","OrganisationNumber":"","Phone":"","ZipCode":"123"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/197","Address1":"","Address2":"","City":"","CustomerNumber":"197","Email":"","Name":"Arthur
+        Dent","OrganisationNumber":"","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/198","Address1":"Some
+        long and complicated address","Address2":"","City":"Paris","CustomerNumber":"198","Email":"an_email-address@email.com","Name":"A
+        company","OrganisationNumber":"001122-1122","Phone":"Phone number 123","ZipCode":"A
+        zip code"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/199","Address1":"BOX
+        44","Address2":"","City":"TINGSRYD","CustomerNumber":"199","Email":"","Name":"BolagsBemanning
+        i Tingsryd AB","OrganisationNumber":"556716-1855","Phone":"","ZipCode":"36221"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/200","Address1":"Some
+        long and complicated address","Address2":"","City":"Paris","CustomerNumber":"200","Email":"an_email-address@email.com","Name":"A
+        company","OrganisationNumber":"","Phone":"Phone number 123","ZipCode":"A zip
+        code"}]}'
+    http_version: 
+  recorded_at: Mon, 14 May 2018 19:17:34 GMT
+- request:
+    method: get
+    uri: https://api.fortnox.se/3/customers/?page=3
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      Client-Secret:
+      - 9aBA8ZgsvR
+      Access-Token:
+      - ccaef817-d5d8-4b1c-a316-54f3e55c5c54
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Mon, 14 May 2018 19:17:35 GMT
+      Content-Type:
+      - application/json
+      Connection:
+      - close
+      Vary:
+      - Accept-Encoding
+      - Accept-Encoding
+      X-Rack-Responsetime:
+      - '18'
+      X-Uid:
+      - 3a6e1600
+      X-Build:
+      - 06fdff7705
+    body:
+      encoding: UTF-8
+      string: '{"MetaInformation":{"@TotalResources":209,"@TotalPages":3,"@CurrentPage":3},"Customers":[{"@url":"https:\/\/api.fortnox.se\/3\/customers\/201","Address1":"Myrliden
+        10","Address2":"","City":"Mullsj\u00f6","CustomerNumber":"201","Email":"","Name":"Hannes
+        Eriksson","OrganisationNumber":"1990-01-01","Phone":"","ZipCode":"565 32"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/202","Address1":"TEst","Address2":"","City":"TEst","CustomerNumber":"202","Email":"mail@example.com","Name":"Hej
+        pa dig","OrganisationNumber":"","Phone":"tel1","ZipCode":"TEst"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/203","Address1":"Some
+        long and complicated address","Address2":"","City":"Paris","CustomerNumber":"203","Email":"an_email-address@email.com","Name":"A
+        company","OrganisationNumber":"","Phone":"Phone number 123","ZipCode":"A zip
+        code"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/204","Address1":"Myrliden
+        10","Address2":"","City":"Mullsj\u00f6","CustomerNumber":"204","Email":"","Name":"Hannes
+        Eriksson","OrganisationNumber":"1990-01-01","Phone":"","ZipCode":"565 32"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/205","Address1":"BOX
+        44","Address2":"","City":"TINGSRYD","CustomerNumber":"205","Email":"","Name":"BolagsBemanning
+        i Tingsryd AB","OrganisationNumber":"556716-1855","Phone":"","ZipCode":"36221"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/206","Address1":"Some
+        long and complicated address","Address2":"","City":"Paris","CustomerNumber":"206","Email":"an_email-address@email.com","Name":"A
+        company","OrganisationNumber":"","Phone":"Phone number 123","ZipCode":"A zip
+        code"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/207","Address1":"1","Address2":"","City":"1","CustomerNumber":"207","Email":"","Name":"123","OrganisationNumber":"","Phone":"","ZipCode":"1"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/208","Address1":"","Address2":"","City":"","CustomerNumber":"208","Email":"","Name":"Anna&Lisa","OrganisationNumber":"","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/209","Address1":"","Address2":"","City":"","CustomerNumber":"209","Email":"","Name":"Tor
+        & Bj\u00f6rn","OrganisationNumber":"","Phone":"","ZipCode":""}]}'
+    http_version: 
+  recorded_at: Mon, 14 May 2018 19:17:35 GMT
+recorded_with: VCR 3.0.3
