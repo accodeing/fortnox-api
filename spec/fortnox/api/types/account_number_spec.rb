@@ -13,19 +13,17 @@ describe Fortnox::API::Types do
     it { is_expected.to be_nil }
   end
 
-  context 'when AccountNumber created with empty string' do
-    include_examples 'raises ConstraintError', ''
-  end
-
   context 'when AccountNumber created with valid number' do
-    include_examples 'equals input', 1234
+    subject { klass['1234'] }
+
+    it { is_expected.to eq 1234 }
   end
 
   context 'when AccountNumber created with a too large number' do
-    include_examples 'raises ConstraintError', 10_000
+    include_examples 'raises ConstraintError', '10000'
   end
 
   context 'when AccountNumber created with a negative number' do
-    include_examples 'raises ConstraintError', -1
+    include_examples 'raises ConstraintError', '-1'
   end
 end

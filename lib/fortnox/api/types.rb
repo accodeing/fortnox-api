@@ -38,6 +38,7 @@ module Fortnox
       AccountNumber = Strict::Int
                       .constrained(gteq: 0, lteq: 9999)
                       .optional
+                      .constructor(Dry::Types::Coercions::Form.method(:to_int))
 
       ArticleType = Strict::String
                     .constrained(included_in: ArticleTypes.values)
