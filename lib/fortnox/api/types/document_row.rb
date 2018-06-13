@@ -20,16 +20,14 @@ module Fortnox
         attribute :cost_center, Types::Nullable::String
 
         # DeliveredQuantity Delivered quantity. 14 digits
-        attribute :delivered_quantity, Types::Sized::Float[-9_999_999_999_999.9, 9_999_999_999_999.9]
+        attribute :delivered_quantity, Types::Sized::Float[-999_999.9, 999_999.9]
 
         # Description Description Row description. 50 characters
         attribute :description, Types::Sized::String[50]
 
         # Discount amount. 12 digits (for amount) / 5 digits (for percent)
-        # TODO(hannes): Verify that we can send in more than 5 digits through
-        # the actual API for DiscountType PERCENT. This cannot be done until
-        # we fix issue #62...
-        attribute :discount, Types::Sized::Float[0.0, 99_999_999_999.9]
+        # TODO: Should be [-100.0, 100.0] for DiscountType PERCENT.
+        attribute :discount, Types::Sized::Float[-9_999_999_999.9, 9_999_999_999.9]
 
         # DiscountType The type of discount used for the row.
         attribute :discount_type, Types::DiscountType
@@ -45,7 +43,7 @@ module Fortnox
         attribute :housework_type, Types::HouseworkType
 
         # Price Price per unit. 12 digits
-        attribute :price, Types::Sized::Float[0.0, 99_999_999_999.9]
+        attribute :price, Types::Sized::Float[-9_999_999_999.9, 9_999_999_999.9]
 
         # Project Code of the project for the row.
         attribute :project, Types::Nullable::String
