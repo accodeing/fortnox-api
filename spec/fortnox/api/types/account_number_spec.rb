@@ -13,6 +13,10 @@ describe Fortnox::API::Types do
     it { is_expected.to be_nil }
   end
 
+  context 'when AccountNumber created with empty string' do
+    include_examples 'raises ConstraintError', ''
+  end
+
   context 'when AccountNumber created with valid number' do
     include_examples 'equals input', 1234
   end
