@@ -40,7 +40,7 @@ shared_context 'with JSON conversion' do
         attribute :url, 'strict.string'
         attribute :name, 'strict.string'
         attribute :vat, 'strict.float'
-        attribute :categories, Dry::Types['coercible.array'].member(Test::Category)
+        attribute :categories, Dry::Types['coercible.array'].of(Test::Category)
         attribute :designer, Test::ProductDesigner
       end
     end
