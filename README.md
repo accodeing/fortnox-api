@@ -15,16 +15,14 @@ Thanks to the relatively simple structure of our library it is really easy to ad
 [![Maintainability](https://api.codeclimate.com/v1/badges/50d44a1d00620b4a6bde/maintainability)](https://codeclimate.com/github/my-codeworks/fortnox-api/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/50d44a1d00620b4a6bde/test_coverage)](https://codeclimate.com/github/my-codeworks/fortnox-api/test_coverage)
 
-The rough status of this project is as follows (as of October 2017):
-* In active development (just check out the commit log)
-* Three developers. At least thrice as good as one.
+The rough status of this project is as follows (as of October 2018):
+* Development is not as active as it used to be, but the project is not forgotten. We have an app running this gem in production and it works like a charm for what we do.
+* We are planning on generalize REST API's in general with our [rest_easy gem](https://github.com/accodeing/rest_easy).
 * Basic structure complete. Things like getting customers and invoices, updating and saving etc.
 * Some advanced features implemented, for instance support for multiple Access Tokens and filtering entities.
-* Advanced features around the corner. Things like sorting entities, pagination of results etc.
-* A few models implemented. Right now we have nearly full support for `Customer`, `Invoice`, `Order`, `Article`, `Label` and `Project`. Adding more models in general is quick and easy, see the developer guide further down.
-* Massive refactorings no longer occurs weekly :) We are running this gem in production for live test.
-
-The goal is to have a production ready version that covers at least the `Invoice`, `Order`,  `Customer` and `Project` models by January.
+* We have ideas for more advanced features, like sorting entities, pagination of results but nothing in the pipeline right now.
+* A few models implemented. Right now we pretty good support for `Customer`, `Invoice`, `Order`, `Article`, `Label` and `Project`. Adding more models in general is quick and easy (that's the whole point with this gem), see the developer guide further down.
+* Massive refactorings no longer occurs weekly :)
 
 # Architecture overview
 The gem is structured with distinct models for the tasks of data, JSON mapping and saving state. These are called: model, type, mapper and repository.
