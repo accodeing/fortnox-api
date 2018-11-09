@@ -25,7 +25,7 @@ describe Fortnox::API::Repository::Unit, order: :defined, integration: true do
                    :code,
                    'woooh'
 
-  include_examples '.all', 6
+  include_examples '.all', 8
 
   include_examples '.find', 'blarg', find_by_hash: false do
     let(:find_by_hash_failure) { { code: 'notfound' } }

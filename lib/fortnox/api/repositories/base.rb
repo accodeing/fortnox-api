@@ -4,6 +4,8 @@ require 'httparty'
 require 'fortnox/api/request_handling'
 require 'fortnox/api/repositories/base/loaders'
 require 'fortnox/api/repositories/base/savers'
+require 'fortnox/api/repositories/base/pagination'
+require 'fortnox/api/mappers/metadata'
 
 module Fortnox
   module API
@@ -13,6 +15,7 @@ module Fortnox
         include Fortnox::API::RequestHandling
         include Loaders
         include Savers
+        include Pagination
 
         HTTParty::Parser::SupportedFormats['text/html'] = :json
 
@@ -24,7 +27,7 @@ module Fortnox
         HTTP_METHODS = %i[get put post delete].freeze
 
         attr_accessor :headers
-        attr_reader :mapper, :keys_filtered_on_save
+        attr_reader :mapper, :keys_filtered_on_save, :metadata
 
         def self.set_headers(headers = {}) # rubocop:disable Naming/AccessorMethodName
           self.headers.merge!(headers)
@@ -49,6 +52,7 @@ module Fortnox
           @keys_filtered_on_save = keys_filtered_on_save
           @token_store = token_store
           @mapper = Registry[Mapper::Base.canonical_name_sym(self.class::MODEL)].new
+          @metadata_mapper = Mapper::Metadata.new
         end
 
         def next_access_token

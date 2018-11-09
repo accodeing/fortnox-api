@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.fortnox.se/3/articles/
+    uri: https://api.fortnox.se/3/articles/?page=1
     body:
       encoding: US-ASCII
       string: ''
@@ -23,7 +23,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Sun, 08 Oct 2017 21:51:31 GMT
+      - Mon, 14 May 2018 19:17:33 GMT
       Content-Type:
       - application/json
       Connection:
@@ -32,14 +32,14 @@ http_interactions:
       - Accept-Encoding
       - Accept-Encoding
       X-Rack-Responsetime:
-      - '21'
+      - '52'
       X-Uid:
-      - 1aa0352f
+      - e3215349
       X-Build:
-      - e1392b4cf7
+      - 06fdff7705
     body:
       encoding: UTF-8
-      string: '{"MetaInformation":{"@TotalResources":12,"@TotalPages":1,"@CurrentPage":1},"Articles":[{"@url":"https:\/\/api.fortnox.se\/3\/articles\/0000","ArticleNumber":"0000","Description":"Testartikel","DisposableQuantity":"0","EAN":"","Housework":false,"PurchasePrice":"0","SalesPrice":null,"QuantityInStock":"0","ReservedQuantity":"0","StockPlace":"","StockValue":"0","Unit":null,"VAT":null,"WebshopArticle":false},{"@url":"https:\/\/api.fortnox.se\/3\/articles\/0001","ArticleNumber":"0001","Description":"Cykelpump","DisposableQuantity":"0","EAN":"","Housework":false,"PurchasePrice":"0","SalesPrice":"100","QuantityInStock":"0","ReservedQuantity":"0","StockPlace":"","StockValue":"0","Unit":null,"VAT":null,"WebshopArticle":false},{"@url":"https:\/\/api.fortnox.se\/3\/articles\/1","ArticleNumber":"1","Description":"Testartikel","DisposableQuantity":"0","EAN":"","Housework":false,"PurchasePrice":"0","SalesPrice":"100","QuantityInStock":"0","ReservedQuantity":"0","StockPlace":"","StockValue":"0","Unit":null,"VAT":null,"WebshopArticle":false},{"@url":"https:\/\/api.fortnox.se\/3\/articles\/2","ArticleNumber":"2","Description":"A
+      string: '{"MetaInformation":{"@TotalResources":20,"@TotalPages":1,"@CurrentPage":1},"Articles":[{"@url":"https:\/\/api.fortnox.se\/3\/articles\/0000","ArticleNumber":"0000","Description":"Testartikel","DisposableQuantity":"0","EAN":"","Housework":false,"PurchasePrice":"0","SalesPrice":null,"QuantityInStock":"0","ReservedQuantity":"0","StockPlace":"","StockValue":"0","Unit":null,"VAT":null,"WebshopArticle":false},{"@url":"https:\/\/api.fortnox.se\/3\/articles\/0001","ArticleNumber":"0001","Description":"Cykelpump","DisposableQuantity":"0","EAN":"","Housework":false,"PurchasePrice":"0","SalesPrice":"100","QuantityInStock":"0","ReservedQuantity":"0","StockPlace":"","StockValue":"0","Unit":null,"VAT":null,"WebshopArticle":false},{"@url":"https:\/\/api.fortnox.se\/3\/articles\/1","ArticleNumber":"1","Description":"Testartikel","DisposableQuantity":"0","EAN":"","Housework":false,"PurchasePrice":"0","SalesPrice":"100","QuantityInStock":"0","ReservedQuantity":"0","StockPlace":"","StockValue":"0","Unit":null,"VAT":null,"WebshopArticle":false},{"@url":"https:\/\/api.fortnox.se\/3\/articles\/2","ArticleNumber":"2","Description":"A
         value","DisposableQuantity":"0","EAN":"","Housework":false,"PurchasePrice":"0","SalesPrice":null,"QuantityInStock":"0","ReservedQuantity":"0","StockPlace":null,"StockValue":"0","Unit":"","VAT":null,"WebshopArticle":false},{"@url":"https:\/\/api.fortnox.se\/3\/articles\/3","ArticleNumber":"3","Description":"Test
         article","DisposableQuantity":"0","EAN":"","Housework":false,"PurchasePrice":"0","SalesPrice":null,"QuantityInStock":"0","ReservedQuantity":"0","StockPlace":null,"StockValue":"0","Unit":"","VAT":null,"WebshopArticle":false},{"@url":"https:\/\/api.fortnox.se\/3\/articles\/4","ArticleNumber":"4","Description":"Test
         article","DisposableQuantity":"0","EAN":"","Housework":false,"PurchasePrice":"0","SalesPrice":null,"QuantityInStock":"0","ReservedQuantity":"0","StockPlace":null,"StockValue":"0","Unit":"","VAT":null,"WebshopArticle":false},{"@url":"https:\/\/api.fortnox.se\/3\/articles\/5","ArticleNumber":"5","Description":"Test
@@ -48,7 +48,15 @@ http_interactions:
         article","DisposableQuantity":"0","EAN":"5901234123457","Housework":false,"PurchasePrice":"0","SalesPrice":null,"QuantityInStock":"0","ReservedQuantity":"0","StockPlace":null,"StockValue":"0","Unit":"","VAT":null,"WebshopArticle":false},{"@url":"https:\/\/api.fortnox.se\/3\/articles\/8","ArticleNumber":"8","Description":"A
         value","DisposableQuantity":"0","EAN":"","Housework":false,"PurchasePrice":"0","SalesPrice":null,"QuantityInStock":"0","ReservedQuantity":"0","StockPlace":null,"StockValue":"0","Unit":"","VAT":null,"WebshopArticle":false},{"@url":"https:\/\/api.fortnox.se\/3\/articles\/9","ArticleNumber":"9","Description":"A
         value","DisposableQuantity":"0","EAN":"","Housework":false,"PurchasePrice":"0","SalesPrice":null,"QuantityInStock":"0","ReservedQuantity":"0","StockPlace":null,"StockValue":"0","Unit":"","VAT":null,"WebshopArticle":false},{"@url":"https:\/\/api.fortnox.se\/3\/articles\/10","ArticleNumber":"10","Description":"Abc
-        123","DisposableQuantity":"0","EAN":"","Housework":false,"PurchasePrice":"0","SalesPrice":null,"QuantityInStock":"0","ReservedQuantity":"0","StockPlace":null,"StockValue":"0","Unit":"","VAT":null,"WebshopArticle":false}]}'
+        123","DisposableQuantity":"0","EAN":"","Housework":false,"PurchasePrice":"0","SalesPrice":null,"QuantityInStock":"0","ReservedQuantity":"0","StockPlace":null,"StockValue":"0","Unit":"","VAT":null,"WebshopArticle":false},{"@url":"https:\/\/api.fortnox.se\/3\/articles\/11","ArticleNumber":"11","Description":"A
+        value","DisposableQuantity":"0","EAN":"","Housework":false,"PurchasePrice":"0","SalesPrice":null,"QuantityInStock":"0","ReservedQuantity":"0","StockPlace":null,"StockValue":"0","Unit":"","VAT":null,"WebshopArticle":false},{"@url":"https:\/\/api.fortnox.se\/3\/articles\/12","ArticleNumber":"12","Description":"Test
+        article","DisposableQuantity":"0","EAN":"5901234123457","Housework":false,"PurchasePrice":"0","SalesPrice":null,"QuantityInStock":"0","ReservedQuantity":"0","StockPlace":null,"StockValue":"0","Unit":"","VAT":null,"WebshopArticle":false},{"@url":"https:\/\/api.fortnox.se\/3\/articles\/13","ArticleNumber":"13","Description":"Test
+        article","DisposableQuantity":"0","EAN":"5901234123457","Housework":false,"PurchasePrice":"0","SalesPrice":null,"QuantityInStock":"0","ReservedQuantity":"0","StockPlace":null,"StockValue":"0","Unit":"","VAT":null,"WebshopArticle":false},{"@url":"https:\/\/api.fortnox.se\/3\/articles\/14","ArticleNumber":"14","Description":"A
+        value","DisposableQuantity":"0","EAN":"","Housework":false,"PurchasePrice":"0","SalesPrice":null,"QuantityInStock":"0","ReservedQuantity":"0","StockPlace":null,"StockValue":"0","Unit":"","VAT":null,"WebshopArticle":false},{"@url":"https:\/\/api.fortnox.se\/3\/articles\/15","ArticleNumber":"15","Description":"A
+        value","DisposableQuantity":"0","EAN":"","Housework":false,"PurchasePrice":"0","SalesPrice":null,"QuantityInStock":"0","ReservedQuantity":"0","StockPlace":null,"StockValue":"0","Unit":"","VAT":null,"WebshopArticle":false},{"@url":"https:\/\/api.fortnox.se\/3\/articles\/16","ArticleNumber":"16","Description":"Test
+        article","DisposableQuantity":"0","EAN":"5901234123457","Housework":false,"PurchasePrice":"0","SalesPrice":null,"QuantityInStock":"0","ReservedQuantity":"0","StockPlace":null,"StockValue":"0","Unit":"","VAT":null,"WebshopArticle":false},{"@url":"https:\/\/api.fortnox.se\/3\/articles\/17","ArticleNumber":"17","Description":"A
+        value","DisposableQuantity":"0","EAN":"","Housework":false,"PurchasePrice":"0","SalesPrice":null,"QuantityInStock":"0","ReservedQuantity":"0","StockPlace":null,"StockValue":"0","Unit":"","VAT":null,"WebshopArticle":false},{"@url":"https:\/\/api.fortnox.se\/3\/articles\/18","ArticleNumber":"18","Description":"Updated
+        description","DisposableQuantity":"0","EAN":"","Housework":false,"PurchasePrice":"0","SalesPrice":null,"QuantityInStock":"0","ReservedQuantity":"0","StockPlace":null,"StockValue":"0","Unit":null,"VAT":null,"WebshopArticle":false}]}'
     http_version: 
-  recorded_at: Sun, 08 Oct 2017 21:51:31 GMT
+  recorded_at: Mon, 14 May 2018 19:17:33 GMT
 recorded_with: VCR 3.0.3
