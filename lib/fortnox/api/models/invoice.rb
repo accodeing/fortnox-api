@@ -50,7 +50,7 @@ module Fortnox
         attribute :invoice_period_end, Types::Nullable::Date.is(:read_only)
 
         # InvoiceRows Separate object
-        attribute :invoice_rows, Types::Strict::Array.member(Types::InvoiceRow)
+        attribute :invoice_rows, Types::Strict::Array.of(Types::InvoiceRow)
 
         # InvoiceType The type of invoice.
         attribute :invoice_type, Types::Nullable::String

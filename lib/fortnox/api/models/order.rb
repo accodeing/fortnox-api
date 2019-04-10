@@ -20,7 +20,7 @@ module Fortnox
         attribute :order_date, Types::Nullable::Date
 
         # OrderRows Separate object
-        attribute :order_rows, Types::Strict::Array.member(Types::OrderRow)
+        attribute :order_rows, Types::Strict::Array.of(Types::OrderRow)
       end
     end
   end
