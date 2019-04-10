@@ -8,7 +8,6 @@ Thanks to the relatively simple structure of our library it is really easy to ad
 # Status for master
 [![Gem version](https://img.shields.io/gem/v/fortnox-api.svg?style=flat-square)](https://rubygems.org/gems/fortnox-api)
 [![Build status](https://img.shields.io/travis/my-codeworks/fortnox-api/master.svg?style=flat-square)](https://travis-ci.org/my-codeworks/fortnox-api)
-[![Dependency status](https://img.shields.io/gemnasium/my-codeworks/fortnox-api.svg?style=flat-square)](https://gemnasium.com/my-codeworks/fortnox-api)
 
 # Status for development
 [![Build status](https://img.shields.io/travis/my-codeworks/fortnox-api/development.svg?style=flat-square)](https://travis-ci.org/my-codeworks/fortnox-api)
