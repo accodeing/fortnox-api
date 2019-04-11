@@ -44,7 +44,7 @@ describe Fortnox::API::Repository::Base do
 
   describe 'creation' do
     shared_examples_for 'missing configuration' do
-      subject { -> { repository } }
+      subject { -> { Repository::Test.new(token_store: :store1).get('nonsense') } }
 
       let(:error) { Fortnox::API::MissingConfiguration }
 
@@ -53,14 +53,27 @@ describe Fortnox::API::Repository::Base do
 
     context 'without base url' do
       include_examples 'missing configuration' do
-        before { Fortnox::API.configure { |conf| conf.base_url = nil } }
+        before do
+          Fortnox::API.configure do |config|
+            config.base_url = nil
+            config.client_secret = client_secret
+            config.access_tokens = { store1: access_token }
+          end
+        end
+
         let(:message) { 'have to provide a base url' }
       end
     end
 
     context 'without client secret' do
       include_examples 'missing configuration' do
-        before { Fortnox::API.configure { |conf| conf.client_secret = nil } }
+        before do
+          Fortnox::API.configure do |config|
+            config.client_secret = nil
+            config.access_tokens = { store1: access_token }
+          end
+        end
+
         let(:message) { 'have to provide your client secret' }
       end
     end
