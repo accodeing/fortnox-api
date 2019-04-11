@@ -5,6 +5,7 @@ require 'fortnox/api'
 require 'fortnox/api/mappers'
 require 'fortnox/api/repositories/invoice'
 require 'fortnox/api/repositories/examples/all'
+require 'fortnox/api/repositories/examples/country_attribute'
 require 'fortnox/api/repositories/examples/find'
 require 'fortnox/api/repositories/examples/search'
 require 'fortnox/api/repositories/examples/save'
@@ -54,4 +55,20 @@ describe Fortnox::API::Repository::Invoice, order: :defined, integration: true d
   include_examples '.search', :customername, 'Test', 3
 
   include_examples '.only', :fullypaid, 1
+
+  fdescribe 'country attribite' do
+    let(:model_class) { described_class::MODEL }
+    let(:new_model) { model_class.new(model_class::STUB.merge(country: country)) }
+
+    describe 'valid country' do
+      let(:country) { 'Sweden' }
+
+      it do
+        p new_model
+        VCR.use_cassette("#{vcr_dir}/save_new_with_country") do
+          repository.save(new_model)
+        end
+      end
+    end
+  end
 end
