@@ -18,20 +18,14 @@ describe Fortnox::API::Repository::Base do
   end
 
   before do
-    begin
-      # NOTE: This registry key is leaking throughout the whole test suite...
-      # I don't know of any way to remove a key from the registry without resetting the whole registry.
-      Fortnox::API::Registry.register(:repositorybasetest, Model::RepositoryBaseTest)
-    rescue Dry::Container::Error
-      # HACK: Dry::Container#register throws an error when registering an already existing key.
-      # Unfortunately, I do not know of any way to check if a key is already registered,
-      # so this begin-rescue statement was the best I could come up with for now...
-    end
+    Fortnox::API::Registry.register(:repositorybasetest, Model::RepositoryBaseTest)
+  end
 
-    require 'dry/container/stub'
-    Fortnox::API::Registry.enable_stubs!
-    Fortnox::API::Registry.stub(:repositorybasetest, Model::RepositoryBaseTest)
-    Fortnox::API::Registry.unstub(:repositorybasetest)
+  after do
+    # HACK: Currently, there is no way to remove keys from the Dry::Container#register.
+    # We could move the register call to a before(:all) hook, but that registered key
+    # would then leak into other tests. Instead, we can simply delete it with this little hack :)
+    Fortnox::API::Registry._container.delete( 'repositorybasetest' )
   end
 
   let(:access_token) { '3f08d038-f380-4893-94a0-a08f6e60e67a' }
