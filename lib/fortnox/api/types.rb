@@ -46,29 +46,24 @@ module Fortnox
                     .optional
                     .constructor(EnumConstructors.default)
 
-      Country = Strict::String
-                .optional
-                .constructor do |value|
-                  if value.nil? || value == ''
-                    value
-                  elsif ['se', :se, 'sweden', :sweden, 'sverige', :sverige].include?(value.downcase)
-                    # Fortnox API only supports Swedish translation of this country
-                    'Sverige'
-                  else
-                    country = ::ISO3166::Country[value.to_sym] ||
-                              ::ISO3166::Country.find_country_by_name(value.to_s.downcase) ||
-                              ::ISO3166::Country.find_country_by_translated_names(value)
-
-                    raise Dry::Types::ConstraintError.new('value violates constraints', value) if country.nil?
-
-                    country.translations['en']
-                  end
-                end
-
       CountryCode = Strict::String
-                    .constrained(included_in: CountryCodes.values)
                     .optional
-                    .constructor(EnumConstructors.sized(2))
+                    .constructor do |value|
+                      if value.nil? || value == ''
+                        value
+                      elsif ['se', :se, 'sweden', :sweden, 'sverige', :sverige].include?(value.downcase)
+                        # Fortnox API only supports Swedish translation of this country
+                        'Sverige'
+                      else
+                        country = ::ISO3166::Country[value] ||
+                                  ::ISO3166::Country.find_country_by_name(value.to_s.downcase) ||
+                                  ::ISO3166::Country.find_country_by_translated_names(value)
+
+                        raise Dry::Types::ConstraintError.new('value violates constraints', value) if country.nil?
+
+                        country.alpha2
+                      end
+                    end
 
       Currency = Strict::String
                  .constrained(included_in: Currencies.values)

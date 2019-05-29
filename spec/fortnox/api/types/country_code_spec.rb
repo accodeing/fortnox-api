@@ -4,7 +4,7 @@ require 'spec_helper'
 require 'fortnox/api/types'
 require 'fortnox/api/types/examples/types'
 
-describe Fortnox::API::Types::Country do
+describe Fortnox::API::Types::CountryCode do
   context 'with nil' do
     subject { described_class[nil] }
 
@@ -18,16 +18,16 @@ describe Fortnox::API::Types::Country do
   end
 
   context 'with valid input' do
-    it 'accepts English country names' do
-      expect(described_class['Norway']).to eq 'Norway'
+    it 'accepts country codes' do
+      expect(described_class['NO']).to eq 'NO'
     end
 
-    it 'translates Swedish country names to English' do
-      expect(described_class['Norge']).to eq 'Norway'
+    it 'translates English country names to country code' do
+      expect(described_class['Norway']).to eq 'NO'
     end
 
-    it 'translates country codes to English country name' do
-      expect(described_class['NO']).to eq 'Norway'
+    it 'translates Swedish country names to country code' do
+      expect(described_class['Norge']).to eq 'NO'
     end
 
     describe 'special cases' do
