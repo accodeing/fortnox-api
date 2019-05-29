@@ -26,8 +26,7 @@ Gem::Specification.new do |spec| # rubocop:disable Metrics/BlockLength
   spec.required_ruby_version = '>= 2.3'
   spec.add_dependency 'dry-struct', '~> 0.1'
   spec.add_dependency 'dry-types', '~> 0.8', '< 0.13.0'
-  # TODO: Temporary lockdown. See issue #103 for more info.
-  spec.add_dependency 'httparty', '~> 0.14.0'
+  spec.add_dependency 'httparty', '~> 0.17'
 
   spec.add_development_dependency 'bundler', '~> 1.9'
   spec.add_development_dependency 'guard', '~> 2.12'
