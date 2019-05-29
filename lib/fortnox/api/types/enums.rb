@@ -2,7 +2,7 @@
 
 module Fortnox
   module API
-    module Types # rubocop:disable Metrics/ModuleLength
+    module Types
       module EnumConstructors
         def self.sized(size)
           lambda do |value|

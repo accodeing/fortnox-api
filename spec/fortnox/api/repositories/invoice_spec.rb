@@ -62,9 +62,9 @@ describe Fortnox::API::Repository::Invoice, order: :defined, integration: true d
     end
 
     context 'with valid country' do
-      def use_vcr_cassette(country: country, &block)
+      def use_vcr_cassette(country: country)
         VCR.use_cassette("#{vcr_dir}/save_new_with_country_#{country}") do
-          block.call
+          yield
         end
       end
 
@@ -84,27 +84,32 @@ describe Fortnox::API::Repository::Invoice, order: :defined, integration: true d
 
       describe 'GB' do
         subject { save_invoice(country: 'GB') }
+
         it { is_expected.to eq('United Kingdom') }
       end
 
       describe 'KR' do
         subject { save_invoice(country: 'KR') }
+
         it { is_expected.to eq('Korea, Republic of') }
       end
 
       describe 'VA' do
         subject { save_invoice(country: 'VA') }
+
         it { is_expected.to eq('Holy See (Vatican City State)') }
       end
 
       describe 'VI' do
         subject { save_invoice(country: 'VI') }
+
         it { is_expected.to eq('Virgin Islands, U.S.') }
       end
 
       describe 'special cases' do
         describe 'Sverige' do
           subject { save_invoice(country: 'Sverige') }
+
           it { is_expected.to eq('Sverige') }
         end
       end
