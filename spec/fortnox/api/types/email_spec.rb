@@ -20,13 +20,10 @@ describe Fortnox::API::Types::Email do
   end
 
   context 'when created with valid email' do
-    emails = ['valid@example.com', 'kanal_75_ab-faktura@mail.unit4agresso.readsoftonline.com']
+    valid_emails = ['valid@example.com', 'kanal_75_ab-faktura@mail.unit4agresso.readsoftonline.com']
 
-    emails.each do |email|
-      subject { described_class[input] }
-
-      let(:input) { email }
-      it { is_expected.to eq input }
+    valid_emails.each do |email|
+      it { expect(described_class[email]).to eq email }
     end
   end
 
