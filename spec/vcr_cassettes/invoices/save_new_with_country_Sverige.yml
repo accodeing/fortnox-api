@@ -1,0 +1,46 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.fortnox.se/3/invoices/
+    body:
+      encoding: UTF-8
+      string: '{"Invoice":{"Country":"Sverige","CustomerNumber":"1"}}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      Client-Secret:
+      - 9aBA8ZgsvR
+      Access-Token:
+      - ccaef817-d5d8-4b1c-a316-54f3e55c5c54
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Wed, 29 May 2019 09:33:08 GMT
+      Content-Type:
+      - application/json
+      Connection:
+      - close
+      Location:
+      - invoices
+      X-Rack-Responsetime:
+      - '116'
+      X-Uid:
+      - d1d25372
+      X-Build:
+      - e930a91c78
+    body:
+      encoding: UTF-8
+      string: '{"Invoice":{"@url":"https:\/\/api.fortnox.se\/3\/invoices\/115","@urlTaxReductionList":"https:\/\/api.fortnox.se\/3\/taxreductions?filter=invoices&referencenumber=115","AdministrationFee":0,"AdministrationFeeVAT":0,"Address1":"","Address2":"","Balance":0,"BasisTaxReduction":0,"Booked":false,"Cancelled":false,"City":"","Comments":"","ContractReference":0,"ContributionPercent":0,"ContributionValue":0,"Country":"Sverige","CostCenter":"","Credit":"false","CreditInvoiceReference":0,"Currency":"SEK","CurrencyRate":1,"CurrencyUnit":1,"CustomerName":"Old
+        name","CustomerNumber":"1","DeliveryAddress1":"","DeliveryAddress2":"","DeliveryCity":"","DeliveryCountry":"","DeliveryDate":null,"DeliveryName":"","DeliveryZipCode":"","DocumentNumber":"115","DueDate":"2019-05-29","EDIInformation":{"EDIGlobalLocationNumber":"","EDIGlobalLocationNumberDelivery":"","EDIInvoiceExtra1":"","EDIInvoiceExtra2":"","EDIOurElectronicReference":"","EDIYourElectronicReference":""},"EmailInformation":{"EmailAddressFrom":null,"EmailAddressTo":"","EmailAddressCC":null,"EmailAddressBCC":null,"EmailSubject":"Faktura
+        {no} bifogas","EmailBody":" "},"EUQuarterlyReport":false,"ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","Freight":0,"FreightVAT":0,"Gross":0,"HouseWork":false,"InvoiceDate":"2019-05-29","InvoicePeriodStart":"","InvoicePeriodEnd":"","InvoiceReference":0,"InvoiceRows":[],"InvoiceType":"INVOICE","Labels":[],"Language":"SV","LastRemindDate":null,"Net":0,"NotCompleted":false,"NoxFinans":false,"OCR":"11551","OfferReference":0,"OrderReference":0,"OrganisationNumber":"860101-8735","OurReference":"","PaymentWay":"","Phone1":"","Phone2":"","PriceList":"A","PrintTemplate":"st","Project":"","WarehouseReady":true,"OutboundDate":"2019-05-29","Remarks":"","Reminders":0,"RoundOff":0,"Sent":false,"TaxReduction":null,"TermsOfDelivery":"","TermsOfPayment":0,"Total":0,"TotalToPay":0,"TotalVAT":0,"VATIncluded":false,"VoucherNumber":null,"VoucherSeries":null,"VoucherYear":null,"WayOfDelivery":"","YourOrderNumber":"","YourReference":"","ZipCode":"","AccountingMethod":"ACCRUAL","FinalPayDate":null}}'
+    http_version: 
+  recorded_at: Wed, 29 May 2019 09:33:08 GMT
+recorded_with: VCR 4.0.0

@@ -56,17 +56,54 @@ describe Fortnox::API::Repository::Invoice, order: :defined, integration: true d
 
   include_examples '.only', :fullypaid, 4
 
-  fdescribe 'country attribite' do
-    let(:model_class) { described_class::MODEL }
-    let(:new_model) { model_class.new(model_class::STUB.merge(country: country)) }
+  describe 'country attribute' do
+    def new_invoice(country:)
+      model = described_class::MODEL
+      model.new(customer_number: 1, country: country)
+    end
 
-    describe 'valid country' do
-      let(:country) { 'Sweden' }
+    context 'with valid country' do
+      def use_vcr_cassette(country: country, &block)
+        VCR.use_cassette("#{vcr_dir}/save_new_with_country_#{country}") do
+          block.call
+        end
+      end
 
-      it do
-        p new_model
-        VCR.use_cassette("#{vcr_dir}/save_new_with_country") do
-          repository.save(new_model)
+      def save_invoice(country:)
+        use_vcr_cassette(country: country) do
+          repository.save(new_invoice(country: country)).country
+        end
+      end
+
+      describe 'Norge' do
+        subject { save_invoice(country: 'Norge') }
+        it { is_expected.to eq('Norway') }
+      end
+
+      describe 'UK' do
+        subject { save_invoice(country: 'GB') }
+        it { is_expected.to eq('United Kingdom') }
+      end
+
+      describe 'UK' do
+        subject { save_invoice(country: 'KR') }
+        it { is_expected.to eq('Korea, Republic of') }
+      end
+
+      describe 'VA' do
+        subject { save_invoice(country: 'VA') }
+        it { is_expected.to eq('Holy See (Vatican City State)') }
+      end
+
+      describe 'VI' do
+        subject { save_invoice(country: 'VI') }
+        it { is_expected.to eq('Virgin Islands, U.S.') }
+      end
+
+      describe 'special cases' do
+        describe 'Sverige' do
+          subject { save_invoice(country: 'Sverige') }
+          it { is_expected.to eq('Sverige') }
         end
       end
     end
