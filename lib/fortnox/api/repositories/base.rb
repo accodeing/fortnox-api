@@ -16,10 +16,10 @@ module Fortnox
 
         HTTParty::Parser::SupportedFormats['text/html'] = :json
 
-        DEFAULT_HEADERS = {
+        headers(
           'Content-Type' => 'application/json',
           'Accept' => 'application/json'
-        }.freeze
+        )
 
         HTTP_METHODS = %i[get put post delete].freeze
 
@@ -31,21 +31,19 @@ module Fortnox
         end
 
         HTTP_METHODS.each do |method|
-          define_method method do |*args|
-            headers['Access-Token'] = next_access_token
+          define_method method do |path, options = {}, &block|
+            provided_headers = options[:headers] || {}
+            provided_headers['Client-Secret'] = client_secret
+            provided_headers['Access-Token'] = next_access_token
+            options[:headers] = provided_headers
+            options[:base_uri] ||= base_url
             execute do |remote|
-              remote.send(method, *args)
+              remote.send(method, path, options, &block)
             end
           end
         end
 
         def initialize(keys_filtered_on_save: [:url], token_store: :default)
-          self.class.base_uri(base_url)
-
-          self.headers = DEFAULT_HEADERS.merge(
-            'Client-Secret' => client_secret
-          )
-
           @keys_filtered_on_save = keys_filtered_on_save
           @token_store = token_store
           @mapper = Registry[Mapper::Base.canonical_name_sym(self.class::MODEL)].new

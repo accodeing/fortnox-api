@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.fortnox.se/3/articles/18
+    uri: https://api.fortnox.se/3/articles/23
     body:
       encoding: US-ASCII
       string: ''
@@ -23,7 +23,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Mon, 09 Oct 2017 19:45:43 GMT
+      - Wed, 29 May 2019 07:52:45 GMT
       Content-Type:
       - application/json
       Connection:
@@ -32,15 +32,15 @@ http_interactions:
       - Accept-Encoding
       - Accept-Encoding
       X-Rack-Responsetime:
-      - '25'
+      - '36'
       X-Uid:
-      - 5191a93e
+      - b904cc2e
       X-Build:
-      - 5228d322dc
+      - e930a91c78
     body:
       encoding: UTF-8
-      string: '{"Article":{"@url":"https:\/\/api.fortnox.se\/3\/articles\/18","ArticleNumber":"18","Bulky":false,"ConstructionAccount":0,"Depth":0,"Description":"A
-        value","DisposableQuantity":0,"EAN":"","EUAccount":3200,"EUVATAccount":3231,"ExportAccount":3200,"Height":0,"Housework":false,"HouseworkType":null,"Active":true,"Manufacturer":null,"ManufacturerArticleNumber":"","Note":"","PurchaseAccount":3100,"PurchasePrice":0,"QuantityInStock":0,"ReservedQuantity":0,"SalesAccount":1250,"StockGoods":false,"StockPlace":null,"StockValue":0,"StockWarning":0,"SupplierName":null,"SupplierNumber":null,"Type":"STOCK","Unit":null,"VAT":0,"WebshopArticle":false,"Weight":0,"Width":0,"Expired":false,"SalesPrice":null,"CostCalculationMethod":null,"StockAccount":null,"StockChangeAccount":null,"DirectCost":0,"FreightCost":0,"OtherCost":0}}'
+      string: '{"Article":{"@url":"https:\/\/api.fortnox.se\/3\/articles\/23","ArticleNumber":"23","Bulky":false,"ConstructionAccount":0,"Depth":0,"Description":"A
+        value","DisposableQuantity":0,"EAN":"","EUAccount":3200,"EUVATAccount":3231,"ExportAccount":3200,"Height":0,"Housework":false,"HouseworkType":null,"Active":true,"Manufacturer":null,"ManufacturerArticleNumber":"","Note":"","PurchaseAccount":3100,"PurchasePrice":0,"QuantityInStock":0,"ReservedQuantity":0,"SalesAccount":1250,"StockGoods":false,"StockPlace":null,"StockValue":0,"StockWarning":0,"SupplierName":null,"SupplierNumber":null,"Type":"STOCK","Unit":null,"VAT":0,"WebshopArticle":false,"Weight":0,"Width":0,"Expired":false,"SalesPrice":null,"CostCalculationMethod":null,"StockAccount":null,"StockChangeAccount":null,"DirectCost":0,"FreightCost":0,"OtherCost":0,"DefaultStockPoint":null,"DefaultStockLocation":null}}'
     http_version: 
-  recorded_at: Mon, 09 Oct 2017 19:45:43 GMT
-recorded_with: VCR 3.0.3
+  recorded_at: Wed, 29 May 2019 07:52:45 GMT
+recorded_with: VCR 4.0.0

@@ -23,7 +23,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Wed, 12 Jul 2017 12:02:22 GMT
+      - Wed, 29 May 2019 07:52:39 GMT
       Content-Type:
       - application/json
       Connection:
@@ -34,13 +34,13 @@ http_interactions:
       X-Rack-Responsetime:
       - '19'
       X-Uid:
-      - bd69c645
+      - c044485c
       X-Build:
-      - 401ff9d5e0
+      - e930a91c78
     body:
       encoding: UTF-8
       string: '{"MetaInformation":{"@TotalResources":1,"@TotalPages":1,"@CurrentPage":1},"Customers":[{"@url":"https:\/\/api.fortnox.se\/3\/customers\/2","Address1":"","Address2":"","City":"New
         York","CustomerNumber":"2","Email":"","Name":"A customer","OrganisationNumber":"600102-7447","Phone":"","ZipCode":"10001"}]}'
     http_version: 
-  recorded_at: Wed, 12 Jul 2017 12:02:22 GMT
-recorded_with: VCR 3.0.3
+  recorded_at: Wed, 29 May 2019 07:52:39 GMT
+recorded_with: VCR 4.0.0
