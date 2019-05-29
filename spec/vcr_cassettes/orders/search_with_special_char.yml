@@ -23,7 +23,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Fri, 16 Jun 2017 13:06:56 GMT
+      - Wed, 29 May 2019 07:52:37 GMT
       Content-Type:
       - application/json
       Connection:
@@ -32,14 +32,14 @@ http_interactions:
       - Accept-Encoding
       - Accept-Encoding
       X-Rack-Responsetime:
-      - '60'
+      - '29'
       X-Uid:
-      - bd717ecb
+      - 3c2e88bd
       X-Build:
-      - 2efa532288
+      - e930a91c78
     body:
       encoding: UTF-8
       string: '{"MetaInformation":{"@TotalResources":0,"@TotalPages":0,"@CurrentPage":1},"Orders":[]}'
     http_version: 
-  recorded_at: Fri, 16 Jun 2017 13:06:56 GMT
-recorded_with: VCR 3.0.1
+  recorded_at: Wed, 29 May 2019 07:52:37 GMT
+recorded_with: VCR 4.0.0

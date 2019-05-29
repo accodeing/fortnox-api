@@ -23,7 +23,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Tue, 25 Oct 2016 10:21:48 GMT
+      - Wed, 29 May 2019 07:52:50 GMT
       Content-Type:
       - application/json
       Connection:
@@ -32,16 +32,16 @@ http_interactions:
       - Accept-Encoding
       - Accept-Encoding
       X-Rack-Responsetime:
-      - '52'
+      - '47'
       X-Uid:
-      - ac53ea2d
+      - 9884565f
       X-Build:
-      - 76600b8d0c
+      - e930a91c78
     body:
       encoding: UTF-8
       string: '{"Invoice":{"@url":"https:\/\/api.fortnox.se\/3\/invoices\/1","@urlTaxReductionList":"https:\/\/api.fortnox.se\/3\/taxreductions?filter=invoices&referencenumber=1","AdministrationFee":0,"AdministrationFeeVAT":0,"Address1":"","Address2":"","Balance":0,"BasisTaxReduction":0,"Booked":false,"Cancelled":false,"City":"","Comments":"Old
         comments","ContractReference":0,"ContributionPercent":0,"ContributionValue":0,"Country":"","CostCenter":"","Credit":"false","CreditInvoiceReference":"0","Currency":"SEK","CurrencyRate":1,"CurrencyUnit":1,"CustomerName":"Test","CustomerNumber":"1","DeliveryAddress1":"","DeliveryAddress2":"","DeliveryCity":"","DeliveryCountry":"","DeliveryDate":null,"DeliveryName":"","DeliveryZipCode":"","DocumentNumber":"1","DueDate":"2016-02-04","EDIInformation":{"EDIGlobalLocationNumber":"","EDIGlobalLocationNumberDelivery":"","EDIInvoiceExtra1":"","EDIInvoiceExtra2":"","EDIOurElectronicReference":"","EDIYourElectronicReference":""},"EmailInformation":{"EmailAddressFrom":null,"EmailAddressTo":"","EmailAddressCC":null,"EmailAddressBCC":null,"EmailSubject":"Faktura
-        {no} bifogas","EmailBody":" "},"EUQuarterlyReport":false,"ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","Freight":0,"FreightVAT":0,"Gross":0,"HouseWork":false,"InvoiceDate":"2016-02-04","InvoicePeriodStart":"","InvoicePeriodEnd":"","InvoiceReference":"0","InvoiceRows":[],"InvoiceType":"INVOICE","Labels":[],"Language":"SV","LastRemindDate":null,"Net":0,"NotCompleted":false,"NoxFinans":false,"OCR":"133","OfferReference":"0","OrderReference":"0","OrganisationNumber":"","OurReference":"","PaymentWay":"","Phone1":"","Phone2":"","PriceList":"A","PrintTemplate":"st","Project":"","Remarks":"","Reminders":0,"RoundOff":0,"Sent":true,"TaxReduction":null,"TermsOfDelivery":"","TermsOfPayment":"0","Total":0,"TotalToPay":0,"TotalVAT":0,"VATIncluded":false,"VoucherNumber":null,"VoucherSeries":null,"VoucherYear":null,"WayOfDelivery":"","YourOrderNumber":"","YourReference":"","ZipCode":"","AccountingMethod":"ACCRUAL"}}'
+        {no} bifogas","EmailBody":" "},"EUQuarterlyReport":false,"ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","Freight":0,"FreightVAT":0,"Gross":0,"HouseWork":false,"InvoiceDate":"2016-02-04","InvoicePeriodStart":"","InvoicePeriodEnd":"","InvoiceReference":"0","InvoiceRows":[],"InvoiceType":"INVOICE","Labels":[],"Language":"SV","LastRemindDate":null,"Net":0,"NotCompleted":false,"NoxFinans":false,"OCR":"133","OfferReference":"0","OrderReference":"0","OrganisationNumber":"","OurReference":"","PaymentWay":"","Phone1":"","Phone2":"","PriceList":"A","PrintTemplate":"st","Project":"","WarehouseReady":true,"OutboundDate":"2016-02-04","Remarks":"","Reminders":0,"RoundOff":0,"Sent":true,"TaxReduction":null,"TermsOfDelivery":"","TermsOfPayment":"0","Total":0,"TotalToPay":0,"TotalVAT":0,"VATIncluded":false,"VoucherNumber":null,"VoucherSeries":null,"VoucherYear":null,"WayOfDelivery":"","YourOrderNumber":"","YourReference":"","ZipCode":"","AccountingMethod":"ACCRUAL","FinalPayDate":null}}'
     http_version: 
-  recorded_at: Tue, 25 Oct 2016 10:21:48 GMT
-recorded_with: VCR 3.0.1
+  recorded_at: Wed, 29 May 2019 07:52:50 GMT
+recorded_with: VCR 4.0.0
