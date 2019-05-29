@@ -19,3 +19,7 @@ Metrics/LineLength:
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
+
+Naming/PredicateName:
+  Exclude:
+    - 'spec/support/matchers/**/*'
