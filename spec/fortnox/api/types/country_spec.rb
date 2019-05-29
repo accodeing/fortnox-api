@@ -18,15 +18,15 @@ describe Fortnox::API::Types::Country do
   end
 
   context 'with valid input' do
-    it 'accepts english country names' do
+    it 'accepts English country names' do
       expect(described_class['Norway']).to eq 'Norway'
     end
 
-    it 'translates swedish country names to english' do
+    it 'translates Swedish country names to English' do
       expect(described_class['Norge']).to eq 'Norway'
     end
 
-    it 'translates country codes to english country name' do
+    it 'translates country codes to English country name' do
       expect(described_class['NO']).to eq 'Norway'
     end
 
