@@ -62,14 +62,8 @@ describe Fortnox::API::Repository::Invoice, order: :defined, integration: true d
     end
 
     context 'with valid country' do
-      def use_vcr_cassette(country: country)
-        VCR.use_cassette("#{vcr_dir}/save_new_with_country_#{country}") do
-          yield
-        end
-      end
-
       def save_invoice(country:)
-        use_vcr_cassette(country: country) do
+        VCR.use_cassette("#{vcr_dir}/save_new_with_country_#{country}") do
           repository.save(new_invoice(country: country)).country
         end
       end
