@@ -47,25 +47,25 @@ module Fortnox
                     .constructor(EnumConstructors.default)
 
       Country = Strict::String
-                    .optional
-                    .constructor do |value|
-                      if value.nil? || value == ''
-                        value
-                      elsif ['se', :se, 'sweden', :sweden, 'sverige', :sverige].include?(value.downcase)
-                        # Fortnox API only supports Swedish translation of this country
-                        'Sverige'
-                      else
-                        country = ::ISO3166::Country[ value.to_sym ] ||
-                                  ::ISO3166::Country.find_country_by_name( value.to_s.downcase ) ||
-                                  ::ISO3166::Country.find_country_by_translated_names(value)
+                .optional
+                .constructor do |value|
+                  if value.nil? || value == ''
+                    value
+                  elsif ['se', :se, 'sweden', :sweden, 'sverige', :sverige].include?(value.downcase)
+                    # Fortnox API only supports Swedish translation of this country
+                    'Sverige'
+                  else
+                    country = ::ISO3166::Country[ value.to_sym ] ||
+                              ::ISO3166::Country.find_country_by_name( value.to_s.downcase ) ||
+                              ::ISO3166::Country.find_country_by_translated_names(value)
 
-                        if country.nil?
-                          raise Dry::Types::ConstraintError.new("value violates constraints", value)
-                        end
-
-                        country.translations['en']
-                      end
+                    if country.nil?
+                      raise Dry::Types::ConstraintError.new("value violates constraints", value)
                     end
+
+                    country.translations['en']
+                  end
+                end
 
       CountryCode = Strict::String
                     .constrained(included_in: CountryCodes.values)
