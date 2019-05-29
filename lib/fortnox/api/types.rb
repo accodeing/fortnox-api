@@ -51,8 +51,10 @@ module Fortnox
                     .constructor do |value|
                       if value.nil? || value == ''
                         value
+                      elsif ['se', :se, 'sweden', :sweden, 'sverige', :sverige].include?(value.downcase)
+                        # Fortnox API only supports Swedish translation of this country
+                        'Sverige'
                       else
-
                         country = ::ISO3166::Country[ value.to_sym ] ||
                                   ::ISO3166::Country.find_country_by_name( value.to_s.downcase ) ||
                                   ::ISO3166::Country.find_country_by_translated_names(value)

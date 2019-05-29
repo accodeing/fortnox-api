@@ -23,9 +23,10 @@ describe Fortnox::API::Types::Country do
       :SE, :se, :Sweden, :sweden, :Sverige, :sverige
     ].freeze
 
-    valid_sweden_inputs.each do |sweden_input|
-      it "converts \"#{sweden_input}\" to \"Sweden\"" do
-        expect(described_class[sweden_input]).to eq 'Sweden'
+      valid_sweden_inputs.each do |sweden_input|
+        it "converts \"#{sweden_input}\" to \"Sverige\"" do
+          expect(described_class[sweden_input]).to eq 'Sverige'
+        end
       end
     end
   end
