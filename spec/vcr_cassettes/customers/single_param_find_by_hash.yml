@@ -23,7 +23,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Wed, 29 May 2019 06:11:29 GMT
+      - Wed, 29 May 2019 07:52:39 GMT
       Content-Type:
       - application/json
       Connection:
@@ -34,7 +34,7 @@ http_interactions:
       X-Rack-Responsetime:
       - '19'
       X-Uid:
-      - f8edd02b
+      - 0ce8e013
       X-Build:
       - e930a91c78
     body:
@@ -43,5 +43,5 @@ http_interactions:
         York","CustomerNumber":"2","Email":"","Name":"A customer","OrganisationNumber":"600102-7447","Phone":"","ZipCode":"10001"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/3","Address1":"","Address2":"","City":"New
         York","CustomerNumber":"3","Email":"","Name":"Test customer","OrganisationNumber":"400101-8383","Phone":"","ZipCode":""}]}'
     http_version: 
-  recorded_at: Wed, 29 May 2019 06:11:28 GMT
+  recorded_at: Wed, 29 May 2019 07:52:39 GMT
 recorded_with: VCR 4.0.0

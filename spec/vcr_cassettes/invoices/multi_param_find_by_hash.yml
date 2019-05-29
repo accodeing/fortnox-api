@@ -23,7 +23,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Wed, 29 May 2019 06:11:36 GMT
+      - Wed, 29 May 2019 07:52:51 GMT
       Content-Type:
       - application/json
       Connection:
@@ -32,9 +32,9 @@ http_interactions:
       - Accept-Encoding
       - Accept-Encoding
       X-Rack-Responsetime:
-      - '46'
+      - '51'
       X-Uid:
-      - a4b1bf2c
+      - 2e85fa5b
       X-Build:
       - e930a91c78
     body:
@@ -42,5 +42,5 @@ http_interactions:
       string: '{"MetaInformation":{"@TotalResources":1,"@TotalPages":1,"@CurrentPage":1},"Invoices":[{"@url":"https:\/\/api.fortnox.se\/3\/invoices\/3","Balance":200,"Booked":false,"Cancelled":false,"CostCenter":"","Currency":"SEK","CurrencyRate":"1","CurrencyUnit":1,"CustomerName":"Updated
         customer","CustomerNumber":"1","DocumentNumber":"3","DueDate":"2016-03-17","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","InvoiceDate":"2016-03-16","InvoiceType":"INVOICE","NoxFinans":false,"OCR":"331","VoucherNumber":null,"VoucherSeries":null,"VoucherYear":null,"WayOfDelivery":"","TermsOfPayment":"0","Project":"","Sent":false,"Total":200,"FinalPayDate":null}]}'
     http_version: 
-  recorded_at: Wed, 29 May 2019 06:11:36 GMT
+  recorded_at: Wed, 29 May 2019 07:52:51 GMT
 recorded_with: VCR 4.0.0

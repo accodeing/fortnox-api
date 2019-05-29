@@ -23,7 +23,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Wed, 29 May 2019 06:11:29 GMT
+      - Wed, 29 May 2019 07:52:39 GMT
       Content-Type:
       - application/json
       Connection:
@@ -34,12 +34,12 @@ http_interactions:
       X-Rack-Responsetime:
       - '17'
       X-Uid:
-      - d54c5eb8
+      - 440aefd1
       X-Build:
       - e930a91c78
     body:
       encoding: UTF-8
       string: '{"ErrorInformation":{"Error":1,"Message":"Kan inte hitta kunden.","Code":2000433}}'
     http_version: 
-  recorded_at: Wed, 29 May 2019 06:11:28 GMT
+  recorded_at: Wed, 29 May 2019 07:52:39 GMT
 recorded_with: VCR 4.0.0

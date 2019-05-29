@@ -23,7 +23,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Wed, 29 May 2019 06:11:40 GMT
+      - Wed, 29 May 2019 07:52:47 GMT
       Content-Type:
       - application/json
       Connection:
@@ -34,12 +34,12 @@ http_interactions:
       X-Rack-Responsetime:
       - '25'
       X-Uid:
-      - effaf4a9
+      - 49efc5c3
       X-Build:
       - e930a91c78
     body:
       encoding: UTF-8
       string: '{"MetaInformation":{"@TotalResources":0,"@TotalPages":0,"@CurrentPage":1},"Articles":[]}'
     http_version: 
-  recorded_at: Wed, 29 May 2019 06:11:40 GMT
+  recorded_at: Wed, 29 May 2019 07:52:47 GMT
 recorded_with: VCR 4.0.0

@@ -23,7 +23,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Wed, 29 May 2019 06:11:38 GMT
+      - Wed, 29 May 2019 07:52:52 GMT
       Content-Type:
       - application/json
       Connection:
@@ -32,9 +32,9 @@ http_interactions:
       - Accept-Encoding
       - Accept-Encoding
       X-Rack-Responsetime:
-      - '59'
+      - '51'
       X-Uid:
-      - 24dbbd11
+      - 0576ffab
       X-Build:
       - e930a91c78
     body:
@@ -45,5 +45,5 @@ http_interactions:
         AB","CustomerNumber":"164","DocumentNumber":"66","DueDate":"2016-11-25","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","InvoiceDate":"2016-11-25","InvoiceType":"INVOICE","NoxFinans":false,"OCR":"6643","VoucherNumber":6,"VoucherSeries":"B","VoucherYear":1,"WayOfDelivery":"","TermsOfPayment":"0","Project":"3","Sent":false,"Total":1250,"FinalPayDate":"2016-11-25"},{"@url":"https:\/\/api.fortnox.se\/3\/invoices\/77","Balance":0,"Booked":true,"Cancelled":false,"CostCenter":"","Currency":"SEK","CurrencyRate":"1","CurrencyUnit":1,"CustomerName":"En
         Appstudio i J\u00f6nk\u00f6ping AB","CustomerNumber":"170","DocumentNumber":"77","DueDate":"2017-01-15","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","InvoiceDate":"2017-01-15","InvoiceType":"INVOICE","NoxFinans":false,"OCR":"7740","VoucherNumber":2,"VoucherSeries":"B","VoucherYear":2,"WayOfDelivery":"","TermsOfPayment":"0","Project":"1","Sent":false,"Total":3000,"FinalPayDate":"2017-01-15"}]}'
     http_version: 
-  recorded_at: Wed, 29 May 2019 06:11:37 GMT
+  recorded_at: Wed, 29 May 2019 07:52:52 GMT
 recorded_with: VCR 4.0.0

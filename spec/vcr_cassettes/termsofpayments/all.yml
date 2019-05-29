@@ -23,7 +23,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Wed, 29 May 2019 06:11:41 GMT
+      - Wed, 29 May 2019 07:52:48 GMT
       Content-Type:
       - application/json
       Connection:
@@ -32,22 +32,23 @@ http_interactions:
       - Accept-Encoding
       - Accept-Encoding
       X-Rack-Responsetime:
-      - '27'
+      - '30'
       X-Uid:
-      - '94416067'
+      - d265447a
       X-Build:
       - e930a91c78
     body:
       encoding: UTF-8
-      string: '{"MetaInformation":{"@TotalResources":11,"@TotalPages":1,"@CurrentPage":1},"TermsOfPayments":[{"@url":"https:\/\/api.fortnox.se\/3\/termsofpayment\/0","Code":"0","Description":"0
+      string: '{"MetaInformation":{"@TotalResources":12,"@TotalPages":1,"@CurrentPage":1},"TermsOfPayments":[{"@url":"https:\/\/api.fortnox.se\/3\/termsofpayment\/0","Code":"0","Description":"0
         dagar"},{"@url":"https:\/\/api.fortnox.se\/3\/termsofpayment\/10","Code":"10","Description":"10
         dagar"},{"@url":"https:\/\/api.fortnox.se\/3\/termsofpayment\/15","Code":"15","Description":"15
         dagar"},{"@url":"https:\/\/api.fortnox.se\/3\/termsofpayment\/20","Code":"20","Description":"20
         dagar"},{"@url":"https:\/\/api.fortnox.se\/3\/termsofpayment\/30","Code":"30","Description":"30
         dagar"},{"@url":"https:\/\/api.fortnox.se\/3\/termsofpayment\/K","Code":"K","Description":"Kontant"},{"@url":"https:\/\/api.fortnox.se\/3\/termsofpayment\/PF","Code":"PF","Description":"Postf\u00f6rskott"},{"@url":"https:\/\/api.fortnox.se\/3\/termsofpayment\/AG","Code":"AG","Description":"Autogiro"},{"@url":"https:\/\/api.fortnox.se\/3\/termsofpayment\/30DAYS","Code":"30DAYS","Description":"Updated
         description"},{"@url":"https:\/\/api.fortnox.se\/3\/termsofpayment\/15DAYS","Code":"15DAYS","Description":"Updated
+        description"},{"@url":"https:\/\/api.fortnox.se\/3\/termsofpayment\/17DAYS","Code":"17DAYS","Description":"Updated
         description"},{"@url":"https:\/\/api.fortnox.se\/3\/termsofpayment\/16DAYS","Code":"16DAYS","Description":"Updated
         description"}]}'
     http_version: 
-  recorded_at: Wed, 29 May 2019 06:11:41 GMT
+  recorded_at: Wed, 29 May 2019 07:52:48 GMT
 recorded_with: VCR 4.0.0

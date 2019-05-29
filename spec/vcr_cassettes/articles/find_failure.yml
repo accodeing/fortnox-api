@@ -23,7 +23,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Wed, 29 May 2019 06:11:39 GMT
+      - Wed, 29 May 2019 07:52:46 GMT
       Content-Type:
       - application/json
       Connection:
@@ -34,12 +34,12 @@ http_interactions:
       X-Rack-Responsetime:
       - '25'
       X-Uid:
-      - 5be523bd
+      - 1b004c01
       X-Build:
       - e930a91c78
     body:
       encoding: UTF-8
       string: '{"ErrorInformation":{"Error":1,"Message":"Kan inte hitta artikeln.","Code":2000428}}'
     http_version: 
-  recorded_at: Wed, 29 May 2019 06:11:39 GMT
+  recorded_at: Wed, 29 May 2019 07:52:46 GMT
 recorded_with: VCR 4.0.0

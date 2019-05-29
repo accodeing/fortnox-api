@@ -23,7 +23,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Wed, 29 May 2019 06:11:47 GMT
+      - Wed, 29 May 2019 07:52:30 GMT
       Content-Type:
       - application/json
       Connection:
@@ -31,15 +31,15 @@ http_interactions:
       Location:
       - project
       X-Rack-Responsetime:
-      - '32'
+      - '160'
       X-Uid:
-      - 6a3072ef
+      - 3d6ffe61
       X-Build:
       - e930a91c78
     body:
       encoding: UTF-8
-      string: '{"Project":{"@url":"https:\/\/api.fortnox.se\/3\/projects\/5592","Comments":"A
-        value","ContactPerson":null,"Description":"Some important project","EndDate":null,"ProjectLeader":null,"ProjectNumber":"5592","Status":"ONGOING","StartDate":null}}'
+      string: '{"Project":{"@url":"https:\/\/api.fortnox.se\/3\/projects\/5593","Comments":"A
+        value","ContactPerson":null,"Description":"Some important project","EndDate":null,"ProjectLeader":null,"ProjectNumber":"5593","Status":"ONGOING","StartDate":null}}'
     http_version: 
-  recorded_at: Wed, 29 May 2019 06:11:47 GMT
+  recorded_at: Wed, 29 May 2019 07:52:30 GMT
 recorded_with: VCR 4.0.0

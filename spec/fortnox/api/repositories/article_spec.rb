@@ -27,7 +27,7 @@ describe Fortnox::API::Repository::Article, order: :defined, integration: true d
                    '5901234123457'
 
   # When recording new VCR cassettes, expected matches must be increased
-  include_examples '.all', 24
+  include_examples '.all', 26
 
   # When recording new VCR cassettes, expected matches must be increased
   include_examples '.find', '1' do

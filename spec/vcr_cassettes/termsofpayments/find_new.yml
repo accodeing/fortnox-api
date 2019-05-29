@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.fortnox.se/3/termsofpayments/17DAYS
+    uri: https://api.fortnox.se/3/termsofpayments/18DAYS
     body:
       encoding: US-ASCII
       string: ''
@@ -23,7 +23,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Wed, 29 May 2019 06:18:07 GMT
+      - Wed, 29 May 2019 07:54:46 GMT
       Content-Type:
       - application/json
       Connection:
@@ -32,15 +32,15 @@ http_interactions:
       - Accept-Encoding
       - Accept-Encoding
       X-Rack-Responsetime:
-      - '19'
+      - '15'
       X-Uid:
-      - 3fd42345
+      - cfc02333
       X-Build:
       - e930a91c78
     body:
       encoding: UTF-8
-      string: '{"TermsOfPayment":{"@url":"https:\/\/api.fortnox.se\/3\/termsofpayment\/17DAYS","Code":"17DAYS","Description":"A
+      string: '{"TermsOfPayment":{"@url":"https:\/\/api.fortnox.se\/3\/termsofpayment\/18DAYS","Code":"18DAYS","Description":"A
         value"}}'
     http_version: 
-  recorded_at: Wed, 29 May 2019 06:18:07 GMT
+  recorded_at: Wed, 29 May 2019 07:54:46 GMT
 recorded_with: VCR 4.0.0

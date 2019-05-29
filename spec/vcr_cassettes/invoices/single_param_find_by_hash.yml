@@ -23,7 +23,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Wed, 29 May 2019 06:11:36 GMT
+      - Wed, 29 May 2019 07:52:50 GMT
       Content-Type:
       - application/json
       Connection:
@@ -32,9 +32,9 @@ http_interactions:
       - Accept-Encoding
       - Accept-Encoding
       X-Rack-Responsetime:
-      - '56'
+      - '46'
       X-Uid:
-      - 97fb2e66
+      - 117d6958
       X-Build:
       - e930a91c78
     body:
@@ -43,5 +43,5 @@ http_interactions:
         customer","CustomerNumber":"1","DocumentNumber":"2","DueDate":"2016-03-18","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","InvoiceDate":"2016-03-16","InvoiceType":"INVOICE","NoxFinans":false,"OCR":"232","VoucherNumber":null,"VoucherSeries":null,"VoucherYear":null,"WayOfDelivery":"","TermsOfPayment":"0","Project":"","Sent":false,"Total":0,"FinalPayDate":null},{"@url":"https:\/\/api.fortnox.se\/3\/invoices\/3","Balance":200,"Booked":false,"Cancelled":false,"CostCenter":"","Currency":"SEK","CurrencyRate":"1","CurrencyUnit":1,"CustomerName":"Updated
         customer","CustomerNumber":"1","DocumentNumber":"3","DueDate":"2016-03-17","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","InvoiceDate":"2016-03-16","InvoiceType":"INVOICE","NoxFinans":false,"OCR":"331","VoucherNumber":null,"VoucherSeries":null,"VoucherYear":null,"WayOfDelivery":"","TermsOfPayment":"0","Project":"","Sent":false,"Total":200,"FinalPayDate":null}]}'
     http_version: 
-  recorded_at: Wed, 29 May 2019 06:11:36 GMT
+  recorded_at: Wed, 29 May 2019 07:52:50 GMT
 recorded_with: VCR 4.0.0

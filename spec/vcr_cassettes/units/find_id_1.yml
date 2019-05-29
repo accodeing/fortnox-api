@@ -23,7 +23,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Wed, 29 May 2019 06:11:42 GMT
+      - Wed, 29 May 2019 07:52:33 GMT
       Content-Type:
       - application/json
       Connection:
@@ -32,9 +32,9 @@ http_interactions:
       - Accept-Encoding
       - Accept-Encoding
       X-Rack-Responsetime:
-      - '19'
+      - '16'
       X-Uid:
-      - 3c15c717
+      - 69ec7230
       X-Build:
       - e930a91c78
     body:
@@ -42,5 +42,5 @@ http_interactions:
       string: '{"Unit":{"@url":"https:\/\/api.fortnox.se\/3\/units\/blarg","Code":"blarg","Description":"Updated
         description"}}'
     http_version: 
-  recorded_at: Wed, 29 May 2019 06:11:42 GMT
+  recorded_at: Wed, 29 May 2019 07:52:33 GMT
 recorded_with: VCR 4.0.0

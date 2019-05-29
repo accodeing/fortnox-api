@@ -23,7 +23,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Wed, 29 May 2019 06:11:49 GMT
+      - Wed, 29 May 2019 07:52:32 GMT
       Content-Type:
       - application/json
       Connection:
@@ -32,15 +32,15 @@ http_interactions:
       - Accept-Encoding
       - Accept-Encoding
       X-Rack-Responsetime:
-      - '14'
+      - '17'
       X-Uid:
-      - d0a3e05b
+      - 59fddc57
       X-Build:
       - e930a91c78
     body:
       encoding: UTF-8
-      string: '{"MetaInformation":{"@TotalResources":30,"@TotalPages":15,"@CurrentPage":1},"Projects":[{"@url":"https:\/\/api.fortnox.se\/3\/projects\/18","Description":"Andrea
+      string: '{"MetaInformation":{"@TotalResources":31,"@TotalPages":16,"@CurrentPage":1},"Projects":[{"@url":"https:\/\/api.fortnox.se\/3\/projects\/18","Description":"Andrea
         Johansson","EndDate":null,"ProjectNumber":"18","Status":"ONGOING","StartDate":"2017-06-16"},{"@url":"https:\/\/api.fortnox.se\/3\/projects\/2","Description":"BolagsKraft","EndDate":null,"ProjectNumber":"2","Status":"ONGOING","StartDate":"2016-05-13"}]}'
     http_version: 
-  recorded_at: Wed, 29 May 2019 06:11:48 GMT
+  recorded_at: Wed, 29 May 2019 07:52:32 GMT
 recorded_with: VCR 4.0.0
