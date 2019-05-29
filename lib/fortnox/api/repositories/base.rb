@@ -33,8 +33,8 @@ module Fortnox
         HTTP_METHODS.each do |method|
           define_method method do |path, options = {}, &block|
             provided_headers = options[:headers] || {}
-            provided_headers['Access-Token'] = next_access_token
             provided_headers['Client-Secret'] = client_secret
+            provided_headers['Access-Token'] = next_access_token
             options[:headers] = provided_headers
             options[:base_uri] ||= base_url
             execute do |remote|
