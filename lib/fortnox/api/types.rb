@@ -25,7 +25,7 @@ module Fortnox
   module API
     module Types
       include Dry::Types.module
-      ISO3166.configure { |config| config.locales = [:en, :sv] }
+      ISO3166.configure { |config| config.locales = %i[en sv] }
 
       THE_TRUTH = { true => true, 'true' => true, false => false, 'false' => false }.freeze
 
@@ -55,13 +55,11 @@ module Fortnox
                     # Fortnox API only supports Swedish translation of this country
                     'Sverige'
                   else
-                    country = ::ISO3166::Country[ value.to_sym ] ||
-                              ::ISO3166::Country.find_country_by_name( value.to_s.downcase ) ||
+                    country = ::ISO3166::Country[value.to_sym] ||
+                              ::ISO3166::Country.find_country_by_name(value.to_s.downcase) ||
                               ::ISO3166::Country.find_country_by_translated_names(value)
 
-                    if country.nil?
-                      raise Dry::Types::ConstraintError.new("value violates constraints", value)
-                    end
+                    raise Dry::Types::ConstraintError.new('value violates constraints', value) if country.nil?
 
                     country.translations['en']
                   end
