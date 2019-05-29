@@ -23,7 +23,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Sat, 24 Feb 2018 06:45:42 GMT
+      - Wed, 29 May 2019 06:11:41 GMT
       Content-Type:
       - application/json
       Connection:
@@ -32,15 +32,15 @@ http_interactions:
       - Accept-Encoding
       - Accept-Encoding
       X-Rack-Responsetime:
-      - '14'
+      - '16'
       X-Uid:
-      - c1bdddd4
+      - b4de40b7
       X-Build:
-      - bec4a33b2e
+      - e930a91c78
     body:
       encoding: UTF-8
       string: '{"TermsOfPayment":{"@url":"https:\/\/api.fortnox.se\/3\/termsofpayment\/15DAYS","Code":"15DAYS","Description":"Updated
         description"}}'
     http_version: 
-  recorded_at: Sat, 24 Feb 2018 06:45:42 GMT
-recorded_with: VCR 3.0.3
+  recorded_at: Wed, 29 May 2019 06:11:41 GMT
+recorded_with: VCR 4.0.0

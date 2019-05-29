@@ -23,7 +23,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Wed, 12 Jul 2017 19:16:13 GMT
+      - Wed, 29 May 2019 06:11:48 GMT
       Content-Type:
       - application/json
       Connection:
@@ -34,13 +34,13 @@ http_interactions:
       X-Rack-Responsetime:
       - '14'
       X-Uid:
-      - c965a7af
+      - 6723b33f
       X-Build:
-      - 401ff9d5e0
+      - e930a91c78
     body:
       encoding: UTF-8
-      string: '{"MetaInformation":{"@TotalResources":8,"@TotalPages":8,"@CurrentPage":1},"Projects":[{"@url":"https:\/\/api.fortnox.se\/3\/projects\/1","Description":"Test
+      string: '{"MetaInformation":{"@TotalResources":30,"@TotalPages":30,"@CurrentPage":1},"Projects":[{"@url":"https:\/\/api.fortnox.se\/3\/projects\/1","Description":"Test
         project","EndDate":null,"ProjectNumber":"1","Status":"ONGOING","StartDate":"2016-05-02"}]}'
     http_version: 
-  recorded_at: Wed, 12 Jul 2017 19:16:13 GMT
-recorded_with: VCR 3.0.3
+  recorded_at: Wed, 29 May 2019 06:11:48 GMT
+recorded_with: VCR 4.0.0

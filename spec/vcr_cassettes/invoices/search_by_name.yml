@@ -23,7 +23,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Tue, 25 Oct 2016 10:21:48 GMT
+      - Wed, 29 May 2019 06:11:37 GMT
       Content-Type:
       - application/json
       Connection:
@@ -32,17 +32,21 @@ http_interactions:
       - Accept-Encoding
       - Accept-Encoding
       X-Rack-Responsetime:
-      - '55'
+      - '66'
       X-Uid:
-      - 84a3db9c
+      - bc808f83
       X-Build:
-      - 76600b8d0c
+      - e930a91c78
     body:
       encoding: UTF-8
-      string: '{"MetaInformation":{"@TotalResources":3,"@TotalPages":1,"@CurrentPage":1},"Invoices":[{"@url":"https:\/\/api.fortnox.se\/3\/invoices\/1","Balance":0,"Booked":false,"Cancelled":false,"Currency":"SEK","CurrencyRate":"1","CurrencyUnit":1,"CustomerName":"Test","CustomerNumber":"1","DocumentNumber":"1","DueDate":"2016-02-04","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","InvoiceDate":"2016-02-04","NoxFinans":false,"OCR":"133","WayOfDelivery":"","TermsOfPayment":"0","Project":"","Sent":true,"Total":0},{"@url":"https:\/\/api.fortnox.se\/3\/invoices\/15","Balance":0,"Booked":true,"Cancelled":false,"Currency":"SEK","CurrencyRate":"1","CurrencyUnit":1,"CustomerName":"Test
-        customer","CustomerNumber":"3","DocumentNumber":"15","DueDate":"2016-05-15","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","InvoiceDate":"2016-05-15","NoxFinans":false,"OCR":"1545","WayOfDelivery":"","TermsOfPayment":"0","Project":"2","Sent":false,"Total":138},{"@url":"https:\/\/api.fortnox.se\/3\/invoices\/24","Balance":26,"Booked":false,"Cancelled":false,"Currency":"SEK","CurrencyRate":"1","CurrencyUnit":1,"CustomerName":"Test
+      string: '{"MetaInformation":{"@TotalResources":7,"@TotalPages":1,"@CurrentPage":1},"Invoices":[{"@url":"https:\/\/api.fortnox.se\/3\/invoices\/1","Balance":0,"Booked":false,"Cancelled":false,"CostCenter":"","Currency":"SEK","CurrencyRate":"1","CurrencyUnit":1,"CustomerName":"Test","CustomerNumber":"1","DocumentNumber":"1","DueDate":"2016-02-04","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","InvoiceDate":"2016-02-04","InvoiceType":"INVOICE","NoxFinans":false,"OCR":"133","VoucherNumber":null,"VoucherSeries":null,"VoucherYear":null,"WayOfDelivery":"","TermsOfPayment":"0","Project":"","Sent":true,"Total":0,"FinalPayDate":null},{"@url":"https:\/\/api.fortnox.se\/3\/invoices\/15","Balance":0,"Booked":true,"Cancelled":false,"CostCenter":"","Currency":"SEK","CurrencyRate":"1","CurrencyUnit":1,"CustomerName":"Test
+        customer","CustomerNumber":"3","DocumentNumber":"15","DueDate":"2016-05-15","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","InvoiceDate":"2016-05-15","InvoiceType":"INVOICE","NoxFinans":false,"OCR":"1545","VoucherNumber":1,"VoucherSeries":"B","VoucherYear":1,"WayOfDelivery":"","TermsOfPayment":"0","Project":"2","Sent":false,"Total":138,"FinalPayDate":"2016-05-15"},{"@url":"https:\/\/api.fortnox.se\/3\/invoices\/24","Balance":26,"Booked":false,"Cancelled":false,"CostCenter":"","Currency":"SEK","CurrencyRate":"1","CurrencyUnit":1,"CustomerName":"Test
         customer","CustomerNumber":"3","DocumentNumber":"24","DueDate":"2016-09-09","ExternalInvoiceReference1":"An
-        external reference","ExternalInvoiceReference2":"","InvoiceDate":"2016-09-09","NoxFinans":false,"OCR":"2444","WayOfDelivery":"","TermsOfPayment":"0","Project":"1","Sent":false,"Total":26}]}'
+        external reference","ExternalInvoiceReference2":"","InvoiceDate":"2016-09-09","InvoiceType":"INVOICE","NoxFinans":false,"OCR":"2444","VoucherNumber":null,"VoucherSeries":null,"VoucherYear":null,"WayOfDelivery":"","TermsOfPayment":"0","Project":"1","Sent":false,"Total":26,"FinalPayDate":null},{"@url":"https:\/\/api.fortnox.se\/3\/invoices\/68","Balance":1,"Booked":false,"Cancelled":false,"CostCenter":"","Currency":"SEK","CurrencyRate":"1","CurrencyUnit":1,"CustomerName":"Test
+        customer","CustomerNumber":"3","DocumentNumber":"68","DueDate":"2017-06-16","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","InvoiceDate":"2017-06-16","InvoiceType":"INVOICE","NoxFinans":false,"OCR":"6841","VoucherNumber":null,"VoucherSeries":null,"VoucherYear":null,"WayOfDelivery":"","TermsOfPayment":"0","Project":"1","Sent":false,"Total":1,"FinalPayDate":null},{"@url":"https:\/\/api.fortnox.se\/3\/invoices\/72","Balance":395,"Booked":false,"Cancelled":false,"CostCenter":"","Currency":"SEK","CurrencyRate":"1","CurrencyUnit":1,"CustomerName":"Test
+        customer","CustomerNumber":"3","DocumentNumber":"72","DueDate":"2017-08-25","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","InvoiceDate":"2017-08-25","InvoiceType":"INVOICE","NoxFinans":false,"OCR":"7245","VoucherNumber":null,"VoucherSeries":null,"VoucherYear":null,"WayOfDelivery":"","TermsOfPayment":"0","Project":"1","Sent":false,"Total":395,"FinalPayDate":null},{"@url":"https:\/\/api.fortnox.se\/3\/invoices\/75","Balance":0,"Booked":false,"Cancelled":true,"CostCenter":"","Currency":"SEK","CurrencyRate":"1","CurrencyUnit":1,"CustomerName":"Test
+        customer","CustomerNumber":"3","DocumentNumber":"75","DueDate":"2017-10-19","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","InvoiceDate":"2017-10-19","InvoiceType":"INVOICE","NoxFinans":false,"OCR":"7542","VoucherNumber":null,"VoucherSeries":null,"VoucherYear":null,"WayOfDelivery":"","TermsOfPayment":"0","Project":"5576","Sent":false,"Total":0,"FinalPayDate":null},{"@url":"https:\/\/api.fortnox.se\/3\/invoices\/76","Balance":50000,"Booked":false,"Cancelled":false,"CostCenter":"","Currency":"SEK","CurrencyRate":"1","CurrencyUnit":1,"CustomerName":"Test
+        customer","CustomerNumber":"3","DocumentNumber":"76","DueDate":"2017-10-19","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","InvoiceDate":"2017-10-19","InvoiceType":"INVOICE","NoxFinans":false,"OCR":"7641","VoucherNumber":null,"VoucherSeries":null,"VoucherYear":null,"WayOfDelivery":"","TermsOfPayment":"0","Project":"5576","Sent":false,"Total":50000,"FinalPayDate":null}]}'
     http_version: 
-  recorded_at: Tue, 25 Oct 2016 10:21:48 GMT
-recorded_with: VCR 3.0.1
+  recorded_at: Wed, 29 May 2019 06:11:37 GMT
+recorded_with: VCR 4.0.0

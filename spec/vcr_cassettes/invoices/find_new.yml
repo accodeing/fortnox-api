@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.fortnox.se/3/invoices/58
+    uri: https://api.fortnox.se/3/invoices/92
     body:
       encoding: US-ASCII
       string: ''
@@ -14,7 +14,7 @@ http_interactions:
       Client-Secret:
       - 9aBA8ZgsvR
       Access-Token:
-      - 8ed4ae9d-79d0-453e-8f02-79b596369514
+      - ccaef817-d5d8-4b1c-a316-54f3e55c5c54
   response:
     status:
       code: 200
@@ -23,7 +23,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Tue, 25 Oct 2016 10:21:46 GMT
+      - Wed, 29 May 2019 06:11:34 GMT
       Content-Type:
       - application/json
       Connection:
@@ -32,18 +32,17 @@ http_interactions:
       - Accept-Encoding
       - Accept-Encoding
       X-Rack-Responsetime:
-      - '98'
+      - '81'
       X-Uid:
-      - 19fa22a5
+      - 6ed91bfd
       X-Build:
-      - 76600b8d0c
+      - e930a91c78
     body:
       encoding: UTF-8
-      string: '{"Invoice":{"@url":"https:\/\/api.fortnox.se\/3\/invoices\/58","@urlTaxReductionList":"https:\/\/api.fortnox.se\/3\/taxreductions?filter=invoices&referencenumber=58","AdministrationFee":0,"AdministrationFeeVAT":0,"Address1":"","Address2":"","Balance":0,"BasisTaxReduction":0,"Booked":false,"Cancelled":false,"City":"","Comments":"A
+      string: '{"Invoice":{"@url":"https:\/\/api.fortnox.se\/3\/invoices\/92","@urlTaxReductionList":"https:\/\/api.fortnox.se\/3\/taxreductions?filter=invoices&referencenumber=92","AdministrationFee":0,"AdministrationFeeVAT":0,"Address1":"","Address2":"","Balance":0,"BasisTaxReduction":0,"Booked":false,"Cancelled":false,"City":"","Comments":"A
         value","ContractReference":0,"ContributionPercent":0,"ContributionValue":0,"Country":"","CostCenter":"","Credit":"false","CreditInvoiceReference":"0","Currency":"SEK","CurrencyRate":1,"CurrencyUnit":1,"CustomerName":"Old
-        name","CustomerNumber":"1","DeliveryAddress1":"","DeliveryAddress2":"","DeliveryCity":"","DeliveryCountry":"","DeliveryDate":null,"DeliveryName":"","DeliveryZipCode":"","DocumentNumber":"58","DueDate":"2016-10-25","EDIInformation":{"EDIGlobalLocationNumber":"","EDIGlobalLocationNumberDelivery":"","EDIInvoiceExtra1":"","EDIInvoiceExtra2":"","EDIOurElectronicReference":"","EDIYourElectronicReference":""},"EmailInformation":{"EmailAddressFrom":null,"EmailAddressTo":"","EmailAddressCC":null,"EmailAddressBCC":null,"EmailSubject":"Faktura
-        {no} bifogas","EmailBody":" "},"EUQuarterlyReport":false,"ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","Freight":0,"FreightVAT":0,"Gross":0,"HouseWork":false,"InvoiceDate":"2016-10-25","InvoicePeriodStart":"","InvoicePeriodEnd":"","InvoiceReference":"0","InvoiceRows":[],"InvoiceType":"INVOICE","Labels":[],"Language":"SV","LastRemindDate":null,"Net":0,"NotCompleted":false,"NoxFinans":false,"OCR":"5843","OfferReference":"0","OrderReference":"0","OrganisationNumber":"860101-8735","OurReference":"En
-        Appstudio","PaymentWay":"","Phone1":"","Phone2":"","PriceList":"A","PrintTemplate":"st","Project":"","Remarks":"","Reminders":0,"RoundOff":0,"Sent":false,"TaxReduction":null,"TermsOfDelivery":"","TermsOfPayment":"0","Total":0,"TotalToPay":0,"TotalVAT":0,"VATIncluded":false,"VoucherNumber":null,"VoucherSeries":null,"VoucherYear":null,"WayOfDelivery":"","YourOrderNumber":"","YourReference":"","ZipCode":"","AccountingMethod":"ACCRUAL"}}'
+        name","CustomerNumber":"1","DeliveryAddress1":"","DeliveryAddress2":"","DeliveryCity":"","DeliveryCountry":"","DeliveryDate":null,"DeliveryName":"","DeliveryZipCode":"","DocumentNumber":"92","DueDate":"2019-05-29","EDIInformation":{"EDIGlobalLocationNumber":"","EDIGlobalLocationNumberDelivery":"","EDIInvoiceExtra1":"","EDIInvoiceExtra2":"","EDIOurElectronicReference":"","EDIYourElectronicReference":""},"EmailInformation":{"EmailAddressFrom":null,"EmailAddressTo":"","EmailAddressCC":null,"EmailAddressBCC":null,"EmailSubject":"Faktura
+        {no} bifogas","EmailBody":" "},"EUQuarterlyReport":false,"ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","Freight":0,"FreightVAT":0,"Gross":0,"HouseWork":false,"InvoiceDate":"2019-05-29","InvoicePeriodStart":"","InvoicePeriodEnd":"","InvoiceReference":"0","InvoiceRows":[],"InvoiceType":"INVOICE","Labels":[],"Language":"SV","LastRemindDate":null,"Net":0,"NotCompleted":false,"NoxFinans":false,"OCR":"9241","OfferReference":"0","OrderReference":"0","OrganisationNumber":"860101-8735","OurReference":"","PaymentWay":"","Phone1":"","Phone2":"","PriceList":"A","PrintTemplate":"st","Project":"","WarehouseReady":true,"OutboundDate":"2019-05-29","Remarks":"","Reminders":0,"RoundOff":0,"Sent":false,"TaxReduction":null,"TermsOfDelivery":"","TermsOfPayment":"0","Total":0,"TotalToPay":0,"TotalVAT":0,"VATIncluded":false,"VoucherNumber":null,"VoucherSeries":null,"VoucherYear":null,"WayOfDelivery":"","YourOrderNumber":"","YourReference":"","ZipCode":"","AccountingMethod":"ACCRUAL","FinalPayDate":null}}'
     http_version: 
-  recorded_at: Tue, 25 Oct 2016 10:21:46 GMT
-recorded_with: VCR 3.0.1
+  recorded_at: Wed, 29 May 2019 06:11:33 GMT
+recorded_with: VCR 4.0.0

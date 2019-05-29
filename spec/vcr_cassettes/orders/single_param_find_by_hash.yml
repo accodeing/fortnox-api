@@ -23,7 +23,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Wed, 12 Jul 2017 13:03:27 GMT
+      - Wed, 29 May 2019 06:11:32 GMT
       Content-Type:
       - application/json
       Connection:
@@ -32,16 +32,16 @@ http_interactions:
       - Accept-Encoding
       - Accept-Encoding
       X-Rack-Responsetime:
-      - '28'
+      - '31'
       X-Uid:
-      - '87325977'
+      - c64736d0
       X-Build:
-      - 401ff9d5e0
+      - e930a91c78
     body:
       encoding: UTF-8
       string: '{"MetaInformation":{"@TotalResources":2,"@TotalPages":1,"@CurrentPage":1},"Orders":[{"@url":"https:\/\/api.fortnox.se\/3\/orders\/8","Cancelled":false,"Currency":"SEK","CustomerName":"Old
-        name","CustomerNumber":"1","DeliveryDate":null,"DocumentNumber":"8","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","OrderDate":"2016-04-21","Project":"","Sent":false,"Total":0},{"@url":"https:\/\/api.fortnox.se\/3\/orders\/9","Cancelled":false,"Currency":"SEK","CustomerName":"Old
-        name","CustomerNumber":"1","DeliveryDate":null,"DocumentNumber":"9","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","OrderDate":"2016-04-21","Project":"","Sent":false,"Total":0}]}'
+        name","CustomerNumber":"1","DeliveryDate":null,"DocumentNumber":"8","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","OrderDate":"2016-04-21","OrderType":"Order","Project":"","Sent":false,"Total":0},{"@url":"https:\/\/api.fortnox.se\/3\/orders\/9","Cancelled":false,"Currency":"SEK","CustomerName":"Old
+        name","CustomerNumber":"1","DeliveryDate":null,"DocumentNumber":"9","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","OrderDate":"2016-04-21","OrderType":"Order","Project":"","Sent":false,"Total":0}]}'
     http_version: 
-  recorded_at: Wed, 12 Jul 2017 13:03:27 GMT
-recorded_with: VCR 3.0.3
+  recorded_at: Wed, 29 May 2019 06:11:32 GMT
+recorded_with: VCR 4.0.0

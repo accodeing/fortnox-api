@@ -23,7 +23,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Tue, 25 Oct 2016 10:21:50 GMT
+      - Wed, 29 May 2019 06:11:29 GMT
       Content-Type:
       - application/json
       Connection:
@@ -32,15 +32,15 @@ http_interactions:
       - Accept-Encoding
       - Accept-Encoding
       X-Rack-Responsetime:
-      - '27'
+      - '25'
       X-Uid:
-      - 4d0e2e76
+      - 573bd911
       X-Build:
-      - 76600b8d0c
+      - e930a91c78
     body:
       encoding: UTF-8
-      string: '{"Customer":{"@url":"https:\/\/api.fortnox.se\/3\/customers\/1","Address1":null,"Address2":null,"City":null,"Country":null,"Comments":null,"Currency":"SEK","CostCenter":null,"CountryCode":null,"CustomerNumber":"1","DefaultDeliveryTypes":{"Invoice":"PRINT","Order":"PRINT","Offer":"PRINT"},"DefaultTemplates":{"Order":"DEFAULTTEMPLATE","Offer":"DEFAULTTEMPLATE","Invoice":"DEFAULTTEMPLATE","CashInvoice":"DEFAULTTEMPLATE"},"DeliveryAddress1":null,"DeliveryAddress2":null,"DeliveryCity":null,"DeliveryCountry":null,"DeliveryCountryCode":null,"DeliveryFax":null,"DeliveryName":null,"DeliveryPhone1":null,"DeliveryPhone2":null,"DeliveryZipCode":null,"Email":"","EmailInvoice":"","EmailInvoiceBCC":"","EmailInvoiceCC":"","EmailOffer":"","EmailOfferBCC":"","EmailOfferCC":"","EmailOrder":"","EmailOrderBCC":"","EmailOrderCC":"","Fax":null,"InvoiceAdministrationFee":null,"InvoiceDiscount":null,"InvoiceFreight":null,"InvoiceRemark":"","Name":"Old
+      string: '{"Customer":{"@url":"https:\/\/api.fortnox.se\/3\/customers\/1","Address1":null,"Address2":null,"City":"","Country":null,"Comments":null,"Currency":"SEK","CostCenter":null,"CountryCode":null,"Active":true,"CustomerNumber":"1","DefaultDeliveryTypes":{"Invoice":"PRINT","Order":"PRINT","Offer":"PRINT"},"DefaultTemplates":{"Order":"DEFAULTTEMPLATE","Offer":"DEFAULTTEMPLATE","Invoice":"DEFAULTTEMPLATE","CashInvoice":"DEFAULTTEMPLATE"},"DeliveryAddress1":null,"DeliveryAddress2":null,"DeliveryCity":null,"DeliveryCountry":null,"DeliveryCountryCode":null,"DeliveryFax":null,"DeliveryName":null,"DeliveryPhone1":null,"DeliveryPhone2":null,"DeliveryZipCode":null,"Email":"","EmailInvoice":"","EmailInvoiceBCC":"","EmailInvoiceCC":"","EmailOffer":"","EmailOfferBCC":"","EmailOfferCC":"","EmailOrder":"","EmailOrderBCC":"","EmailOrderCC":"","ExternalReference":null,"Fax":null,"GLN":null,"GLNDelivery":null,"InvoiceAdministrationFee":null,"InvoiceDiscount":null,"InvoiceFreight":null,"InvoiceRemark":"","Name":"Old
         name","OrganisationNumber":"860101-8735","OurReference":"","Phone1":null,"Phone2":null,"PriceList":"A","Project":"","SalesAccount":null,"ShowPriceVATIncluded":false,"TermsOfDelivery":"","TermsOfPayment":"","Type":"COMPANY","VATNumber":"","VATType":"SEVAT","VisitingAddress":null,"VisitingCity":null,"VisitingCountry":null,"VisitingCountryCode":null,"VisitingZipCode":null,"WayOfDelivery":"","WWW":"","YourReference":"","ZipCode":null}}'
     http_version: 
-  recorded_at: Tue, 25 Oct 2016 10:21:50 GMT
-recorded_with: VCR 3.0.1
+  recorded_at: Wed, 29 May 2019 06:11:28 GMT
+recorded_with: VCR 4.0.0

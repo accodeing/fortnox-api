@@ -5,14 +5,12 @@ http_interactions:
     uri: https://api.fortnox.se/3/units/
     body:
       encoding: UTF-8
-      string: '{"Unit":{"Code":"blarg","Description":"A value"}}'
+      string: '{"Unit":{"Code":"blarg3","Description":"A value"}}'
     headers:
       Content-Type:
       - application/json
       Accept:
       - application/json
-      Authorization-Code:
-      - ea3862b0-189c-464b-8e23-1b9702365ea1
       Client-Secret:
       - 9aBA8ZgsvR
       Access-Token:
@@ -25,7 +23,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Thu, 22 Feb 2018 15:06:37 GMT
+      - Wed, 29 May 2019 06:13:26 GMT
       Content-Type:
       - application/json
       Connection:
@@ -33,15 +31,15 @@ http_interactions:
       Location:
       - units
       X-Rack-Responsetime:
-      - '103'
+      - '63'
       X-Uid:
-      - e510383d
+      - 1c729139
       X-Build:
-      - bec4a33b2e
+      - e930a91c78
     body:
       encoding: UTF-8
-      string: '{"Unit":{"@url":"https:\/\/api.fortnox.se\/3\/units\/blarg","Code":"blarg","Description":"A
+      string: '{"Unit":{"@url":"https:\/\/api.fortnox.se\/3\/units\/blarg3","Code":"blarg3","Description":"A
         value"}}'
     http_version: 
-  recorded_at: Thu, 22 Feb 2018 15:06:37 GMT
-recorded_with: VCR 3.0.3
+  recorded_at: Wed, 29 May 2019 06:13:25 GMT
+recorded_with: VCR 4.0.0

@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.fortnox.se/3/orders/215
+    uri: https://api.fortnox.se/3/orders/344
     body:
       encoding: US-ASCII
       string: ''
@@ -14,7 +14,7 @@ http_interactions:
       Client-Secret:
       - 9aBA8ZgsvR
       Access-Token:
-      - 8ed4ae9d-79d0-453e-8f02-79b596369514
+      - ccaef817-d5d8-4b1c-a316-54f3e55c5c54
   response:
     status:
       code: 200
@@ -23,7 +23,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Tue, 25 Oct 2016 10:21:55 GMT
+      - Wed, 29 May 2019 06:11:30 GMT
       Content-Type:
       - application/json
       Connection:
@@ -32,18 +32,17 @@ http_interactions:
       - Accept-Encoding
       - Accept-Encoding
       X-Rack-Responsetime:
-      - '52'
+      - '104'
       X-Uid:
-      - 862208e7
+      - f05d851b
       X-Build:
-      - 76600b8d0c
+      - e930a91c78
     body:
       encoding: UTF-8
-      string: '{"Order":{"@url":"https:\/\/api.fortnox.se\/3\/orders\/215","@urlTaxReductionList":"https:\/\/api.fortnox.se\/3\/taxreductions?filter=orders&referencenumber=215","AdministrationFee":0,"AdministrationFeeVAT":0,"Address1":"","Address2":"","BasisTaxReduction":0,"Cancelled":false,"City":"","Comments":"A
+      string: '{"Order":{"@url":"https:\/\/api.fortnox.se\/3\/orders\/344","@urlTaxReductionList":"https:\/\/api.fortnox.se\/3\/taxreductions?filter=orders&referencenumber=344","AdministrationFee":0,"AdministrationFeeVAT":0,"Address1":"","Address2":"","BasisTaxReduction":0,"Cancelled":false,"City":"","Comments":"A
         value","ContributionPercent":0,"ContributionValue":0,"CopyRemarks":false,"Country":"","CostCenter":"","Currency":"SEK","CurrencyRate":1,"CurrencyUnit":1,"CustomerName":"Old
-        name","CustomerNumber":"1","DeliveryAddress1":"","DeliveryAddress2":"","DeliveryCity":"","DeliveryCountry":"","DeliveryDate":null,"DeliveryName":"","DeliveryZipCode":"","DocumentNumber":"215","EmailInformation":{"EmailAddressFrom":null,"EmailAddressTo":"","EmailAddressCC":null,"EmailAddressBCC":null,"EmailSubject":"Order
-        {no} bifogas","EmailBody":" "},"ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","Freight":0,"FreightVAT":0,"Gross":0,"HouseWork":false,"InvoiceReference":"0","Labels":[],"Language":"SV","Net":0,"NotCompleted":false,"OfferReference":"0","OrderDate":"2016-10-25","OrderRows":[],"OrganisationNumber":"860101-8735","OurReference":"En
-        Appstudio","Phone1":"","Phone2":"","PriceList":"A","PrintTemplate":"oc","Project":"","Remarks":"","RoundOff":0,"Sent":false,"TaxReduction":null,"TermsOfDelivery":"","TermsOfPayment":"0","Total":0,"TotalToPay":0,"TotalVAT":0,"VATIncluded":false,"WayOfDelivery":"","YourReference":"","YourOrderNumber":"","ZipCode":""}}'
+        name","CustomerNumber":"1","DeliveryState":"delivery","DeliveryAddress1":"","DeliveryAddress2":"","DeliveryCity":"","DeliveryCountry":"","DeliveryDate":null,"DeliveryName":"","DeliveryZipCode":"","DocumentNumber":"344","EmailInformation":{"EmailAddressFrom":null,"EmailAddressTo":"","EmailAddressCC":null,"EmailAddressBCC":null,"EmailSubject":"Order
+        {no} bifogas","EmailBody":" "},"ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","Freight":0,"FreightVAT":0,"Gross":0,"HouseWork":false,"InvoiceReference":"0","Labels":[],"Language":"SV","Net":0,"NotCompleted":false,"OfferReference":"0","OrderDate":"2019-05-29","OrderRows":[],"OrderType":"Order","OrganisationNumber":"860101-8735","OurReference":"","Phone1":"","Phone2":"","PriceList":"A","PrintTemplate":"oc","Project":"","WarehouseReady":true,"OutboundDate":"2019-05-29","Remarks":"","RoundOff":0,"Sent":false,"TaxReduction":null,"TermsOfDelivery":"","TermsOfPayment":"0","Total":0,"TotalToPay":0,"TotalVAT":0,"VATIncluded":false,"WayOfDelivery":"","YourReference":"","YourOrderNumber":"","ZipCode":""}}'
     http_version: 
-  recorded_at: Tue, 25 Oct 2016 10:21:55 GMT
-recorded_with: VCR 3.0.1
+  recorded_at: Wed, 29 May 2019 06:11:30 GMT
+recorded_with: VCR 4.0.0

@@ -11,8 +11,6 @@ http_interactions:
       - application/json
       Accept:
       - application/json
-      Authorization-Code:
-      - ea3862b0-189c-464b-8e23-1b9702365ea1
       Client-Secret:
       - 9aBA8ZgsvR
       Access-Token:
@@ -25,7 +23,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Thu, 22 Feb 2018 14:59:55 GMT
+      - Wed, 29 May 2019 06:11:42 GMT
       Content-Type:
       - application/json
       Connection:
@@ -34,15 +32,19 @@ http_interactions:
       - Accept-Encoding
       - Accept-Encoding
       X-Rack-Responsetime:
-      - '13'
+      - '19'
       X-Uid:
-      - 1cc7190f
+      - 31f38c12
       X-Build:
-      - bec4a33b2e
+      - e930a91c78
     body:
       encoding: UTF-8
-      string: '{"MetaInformation":{"@TotalResources":6,"@TotalPages":1,"@CurrentPage":1},"Units":[{"@url":"https:\/\/api.fortnox.se\/3\/units\/f%C3%B6rp","Code":"f\u00f6rp","Description":"f\u00f6rpackning"},{"@url":"https:\/\/api.fortnox.se\/3\/units\/h","Code":"h","Description":"timmar"},{"@url":"https:\/\/api.fortnox.se\/3\/units\/km","Code":"km","Description":"Kilometer"},{"@url":"https:\/\/api.fortnox.se\/3\/units\/st","Code":"st","Description":"styck"},{"@url":"https:\/\/api.fortnox.se\/3\/units\/test","Code":"test","Description":"A
-        value"},{"@url":"https:\/\/api.fortnox.se\/3\/units\/utl","Code":"utl","Description":"Utl\u00e4gg"}]}'
+      string: '{"MetaInformation":{"@TotalResources":10,"@TotalPages":1,"@CurrentPage":1},"Units":[{"@url":"https:\/\/api.fortnox.se\/3\/units\/blarg","Code":"blarg","Description":"Updated
+        description"},{"@url":"https:\/\/api.fortnox.se\/3\/units\/blarg2","Code":"blarg2","Description":"Updated
+        description"},{"@url":"https:\/\/api.fortnox.se\/3\/units\/f%C3%B6rp","Code":"f\u00f6rp","Description":"f\u00f6rpackning"},{"@url":"https:\/\/api.fortnox.se\/3\/units\/h","Code":"h","Description":"timmar"},{"@url":"https:\/\/api.fortnox.se\/3\/units\/km","Code":"km","Description":"Kilometer"},{"@url":"https:\/\/api.fortnox.se\/3\/units\/st","Code":"st","Description":"styck"},{"@url":"https:\/\/api.fortnox.se\/3\/units\/test","Code":"test","Description":"A
+        value"},{"@url":"https:\/\/api.fortnox.se\/3\/units\/utl","Code":"utl","Description":"Utl\u00e4gg"},{"@url":"https:\/\/api.fortnox.se\/3\/units\/woooh","Code":"woooh","Description":"Happy
+        clouds"},{"@url":"https:\/\/api.fortnox.se\/3\/units\/woooh2","Code":"woooh2","Description":"Happy
+        clouds"}]}'
     http_version: 
-  recorded_at: Thu, 22 Feb 2018 14:59:56 GMT
-recorded_with: VCR 3.0.3
+  recorded_at: Wed, 29 May 2019 06:11:42 GMT
+recorded_with: VCR 4.0.0

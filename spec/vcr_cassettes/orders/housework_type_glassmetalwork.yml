@@ -23,7 +23,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Thu, 01 Mar 2018 13:58:15 GMT
+      - Wed, 29 May 2019 06:11:44 GMT
       Content-Type:
       - application/json
       Connection:
@@ -31,16 +31,16 @@ http_interactions:
       Location:
       - orders
       X-Rack-Responsetime:
-      - '79'
+      - '142'
       X-Uid:
-      - 379ce644
+      - f45a0769
       X-Build:
-      - bec4a33b2e
+      - e930a91c78
     body:
       encoding: UTF-8
-      string: '{"Order":{"@url":"https:\/\/api.fortnox.se\/3\/orders\/287","@urlTaxReductionList":"https:\/\/api.fortnox.se\/3\/taxreductions?filter=orders&referencenumber=287","AdministrationFee":0,"AdministrationFeeVAT":0,"Address1":"","Address2":"","BasisTaxReduction":0,"Cancelled":false,"City":"","Comments":"","ContributionPercent":0,"ContributionValue":0,"CopyRemarks":false,"Country":"","CostCenter":"","Currency":"SEK","CurrencyRate":1,"CurrencyUnit":1,"CustomerName":"Old
-        name","CustomerNumber":"1","DeliveryState":"delivery","DeliveryAddress1":"","DeliveryAddress2":"","DeliveryCity":"","DeliveryCountry":"","DeliveryDate":null,"DeliveryName":"","DeliveryZipCode":"","DocumentNumber":"287","EmailInformation":{"EmailAddressFrom":null,"EmailAddressTo":"","EmailAddressCC":null,"EmailAddressBCC":null,"EmailSubject":"Order
-        {no} bifogas","EmailBody":" "},"ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","Freight":0,"FreightVAT":0,"Gross":0,"HouseWork":false,"InvoiceReference":0,"Labels":[],"Language":"SV","Net":0,"NotCompleted":false,"OfferReference":0,"OrderDate":"2018-03-01","OrderRows":[{"AccountNumber":1250,"ArticleNumber":"0000","ContributionPercent":0,"ContributionValue":0,"CostCenter":"","DeliveredQuantity":"0.00","Description":"Testartikel","Discount":0,"DiscountType":"PERCENT","HouseWork":false,"HouseWorkHoursToReport":null,"HouseWorkType":"GLASSMETALWORK","OrderedQuantity":"1.00","Price":0,"Project":"","ReservedQuantity":0,"StockPointCode":null,"Total":0,"Unit":"","VAT":0}],"OrganisationNumber":"860101-8735","OurReference":"","Phone1":"","Phone2":"","PriceList":"A","PrintTemplate":"oc","Project":"","WarehouseReady":true,"OutboundDate":"2018-03-01","Remarks":"","RoundOff":0,"Sent":false,"TaxReduction":null,"TermsOfDelivery":"","TermsOfPayment":0,"Total":0,"TotalToPay":0,"TotalVAT":0,"VATIncluded":false,"WayOfDelivery":"","YourReference":"","YourOrderNumber":"","ZipCode":""}}'
+      string: '{"Order":{"@url":"https:\/\/api.fortnox.se\/3\/orders\/348","@urlTaxReductionList":"https:\/\/api.fortnox.se\/3\/taxreductions?filter=orders&referencenumber=348","AdministrationFee":0,"AdministrationFeeVAT":0,"Address1":"","Address2":"","BasisTaxReduction":0,"Cancelled":false,"City":"","Comments":"","ContributionPercent":0,"ContributionValue":0,"CopyRemarks":false,"Country":"","CostCenter":"","Currency":"SEK","CurrencyRate":1,"CurrencyUnit":1,"CustomerName":"Old
+        name","CustomerNumber":"1","DeliveryState":"delivery","DeliveryAddress1":"","DeliveryAddress2":"","DeliveryCity":"","DeliveryCountry":"","DeliveryDate":null,"DeliveryName":"","DeliveryZipCode":"","DocumentNumber":"348","EmailInformation":{"EmailAddressFrom":null,"EmailAddressTo":"","EmailAddressCC":null,"EmailAddressBCC":null,"EmailSubject":"Order
+        {no} bifogas","EmailBody":" "},"ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","Freight":0,"FreightVAT":0,"Gross":0,"HouseWork":false,"InvoiceReference":0,"Labels":[],"Language":"SV","Net":0,"NotCompleted":false,"OfferReference":0,"OrderDate":"2019-05-29","OrderRows":[{"AccountNumber":1250,"ArticleNumber":"0000","ContributionPercent":0,"ContributionValue":0,"CostCenter":"","DeliveredQuantity":"0.00","Description":"Testartikel","Discount":0,"DiscountType":"PERCENT","HouseWork":false,"HouseWorkHoursToReport":null,"HouseWorkType":"GLASSMETALWORK","OrderedQuantity":"1.00","Price":0,"Project":"","ReservedQuantity":0,"StockPointCode":null,"Total":0,"Unit":"","VAT":0}],"OrderType":"Order","OrganisationNumber":"860101-8735","OurReference":"","Phone1":"","Phone2":"","PriceList":"A","PrintTemplate":"oc","Project":"","WarehouseReady":true,"OutboundDate":"2019-05-29","Remarks":"","RoundOff":0,"Sent":false,"TaxReduction":null,"TermsOfDelivery":"","TermsOfPayment":0,"Total":0,"TotalToPay":0,"TotalVAT":0,"VATIncluded":false,"WayOfDelivery":"","YourReference":"","YourOrderNumber":"","ZipCode":""}}'
     http_version: 
-  recorded_at: Thu, 01 Mar 2018 13:58:15 GMT
-recorded_with: VCR 3.0.3
+  recorded_at: Wed, 29 May 2019 06:11:43 GMT
+recorded_with: VCR 4.0.0

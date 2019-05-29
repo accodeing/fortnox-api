@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.fortnox.se/3/projects/5570
+    uri: https://api.fortnox.se/3/projects/5592
     body:
       encoding: US-ASCII
       string: ''
@@ -23,7 +23,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Wed, 12 Jul 2017 19:12:49 GMT
+      - Wed, 29 May 2019 06:11:48 GMT
       Content-Type:
       - application/json
       Connection:
@@ -32,15 +32,15 @@ http_interactions:
       - Accept-Encoding
       - Accept-Encoding
       X-Rack-Responsetime:
-      - '14'
+      - '20'
       X-Uid:
-      - 739bbdff
+      - 0455e58c
       X-Build:
-      - 401ff9d5e0
+      - e930a91c78
     body:
       encoding: UTF-8
-      string: '{"Project":{"@url":"https:\/\/api.fortnox.se\/3\/projects\/5570","Comments":"A
-        value","ContactPerson":null,"Description":"Some important project","EndDate":null,"ProjectLeader":null,"ProjectNumber":"5570","Status":"ONGOING","StartDate":null}}'
+      string: '{"Project":{"@url":"https:\/\/api.fortnox.se\/3\/projects\/5592","Comments":"A
+        value","ContactPerson":null,"Description":"Some important project","EndDate":null,"ProjectLeader":null,"ProjectNumber":"5592","Status":"ONGOING","StartDate":null}}'
     http_version: 
-  recorded_at: Wed, 12 Jul 2017 19:12:49 GMT
-recorded_with: VCR 3.0.3
+  recorded_at: Wed, 29 May 2019 06:11:47 GMT
+recorded_with: VCR 4.0.0

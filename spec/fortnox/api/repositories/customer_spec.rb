@@ -38,5 +38,6 @@ describe Fortnox::API::Repository::Customer, order: :defined, integration: true 
     end
   end
 
-  include_examples '.search', :name, 'Test', 23
+  # When recording new VCR casettes, expected matches must be increased
+  include_examples '.search', :name, 'Test', 29
 end

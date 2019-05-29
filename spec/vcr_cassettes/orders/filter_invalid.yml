@@ -23,20 +23,20 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Tue, 25 Oct 2016 10:21:58 GMT
+      - Wed, 29 May 2019 06:11:33 GMT
       Content-Type:
       - application/json
       Connection:
       - close
       X-Rack-Responsetime:
-      - '28'
+      - '21'
       X-Uid:
-      - 0735815b
+      - '09d0e405'
       X-Build:
-      - 76600b8d0c
+      - e930a91c78
     body:
       encoding: UTF-8
       string: '{"ErrorInformation":{"error":1,"message":"Ett ogiltigt filter har anv\u00e4nts.","code":2000587}}'
     http_version: 
-  recorded_at: Tue, 25 Oct 2016 10:21:58 GMT
-recorded_with: VCR 3.0.1
+  recorded_at: Wed, 29 May 2019 06:11:33 GMT
+recorded_with: VCR 4.0.0

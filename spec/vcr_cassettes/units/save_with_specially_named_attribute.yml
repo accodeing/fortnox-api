@@ -5,14 +5,12 @@ http_interactions:
     uri: https://api.fortnox.se/3/units/
     body:
       encoding: UTF-8
-      string: '{"Unit":{"Code":"woooh","Description":"Happy clouds"}}'
+      string: '{"Unit":{"Code":"woooh3","Description":"Happy clouds"}}'
     headers:
       Content-Type:
       - application/json
       Accept:
       - application/json
-      Authorization-Code:
-      - ea3862b0-189c-464b-8e23-1b9702365ea1
       Client-Secret:
       - 9aBA8ZgsvR
       Access-Token:
@@ -25,7 +23,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Thu, 22 Feb 2018 15:06:37 GMT
+      - Wed, 29 May 2019 06:15:01 GMT
       Content-Type:
       - application/json
       Connection:
@@ -33,15 +31,15 @@ http_interactions:
       Location:
       - units
       X-Rack-Responsetime:
-      - '18'
+      - '24'
       X-Uid:
-      - bc192db2
+      - 78d3509d
       X-Build:
-      - bec4a33b2e
+      - e930a91c78
     body:
       encoding: UTF-8
-      string: '{"Unit":{"@url":"https:\/\/api.fortnox.se\/3\/units\/woooh","Code":"woooh","Description":"Happy
+      string: '{"Unit":{"@url":"https:\/\/api.fortnox.se\/3\/units\/woooh3","Code":"woooh3","Description":"Happy
         clouds"}}'
     http_version: 
-  recorded_at: Thu, 22 Feb 2018 15:06:37 GMT
-recorded_with: VCR 3.0.3
+  recorded_at: Wed, 29 May 2019 06:15:01 GMT
+recorded_with: VCR 4.0.0
