@@ -13,7 +13,6 @@ module Fortnox
       Registry.register(:nilclass, Fortnox::API::Mapper::Identity)
 
       Registry.register(:account_number, Fortnox::API::Mapper::Identity)
-      Registry.register(:country_code, Fortnox::API::Mapper::Identity)
       Registry.register(:currency, Fortnox::API::Mapper::Identity)
       Registry.register(:customer_type, Fortnox::API::Mapper::Identity)
       Registry.register(:discount_type, Fortnox::API::Mapper::Identity)

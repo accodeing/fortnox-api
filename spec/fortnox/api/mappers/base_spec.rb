@@ -117,12 +117,6 @@ describe Fortnox::API::Mapper::Base do
     end
   end
 
-  describe 'CountryCode' do
-    include_examples 'identity mapper', :country_code do
-      let(:value) { Fortnox::API::Types::CountryCode['SE'] }
-    end
-  end
-
   describe 'Currency' do
     include_examples 'identity mapper', :currency do
       let(:value) { Fortnox::API::Types::Currency['SEK'] }
@@ -163,5 +157,21 @@ describe Fortnox::API::Mapper::Base do
     subject { described_class.canonical_name_sym }
 
     it { is_expected.to eq(described_class.name.split('::').last.downcase.to_sym) }
+  end
+
+  describe 'CountryCode' do
+    subject { Fortnox::API::Registry[:country_code].call('GB') }
+
+    it { is_expected.to eq('United Kingdom') }
+
+    describe 'special cases' do
+      context 'SE' do
+        subject { Fortnox::API::Registry[:country_code].call('SE') }
+
+        it 'translates code to country name in Swedish' do
+          is_expected.to eq('Sverige')
+        end
+      end
+    end
   end
 end
