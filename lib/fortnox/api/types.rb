@@ -63,7 +63,7 @@ module Fortnox
                           raise Dry::Types::ConstraintError.new("value violates constraints", value)
                         end
 
-                        country.name
+                        country.translations['en']
                       end
                     end
 

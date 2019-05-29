@@ -18,10 +18,23 @@ describe Fortnox::API::Types::Country do
   end
 
   context 'with valid input' do
-    valid_sweden_inputs = [
-      'SE', 'se', 'Sweden', 'sweden', 'Sverige', 'sverige',
-      :SE, :se, :Sweden, :sweden, :Sverige, :sverige
-    ].freeze
+    it 'accepts english country names' do
+      expect(described_class['Norway']).to eq 'Norway'
+    end
+
+    it 'translates swedish country names to english' do
+      expect(described_class['Norge']).to eq 'Norway'
+    end
+
+    it 'translates country codes to english country name' do
+      expect(described_class['NO']).to eq 'Norway'
+    end
+
+    describe 'special cases' do
+      valid_sweden_inputs = [
+        'SE', 'se', 'Sweden', 'sweden', 'Sverige', 'sverige',
+        :SE, :se, :Sweden, :sweden, :Sverige, :sverige
+      ].freeze
 
       valid_sweden_inputs.each do |sweden_input|
         it "converts \"#{sweden_input}\" to \"Sverige\"" do
