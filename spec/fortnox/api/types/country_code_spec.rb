@@ -37,8 +37,8 @@ describe Fortnox::API::Types::CountryCode do
       ].freeze
 
       valid_sweden_inputs.each do |sweden_input|
-        it "converts \"#{sweden_input}\" to \"Sverige\"" do
-          expect(described_class[sweden_input]).to eq 'Sverige'
+        it "converts \"#{sweden_input}\" to \"SE\"" do
+          expect(described_class[sweden_input]).to eq 'SE'
         end
       end
     end

@@ -49,20 +49,20 @@ module Fortnox
       CountryCode = Strict::String
                     .optional
                     .constructor do |value|
-                      if value.nil? || value == ''
-                        value
-                      elsif ['se', :se, 'sweden', :sweden, 'sverige', :sverige].include?(value.downcase)
-                        # Fortnox API only supports Swedish translation of this country
-                        'Sverige'
-                      else
-                        country = ::ISO3166::Country[value] ||
-                                  ::ISO3166::Country.find_country_by_name(value.to_s.downcase) ||
-                                  ::ISO3166::Country.find_country_by_translated_names(value)
+                      next value if value.nil? || value == ''
 
-                        raise Dry::Types::ConstraintError.new('value violates constraints', value) if country.nil?
+                      # Fortnox only supports Swedish translation of Sweden
+                      sweden_variants = ['se', :se, 'sweden', :sweden, 'sverige', :sverige]
 
-                        country.alpha2
-                      end
+                      next 'SE' if sweden_variants.include?(value.downcase)
+
+                      country = ::ISO3166::Country[value] ||
+                                ::ISO3166::Country.find_country_by_name(value.to_s.downcase) ||
+                                ::ISO3166::Country.find_country_by_translated_names(value)
+
+                      raise Dry::Types::ConstraintError.new('value violates constraints', value) if country.nil?
+
+                      country.alpha2
                     end
 
       Currency = Strict::String
