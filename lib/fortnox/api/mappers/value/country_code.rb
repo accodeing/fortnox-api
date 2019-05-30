@@ -7,7 +7,7 @@ module Fortnox
         ::ISO3166::Country[code].translations['en']
       end
 
-      Registry.register(:country_code, CountryCode)
+      Registry.register(:countrycodestring, CountryCode)
     end
   end
 end

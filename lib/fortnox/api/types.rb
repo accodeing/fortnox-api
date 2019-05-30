@@ -3,6 +3,7 @@
 require 'dry-struct'
 require 'dry-types'
 require 'countries'
+require 'fortnox/api/types/fortnox_country_code'
 
 module Dry
   module Types
@@ -54,7 +55,7 @@ module Fortnox
                       # Fortnox only supports Swedish translation of Sweden
                       sweden_variants = ['se', :se, 'sweden', :sweden, 'sverige', :sverige]
 
-                      next 'SE' if sweden_variants.include?(value.downcase)
+                      next CountryCodeString.new('SE') if sweden_variants.include?(value.downcase)
 
                       country = ::ISO3166::Country[value] ||
                                 ::ISO3166::Country.find_country_by_name(value.to_s.downcase) ||
@@ -62,7 +63,7 @@ module Fortnox
 
                       raise Dry::Types::ConstraintError.new('value violates constraints', value) if country.nil?
 
-                      country.alpha2
+                      CountryCodeString.new(country.alpha2)
                     end
 
       Currency = Strict::String

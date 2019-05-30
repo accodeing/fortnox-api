@@ -124,13 +124,13 @@ describe Fortnox::API::Mapper::Base do
   end
 
   describe 'CountryCode' do
-    subject { Fortnox::API::Registry[:country_code].call('GB') }
+    subject { Fortnox::API::Registry[:countrycodestring].call('GB') }
 
     it { is_expected.to eq('United Kingdom') }
 
     describe 'special cases' do
       context 'SE' do
-        subject { Fortnox::API::Registry[:country_code].call('SE') }
+        subject { Fortnox::API::Registry[:countrycodestring].call('SE') }
 
         it 'translates code to country name in Swedish' do
           is_expected.to eq('Sverige')

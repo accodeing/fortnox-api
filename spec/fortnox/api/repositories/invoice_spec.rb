@@ -69,42 +69,42 @@ describe Fortnox::API::Repository::Invoice, order: :defined, integration: true d
       end
 
       it 'accepts English country names' do
-        expect(save_invoice(country: 'Norway')).to eq('Norway')
+        expect(save_invoice(country: 'Norway')).to eq('NO')
       end
 
       it 'translates Swedish country names to English' do
-        expect(save_invoice(country: 'Norge')).to eq('Norway')
+        expect(save_invoice(country: 'Norge')).to eq('NO')
       end
 
       describe 'GB' do
         subject { save_invoice(country: 'GB') }
 
-        it { is_expected.to eq('United Kingdom') }
+        it { is_expected.to eq('GB') }
       end
 
       describe 'KR' do
         subject { save_invoice(country: 'KR') }
 
-        it { is_expected.to eq('Korea, Republic of') }
+        it { is_expected.to eq('KR') }
       end
 
       describe 'VA' do
         subject { save_invoice(country: 'VA') }
 
-        it { is_expected.to eq('Holy See (Vatican City State)') }
+        it { is_expected.to eq('VA') }
       end
 
       describe 'VI' do
         subject { save_invoice(country: 'VI') }
 
-        it { is_expected.to eq('Virgin Islands, U.S.') }
+        it { is_expected.to eq('VI') }
       end
 
       describe 'special cases' do
         describe 'Sverige' do
           subject { save_invoice(country: 'Sverige') }
 
-          it { is_expected.to eq('Sverige') }
+          it { is_expected.to eq('SE') }
         end
       end
     end
