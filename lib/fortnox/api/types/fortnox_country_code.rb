@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Fortnox
   module API
     module Types

@@ -15,7 +15,7 @@ module Fortnox
           ::ISO3166::Country[code].translations['en']
         end
 
-        Registry.register(self.canonical_name_sym, CountryCodeMapper)
+        Registry.register(canonical_name_sym, CountryCodeMapper)
       end
     end
   end
