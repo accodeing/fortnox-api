@@ -100,12 +100,10 @@ describe Fortnox::API::Repository::Invoice, order: :defined, integration: true d
         it { is_expected.to eq('VI') }
       end
 
-      describe 'special cases' do
-        describe 'Sverige' do
-          subject { save_invoice(country: 'Sverige') }
+      describe 'special cases Sverige' do
+        subject { save_invoice(country: 'Sverige') }
 
-          it { is_expected.to eq('SE') }
-        end
+        it { is_expected.to eq('SE') }
       end
     end
   end
