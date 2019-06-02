@@ -63,7 +63,7 @@ module Fortnox
                      .constructor(EnumConstructors.default)
 
       Email = Strict::String
-              .constrained(max_size: 1024, format: /^$|\A[\w+-_.]+@[\w+-_.]+\.[a-z]+\z/i)
+              .constrained(max_size: 1024, format: /^$|\A[[[:alnum:]]+-_.]+@[\w+-_.]+\.[a-z]+\z/i)
               .optional
               .constructor { |v| v.to_s.downcase unless v.nil? }
 
