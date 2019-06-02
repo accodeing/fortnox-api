@@ -58,7 +58,7 @@ module Fortnox
                       next CountryCodeString.new('SE') if sweden_variants.include?(value.downcase)
 
                       country = ::ISO3166::Country[value] ||
-                                ::ISO3166::Country.find_country_by_name(value.to_s.downcase) ||
+                                ::ISO3166::Country.find_country_by_name(value) ||
                                 ::ISO3166::Country.find_country_by_translated_names(value)
 
                       raise Dry::Types::ConstraintError.new('value violates constraints', value) if country.nil?
