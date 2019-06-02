@@ -3,7 +3,7 @@
 require 'dry-struct'
 require 'dry-types'
 require 'countries'
-require 'fortnox/api/types/fortnox_country_code'
+require 'fortnox/api/types/shim/country_code_string'
 
 module Dry
   module Types
