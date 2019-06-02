@@ -118,16 +118,38 @@ describe Fortnox::API::Mapper::Base do
   end
 
   describe 'CountryCode' do
-    subject { Fortnox::API::Registry[:countrycodestring].call('GB') }
+    subject { mapper.call('GB') }
+
+    let(:mapper) { Fortnox::API::Registry[:countrycodestring] }
 
     it { is_expected.to eq('United Kingdom') }
 
     describe 'special cases' do
       context 'with SE' do
-        subject { Fortnox::API::Registry[:countrycodestring].call('SE') }
+        subject { mapper.call('SE') }
 
         it 'translates code to country name in Swedish' do
           is_expected.to eq('Sverige')
+        end
+      end
+
+      context 'with nil value' do
+        subject { mapper.call(nil) }
+
+        it { is_expected.to eq(nil) }
+      end
+
+      context 'with empty string' do
+        subject { mapper.call('') }
+
+        it { is_expected.to eq('') }
+      end
+
+      context 'with nonsense' do
+        subject { -> { mapper.call('nonsense') } }
+
+        it 'is not supported (since input is sanitised) and therefore blows up' do
+          raise_error(NoMethodError)
         end
       end
     end

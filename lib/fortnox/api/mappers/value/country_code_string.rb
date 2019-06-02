@@ -9,6 +9,8 @@ module Fortnox
         extend CanonicalNameSym
 
         CountryCodeMapper = lambda do |code|
+          next code if code.nil? || code == ''
+
           # Fortnox only supports Swedish country name for Sweden
           next 'Sverige' if code == 'SE'
 
