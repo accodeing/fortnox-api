@@ -53,9 +53,7 @@ module Fortnox
                       next value if value.nil? || value == ''
 
                       # Fortnox only supports Swedish translation of Sweden
-                      sweden_variants = ['se', :se, 'sweden', :sweden, 'sverige', :sverige]
-
-                      next CountryCodeString.new('SE') if sweden_variants.include?(value.downcase)
+                      next CountryCodeString.new('SE') if value =~ /^s(e$|we|ve)/i
 
                       country = ::ISO3166::Country[value] ||
                                 ::ISO3166::Country.find_country_by_name(value) ||

@@ -49,6 +49,14 @@ describe Fortnox::API::Types::CountryCode do
           expect(described_class[sweden_input]).to eq 'SE'
         end
       end
+
+      it 'accepts country code for El Salvador' do
+        expect(described_class['SV']).to eq 'SV'
+      end
+
+      it 'translated Switzerland to ' do
+        expect(described_class['Switzerland']).to eq 'CH'
+      end
     end
   end
 
