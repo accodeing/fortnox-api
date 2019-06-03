@@ -6,15 +6,15 @@ require 'fortnox/api/circular_queue'
 describe Fortnox::API::CircularQueue do
   describe 'start index' do
     context 'when running several times' do
-      let(:items) { ['a', 'b', 'c'] }
+      let(:samples) { Array.new(100) { described_class.new(*(0..99)).next } }
 
+      subject { Set.new(samples).size }
+
+      # NOTE: This test is not perfect. We are testing that a random generator
+      # with 100 items to choose from does not choose the same item 100 times in a row.
+      # Yes, the possibility is low, I thought I should just mention it :)
       it 'does not start with the same item each time' do
-        set = Set.new([described_class.new(*items).next,
-                       described_class.new(*items).next,
-                       described_class.new(*items).next,
-                       described_class.new(*items).next])
-
-        expect(set.size).to be > 1
+        is_expected.to be > 1
       end
     end
   end
