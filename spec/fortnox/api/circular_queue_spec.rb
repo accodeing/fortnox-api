@@ -23,6 +23,10 @@ describe Fortnox::API::CircularQueue do
     context 'when several items in queue' do
       let(:queue) { described_class.new(*['a', 'b', 'c']) }
 
+      let(:first_round) { Array.new(3) { queue.next } }
+
+      let(:second_round) { Array.new(3) { queue.next } }
+
       it 'circulates the items' do
         first_item = queue.next
         second_item = queue.next
@@ -30,6 +34,14 @@ describe Fortnox::API::CircularQueue do
         expect(first_item).to eq(queue.next)
         expect(first_item).not_to eq(second_item)
         expect(first_item).not_to eq(third_item)
+      end
+
+      it 'circulates the items in the same order each time' do
+        expect(first_round).to eq(second_round)
+      end
+
+      it 'circulates through given input' do
+        expect(first_round.sort).to eq(['a', 'b', 'c'])
       end
     end
 
