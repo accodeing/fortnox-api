@@ -6,7 +6,8 @@ require 'fortnox/api/circular_queue'
 describe Fortnox::API::CircularQueue do
   describe 'start index' do
     context 'when running several times' do
-      let(:samples) { Array.new(100) { described_class.new(*(0..99)).next } }
+      let(:test_array) { (0..99).to_a }
+      let(:samples) { Array.new(100) { described_class.new(*test_array).next } }
 
       subject { Set.new(samples).size }
 
@@ -21,17 +22,15 @@ describe Fortnox::API::CircularQueue do
 
   describe '#next' do
     context 'when several items in queue' do
-      let(:queue) { described_class.new(*['a', 'b', 'c']) }
+      let(:queue) { described_class.new(1,2,3) }
       let(:first_round) { Array.new(3) { queue.next } }
       let(:second_round) { Array.new(3) { queue.next } }
 
       it 'circulates the items' do
-        first_item = queue.next
-        second_item = queue.next
-        third_item = queue.next
-        expect(first_item).to eq(queue.next)
-        expect(first_item).not_to eq(second_item)
-        expect(first_item).not_to eq(third_item)
+        first_round
+        expect(first_round[0]).to eq(queue.next)
+        expect(first_round[0]).not_to eq(first_round[1])
+        expect(first_round[0]).not_to eq(first_round[2])
       end
 
       it 'circulates the items in the same order each time' do
@@ -39,12 +38,12 @@ describe Fortnox::API::CircularQueue do
       end
 
       it 'circulates through given input' do
-        expect(first_round.sort).to eq(['a', 'b', 'c'])
+        expect(first_round.sort).to eq([1, 2, 3])
       end
     end
 
     context 'when only one item in queue' do
-      let(:queue) { described_class.new('a') }
+      let(:queue) { described_class.new(1) }
 
       it 'circulates the item' do
         first_item = queue.next
