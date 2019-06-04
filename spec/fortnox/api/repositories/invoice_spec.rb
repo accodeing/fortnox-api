@@ -140,9 +140,7 @@ describe Fortnox::API::Repository::Invoice, order: :defined, integration: true d
 
         subject { updated_persisted_invoice.comments }
 
-        it 'does not work' do
-          is_expected.to eq('A comment to be reset')
-        end
+        pending { is_expected.to eq(nil) }
       end
 
       context 'by setting value to empty string' do
@@ -154,7 +152,9 @@ describe Fortnox::API::Repository::Invoice, order: :defined, integration: true d
 
         subject { updated_persisted_invoice.comments }
 
-        it { is_expected.to eq('') }
+        it 'does not reset the value' do
+          is_expected.to eq('A comment to be reset')
+        end
       end
     end
 
@@ -173,16 +173,16 @@ describe Fortnox::API::Repository::Invoice, order: :defined, integration: true d
 
       context 'by setting value to nil' do
         let(:updated_persisted_invoice) do
+          # TODO: This VCR cassette needs to be re-recorded again
+          # when the we fix #172.
           VCR.use_cassette("#{vcr_dir}/save_old_with_nil_country") do
-            repository.save(persisted_invoice.update(comments: nil))
+            repository.save(persisted_invoice.update(country: nil))
           end
         end
 
         subject { updated_persisted_invoice.country }
 
-        it 'does not work' do
-          is_expected.to eq('SE')
-        end
+        pending { is_expected.to eq(nil) }
       end
 
       context 'by setting value to empty string' do
@@ -194,7 +194,9 @@ describe Fortnox::API::Repository::Invoice, order: :defined, integration: true d
 
         subject { updated_persisted_invoice.country }
 
-        it { is_expected.to eq('') }
+        it 'does not reset the country' do
+          is_expected.to eq('SE')
+        end
       end
     end
   end
