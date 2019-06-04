@@ -29,8 +29,6 @@ describe Fortnox::API::CircularQueue do
       it 'circulates the items' do
         first_round
         expect(first_round[0]).to eq(queue.next)
-        expect(first_round[0]).not_to eq(first_round[1])
-        expect(first_round[0]).not_to eq(first_round[2])
       end
 
       it 'circulates the items in the same order each time' do
