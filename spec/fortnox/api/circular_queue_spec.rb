@@ -12,7 +12,7 @@ describe Fortnox::API::CircularQueue do
 
       # NOTE: This test is not perfect. We are testing that a random generator
       # with 100 items to choose from does not choose the same item 100 times in a row.
-      # Yes, the possibility is low, I thought I should just mention it :)
+      # Yes, the possibility is low, but I thought I should just mention it :)
       it 'does not start with the same item each time' do
         is_expected.to be > 1
       end
@@ -22,9 +22,7 @@ describe Fortnox::API::CircularQueue do
   describe '#next' do
     context 'when several items in queue' do
       let(:queue) { described_class.new(*['a', 'b', 'c']) }
-
       let(:first_round) { Array.new(3) { queue.next } }
-
       let(:second_round) { Array.new(3) { queue.next } }
 
       it 'circulates the items' do
