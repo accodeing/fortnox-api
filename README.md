@@ -1,10 +1,6 @@
 # Fortnox API
  > Wrapper gem for Fortnox AB's version 3 REST(ish) API. If you need to integrate an existing or new Ruby or Rails app against Fortnox this gem will save you a lot of time, you are welcome. Feel free to repay the community with some nice PRs of your own :simple_smile:
 
-
-![Hacktoberfest logo](http://github-pages.ucl.ac.uk/hacktoberfest-2018/Hacktoberfest_2018_banner2_1518x190.png)
-Thanks to the relatively simple structure of our library it is really easy to add new resources from the API to the gem, and we are missing a bunch! So head over to [the fortnox documentation](https://developer.fortnox.se/documentation/) and pick a resource that is missing and give us a hand :heart:
-
 # Status for master
 [![Gem version](https://img.shields.io/gem/v/fortnox-api.svg?style=flat-square)](https://rubygems.org/gems/fortnox-api)
 [![Build status](https://img.shields.io/travis/my-codeworks/fortnox-api/master.svg?style=flat-square)](https://travis-ci.org/my-codeworks/fortnox-api)
