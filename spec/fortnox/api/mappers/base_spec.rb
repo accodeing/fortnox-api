@@ -35,6 +35,12 @@ describe Fortnox::API::Mapper::Base do
     end
   end
 
+  describe 'integer' do
+    include_examples 'identity mapper', :integer do
+      let(:value) { Fortnox::API::Types::Nullable::Integer[1337] }
+    end
+  end
+
   describe 'float' do
     include_examples 'identity mapper', :float do
       let(:value) { Fortnox::API::Types::Nullable::Float[13.37] }
@@ -111,57 +117,41 @@ describe Fortnox::API::Mapper::Base do
     end
   end
 
-  describe 'AccountNumber' do
-    include_examples 'identity mapper', :account_number do
-      let(:value) { Fortnox::API::Types::AccountNumber[1234] }
-    end
-  end
-
   describe 'CountryCode' do
-    include_examples 'identity mapper', :country_code do
-      let(:value) { Fortnox::API::Types::CountryCode['SE'] }
+    subject { mapper.call('GB') }
+
+    let(:mapper) { Fortnox::API::Registry[:countrycodestring] }
+
+    it { is_expected.to eq('United Kingdom') }
+
+    describe 'special cases' do
+      context 'with SE' do
+        subject { mapper.call('SE') }
+
+        it 'translates code to country name in Swedish' do
+          is_expected.to eq('Sverige')
+        end
+      end
+
+      context 'with nil value' do
+        subject { mapper.call(nil) }
+
+        it { is_expected.to eq(nil) }
+      end
+
+      context 'with empty string' do
+        subject { mapper.call('') }
+
+        it { is_expected.to eq('') }
+      end
+
+      context 'with nonsense' do
+        subject { -> { mapper.call('nonsense') } }
+
+        it 'is not supported (since input is sanitised) and therefore blows up' do
+          raise_error(NoMethodError)
+        end
+      end
     end
-  end
-
-  describe 'Currency' do
-    include_examples 'identity mapper', :currency do
-      let(:value) { Fortnox::API::Types::Currency['SEK'] }
-    end
-  end
-
-  describe 'CustomerType' do
-    include_examples 'identity mapper', :customer_type do
-      let(:value) { Fortnox::API::Types::CustomerType['PRIVATE'] }
-    end
-  end
-
-  describe 'DiscountType' do
-    include_examples 'identity mapper', :discount_type do
-      let(:value) { Fortnox::API::Types::DiscountType['PERCENT'] }
-    end
-  end
-
-  describe 'Email' do
-    include_examples 'identity mapper', :email do
-      let(:value) { Fortnox::API::Types::Email['email@example.com'] }
-    end
-  end
-
-  describe 'HouseworkType' do
-    include_examples 'identity mapper', :housework_type do
-      let(:value) { Fortnox::API::Types::HouseworkType['CONSTRUCTION'] }
-    end
-  end
-
-  describe 'VATType' do
-    include_examples 'identity mapper', :vat_type do
-      let(:value) { Fortnox::API::Types::VATType['SEVAT'] }
-    end
-  end
-
-  describe '#canonical_name_sym' do
-    subject { described_class.canonical_name_sym }
-
-    it { is_expected.to eq(described_class.name.split('::').last.downcase.to_sym) }
   end
 end
