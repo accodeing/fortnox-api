@@ -76,12 +76,10 @@ describe Fortnox::API::Repository::Invoice, order: :defined, integration: true d
       end
 
       it 'skips nil values' do
-        # TODO: What should happen with nil value?
         expect(save_invoice(country: nil, vcr_cassette: 'nil').country).to eq('')
       end
 
       it 'skips empty string values' do
-        # TODO: What should happen with empty string value?
         expect(save_invoice(country: '', vcr_cassette: 'empty_string').country).to eq('')
       end
 
