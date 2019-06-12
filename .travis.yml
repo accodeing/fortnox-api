@@ -19,6 +19,9 @@ addons:
 notifications:
   slack: my-codeworks:fwKO4YfipnmNKJQL3cRSEoKB
   email: false
+before_install:
+- gem update --system
+- gem install bundler --no-rdoc --no-ri
 before_script:
 - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
 - chmod +x ./cc-test-reporter
