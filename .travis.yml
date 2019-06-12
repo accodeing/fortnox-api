@@ -1,6 +1,6 @@
 env:
   global:
-  - CC_TEST_REPORTER_ID=397c19af63ca3467cff6fd640b0460b691f687118332b5989f530d28f82adcb8
+  - CC_TEST_REPORTER_ID=43ea0acb059b164537ce31bf67e03e1cb552d63df1ad3e9bd95dc3d844697bb4
 language: ruby
 rvm:
 - 2.4.0
@@ -13,9 +13,6 @@ rvm:
 - 2.6.0
 - 2.6.3
 - 2.7.0-preview1
-addons:
-  code_climate:
-    repo_token: 397c19af63ca3467cff6fd640b0460b691f687118332b5989f530d28f82adcb8
 notifications:
   slack: my-codeworks:fwKO4YfipnmNKJQL3cRSEoKB
   email: false
