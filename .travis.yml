@@ -7,8 +7,12 @@ rvm:
 - 2.4.1
 - 2.4.2
 - 2.4.3
+- 2.4.6
 - 2.5.0
+- 2.5.5
 - 2.6.0
+- 2.6.3
+- 2.7.0-preview1
 addons:
   code_climate:
     repo_token: 397c19af63ca3467cff6fd640b0460b691f687118332b5989f530d28f82adcb8
