@@ -29,7 +29,7 @@ Gem::Specification.new do |spec| # rubocop:disable Metrics/BlockLength
   spec.add_dependency 'dry-types', '~> 0.8', '< 0.13.0'
   spec.add_dependency 'httparty', '~> 0.17'
 
-  spec.add_development_dependency 'bundler', '~> 1.9'
+  spec.add_development_dependency 'bundler', '~> 2.0'
   spec.add_development_dependency 'guard', '~> 2.12'
   spec.add_development_dependency 'guard-rspec', '~> 4.5'
   spec.add_development_dependency 'pry', '~> 0'

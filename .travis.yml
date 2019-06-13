@@ -1,27 +1,25 @@
 env:
   global:
-  - CC_TEST_REPORTER_ID=397c19af63ca3467cff6fd640b0460b691f687118332b5989f530d28f82adcb8
+  - CC_TEST_REPORTER_ID=43ea0acb059b164537ce31bf67e03e1cb552d63df1ad3e9bd95dc3d844697bb4
 language: ruby
 rvm:
-- 2.3.0
-- 2.3.1
-- 2.3.2
-- 2.3.3
-- 2.3.4
-- 2.3.5
-- 2.3.6
 - 2.4.0
 - 2.4.1
 - 2.4.2
 - 2.4.3
+- 2.4.6
 - 2.5.0
+- 2.5.5
 - 2.6.0
-addons:
-  code_climate:
-    repo_token: 397c19af63ca3467cff6fd640b0460b691f687118332b5989f530d28f82adcb8
+- 2.6.3
+- 2.7.0-preview1
 notifications:
   slack: my-codeworks:fwKO4YfipnmNKJQL3cRSEoKB
   email: false
+before_install:
+- gem update --system
+- gem install bundler
+cache: bundler
 before_script:
 - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
 - chmod +x ./cc-test-reporter
