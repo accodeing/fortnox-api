@@ -3,12 +3,12 @@
 
 # Status for master
 [![Gem version](https://img.shields.io/gem/v/fortnox-api.svg?style=flat-square)](https://rubygems.org/gems/fortnox-api)
-[![Build status](https://img.shields.io/travis/my-codeworks/fortnox-api/master.svg?style=flat-square)](https://travis-ci.org/my-codeworks/fortnox-api)
+[![Build Status](https://travis-ci.com/accodeing/fortnox-api.svg?branch=master)](https://travis-ci.com/accodeing/fortnox-api)
 
 # Status for development
-[![Build status](https://img.shields.io/travis/my-codeworks/fortnox-api/development.svg?style=flat-square)](https://travis-ci.org/my-codeworks/fortnox-api)
-[![Maintainability](https://api.codeclimate.com/v1/badges/50d44a1d00620b4a6bde/maintainability)](https://codeclimate.com/github/my-codeworks/fortnox-api/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/50d44a1d00620b4a6bde/test_coverage)](https://codeclimate.com/github/my-codeworks/fortnox-api/test_coverage)
+[![Build Status](https://travis-ci.com/accodeing/fortnox-api.svg?branch=development)](https://travis-ci.com/accodeing/fortnox-api)
+[![Maintainability](https://api.codeclimate.com/v1/badges/89d30a43fedf210d470b/maintainability)](https://codeclimate.com/github/accodeing/fortnox-api/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/89d30a43fedf210d470b/test_coverage)](https://codeclimate.com/github/accodeing/fortnox-api/test_coverage)
 
 The rough status of this project is as follows (as of October 2018):
 * Development is not as active as it used to be, but the project is not forgotten. We have an app running this gem in production and it works like a charm for what we do.
