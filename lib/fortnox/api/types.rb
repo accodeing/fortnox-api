@@ -41,6 +41,15 @@ module Fortnox
       AccountNumber = Strict::Int
                       .constrained(gteq: 0, lteq: 9999)
                       .optional
+                      .constructor do |input|
+                        unless input.nil? || input.to_s.empty?
+                          Integer(input)
+                        else
+                          input
+                        end
+                      rescue ArgumentError
+                        input
+                      end
 
       ArticleType = Strict::String
                     .constrained(included_in: ArticleTypes.values)

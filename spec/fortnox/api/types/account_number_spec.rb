@@ -28,4 +28,16 @@ describe Fortnox::API::Types do
   context 'when AccountNumber created with a negative number' do
     include_examples 'raises ConstraintError', -1
   end
+
+  context 'when AccountNumber created with an invalid string' do
+    include_examples 'raises ConstraintError', 'foo'
+  end
+
+  context 'when AccountNumber created with valid string' do
+    subject { klass['1234'] }
+
+    it 'casts it to a number' do
+      is_expected.to eq 1234
+    end
+  end
 end
