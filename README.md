@@ -3,24 +3,21 @@
 
 # Status for master
 [![Gem version](https://img.shields.io/gem/v/fortnox-api.svg?style=flat-square)](https://rubygems.org/gems/fortnox-api)
-[![Build status](https://img.shields.io/travis/my-codeworks/fortnox-api/master.svg?style=flat-square)](https://travis-ci.org/my-codeworks/fortnox-api)
-[![Dependency status](https://img.shields.io/gemnasium/my-codeworks/fortnox-api.svg?style=flat-square)](https://gemnasium.com/my-codeworks/fortnox-api)
+[![Build Status](https://travis-ci.com/accodeing/fortnox-api.svg?branch=master)](https://travis-ci.com/accodeing/fortnox-api)
 
 # Status for development
-[![Build status](https://img.shields.io/travis/my-codeworks/fortnox-api/development.svg?style=flat-square)](https://travis-ci.org/my-codeworks/fortnox-api)
-[![Maintainability](https://api.codeclimate.com/v1/badges/50d44a1d00620b4a6bde/maintainability)](https://codeclimate.com/github/my-codeworks/fortnox-api/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/50d44a1d00620b4a6bde/test_coverage)](https://codeclimate.com/github/my-codeworks/fortnox-api/test_coverage)
+[![Build Status](https://travis-ci.com/accodeing/fortnox-api.svg?branch=development)](https://travis-ci.com/accodeing/fortnox-api)
+[![Maintainability](https://api.codeclimate.com/v1/badges/89d30a43fedf210d470b/maintainability)](https://codeclimate.com/github/accodeing/fortnox-api/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/89d30a43fedf210d470b/test_coverage)](https://codeclimate.com/github/accodeing/fortnox-api/test_coverage)
 
-The rough status of this project is as follows (as of October 2017):
-* In active development (just check out the commit log)
-* Three developers. At least thrice as good as one.
+The rough status of this project is as follows (as of October 2018):
+* Development is not as active as it used to be, but the project is not forgotten. We have an app running this gem in production and it works like a charm for what we do.
+* We are planning on generalize REST API's in general with our [rest_easy gem](https://github.com/accodeing/rest_easy).
 * Basic structure complete. Things like getting customers and invoices, updating and saving etc.
 * Some advanced features implemented, for instance support for multiple Access Tokens and filtering entities.
-* Advanced features around the corner. Things like sorting entities, pagination of results etc.
-* A few models implemented. Right now we have nearly full support for `Customer`, `Invoice`, `Order`, `Article`, `Label` and `Project`. Adding more models in general is quick and easy, see the developer guide further down.
-* Massive refactorings no longer occurs weekly :) We are running this gem in production for live test.
-
-The goal is to have a production ready version that covers at least the `Invoice`, `Order`,  `Customer` and `Project` models by January.
+* We have ideas for more advanced features, like sorting entities, pagination of results but nothing in the pipeline right now.
+* A few models implemented. Right now we pretty good support for `Customer`, `Invoice`, `Order`, `Article`, `Label` and `Project`. Adding more models in general is quick and easy (that's the whole point with this gem), see the developer guide further down.
+* Massive refactorings no longer occurs weekly :)
 
 # Architecture overview
 The gem is structured with distinct models for the tasks of data, JSON mapping and saving state. These are called: model, type, mapper and repository.
@@ -84,12 +81,7 @@ These are responsible for the mapping between our plain old Ruby object models a
 
 # Requirements
 
-This gem is build for Ruby 2.2 or higher, it's tested agains Ruby 2.2.5, 2.3.0 and 2.3.1. Since it uses the keywords argument feature and since Ruby 2.1
-is [officially outdated and unsupported](https://www.ruby-lang.org/en/news/2016/03/30/ruby-2-1-9-released/)
-it won't work on older versions.
-
-If you want or need Ruby 1.9 compatibility please submit a pull request.
-Instructions can be found below :)
+This gem is build for Ruby 2.4 or higher (see Travis configuration file for what versions we are testing against).
 
 ## Installation
 

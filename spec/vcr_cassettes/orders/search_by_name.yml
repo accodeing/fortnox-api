@@ -23,7 +23,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Tue, 25 Oct 2016 10:21:57 GMT
+      - Wed, 29 May 2019 07:52:36 GMT
       Content-Type:
       - application/json
       Connection:
@@ -34,14 +34,15 @@ http_interactions:
       X-Rack-Responsetime:
       - '34'
       X-Uid:
-      - 576efab5
+      - b3a71381
       X-Build:
-      - 76600b8d0c
+      - e930a91c78
     body:
       encoding: UTF-8
-      string: '{"MetaInformation":{"@TotalResources":2,"@TotalPages":1,"@CurrentPage":1},"Orders":[{"@url":"https:\/\/api.fortnox.se\/3\/orders\/4","Cancelled":false,"Currency":"SEK","CustomerName":"A
-        customer","CustomerNumber":"26","DeliveryDate":null,"DocumentNumber":"4","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","OrderDate":"2016-04-21","Project":"1","Sent":false,"Total":0},{"@url":"https:\/\/api.fortnox.se\/3\/orders\/60","Cancelled":false,"Currency":"SEK","CustomerName":"A
-        customer","CustomerNumber":"2","DeliveryDate":null,"DocumentNumber":"60","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","OrderDate":"2016-05-09","Project":"1","Sent":false,"Total":19}]}'
+      string: '{"MetaInformation":{"@TotalResources":3,"@TotalPages":1,"@CurrentPage":1},"Orders":[{"@url":"https:\/\/api.fortnox.se\/3\/orders\/4","Cancelled":false,"Currency":"SEK","CustomerName":"A
+        customer","CustomerNumber":"26","DeliveryDate":null,"DocumentNumber":"4","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","OrderDate":"2016-04-21","OrderType":"Order","Project":"1","Sent":false,"Total":0},{"@url":"https:\/\/api.fortnox.se\/3\/orders\/60","Cancelled":false,"Currency":"SEK","CustomerName":"A
+        customer","CustomerNumber":"2","DeliveryDate":null,"DocumentNumber":"60","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","OrderDate":"2016-05-09","OrderType":"Order","Project":"1","Sent":false,"Total":19},{"@url":"https:\/\/api.fortnox.se\/3\/orders\/269","Cancelled":false,"Currency":"SEK","CustomerName":"A
+        customer","CustomerNumber":"2","DeliveryDate":null,"DocumentNumber":"269","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","OrderDate":"2018-01-02","OrderType":"Order","Project":"5582","Sent":false,"Total":1250}]}'
     http_version: 
-  recorded_at: Tue, 25 Oct 2016 10:21:57 GMT
-recorded_with: VCR 3.0.1
+  recorded_at: Wed, 29 May 2019 07:52:36 GMT
+recorded_with: VCR 4.0.0

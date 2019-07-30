@@ -23,7 +23,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Tue, 25 Oct 2016 10:21:48 GMT
+      - Wed, 29 May 2019 07:52:52 GMT
       Content-Type:
       - application/json
       Connection:
@@ -32,15 +32,18 @@ http_interactions:
       - Accept-Encoding
       - Accept-Encoding
       X-Rack-Responsetime:
-      - '49'
+      - '51'
       X-Uid:
-      - 9e4ed16b
+      - 0576ffab
       X-Build:
-      - 76600b8d0c
+      - e930a91c78
     body:
       encoding: UTF-8
-      string: '{"MetaInformation":{"@TotalResources":1,"@TotalPages":1,"@CurrentPage":1},"Invoices":[{"@url":"https:\/\/api.fortnox.se\/3\/invoices\/15","Balance":0,"Booked":true,"Cancelled":false,"Currency":"SEK","CurrencyRate":"1","CurrencyUnit":1,"CustomerName":"Test
-        customer","CustomerNumber":"3","DocumentNumber":"15","DueDate":"2016-05-15","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","InvoiceDate":"2016-05-15","NoxFinans":false,"OCR":"1545","WayOfDelivery":"","TermsOfPayment":"0","Project":"2","Sent":false,"Total":138}]}'
+      string: '{"MetaInformation":{"@TotalResources":4,"@TotalPages":1,"@CurrentPage":1},"Invoices":[{"@url":"https:\/\/api.fortnox.se\/3\/invoices\/15","Balance":0,"Booked":true,"Cancelled":false,"CostCenter":"","Currency":"SEK","CurrencyRate":"1","CurrencyUnit":1,"CustomerName":"Test
+        customer","CustomerNumber":"3","DocumentNumber":"15","DueDate":"2016-05-15","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","InvoiceDate":"2016-05-15","InvoiceType":"INVOICE","NoxFinans":false,"OCR":"1545","VoucherNumber":1,"VoucherSeries":"B","VoucherYear":1,"WayOfDelivery":"","TermsOfPayment":"0","Project":"2","Sent":false,"Total":138,"FinalPayDate":"2016-05-15"},{"@url":"https:\/\/api.fortnox.se\/3\/invoices\/64","Balance":0,"Booked":true,"Cancelled":false,"CostCenter":"","Currency":"SEK","CurrencyRate":"1","CurrencyUnit":1,"CustomerName":"Anna
+        Norman","CustomerNumber":"82","DocumentNumber":"64","DueDate":"2016-11-25","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","InvoiceDate":"2016-11-25","InvoiceType":"INVOICE","NoxFinans":false,"OCR":"6445","VoucherNumber":5,"VoucherSeries":"B","VoucherYear":1,"WayOfDelivery":"","TermsOfPayment":"0","Project":"3","Sent":false,"Total":875,"FinalPayDate":"2016-11-25"},{"@url":"https:\/\/api.fortnox.se\/3\/invoices\/66","Balance":0,"Booked":true,"Cancelled":false,"CostCenter":"","Currency":"SEK","CurrencyRate":"1","CurrencyUnit":1,"CustomerName":"Ertan
+        AB","CustomerNumber":"164","DocumentNumber":"66","DueDate":"2016-11-25","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","InvoiceDate":"2016-11-25","InvoiceType":"INVOICE","NoxFinans":false,"OCR":"6643","VoucherNumber":6,"VoucherSeries":"B","VoucherYear":1,"WayOfDelivery":"","TermsOfPayment":"0","Project":"3","Sent":false,"Total":1250,"FinalPayDate":"2016-11-25"},{"@url":"https:\/\/api.fortnox.se\/3\/invoices\/77","Balance":0,"Booked":true,"Cancelled":false,"CostCenter":"","Currency":"SEK","CurrencyRate":"1","CurrencyUnit":1,"CustomerName":"En
+        Appstudio i J\u00f6nk\u00f6ping AB","CustomerNumber":"170","DocumentNumber":"77","DueDate":"2017-01-15","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","InvoiceDate":"2017-01-15","InvoiceType":"INVOICE","NoxFinans":false,"OCR":"7740","VoucherNumber":2,"VoucherSeries":"B","VoucherYear":2,"WayOfDelivery":"","TermsOfPayment":"0","Project":"1","Sent":false,"Total":3000,"FinalPayDate":"2017-01-15"}]}'
     http_version: 
-  recorded_at: Tue, 25 Oct 2016 10:21:48 GMT
-recorded_with: VCR 3.0.1
+  recorded_at: Wed, 29 May 2019 07:52:52 GMT
+recorded_with: VCR 4.0.0

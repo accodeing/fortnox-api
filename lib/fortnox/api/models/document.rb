@@ -109,7 +109,7 @@ module Fortnox
         # HouseWork If there is any row of the document marked "housework".
         attribute :housework, Types::Nullable::Boolean.is(:read_only)
 
-        attribute :labels, Types::Strict::Array.member(Label)
+        attribute :labels, Types::Strict::Array.of(Label)
 
         # Net Net amount
         attribute :net, Types::Nullable::Float.is(:read_only)

@@ -6,18 +6,25 @@ require 'fortnox/api'
 describe Fortnox::API::Repository::Base do
   using_test_class do
     module Model
-      class Test
+      class RepositoryBaseTest
       end
     end
     module Repository
       class Test < Fortnox::API::Repository::Base
-        MODEL = Model::Test
+        MODEL = Model::RepositoryBaseTest
       end
     end
+  end
 
-    require 'dry/container/stub'
-    Fortnox::API::Registry.enable_stubs!
-    Fortnox::API::Registry.stub(:test, Model::Test)
+  before do
+    Fortnox::API::Registry.register(:repositorybasetest, Model::RepositoryBaseTest)
+  end
+
+  after do
+    # HACK: Currently, there is no way to remove keys from the Dry::Container#register.
+    # We could move the register call to a before(:all) hook, but that registered key
+    # would then leak into other tests. Instead, we can simply delete it with this little hack :)
+    Fortnox::API::Registry._container.delete('repositorybasetest')
   end
 
   let(:access_token) { '3f08d038-f380-4893-94a0-a08f6e60e67a' }
@@ -36,7 +43,7 @@ describe Fortnox::API::Repository::Base do
 
   describe 'creation' do
     shared_examples_for 'missing configuration' do
-      subject { -> { repository } }
+      subject { -> { Repository::Test.new(token_store: :store1).get('nonsense') } }
 
       let(:error) { Fortnox::API::MissingConfiguration }
 
@@ -45,14 +52,27 @@ describe Fortnox::API::Repository::Base do
 
     context 'without base url' do
       include_examples 'missing configuration' do
-        before { Fortnox::API.configure { |conf| conf.base_url = nil } }
+        before do
+          Fortnox::API.configure do |config|
+            config.base_url = nil
+            config.client_secret = client_secret
+            config.access_tokens = { store1: access_token }
+          end
+        end
+
         let(:message) { 'have to provide a base url' }
       end
     end
 
     context 'without client secret' do
       include_examples 'missing configuration' do
-        before { Fortnox::API.configure { |conf| conf.client_secret = nil } }
+        before do
+          Fortnox::API.configure do |config|
+            config.client_secret = nil
+            config.access_tokens = { store1: access_token }
+          end
+        end
+
         let(:message) { 'have to provide your client secret' }
       end
     end

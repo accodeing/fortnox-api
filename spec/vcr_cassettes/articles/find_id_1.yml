@@ -23,7 +23,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Sun, 08 Oct 2017 21:51:43 GMT
+      - Wed, 29 May 2019 07:52:46 GMT
       Content-Type:
       - application/json
       Connection:
@@ -32,14 +32,14 @@ http_interactions:
       - Accept-Encoding
       - Accept-Encoding
       X-Rack-Responsetime:
-      - '32'
+      - '31'
       X-Uid:
-      - 8b796198
+      - 126f6b17
       X-Build:
-      - e1392b4cf7
+      - e930a91c78
     body:
       encoding: UTF-8
-      string: '{"Article":{"@url":"https:\/\/api.fortnox.se\/3\/articles\/1","ArticleNumber":"1","Bulky":false,"ConstructionAccount":1030,"Depth":null,"Description":"Testartikel","DisposableQuantity":-163995.5,"EAN":"","EUAccount":1030,"EUVATAccount":1030,"ExportAccount":1030,"Height":null,"Housework":false,"HouseworkType":null,"Active":true,"Manufacturer":null,"ManufacturerArticleNumber":null,"Note":"","PurchaseAccount":1030,"PurchasePrice":0,"QuantityInStock":0,"ReservedQuantity":163995.5,"SalesAccount":1030,"StockGoods":false,"StockPlace":"","StockValue":0,"StockWarning":null,"SupplierName":null,"SupplierNumber":null,"Type":"STOCK","Unit":null,"VAT":0,"WebshopArticle":false,"Weight":null,"Width":null,"Expired":false,"SalesPrice":100,"CostCalculationMethod":null,"StockAccount":null,"StockChangeAccount":null,"DirectCost":0,"FreightCost":0,"OtherCost":0}}'
+      string: '{"Article":{"@url":"https:\/\/api.fortnox.se\/3\/articles\/1","ArticleNumber":"1","Bulky":false,"ConstructionAccount":1030,"Depth":null,"Description":"Testartikel","DisposableQuantity":-163995.5,"EAN":"","EUAccount":1030,"EUVATAccount":1030,"ExportAccount":1030,"Height":null,"Housework":false,"HouseworkType":null,"Active":true,"Manufacturer":null,"ManufacturerArticleNumber":null,"Note":"","PurchaseAccount":1030,"PurchasePrice":0,"QuantityInStock":0,"ReservedQuantity":163995.5,"SalesAccount":1030,"StockGoods":false,"StockPlace":"","StockValue":0,"StockWarning":null,"SupplierName":null,"SupplierNumber":null,"Type":"STOCK","Unit":null,"VAT":0,"WebshopArticle":false,"Weight":null,"Width":null,"Expired":false,"SalesPrice":100,"CostCalculationMethod":null,"StockAccount":null,"StockChangeAccount":null,"DirectCost":0,"FreightCost":0,"OtherCost":0,"DefaultStockPoint":null,"DefaultStockLocation":null}}'
     http_version: 
-  recorded_at: Sun, 08 Oct 2017 21:51:43 GMT
-recorded_with: VCR 3.0.3
+  recorded_at: Wed, 29 May 2019 07:52:46 GMT
+recorded_with: VCR 4.0.0

@@ -26,11 +26,13 @@ describe Fortnox::API::Repository::Article, order: :defined, integration: true d
                    :ean,
                    '5901234123457'
 
-  include_examples '.all', 12
+  # When recording new VCR cassettes, expected matches must be increased
+  include_examples '.all', 26
 
+  # When recording new VCR cassettes, expected matches must be increased
   include_examples '.find', '1' do
     let(:find_by_hash_failure) { { description: 'Not Found' } }
-    let(:single_param_find_by_hash) { { find_hash: { articlenumber: 1 }, matches: 3 } }
+    let(:single_param_find_by_hash) { { find_hash: { articlenumber: 1 }, matches: 13 } }
 
     let(:multi_param_find_by_hash) do
       { find_hash: { articlenumber: 1, description: 'Cykelpump' }, matches: 1 }

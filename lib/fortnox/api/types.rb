@@ -2,6 +2,8 @@
 
 require 'dry-struct'
 require 'dry-types'
+require 'countries'
+require 'fortnox/api/types/shim/country_code_string'
 
 module Dry
   module Types
@@ -24,6 +26,7 @@ module Fortnox
   module API
     module Types
       include Dry::Types.module
+      ISO3166.configure { |config| config.locales = %i[en sv] }
 
       THE_TRUTH = { true => true, 'true' => true, false => false, 'false' => false }.freeze
 
@@ -45,9 +48,22 @@ module Fortnox
                     .constructor(EnumConstructors.default)
 
       CountryCode = Strict::String
-                    .constrained(included_in: CountryCodes.values)
                     .optional
-                    .constructor(EnumConstructors.sized(2))
+                    .constructor do |value|
+                      next value if value.nil? || value == ''
+
+                      # Fortnox only supports Swedish translation of Sweden
+                      next CountryCodeString.new('SE') if value =~ /^s(e$|we|ve)/i
+
+                      country = ::ISO3166::Country[value] ||
+                                ::ISO3166::Country.find_country_by_name(value) ||
+                                ::ISO3166::Country.find_country_by_translated_names(value)
+
+                      raise Dry::Types::ConstraintError.new('value violates constraints', value) if country.nil?
+
+                      CountryCodeString.new(country.alpha2)
+                    end
+
       Currency = Strict::String
                  .constrained(included_in: Currencies.values)
                  .optional
@@ -63,7 +79,7 @@ module Fortnox
                      .constructor(EnumConstructors.default)
 
       Email = Strict::String
-              .constrained(max_size: 1024, format: /^$|\A[\w+-_.]+@[\w+-_.]+\.[a-z]+\z/i)
+              .constrained(max_size: 1024, format: /^$|\A[[[:alnum:]]+-_.]+@[\w+-_.]+\.[a-z]+\z/i)
               .optional
               .constructor { |v| v.to_s.downcase unless v.nil? }
 
