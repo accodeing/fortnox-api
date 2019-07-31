@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Country attribute for `Invoice` and `Order` is now validated correctly.
 - Fixes deprecation warnings
 - Unlocks pinned `HTTParty` version
+- Invalid email validation
 
 ## [0.6.3]
 ### Changed
