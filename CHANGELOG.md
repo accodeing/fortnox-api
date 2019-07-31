@@ -15,4 +15,4 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Country attribute for Invoice and Order is now validated correctly.
 - Fixes deprecation warnings
 
-[0.7.0]: https://github.com/accodeing/fortnox-api/compare/v0.7.0...v0.6.3
+[0.7.0]: https://github.com/accodeing/fortnox-api/compare/v0.6.3...v0.7.0
