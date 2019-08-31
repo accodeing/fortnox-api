@@ -24,7 +24,7 @@ describe Fortnox::API::Types::CountryCode do
 
   context 'with invalid input' do
     describe 'valid country name' do
-      it do 
+      it do
         expect do
           described_class['Norway']
         end.to raise_error(Dry::Types::ConstraintError)
