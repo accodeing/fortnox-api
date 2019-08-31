@@ -4,7 +4,7 @@ require 'spec_helper'
 require 'fortnox/api/types'
 require 'fortnox/api/types/examples/types'
 
-describe Fortnox::API::Types::CountryCode do
+describe Fortnox::API::Types::Country do
   context 'with nil' do
     subject { described_class[nil] }
 

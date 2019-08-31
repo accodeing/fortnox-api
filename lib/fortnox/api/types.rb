@@ -3,7 +3,7 @@
 require 'dry-struct'
 require 'dry-types'
 require 'countries'
-require 'fortnox/api/types/shim/country_code_string'
+require 'fortnox/api/types/shim/country_string'
 
 module Dry
   module Types
@@ -47,22 +47,22 @@ module Fortnox
                     .optional
                     .constructor(EnumConstructors.default)
 
-      CountryCode = Strict::String
-                    .optional
-                    .constructor do |value|
-                      next value if value.nil? || value == ''
+      Country = Strict::String
+                .optional
+                .constructor do |value|
+                  next value if value.nil? || value == ''
 
-                      # Fortnox only supports Swedish translation of Sweden
-                      next CountryCodeString.new('SE') if value =~ /^s(e$|we|ve)/i
+                  # Fortnox only supports Swedish translation of Sweden
+                  next CountryString.new('SE') if value =~ /^s(e$|we|ve)/i
 
-                      country = ::ISO3166::Country[value] ||
-                                ::ISO3166::Country.find_country_by_name(value) ||
-                                ::ISO3166::Country.find_country_by_translated_names(value)
+                  country = ::ISO3166::Country[value] ||
+                            ::ISO3166::Country.find_country_by_name(value) ||
+                            ::ISO3166::Country.find_country_by_translated_names(value)
 
-                      raise Dry::Types::ConstraintError.new('value violates constraints', value) if country.nil?
+                  raise Dry::Types::ConstraintError.new('value violates constraints', value) if country.nil?
 
-                      CountryCodeString.new(country.alpha2)
-                    end
+                  CountryString.new(country.alpha2)
+                end
 
       Currency = Strict::String
                  .constrained(included_in: Currencies.values)
