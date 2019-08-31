@@ -52,7 +52,7 @@ module Fortnox
         attribute :cost_center, Types::Nullable::String
 
         # CountryCode	Country code of the customer, 2 letters
-        attribute :country_code, Types::Country
+        attribute :country_code, Types::CountryCode
 
         # CustomerNumber	Customer number. 1024 characters
         attribute :customer_number, Types::Sized::String[1024]
@@ -76,7 +76,7 @@ module Fortnox
         attribute :delivery_country, Types::Nullable::String.is(:read_only)
 
         # DeliveryCountryCode	Delivery country code of the customer, 2 letters
-        attribute :delivery_country_code, Types::Country
+        attribute :delivery_country_code, Types::CountryCode
 
         # DeliveryFax	Delivery fax number of the customer. 1024 characters
         attribute :delivery_fax, Types::Sized::String[1024]
@@ -191,7 +191,7 @@ module Fortnox
         attribute :visiting_country, Types::Nullable::String.is(:read_only)
 
         # VisitingCountryCode Code of the visiting country for the customer, 2 letters
-        attribute :visiting_country_code, Types::Country
+        attribute :visiting_country_code, Types::CountryCode
 
         # VisitZipCode	Visit zip code of the customer. 10 characters
         attribute :visiting_zip_code, Types::Sized::String[10]

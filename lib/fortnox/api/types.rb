@@ -64,6 +64,18 @@ module Fortnox
                   CountryString.new(country.alpha2)
                 end
 
+      CountryCode = Strict::String
+                    .optional
+                    .constructor do |value|
+                      next value if value.nil? || value == ''
+
+                      country = ::ISO3166::Country[value]
+
+                      raise Dry::Types::ConstraintError.new('value violates constraints', value) if country.nil?
+
+                      country.alpha2
+                    end
+
       Currency = Strict::String
                  .constrained(included_in: Currencies.values)
                  .optional

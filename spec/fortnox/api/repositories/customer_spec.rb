@@ -40,4 +40,29 @@ describe Fortnox::API::Repository::Customer, order: :defined, integration: true 
 
   # When recording new VCR casettes, expected matches must be increased
   include_examples '.search', :name, 'Test', 30
+
+  context 'country reference' do
+    describe 'with valid country code \'SE\'' do
+      subject(:customer) do
+        VCR.use_cassette("#{vcr_dir}/save_new_with_country_code_SE") do
+          repository.save(
+            described_class::MODEL.new(
+              name: 'Customer with Swedish country code',
+              country_code: 'SE'
+            )
+          )
+        end
+      end
+
+      describe 'country code' do
+        subject { customer.country_code }
+        it { is_expected.to eq('SE') }
+      end
+
+      describe 'country' do
+        subject { customer.country }
+        it { is_expected.to eq('Sverige') }
+      end
+    end
+  end
 end
