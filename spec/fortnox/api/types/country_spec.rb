@@ -21,14 +21,6 @@ describe Fortnox::API::Types::Country do
       expect(described_class['NO']).to eq 'NO'
     end
 
-    it 'accepts nil' do
-      expect(described_class[nil]).to eq nil
-    end
-
-    it 'accepts empty string' do
-      expect(described_class['']).to eq ''
-    end
-
     it 'translates English country names to country code' do
       expect(described_class['Norway']).to eq 'NO'
     end
