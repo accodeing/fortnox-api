@@ -5,10 +5,10 @@ require 'fortnox/api/mappers/base/canonical_name_sym'
 module Fortnox
   module API
     module Mapper
-      class CountryCodeString
+      class CountryString
         extend CanonicalNameSym
 
-        CountryCodeMapper = lambda do |code|
+        CountryMapper = lambda do |code|
           next code if code.nil? || code == ''
 
           # Fortnox only supports Swedish country name for Sweden
@@ -17,7 +17,7 @@ module Fortnox
           ::ISO3166::Country[code].translations['en']
         end
 
-        Registry.register(canonical_name_sym, CountryCodeMapper)
+        Registry.register(canonical_name_sym, CountryMapper)
       end
     end
   end

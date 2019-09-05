@@ -117,10 +117,10 @@ describe Fortnox::API::Mapper::Base do
     end
   end
 
-  describe 'CountryCode' do
+  describe 'Country' do
     subject { mapper.call('GB') }
 
-    let(:mapper) { Fortnox::API::Registry[:countrycodestring] }
+    let(:mapper) { Fortnox::API::Registry[:countrystring] }
 
     it { is_expected.to eq('United Kingdom') }
 

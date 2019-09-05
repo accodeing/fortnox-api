@@ -44,7 +44,7 @@ module Fortnox
         attribute :contribution_value, Types::Nullable::Float.is(:read_only)
 
         # Country Country for the document address.
-        attribute :country, Types::CountryCode
+        attribute :country, Types::Country
 
         # CostCenter Code of the cost center.
         attribute :cost_center, Types::Nullable::String
@@ -74,7 +74,7 @@ module Fortnox
         attribute :delivery_city, Types::Sized::String[1024]
 
         # DeliveryCountry Country for the document delivery address.
-        attribute :delivery_country, Types::CountryCode
+        attribute :delivery_country, Types::Country
 
         # DeliveryDate Date of delivery.
         attribute :delivery_date, Types::Nullable::Date

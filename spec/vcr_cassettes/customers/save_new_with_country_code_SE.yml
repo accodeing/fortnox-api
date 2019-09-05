@@ -1,0 +1,56 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.fortnox.se/3/customers/
+    body:
+      encoding: UTF-8
+      string: '{"Customer":{"CountryCode":"SE","Name":"Customer with Swedish country
+        code"}}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      Client-Secret:
+      - 9aBA8ZgsvR
+      Access-Token:
+      - ccaef817-d5d8-4b1c-a316-54f3e55c5c54
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sat, 31 Aug 2019 18:40:48 GMT
+      Content-Type:
+      - application/json
+      Connection:
+      - close
+      Location:
+      - customers
+      X-Rack-Responsetime:
+      - '1007'
+      X-Uid:
+      - d8955922
+      X-Build:
+      - b1e7c74853
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - sameorigin
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+    body:
+      encoding: UTF-8
+      string: '{"Customer":{"@url":"https:\/\/api.fortnox.se\/3\/customers\/230","Address1":null,"Address2":null,"City":null,"Country":"Sverige","Comments":null,"Currency":"SEK","CostCenter":null,"CountryCode":"SE","Active":true,"CustomerNumber":"230","DefaultDeliveryTypes":{"Invoice":"PRINT","Order":"PRINT","Offer":"PRINT"},"DefaultTemplates":{"Order":"DEFAULTTEMPLATE","Offer":"DEFAULTTEMPLATE","Invoice":"DEFAULTTEMPLATE","CashInvoice":"DEFAULTTEMPLATE"},"DeliveryAddress1":null,"DeliveryAddress2":null,"DeliveryCity":null,"DeliveryCountry":null,"DeliveryCountryCode":null,"DeliveryFax":null,"DeliveryName":null,"DeliveryPhone1":null,"DeliveryPhone2":null,"DeliveryZipCode":null,"Email":"","EmailInvoice":"","EmailInvoiceBCC":"","EmailInvoiceCC":"","EmailOffer":"","EmailOfferBCC":"","EmailOfferCC":"","EmailOrder":"","EmailOrderBCC":"","EmailOrderCC":"","ExternalReference":null,"Fax":null,"GLN":null,"GLNDelivery":null,"InvoiceAdministrationFee":null,"InvoiceDiscount":null,"InvoiceFreight":null,"InvoiceRemark":"","Name":"Customer
+        with Swedish country code","OrganisationNumber":"","OurReference":"","Phone1":null,"Phone2":null,"PriceList":"A","Project":"","SalesAccount":null,"ShowPriceVATIncluded":false,"TermsOfDelivery":"","TermsOfPayment":"","Type":"COMPANY","VATNumber":"","VATType":"SEVAT","VisitingAddress":null,"VisitingCity":null,"VisitingCountry":null,"VisitingCountryCode":null,"VisitingZipCode":null,"WayOfDelivery":"","WWW":"","YourReference":"","ZipCode":null}}'
+    http_version: 
+  recorded_at: Sat, 31 Aug 2019 18:40:48 GMT
+recorded_with: VCR 4.0.0

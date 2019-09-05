@@ -3,7 +3,7 @@
 module Fortnox
   module API
     module Types
-      class CountryCodeString < String
+      class CountryString < String
       end
     end
   end
