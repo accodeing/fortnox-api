@@ -3,7 +3,7 @@
 require 'fortnox/api/types'
 
 require 'fortnox/api/mappers/value/array'
-require 'fortnox/api/mappers/value/country_code_string'
+require 'fortnox/api/mappers/value/country_string'
 require 'fortnox/api/mappers/value/date'
 require 'fortnox/api/mappers/value/hash'
 require 'fortnox/api/mappers/value/identity'

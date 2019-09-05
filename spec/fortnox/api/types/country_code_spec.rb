@@ -2,7 +2,6 @@
 
 require 'spec_helper'
 require 'fortnox/api/types'
-require 'fortnox/api/types/examples/types'
 
 describe Fortnox::API::Types::CountryCode do
   context 'with nil' do
@@ -21,54 +20,21 @@ describe Fortnox::API::Types::CountryCode do
     it 'accepts country codes' do
       expect(described_class['NO']).to eq 'NO'
     end
-
-    it 'accepts nil' do
-      expect(described_class[nil]).to eq nil
-    end
-
-    it 'accepts empty string' do
-      expect(described_class['']).to eq ''
-    end
-
-    it 'translates English country names to country code' do
-      expect(described_class['Norway']).to eq 'NO'
-    end
-
-    it 'translates Swedish country names to country code' do
-      expect(described_class['Norge']).to eq 'NO'
-    end
-
-    describe 'special cases' do
-      valid_sweden_inputs = [
-        'SE', 'se', 'Sweden', 'sweden', 'Sverige', 'sverige',
-        :SE, :se, :Sweden, :sweden, :Sverige, :sverige
-      ].freeze
-
-      valid_sweden_inputs.each do |sweden_input|
-        it "converts \"#{sweden_input}\" to \"SE\"" do
-          expect(described_class[sweden_input]).to eq 'SE'
-        end
-      end
-
-      it 'accepts country code for El Salvador' do
-        expect(described_class['SV']).to eq 'SV'
-      end
-
-      it 'translated Switzerland to ' do
-        expect(described_class['Switzerland']).to eq 'CH'
-      end
-    end
   end
 
   context 'with invalid input' do
-    invalid_inputs = [
-      'SEA', 'S', 'nonsense', :s
-    ].freeze
-
-    invalid_inputs.each do |invalid_input|
-      it "#{invalid_input} raises Dry::Types::ConstraintError" do
+    describe 'valid country name' do
+      it do
         expect do
-          described_class[invalid_input]
+          described_class['Norway']
+        end.to raise_error(Dry::Types::ConstraintError)
+      end
+    end
+
+    describe 'invalid country code' do
+      it do
+        expect do
+          described_class['XX']
         end.to raise_error(Dry::Types::ConstraintError)
       end
     end
