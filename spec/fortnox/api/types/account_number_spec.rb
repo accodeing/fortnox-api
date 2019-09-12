@@ -15,7 +15,9 @@ describe Fortnox::API::Types do
     end
 
     context 'when created with empty string' do
-      include_examples 'raises ConstraintError', ''
+      subject { klass[''] }
+
+      it { is_expected.to be_nil }
     end
 
     context 'when created with valid number' do
