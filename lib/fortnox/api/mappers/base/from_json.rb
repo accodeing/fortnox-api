@@ -72,8 +72,8 @@ module Fortnox
 
         def default_key_from_json_transform(key)
           key = key.to_s
-          key = camelcase_to_underscore(key) unless key =~ /\A[A-Z]+\z/
-          key = strip_at_symbol(key) if key =~ /\A@.*\z/
+          key = camelcase_to_underscore(key) unless key.match?(/\A[A-Z]+\z/)
+          key = strip_at_symbol(key) if key.match?(/\A@.*\z/)
           key.downcase.to_sym
         end
 

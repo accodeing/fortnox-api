@@ -130,25 +130,25 @@ describe Fortnox::API::Repository::Invoice, order: :defined, integration: true d
       before { persisted_invoice }
 
       context 'by setting value to nil' do
+        subject { updated_persisted_invoice.comments }
+
         let(:updated_persisted_invoice) do
           VCR.use_cassette("#{vcr_dir}/save_old_with_nil_comments") do
             repository.save(persisted_invoice.update(comments: nil))
           end
         end
 
-        subject { updated_persisted_invoice.comments }
-
         pending { is_expected.to eq(nil) }
       end
 
       context 'by setting value to empty string' do
+        subject { updated_persisted_invoice.comments }
+
         let(:updated_persisted_invoice) do
           VCR.use_cassette("#{vcr_dir}/save_old_with_empty_comments") do
             repository.save(persisted_invoice.update(comments: ''))
           end
         end
-
-        subject { updated_persisted_invoice.comments }
 
         it 'does not reset the value' do
           is_expected.to eq('A comment to be reset')
@@ -170,6 +170,8 @@ describe Fortnox::API::Repository::Invoice, order: :defined, integration: true d
       before { persisted_invoice }
 
       context 'by setting value to nil' do
+        subject { updated_persisted_invoice.country }
+
         let(:updated_persisted_invoice) do
           # TODO: This VCR cassette needs to be re-recorded again
           # when the we fix #172.
@@ -178,19 +180,17 @@ describe Fortnox::API::Repository::Invoice, order: :defined, integration: true d
           end
         end
 
-        subject { updated_persisted_invoice.country }
-
         pending { is_expected.to eq(nil) }
       end
 
       context 'by setting value to empty string' do
+        subject { updated_persisted_invoice.country }
+
         let(:updated_persisted_invoice) do
           VCR.use_cassette("#{vcr_dir}/save_old_with_empty_country") do
             repository.save(persisted_invoice.update(country: ''))
           end
         end
-
-        subject { updated_persisted_invoice.country }
 
         it 'does not reset the country' do
           is_expected.to eq('SE')
