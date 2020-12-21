@@ -19,16 +19,16 @@ describe Fortnox::API::Repository::Unit, order: :defined, integration: true do
   # When recording new VCR cassettes, code needs to be changed to a unique value
   include_examples '.save',
                    :description,
-                   additional_attrs: { code: 'blarg4' }
+                   additional_attrs: { code: 'blarg5' }
 
   # When recording new VCR cassettes, code needs to be changed to a unique value
   include_examples '.save with specially named attribute',
                    { description: 'Happy clouds' },
                    :code,
-                   'woooh4'
+                   'woooh5'
 
   # When recording new VCR cassettes, expected number must be updated
-  include_examples '.all', 12
+  include_examples '.all', 14
 
   include_examples '.find', 'blarg', find_by_hash: false do
     let(:find_by_hash_failure) { { code: 'notfound' } }
