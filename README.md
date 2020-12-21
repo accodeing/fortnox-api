@@ -191,5 +191,9 @@ updated_customer.name #=> "Ned Stark"
 
 The update method takes an implicit hash of attributes to update, so you can update as many as you like in one go.
 
+# Development
+## Testing
+This gem has integration tests to verify the code against the real API. It uses [vcr](https://github.com/vcr/vcr) to record API endpoint responses. These responses are stored locally and are called vcr cassettes. If no cassettes are available, vcr will record new ones for you. Once in a while, it's good to throw away all cassettes and rerecord them. Fortnox updates their endpoints and we need to keep our code up to date with the reality. There's a handy rake task for removing all cassettes, see `rake -T`. Note that when rerecording all cassettes, do it one repository at a time, otherwise you'll definitely get `429 Too Many Requests` from Fortnox. Run them manually with something like `bundle exec rspec spec/fortnox/api/repositories/article_spec.rb`. Also, you will need to update some test data in specs, see notes in specs.
+
 # Contributing
 See the [CONTRIBUTE](CONTRIBUTE.md) readme.
