@@ -81,7 +81,7 @@ These are responsible for the mapping between our plain old Ruby object models a
 
 # Requirements
 
-This gem is build for Ruby 2.5 or higher (see Travis configuration file for what versions we are testing against).
+This gem is built for Ruby 2.5 or higher (see Travis configuration file for what versions we are testing against).
 
 ## Installation
 
