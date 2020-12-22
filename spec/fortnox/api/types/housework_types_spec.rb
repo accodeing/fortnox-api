@@ -18,7 +18,7 @@ describe 'HouseworkTypes', integration: true do
   shared_examples_for 'housework type' do |type, tax_reduction_type, legacy: false, housework: true|
     subject do
       cassette = "orders/housework_type_#{type.downcase}"
-      lambda { VCR.use_cassette(cassette) { repository.save(document) } }
+      -> { VCR.use_cassette(cassette) { repository.save(document) } }
     end
 
     let(:document) do
@@ -90,11 +90,11 @@ describe 'HouseworkTypes', integration: true do
 
   it_behaves_like 'housework type', 'COOKING', TYPE_RUT, legacy: true
   it_behaves_like 'housework type', 'TUTORING', TYPE_RUT, legacy: true
-  
+
   describe 'without tax reduction type' do
     subject do
-      cassette = "orders/housework_without_tax_reduction_type"
-      lambda { VCR.use_cassette(cassette) { repository.save(document) } }
+      cassette = 'orders/housework_without_tax_reduction_type'
+      -> { VCR.use_cassette(cassette) { repository.save(document) } }
     end
 
     let(:document) do
@@ -115,15 +115,15 @@ describe 'HouseworkTypes', integration: true do
       'Dokument utan angiven skattereduktionstyp får inte innehålla artikelrader med husarbetestyp.'
     end
 
-   it 'raises an error' do
+    it 'raises an error' do
       is_expected.to raise_error(Fortnox::API::RemoteServerError, error_message)
     end
   end
 
   describe 'with OTHERCOSTS' do
     subject do
-      cassette = "orders/housework_othercoses_invalid"
-      lambda { VCR.use_cassette(cassette) { repository.save(document) } }
+      cassette = 'orders/housework_othercoses_invalid'
+      -> { VCR.use_cassette(cassette) { repository.save(document) } }
     end
 
     let(:document) do
@@ -150,8 +150,8 @@ describe 'HouseworkTypes', integration: true do
 
   describe 'with wrong tax reduction type' do
     subject do
-      cassette = "orders/housework_invalid_tax_reduction_type"
-      lambda { VCR.use_cassette(cassette) { repository.save(document) } }
+      cassette = 'orders/housework_invalid_tax_reduction_type'
+      -> { VCR.use_cassette(cassette) { repository.save(document) } }
     end
 
     let(:document) do
@@ -173,7 +173,7 @@ describe 'HouseworkTypes', integration: true do
       "Dokument med skattereduktionstypen 'rut' får inte innehålla rader med husarbetestypen 'CONSTRUCTION'."
     end
 
-    it "raises an error" do
+    it 'raises an error' do
       is_expected.to raise_error(Fortnox::API::RemoteServerError, error_message)
     end
   end
