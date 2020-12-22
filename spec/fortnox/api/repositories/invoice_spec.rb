@@ -129,7 +129,7 @@ describe Fortnox::API::Repository::Invoice, order: :defined, integration: true d
 
       before { persisted_invoice }
 
-      context 'by setting value to nil' do
+      context 'when setting value to nil' do
         subject { updated_persisted_invoice.comments }
 
         let(:updated_persisted_invoice) do
@@ -141,7 +141,7 @@ describe Fortnox::API::Repository::Invoice, order: :defined, integration: true d
         pending { is_expected.to eq(nil) }
       end
 
-      context 'by setting value to empty string' do
+      context 'when setting value to empty string' do
         subject { updated_persisted_invoice.comments }
 
         let(:updated_persisted_invoice) do
@@ -169,7 +169,7 @@ describe Fortnox::API::Repository::Invoice, order: :defined, integration: true d
 
       before { persisted_invoice }
 
-      context 'by setting value to nil' do
+      context 'when setting value to nil' do
         subject { updated_persisted_invoice.country }
 
         let(:updated_persisted_invoice) do
@@ -183,7 +183,7 @@ describe Fortnox::API::Repository::Invoice, order: :defined, integration: true d
         pending { is_expected.to eq(nil) }
       end
 
-      context 'by setting value to empty string' do
+      context 'when setting value to empty string' do
         subject { updated_persisted_invoice.country }
 
         let(:updated_persisted_invoice) do
