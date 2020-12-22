@@ -61,13 +61,32 @@ describe 'HouseworkTypes', integration: true do
   it_behaves_like 'housework type', 'HVAC', TYPE_ROT
   it_behaves_like 'housework type', 'OTHERCOSTS', TYPE_ROT, housework: false
 
+  it_behaves_like 'housework type', 'MAJORAPPLIANCEREPAIR', TYPE_RUT
+  it_behaves_like 'housework type', 'MOVINGSERVICES', TYPE_RUT
+  it_behaves_like 'housework type', 'ITSERVICES', TYPE_RUT
   it_behaves_like 'housework type', 'CLEANING', TYPE_RUT
   it_behaves_like 'housework type', 'TEXTILECLOTHING', TYPE_RUT
-  it_behaves_like 'housework type', 'CLEANING', TYPE_RUT
   it_behaves_like 'housework type', 'SNOWPLOWING', TYPE_RUT
   it_behaves_like 'housework type', 'GARDENING', TYPE_RUT
   it_behaves_like 'housework type', 'BABYSITTING', TYPE_RUT
   it_behaves_like 'housework type', 'OTHERCARE', TYPE_RUT
+  it_behaves_like 'housework type', 'OTHERCOSTS', TYPE_RUT, housework: false
+
+  pending 'to be added' do
+    raise Exception, 'Will be supported 2021-01-01'
+    # it_behaves_like 'housework type', 'HOMEMAINTENANCE', TYPE_RUT
+    # it_behaves_like 'housework type', 'FURNISHING', TYPE_RUT
+    # it_behaves_like 'housework type', 'TRANSPORTATIONSERVICES', TYPE_RUT
+    # it_behaves_like 'housework type', 'WASHINGANDCAREOFCLOTHING', TYPE_RUT
+  end
+
+  pending 'to be added' do
+    raise Exception, 'Will be supported 2021-01-01'
+    # it_behaves_like 'housework type', 'SOLARCELLS', TYPE_GREEN
+    # it_behaves_like 'housework type', 'STORAGESELFPRODUCEDELECTRICTY', TYPE_GREEN
+    # it_behaves_like 'housework type', 'CHARGINGSTATIONELECTRICVEHICLE', TYPE_GREEN
+    # it_behaves_like 'housework type', 'OTHERCOSTS', TYPE_GREEN
+  end
 
   it_behaves_like 'housework type', 'COOKING', TYPE_RUT, legacy: true
   it_behaves_like 'housework type', 'TUTORING', TYPE_RUT, legacy: true
