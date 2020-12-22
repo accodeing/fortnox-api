@@ -36,14 +36,14 @@ module Fortnox
         rot: %w[
             CONSTRUCTION ELECTRICITY GLASSMETALWORK GROUNDDRAINAGEWORK
             MASONRY PAINTINGWALLPAPERING HVAC OTHERCOSTS
-          ].freeze,
+          ]
         rut: %w[
           MAJORAPPLIANCEREPAIR MOVINGSERVICES ITSERVICES CLEANING
           TEXTILECLOTHING SNOWPLOWING GARDENING BABYSITTING OTHERCARE
           OTHERCOSTS
-          ].freeze,
-        legacy_rut: %w[COOKING TUTORING].freeze
-      }
+          ]
+        legacy_rut: %w[COOKING TUTORING]
+      }.freeze
 
       # TODO: RUT to be added:
       # HOMEMAINTENANCE FURNISHING TRANSPORTATIONSERVICES
