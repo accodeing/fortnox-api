@@ -17,6 +17,13 @@ module Fortnox
             value.to_s.upcase unless value.nil?
           end
         end
+
+        def self.lower_case
+          lambda do |value|
+            return nil if value == ''
+            value.to_s.downcase unless value.nil?
+          end
+        end
       end
 
       ArticleTypes = Types::Strict::String.enum(
@@ -66,6 +73,11 @@ module Fortnox
       )
       ProjectStatusTypes = Types::Strict::String.enum(
         'NOTSTARTED', 'ONGOING', 'COMPLETED'
+      )
+      # NOTE: Yes, these needs to be in lower case...
+      # I know, this is stupid... Fortnox: why?!
+      TaxReductionTypes = Types::Strict::String.enum(
+        'rot', 'rut', "green", "none"
       )
     end
   end

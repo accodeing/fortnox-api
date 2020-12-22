@@ -154,6 +154,9 @@ module Fortnox
         # TaxReduction The amount of tax reduction.
         attribute :tax_reduction, Types::Nullable::Integer.is(:read_only)
 
+        # TaxReductionType Tax Reduction Type
+        attribute :tax_reduction_type, Types::TaxReductionType
+
         # TermsOfDelivery Code of the terms of delivery.
         attribute :terms_of_delivery, Types::Nullable::String
 

@@ -5,7 +5,7 @@ http_interactions:
     uri: https://api.fortnox.se/3/orders/
     body:
       encoding: UTF-8
-      string: '{"Order":{"CustomerNumber":"1","TaxReductionType":"rut","OrderRows":[{"ArticleNumber":"0000","HouseWork":true,"HouseWorkType":"COOKING","OrderedQuantity":1.0}]}}'
+      string: '{"Order":{"CustomerNumber":"1","TaxReductionType":"rot","OrderRows":[{"ArticleNumber":"0000","HouseWork":true,"HouseWorkType":"OTHERCOSTS","OrderedQuantity":1.0}]}}'
     headers:
       Content-Type:
       - application/json
@@ -27,15 +27,15 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Tue, 22 Dec 2020 09:01:55 GMT
+      - Tue, 22 Dec 2020 09:32:36 GMT
       Content-Type:
       - application/json
       Connection:
       - close
       X-Rack-Responsetime:
-      - '51'
+      - '797'
       X-Uid:
-      - b7baa582
+      - 2f2310b7
       X-Build:
       - d59e2acefa
       Strict-Transport-Security:
@@ -50,8 +50,8 @@ http_interactions:
       - strict-origin-when-cross-origin
     body:
       encoding: UTF-8
-      string: '{"ErrorInformation":{"error":1,"message":"Skattereduktion f\u00f6r
-        den valda typen av husarbete har upph\u00f6rt.","code":2003157}}'
+      string: '{"ErrorInformation":{"error":1,"message":"Kan inte s\u00e4tta typen
+        \u00f6vrig kostnad p\u00e5 en rad markerad som husarbete.","code":2002980}}'
     http_version: 
-  recorded_at: Tue, 22 Dec 2020 09:01:55 GMT
+  recorded_at: Tue, 22 Dec 2020 09:32:36 GMT
 recorded_with: VCR 4.0.0
