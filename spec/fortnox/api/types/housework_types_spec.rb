@@ -72,6 +72,7 @@ describe 'HouseworkTypes', integration: true do
   it_behaves_like 'housework type', 'OTHERCARE', TYPE_RUT
   it_behaves_like 'housework type', 'OTHERCOSTS', TYPE_RUT, housework: false
 
+  # rubocop:disable RSpec/RepeatedDescription
   pending 'to be added' do
     raise Exception, 'Will be supported 2021-01-01'
     # it_behaves_like 'housework type', 'HOMEMAINTENANCE', TYPE_RUT
@@ -87,6 +88,7 @@ describe 'HouseworkTypes', integration: true do
     # it_behaves_like 'housework type', 'CHARGINGSTATIONELECTRICVEHICLE', TYPE_GREEN
     # it_behaves_like 'housework type', 'OTHERCOSTS', TYPE_GREEN
   end
+  # rubocop:enable RSpec/RepeatedDescription
 
   it_behaves_like 'housework type', 'COOKING', TYPE_RUT, legacy: true
   it_behaves_like 'housework type', 'TUTORING', TYPE_RUT, legacy: true
