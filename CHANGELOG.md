@@ -6,10 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 ### Changed
-- `Fortnox::API::CURRENT_HOUSEWORK_TYPES` is now split in two:
-  `Fortnox::API::ROT_HOUSEWORK_TYPES` and `Fortnox::API::RUT_HOUSEWORK_TYPES`.
-- `Fortnox::API::LEGACY_HOUSEWORK_TYPES` is renamed to
-  `Fortnox::API::LEGACY_RUT_HOUSEWORK_TYPES`.
+- `Fortnox::API::CURRENT_HOUSEWORK_TYPES` is now renamed to `HOUSEWORK_TYPES`
+  and is instead a Hash with keys for the different categories of types.
+  It also includes legacy types, which means `Fortnox::API::LEGACY_HOUSEWORK_TYPES` is removed.
 
 ### Removed
 - Drops support for Ruby < `2.5.0` since they are deprecated
