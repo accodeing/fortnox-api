@@ -5,7 +5,7 @@ http_interactions:
     uri: https://api.fortnox.se/3/orders/
     body:
       encoding: UTF-8
-      string: '{"Order":{"CustomerNumber":"1","OrderRows":[{"ArticleNumber":"0000","HouseWorkType":"OTHERCARE","OrderedQuantity":1.0}]}}'
+      string: '{"Order":{"CustomerNumber":"1","TaxReductionType":"rut","OrderRows":[{"ArticleNumber":"0000","HouseWork":true,"HouseWorkType":"OTHERCARE","OrderedQuantity":1.0}]}}'
     headers:
       Content-Type:
       - application/json
@@ -21,21 +21,23 @@ http_interactions:
       - Ruby
   response:
     status:
-      code: 400
-      message: Bad Request
+      code: 201
+      message: Created
     headers:
       Server:
       - nginx
       Date:
-      - Mon, 21 Dec 2020 20:42:12 GMT
+      - Tue, 22 Dec 2020 09:01:54 GMT
       Content-Type:
       - application/json
       Connection:
       - close
+      Location:
+      - orders
       X-Rack-Responsetime:
-      - '200'
+      - '137'
       X-Uid:
-      - aa9f7f82
+      - 14b38e7b
       X-Build:
       - d59e2acefa
       Strict-Transport-Security:
@@ -50,8 +52,9 @@ http_interactions:
       - strict-origin-when-cross-origin
     body:
       encoding: UTF-8
-      string: '{"ErrorInformation":{"error":1,"message":"Dokument utan angiven skattereduktionstyp
-        f\u00e5r inte inneh\u00e5lla artikelrader med husarbetestyp.","code":2004019}}'
+      string: '{"Order":{"@url":"https:\/\/api.fortnox.se\/3\/orders\/397","@urlTaxReductionList":"https:\/\/api.fortnox.se\/3\/taxreductions?filter=orders&referencenumber=397","AdministrationFee":0,"AdministrationFeeVAT":0,"Address1":"","Address2":"","BasisTaxReduction":0,"Cancelled":false,"City":"","Comments":"","ContributionPercent":0,"ContributionValue":0,"CopyRemarks":false,"Country":"","CostCenter":"","Currency":"SEK","CurrencyRate":1,"CurrencyUnit":1,"CustomerName":"Old
+        name","CustomerNumber":"1","DeliveryState":"delivery","DeliveryAddress1":"","DeliveryAddress2":"","DeliveryCity":"","DeliveryCountry":"","DeliveryDate":null,"DeliveryName":"","DeliveryZipCode":"","DocumentNumber":"397","EmailInformation":{"EmailAddressFrom":null,"EmailAddressTo":"","EmailAddressCC":null,"EmailAddressBCC":null,"EmailSubject":"Order
+        {no} bifogas","EmailBody":" "},"ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","Freight":0,"FreightVAT":0,"Gross":0,"HouseWork":false,"InvoiceReference":0,"Labels":[],"Language":"SV","Net":0,"NotCompleted":false,"OfferReference":0,"OrderDate":"2020-12-22","OrderRows":[{"AccountNumber":1250,"ArticleNumber":"0000","ContributionPercent":0,"ContributionValue":0,"CostCenter":"","DeliveredQuantity":"0.00","Description":"Testartikel","Discount":0,"DiscountType":"PERCENT","HouseWork":true,"HouseWorkHoursToReport":null,"HouseWorkType":"OTHERCARE","OrderedQuantity":"1.00","Price":0,"Project":"","ReservedQuantity":"0.00","StockPointCode":null,"StockPointId":null,"Total":0,"Unit":"","VAT":0}],"OrderType":"Order","OrganisationNumber":"860101-8735","OurReference":"","Phone1":"","Phone2":"","PriceList":"A","PrintTemplate":"oc","Project":"","WarehouseReady":true,"OutboundDate":"2020-12-22","Remarks":"","RoundOff":0,"Sent":false,"TaxReduction":null,"TermsOfDelivery":"","TermsOfPayment":0,"TimeBasisReference":null,"Total":0,"TotalToPay":0,"TotalVAT":0,"VATIncluded":false,"WayOfDelivery":"","YourReference":"","YourOrderNumber":"","ZipCode":"","StockPointCode":null,"StockPointId":null,"TaxReductionType":"rut"}}'
     http_version: 
-  recorded_at: Mon, 21 Dec 2020 20:42:12 GMT
+  recorded_at: Tue, 22 Dec 2020 09:01:54 GMT
 recorded_with: VCR 4.0.0

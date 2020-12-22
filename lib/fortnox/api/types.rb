@@ -119,6 +119,11 @@ module Fortnox
                           .optional
                           .constructor(EnumConstructors.default)
 
+      TaxReductionType = Strict::String
+                         .constrained(included_in: TaxReductionTypes.values)
+                         .optional
+                         .constructor(EnumConstructors.lower_case)
+
       require 'fortnox/api/types/model'
       require 'fortnox/api/types/default_delivery_types'
       require 'fortnox/api/types/default_templates'
