@@ -10,14 +10,13 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/89d30a43fedf210d470b/maintainability)](https://codeclimate.com/github/accodeing/fortnox-api/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/89d30a43fedf210d470b/test_coverage)](https://codeclimate.com/github/accodeing/fortnox-api/test_coverage)
 
-The rough status of this project is as follows (as of October 2018):
+The rough status of this project is as follows (as of December 2020):
 * Development is not as active as it used to be, but the project is not forgotten. We have an app running this gem in production and it works like a charm for what we do.
-* We are planning on generalize REST API's in general with our [rest_easy gem](https://github.com/accodeing/rest_easy).
+* We hope to be able to continue with our work with [rest_easy gem](https://github.com/accodeing/rest_easy), which generalize REST API's in general.
 * Basic structure complete. Things like getting customers and invoices, updating and saving etc.
 * Some advanced features implemented, for instance support for multiple Access Tokens and filtering entities.
 * We have ideas for more advanced features, like sorting entities, pagination of results but nothing in the pipeline right now.
 * A few models implemented. Right now we pretty good support for `Customer`, `Invoice`, `Order`, `Article`, `Label` and `Project`. Adding more models in general is quick and easy (that's the whole point with this gem), see the developer guide further down.
-* Massive refactorings no longer occurs weekly :)
 
 # Architecture overview
 The gem is structured with distinct models for the tasks of data, JSON mapping and saving state. These are called: model, type, mapper and repository.
