@@ -157,11 +157,10 @@ describe 'HouseworkTypes', integration: true do
     end
 
     let(:type) { 'CONSTRUCTION' }
-    let(:tax_reduction_type) { TYPE_RUT }
     let(:document) do
       Fortnox::API::Model::Order.new(
         customer_number: '1',
-        tax_reduction_type: tax_reduction_type,
+        tax_reduction_type: TYPE_RUT,
         order_rows: [
           Fortnox::API::Types::OrderRow.new(
             ordered_quantity: 1,
@@ -174,7 +173,7 @@ describe 'HouseworkTypes', integration: true do
     end
 
     let(:error_message) do
-      "Dokument med skattereduktionstypen '#{tax_reduction_type}' " \
+      "Dokument med skattereduktionstypen '#{TYPE_RUT}' " \
       "får inte innehålla rader med husarbetestypen '#{type}'."
     end
 
