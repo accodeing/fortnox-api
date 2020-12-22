@@ -5,6 +5,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## Unreleased
+### Changed
+- `Fortnox::API::CURRENT_HOUSEWORK_TYPES` is now split in two:
+  `Fortnox::API::ROT_HOUSEWORK_TYPES` and `Fortnox::API::RUT_HOUSEWORK_TYPES`.
+- `Fortnox::API::LEGACY_HOUSEWORK_TYPES` is renamed to
+  `Fortnox::API::LEGACY_RUT_HOUSEWORK_TYPES`.
+
 ### Removed
 - Drops support for Ruby < `2.5.0` since they are deprecated
 
