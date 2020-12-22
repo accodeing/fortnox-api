@@ -52,11 +52,9 @@ module Fortnox
 
       LEGACY_RUT_HOUSEWORK_TYPES = %w[COOKING TUTORING].freeze
       HouseworkTypes = Types::Strict::String.enum(
-        *(
-          (ROT_HOUSEWORK_TYPES +
+        *(ROT_HOUSEWORK_TYPES +
           RUT_HOUSEWORK_TYPES +
           LEGACY_RUT_HOUSEWORK_TYPES).uniq
-         )
       )
       Currencies = Types::Strict::String.enum(
         'AED', 'AFN', 'ALL', 'AMD', 'ANG', 'AOA', 'ARS', 'AUD', 'AWG', 'AZN',
@@ -93,7 +91,7 @@ module Fortnox
       # NOTE: Yes, these needs to be in lower case...
       # I know, this is stupid... Fortnox: why?!
       TaxReductionTypes = Types::Strict::String.enum(
-        'rot', 'rut', "green", "none"
+        'rot', 'rut', 'green', 'none'
       )
     end
   end
