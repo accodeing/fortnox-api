@@ -39,7 +39,7 @@ describe Fortnox::API::Repository::Customer, order: :defined, integration: true 
   end
 
   # When recording new VCR casettes, expected matches must be increased
-  include_examples '.search', :name, 'Test', 30
+  include_examples '.search', :name, 'Test', 31
 
   describe 'country reference' do
     describe 'with valid country code \'SE\'' do

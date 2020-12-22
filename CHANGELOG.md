@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [0.8.0]
+### Changed
+- `Fortnox::API::CURRENT_HOUSEWORK_TYPES` is now renamed to `HOUSEWORK_TYPES`
+  and is instead a Hash with keys for the different categories of types.
+  It also includes legacy types, which means `Fortnox::API::LEGACY_HOUSEWORK_TYPES` is removed.
+
+### Removed
+- Drops support for Ruby < `2.5.0` since they are deprecated
+
 ## [0.7.2]
 ### Fixed
 - Invalid validation for Customer's account number attribute
@@ -32,6 +41,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 - Model attribute `url` is no longer null
 
+[0.8.0]: https://github.com/accodeing/fortnox-api/compare/v0.7.2...v0.8.0
 [0.7.2]: https://github.com/accodeing/fortnox-api/compare/v0.7.1...v0.7.2
 [0.7.1]: https://github.com/accodeing/fortnox-api/compare/v0.7.0...v0.7.1
 [0.7.0]: https://github.com/accodeing/fortnox-api/compare/v0.6.3...v0.7.0

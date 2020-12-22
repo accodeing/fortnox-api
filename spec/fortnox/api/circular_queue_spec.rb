@@ -6,10 +6,10 @@ require 'fortnox/api/circular_queue'
 describe Fortnox::API::CircularQueue do
   describe 'start index' do
     context 'when running several times' do
+      subject { Set.new(samples).size }
+
       let(:test_array) { (0..99).to_a }
       let(:samples) { Array.new(100) { described_class.new(*test_array).next } }
-
-      subject { Set.new(samples).size }
 
       # NOTE: This test is not perfect. We are testing that a random generator
       # with 100 items to choose from does not choose the same item 100 times in a row.
@@ -22,7 +22,7 @@ describe Fortnox::API::CircularQueue do
 
   describe '#next' do
     context 'when several items in queue' do
-      let(:queue) { described_class.new(1,2,3) }
+      let(:queue) { described_class.new(1, 2, 3) }
       let(:first_round) { Array.new(3) { queue.next } }
       let(:second_round) { Array.new(3) { queue.next } }
 

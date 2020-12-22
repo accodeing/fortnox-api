@@ -15,6 +15,10 @@ http_interactions:
       - 9aBA8ZgsvR
       Access-Token:
       - ccaef817-d5d8-4b1c-a316-54f3e55c5c54
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
   response:
     status:
       code: 200
@@ -23,23 +27,32 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Wed, 29 May 2019 07:52:38 GMT
+      - Mon, 21 Dec 2020 20:34:24 GMT
       Content-Type:
       - application/json
       Connection:
       - close
       Vary:
       - Accept-Encoding
-      - Accept-Encoding
       X-Rack-Responsetime:
-      - '24'
+      - '21'
       X-Uid:
-      - 11c7fe7b
+      - 064e6739
       X-Build:
-      - e930a91c78
+      - d59e2acefa
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - sameorigin
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
     body:
-      encoding: UTF-8
-      string: '{"MetaInformation":{"@TotalResources":229,"@TotalPages":3,"@CurrentPage":1},"Customers":[{"@url":"https:\/\/api.fortnox.se\/3\/customers\/1","Address1":"","Address2":"","City":"","CustomerNumber":"1","Email":"","Name":"Old
+      encoding: ASCII-8BIT
+      string: '{"MetaInformation":{"@TotalResources":232,"@TotalPages":3,"@CurrentPage":1},"Customers":[{"@url":"https:\/\/api.fortnox.se\/3\/customers\/1","Address1":"","Address2":"","City":"","CustomerNumber":"1","Email":"","Name":"Old
         name","OrganisationNumber":"860101-8735","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/2","Address1":"","Address2":"","City":"New
         York","CustomerNumber":"2","Email":"","Name":"A customer","OrganisationNumber":"600102-7447","Phone":"","ZipCode":"10001"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/3","Address1":"","Address2":"","City":"New
         York","CustomerNumber":"3","Email":"","Name":"Test customer","OrganisationNumber":"400101-8383","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/4","Address1":"","Address2":"","City":"","CustomerNumber":"4","Email":"","Name":"Arthur
@@ -115,7 +128,7 @@ http_interactions:
         44","Address2":"","City":"TINGSRYD","CustomerNumber":"73","Email":"","Name":"BolagsBemanning
         i Tingsryd AB","OrganisationNumber":"","Phone":"","ZipCode":"36221"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/74","Address1":"Some
         long and complicated address","Address2":"","City":"Paris","CustomerNumber":"74","Email":"an_email-address@email.com","Name":"A
-        company","OrganisationNumber":"001122-1122","Phone":"Phone number 123","ZipCode":"A
+        company","OrganisationNumber":"0011221122","Phone":"Phone number 123","ZipCode":"A
         zip code"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/75","Address1":"BOX
         44","Address2":"","City":"TINGSRYD","CustomerNumber":"75","Email":"","Name":"BolagsBemanning
         i Tingsryd AB","OrganisationNumber":"556716-1855","Phone":"","ZipCode":"36221"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/76","Address1":"Myrliden
@@ -153,5 +166,5 @@ http_interactions:
         6","Address2":"","City":"teststan","CustomerNumber":"100","Email":"test@email.com","Name":"test12313","OrganisationNumber":"","Phone":"123141","ZipCode":"111
         11"}]}'
     http_version: 
-  recorded_at: Wed, 29 May 2019 07:52:38 GMT
+  recorded_at: Mon, 21 Dec 2020 20:34:24 GMT
 recorded_with: VCR 4.0.0

@@ -57,7 +57,7 @@ module Fortnox
                   next value if value.nil? || value == ''
 
                   # Fortnox only supports Swedish translation of Sweden
-                  next CountryString.new('SE') if value =~ /^s(e$|we|ve)/i
+                  next CountryString.new('SE') if value.match?(/^s(e$|we|ve)/i)
 
                   country = ::ISO3166::Country[value] ||
                             ::ISO3166::Country.find_country_by_name(value) ||
@@ -118,6 +118,11 @@ module Fortnox
                           .constrained(included_in: ProjectStatusTypes.values)
                           .optional
                           .constructor(EnumConstructors.default)
+
+      TaxReductionType = Strict::String
+                         .constrained(included_in: TaxReductionTypes.values)
+                         .optional
+                         .constructor(EnumConstructors.lower_case)
 
       require 'fortnox/api/types/model'
       require 'fortnox/api/types/default_delivery_types'

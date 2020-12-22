@@ -17,6 +17,13 @@ module Fortnox
             value.to_s.upcase unless value.nil?
           end
         end
+
+        def self.lower_case
+          lambda do |value|
+            return nil if value == ''
+            value.to_s.downcase unless value.nil?
+          end
+        end
       end
 
       ArticleTypes = Types::Strict::String.enum(
@@ -25,15 +32,31 @@ module Fortnox
       DiscountTypes = Types::Strict::String.enum(
         'AMOUNT', 'PERCENT'
       )
-      CURRENT_HOUSEWORK_TYPES = %w[
-        CONSTRUCTION ELECTRICITY GLASSMETALWORK GROUNDDRAINAGEWORK
-        MASONRY PAINTINGWALLPAPERING HVAC MAJORAPPLIANCEREPAIR
-        MOVINGSERVICES ITSERVICES CLEANING TEXTILECLOTHING
-        SNOWPLOWING GARDENING BABYSITTING OTHERCARE OTHERCOSTS
-      ].freeze
-      LEGACY_HOUSEWORK_TYPES = %w[COOKING TUTORING].freeze
+      HOUSEWORK_TYPES = {
+        rot: %w[
+          CONSTRUCTION ELECTRICITY GLASSMETALWORK GROUNDDRAINAGEWORK
+          MASONRY PAINTINGWALLPAPERING HVAC OTHERCOSTS
+        ],
+        rut: %w[
+          MAJORAPPLIANCEREPAIR MOVINGSERVICES ITSERVICES CLEANING
+          TEXTILECLOTHING SNOWPLOWING GARDENING BABYSITTING OTHERCARE
+          OTHERCOSTS
+        ],
+        legacy_rut: %w[COOKING TUTORING]
+      }.freeze
+
+      # TODO: RUT to be added:
+      # HOMEMAINTENANCE FURNISHING TRANSPORTATIONSERVICES
+      # WASHINGANDCAREOFCLOTHING
+      #
+      # TODO: GREEN to be added:
+      # SOLARCELLS STORAGESELFPRODUCEDELECTRICTY
+      # CHARGINGSTATIONELECTRICVEHICLE OTHERCOSTS
+
       HouseworkTypes = Types::Strict::String.enum(
-        *(CURRENT_HOUSEWORK_TYPES + LEGACY_HOUSEWORK_TYPES)
+        *(HOUSEWORK_TYPES[:rot] +
+          HOUSEWORK_TYPES[:rut] +
+          HOUSEWORK_TYPES[:legacy_rut]).uniq
       )
       Currencies = Types::Strict::String.enum(
         'AED', 'AFN', 'ALL', 'AMD', 'ANG', 'AOA', 'ARS', 'AUD', 'AWG', 'AZN',
@@ -66,6 +89,11 @@ module Fortnox
       )
       ProjectStatusTypes = Types::Strict::String.enum(
         'NOTSTARTED', 'ONGOING', 'COMPLETED'
+      )
+      # NOTE: Yes, these needs to be in lower case...
+      # I know, this is stupid... Fortnox: why?!
+      TaxReductionTypes = Types::Strict::String.enum(
+        'rot', 'rut', 'green', 'none'
       )
     end
   end
