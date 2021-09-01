@@ -3,10 +3,10 @@
 
 # Status for master
 [![Gem version](https://img.shields.io/gem/v/fortnox-api.svg?style=flat-square)](https://rubygems.org/gems/fortnox-api)
-[![Build Status](https://travis-ci.com/accodeing/fortnox-api.svg?branch=master)](https://travis-ci.com/accodeing/fortnox-api)
+[![Build Status](https://app.travis-ci.com/ehannes/fortnox-api.svg?branch=master)](https://app.travis-ci.com/github/accodeing/fortnox-api)
 
 # Status for development
-[![Build Status](https://travis-ci.com/accodeing/fortnox-api.svg?branch=development)](https://travis-ci.com/accodeing/fortnox-api)
+[![Build Status](https://app.travis-ci.com/ehannes/fortnox-api.svg?branch=development)](https://app.travis-ci.com/github/accodeing/fortnox-api)
 [![Maintainability](https://api.codeclimate.com/v1/badges/89d30a43fedf210d470b/maintainability)](https://codeclimate.com/github/accodeing/fortnox-api/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/89d30a43fedf210d470b/test_coverage)](https://codeclimate.com/github/accodeing/fortnox-api/test_coverage)
 
