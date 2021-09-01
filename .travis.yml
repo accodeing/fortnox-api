@@ -3,9 +3,9 @@ env:
   - CC_TEST_REPORTER_ID=43ea0acb059b164537ce31bf67e03e1cb552d63df1ad3e9bd95dc3d844697bb4
 language: ruby
 rvm:
-- 2.5.8
-- 2.6.6
-- 2.7.1
+- 2.6.8
+- 2.7.4
+- 3.0.2
 notifications:
   slack:
     secure: UEYDtwLaQgAoMRY7ct1y0Uu5HbInMwrLo+TiYRc3rjDrzqDfDyInEr3bpckyPJ79lnzccrFezMdY4jWzRjmsvQzvYMu+DWJ1mAWOa/9Ws4YZ8nHd5KqXxVQ0EqPWuWwMOyOdyy3DK/MjUOobGSc0//Pv5DeaAAEBKLJzN+e1BQM=
