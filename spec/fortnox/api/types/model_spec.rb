@@ -6,16 +6,14 @@ require 'fortnox/api/types/model'
 
 RSpec.describe Fortnox::API::Types::Model do
   shared_examples_for 'raises error' do |error|
-    using_test_classes do
-      module Types
-        include Dry::Types.module
+    before do
+      stub_const('Types::Age', Dry::Types['strict.int'].constrained(gt: 18).is(:required))
 
-        Age = Int.constrained(gt: 18).is(:required)
-      end
-
-      class TypesModelUser < Fortnox::API::Types::Model
+      types_model_user_class = Class.new(Fortnox::API::Types::Model) do
         attribute :age, Types::Age
       end
+
+      stub_const('TypesModelUser', types_model_user_class)
     end
 
     describe "User inheriting from #{described_class}" do
@@ -32,18 +30,14 @@ RSpec.describe Fortnox::API::Types::Model do
   end
 
   context 'when omitting optional keys' do
-    using_test_class do
-      module Types
-        include Dry::Types.module
+    before do
+      stub_const('Types::Nullable::String', Dry::Types['strict.string'].optional)
 
-        module Nullable
-          String = Types::Strict::String.optional
-        end
-      end
-
-      class User < Fortnox::API::Types::Model
+      user_class = Class.new(Fortnox::API::Types::Model) do
         attribute :optional_string, Types::Nullable::String
       end
+
+      stub_const('User', user_class)
     end
 
     subject { -> { User.new } }
