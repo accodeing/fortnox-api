@@ -29,7 +29,7 @@ module Matchers
       def expect_error(msg)
         yield
 
-        @errors << msg
+        @errors = @errors += msg
         false # Fail test since expected error not thrown
       rescue Dry::Struct::Error
         # TODO: check if error message is correct
