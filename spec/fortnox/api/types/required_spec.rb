@@ -5,10 +5,7 @@ require 'fortnox/api/types'
 require 'fortnox/api/types/required'
 
 describe Fortnox::API::Types::Required, type: :type do
-  using_test_class do
-    class TestClass < Dry::Struct
-    end
-  end
+  before { stub_const('TestClass', Class.new(Dry::Struct)) }
 
   shared_examples_for 'required attribute' do |_type|
     subject { -> { TestClass.new({}) } }
