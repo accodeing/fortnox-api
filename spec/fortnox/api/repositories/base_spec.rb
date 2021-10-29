@@ -6,7 +6,7 @@ require 'fortnox/api'
 describe Fortnox::API::Repository::Base do
   before do
     stub_const('Model::RepositoryBaseTest', Class.new)
-    stub_const('Repository::Test', Class.new(Fortnox::API::Repository::Base))
+    stub_const('Repository::Test', Class.new(described_class))
     stub_const('Repository::Test::MODEL', Model::RepositoryBaseTest)
 
     Fortnox::API::Registry.register(:repositorybasetest, Model::RepositoryBaseTest)
