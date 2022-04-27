@@ -22,8 +22,8 @@ module Fortnox
         # DeliveredQuantity Delivered quantity. 14 digits
         attribute :delivered_quantity, Types::Sized::Float[-9_999_999_999_999.9, 9_999_999_999_999.9]
 
-        # Description Description Row description. 50 characters
-        attribute :description, Types::Sized::String[50]
+        # Description Description Row description.
+        attribute :description, Types::Sized::String[255]
 
         # Discount amount. 12 digits (for amount) / 5 digits (for percent)
         # TODO(hannes): Verify that we can send in more than 5 digits through
