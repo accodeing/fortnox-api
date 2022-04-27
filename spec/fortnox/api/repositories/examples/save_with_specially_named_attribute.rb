@@ -26,4 +26,3 @@ shared_examples_for '.save with specially named attribute' do |required_hash, at
     end
   end
 end
-# rubocop:enable RSpec/DescribeClass

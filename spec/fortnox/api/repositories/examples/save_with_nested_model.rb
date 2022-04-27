@@ -30,4 +30,3 @@ shared_examples_for '.save with nested model' do |required_hash, nested_model_ke
     end
   end
 end
-# rubocop:enable RSpec/DescribeClass

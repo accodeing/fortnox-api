@@ -6,9 +6,9 @@ module Fortnox
   module API
     module Types
       module Nullable
-        String = Types::Strict::String.optional.constructor { |value| value.to_s unless value.nil? }
-        Float = Types::Strict::Float.optional.constructor { |value| value.to_f unless value.nil? }
-        Integer = Types::Strict::Int.optional.constructor { |value| value.to_i unless value.nil? }
+        String = Types::Strict::String.optional.constructor { |value| value&.to_s }
+        Float = Types::Strict::Float.optional.constructor { |value| value&.to_f }
+        Integer = Types::Strict::Int.optional.constructor { |value| value&.to_i }
         Boolean = Types::Bool.optional.constructor { |value| THE_TRUTH.fetch(value) { false } }
         # TODO: Improve parsing!
         # In case date parsing fails, ArgumentError is thrown. Currently, it is rescued in Repository::Loaders.find.

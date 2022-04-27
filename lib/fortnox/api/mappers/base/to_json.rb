@@ -41,6 +41,7 @@ module Fortnox
           def sanitise(hash, keys_to_filter)
             hash.reject do |key, value|
               next false if keys_to_filter.include?(key)
+
               value.nil?
             end
           end

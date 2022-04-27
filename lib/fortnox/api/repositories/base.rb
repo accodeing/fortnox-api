@@ -57,6 +57,7 @@ module Fortnox
         def check_access_tokens!(tokens)
           tokens_present = !(tokens.nil? || tokens.empty?)
           return if tokens_present
+
           error_message = "You have not provided any access tokens in token store #{@token_store.inspect}."
           raise MissingConfiguration, error_message
         end
@@ -83,12 +84,14 @@ module Fortnox
         def base_url
           base_url = config.base_url
           raise MissingConfiguration, 'You have to provide a base url.' unless base_url
+
           base_url
         end
 
         def client_secret
           client_secret = config.client_secret
           raise MissingConfiguration, 'You have to provide your client secret.' unless client_secret
+
           client_secret
         end
 

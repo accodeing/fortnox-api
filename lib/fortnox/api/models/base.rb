@@ -66,6 +66,7 @@ module Fortnox
         # Generic comparison, by value, use .eql? or .equal? for object identity.
         def ==(other)
           return false unless other.is_a? self.class
+
           to_hash == other.to_hash
         end
 

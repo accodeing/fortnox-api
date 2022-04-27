@@ -39,4 +39,3 @@ shared_examples_for '.search' do |attribute_hash_key_name, value, matches|
     end
   end
 end
-# rubocop:enable RSpec/DescribeClass

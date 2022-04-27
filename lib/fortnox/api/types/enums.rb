@@ -7,6 +7,7 @@ module Fortnox
         def self.sized(size)
           lambda do |value|
             return nil if value == ''
+
             value.to_s.upcase[0...size] unless value.nil?
           end
         end
@@ -14,14 +15,16 @@ module Fortnox
         def self.default
           lambda do |value|
             return nil if value == ''
-            value.to_s.upcase unless value.nil?
+
+            value&.to_s&.upcase
           end
         end
 
         def self.lower_case
           lambda do |value|
             return nil if value == ''
-            value.to_s.downcase unless value.nil?
+
+            value&.to_s&.downcase
           end
         end
       end

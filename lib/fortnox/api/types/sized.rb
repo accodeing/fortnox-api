@@ -7,7 +7,7 @@ module Fortnox
         module String
           def self.[](size)
             Types::Strict::String.constrained(max_size: size).optional.constructor do |value|
-              value.to_s unless value.nil?
+              value&.to_s
             end
           end
         end
@@ -15,7 +15,7 @@ module Fortnox
         module Integer
           def self.[](low, high)
             Types::Strict::Int.constrained(gteq: low, lteq: high).optional.constructor do |value|
-              value.to_i unless value.nil?
+              value&.to_i
             end
           end
         end
@@ -23,7 +23,7 @@ module Fortnox
         module Float
           def self.[](low, high)
             Types::Strict::Float.constrained(gteq: low, lteq: high).optional.constructor do |value|
-              value.to_f unless value.nil?
+              value&.to_f
             end
           end
         end

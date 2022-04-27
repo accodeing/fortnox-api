@@ -59,4 +59,3 @@ shared_examples_for '.save' do |attribute, additional_attrs: {}|
     end
   end
 end
-# rubocop:enable RSpec/DescribeClass
