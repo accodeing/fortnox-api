@@ -94,8 +94,6 @@ module Fortnox
           end
         end
 
-        private_class_method
-
         # dry-types filter anything that isn't specified as an attribute on the
         # class that is being instantiated. This wrapper preserves the meta
         # properties we need to track object state during that initilisation and
@@ -115,6 +113,8 @@ module Fortnox
 
           obj
         end
+
+        private_class_method :preserve_meta_properties
 
         private
 
