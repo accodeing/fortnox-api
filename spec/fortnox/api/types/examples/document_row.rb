@@ -4,7 +4,7 @@ shared_examples_for 'DocumentRow' do |valid_hash|
   it { is_expected.to have_account_number(:account_number, valid_hash) }
 
   it { is_expected.to have_sized_string(:article_number, 50, valid_hash) }
-  it { is_expected.to have_sized_string(:description, 50, valid_hash) }
+  it { is_expected.to have_sized_string(:description, 255, valid_hash) }
 
   it { is_expected.to have_discount_type(:discount_type, valid_hash) }
 
