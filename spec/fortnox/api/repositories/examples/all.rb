@@ -15,4 +15,3 @@ RSpec.shared_examples_for '.all' do |count|
     end
   end
 end
-# rubocop:enable RSpec/DescribeClass

@@ -339,8 +339,7 @@ describe Fortnox::API::Repository::Base do
   end
 
   context 'when raising error from remote server' do
-    error_message = 'Räkenskapsår finns inte upplagt. '\
-                    'För att kunna skapa en faktura krävs det att det finns ett räkenskapsår'
+    subject { -> { repository.post('/test', body: '') } }
 
     before do
       Fortnox::API.configure do |conf|
@@ -363,7 +362,10 @@ describe Fortnox::API::Repository::Base do
       )
     end
 
-    subject { -> { repository.post('/test', body: '') } }
+    let(:error_message) do
+      'Räkenskapsår finns inte upplagt. '\
+      'För att kunna skapa en faktura krävs det att det finns ett räkenskapsår'
+    end
 
     it { is_expected.to raise_error(Fortnox::API::RemoteServerError) }
     it { is_expected.to raise_error(error_message) }

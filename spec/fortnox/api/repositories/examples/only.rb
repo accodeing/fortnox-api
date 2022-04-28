@@ -40,4 +40,3 @@ shared_examples_for '.only' do |matching_filter, expected_matches, missing_filte
     end
   end
 end
-# rubocop:enable RSpec/DescribeClass

@@ -8,6 +8,7 @@ module Fortnox
           return true if entity.saved?
 
           return save_new(entity) if entity.new?
+
           update_existing(entity)
         end
 

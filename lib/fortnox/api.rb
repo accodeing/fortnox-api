@@ -29,12 +29,14 @@ module Fortnox
     setting :token_store, DEFAULT_CONFIGURATION[:token_store]
     setting :access_token, DEFAULT_CONFIGURATION[:access_token] do |value|
       next if value.nil? # nil is a valid unassigned value
+
       invalid_access_token_format!(value) unless value.is_a?(String)
       config.token_store = { default: value }
       value
     end
     setting :access_tokens, DEFAULT_CONFIGURATION[:access_tokens] do |value|
       next if value.nil? # nil is a valid unassigned value
+
       invalid_access_tokens_format!(value) unless value.is_a?(Hash) || value.is_a?(Array)
       config.token_store = value.is_a?(Hash) ? value : { default: value }
       value

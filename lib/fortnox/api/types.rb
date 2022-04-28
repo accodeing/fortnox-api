@@ -43,6 +43,7 @@ module Fortnox
                       .optional
                       .constructor do |value|
                         next nil if value.nil? || value == ''
+
                         value
                       end
 
@@ -97,7 +98,7 @@ module Fortnox
       Email = Strict::String
               .constrained(max_size: 1024, format: /^$|\A[[[:alnum:]]+-_.]+@[\w+-_.]+\.[a-z]+\z/i)
               .optional
-              .constructor { |v| v.to_s.downcase unless v.nil? }
+              .constructor { |v| v&.to_s&.downcase }
 
       HouseworkType = Strict::String
                       .constrained(included_in: HouseworkTypes.values)
