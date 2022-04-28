@@ -13,9 +13,9 @@ require 'fortnox/api/repositories/examples/search'
 describe Fortnox::API::Repository::Customer, order: :defined, integration: true do
   include Helpers::Configuration
 
-  before { set_api_test_configuration }
-
   subject(:repository) { described_class.new }
+
+  before { set_api_test_configuration }
 
   include_examples '.save', :name
 

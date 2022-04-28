@@ -15,7 +15,7 @@ describe Fortnox::API::Types::Required, type: :type do
     end
 
     it 'raises an error' do
-      is_expected.to raise_error(Dry::Struct::Error, error_message)
+      expect(subject).to raise_error(Dry::Struct::Error, error_message)
     end
   end
 

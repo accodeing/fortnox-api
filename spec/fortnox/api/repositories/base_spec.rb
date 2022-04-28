@@ -91,7 +91,7 @@ describe Fortnox::API::Repository::Base do
         end
 
         it 'still uses the same token' do
-          is_expected.to eql(access_token)
+          expect(subject).to eql(access_token)
         end
       end
 
@@ -99,6 +99,7 @@ describe Fortnox::API::Repository::Base do
         subject { access_tokens }
 
         before { Fortnox::API.configure { |conf| conf.access_tokens = access_tokens } }
+
         let(:access_tokens) { [access_token, access_token2] }
 
         it { is_expected.to include(repository.next_access_token) }
@@ -172,6 +173,7 @@ describe Fortnox::API::Repository::Base do
       subject { -> { access_tokens } }
 
       before { Fortnox::API.configure { |conf| conf.access_tokens = {} } }
+
       let(:token_store) { :default }
       let(:available_stores) { [] }
 
@@ -180,6 +182,7 @@ describe Fortnox::API::Repository::Base do
 
     context 'with one access token in token store' do
       before { Fortnox::API.configure { |conf| conf.access_token = access_token } }
+
       let(:token_store) { :default }
 
       it { is_expected.to eql(access_token) }
@@ -189,6 +192,7 @@ describe Fortnox::API::Repository::Base do
       before do
         Fortnox::API.configure { |conf| conf.access_tokens = [access_token, access_token2] }
       end
+
       let(:token_store) { :default }
 
       it { is_expected.to eql([access_token, access_token2]) }
@@ -200,6 +204,7 @@ describe Fortnox::API::Repository::Base do
           conf.access_tokens = { store_a: store_a_tokens, store_b: store_b_token }
         end
       end
+
       let(:store_a_tokens) { %w[token_a1 token_a2] }
       let(:store_b_token) { 'token_b1' }
 
@@ -229,6 +234,7 @@ describe Fortnox::API::Repository::Base do
     subject { -> { repository.check_access_tokens!(tokens) } }
 
     before { Fortnox::API.configure { |conf| conf.client_secret = client_secret } }
+
     let(:error) { Fortnox::API::MissingConfiguration }
     let(:message) { "not provided any access tokens in token store #{token_store.inspect}" }
     let(:token_store) { :default }
@@ -247,6 +253,7 @@ describe Fortnox::API::Repository::Base do
 
     context 'with an empty, non default, token store' do
       before { Fortnox::API.configure { |conf| conf.access_tokens = { token_store => tokens } } }
+
       let(:repository) { Repository::Test.new(token_store: token_store) }
       let(:tokens) { [] }
       let(:token_store) { :store1 }
@@ -262,6 +269,8 @@ describe Fortnox::API::Repository::Base do
   end
 
   context 'when making a request including the proper headers' do
+    subject { repository.get('/test', body: '') }
+
     before do
       Fortnox::API.configure do |conf|
         conf.client_secret = client_secret
@@ -277,8 +286,6 @@ describe Fortnox::API::Repository::Base do
         status: 200
       )
     end
-
-    subject { repository.get('/test', body: '') }
 
     it { is_expected.to be_nil }
   end

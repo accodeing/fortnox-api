@@ -15,7 +15,7 @@ shared_examples_for 'DocumentRow' do |valid_hash|
   it { is_expected.to have_sized_float(:price, -9_999_999_999, 99_999_999_999.9, valid_hash) }
 
   it do # rubocop:disable RSpec/ExampleLength
-    is_expected.to have_sized_float(
+    expect(subject).to have_sized_float(
       :delivered_quantity,
       -9_999_999_999_999.9,
       9_999_999_999_999.9,

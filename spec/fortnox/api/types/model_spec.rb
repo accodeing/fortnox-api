@@ -30,6 +30,8 @@ RSpec.describe Fortnox::API::Types::Model do
   end
 
   context 'when omitting optional keys' do
+    subject { -> { User.new } }
+
     before do
       stub_const('Types::Nullable::String', Dry::Types['strict.string'].optional)
 
@@ -39,8 +41,6 @@ RSpec.describe Fortnox::API::Types::Model do
 
       stub_const('User', user_class)
     end
-
-    subject { -> { User.new } }
 
     it { is_expected.not_to raise_error }
 

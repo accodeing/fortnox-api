@@ -52,7 +52,7 @@ describe Fortnox::API::Model::Base do
       it { is_expected.not_to be_saved }
 
       it 'returns a new object' do
-        is_expected.not_to eql(original)
+        expect(subject).not_to eql(original)
       end
 
       describe 'updated attribute' do
@@ -72,7 +72,7 @@ describe Fortnox::API::Model::Base do
       subject(:updated_model) { original.update(string: 'Test') }
 
       it 'returns the same object' do
-        is_expected.to eql(original)
+        expect(subject).to eql(original)
       end
 
       it 'returns a object with the same value' do

@@ -41,7 +41,7 @@ describe 'HouseworkTypes', integration: true do
         let(:error_message) { 'Skattereduktion för den valda typen av husarbete har upphört.' }
 
         it 'raises an error' do
-          is_expected.to raise_error(Fortnox::API::RemoteServerError, error_message)
+          expect(subject).to raise_error(Fortnox::API::RemoteServerError, error_message)
         end
       else
         it { is_expected.not_to raise_error }
@@ -120,7 +120,7 @@ describe 'HouseworkTypes', integration: true do
     end
 
     it 'raises an error' do
-      is_expected.to raise_error(Fortnox::API::RemoteServerError, error_message)
+      expect(subject).to raise_error(Fortnox::API::RemoteServerError, error_message)
     end
   end
 
@@ -148,7 +148,7 @@ describe 'HouseworkTypes', integration: true do
     let(:error_message) { 'Kan inte sätta typen övrig kostnad på en rad markerad som husarbete.' }
 
     it "can't have housework set to true" do
-      is_expected.to raise_error(Fortnox::API::RemoteServerError, error_message)
+      expect(subject).to raise_error(Fortnox::API::RemoteServerError, error_message)
     end
   end
 
@@ -180,7 +180,7 @@ describe 'HouseworkTypes', integration: true do
     end
 
     it 'raises an error' do
-      is_expected.to raise_error(Fortnox::API::RemoteServerError, error_message)
+      expect(subject).to raise_error(Fortnox::API::RemoteServerError, error_message)
     end
   end
 end

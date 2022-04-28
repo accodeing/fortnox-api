@@ -15,7 +15,7 @@ describe Fortnox::API::CircularQueue do
       # with 100 items to choose from does not choose the same item 100 times in a row.
       # Yes, the possibility is low, but I thought I should just mention it :)
       it 'does not start with the same item each time' do
-        is_expected.to be > 1
+        expect(subject).to be > 1
       end
     end
   end

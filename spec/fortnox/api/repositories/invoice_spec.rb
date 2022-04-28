@@ -15,9 +15,9 @@ require 'fortnox/api/repositories/examples/only'
 describe Fortnox::API::Repository::Invoice, order: :defined, integration: true do
   include Helpers::Configuration
 
-  before { set_api_test_configuration }
-
   subject(:repository) { described_class.new }
+
+  before { set_api_test_configuration }
 
   required_hash = { customer_number: '1' }
 
@@ -151,7 +151,7 @@ describe Fortnox::API::Repository::Invoice, order: :defined, integration: true d
         end
 
         it 'does not reset the value' do
-          is_expected.to eq('A comment to be reset')
+          expect(subject).to eq('A comment to be reset')
         end
       end
     end
@@ -193,7 +193,7 @@ describe Fortnox::API::Repository::Invoice, order: :defined, integration: true d
         end
 
         it 'does not reset the country' do
-          is_expected.to eq('SE')
+          expect(subject).to eq('SE')
         end
       end
     end
@@ -203,14 +203,13 @@ describe Fortnox::API::Repository::Invoice, order: :defined, integration: true d
     describe 'description' do
       it 'allows 255 characters' do
         model = described_class::MODEL.new(
-          {
-            customer_number: '1',
-            invoice_rows: [
-              {
-                article_number: '0000',
-                description: 'a' * 255,
-              }
-            ]}
+          customer_number: '1',
+          invoice_rows: [
+            {
+              article_number: '0000',
+              description: 'a' * 255
+            }
+          ]
         )
         VCR.use_cassette("#{vcr_dir}/row_description_limit") do
           repository.save(model)

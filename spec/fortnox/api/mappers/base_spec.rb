@@ -99,6 +99,7 @@ describe Fortnox::API::Mapper::Base do
       let(:value) { true }
     end
   end
+
   describe 'falseclass' do
     include_examples 'identity mapper', :falseclass do
       let(:value) { false }
@@ -129,7 +130,7 @@ describe Fortnox::API::Mapper::Base do
         subject { mapper.call('SE') }
 
         it 'translates code to country name in Swedish' do
-          is_expected.to eq('Sverige')
+          expect(subject).to eq('Sverige')
         end
       end
 

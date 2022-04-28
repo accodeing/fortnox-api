@@ -72,6 +72,7 @@ describe Fortnox::API do
       subject { described_class.config.access_token }
 
       before { described_class.configure { |config| config.access_token = value } }
+
       let(:value) { '12345' }
 
       it { is_expected.to eql value }
@@ -129,6 +130,7 @@ describe Fortnox::API do
 
     context 'when access_token set' do
       before { described_class.configure { |config| config.access_token = access_token } }
+
       let(:access_token) { '12345' }
 
       it { is_expected.to eql(default: access_token) }
@@ -156,7 +158,7 @@ describe Fortnox::API do
       subject { described_class.debugging }
 
       it 'is available' do
-        is_expected.to be false
+        expect(subject).to be false
       end
     end
 
@@ -164,7 +166,7 @@ describe Fortnox::API do
       subject { described_class.logger }
 
       it 'is available' do
-        is_expected.to be_a Logger
+        expect(subject).to be_a Logger
       end
     end
   end
