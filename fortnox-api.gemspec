@@ -36,7 +36,7 @@ Gem::Specification.new do |spec| # rubocop:disable Metrics/BlockLength
   spec.add_development_dependency 'rspec', '~> 3.2'
   spec.add_development_dependency 'rspec-collection_matchers', '~> 0'
   spec.add_development_dependency 'rubocop', '~> 0.62.0'
-  spec.add_development_dependency 'rubocop-rspec', '~> 1.23'
+  spec.add_development_dependency 'rubocop-rspec', '~> 1.35'
   spec.add_development_dependency 'simplecov', '~> 0.15'
   spec.add_development_dependency 'vcr', '~> 4.0'
   spec.add_development_dependency 'webmock', '~> 3.5'
