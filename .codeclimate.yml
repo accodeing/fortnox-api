@@ -12,6 +12,7 @@ engines:
     enabled: false
   rubocop:
     enabled: true
+    channel: rubocop-0-62
 ratings:
   paths:
   - "**.rb"
