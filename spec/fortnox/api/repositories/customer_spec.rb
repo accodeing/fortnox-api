@@ -67,4 +67,31 @@ describe Fortnox::API::Repository::Customer, order: :defined, integration: true 
       end
     end
   end
+
+  describe 'sales account' do
+    context 'when saving a Customer with a Sales Account set' do
+      subject(:customer) do
+        VCR.use_cassette("#{vcr_dir}/save_new_with_sales_account") do
+          repository.save(
+            described_class::MODEL.new(
+              name: 'Customer with Sales Account',
+              sales_account: 3001
+            )
+          )
+        end
+      end
+
+      context 'when fetching that Customer' do
+        subject { fetched_customer.sales_account }
+
+        let(:fetched_customer) do
+          VCR.use_cassette("#{vcr_dir}/fetch_with_sales_account") do
+            repository.find(customer.customer_number)
+          end
+        end
+
+        it { is_expected.to eq(3001) }
+      end
+    end
+  end
 end
