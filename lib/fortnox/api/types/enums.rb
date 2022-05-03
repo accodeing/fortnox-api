@@ -88,7 +88,7 @@ module Fortnox
         'SEVAT', 'SEREVERSEDVAT', 'EUREVERSEDVAT', 'EUVAT', 'EXPORT'
       )
       DefaultDeliveryTypeValues = Types::Strict::String.enum(
-        'PRINT', 'EMAIL', 'PRINTSERVICE'
+        'PRINT', 'EMAIL', 'PRINTSERVICE', 'ELECTRONICINVOICE'
       )
       ProjectStatusTypes = Types::Strict::String.enum(
         'NOTSTARTED', 'ONGOING', 'COMPLETED'
