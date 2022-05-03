@@ -131,12 +131,12 @@ module Fortnox
                      .constrained(format: /^[0-9]{4}$/)
                      .optional
                      .constructor do |value|
-                        next nil if value == ''
+                       next nil if value == ''
 
-                        next value.to_s if value.is_a?(Integer)
+                       next value.to_s if value.is_a?(Integer)
 
-                        value
-                      end
+                       value
+                     end
 
       require 'fortnox/api/types/model'
       require 'fortnox/api/types/default_delivery_types'
