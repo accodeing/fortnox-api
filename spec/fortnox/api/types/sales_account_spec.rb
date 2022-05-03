@@ -34,12 +34,6 @@ describe Fortnox::API::Types do
       it { is_expected.to eq('1234') }
     end
 
-    context 'with 5 digits' do
-      it 'raises ConstraintError' do
-        expect { klass[ 12345 ] }.to raise_error(Dry::Types::ConstraintError)
-      end
-    end
-
     context 'when created with valid string' do
       include_examples 'equals input', '1234'
     end
