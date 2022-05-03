@@ -70,7 +70,7 @@ describe Fortnox::API::Repository::Customer, order: :defined, integration: true 
 
   describe 'sales account' do
     context 'when saving a Customer with a Sales Account set' do
-      subject(:customer) do
+      let(:customer) do
         VCR.use_cassette("#{vcr_dir}/save_new_with_sales_account") do
           repository.save(
             described_class::MODEL.new(
