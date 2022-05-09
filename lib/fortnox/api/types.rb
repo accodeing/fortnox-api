@@ -125,6 +125,19 @@ module Fortnox
                          .optional
                          .constructor(EnumConstructors.lower_case)
 
+      # Some Fortnox endpoints returns a String and some returns an Integer...
+      # The documentation says it should be a string, so let's keep it as a string.
+      SalesAccount = Strict::String
+                     .constrained(format: /^[0-9]{4}$/)
+                     .optional
+                     .constructor do |value|
+                       next nil if value == ''
+
+                       next value.to_s if value.is_a?(Integer)
+
+                       value
+                     end
+
       require 'fortnox/api/types/model'
       require 'fortnox/api/types/default_delivery_types'
       require 'fortnox/api/types/default_templates'
