@@ -160,7 +160,7 @@ module Fortnox
         # Project  Project of the customer, Project in Fortnox
         attribute :project, Types::Nullable::String
 
-        # SalesAccount  Sales account of the customer, 4 digits
+        # SalesAccount  Sales account of the customer, 4 characters
         attribute :sales_account, Types::SalesAccount
 
         # ShowPriceVATIncluded  Show prices with VAT included or not
