@@ -12,3 +12,6 @@ Gemfile.lock
 
 # Simplecov
 coverage/
+
+# Dotenv
+.env.test
