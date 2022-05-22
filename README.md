@@ -109,7 +109,7 @@ $ gem install fortnox-api
 
 You need to have a Fortnox app and to create such an app, you need to register as a Fortnox developer. It might feel as if "I just want to create an integration to Fortnox, not build a public app to in the marketplace". Ye, we agree... You don't need to release the app to the Fortnox Marketplace, but you to have that Fortnox app. Also, see further Fortnox app requirements down below.
 
-Start your journey at [Fortnox getting started guide](https://developer.fortnox.se/getting-started/). Note that there's a script to authorize the Fortnox app to your Fortnox account bundled with this gem to help you getting started, see `bin/refresh_test_access_token`. Also read [Authorizing your integration](https://developer.fortnox.se/general/authentication/).
+Start your journey at [Fortnox getting started guide](https://developer.fortnox.se/getting-started/). Note that there's a script to authorize the Fortnox app to your Fortnox account bundled with this gem to help you getting started, see `bin/get_tokens`. Also read [Authorizing your integration](https://developer.fortnox.se/general/authentication/).
 
 Things you need:
 - A Fortnox developer account
