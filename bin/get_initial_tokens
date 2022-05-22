@@ -1,0 +1,52 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require "base64"
+require 'dotenv'
+require 'oauth2'
+
+Dotenv.load('.env.test')
+
+print "Let's get you an access token and a refresh token for Fortnox API."
+
+client_id = ENV.fetch('FORTNOX_API_CLIENT_ID')
+client_secret = ENV.fetch('FORTNOX_API_CLIENT_SECRET')
+redirect_url = ENV.fetch('FORTNOX_API_REDIRECT_URL')
+scopes = ENV.fetch('FORTNOX_API_SCOPES')
+credentials = "#{Base64.encode64("#{client_id}:#{client_secret}")}"
+
+oauth_client = OAuth2::Client.new(
+  client_id,
+  client_secret,
+  {
+    authorize_url: 'oauth-v1/auth',
+    token_url: 'oauth-v1/token',
+    site: 'https://apps.fortnox.se',
+  }
+) do |conn|
+  conn.adapter :net_http
+  conn.request :url_encoded
+  conn.request :authorization, :basic, client_id, client_secret
+end
+
+authorize_url = oauth_client.auth_code.authorize_url(
+  redirect_uri: redirect_url,
+  state: 'not-used',
+  scope: scopes
+)
+
+print "\nVisit the URL below, login with the account you want to authorize and grant the integration permission. Then copy the \"code\" from the URL parameters."
+
+print "\n#{authorize_url}"
+
+print "\nEnter authorization code: "
+authorization_code = STDIN.gets.chomp
+
+token = oauth_client.auth_code.get_token(
+  authorization_code,
+  redirect_uri: redirect_url,
+  headers: {'Authorization' => "Basic #{credentials}"}
+)
+
+print "There you go, here's your access token: #{token.token}"
+print "\nAnd here's your refresh token: #{token.refresh_token}"
