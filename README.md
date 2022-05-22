@@ -104,8 +104,22 @@ $ gem install fortnox-api
 
 # Usage
 
-## Getting an AccessToken
-To make calls to the API server you need a `ClientSecret` and an `AccessToken`. When you sign up for an API-account with Fortnox you should get a client secret and an authorization code. To get the access token, that is reusable, you need to do a one time exchange with the API-server and exchange your authorization code for an access token. For more information about how to get access tokens, see Fortnox developer documentation.
+## Authorization
+> :warning: Before 2022, Fortnox used a client ID and a fixed access token for authorization. This way of is now deprecated. The old access tokens have a life span of 10 years according to Fortnox. They can still be used, but you can't issue any new long lived tokens and they recommend to migrate to the new authorization process. This gem will no longer support the old way of authorization.
+
+You need to have a Fortnox app and to create such an app, you need to register as a Fortnox developer. It might feel as if "I just want to create an integration to Fortnox, not build a public app to in the marketplace". Ye, we agree... You don't need to release the app to the Fortnox Marketplace, but you to have that Fortnox app. Also, see further Fortnox app requirements down below.
+
+Start your journey at [Fortnox getting started guide](https://developer.fortnox.se/getting-started/). Note that there's a script to authorize the Fortnox app to your Fortnox account bundled with this gem to help you getting started, see `bin/refresh_test_access_token`. Also read [Authorizing your integration](https://developer.fortnox.se/general/authentication/).
+
+Things you need:
+- A Fortnox developer account
+- A Fortnox app with:
+  - Service account setting enabled (it's used in server to server integrations, which this is)
+  - Correct scopes set
+  - A redirect URL (just use a dummy URL if you want to, you just need the parameters send to that URL)
+- A Fortnox test environment so that you can test your integration.
+
+When you have authorized your integration you get an access token. It's a JWT with an expiration time of **1 hour**. You also get a refresh token that lasts for **31 days**. This means you need some sort of refresh mechanism to issue new access tokens. Or actually, we provide such a mechanism for you, you just need to pass the refresh token and the access token to the gem. It will first try the access token and if that's too old it will try to refresh the token. But note that you need some sort of background job to do this dance regularly before the refresh token expires.
 
 ## Configuration
 To configure the gem you can use the `configure` block. A `client_secret` and `access_token` (or `access_tokens` in plural, see [Multiple AccessTokens](#multiple-accesstokens)) are required configurations for the gem to work so at the very minimum you will need something like:
