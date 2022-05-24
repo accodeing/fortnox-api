@@ -169,7 +169,7 @@ end
 The gem will then automatically refresh the tokens and keep them in the provided storage.
 
 ### Support for multiple Fortnox accounts
-Yes, we support working with several accounts at once. Simply expose `token_stores` from the storage and set it to a hash where the keys (called *token store*) represents different Fortnox accounts and provide a refresh token for each such account. If you provide a `:default` token store, this is used as default by all repositories.
+Yes, we support working with several accounts at once. Simply set `storages` (note the plural "s") and set it to a hash where the keys (called *token store*) represents different Fortnox accounts. Each needs a separate refresh and access token. If you provide a `:default` token store, this is used as default by all repositories.
 
 ```ruby
 class MyStorage
