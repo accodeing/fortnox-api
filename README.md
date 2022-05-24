@@ -131,12 +131,29 @@ Due to Fortnox use of refresh tokens, the gem needs a storage of some sort to ke
 
 ```ruby
 class MyStorage
-  attr_accessor :access_token
-  attr_accessor :refresh_token
+  require 'redis'
 
-  def initialize(access_token, refresh_token)
-    @access_token = access_token
-    @refresh_token = refresh_token
+  attr_accessor :__access_token
+  attr_accessor :__refresh_token
+
+  alias_method :access_token, :__access_token
+  alias_method :refresh_token, :__refresh_token
+
+  def initialize
+    // TODO: Initialize redis...
+
+    __access_token = redis.get('access_token')
+    __refresh_token = redis.get('refresh_token')
+  end
+
+  def access_token= token
+    __access_token = token
+    redis.set('access_token', token)
+  end
+
+  def refresh_token= token
+    __refresh_token = token
+    redis.set('refresh_token', token)
   end
 end
 ```
@@ -145,10 +162,7 @@ And could then be used like this:
 
 ```ruby
 Fortnox::API.configure do |config|
-  config.storage = MyStorage.new(
-    access_token: '[ACCESS_TOKEN]',
-    refresh_token: '[REFRESH_TOKEN]'
-  )
+  config.storage = MyStorage.new
 end
 ```
 
