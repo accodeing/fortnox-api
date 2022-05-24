@@ -173,26 +173,48 @@ Yes, we support working with several accounts at once. Simply expose `token_stor
 
 ```ruby
 class MyStorage
-  attr_accessor :token_stores
+  require 'redis'
 
-  def initialize(token_stores)
-    @token_stores = token_stores
+  attr_accessor :__access_token
+  attr_accessor :__refresh_token
+
+  alias_method :access_token, :__access_token
+  alias_method :refresh_token, :__refresh_token
+
+  def initialize(account: nil)
+    // TODO: Initialize redis...
+
+    @prefix = account.empty? ? '' : "#{account}_"
+
+    __access_token = redis.get(access_token_key)
+    __refresh_token = redis.get(refresh_token_key)
   end
+
+  def access_token=(token)
+    __access_token = token
+    redis.set(access_token_key, token)
+  end
+
+  def refresh_token=(token)
+    __refresh_token = token
+    redis.set(refresh_token_key, token)
+  end
+
+  private
+    def access_token_key
+      "#{@prefix}access_token"
+    end
+
+    def refresh_token_key
+      "#{@prefix}refresh_token"
+    end
 end
 
 Fortnox::API.configure do |config|
-  config.storage = MyStorage.new(
-    {
-      default: {
-        access_token: '[ACCESS_TOKEN]',
-        refresh_token: '[REFRESH_TOKEN]'
-      },
-      another_account: {
-        access_token: '[ANOTHER_ACCESS_TOKEN]',
-        refresh_token: '[ANOTHER_REFRESH_TOKEN]'
-      }
-    }
-  )
+  config.storages = {
+    default: MyStorage.new,
+    another_account: MyStorage.new(account: :another_account)
+  }
 end
 
 Fortnox::API::Repository::Customer.new # Using token store :default
