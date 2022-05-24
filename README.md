@@ -105,9 +105,9 @@ $ gem install fortnox-api
 # Usage
 
 ## Authorization
-> :warning: Before 2022, Fortnox used a client ID and a fixed access token for authorization. This way of is now deprecated. The old access tokens have a life span of 10 years according to Fortnox. They can still be used, but you can't issue any new long lived tokens and they recommend to migrate to the new authorization process. This gem will no longer support the old way of authorization.
+> :warning: Before 2022, Fortnox used a client ID and a fixed access token for authorization. This way of is now deprecated. The old access tokens have a life span of 10 years according to Fortnox. They can still be used, but you can't issue any new long lived tokens and they recommend to migrate to the new authorization process. This gem will no longer support the old way of authorization since v0.9.0.
 
-You need to have a Fortnox app and to create such an app, you need to register as a Fortnox developer. It might feel as if "I just want to create an integration to Fortnox, not build a public app to in the marketplace". Ye, we agree... You don't need to release the app to the Fortnox Marketplace, but you to have that Fortnox app. Also, see further Fortnox app requirements down below.
+You need to have a Fortnox app and to create such an app, you need to register as a Fortnox developer. It might feel as if "I just want to create an integration to Fortnox, not build a public app to in the marketplace". Yeah, we agree... You don't need to release the app on the Fortnox Marketplace, but you need that Fortnox app. Also, see further Fortnox app requirements down below.
 
 Start your journey at [Fortnox getting started guide](https://developer.fortnox.se/getting-started/). Note that there's a script to authorize the Fortnox app to your Fortnox account bundled with this gem to help you getting started, see [Initialization](#initialization). Also read [Authorizing your integration](https://developer.fortnox.se/general/authentication/).
 
@@ -188,7 +188,7 @@ Fortnox::API::Repository::Customer.new( token_store: :another_account ) # Using 
 Note that when you provide multiple token stores, you need to keep *all those refresh tokens* alive.
 
 ### Multiple access tokens
-As of november 2021 and the new OAuth 2 flow, Fortnox has made [adjustments to the rate limit](https://developer.fortnox.se/blog/adjustments-to-the-rate-limit/) and it is no longer calculated per access token (if you are not using the old auth flow, but that flow is no longer supported by this gem).
+As of november 2021 and the new OAuth 2 flow, Fortnox has made [adjustments to the rate limit](https://developer.fortnox.se/blog/adjustments-to-the-rate-limit/) and it is no longer calculated per access token (if you are not using the old auth flow, but that flow is deprecated in this gem since v0.9.0).
 
 # Usage
 ## Repositories
