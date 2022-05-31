@@ -12,6 +12,7 @@ require 'fortnox/api/repositories/examples/search'
 
 describe Fortnox::API::Repository::TermsOfPayment, order: :defined, integration: true do
   include Helpers::Configuration
+  include Helpers::Repositories
 
   subject(:repository) { described_class.new }
 

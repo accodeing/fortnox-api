@@ -10,6 +10,7 @@ require 'fortnox/api/types/order_row'
 # rubocop:disable RSpec/DescribeClass
 describe 'HouseworkTypes', integration: true do
   include Helpers::Configuration
+  include Helpers::Repositories
 
   before { set_api_test_configuration }
 

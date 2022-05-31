@@ -12,6 +12,7 @@ require 'fortnox/api/repositories/examples/search'
 
 describe Fortnox::API::Repository::Customer, order: :defined, integration: true do
   include Helpers::Configuration
+  include Helpers::Repositories
 
   before { set_api_test_configuration }
 

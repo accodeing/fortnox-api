@@ -14,6 +14,7 @@ require 'fortnox/api/repositories/examples/only'
 
 describe Fortnox::API::Repository::Invoice, order: :defined, integration: true do
   include Helpers::Configuration
+  include Helpers::Repositories
 
   before { set_api_test_configuration }
 

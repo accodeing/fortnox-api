@@ -11,6 +11,7 @@ require 'fortnox/api/repositories/examples/save_with_specially_named_attribute'
 
 describe Fortnox::API::Repository::Unit, order: :defined, integration: true do
   include Helpers::Configuration
+  include Helpers::Repositories
 
   before { set_api_test_configuration }
 

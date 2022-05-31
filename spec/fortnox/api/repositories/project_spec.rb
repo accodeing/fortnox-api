@@ -10,6 +10,7 @@ require 'fortnox/api/repositories/examples/save'
 
 describe Fortnox::API::Repository::Project, order: :defined, integration: true do
   include Helpers::Configuration
+  include Helpers::Repositories
 
   before { set_api_test_configuration }
 
