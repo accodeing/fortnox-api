@@ -13,10 +13,11 @@ module Fortnox
 
     DEFAULT_CONFIGURATION = {
       base_url: 'https://api.fortnox.se/3/',
+      client_id: nil,
       client_secret: nil,
-      token_store: {},
-      access_token: nil,
-      access_tokens: nil,
+      storage: nil,
+      storages: nil,
+      token_url: 'https://apps.fortnox.se/oauth-v1/token',
       debugging: false,
       logger: lambda {
         logger = Logger.new(STDOUT)
@@ -26,22 +27,11 @@ module Fortnox
     }.freeze
 
     setting :base_url, DEFAULT_CONFIGURATION[:base_url]
+    setting :client_id, DEFAULT_CONFIGURATION[:client_id]
     setting :client_secret, DEFAULT_CONFIGURATION[:client_secret]
-    setting :token_store, DEFAULT_CONFIGURATION[:token_store]
-    setting :access_token, DEFAULT_CONFIGURATION[:access_token] do |value|
-      next if value.nil? # nil is a valid unassigned value
-
-      invalid_access_token_format!(value) unless value.is_a?(String)
-      config.token_store = { default: value }
-      value
-    end
-    setting :access_tokens, DEFAULT_CONFIGURATION[:access_tokens] do |value|
-      next if value.nil? # nil is a valid unassigned value
-
-      invalid_access_tokens_format!(value) unless value.is_a?(Hash) || value.is_a?(Array)
-      config.token_store = value.is_a?(Hash) ? value : { default: value }
-      value
-    end
+    setting :storage, DEFAULT_CONFIGURATION[:storage]
+    setting :storages, DEFAULT_CONFIGURATION[:storages]
+    setting :token_url, DEFAULT_CONFIGURATION[:token_url]
     setting :debugging, DEFAULT_CONFIGURATION[:debugging], reader: true
     setting :logger, DEFAULT_CONFIGURATION[:logger], reader: true
 
@@ -61,20 +51,6 @@ module Fortnox
     end
 
     Registry = Dry::Container.new
-
-    def self.invalid_access_token_format!(value)
-      raise ArgumentError,
-            'expected a String, but '\
-            "#{value.inspect} is a(n) #{value.class}"
-    end
-    private_class_method :invalid_access_token_format!
-
-    def self.invalid_access_tokens_format!(value)
-      raise ArgumentError,
-            'expected a Hash or an Array, but '\
-            "#{value.inspect} is a(n) #{value.class}"
-    end
-    private_class_method :invalid_access_tokens_format!
   end
 end
 
