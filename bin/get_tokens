@@ -68,8 +68,24 @@ if response.code != 200
   exit
 end
 
-print "There you go, here's your access token: #{response.parsed_response['access_token']}"
-print "\nAnd here's your refresh token: #{response.parsed_response['refresh_token']}"
+access_token = response.parsed_response['access_token']
+refresh_token = response.parsed_response['refresh_token']
+
+print "There you go, here's your access token: #{access_token}"
+print "\nAnd here's your refresh token: #{refresh_token}"
 print "\nYour access token expires in #{response.parsed_response['expires_in']} seconds"
 print "\nRequested scopes: #{response.parsed_response['scope']}"
 print "\n"
+
+file_name = '.env.test'
+
+print "Write tokens to #{file_name} [y/n]? "
+store_tokens_in_env = STDIN.gets.chomp
+
+exit if store_tokens_in_env.downcase != 'y'
+
+text = File.read(file_name)
+updated_text = text
+  .gsub(/FORTNOX_API_ACCESS_TOKEN=.+$/, "FORTNOX_API_ACCESS_TOKEN=#{access_token}")
+  .gsub(/FORTNOX_API_REFRESH_TOKEN=.+$/, "FORTNOX_API_REFRESH_TOKEN=#{refresh_token}")
+File.open(file_name, 'w') { |file| file.write(updated_text) }
