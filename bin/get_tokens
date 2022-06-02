@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-require "base64"
+require 'base64'
 require 'dotenv'
 require 'httparty'
 
@@ -16,17 +16,10 @@ scopes = ENV.fetch('FORTNOX_API_SCOPES')
 credentials = "#{Base64.encode64("#{client_id}:#{client_secret}")}"
 oauth_endpoint = 'https://apps.fortnox.se/oauth-v1'
 
-def exit_if_empty(variable, message)
-  if variable.empty?
-    print "\n#{message}"
-    exit
-  end
-end
-
-exit_if_empty(client_id, 'Missing client ID! Exiting.')
-exit_if_empty(client_secret, 'Missing client secret! Exiting')
-exit_if_empty(redirect_uri, 'Missing redirect_uri! Exiting.')
-exit_if_empty(scopes, 'Missing scopes! Exiting.')
+raise 'Missing client ID! Exiting.' if client_id.empty?
+raise 'Missing client secret! Exiting' if client_secret.empty?
+raise 'Missing redirect_uri! Exiting.' if redirect_uri.empty?
+raise 'Missing scopes! Exiting.' if scopes.empty?
 
 auth_params =
   "client_id=#{CGI.escape(client_id)}" \
