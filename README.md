@@ -184,7 +184,7 @@ class MyStorage
   def initialize(account: nil)
     @redis = Redis.new
 
-    @prefix = account.empty? ? '' : "#{account}_"
+    @prefix = account.empty? ? :default : "#{account}"
 
     __access_token = @redis.get(access_token_key)
     __refresh_token = @redis.get(refresh_token_key)
@@ -202,11 +202,11 @@ class MyStorage
 
   private
     def access_token_key
-      "#{@prefix}access_token"
+      "#{@prefix}_access_token"
     end
 
     def refresh_token_key
-      "#{@prefix}refresh_token"
+      "#{@prefix}_refresh_token"
     end
 end
 
