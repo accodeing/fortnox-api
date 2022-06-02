@@ -2,8 +2,6 @@
 
 require 'dotenv'
 
-Dotenv.load('.env.test')
-
 module Helpers
   module Configuration
     def set_api_test_configuration
