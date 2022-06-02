@@ -96,35 +96,6 @@ describe 'HouseworkTypes', integration: true do
   it_behaves_like 'housework type', 'COOKING', TYPE_RUT, legacy: true
   it_behaves_like 'housework type', 'TUTORING', TYPE_RUT, legacy: true
 
-  describe 'without tax reduction type' do
-    subject do
-      cassette = 'orders/housework_without_tax_reduction_type'
-      -> { VCR.use_cassette(cassette) { repository.save(document) } }
-    end
-
-    let(:document) do
-      Fortnox::API::Model::Order.new(
-        customer_number: '1',
-        order_rows: [
-          Fortnox::API::Types::OrderRow.new(
-            ordered_quantity: 1,
-            article_number: '101',
-            housework_type: Fortnox::API::Types::HouseworkTypes['CONSTRUCTION'],
-            housework: true
-          )
-        ]
-      )
-    end
-
-    let(:error_message) do
-      'Dokument utan angiven skattereduktionstyp får inte innehålla artikelrader med husarbetestyp.'
-    end
-
-    it 'raises an error' do
-      is_expected.to raise_error(Fortnox::API::RemoteServerError, error_message)
-    end
-  end
-
   describe 'with OTHERCOSTS' do
     subject do
       cassette = 'orders/housework_othercoses_invalid'
