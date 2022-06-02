@@ -98,17 +98,14 @@ module Fortnox
         end
 
         def get_token_store(name)
-          storages = config.storages
-
-          return validate_store(storages[name], name) unless storages.nil?
-
-          validate_store(config.storage, name)
+          storage = config.storages&.dig(name.to_sym) || config.storage
+          validate_store(storage, name)
         end
 
         def validate_store(store, name)
           if store.nil?
             raise MissingConfiguration,
-              "There is no token store named \"#{name}\". Config: #{config}."
+              "There is no token store named \"#{name}\". config.storage: #{config.storage}. config.storages: #{config.storages}."
           end
 
           unless store.respond_to? :access_token
