@@ -20,7 +20,8 @@ module Fortnox
           raise Fortnox::API::RemoteServerError,
             "Fortnox API's response has content type \"text/html\" instead" \
             "of requested \"application/json\"." \
-            "This could be due to invalid endpoint. Body: #{response.body}"
+            "This could be due to invalid endpoint or when the API is down. " \
+            "Body: #{response.body}"
         end
 
         api_error = response.parsed_response['ErrorInformation']
