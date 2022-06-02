@@ -2,9 +2,10 @@
 
 require 'set'
 require 'dry-struct'
-require 'fortnox/api/circular_queue'
-require 'fortnox/api/version'
 require 'logger'
+
+require_relative 'api/circular_queue'
+require_relative 'api/version'
 
 module Fortnox
   module API
@@ -75,6 +76,6 @@ module Fortnox
   end
 end
 
-require 'fortnox/api/models'
-require 'fortnox/api/repositories'
-require 'fortnox/api/mappers'
+require_relative 'api/models'
+require_relative 'api/repositories'
+require_relative 'api/mappers'

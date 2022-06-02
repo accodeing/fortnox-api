@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'fortnox/api/types'
-
 module Fortnox
   module API
     module Types

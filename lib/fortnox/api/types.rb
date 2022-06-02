@@ -3,7 +3,7 @@
 require 'dry-struct'
 require 'dry-types'
 require 'countries'
-require 'fortnox/api/types/shim/country_string'
+require_relative 'types/shim/country_string'
 
 module Dry
   module Types
@@ -30,13 +30,13 @@ module Fortnox
 
       THE_TRUTH = { true => true, 'true' => true, false => false, 'false' => false }.freeze
 
-      require 'fortnox/api/types/required'
-      require 'fortnox/api/types/defaulted'
-      require 'fortnox/api/types/nullable'
+      require_relative 'types/required'
+      require_relative 'types/defaulted'
+      require_relative 'types/nullable'
 
-      require 'fortnox/api/types/enums'
+      require_relative 'types/enums'
 
-      require 'fortnox/api/types/sized'
+      require_relative 'types/sized'
 
       AccountNumber = Strict::Int
                       .constrained(gteq: 0, lteq: 9999)
@@ -124,13 +124,13 @@ module Fortnox
                          .optional
                          .constructor(EnumConstructors.lower_case)
 
-      require 'fortnox/api/types/model'
-      require 'fortnox/api/types/default_delivery_types'
-      require 'fortnox/api/types/default_templates'
-      require 'fortnox/api/types/email_information'
-      require 'fortnox/api/types/edi_information'
-      require 'fortnox/api/types/invoice_row'
-      require 'fortnox/api/types/order_row'
+      require_relative 'types/model'
+      require_relative 'types/default_delivery_types'
+      require_relative 'types/default_templates'
+      require_relative 'types/email_information'
+      require_relative 'types/edi_information'
+      require_relative 'types/invoice_row'
+      require_relative 'types/order_row'
     end
   end
 end
