@@ -4,7 +4,6 @@ require 'set'
 require 'dry-struct'
 require 'logger'
 
-require_relative 'api/circular_queue'
 require_relative 'api/version'
 
 module Fortnox
