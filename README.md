@@ -140,20 +140,20 @@ class MyStorage
   alias_method :refresh_token, :__refresh_token
 
   def initialize
-    // TODO: Initialize redis...
+    @redis = Redis.new
 
-    __access_token = redis.get('access_token')
-    __refresh_token = redis.get('refresh_token')
+    __access_token = @redis.get('access_token')
+    __refresh_token = @redis.get('refresh_token')
   end
 
   def access_token= token
     __access_token = token
-    redis.set('access_token', token)
+    @redis.set('access_token', token)
   end
 
   def refresh_token= token
     __refresh_token = token
-    redis.set('refresh_token', token)
+    @redis.set('refresh_token', token)
   end
 end
 ```
@@ -182,22 +182,22 @@ class MyStorage
   alias_method :refresh_token, :__refresh_token
 
   def initialize(account: nil)
-    // TODO: Initialize redis...
+    @redis = Redis.new
 
     @prefix = account.empty? ? '' : "#{account}_"
 
-    __access_token = redis.get(access_token_key)
-    __refresh_token = redis.get(refresh_token_key)
+    __access_token = @redis.get(access_token_key)
+    __refresh_token = @redis.get(refresh_token_key)
   end
 
   def access_token=(token)
     __access_token = token
-    redis.set(access_token_key, token)
+    @redis.set(access_token_key, token)
   end
 
   def refresh_token=(token)
     __refresh_token = token
-    redis.set(refresh_token_key, token)
+    @redis.set(refresh_token_key, token)
   end
 
   private
