@@ -10,20 +10,20 @@ class FixedTokenStore
 
   def refresh_token
     raise Exception,
-          "Something went wrong, #refresh_token should not be called during this test." \
-          "Check that the access token is valid."
+          "Something went wrong, #refresh_token should not be called during this test. " \
+          "Verify that the access token is valid."
   end
 
   def access_token=(token);
     raise Exception,
-          "Something went wrong, #access_token= should not be called during this test." \
-          "Check that the access token is valid."
+          "Something went wrong, #access_token= should not be called during this test. " \
+          "Verify that the access token is valid."
   end
 
   def refresh_token=(token)
     raise Exception,
-          "Something went wrong, #refresh_token= should not be called during this test." \
-          "Check that the access token is valid."
+          "Something went wrong, #refresh_token= should not be called during this test. " \
+          "Verify that the access token is valid."
   end
 end
 

@@ -24,7 +24,7 @@ describe Fortnox::API::Repository::Invoice, order: :defined, integration: true d
 
   include_examples '.save', :comments, additional_attrs: required_hash
 
-  nested_model_hash = { price: 10, article_number: '0000' }
+  nested_model_hash = { price: 10, article_number: '101' }
   include_examples '.save with nested model',
                    required_hash,
                    :invoice_rows,
@@ -38,7 +38,7 @@ describe Fortnox::API::Repository::Invoice, order: :defined, integration: true d
 
   # It is not possible to delete Invoces. Therefore, expected nr of Orders
   # when running .all will continue to increase (until 100, which is max by default).
-  include_examples '.all', 100
+  include_examples '.all', 2
 
   include_examples '.find', 1 do
     let(:find_by_hash_failure) { { yourreference: 'Not found' } }
@@ -52,9 +52,9 @@ describe Fortnox::API::Repository::Invoice, order: :defined, integration: true d
     end
   end
 
-  include_examples '.search', :customername, 'Test', 7
+  include_examples '.search', :customername, 'Test', 1
 
-  include_examples '.only', :fullypaid, 4
+  include_examples '.only', :fullypaid, 3
 
   describe 'country attribute' do
     def new_invoice(country:)
@@ -208,7 +208,7 @@ describe Fortnox::API::Repository::Invoice, order: :defined, integration: true d
             customer_number: '1',
             invoice_rows: [
               {
-                article_number: '0000',
+                article_number: '101',
                 description: 'a' * 255,
               }
             ]}

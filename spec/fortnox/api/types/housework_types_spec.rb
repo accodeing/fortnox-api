@@ -29,7 +29,7 @@ describe 'HouseworkTypes', integration: true do
         order_rows: [
           Fortnox::API::Types::OrderRow.new(
             ordered_quantity: 1,
-            article_number: '0000',
+            article_number: '101',
             housework_type: Fortnox::API::Types::HouseworkTypes[type],
             housework: housework
           )
@@ -108,7 +108,7 @@ describe 'HouseworkTypes', integration: true do
         order_rows: [
           Fortnox::API::Types::OrderRow.new(
             ordered_quantity: 1,
-            article_number: '0000',
+            article_number: '101',
             housework_type: Fortnox::API::Types::HouseworkTypes['CONSTRUCTION'],
             housework: true
           )
@@ -138,7 +138,7 @@ describe 'HouseworkTypes', integration: true do
         order_rows: [
           Fortnox::API::Types::OrderRow.new(
             ordered_quantity: 1,
-            article_number: '0000',
+            article_number: '101',
             housework_type: Fortnox::API::Types::HouseworkTypes['OTHERCOSTS'],
             housework: true
           )
@@ -167,7 +167,7 @@ describe 'HouseworkTypes', integration: true do
         order_rows: [
           Fortnox::API::Types::OrderRow.new(
             ordered_quantity: 1,
-            article_number: '0000',
+            article_number: '101',
             housework_type: Fortnox::API::Types::HouseworkTypes[type],
             housework: true
           )

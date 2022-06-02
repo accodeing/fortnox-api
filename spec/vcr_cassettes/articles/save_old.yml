@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: put
-    uri: https://api.fortnox.se/3/articles/26
+    uri: https://api.fortnox.se/3/articles/105
     body:
       encoding: UTF-8
       string: '{"Article":{"Description":"Updated description"}}'
@@ -11,10 +11,8 @@ http_interactions:
       - application/json
       Accept:
       - application/json
-      Client-Secret:
-      - 9aBA8ZgsvR
-      Access-Token:
-      - ccaef817-d5d8-4b1c-a316-54f3e55c5c54
+      Authorization:
+      - "<AUTHORIZATION>"
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       User-Agent:
@@ -24,36 +22,42 @@ http_interactions:
       code: 200
       message: OK
     headers:
-      Server:
-      - nginx
-      Date:
-      - Mon, 21 Dec 2020 20:40:03 GMT
+      Content-Length:
+      - '466'
       Content-Type:
       - application/json
-      Connection:
-      - close
+      Date:
+      - Thu, 02 Jun 2022 15:57:19 GMT
       Vary:
       - Accept-Encoding
-      X-Rack-Responsetime:
-      - '258'
-      X-Uid:
-      - 8245f02b
       X-Build:
-      - d59e2acefa
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubdomains
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Content-Type-Options:
-      - nosniff
+      - 380d444b08
       X-Frame-Options:
       - sameorigin
+      X-Rack-Responsetime:
+      - '132'
+      X-Uid:
+      - 9628c2e3
+      Server:
+      - Fortnox
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - '0'
       Referrer-Policy:
       - strict-origin-when-cross-origin
+      Content-Security-Policy:
+      - 'upgrade-insecure-requests;frame-ancestors https://*.fortnox.se;report-uri
+        /api/cspreport;connect-src ''self'' https://a.storyblok.com wss://*.fortnox.se
+        *.fortnox.se *.findity.com *.livechatinc.com mybusiness.pwc.se themes.googleusercontent.com
+        s3.amazonaws.com/helpjuice-static/ *.helpjuice.com *.vimeo.com fonts.googleapis.com
+        fonts.gstatic.com ''unsafe-inline'' ''unsafe-eval'' blob: data:'
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains
     body:
       encoding: ASCII-8BIT
-      string: '{"Article":{"@url":"https:\/\/api.fortnox.se\/3\/articles\/26","ArticleNumber":"26","Bulky":false,"ConstructionAccount":0,"Depth":0,"Description":"Updated
-        description","DisposableQuantity":0,"EAN":"","EUAccount":3200,"EUVATAccount":3231,"ExportAccount":3200,"Height":0,"Housework":false,"HouseworkType":null,"Active":true,"Manufacturer":null,"ManufacturerArticleNumber":"","Note":"","PurchaseAccount":3100,"PurchasePrice":0,"QuantityInStock":0,"ReservedQuantity":0,"SalesAccount":1250,"StockGoods":false,"StockPlace":null,"StockValue":0,"StockWarning":0,"SupplierName":null,"SupplierNumber":null,"Type":"STOCK","Unit":null,"VAT":0,"WebshopArticle":false,"Weight":0,"Width":0,"Expired":false,"SalesPrice":null,"CostCalculationMethod":null,"StockAccount":null,"StockChangeAccount":null,"DirectCost":null,"FreightCost":null,"OtherCost":null,"DefaultStockPoint":null,"DefaultStockLocation":null}}'
+      string: '{"Article":{"@url":"https:\/\/api.fortnox.se\/3\/articles\/105","ArticleNumber":"105","Bulky":false,"ConstructionAccount":0,"Depth":0,"Description":"Updated
+        description","DisposableQuantity":0,"EAN":"","EUAccount":3108,"EUVATAccount":3106,"ExportAccount":3105,"Height":0,"Housework":false,"HouseworkType":null,"Active":true,"Manufacturer":null,"ManufacturerArticleNumber":"","Note":"","PurchaseAccount":4000,"PurchasePrice":0,"QuantityInStock":0,"ReservedQuantity":0,"SalesAccount":1250,"StockGoods":false,"StockPlace":null,"StockValue":0,"StockWarning":0,"SupplierName":null,"SupplierNumber":null,"Type":"STOCK","Unit":null,"VAT":0,"WebshopArticle":false,"Weight":0,"Width":0,"Expired":false,"SalesPrice":null,"CostCalculationMethod":null,"StockAccount":null,"StockChangeAccount":null,"DirectCost":null,"FreightCost":null,"OtherCost":null,"DefaultStockPoint":null,"DefaultStockLocation":null}}'
     http_version: 
-  recorded_at: Mon, 21 Dec 2020 20:40:03 GMT
+  recorded_at: Thu, 02 Jun 2022 15:57:19 GMT
 recorded_with: VCR 4.0.0

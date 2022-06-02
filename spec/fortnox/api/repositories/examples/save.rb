@@ -7,21 +7,14 @@
 # Assumes that attribute is a string attribute without restrictions.
 shared_examples_for '.save' do |attribute, additional_attrs: {}|
   describe '.save' do
-    let(:new_hash) { additional_attrs.merge(attribute => value) }
-    let(:new_model) { described_class::MODEL.new(new_hash) }
-    let(:save_new) { VCR.use_cassette("#{vcr_dir}/save_new") { repository.save(new_model) } }
-    let(:entity_wrapper) { repository.mapper.class::JSON_ENTITY_WRAPPER }
-    let(:value) { 'A value' }
+    let(:new_hash) { additional_attrs.merge(attribute => 'A value') }
+    let(:save_new) do
+      VCR.use_cassette("#{vcr_dir}/save_new") do
+        repository.save(described_class::MODEL.new(new_hash))
+      end
+    end
 
     shared_examples_for 'save' do
-      before do
-        if model.saved?
-          message = 'Test trying to save model, but already marked as saved!'
-          message << " Model: #{model.inspect}"
-          raise(message)
-        end
-      end
-
       specify "includes correct #{attribute.inspect}" do
         saved_entity = send_request
         expect(saved_entity.send(attribute)).to eql(value)
@@ -31,8 +24,9 @@ shared_examples_for '.save' do |attribute, additional_attrs: {}|
     describe 'new' do
       context 'when not saved' do
         include_examples 'save' do
-          let(:model) { new_model }
+          let(:model) { described_class::MODEL.new(new_hash) }
           let(:send_request) { save_new }
+          let(:value) { 'A value' }
         end
       end
 
@@ -45,13 +39,34 @@ shared_examples_for '.save' do |attribute, additional_attrs: {}|
     end
 
     describe 'old (update existing)' do
+      let(:find_new_cassette) { "#{vcr_dir}/find_new" }
+
       include_examples 'save' do
         let(:value) { "Updated #{attribute}" }
+
         let(:model) do
-          new_id = save_new.unique_id
-          new_record = VCR.use_cassette("#{vcr_dir}/find_new") { repository.find(new_id) }
-          new_record.update(attribute => value)
+          existing_model = VCR.use_cassette(find_new_cassette) do
+            repository.find(save_new.unique_id)
+          end
+
+          updated_model = existing_model.update(attribute => value)
+
+          if updated_model.saved?
+            raise(
+              "We are trying to update the :#{attribute} attribute with " \
+              "#{value} on an existing record, but that record " \
+              "loaded from Fortnox " \
+              "already has this attribute set to that value:\n" \
+              "#{existing_model.inspect}\nHave a look at the VCR cassette " \
+              "\"#{find_new_cassette}\" which should load the record with the " \
+              "attribute :#{attribute} set to something else than " \
+              "the value we want to set. " \
+            )
+          end
+
+          updated_model
         end
+
         let(:send_request) do
           VCR.use_cassette("#{vcr_dir}/save_old") { repository.save(model) }
         end

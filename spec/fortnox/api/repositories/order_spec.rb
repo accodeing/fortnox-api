@@ -23,7 +23,7 @@ describe Fortnox::API::Repository::Order, order: :defined, integration: true do
 
   include_examples '.save', :comments, additional_attrs: required_hash
 
-  nested_model_hash = { price: -9_999_999_999, article_number: '0000', ordered_quantity: 1 }
+  nested_model_hash = { price: -9_999_999_999, article_number: '101', ordered_quantity: 1 }
   include_examples '.save with nested model',
                    required_hash,
                    :order_rows,
@@ -32,7 +32,7 @@ describe Fortnox::API::Repository::Order, order: :defined, integration: true do
 
   # It is not possible to delete Orders. Therefore, expected nr of Orders
   # when running .all will continue to increase (until 100, which is max by default).
-  include_examples '.all', 100
+  include_examples '.all', 3
 
   include_examples '.find', 1 do
     let(:find_by_hash_failure) { { ourreference: 'Not found' } }
@@ -46,7 +46,7 @@ describe Fortnox::API::Repository::Order, order: :defined, integration: true do
     end
   end
 
-  include_examples '.search', :customername, 'A customer', 3
+  include_examples '.search', :customername, 'A customer', 1
 
-  include_examples '.only', :cancelled, 6
+  include_examples '.only', :cancelled, 2
 end
