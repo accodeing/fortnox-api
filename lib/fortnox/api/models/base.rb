@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
-require 'fortnox/api/types'
 require 'ice_nine'
+
+require_relative '../types'
 
 module Fortnox
   module API

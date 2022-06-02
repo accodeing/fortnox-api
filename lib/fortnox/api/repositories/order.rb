@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require 'fortnox/api/repositories/base'
-require 'fortnox/api/models/order'
-require 'fortnox/api/mappers/order'
+require_relative 'base'
+require_relative '../models/order'
+require_relative '../mappers/order'
 
 module Fortnox
   module API

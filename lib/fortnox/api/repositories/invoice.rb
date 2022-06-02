@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require 'fortnox/api/repositories/base'
-require 'fortnox/api/models/invoice'
-require 'fortnox/api/mappers/invoice'
+require_relative 'base'
+require_relative '../models/invoice'
+require_relative '../mappers/invoice'
 
 module Fortnox
   module API
