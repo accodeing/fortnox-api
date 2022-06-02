@@ -40,6 +40,7 @@ Gem::Specification.new do |spec| # rubocop:disable Metrics/BlockLength
   spec.add_development_dependency 'rubocop', '~> 0.62.0'
   spec.add_development_dependency 'rubocop-rspec', '~> 1.22.2'
   spec.add_development_dependency 'simplecov', '~> 0.15'
+  spec.add_development_dependency 'timecop', '~> 0.9.5'
   spec.add_development_dependency 'vcr', '~> 4.0'
   spec.add_development_dependency 'webmock', '~> 3.5'
 end
