@@ -148,7 +148,7 @@ module Fortnox
 
           if refresh_token.nil? || refresh_token.empty?
             raise MissingConfiguration,
-                  "Refresh token for store #{@token_store_name} is empty!"
+                  "Refresh token for store \"#{@token_store_name}\" is empty!"
           end
 
           credentials = Base64.encode64("#{client_id}:#{client_secret}")
@@ -174,12 +174,12 @@ module Fortnox
             raise Exception, message
           end
 
-          access_token = response.parsed_response['access_token']
-          response.parsed_response['refresh_token']
-          @token_store.access_token = access_token
-          @token_store.refresh_token = refresh_token
+          new_access_token = response.parsed_response['access_token']
+          new_refresh_token = response.parsed_response['refresh_token']
+          @token_store.access_token = new_access_token
+          @token_store.refresh_token = new_refresh_token
 
-          access_token
+          new_access_token
         end
       end
     end
