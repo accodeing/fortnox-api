@@ -15,7 +15,7 @@ client_id = ENV.fetch('FORTNOX_API_CLIENT_ID')
 client_secret = ENV.fetch('FORTNOX_API_CLIENT_SECRET')
 redirect_uri = ENV.fetch('FORTNOX_API_REDIRECT_URI')
 scopes = ENV.fetch('FORTNOX_API_SCOPES')
-credentials = "#{Base64.encode64("#{client_id}:#{client_secret}")}"
+credentials = Base64.encode64("#{client_id}:#{client_secret}").to_s
 oauth_endpoint = 'https://apps.fortnox.se/oauth-v1'
 
 raise 'Missing client ID! Exiting.' if client_id.empty?
@@ -27,15 +27,15 @@ auth_params =
   "client_id=#{CGI.escape(client_id)}" \
   "&redirect_uri=#{CGI.escape(redirect_uri)}" \
   "&scope=#{CGI.escape(scopes)}" \
-  "&state=not-used" \
-  "&access_type=offline" \
-  "&response_type=code" \
-  "&account_type=service"
+  '&state=not-used' \
+  '&access_type=offline' \
+  '&response_type=code' \
+  '&account_type=service'
 
 authorize_url = "#{oauth_endpoint}/auth?#{auth_params}"
 
 print "\nVisit the URL below, login with the account you want to authorize and grant the integration permission." \
-      "Then copy the \"code\" from the URL parameters."
+      'Then copy the "code" from the URL parameters.'
 print "\n#{authorize_url}"
 
 print "\nEnter authorization code: "
@@ -43,7 +43,7 @@ authorization_code = STDIN.gets.chomp
 
 headers = {
   Authorization: "Basic #{credentials}",
-  'Content-type' => 'application/x-www-form-urlencoded',
+  'Content-type' => 'application/x-www-form-urlencoded'
 }
 
 body = {
@@ -75,10 +75,10 @@ print "\n"
 print "Write tokens to #{dotenv_file_name} [y/n]? "
 store_tokens_in_env = STDIN.gets.chomp
 
-exit if store_tokens_in_env.downcase != 'y'
+exit unless store_tokens_in_env.casecmp('y').zero?
 
 text = File.read(dotenv_file_name)
 updated_text = text
-  .gsub(/FORTNOX_API_ACCESS_TOKEN=.*$/, "FORTNOX_API_ACCESS_TOKEN=#{access_token}")
-  .gsub(/FORTNOX_API_REFRESH_TOKEN=.*$/, "FORTNOX_API_REFRESH_TOKEN=#{refresh_token}")
+               .gsub(/FORTNOX_API_ACCESS_TOKEN=.*$/, "FORTNOX_API_ACCESS_TOKEN=#{access_token}")
+               .gsub(/FORTNOX_API_REFRESH_TOKEN=.*$/, "FORTNOX_API_REFRESH_TOKEN=#{refresh_token}")
 File.open(dotenv_file_name, 'w') { |file| file.write(updated_text) }

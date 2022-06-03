@@ -10,7 +10,7 @@ class Storage
     if ENV.fetch('MOCK_VALID_ACCESS_TOKEN') == 'true'
       # Mock long lived token to avoid using a real one from Fortnox
       # 1906691557 = Mon Jun 03 2030 04:32:37 GMT+0000
-      return JWT.encode({ exp: 1906691557 }, nil, 'none')
+      return JWT.encode({ exp: 1_906_691_557 }, nil, 'none')
     end
 
     # When you want to use a real token, for instance to rerecord VCR
@@ -23,26 +23,25 @@ class Storage
 
   def refresh_token
     raise Exception,
-          "Something went wrong, #refresh_token should not be called during this test. " \
-          "Verify that the access token is valid."
+          'Something went wrong, #refresh_token should not be called during this test. ' \
+          'Verify that the access token is valid.'
   end
 
-  def access_token=(token);
+  def access_token=(_token)
     raise Exception,
-          "Something went wrong, #access_token= should not be called during this test. " \
-          "Verify that the access token is valid."
+          'Something went wrong, #access_token= should not be called during this test. ' \
+          'Verify that the access token is valid.'
   end
 
-  def refresh_token=(token)
+  def refresh_token=(_token)
     raise Exception,
-          "Something went wrong, #refresh_token= should not be called during this test. " \
-          "Verify that the access token is valid."
+          'Something went wrong, #refresh_token= should not be called during this test. ' \
+          'Verify that the access token is valid.'
   end
 end
 
 module Helpers
   module Configuration
-
     def set_api_test_configuration
       Fortnox::API.configure { |config| config.storage = Storage.new }
     end

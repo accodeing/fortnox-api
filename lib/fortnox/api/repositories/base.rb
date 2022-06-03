@@ -2,7 +2,7 @@
 
 require 'httparty'
 require 'jwt'
-require "base64"
+require 'base64'
 
 require_relative 'base/loaders'
 require_relative 'base/savers'
@@ -58,7 +58,7 @@ module Fortnox
         def access_token
           token_from_store = @token_store.access_token
 
-          if (token_from_store.nil? || token_from_store.empty? || time_to_renew?(token_from_store))
+          if token_from_store.nil? || token_from_store.empty? || time_to_renew?(token_from_store)
             renewed_token = renew_access_token
             return renewed_token
           end
@@ -84,12 +84,14 @@ module Fortnox
         def client_id
           client_id = config.client_id
           raise MissingConfiguration, 'You have to provide your client id.' unless client_id
+
           client_id
         end
 
         def client_secret
           client_secret = config.client_secret
           raise MissingConfiguration, 'You have to provide your client secret.' unless client_secret
+
           client_secret
         end
 
@@ -105,7 +107,7 @@ module Fortnox
         def validate_store(store, name)
           if store.nil?
             raise MissingConfiguration,
-              "There is no token store named \"#{name}\". config.storage: #{config.storage}. config.storages: #{config.storages}."
+                  "There is no token store named \"#{name}\". config.storage: #{config.storage}. config.storages: #{config.storages}."
           end
 
           unless store.respond_to? :access_token
@@ -132,12 +134,10 @@ module Fortnox
         end
 
         def time_to_renew?(token)
-          begin
-            decoded_token = JWT.decode token, nil, false
-            decoded_token[0]['exp'] < (Time.now.to_i - TIME_MARGINAL_FOR_ACCESS_TOKEN_RENEWAL)
-          rescue JWT::DecodeError
-            raise Exception, "Could not decode access token for token store \"#{@token_store_name}\""
-          end
+          decoded_token = JWT.decode token, nil, false
+          decoded_token[0]['exp'] < (Time.now.to_i - TIME_MARGINAL_FOR_ACCESS_TOKEN_RENEWAL)
+        rescue JWT::DecodeError
+          raise Exception, "Could not decode access token for token store \"#{@token_store_name}\""
         end
 
         def renew_access_token
@@ -163,7 +163,7 @@ module Fortnox
           response = HTTParty.post(config.token_url, headers: renew_headers, body: body)
 
           if response.code != 200
-            message = "Unable to renew access token. " \
+            message = 'Unable to renew access token. ' \
                       "Response code: #{response.code}. " \
                       "Response message: #{response.message}. " \
                       "Response body: #{response.body}"

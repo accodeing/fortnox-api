@@ -55,12 +55,12 @@ shared_examples_for '.save' do |attribute, additional_attrs: {}|
             raise(
               "We are trying to update the :#{attribute} attribute with " \
               "#{value} on an existing record, but that record " \
-              "loaded from Fortnox " \
+              'loaded from Fortnox ' \
               "already has this attribute set to that value:\n" \
               "#{existing_model.inspect}\nHave a look at the VCR cassette " \
               "\"#{find_new_cassette}\" which should load the record with the " \
               "attribute :#{attribute} set to something else than " \
-              "the value we want to set. " \
+              'the value we want to set. ' \
             )
           end
 

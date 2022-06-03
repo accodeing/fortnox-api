@@ -21,9 +21,14 @@ task :seed_fortnox_test_instance do
     config.client_id = ENV.fetch('FORTNOX_API_CLIENT_ID')
     config.client_secret = ENV.fetch('FORTNOX_API_CLIENT_SECRET')
     config.storage = Class.new do
-      def access_token; ENV.fetch('FORTNOX_API_ACCESS_TOKEN'); end
+      def access_token
+        ENV.fetch('FORTNOX_API_ACCESS_TOKEN')
+      end
+
       def refresh_token; end
+
       def access_token=(token); end
+
       def refresh_token=(token); end
     end.new
   end
@@ -42,17 +47,17 @@ def seed_customer_data
   customer_repository = Fortnox::API::Repository::Customer.new
 
   customer_repository.save(
-    Fortnox::API::Model::Customer.new({
+    Fortnox::API::Model::Customer.new(
       name: 'A customer from New York',
       city: 'New York'
-    })
+    )
   )
   customer_repository.save(
-    Fortnox::API::Model::Customer.new({
+    Fortnox::API::Model::Customer.new(
       name: 'Another customer from New York',
       city: 'New York',
       zip_code: '10001'
-    })
+    )
   )
 end
 
@@ -92,18 +97,18 @@ def seed_invoice_data
   invoice_repository = Fortnox::API::Repository::Invoice.new
 
   invoice_repository.save(
-    Fortnox::API::Model::Invoice.new({
+    Fortnox::API::Model::Invoice.new(
       customer_number: '1',
       your_reference: 'Gandalf the Grey'
-    })
+    )
   )
 
   invoice_repository.save(
-    Fortnox::API::Model::Invoice.new({
+    Fortnox::API::Model::Invoice.new(
       customer_number: '1',
       your_reference: 'Gandalf the Grey',
       our_reference: 'Radagast the Brown'
-    })
+    )
   )
 end
 
@@ -114,17 +119,17 @@ def seed_order_data
   order_repository = Fortnox::API::Repository::Order.new
 
   order_repository.save(
-    Fortnox::API::Model::Order.new({
+    Fortnox::API::Model::Order.new(
       customer_number: '1',
       our_reference: 'Belladonna Took'
-    })
+    )
   )
 
   order_repository.save(
-    Fortnox::API::Model::Order.new({
+    Fortnox::API::Model::Order.new(
       customer_number: '1',
       our_reference: 'Belladonna Took',
       your_reference: 'Bodo Proudfoot'
-    })
+    )
   )
 end

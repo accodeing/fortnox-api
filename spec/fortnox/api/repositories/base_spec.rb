@@ -25,15 +25,20 @@ describe Fortnox::API::Repository::Base do
     Class.new do
       def access_token
         # NOTE: Use Timecop with time_when_mocked_jwt_is_valid to use the mocked JWT
-        JWT.encode({ exp: 1654159274 }, nil, 'none')
+        JWT.encode({ exp: 1_654_159_274 }, nil, 'none')
       end
-      def refresh_token; 'test-refresh-token'; end
+
+      def refresh_token
+        'test-refresh-token'
+      end
+
       def access_token=(token); end
+
       def refresh_token=(token); end
     end
   end
-  let(:time_when_mocked_jwt_is_valid) { Time.at(1654150000) }
-  let(:time_when_mocked_jwt_has_expired) { Time.at(1654159275) }
+  let(:time_when_mocked_jwt_is_valid) { Time.at(1_654_150_000) }
+  let(:time_when_mocked_jwt_has_expired) { Time.at(1_654_159_275) }
 
   let(:client_id) { 'test-client-id' }
   let(:client_secret) { 'test-client-secret' }
@@ -43,7 +48,7 @@ describe Fortnox::API::Repository::Base do
     it 'raises an error' do
       expect do
         Repository::Test.new.get('/test')
-      end.to raise_error(Fortnox::API::MissingConfiguration, error_message) 
+      end.to raise_error(Fortnox::API::MissingConfiguration, error_message)
     end
   end
 
@@ -51,7 +56,7 @@ describe Fortnox::API::Repository::Base do
     it 'raises an error' do
       expect do
         Repository::Test.new.get('/test')
-      end.to raise_error(Fortnox::API::Exception, error_message) 
+      end.to raise_error(Fortnox::API::Exception, error_message)
     end
   end
 
@@ -109,7 +114,9 @@ describe Fortnox::API::Repository::Base do
             config.client_secret = client_secret
             config.storage = Class.new do
               def refresh_token; end
+
               def access_token=; end
+
               def refresh_token=; end
             end.new
           end
@@ -127,7 +134,9 @@ describe Fortnox::API::Repository::Base do
             config.client_secret = client_secret
             config.storage = Class.new do
               def access_token; end
+
               def access_token=; end
+
               def refresh_token=; end
             end.new
           end
@@ -145,7 +154,9 @@ describe Fortnox::API::Repository::Base do
             config.client_secret = client_secret
             config.storage = Class.new do
               def access_token; end
+
               def refresh_token; end
+
               def refresh_token=; end
             end.new
           end
@@ -163,7 +174,9 @@ describe Fortnox::API::Repository::Base do
             config.client_secret = client_secret
             config.storage = Class.new do
               def access_token; end
+
               def access_token=; end
+
               def refresh_token; end
             end.new
           end
@@ -265,8 +278,11 @@ describe Fortnox::API::Repository::Base do
         Fortnox::API.configure do |config|
           config.storage = Class.new do
             def access_token; end
+
             def refresh_token; end
+
             def access_token=; end
+
             def refresh_token=; end
           end.new
         end
@@ -283,9 +299,16 @@ describe Fortnox::API::Repository::Base do
       before do
         Fortnox::API.configure do |config|
           config.storage = Class.new do
-            def access_token; ''; end
-            def refresh_token; ''; end
+            def access_token
+              ''
+            end
+
+            def refresh_token
+              ''
+            end
+
             def access_token=; end
+
             def refresh_token=; end
           end.new
         end
@@ -302,9 +325,14 @@ describe Fortnox::API::Repository::Base do
       before do
         Fortnox::API.configure do |config|
           config.storage = Class.new do
-            def access_token; 'nonsense'; end
+            def access_token
+              'nonsense'
+            end
+
             def refresh_token; end
+
             def access_token=; end
+
             def refresh_token=; end
           end.new
         end
@@ -322,8 +350,13 @@ describe Fortnox::API::Repository::Base do
         Fortnox::API.configure do |config|
           config.storage = Class.new do
             def access_token; end
-            def refresh_token; 'nonsense'; end
+
+            def refresh_token
+              'nonsense'
+            end
+
             def access_token=; end
+
             def refresh_token=; end
           end.new
         end
@@ -339,10 +372,10 @@ describe Fortnox::API::Repository::Base do
       it 'raises an error' do
         expect { repository.access_token }.to raise_error(
           Fortnox::API::Exception,
-          "Unable to renew access token. " \
-          "Response code: 400. " \
-          "Response message: Bad Request. " \
-          "Response body: {\"error\":\"invalid_grant\",\"error_description\":\"Invalid refresh token\"}"
+          'Unable to renew access token. ' \
+          'Response code: 400. ' \
+          'Response message: Bad Request. ' \
+          'Response body: {"error":"invalid_grant","error_description":"Invalid refresh token"}'
         )
       end
     end
@@ -353,27 +386,32 @@ describe Fortnox::API::Repository::Base do
           Fortnox::API.configure do |config|
             config.storage = Class.new do
               def access_token; end
-              def refresh_token; '82f569dcbce8a0b79824e398c16ba6be6c9d8f54'; end
+
+              def refresh_token
+                '82f569dcbce8a0b79824e398c16ba6be6c9d8f54'
+              end
+
               def access_token=; end
+
               def refresh_token=; end
             end.new
 
-          stub_request(:post, 'https://apps.fortnox.se/oauth-v1/token')
-            .to_return(
-              body: '{"error":"invalid_grant","error_description":"Invalid refresh token"}',
-              status: [400, 'Bad Request'],
-              headers: { content_type: 'text/html' } # NOTE: Yes, Fortnox API actually returns html here...
-            )
+            stub_request(:post, 'https://apps.fortnox.se/oauth-v1/token')
+              .to_return(
+                body: '{"error":"invalid_grant","error_description":"Invalid refresh token"}',
+                status: [400, 'Bad Request'],
+                headers: { content_type: 'text/html' } # NOTE: Yes, Fortnox API actually returns html here...
+              )
           end
         end
 
         it 'raises an error' do
           expect { repository.access_token }.to raise_error(
             Fortnox::API::Exception,
-            "Unable to renew access token. " \
-            "Response code: 400. " \
-            "Response message: Bad Request. " \
-            "Response body: {\"error\":\"invalid_grant\",\"error_description\":\"Invalid refresh token\"}"
+            'Unable to renew access token. ' \
+            'Response code: 400. ' \
+            'Response message: Bad Request. ' \
+            'Response body: {"error":"invalid_grant","error_description":"Invalid refresh token"}'
           )
         end
       end
@@ -383,9 +421,16 @@ describe Fortnox::API::Repository::Base do
       before do
         Fortnox::API.configure do |config|
           config.storage = Class.new do
-            def access_token; 'invalid-token'; end
-            def refresh_token; 'not-used'; end
+            def access_token
+              'invalid-token'
+            end
+
+            def refresh_token
+              'not-used'
+            end
+
             def access_token=(token); end
+
             def refresh_token=(token); end
           end.new
         end
@@ -423,12 +468,22 @@ describe Fortnox::API::Repository::Base do
           attr_reader :received_refresh_token
 
           def initialize; end
+
           def access_token
-            JWT.encode({ exp: 1654159274 }, nil, 'none')
+            JWT.encode({ exp: 1_654_159_274 }, nil, 'none')
           end
-          def refresh_token; 'test-refresh-token'; end
-          def access_token=(token); @received_access_token = token; end
-          def refresh_token=(token); @received_refresh_token = token; end
+
+          def refresh_token
+            'test-refresh-token'
+          end
+
+          def access_token=(token)
+            @received_access_token = token
+          end
+
+          def refresh_token=(token)
+            @received_refresh_token = token
+          end
         end.new
       end
 
@@ -541,7 +596,7 @@ describe Fortnox::API::Repository::Base do
       expect do
         repository.get('nonsense')
       end.to raise_error(Fortnox::API::RemoteServerError,
-                         /Fortnox API's response has content type "text\/html"/)
+                         %r{Fortnox API's response has content type "text/html"})
     end
   end
 end
