@@ -14,7 +14,7 @@ Gemfile.lock
 coverage/
 
 # Dotenv
-.env.test
+.env
 
 # Rake
 .rake_tasks~

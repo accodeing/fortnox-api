@@ -122,7 +122,10 @@ Things you need:
 When you have authorized your integration you get an access token. It's a JWT with an expiration time of 1 hour. You also get a refresh token that lasts for **31 days**. When a new access token is requested, a new refresh token is also provided and the old one is invalidated. As long as the refresh token is valid, the gem will do all of this automatically. *You just need to make sure the gem makes a request the Fortnox API before the current refresh token expires*, otherwise you need to start over again with the [Initialization](#initialization).
 
 ## Initialization
-As described in the [Authorization](#authorization) section, the gem refreshes the tokens automatically, but you need to initialize the process. There a script provided in `bin/get_tokens` to get your initial tokens.
+As described in the [Authorization](#authorization) section, the gem refreshes the tokens automatically, but you need to initialize the process. There a script for getting tokens. See [Get tokens](#get-tokens).
+
+## Get tokens
+There's a script in `bin/get_tokens` to issue valid access and refresh tokens. Provide valid credentials in `.env`, see `.env.template` or have a look in the script itself to see what's needed.
 
 ### Configuration
 The gem is configured in a `configure` block.
@@ -273,6 +276,9 @@ The update method takes an implicit hash of attributes to update, so you can upd
 # Development
 ## Testing
 This gem has integration tests to verify the code against the real API. It uses [vcr](https://github.com/vcr/vcr) to record API endpoint responses. These responses are stored locally and are called vcr cassettes. If no cassettes are available, vcr will record new ones for you. Once in a while, it's good to throw away all cassettes and rerecord them. Fortnox updates their endpoints and we need to keep our code up to date with the reality. There's a handy rake task for removing all cassettes, see `rake -T`. Note that when rerecording all cassettes, do it one repository at a time, otherwise you'll definitely get `429 Too Many Requests` from Fortnox. Run them manually with something like `bundle exec rspec spec/fortnox/api/repositories/article_spec.rb`. Also, you will need to update some test data in specs, see notes in specs.
+
+### Test environment variables
+`.env.test` includes environment variables used for testing. There's a `MOCK_VALID_ACCCESS_TOKEN` setting that's `true` by default. If you want to run tests against a real (or test) Fortnox account, set that to `false` and provide a valid access token in `.env`. See [Get tokens](get-tokens) for how to issue valid tokens.
 
 ### Seeding
 There's a Rake task for seeding the Test Fortnox instance with data that the test suite needs. See `rake -T` to find the task.
