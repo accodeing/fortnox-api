@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'fortnox/api/types/document_row'
+require_relative 'document_row'
 
 module Fortnox
   module API

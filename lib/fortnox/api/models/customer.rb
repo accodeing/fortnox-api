@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require 'fortnox/api/types'
-require 'fortnox/api/models/base'
+require_relative 'base'
+require_relative '../types'
 
 module Fortnox
   module API
