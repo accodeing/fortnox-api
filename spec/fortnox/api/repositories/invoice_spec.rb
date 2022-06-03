@@ -202,8 +202,8 @@ describe Fortnox::API::Repository::Invoice, order: :defined, integration: true d
 
   describe 'limits for invoice_row' do
     describe 'description' do
-      it 'allows 255 characters' do
-        model = described_class::MODEL.new(
+      let(:model) do
+        described_class::MODEL.new(
           customer_number: '1',
           invoice_rows: [
             {
@@ -212,6 +212,9 @@ describe Fortnox::API::Repository::Invoice, order: :defined, integration: true d
             }
           ]
         )
+      end
+
+      it 'allows 255 characters' do
         VCR.use_cassette("#{vcr_dir}/row_description_limit") do
           repository.save(model)
         end

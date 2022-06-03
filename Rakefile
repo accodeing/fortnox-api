@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/MethodLength
+
 require 'rspec/core/rake_task'
 require_relative 'lib/fortnox/api'
 require 'dotenv'
@@ -133,3 +135,5 @@ def seed_order_data
     )
   )
 end
+
+# rubocop:enable Metrics/MethodLength

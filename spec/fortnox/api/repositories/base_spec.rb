@@ -212,7 +212,7 @@ describe Fortnox::API::Repository::Base do
         after { Timecop.return }
 
         it 'does not raise an error' do
-          expect { Repository::Test.new.get('/test') }
+          expect { Repository::Test.new.get('/test') }.not_to raise_error
         end
       end
 
@@ -286,12 +286,12 @@ describe Fortnox::API::Repository::Base do
             def refresh_token=; end
           end.new
         end
+      end
 
-        it 'raises an error' do
-          expect do
-            repository.access_token
-          end.to raise_error(Fortnox::API::MissingConfiguration, /Refresh token for store "default" is empty/)
-        end
+      it 'raises an error' do
+        expect do
+          repository.access_token
+        end.to raise_error(Fortnox::API::MissingConfiguration, /Refresh token for store "default" is empty/)
       end
     end
 
@@ -369,6 +369,7 @@ describe Fortnox::API::Repository::Base do
           )
       end
 
+      # rubocop:disable RSpec/ExampleLength
       it 'raises an error' do
         expect { repository.access_token }.to raise_error(
           Fortnox::API::Exception,
@@ -378,6 +379,7 @@ describe Fortnox::API::Repository::Base do
           'Response body: {"error":"invalid_grant","error_description":"Invalid refresh token"}'
         )
       end
+      # rubocop:enable RSpec/ExampleLength
     end
 
     context 'with no access token available' do
@@ -405,6 +407,7 @@ describe Fortnox::API::Repository::Base do
           end
         end
 
+        # rubocop:disable RSpec/ExampleLength
         it 'raises an error' do
           expect { repository.access_token }.to raise_error(
             Fortnox::API::Exception,
@@ -414,6 +417,7 @@ describe Fortnox::API::Repository::Base do
             'Response body: {"error":"invalid_grant","error_description":"Invalid refresh token"}'
           )
         end
+        # rubocop:enable RSpec/ExampleLength
       end
     end
 
@@ -583,7 +587,10 @@ describe Fortnox::API::Repository::Base do
         'https://api.fortnox.se/3nonsense'
       ).to_return(
         status: 404,
-        body: "<html>\r\n<head><title>404 Not Found</title></head>\r\n<body>\r\n<center><h1>404 Not Found</h1></center>\r\n<hr><center>nginx</center>\r\n</body>\r\n</html>\r\n",
+        body: "<html>\r\n" \
+              "<head><title>404 Not Found</title></head>\r\n" \
+              "<body>\r\n<center><h1>404 Not Found</h1></center>\r\n" \
+              "<hr><center>nginx</center>\r\n</body>\r\n</html>\r\n",
         headers: { 'Content-Type' => 'text/html' }
       )
 

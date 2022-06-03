@@ -8,6 +8,10 @@ require_relative 'base/loaders'
 require_relative 'base/savers'
 require_relative '../request_handling'
 
+# TODO: Temporarily disables metrics since this will be rewritten soon...
+# rubocop:disable Metrics/ClassLength
+# rubocop:disable Metrics/MethodLength
+# rubocop:disable Metrics/AbcSize
 module Fortnox
   module API
     module Repository
@@ -107,7 +111,8 @@ module Fortnox
         def validate_store(store, name)
           if store.nil?
             raise MissingConfiguration,
-                  "There is no token store named \"#{name}\". config.storage: #{config.storage}. config.storages: #{config.storages}."
+                  "There is no token store named \"#{name}\". " \
+                  "config.storage: #{config.storage}. config.storages: #{config.storages}."
           end
 
           unless store.respond_to? :access_token
@@ -182,3 +187,6 @@ module Fortnox
     end
   end
 end
+# rubocop:enable Metrics/ClassLength
+# rubocop:enable Metrics/MethodLength
+# rubocop:enable Metrics/AbcSize
