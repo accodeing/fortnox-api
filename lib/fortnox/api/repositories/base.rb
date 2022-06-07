@@ -111,28 +111,6 @@ module Fortnox
                   "There is no token store named \"#{name}\". " \
                   "config.token_stores: #{config.token_stores}."
           end
-
-          unless store.respond_to? :access_token
-            raise MissingConfiguration,
-                  "Store named #{name} does not implement required #access_token."
-          end
-
-          unless store.respond_to? :refresh_token
-            raise MissingConfiguration,
-                  "Store named #{name} does not implement required #refresh_token"
-          end
-
-          unless store.respond_to? :access_token=
-            raise MissingConfiguration,
-                  "Store named #{name} does not implement required #access_token="
-          end
-
-          unless store.respond_to? :refresh_token=
-            raise MissingConfiguration,
-                  "Store named #{name} does not implement required #refresh_token="
-          end
-
-          store
         end
 
         def expired?(token)
