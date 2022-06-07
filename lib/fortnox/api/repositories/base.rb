@@ -55,15 +55,18 @@ module Fortnox
         def initialize(keys_filtered_on_save: [:url], token_store: :default)
           @keys_filtered_on_save = keys_filtered_on_save
           @token_store_name = token_store
-          @token_store = get_token_store(token_store)
+          @token_store = config.token_stores&.dig(token_store.to_sym)
           @mapper = Registry[Mapper::Base.canonical_name_sym(self.class::MODEL)].new
+
+          validate_store(@token_store, @token_store_name)
         end
 
         def access_token
           token = @token_store.access_token
 
           if token.nil? || token.empty? || expired?(token)
-            return renew_access_token
+            renew_access_token
+            return @token_store.access_token
           end
 
           token
@@ -100,11 +103,6 @@ module Fortnox
 
         def config
           Fortnox::API.config
-        end
-
-        def get_token_store(name)
-          store = config.token_stores&.dig(name.to_sym)
-          validate_store(store, name)
         end
 
         def validate_store(store, name)
@@ -179,8 +177,6 @@ module Fortnox
           new_refresh_token = response.parsed_response['refresh_token']
           @token_store.access_token = new_access_token
           @token_store.refresh_token = new_refresh_token
-
-          new_access_token
         end
       end
     end
