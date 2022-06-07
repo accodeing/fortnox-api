@@ -10,15 +10,10 @@ OAUTH_ENDPOINT = 'https://apps.fortnox.se/oauth-v1'
 
 Dotenv.load(DOTENV_FILE_NAME)
 
-CLIENT_ID = ENV.fetch('FORTNOX_API_CLIENT_ID')
-CLIENT_SECRET = ENV.fetch('FORTNOX_API_CLIENT_SECRET')
-REDIRECT_URI = ENV.fetch('FORTNOX_API_REDIRECT_URI')
-SCOPES = ENV.fetch('FORTNOX_API_SCOPES')
-
-raise 'Missing client ID! Exiting.' if CLIENT_ID.empty?
-raise 'Missing client secret! Exiting' if CLIENT_SECRET.empty?
-raise 'Missing redirect_uri! Exiting.' if REDIRECT_URI.empty?
-raise 'Missing scopes! Exiting.' if SCOPES.empty?
+CLIENT_ID = ENV.fetch('FORTNOX_API_CLIENT_ID'){ |key| raise "Missing environment variabel #{key}! Exiting." }
+CLIENT_SECRET = ENV.fetch('FORTNOX_API_CLIENT_SECRET'){ |key| raise "Missing environment variabel #{key}! Exiting." }
+REDIRECT_URI = ENV.fetch('FORTNOX_API_REDIRECT_URI'){ |key| raise "Missing environment variabel #{key}! Exiting." }
+SCOPES = ENV.fetch('FORTNOX_API_SCOPES'){ |key| raise "Missing environment variabel #{key}! Exiting." }
 
 credentials = Base64.encode64("#{CLIENT_ID}:#{CLIENT_SECRET}").to_s
 
