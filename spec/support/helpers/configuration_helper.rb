@@ -5,7 +5,7 @@ require 'jwt'
 
 Dotenv.load('.env.test')
 
-class Storage
+class TokenStore
   def access_token
     ENV.fetch('FORTNOX_API_ACCESS_TOKEN')
   end
@@ -32,7 +32,7 @@ end
 module Helpers
   module Configuration
     def set_api_test_configuration
-      Fortnox::API.configure { |config| config.storage = Storage.new }
+      Fortnox::API.configure { |config| config.token_stores = { default: TokenStore.new } }
     end
   end
 end

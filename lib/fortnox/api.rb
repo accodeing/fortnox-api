@@ -14,8 +14,7 @@ module Fortnox
       base_url: 'https://api.fortnox.se/3/',
       client_id: nil,
       client_secret: nil,
-      storage: nil,
-      storages: nil,
+      token_stores: nil,
       token_url: 'https://apps.fortnox.se/oauth-v1/token',
       debugging: false,
       logger: lambda {
@@ -28,8 +27,7 @@ module Fortnox
     setting :base_url, DEFAULT_CONFIGURATION[:base_url]
     setting :client_id, DEFAULT_CONFIGURATION[:client_id]
     setting :client_secret, DEFAULT_CONFIGURATION[:client_secret]
-    setting :storage, DEFAULT_CONFIGURATION[:storage]
-    setting :storages, DEFAULT_CONFIGURATION[:storages]
+    setting :token_stores, DEFAULT_CONFIGURATION[:token_stores]
     setting :token_url, DEFAULT_CONFIGURATION[:token_url]
     setting :debugging, DEFAULT_CONFIGURATION[:debugging], reader: true
     setting :logger, DEFAULT_CONFIGURATION[:logger], reader: true

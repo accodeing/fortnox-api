@@ -42,14 +42,8 @@ describe Fortnox::API do
       it { is_expected.to eq 'https://apps.fortnox.se/oauth-v1/token' }
     end
 
-    describe 'storage' do
-      let(:config_key) { :storage }
-
-      it { is_expected.to be_nil }
-    end
-
-    describe 'storages' do
-      let(:config_key) { :storages }
+    describe 'token_stores' do
+      let(:config_key) { :token_stores }
 
       it { is_expected.to be_nil }
     end

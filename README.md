@@ -130,7 +130,7 @@ There's a script in `bin/get_tokens` to issue valid access and refresh tokens. P
 ### Configuration
 The gem is configured in a `configure` block.
 
-Due to Fortnox use of refresh tokens, the gem needs a storage of some sort to keep the tokens. The only thing the storage needs to expose is `access_token` and `refresh_token`. A very simplistic storage would look like this:
+Due to Fortnox use of refresh tokens, the gem needs a storage, called a "token store", of some sort to keep the tokens. The only thing the store needs to expose is `access_token` and `refresh_token` as well as corresponding setters. A very simplistic store would look like this:
 
 ```ruby
 class MyStorage
@@ -165,14 +165,16 @@ And could then be used like this:
 
 ```ruby
 Fortnox::API.configure do |config|
-  config.storage = MyStorage.new
+  config.token_stores = {
+    default: MyStorage.new
+  }
 end
 ```
 
-The gem will then automatically refresh the tokens and keep them in the provided storage.
+The gem will then automatically refresh the tokens and keep them in the provided store.
 
 ### Support for multiple Fortnox accounts
-Yes, we support working with several accounts at once. Simply set `storages` (note the plural "s") and set it to a hash where the keys (called *token store*) represents different Fortnox accounts. Each needs a separate refresh and access token. If you provide a `:default` token store, this is used as default by all repositories.
+Yes, we support working with several accounts at once. Simply provide more than one token store, where each store represents a Fortnox account. Each store needs its own refresh and access token. If you provide a `:default` token store, this is used as default by all repositories.
 
 ```ruby
 class MyStorage
@@ -214,7 +216,7 @@ class MyStorage
 end
 
 Fortnox::API.configure do |config|
-  config.storages = {
+  config.token_stores = {
     default: MyStorage.new,
     another_account: MyStorage.new(account: :another_account)
   }

@@ -21,7 +21,7 @@ describe Fortnox::API::Repository::Base do
     Fortnox::API::Registry._container.delete('repositorybasetest')
   end
 
-  let(:storage) do
+  let(:token_store) do
     Class.new do
       def access_token
         # NOTE: Use Timecop with time_when_mocked_jwt_is_valid to use the mocked JWT
@@ -72,7 +72,7 @@ describe Fortnox::API::Repository::Base do
         before do
           Fortnox::API.configure do |config|
             config.client_secret = client_secret
-            config.storage = storage.new
+            config.token_stores = { default: token_store.new }
           end
         end
 
@@ -80,7 +80,7 @@ describe Fortnox::API::Repository::Base do
       end
     end
 
-    context 'without storage' do
+    context 'without token stores' do
       include_examples 'missing configuration' do
         before do
           Fortnox::API.configure do |config|
@@ -98,7 +98,7 @@ describe Fortnox::API::Repository::Base do
         before do
           Fortnox::API.configure do |config|
             config.client_id = client_id
-            config.storage = storage.new
+            config.token_stores = { default: token_store.new }
           end
         end
 
@@ -112,13 +112,13 @@ describe Fortnox::API::Repository::Base do
           Fortnox::API.configure do |config|
             config.client_id = client_id
             config.client_secret = client_secret
-            config.storage = Class.new do
+            config.token_stores = { default: Class.new do
               def refresh_token; end
 
               def access_token=; end
 
               def refresh_token=; end
-            end.new
+            end.new }
           end
         end
 
@@ -132,13 +132,13 @@ describe Fortnox::API::Repository::Base do
           Fortnox::API.configure do |config|
             config.client_id = client_id
             config.client_secret = client_secret
-            config.storage = Class.new do
+            config.token_stores = { default: Class.new do
               def access_token; end
 
               def access_token=; end
 
               def refresh_token=; end
-            end.new
+            end.new }
           end
         end
 
@@ -152,13 +152,13 @@ describe Fortnox::API::Repository::Base do
           Fortnox::API.configure do |config|
             config.client_id = client_id
             config.client_secret = client_secret
-            config.storage = Class.new do
+            config.token_stores = { default: Class.new do
               def access_token; end
 
               def refresh_token; end
 
               def refresh_token=; end
-            end.new
+            end.new }
           end
         end
 
@@ -172,13 +172,13 @@ describe Fortnox::API::Repository::Base do
           Fortnox::API.configure do |config|
             config.client_id = client_id
             config.client_secret = client_secret
-            config.storage = Class.new do
+            config.token_stores = { default: Class.new do
               def access_token; end
 
               def access_token=; end
 
               def refresh_token; end
-            end.new
+            end.new }
           end
         end
 
@@ -186,7 +186,7 @@ describe Fortnox::API::Repository::Base do
       end
     end
 
-    context 'with multiple storages' do
+    context 'with multiple token stores' do
       before do
         Fortnox::API.configure do |config|
           config.client_id = client_id
@@ -204,7 +204,7 @@ describe Fortnox::API::Repository::Base do
       context 'with default token store' do
         before do
           Fortnox::API.configure do |config|
-            config.storages = { default: storage.new, another: storage.new }
+            config.token_stores = { default: token_store.new, another: token_store.new }
           end
           Timecop.freeze(time_when_mocked_jwt_is_valid)
         end
@@ -219,7 +219,7 @@ describe Fortnox::API::Repository::Base do
       context 'without default token store' do
         before do
           Fortnox::API.configure do |config|
-            config.storages = { another: storage.new }
+            config.token_stores = { another: token_store.new }
           end
 
           stub_request(
@@ -251,7 +251,7 @@ describe Fortnox::API::Repository::Base do
       context 'with invalid token store name' do
         before do
           Fortnox::API.configure do |config|
-            config.storages = { default: storage.new, another: storage.new }
+            config.token_stores = { default: token_store.new, another: token_store.new }
           end
         end
 
@@ -276,15 +276,17 @@ describe Fortnox::API::Repository::Base do
     context 'with nil access and refresh tokens' do
       before do
         Fortnox::API.configure do |config|
-          config.storage = Class.new do
-            def access_token; end
+          config.token_stores = {
+            default: Class.new do
+              def access_token; end
 
-            def refresh_token; end
+              def refresh_token; end
 
-            def access_token=; end
+              def access_token=; end
 
-            def refresh_token=; end
-          end.new
+              def refresh_token=; end
+            end.new
+          }
         end
       end
 
@@ -298,19 +300,21 @@ describe Fortnox::API::Repository::Base do
     context 'with empty access and refresh tokens' do
       before do
         Fortnox::API.configure do |config|
-          config.storage = Class.new do
-            def access_token
-              ''
-            end
+          config.token_stores = {
+              default: Class.new do
+              def access_token
+                ''
+              end
 
-            def refresh_token
-              ''
-            end
+              def refresh_token
+                ''
+              end
 
-            def access_token=; end
+              def access_token=; end
 
-            def refresh_token=; end
-          end.new
+              def refresh_token=; end
+            end.new
+          }
         end
       end
 
@@ -324,17 +328,19 @@ describe Fortnox::API::Repository::Base do
     context 'with nonsense access token' do
       before do
         Fortnox::API.configure do |config|
-          config.storage = Class.new do
-            def access_token
-              'nonsense'
-            end
+          config.token_stores = {
+            default: Class.new do
+              def access_token
+                'nonsense'
+              end
 
-            def refresh_token; end
+              def refresh_token; end
 
-            def access_token=; end
+              def access_token=; end
 
-            def refresh_token=; end
-          end.new
+              def refresh_token=; end
+            end.new
+          }
         end
       end
 
@@ -348,17 +354,19 @@ describe Fortnox::API::Repository::Base do
     context 'with nonsense refresh token' do
       before do
         Fortnox::API.configure do |config|
-          config.storage = Class.new do
-            def access_token; end
+          config.token_stores = {
+            default: Class.new do
+              def access_token; end
 
-            def refresh_token
-              'nonsense'
-            end
+              def refresh_token
+                'nonsense'
+              end
 
-            def access_token=; end
+              def access_token=; end
 
-            def refresh_token=; end
-          end.new
+              def refresh_token=; end
+            end.new
+          }
         end
 
         stub_request(:post, 'https://apps.fortnox.se/oauth-v1/token')
@@ -386,17 +394,19 @@ describe Fortnox::API::Repository::Base do
       context 'with expired refresh token' do
         before do
           Fortnox::API.configure do |config|
-            config.storage = Class.new do
-              def access_token; end
+            config.token_stores = {
+              default: Class.new do
+                def access_token; end
 
-              def refresh_token
-                '82f569dcbce8a0b79824e398c16ba6be6c9d8f54'
-              end
+                def refresh_token
+                  '82f569dcbce8a0b79824e398c16ba6be6c9d8f54'
+                end
 
-              def access_token=; end
+                def access_token=; end
 
-              def refresh_token=; end
-            end.new
+                def refresh_token=; end
+              end.new
+            }
 
             stub_request(:post, 'https://apps.fortnox.se/oauth-v1/token')
               .to_return(
@@ -424,19 +434,21 @@ describe Fortnox::API::Repository::Base do
     context 'with invalid access token' do
       before do
         Fortnox::API.configure do |config|
-          config.storage = Class.new do
-            def access_token
-              'invalid-token'
-            end
+          config.token_stores = {
+            default: Class.new do
+              def access_token
+                'invalid-token'
+              end
 
-            def refresh_token
-              'not-used'
-            end
+              def refresh_token
+                'not-used'
+              end
 
-            def access_token=(token); end
+              def access_token=(token); end
 
-            def refresh_token=(token); end
-          end.new
+              def refresh_token=(token); end
+            end.new
+          }
         end
       end
 
@@ -450,7 +462,9 @@ describe Fortnox::API::Repository::Base do
 
     context 'with expired access token and valid refersh token' do
       before do
-        Fortnox::API.configure { |config| config.storage = storage_spy }
+        Fortnox::API.configure do |config|
+          config.token_stores = { default: token_store_spy }
+        end
 
         stub_request(:post, 'https://apps.fortnox.se/oauth-v1/token')
           .to_return(
@@ -466,7 +480,7 @@ describe Fortnox::API::Repository::Base do
 
       after { Timecop.return }
 
-      let(:storage_spy) do
+      let(:token_store_spy) do
         Class.new do
           attr_reader :received_access_token
           attr_reader :received_refresh_token
@@ -491,12 +505,12 @@ describe Fortnox::API::Repository::Base do
         end.new
       end
 
-      it 'renews access token and stores it in the storage' do
-        expect(storage_spy.received_access_token).to eq 'new-access-token'
+      it 'renews access token and stores it in the token store' do
+        expect(token_store_spy.received_access_token).to eq 'new-access-token'
       end
 
-      it 'renews refresh token and stores it in the storage' do
-        expect(storage_spy.received_refresh_token).to eq 'new-refresh-token'
+      it 'renews refresh token and stores it in the token store' do
+        expect(token_store_spy.received_refresh_token).to eq 'new-refresh-token'
       end
     end
   end
@@ -508,7 +522,7 @@ describe Fortnox::API::Repository::Base do
       Fortnox::API.configure do |config|
         config.client_id = client_id
         config.client_secret = client_secret
-        config.storage = storage.new
+        config.token_stores = { default: token_store.new }
       end
 
       stub_request(
@@ -531,7 +545,7 @@ describe Fortnox::API::Repository::Base do
       Fortnox::API.configure do |config|
         config.client_id = client_id
         config.client_secret = client_secret
-        config.storage = storage.new
+        config.token_stores = { default: token_store.new }
       end
 
       stub_request(
@@ -579,7 +593,7 @@ describe Fortnox::API::Repository::Base do
       Fortnox::API.configure do |config|
         config.client_id = client_id
         config.client_secret = client_secret
-        config.storage = storage.new
+        config.token_stores = { default: token_store.new }
       end
 
       stub_request(
