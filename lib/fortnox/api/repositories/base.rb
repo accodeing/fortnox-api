@@ -21,8 +21,8 @@ module Fortnox
         include Loaders
         include Savers
 
-        TIME_MARGINAL_FOR_ACCESS_TOKEN_RENEWAL = 5 * 60 # 5 minutes
-        private_constant :TIME_MARGINAL_FOR_ACCESS_TOKEN_RENEWAL
+        TIME_MARGIN_FOR_ACCESS_TOKEN_RENEWAL = 5 * 60 # 5 minutes
+        private_constant :TIME_MARGIN_FOR_ACCESS_TOKEN_RENEWAL
 
         HTTParty::Parser::SupportedFormats['text/html'] = :json
 
@@ -140,7 +140,7 @@ module Fortnox
 
         def time_to_renew?(token)
           decoded_token = JWT.decode token, nil, false
-          decoded_token[0]['exp'] < (Time.now.to_i - TIME_MARGINAL_FOR_ACCESS_TOKEN_RENEWAL)
+          decoded_token[0]['exp'] < (Time.now.to_i - TIME_MARGIN_FOR_ACCESS_TOKEN_RENEWAL)
         rescue JWT::DecodeError
           raise Exception, "Could not decode access token for token store \"#{@token_store_name}\""
         end
