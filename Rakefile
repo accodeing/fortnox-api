@@ -3,8 +3,9 @@
 # rubocop:disable Metrics/MethodLength
 
 require 'rspec/core/rake_task'
-require_relative 'lib/fortnox/api'
 require 'dotenv'
+
+require_relative 'lib/fortnox/api'
 
 Dotenv.load('.env.test')
 
