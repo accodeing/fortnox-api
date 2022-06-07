@@ -5,35 +5,35 @@ require 'base64'
 require 'dotenv'
 require 'httparty'
 
-dotenv_file_name = '.env'
+DOTENV_FILE_NAME = '.env'
+OAUTH_ENDPOINT = 'https://apps.fortnox.se/oauth-v1'
 
-Dotenv.load(dotenv_file_name)
+Dotenv.load(DOTENV_FILE_NAME)
 
-print "Let's get you an access token and a refresh token for Fortnox API."
+CLIENT_ID = ENV.fetch('FORTNOX_API_CLIENT_ID')
+CLIENT_SECRET = ENV.fetch('FORTNOX_API_CLIENT_SECRET')
+REDIRECT_URI = ENV.fetch('FORTNOX_API_REDIRECT_URI')
+SCOPES = ENV.fetch('FORTNOX_API_SCOPES')
 
-client_id = ENV.fetch('FORTNOX_API_CLIENT_ID')
-client_secret = ENV.fetch('FORTNOX_API_CLIENT_SECRET')
-redirect_uri = ENV.fetch('FORTNOX_API_REDIRECT_URI')
-scopes = ENV.fetch('FORTNOX_API_SCOPES')
-credentials = Base64.encode64("#{client_id}:#{client_secret}").to_s
-oauth_endpoint = 'https://apps.fortnox.se/oauth-v1'
+raise 'Missing client ID! Exiting.' if CLIENT_ID.empty?
+raise 'Missing client secret! Exiting' if CLIENT_SECRET.empty?
+raise 'Missing redirect_uri! Exiting.' if REDIRECT_URI.empty?
+raise 'Missing scopes! Exiting.' if SCOPES.empty?
 
-raise 'Missing client ID! Exiting.' if client_id.empty?
-raise 'Missing client secret! Exiting' if client_secret.empty?
-raise 'Missing redirect_uri! Exiting.' if redirect_uri.empty?
-raise 'Missing scopes! Exiting.' if scopes.empty?
+credentials = Base64.encode64("#{CLIENT_ID}:#{CLIENT_SECRET}").to_s
 
 auth_params =
-  "client_id=#{CGI.escape(client_id)}" \
-  "&redirect_uri=#{CGI.escape(redirect_uri)}" \
-  "&scope=#{CGI.escape(scopes)}" \
+  "client_id=#{CGI.escape(CLIENT_ID)}" \
+  "&redirect_uri=#{CGI.escape(REDIRECT_URI)}" \
+  "&scope=#{CGI.escape(SCOPES)}" \
   '&state=not-used' \
   '&access_type=offline' \
   '&response_type=code' \
   '&account_type=service'
 
-authorize_url = "#{oauth_endpoint}/auth?#{auth_params}"
+authorize_url = "#{OAUTH_ENDPOINT}/auth?#{auth_params}"
 
+print "Let's get you an access token and a refresh token for Fortnox API."
 print "\nVisit the URL below, login with the account you want to authorize and grant the integration permission." \
       'Then copy the "code" from the URL parameters.'
 print "\n#{authorize_url}"
@@ -49,10 +49,10 @@ headers = {
 body = {
   grant_type: 'authorization_code',
   code: authorization_code,
-  redirect_uri: redirect_uri
+  redirect_uri: REDIRECT_URI
 }
 
-response = HTTParty.post("#{oauth_endpoint}/token", headers: headers, body: body)
+response = HTTParty.post("#{OAUTH_ENDPOINT}/token", headers: headers, body: body)
 
 if response.code != 200
   print "\nSomething went wrong."
@@ -72,13 +72,13 @@ print "\nYour access token expires in #{response.parsed_response['expires_in']} 
 print "\nRequested scopes: #{response.parsed_response['scope']}"
 print "\n"
 
-print "Write tokens to #{dotenv_file_name} [y/n]? "
+print "Write tokens to #{DOTENV_FILE_NAME} [y/n]? "
 store_tokens_in_env = STDIN.gets.chomp
 
 exit unless store_tokens_in_env.casecmp('y').zero?
 
-text = File.read(dotenv_file_name)
+text = File.read(DOTENV_FILE_NAME)
 updated_text = text
                .gsub(/FORTNOX_API_ACCESS_TOKEN=.*$/, "FORTNOX_API_ACCESS_TOKEN=#{access_token}")
                .gsub(/FORTNOX_API_REFRESH_TOKEN=.*$/, "FORTNOX_API_REFRESH_TOKEN=#{refresh_token}")
-File.open(dotenv_file_name, 'w') { |file| file.write(updated_text) }
+File.open(DOTENV_FILE_NAME, 'w') { |file| file.write(updated_text) }
