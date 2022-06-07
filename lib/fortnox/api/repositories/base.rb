@@ -60,14 +60,13 @@ module Fortnox
         end
 
         def access_token
-          token_from_store = @token_store.access_token
+          token = @token_store.access_token
 
-          if token_from_store.nil? || token_from_store.empty? || time_to_renew?(token_from_store)
-            renewed_token = renew_access_token
-            return renewed_token
+          if token.nil? || token.empty? || expired?(token)
+            return renew_access_token
           end
 
-          token_from_store
+          token
         end
 
         private
@@ -138,7 +137,7 @@ module Fortnox
           store
         end
 
-        def time_to_renew?(token)
+        def expired?(token)
           decoded_token = JWT.decode token, nil, false
           decoded_token[0]['exp'] < (Time.now.to_i - TIME_MARGIN_FOR_ACCESS_TOKEN_RENEWAL)
         rescue JWT::DecodeError
