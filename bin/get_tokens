@@ -10,14 +10,14 @@ OAUTH_ENDPOINT = 'https://apps.fortnox.se/oauth-v1'
 
 Dotenv.load(DOTENV_FILE_NAME)
 
-CLIENT_ID = ENV.fetch('FORTNOX_API_CLIENT_ID'){ |key| raise "Missing environment variabel #{key}! Exiting." }
-CLIENT_SECRET = ENV.fetch('FORTNOX_API_CLIENT_SECRET'){ |key| raise "Missing environment variabel #{key}! Exiting." }
-REDIRECT_URI = ENV.fetch('FORTNOX_API_REDIRECT_URI'){ |key| raise "Missing environment variabel #{key}! Exiting." }
-SCOPES = ENV.fetch('FORTNOX_API_SCOPES'){ |key| raise "Missing environment variabel #{key}! Exiting." }
+ERROR_MESSAGE = "Missing environment variabel %s! Exiting."
+CLIENT_ID = ENV.fetch('FORTNOX_API_CLIENT_ID'){ |key| raise(ERROR_MESSAGE % [ key ]) }
+CLIENT_SECRET = ENV.fetch('FORTNOX_API_CLIENT_SECRET'){ |key| raise(ERROR_MESSAGE % [ key ]) }
+REDIRECT_URI = ENV.fetch('FORTNOX_API_REDIRECT_URI'){ |key| raise(ERROR_MESSAGE % [ key ]) }
+SCOPES = ENV.fetch('FORTNOX_API_SCOPES'){ |key| raise(ERROR_MESSAGE % [ key ]) }
+CREDENTIALS = Base64.encode64("#{CLIENT_ID}:#{CLIENT_SECRET}").to_s
 
-credentials = Base64.encode64("#{CLIENT_ID}:#{CLIENT_SECRET}").to_s
-
-auth_params =
+AUTH_PARAMS =
   "client_id=#{CGI.escape(CLIENT_ID)}" \
   "&redirect_uri=#{CGI.escape(REDIRECT_URI)}" \
   "&scope=#{CGI.escape(SCOPES)}" \
@@ -26,18 +26,18 @@ auth_params =
   '&response_type=code' \
   '&account_type=service'
 
-authorize_url = "#{OAUTH_ENDPOINT}/auth?#{auth_params}"
+AUTHORIZE_URL = "#{OAUTH_ENDPOINT}/auth?#{AUTH_PARAMS}"
 
 print "Let's get you an access token and a refresh token for Fortnox API."
 print "\nVisit the URL below, login with the account you want to authorize and grant the integration permission." \
       'Then copy the "code" from the URL parameters.'
-print "\n#{authorize_url}"
+print "\n#{AUTHORIZE_URL}"
 
 print "\nEnter authorization code: "
 authorization_code = STDIN.gets.chomp
 
 headers = {
-  Authorization: "Basic #{credentials}",
+  Authorization: "Basic #{CREDENTIALS}",
   'Content-type' => 'application/x-www-form-urlencoded'
 }
 
