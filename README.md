@@ -133,7 +133,7 @@ The gem is configured in a `configure` block.
 Due to Fortnox use of refresh tokens, the gem needs a storage, called a "token store", of some sort to keep the tokens. The only thing the store needs to expose is `access_token` and `refresh_token` as well as corresponding setters. A very simplistic store would look like this:
 
 ```ruby
-class MyStorage
+class MyTokenStore
   require 'redis'
 
   attr_accessor :__access_token
@@ -166,7 +166,7 @@ And could then be used like this:
 ```ruby
 Fortnox::API.configure do |config|
   config.token_stores = {
-    default: MyStorage.new
+    default: MyTokenStore.new
   }
 end
 ```
@@ -177,7 +177,7 @@ The gem will then automatically refresh the tokens and keep them in the provided
 Yes, we support working with several accounts at once. Simply provide more than one token store, where each store represents a Fortnox account. Each store needs its own refresh and access token. If you provide a `:default` token store, this is used as default by all repositories.
 
 ```ruby
-class MyStorage
+class MyTokenStore
   require 'redis'
 
   attr_accessor :__access_token
@@ -217,8 +217,8 @@ end
 
 Fortnox::API.configure do |config|
   config.token_stores = {
-    default: MyStorage.new,
-    another_account: MyStorage.new(account: :another_account)
+    default: MyTokenStore.new,
+    another_account: MyTokenStore.new(account: :another_account)
   }
 end
 
