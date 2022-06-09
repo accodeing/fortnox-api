@@ -27,8 +27,10 @@ Gem::Specification.new do |spec| # rubocop:disable Metrics/BlockLength
   spec.add_dependency 'dry-struct', '~> 0.1'
   spec.add_dependency 'dry-types', '~> 0.8', '< 0.13.0'
   spec.add_dependency 'httparty', '~> 0.17'
+  spec.add_dependency 'jwt', '~> 2.3.0'
 
   spec.add_development_dependency 'bundler', '~> 2.0'
+  spec.add_development_dependency 'dotenv', '~> 2.7'
   spec.add_development_dependency 'guard', '~> 2.12'
   spec.add_development_dependency 'guard-rspec', '~> 4.5'
   spec.add_development_dependency 'pry', '~> 0'
@@ -38,6 +40,7 @@ Gem::Specification.new do |spec| # rubocop:disable Metrics/BlockLength
   spec.add_development_dependency 'rubocop', '~> 0.62.0'
   spec.add_development_dependency 'rubocop-rspec', '~> 1.22.2'
   spec.add_development_dependency 'simplecov', '~> 0.15'
+  spec.add_development_dependency 'timecop', '~> 0.9.5'
   spec.add_development_dependency 'vcr', '~> 4.0'
   spec.add_development_dependency 'webmock', '~> 3.5'
 end

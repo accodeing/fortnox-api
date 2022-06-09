@@ -12,6 +12,7 @@ require 'fortnox/api/repositories/examples/search'
 
 describe Fortnox::API::Repository::Article, order: :defined, integration: true do
   include Helpers::Configuration
+  include Helpers::Repositories
 
   before { set_api_test_configuration }
 
@@ -27,17 +28,17 @@ describe Fortnox::API::Repository::Article, order: :defined, integration: true d
                    '5901234123457'
 
   # When recording new VCR cassettes, expected matches must be increased
-  include_examples '.all', 29
+  include_examples '.all', 1
 
   # When recording new VCR cassettes, expected matches must be increased
   include_examples '.find', '1' do
     let(:find_by_hash_failure) { { description: 'Not Found' } }
-    let(:single_param_find_by_hash) { { find_hash: { articlenumber: 1 }, matches: 13 } }
+    let(:single_param_find_by_hash) { { find_hash: { articlenumber: 101 }, matches: 1 } }
 
     let(:multi_param_find_by_hash) do
-      { find_hash: { articlenumber: 1, description: 'Cykelpump' }, matches: 1 }
+      { find_hash: { articlenumber: 101, description: 'Hammer' }, matches: 1 }
     end
   end
 
-  include_examples '.search', :description, 'Testartikel', 2
+  include_examples '.search', :description, 'Test article', 3
 end

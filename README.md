@@ -14,7 +14,7 @@ The rough status of this project is as follows (as of December 2020):
 * Development is not as active as it used to be, but the project is not forgotten. We have an app running this gem in production and it works like a charm for what we do.
 * We hope to be able to continue with our work with [rest_easy gem](https://github.com/accodeing/rest_easy), which generalize REST API's in general.
 * Basic structure complete. Things like getting customers and invoices, updating and saving etc.
-* Some advanced features implemented, for instance support for multiple Access Tokens and filtering entities.
+* Some advanced features implemented, for instance support for multiple Fortnox accounts and filtering entities.
 * We have ideas for more advanced features, like sorting entities, pagination of results but nothing in the pipeline right now.
 * A few models implemented. Right now we pretty good support for `Customer`, `Invoice`, `Order`, `Article`, `Label` and `Project`. Adding more models in general is quick and easy (that's the whole point with this gem), see the developer guide further down.
 
@@ -104,47 +104,132 @@ $ gem install fortnox-api
 
 # Usage
 
-## Getting an AccessToken
-To make calls to the API server you need a `ClientSecret` and an `AccessToken`. When you sign up for an API-account with Fortnox you should get a client secret and an authorization code. To get the access token, that is reusable, you need to do a one time exchange with the API-server and exchange your authorization code for an access token. For more information about how to get access tokens, see Fortnox developer documentation.
+## Authorization
+> :warning: Before 2022, Fortnox used a client ID and a fixed access token for authorization. This way of is now deprecated. The old access tokens have a life span of 10 years according to Fortnox. They can still be used, but you can't issue any new long lived tokens and they recommend to migrate to the new authorization process. This gem will no longer support the old way of authorization since v0.9.0.
 
-## Configuration
-To configure the gem you can use the `configure` block. A `client_secret` and `access_token` (or `access_tokens` in plural, see [Multiple AccessTokens](#multiple-accesstokens)) are required configurations for the gem to work so at the very minimum you will need something like:
+You need to have a Fortnox app and to create such an app, you need to register as a Fortnox developer. It might feel as if "I just want to create an integration to Fortnox, not build a public app to in the marketplace". Yeah, we agree... You don't need to release the app on the Fortnox Marketplace, but you need that Fortnox app. Also, see further Fortnox app requirements down below.
+
+Start your journey at [Fortnox getting started guide](https://developer.fortnox.se/getting-started/). Note that there's a script to authorize the Fortnox app to your Fortnox account bundled with this gem to help you getting started, see [Initialization](#initialization). Also read [Authorizing your integration](https://developer.fortnox.se/general/authentication/).
+
+Things you need:
+- A Fortnox developer account
+- A Fortnox app with:
+  - Service account setting enabled (it's used in server to server integrations, which this is)
+  - Correct scopes set
+  - A redirect URL (just use a dummy URL if you want to, you just need the parameters send to that URL)
+- A Fortnox test environment so that you can test your integration.
+
+When you have authorized your integration you get an access token. It's a JWT with an expiration time of 1 hour. You also get a refresh token that lasts for **31 days**. When a new access token is requested, a new refresh token is also provided and the old one is invalidated. As long as the refresh token is valid, the gem will do all of this automatically. *You just need to make sure the gem makes a request the Fortnox API before the current refresh token expires*, otherwise you need to start over again with the [Initialization](#initialization).
+
+## Initialization
+As described in the [Authorization](#authorization) section, the gem refreshes the tokens automatically, but you need to initialize the process. There a script for getting tokens. See [Get tokens](#get-tokens).
+
+## Get tokens
+There's a script in `bin/get_tokens` to issue valid access and refresh tokens. Provide valid credentials in `.env`, see `.env.template` or have a look in the script itself to see what's needed.
+
+### Configuration
+The gem is configured in a `configure` block.
+
+Due to Fortnox use of refresh tokens, the gem needs a storage, called a "token store", of some sort to keep the tokens. The only thing the store needs to expose is `access_token` and `refresh_token` as well as corresponding setters. A very simplistic store would look like this:
 
 ```ruby
-Fortnox::API.configure do |config|
-  config.client_secret = 'P5K5wE3Kun'
-  config.access_token = '3f08d038-f380-4893-94a0a0-8f6e60e67a'
+class MyTokenStore
+  require 'redis'
+
+  attr_accessor :__access_token
+  attr_accessor :__refresh_token
+
+  alias_method :access_token, :__access_token
+  alias_method :refresh_token, :__refresh_token
+
+  def initialize
+    @redis = Redis.new
+
+    __access_token = @redis.get('access_token')
+    __refresh_token = @redis.get('refresh_token')
+  end
+
+  def access_token= token
+    __access_token = token
+    @redis.set('access_token', token)
+  end
+
+  def refresh_token= token
+    __refresh_token = token
+    @redis.set('refresh_token', token)
+  end
 end
 ```
-Before you start using the gem.
 
-### Multiple AccessTokens
+And could then be used like this:
 
-Fortnox uses quite low [API rate limits](https://developer.fortnox.se/blog/important-implementation-of-rate-limits/). The limit is for each access token, and according to Fortnox you can use as many tokens as you like to get around this problem. This gem supports handeling multiple access tokens natively. Just set the `access_tokens` (in plural, compared to `access_token` that only takes a String) to a list of strings:
 ```ruby
 Fortnox::API.configure do |config|
-  config.client_secret = 'P5K5wE3Kun'
-  config.access_tokens ['a78d35hc-j5b1-ga1b-a1h6-h72n74fj5327', 's2b45f67-dh5d-3g5s-2dj5-dku6gn26sh62']
+  config.token_stores = {
+    default: MyTokenStore.new
+  }
 end
 ```
-The gem will then automatically rotate between these tokens. In theory you can declare as many as you like. Remember that you will need to use one authorization code to get each token! See Fortnox developer documentation for more information about how to get access tokens.
 
-### AccessTokens for multiple Fortnox accounts
-Yes, we support working with several accounts at once as well. Simply set `access_tokens` to a hash where the keys (called a *token store*) represents different fortnox accounts and the value(s) for a specific key is an array or a string with access token(s) linked to that specific Fortnox account. For instance: `{ account1: ['token1', 'token2'], account2: 'token2' }`. If you provide a `:default` token store, this is used as default by all repositories.
+The gem will then automatically refresh the tokens and keep them in the provided store.
+
+### Support for multiple Fortnox accounts
+Yes, we support working with several accounts at once. Simply provide more than one token store, where each store represents a Fortnox account. Each store needs its own refresh and access token. If you provide a `:default` token store, this is used as default by all repositories.
 
 ```ruby
+class MyTokenStore
+  require 'redis'
+
+  attr_accessor :__access_token
+  attr_accessor :__refresh_token
+
+  alias_method :access_token, :__access_token
+  alias_method :refresh_token, :__refresh_token
+
+  def initialize(account: nil)
+    @redis = Redis.new
+
+    @prefix = account.empty? ? :default : "#{account}"
+
+    __access_token = @redis.get(access_token_key)
+    __refresh_token = @redis.get(refresh_token_key)
+  end
+
+  def access_token=(token)
+    __access_token = token
+    @redis.set(access_token_key, token)
+  end
+
+  def refresh_token=(token)
+    __refresh_token = token
+    @redis.set(refresh_token_key, token)
+  end
+
+  private
+    def access_token_key
+      "#{@prefix}_access_token"
+    end
+
+    def refresh_token_key
+      "#{@prefix}_refresh_token"
+    end
+end
+
 Fortnox::API.configure do |config|
-  config.client_secret = 'P5K5wE3Kun'
-  config.access_tokens = {
-    default: ['3f08d038-f380-4893-94a0a0-8f6e60e67a', 'a78d35hc-j5b1-ga1b-a1h6-h72n74fj5327'],
-    another_account: ['s2b45f67-dh5d-3g5s-2dj5-dku6gn26sh62']
+  config.token_stores = {
+    default: MyTokenStore.new,
+    another_account: MyTokenStore.new(account: :another_account)
   }
 end
 
 Fortnox::API::Repository::Customer.new # Using token store :default
 Fortnox::API::Repository::Customer.new( token_store: :another_account ) # Using token store :another_account
 ```
-The tokens per store are rotated between calls to the backend as well. That way you can create a web app that connects to multiple Fortnox accounts and uses multiple tokens for each account as well.
+
+Note that when you provide multiple token stores, you need to keep *all those refresh tokens* alive.
+
+### Multiple access tokens
+As of november 2021 and the new OAuth 2 flow, Fortnox has made [adjustments to the rate limit](https://developer.fortnox.se/blog/adjustments-to-the-rate-limit/) and it is no longer calculated per access token (if you are not using the old auth flow, but that flow is deprecated in this gem since v0.9.0).
 
 # Usage
 ## Repositories
@@ -193,6 +278,12 @@ The update method takes an implicit hash of attributes to update, so you can upd
 # Development
 ## Testing
 This gem has integration tests to verify the code against the real API. It uses [vcr](https://github.com/vcr/vcr) to record API endpoint responses. These responses are stored locally and are called vcr cassettes. If no cassettes are available, vcr will record new ones for you. Once in a while, it's good to throw away all cassettes and rerecord them. Fortnox updates their endpoints and we need to keep our code up to date with the reality. There's a handy rake task for removing all cassettes, see `rake -T`. Note that when rerecording all cassettes, do it one repository at a time, otherwise you'll definitely get `429 Too Many Requests` from Fortnox. Run them manually with something like `bundle exec rspec spec/fortnox/api/repositories/article_spec.rb`. Also, you will need to update some test data in specs, see notes in specs.
+
+### Test environment variables
+`.env.test` includes environment variables used for testing. There's a `MOCK_VALID_ACCCESS_TOKEN` setting that's `true` by default. If you want to run tests against a real (or test) Fortnox account, set that to `false` and provide a valid access token in `.env`. See [Get tokens](get-tokens) for how to issue valid tokens.
+
+### Seeding
+There's a Rake task for seeding the Test Fortnox instance with data that the test suite needs. See `rake -T` to find the task.
 
 ## Rubocop
 When updating Rubocop in `fortnox-api.gemspec`, you need to set the explicit version that codeclimate runs in `.codeclimate.yml`

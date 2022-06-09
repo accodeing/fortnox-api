@@ -11,10 +11,8 @@ http_interactions:
       - application/json
       Accept:
       - application/json
-      Client-Secret:
-      - 9aBA8ZgsvR
-      Access-Token:
-      - ccaef817-d5d8-4b1c-a316-54f3e55c5c54
+      Authorization:
+      - "<AUTHORIZATION>"
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       User-Agent:
@@ -24,35 +22,41 @@ http_interactions:
       code: 200
       message: OK
     headers:
-      Server:
-      - nginx
-      Date:
-      - Mon, 21 Dec 2020 20:41:47 GMT
+      Content-Length:
+      - '91'
       Content-Type:
       - application/json
-      Connection:
-      - close
+      Date:
+      - Thu, 02 Jun 2022 16:13:03 GMT
       Vary:
       - Accept-Encoding
-      X-Rack-Responsetime:
-      - '59'
-      X-Uid:
-      - d8e8da7c
       X-Build:
-      - d59e2acefa
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubdomains
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Content-Type-Options:
-      - nosniff
+      - 380d444b08
       X-Frame-Options:
       - sameorigin
+      X-Rack-Responsetime:
+      - '116'
+      X-Uid:
+      - 75aeec0b
+      Server:
+      - Fortnox
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - '0'
       Referrer-Policy:
       - strict-origin-when-cross-origin
+      Content-Security-Policy:
+      - 'upgrade-insecure-requests;frame-ancestors https://*.fortnox.se;report-uri
+        /api/cspreport;connect-src ''self'' https://a.storyblok.com wss://*.fortnox.se
+        *.fortnox.se *.findity.com *.livechatinc.com mybusiness.pwc.se themes.googleusercontent.com
+        s3.amazonaws.com/helpjuice-static/ *.helpjuice.com *.vimeo.com fonts.googleapis.com
+        fonts.gstatic.com ''unsafe-inline'' ''unsafe-eval'' blob: data:'
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains
     body:
       encoding: ASCII-8BIT
       string: '{"MetaInformation":{"@TotalResources":0,"@TotalPages":0,"@CurrentPage":1},"Invoices":[]}'
     http_version: 
-  recorded_at: Mon, 21 Dec 2020 20:41:47 GMT
+  recorded_at: Thu, 02 Jun 2022 16:13:03 GMT
 recorded_with: VCR 4.0.0

@@ -1,11 +1,17 @@
 # frozen_string_literal: true
 
 require 'httparty'
+require 'jwt'
+require 'base64'
 
 require_relative 'base/loaders'
 require_relative 'base/savers'
 require_relative '../request_handling'
 
+# TODO: Temporarily disables metrics since this will be rewritten soon...
+# rubocop:disable Metrics/ClassLength
+# rubocop:disable Metrics/MethodLength
+# rubocop:disable Metrics/AbcSize
 module Fortnox
   module API
     module Repository
@@ -14,6 +20,9 @@ module Fortnox
         include Fortnox::API::RequestHandling
         include Loaders
         include Savers
+
+        TIME_MARGIN_FOR_ACCESS_TOKEN_RENEWAL = 5 * 60 # 5 minutes
+        private_constant :TIME_MARGIN_FOR_ACCESS_TOKEN_RENEWAL
 
         HTTParty::Parser::SupportedFormats['text/html'] = :json
 
@@ -34,8 +43,7 @@ module Fortnox
         HTTP_METHODS.each do |method|
           define_method method do |path, options = {}, &block|
             provided_headers = options[:headers] || {}
-            provided_headers['Client-Secret'] = client_secret
-            provided_headers['Access-Token'] = next_access_token
+            provided_headers['Authorization'] = "Bearer #{access_token}"
             options[:headers] = provided_headers
             options[:base_uri] ||= base_url
             execute do |remote|
@@ -46,32 +54,24 @@ module Fortnox
 
         def initialize(keys_filtered_on_save: [:url], token_store: :default)
           @keys_filtered_on_save = keys_filtered_on_save
-          @token_store = token_store
           @mapper = Registry[Mapper::Base.canonical_name_sym(self.class::MODEL)].new
+          @token_store_name = token_store
+          @token_store = config.token_stores.fetch(token_store.to_sym) do |key|
+            raise MissingConfiguration,
+                  "There is no token store named \"#{key}\". " \
+                  "Available token stores: #{config.token_stores}."
+          end
         end
 
-        def next_access_token
-          @access_tokens ||= CircularQueue.new(*access_tokens)
-          @access_tokens.next
-        end
+        def access_token
+          token = @token_store.access_token
 
-        def check_access_tokens!(tokens)
-          tokens_present = !(tokens.nil? || tokens.empty?)
-          return if tokens_present
-
-          error_message = "You have not provided any access tokens in token store #{@token_store.inspect}."
-          raise MissingConfiguration, error_message
-        end
-
-        def access_tokens
-          begin
-            tokens = config.token_store.fetch(@token_store)
-          rescue KeyError
-            token_store_not_found!(@token_store.inspect)
+          if token.nil? || token.empty? || expired?(token)
+            renew_access_token
+            return @token_store.access_token
           end
 
-          check_access_tokens!(tokens)
-          tokens
+          token
         end
 
         private
@@ -89,6 +89,13 @@ module Fortnox
           base_url
         end
 
+        def client_id
+          client_id = config.client_id
+          raise MissingConfiguration, 'You have to provide your client id.' unless client_id
+
+          client_id
+        end
+
         def client_secret
           client_secret = config.client_secret
           raise MissingConfiguration, 'You have to provide your client secret.' unless client_secret
@@ -100,11 +107,53 @@ module Fortnox
           Fortnox::API.config
         end
 
-        def token_store_not_found!(store_name)
-          raise MissingConfiguration,
-                "There is no token store named #{store_name}. Available stores are #{config.token_store.keys}."
+        def expired?(token)
+          decoded_token = JWT.decode token, nil, false
+          decoded_token[0]['exp'] < (Time.now.to_i - TIME_MARGIN_FOR_ACCESS_TOKEN_RENEWAL)
+        rescue JWT::DecodeError
+          raise Exception, "Could not decode access token for token store \"#{@token_store_name}\""
+        end
+
+        def renew_access_token
+          refresh_token = @token_store.refresh_token
+
+          if refresh_token.nil? || refresh_token.empty?
+            raise MissingConfiguration,
+                  "Refresh token for store \"#{@token_store_name}\" is empty!"
+          end
+
+          credentials = Base64.encode64("#{client_id}:#{client_secret}")
+
+          renew_headers = {
+            'Content-type' => 'application/x-www-form-urlencoded',
+            Authorization: "Basic #{credentials}"
+          }
+
+          body = {
+            grant_type: 'refresh_token',
+            refresh_token: @token_store.refresh_token
+          }
+
+          response = HTTParty.post(config.token_url, headers: renew_headers, body: body)
+
+          if response.code != 200
+            message = 'Unable to renew access token. ' \
+                      "Response code: #{response.code}. " \
+                      "Response message: #{response.message}. " \
+                      "Response body: #{response.body}"
+
+            raise Exception, message
+          end
+
+          new_access_token = response.parsed_response['access_token']
+          new_refresh_token = response.parsed_response['refresh_token']
+          @token_store.access_token = new_access_token
+          @token_store.refresh_token = new_refresh_token
         end
       end
     end
   end
 end
+# rubocop:enable Metrics/ClassLength
+# rubocop:enable Metrics/MethodLength
+# rubocop:enable Metrics/AbcSize

@@ -5,7 +5,18 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- Script in `bin/get_tokens` to issue access and refresh tokens.
+
+### Changed
+- **Breaking** The auth process is rewritten to support [the new auth flow](https://developer.fortnox.se/general/authentication/)
+  that Fortnox has implemented. The configuration part of the gem is new, have a look at the readme.
+
+### Removed
 - Drops support for Ruby 2.5 since it's reached end of life
+- Token rotation is removed since Fortnox counts rate limit on tenant and client id.
+  Before, you could get around this by using multiple access tokens.
+  That's not possible anymore, so token rotation is simply removed.
 
 ## [0.8.0]
 ### Changed

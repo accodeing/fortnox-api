@@ -1,0 +1,79 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'base64'
+require 'dotenv'
+require 'httparty'
+
+DOTENV_FILE_NAME = '.env'
+OAUTH_ENDPOINT = 'https://apps.fortnox.se/oauth-v1'
+
+Dotenv.load(DOTENV_FILE_NAME)
+
+ERROR_MESSAGE = "Missing environment variabel %s! Exiting."
+CLIENT_ID = ENV.fetch('FORTNOX_API_CLIENT_ID'){ |key| raise(ERROR_MESSAGE % [ key ]) }
+CLIENT_SECRET = ENV.fetch('FORTNOX_API_CLIENT_SECRET'){ |key| raise(ERROR_MESSAGE % [ key ]) }
+REDIRECT_URI = ENV.fetch('FORTNOX_API_REDIRECT_URI'){ |key| raise(ERROR_MESSAGE % [ key ]) }
+SCOPES = ENV.fetch('FORTNOX_API_SCOPES'){ |key| raise(ERROR_MESSAGE % [ key ]) }
+CREDENTIALS = Base64.encode64("#{CLIENT_ID}:#{CLIENT_SECRET}").to_s
+
+AUTH_PARAMS =
+  "client_id=#{CGI.escape(CLIENT_ID)}" \
+  "&redirect_uri=#{CGI.escape(REDIRECT_URI)}" \
+  "&scope=#{CGI.escape(SCOPES)}" \
+  '&state=not-used' \
+  '&access_type=offline' \
+  '&response_type=code' \
+  '&account_type=service'
+
+AUTHORIZE_URL = "#{OAUTH_ENDPOINT}/auth?#{AUTH_PARAMS}"
+
+print "Let's get you an access token and a refresh token for Fortnox API."
+print "\nVisit the URL below, login with the account you want to authorize and grant the integration permission." \
+      'Then copy the "code" from the URL parameters.'
+print "\n#{AUTHORIZE_URL}"
+
+print "\nEnter authorization code: "
+authorization_code = STDIN.gets.chomp
+
+headers = {
+  Authorization: "Basic #{CREDENTIALS}",
+  'Content-type' => 'application/x-www-form-urlencoded'
+}
+
+body = {
+  grant_type: 'authorization_code',
+  code: authorization_code,
+  redirect_uri: REDIRECT_URI
+}
+
+response = HTTParty.post("#{OAUTH_ENDPOINT}/token", headers: headers, body: body)
+
+if response.code != 200
+  print "\nSomething went wrong."
+  print "\nResponse code #{response.code}"
+  print "\nResponse message: #{response.message}"
+  print "\nResponse body: #{response.body}"
+  print "\n"
+  exit
+end
+
+access_token = response.parsed_response['access_token']
+refresh_token = response.parsed_response['refresh_token']
+
+print "There you go, here's your access token: #{access_token}"
+print "\nAnd here's your refresh token: #{refresh_token}"
+print "\nYour access token expires in #{response.parsed_response['expires_in']} seconds"
+print "\nRequested scopes: #{response.parsed_response['scope']}"
+print "\n"
+
+print "Write tokens to #{DOTENV_FILE_NAME} [y/n]? "
+store_tokens_in_env = STDIN.gets.chomp
+
+exit unless store_tokens_in_env.casecmp('y').zero?
+
+text = File.read(DOTENV_FILE_NAME)
+updated_text = text
+               .gsub(/FORTNOX_API_ACCESS_TOKEN=.*$/, "FORTNOX_API_ACCESS_TOKEN=#{access_token}")
+               .gsub(/FORTNOX_API_REFRESH_TOKEN=.*$/, "FORTNOX_API_REFRESH_TOKEN=#{refresh_token}")
+File.open(DOTENV_FILE_NAME, 'w') { |file| file.write(updated_text) }

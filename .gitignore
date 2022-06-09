@@ -12,3 +12,9 @@ Gemfile.lock
 
 # Simplecov
 coverage/
+
+# Dotenv
+.env
+
+# Rake
+.rake_tasks~

@@ -12,6 +12,7 @@ require 'fortnox/api/repositories/examples/search'
 
 describe Fortnox::API::Repository::Customer, order: :defined, integration: true do
   include Helpers::Configuration
+  include Helpers::Repositories
 
   before { set_api_test_configuration }
 
@@ -24,10 +25,10 @@ describe Fortnox::API::Repository::Customer, order: :defined, integration: true 
                    :email_invoice_cc,
                    'test@example.com'
 
-  # It is not yet possible to delete Customers. Therefore, expected nr of
+  # NOTE: It is not yet possible to delete Customers. Therefore, expected nr of
   # Customers when running .all will continue to increase
   # (until 100, which is max by default).
-  include_examples '.all', 100
+  include_examples '.all', 2
 
   include_examples '.find', '1' do
     let(:find_by_hash_failure) { { city: 'Not Found' } }
@@ -38,8 +39,8 @@ describe Fortnox::API::Repository::Customer, order: :defined, integration: true 
     end
   end
 
-  # When recording new VCR casettes, expected matches must be increased
-  include_examples '.search', :name, 'Test', 31
+  # NOTE: When recording new VCR casettes, expected matches must be increased
+  include_examples '.search', :name, 'Test', 1
 
   describe 'country reference' do
     describe 'with valid country code \'SE\'' do

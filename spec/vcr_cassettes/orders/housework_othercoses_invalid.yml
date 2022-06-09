@@ -5,16 +5,14 @@ http_interactions:
     uri: https://api.fortnox.se/3/orders/
     body:
       encoding: UTF-8
-      string: '{"Order":{"CustomerNumber":"1","TaxReductionType":"rot","OrderRows":[{"ArticleNumber":"0000","HouseWork":true,"HouseWorkType":"OTHERCOSTS","OrderedQuantity":1.0}]}}'
+      string: '{"Order":{"CustomerNumber":"1","TaxReductionType":"rot","OrderRows":[{"ArticleNumber":"101","HouseWork":true,"HouseWorkType":"OTHERCOSTS","OrderedQuantity":1.0}]}}'
     headers:
       Content-Type:
       - application/json
       Accept:
       - application/json
-      Client-Secret:
-      - 9aBA8ZgsvR
-      Access-Token:
-      - ccaef817-d5d8-4b1c-a316-54f3e55c5c54
+      Authorization:
+      - "<AUTHORIZATION>"
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       User-Agent:
@@ -24,34 +22,40 @@ http_interactions:
       code: 400
       message: Bad Request
     headers:
-      Server:
-      - nginx
-      Date:
-      - Tue, 22 Dec 2020 09:32:36 GMT
+      Content-Length:
+      - '143'
       Content-Type:
       - application/json
-      Connection:
-      - close
-      X-Rack-Responsetime:
-      - '797'
-      X-Uid:
-      - 2f2310b7
+      Date:
+      - Thu, 02 Jun 2022 18:50:50 GMT
       X-Build:
-      - d59e2acefa
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubdomains
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Content-Type-Options:
-      - nosniff
+      - 380d444b08
       X-Frame-Options:
       - sameorigin
+      X-Rack-Responsetime:
+      - '370'
+      X-Uid:
+      - 36503a72
+      Server:
+      - Fortnox
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - '0'
       Referrer-Policy:
       - strict-origin-when-cross-origin
+      Content-Security-Policy:
+      - 'upgrade-insecure-requests;frame-ancestors https://*.fortnox.se;report-uri
+        /api/cspreport;connect-src ''self'' https://a.storyblok.com wss://*.fortnox.se
+        *.fortnox.se *.findity.com *.livechatinc.com mybusiness.pwc.se themes.googleusercontent.com
+        s3.amazonaws.com/helpjuice-static/ *.helpjuice.com *.vimeo.com fonts.googleapis.com
+        fonts.gstatic.com ''unsafe-inline'' ''unsafe-eval'' blob: data:'
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains
     body:
       encoding: UTF-8
       string: '{"ErrorInformation":{"error":1,"message":"Kan inte s\u00e4tta typen
         \u00f6vrig kostnad p\u00e5 en rad markerad som husarbete.","code":2002980}}'
     http_version: 
-  recorded_at: Tue, 22 Dec 2020 09:32:36 GMT
+  recorded_at: Thu, 02 Jun 2022 18:50:49 GMT
 recorded_with: VCR 4.0.0

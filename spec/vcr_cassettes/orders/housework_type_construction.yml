@@ -5,16 +5,14 @@ http_interactions:
     uri: https://api.fortnox.se/3/orders/
     body:
       encoding: UTF-8
-      string: '{"Order":{"CustomerNumber":"1","TaxReductionType":"rot","OrderRows":[{"ArticleNumber":"0000","HouseWork":true,"HouseWorkType":"CONSTRUCTION","OrderedQuantity":1.0}]}}'
+      string: '{"Order":{"CustomerNumber":"1","TaxReductionType":"rot","OrderRows":[{"ArticleNumber":"101","HouseWork":true,"HouseWorkType":"CONSTRUCTION","OrderedQuantity":1.0}]}}'
     headers:
       Content-Type:
       - application/json
       Accept:
       - application/json
-      Client-Secret:
-      - 9aBA8ZgsvR
-      Access-Token:
-      - ccaef817-d5d8-4b1c-a316-54f3e55c5c54
+      Authorization:
+      - "<AUTHORIZATION>"
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       User-Agent:
@@ -24,37 +22,43 @@ http_interactions:
       code: 201
       message: Created
     headers:
-      Server:
-      - nginx
-      Date:
-      - Tue, 22 Dec 2020 09:01:56 GMT
+      Content-Length:
+      - '2042'
       Content-Type:
       - application/json
-      Connection:
-      - close
+      Date:
+      - Thu, 02 Jun 2022 18:50:48 GMT
       Location:
       - orders
-      X-Rack-Responsetime:
-      - '151'
-      X-Uid:
-      - '0800b522'
       X-Build:
-      - d59e2acefa
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubdomains
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Content-Type-Options:
-      - nosniff
+      - 380d444b08
       X-Frame-Options:
       - sameorigin
+      X-Rack-Responsetime:
+      - '406'
+      X-Uid:
+      - 4381bb80
+      Server:
+      - Fortnox
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - '0'
       Referrer-Policy:
       - strict-origin-when-cross-origin
+      Content-Security-Policy:
+      - 'upgrade-insecure-requests;frame-ancestors https://*.fortnox.se;report-uri
+        /api/cspreport;connect-src ''self'' https://a.storyblok.com wss://*.fortnox.se
+        *.fortnox.se *.findity.com *.livechatinc.com mybusiness.pwc.se themes.googleusercontent.com
+        s3.amazonaws.com/helpjuice-static/ *.helpjuice.com *.vimeo.com fonts.googleapis.com
+        fonts.gstatic.com ''unsafe-inline'' ''unsafe-eval'' blob: data:'
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains
     body:
       encoding: UTF-8
-      string: '{"Order":{"@url":"https:\/\/api.fortnox.se\/3\/orders\/402","@urlTaxReductionList":"https:\/\/api.fortnox.se\/3\/taxreductions?filter=orders&referencenumber=402","AdministrationFee":0,"AdministrationFeeVAT":0,"Address1":"","Address2":"","BasisTaxReduction":0,"Cancelled":false,"City":"","Comments":"","ContributionPercent":0,"ContributionValue":0,"CopyRemarks":false,"Country":"","CostCenter":"","Currency":"SEK","CurrencyRate":1,"CurrencyUnit":1,"CustomerName":"Old
-        name","CustomerNumber":"1","DeliveryState":"delivery","DeliveryAddress1":"","DeliveryAddress2":"","DeliveryCity":"","DeliveryCountry":"","DeliveryDate":null,"DeliveryName":"","DeliveryZipCode":"","DocumentNumber":"402","EmailInformation":{"EmailAddressFrom":null,"EmailAddressTo":"","EmailAddressCC":null,"EmailAddressBCC":null,"EmailSubject":"Order
-        {no} bifogas","EmailBody":" "},"ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","Freight":0,"FreightVAT":0,"Gross":0,"HouseWork":false,"InvoiceReference":0,"Labels":[],"Language":"SV","Net":0,"NotCompleted":false,"OfferReference":0,"OrderDate":"2020-12-22","OrderRows":[{"AccountNumber":1250,"ArticleNumber":"0000","ContributionPercent":0,"ContributionValue":0,"CostCenter":"","DeliveredQuantity":"0.00","Description":"Testartikel","Discount":0,"DiscountType":"PERCENT","HouseWork":true,"HouseWorkHoursToReport":null,"HouseWorkType":"CONSTRUCTION","OrderedQuantity":"1.00","Price":0,"Project":"","ReservedQuantity":"0.00","StockPointCode":null,"StockPointId":null,"Total":0,"Unit":"","VAT":0}],"OrderType":"Order","OrganisationNumber":"860101-8735","OurReference":"","Phone1":"","Phone2":"","PriceList":"A","PrintTemplate":"oc","Project":"","WarehouseReady":true,"OutboundDate":"2020-12-22","Remarks":"","RoundOff":0,"Sent":false,"TaxReduction":null,"TermsOfDelivery":"","TermsOfPayment":0,"TimeBasisReference":null,"Total":0,"TotalToPay":0,"TotalVAT":0,"VATIncluded":false,"WayOfDelivery":"","YourReference":"","YourOrderNumber":"","ZipCode":"","StockPointCode":null,"StockPointId":null,"TaxReductionType":"rot"}}'
+      string: '{"Order":{"@url":"https:\/\/api.fortnox.se\/3\/orders\/12","@urlTaxReductionList":"https:\/\/api.fortnox.se\/3\/taxreductions?filter=orders&referencenumber=12","AdministrationFee":0,"AdministrationFeeVAT":0,"Address1":"","Address2":"","BasisTaxReduction":0,"Cancelled":false,"City":"","Comments":"","ContributionPercent":0,"ContributionValue":0,"CopyRemarks":false,"Country":"","CostCenter":"","Currency":"SEK","CurrencyRate":1,"CurrencyUnit":1,"CustomerName":"Updated
+        name","CustomerNumber":"1","DeliveryState":"delivery","DeliveryAddress1":"","DeliveryAddress2":"","DeliveryCity":"","DeliveryCountry":"","DeliveryDate":null,"DeliveryName":"","DeliveryZipCode":"","DocumentNumber":"12","EmailInformation":{"EmailAddressFrom":null,"EmailAddressTo":"","EmailAddressCC":null,"EmailAddressBCC":null,"EmailSubject":"Order
+        {no} bifogas","EmailBody":" "},"ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","Freight":0,"FreightVAT":0,"Gross":0,"HouseWork":false,"InvoiceReference":0,"Labels":[],"Language":"SV","Net":0,"NotCompleted":false,"OfferReference":0,"OrderDate":"2022-06-02","OrderRows":[{"AccountNumber":3004,"ArticleNumber":"101","ContributionPercent":0,"ContributionValue":0,"CostCenter":"","DeliveredQuantity":"0.00","Description":"Hammer","Discount":0,"DiscountType":"PERCENT","HouseWork":true,"HouseWorkHoursToReport":null,"HouseWorkType":"CONSTRUCTION","OrderedQuantity":"1.00","Price":0,"Project":"","ReservedQuantity":"0.00","RowId":14,"StockPointCode":null,"StockPointId":null,"Total":0,"Unit":"","VAT":0}],"OrderType":"Order","OrganisationNumber":"","OurReference":"","Phone1":"","Phone2":"","PriceList":"A","PrintTemplate":"oc","Project":"","WarehouseReady":true,"OutboundDate":"2022-06-02","Remarks":"","RoundOff":0,"Sent":false,"TaxReduction":null,"TermsOfDelivery":"","TermsOfPayment":"30","TimeBasisReference":null,"Total":0,"TotalToPay":0,"TotalVAT":0,"VATIncluded":false,"WayOfDelivery":"","YourReference":"","YourOrderNumber":"","ZipCode":"","StockPointCode":null,"StockPointId":null,"TaxReductionType":"rot"}}'
     http_version: 
-  recorded_at: Tue, 22 Dec 2020 09:01:56 GMT
+  recorded_at: Thu, 02 Jun 2022 18:50:47 GMT
 recorded_with: VCR 4.0.0

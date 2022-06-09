@@ -11,6 +11,7 @@ require 'fortnox/api/repositories/examples/save_with_specially_named_attribute'
 
 describe Fortnox::API::Repository::Unit, order: :defined, integration: true do
   include Helpers::Configuration
+  include Helpers::Repositories
 
   before { set_api_test_configuration }
 
@@ -19,19 +20,19 @@ describe Fortnox::API::Repository::Unit, order: :defined, integration: true do
   # When recording new VCR cassettes, code needs to be changed to a unique value
   include_examples '.save',
                    :description,
-                   additional_attrs: { code: 'blarg5' }
+                   additional_attrs: { code: 'blarg7' }
 
   # When recording new VCR cassettes, code needs to be changed to a unique value
   include_examples '.save with specially named attribute',
                    { description: 'Happy clouds' },
                    :code,
-                   'woooh5'
+                   'woooh6'
 
   # When recording new VCR cassettes, expected number must be updated
-  include_examples '.all', 14
+  include_examples '.all', 7
 
-  include_examples '.find', 'blarg', find_by_hash: false do
+  include_examples '.find', 'blarg6', find_by_hash: false do
     let(:find_by_hash_failure) { { code: 'notfound' } }
-    let(:single_param_find_by_hash) { { find_hash: { code: 'blarg' }, matches: 1 } }
+    let(:single_param_find_by_hash) { { find_hash: { code: 'blarg6' }, matches: 1 } }
   end
 end

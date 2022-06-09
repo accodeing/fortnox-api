@@ -14,6 +14,7 @@ require 'fortnox/api/repositories/examples/only'
 
 describe Fortnox::API::Repository::Invoice, order: :defined, integration: true do
   include Helpers::Configuration
+  include Helpers::Repositories
 
   before { set_api_test_configuration }
 
@@ -23,7 +24,7 @@ describe Fortnox::API::Repository::Invoice, order: :defined, integration: true d
 
   include_examples '.save', :comments, additional_attrs: required_hash
 
-  nested_model_hash = { price: 10, article_number: '0000' }
+  nested_model_hash = { price: 10, article_number: '101' }
   include_examples '.save with nested model',
                    required_hash,
                    :invoice_rows,
@@ -37,7 +38,7 @@ describe Fortnox::API::Repository::Invoice, order: :defined, integration: true d
 
   # It is not possible to delete Invoces. Therefore, expected nr of Orders
   # when running .all will continue to increase (until 100, which is max by default).
-  include_examples '.all', 100
+  include_examples '.all', 2
 
   include_examples '.find', 1 do
     let(:find_by_hash_failure) { { yourreference: 'Not found' } }
@@ -51,9 +52,9 @@ describe Fortnox::API::Repository::Invoice, order: :defined, integration: true d
     end
   end
 
-  include_examples '.search', :customername, 'Test', 7
+  include_examples '.search', :customername, 'Test', 1
 
-  include_examples '.only', :fullypaid, 4
+  include_examples '.only', :fullypaid, 3
 
   describe 'country attribute' do
     def new_invoice(country:)
@@ -201,17 +202,19 @@ describe Fortnox::API::Repository::Invoice, order: :defined, integration: true d
 
   describe 'limits for invoice_row' do
     describe 'description' do
-      it 'allows 255 characters' do
-        model = described_class::MODEL.new(
-          {
-            customer_number: '1',
-            invoice_rows: [
-              {
-                article_number: '0000',
-                description: 'a' * 255,
-              }
-            ]}
+      let(:model) do
+        described_class::MODEL.new(
+          customer_number: '1',
+          invoice_rows: [
+            {
+              article_number: '101',
+              description: 'a' * 255
+            }
+          ]
         )
+      end
+
+      it 'allows 255 characters' do
         VCR.use_cassette("#{vcr_dir}/row_description_limit") do
           repository.save(model)
         end
