@@ -54,11 +54,13 @@ module Fortnox
 
         def initialize(keys_filtered_on_save: [:url], token_store: :default)
           @keys_filtered_on_save = keys_filtered_on_save
-          @token_store_name = token_store
-          @token_store = config.token_stores&.dig(token_store.to_sym)
           @mapper = Registry[Mapper::Base.canonical_name_sym(self.class::MODEL)].new
-
-          validate_store(@token_store, @token_store_name)
+          @token_store_name = token_store
+          @token_store = config.token_stores.fetch(token_store.to_sym) do |key|
+            raise MissingConfiguration,
+                  "There is no token store named \"#{key}\". " \
+                  "Available token stores: #{config.token_stores}."
+          end
         end
 
         def access_token
@@ -103,14 +105,6 @@ module Fortnox
 
         def config
           Fortnox::API.config
-        end
-
-        def validate_store(store, name)
-          if store.nil?
-            raise MissingConfiguration,
-                  "There is no token store named \"#{name}\". " \
-                  "config.token_stores: #{config.token_stores}."
-          end
         end
 
         def expired?(token)

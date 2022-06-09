@@ -14,7 +14,7 @@ module Fortnox
       base_url: 'https://api.fortnox.se/3/',
       client_id: nil,
       client_secret: nil,
-      token_stores: nil,
+      token_stores: {},
       token_url: 'https://apps.fortnox.se/oauth-v1/token',
       debugging: false,
       logger: lambda {

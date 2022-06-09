@@ -45,7 +45,7 @@ describe Fortnox::API do
     describe 'token_stores' do
       let(:config_key) { :token_stores }
 
-      it { is_expected.to be_nil }
+      it { is_expected.to eq({}) }
     end
 
     describe 'debugging' do
