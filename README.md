@@ -1,5 +1,5 @@
 # Fortnox API
- > Wrapper gem for Fortnox AB's version 3 REST(ish) API. If you need to integrate an existing or new Ruby or Rails app against Fortnox this gem will save you a lot of time, you are welcome. Feel free to repay the community with some nice PRs of your own :simple_smile:
+Wrapper gem for Fortnox AB's version 3 REST(ish) API. If you need to integrate an existing or new Ruby or Rails app against Fortnox this gem will save you a lot of time, you are welcome. Feel free to repay the community with some nice PRs of your own 😃
 
 # Status for master
 [![Gem version](https://img.shields.io/gem/v/fortnox-api.svg?style=flat-square)](https://rubygems.org/gems/fortnox-api)
@@ -10,12 +10,12 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/89d30a43fedf210d470b/maintainability)](https://codeclimate.com/github/accodeing/fortnox-api/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/89d30a43fedf210d470b/test_coverage)](https://codeclimate.com/github/accodeing/fortnox-api/test_coverage)
 
-The rough status of this project is as follows (as of December 2020):
-* Development is not as active as it used to be, but the project is not forgotten. We have an app running this gem in production and it works like a charm for what we do.
-* We hope to be able to continue with our work with [rest_easy gem](https://github.com/accodeing/rest_easy), which generalize REST API's in general.
+The rough status of this project is as follows (as of summer 2022):
+* `master` branch and the released versions should be production ready.
+* We are planning on continue with our work with [rest_easy gem](https://github.com/accodeing/rest_easy) in the near future. It's a way to generalize REST API's in general.
 * Basic structure complete. Things like getting customers and invoices, updating and saving etc.
 * Some advanced features implemented, for instance support for multiple Fortnox accounts and filtering entities.
-* We have ideas for more advanced features, like sorting entities, pagination of results but nothing in the pipeline right now.
+* We have ideas for more advanced features, like sorting entities, pagination of results but it's not implemented...
 * A few models implemented. Right now we pretty good support for `Customer`, `Invoice`, `Order`, `Article`, `Label` and `Project`. Adding more models in general is quick and easy (that's the whole point with this gem), see the developer guide further down.
 
 # Architecture overview
