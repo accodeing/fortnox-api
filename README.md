@@ -143,10 +143,10 @@ class MyTokenStore
   alias_method :refresh_token, :__refresh_token
 
   def initialize
-    @redis = Redis.new
+    @redis = Redis.new() # Pass parameters like host and port to redis
 
-    __access_token = @redis.get('access_token')
-    __refresh_token = @redis.get('refresh_token')
+    @__access_token = @redis.get('access_token')
+    @__refresh_token = @redis.get('refresh_token')
   end
 
   def access_token= token
@@ -187,12 +187,12 @@ class MyTokenStore
   alias_method :refresh_token, :__refresh_token
 
   def initialize(account: nil)
-    @redis = Redis.new
+    @redis = Redis.new() # Pass parameters like host and port to redis
 
-    @prefix = account.empty? ? :default : "#{account}"
+    @prefix = account&.nil? ? :default : "#{account}"
 
-    __access_token = @redis.get(access_token_key)
-    __refresh_token = @redis.get(refresh_token_key)
+    @__access_token = @redis.get(access_token_key)
+    @__refresh_token = @redis.get(refresh_token_key)
   end
 
   def access_token=(token)
