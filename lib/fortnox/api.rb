@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'set'
+require 'dry-configurable'
 require 'dry-struct'
 require 'logger'
 
