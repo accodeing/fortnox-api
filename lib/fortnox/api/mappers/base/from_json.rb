@@ -51,7 +51,7 @@ module Fortnox
             raise MissingModelOrMapperException, message if ENV['RUBY_ENV']
 
             Fortnox::API.logger.warn("Missing Model or Mapper implementation for #{key} with attributes: #{collection}")
-            return convert_hash_keys_from_json_format(collection, {})
+            convert_hash_keys_from_json_format(collection, {})
           end
         end
 

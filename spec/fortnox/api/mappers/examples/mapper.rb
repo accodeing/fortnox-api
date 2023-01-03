@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # rubocop:disable Metrics/LineLength
-shared_examples_for 'mapper' do |key_map, json_entity_wrapper = nil, json_collection_wrapper = nil, check_constants: true|
+shared_examples_for 'mapper' do |key_map = nil, json_entity_wrapper = nil, json_collection_wrapper = nil, check_constants: true|
   # rubocop:enable Metrics/LineLength
 
   it { is_expected.to respond_to(:wrapped_json_collection_to_entities_hash) }
@@ -12,7 +12,7 @@ shared_examples_for 'mapper' do |key_map, json_entity_wrapper = nil, json_collec
     describe 'key_map' do
       subject { described_class::KEY_MAP }
 
-      it { is_expected.to eq(key_map) }
+      it { expect(subject).to eq(key_map) }
     end
 
     unless json_entity_wrapper.nil?

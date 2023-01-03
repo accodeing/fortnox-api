@@ -72,7 +72,7 @@ describe Fortnox::API do
       subject { described_class.debugging }
 
       it 'is available' do
-        is_expected.to be false
+        expect(subject).to be false
       end
     end
 
@@ -80,7 +80,7 @@ describe Fortnox::API do
       subject { described_class.logger }
 
       it 'is available' do
-        is_expected.to be_a Logger
+        expect(subject).to be_a Logger
       end
     end
   end

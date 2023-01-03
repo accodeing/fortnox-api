@@ -9,7 +9,9 @@ RSpec.describe Fortnox::API::Types::OrderRow, type: :type do
 
   valid_hash = { ordered_quantity: 10.5 }
 
-  it { is_expected.to require_attribute(:ordered_quantity, valid_hash) }
+  it {
+    expect(subject).to require_attribute(:ordered_quantity, valid_hash)
+  }
 
   it_behaves_like 'DocumentRow', valid_hash
 end

@@ -33,13 +33,13 @@ module Matchers
       def rejects_non_string?
         non_string = 10.0
         @klass.new(@valid_hash.merge(@attribute => non_string))
-      rescue Fortnox::API::InvalidAttributeValueError => error
+      rescue Fortnox::API::InvalidAttributeValueError => e
         expected_message = "#{non_string.inspect} (#{non_string.class}) "\
                            "has invalid type for #{@attribute.inspect}"
-        return true if error.message.include?(expected_message)
+        return true if e.message.include?(expected_message)
 
         fail_message = "Expected error message to include #{expected_message.inspect}, "\
-                       "but was #{error.message.inspect}"
+                       "but was #{e.message.inspect}"
         raise(fail_message)
       end
     end

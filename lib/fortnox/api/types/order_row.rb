@@ -9,7 +9,7 @@ module Fortnox
         STUB = { ordered_quantity: 0 }.freeze
 
         # OrderedQuantity Ordered quantity
-        attribute :ordered_quantity, Types::Required::Float
+        attribute :ordered_quantity, ::Fortnox::API::Types::Required::Float
       end
     end
   end

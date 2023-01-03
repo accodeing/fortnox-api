@@ -8,14 +8,14 @@ describe Fortnox::API::Types::Required, type: :type do
   before { stub_const('TestClass', Class.new(Dry::Struct)) }
 
   shared_examples_for 'required attribute' do |_type|
-    subject { -> { TestClass.new({}) } }
+    subject { -> { TestClass.new } }
 
     let(:error_message) do
       "[#{TestClass}.new] #{:required_attribute.inspect} is missing in Hash input"
     end
 
     it 'raises an error' do
-      is_expected.to raise_error(Dry::Struct::Error, error_message)
+      expect(subject).to raise_error(Dry::Struct::Error, error_message)
     end
   end
 

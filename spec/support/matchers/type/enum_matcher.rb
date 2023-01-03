@@ -15,7 +15,7 @@ module Matchers
       private
 
       def expected_type?
-        @actual_type = @klass.schema[@attribute]
+        @actual_type = @klass.schema.keys.find { |x| x.name == @attribute }&.type
         @actual_type == @enum_type
       end
     end
