@@ -19,9 +19,16 @@ and this project adheres to
   Fortnox has implemented. The configuration part of the gem is new, have a look
   at the readme.
 
+### Fixed
+
+- Missing runtime dependencies dry-configurable and dry-container is added.
+  Those were indirect dependencies before via other dry libs, but we use them
+  explicitly in the gem, so they should be included as real dependencies. Also,
+  newer versions of these gems did actually break the gem.
+
 ### Removed
 
-- Drops support for Ruby 2.5 since it's reached end of life
+- **Breaking** Drops support for Ruby 2.6 since it's reached end of life
 - Token rotation is removed since Fortnox counts rate limit on tenant and client
   id. Before, you could get around this by using multiple access tokens. That's
   not possible anymore, so token rotation is simply removed.
