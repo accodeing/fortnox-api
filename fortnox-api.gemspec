@@ -24,8 +24,10 @@ Gem::Specification.new do |spec| # rubocop:disable Metrics/BlockLength
 
   spec.required_ruby_version = '>= 2.6'
   spec.add_dependency 'countries', '~> 3.0'
-  spec.add_dependency 'dry-struct', '~> 0.1'
-  spec.add_dependency 'dry-types', '~> 0.8', '< 0.13.0'
+  spec.add_dependency 'dry-configurable', '0.15.0'
+  spec.add_dependency 'dry-container', '0.9.0'
+  spec.add_dependency 'dry-struct', '0.4.0'
+  spec.add_dependency 'dry-types', '0.12.3'
   spec.add_dependency 'httparty', '~> 0.17'
   spec.add_dependency 'jwt', '~> 2.3.0'
 
