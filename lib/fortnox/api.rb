@@ -2,7 +2,7 @@
 
 require 'set'
 require 'dry-configurable'
-require 'dry-struct'
+require 'dry-container'
 require 'logger'
 
 require_relative 'api/version'
