@@ -253,12 +253,12 @@ class MyTokenStore
   end
 
   def access_token= token
-    __access_token = token
+    @__access_token = token
     @redis.set('access_token', token)
   end
 
   def refresh_token= token
-    __refresh_token = token
+    @__refresh_token = token
     @redis.set('refresh_token', token)
   end
 end
@@ -304,12 +304,12 @@ class MyTokenStore
   end
 
   def access_token=(token)
-    __access_token = token
+    @__access_token = token
     @redis.set(access_token_key, token)
   end
 
   def refresh_token=(token)
-    __refresh_token = token
+    @__refresh_token = token
     @redis.set(refresh_token_key, token)
   end
 
