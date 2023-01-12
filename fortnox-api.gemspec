@@ -22,7 +22,7 @@ Gem::Specification.new do |spec| # rubocop:disable Metrics/BlockLength
   spec.test_files    = spec.files.grep(%r{^(spec)/})
   spec.require_paths = ['lib']
 
-  spec.required_ruby_version = '>= 2.6'
+  spec.required_ruby_version = '>= 2.7'
   spec.add_dependency 'countries', '~> 3.0'
   spec.add_dependency 'dry-configurable', '0.15.0'
   spec.add_dependency 'dry-container', '0.9.0'

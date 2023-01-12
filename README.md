@@ -147,7 +147,7 @@ will not need to use them directly.
 
 # Requirements
 
-This gem is built for Ruby 2.6 or higher (see Travis configuration file for what
+This gem is built for Ruby 2.7 or higher (see Travis configuration file for what
 versions we are testing against).
 
 ## Installation
