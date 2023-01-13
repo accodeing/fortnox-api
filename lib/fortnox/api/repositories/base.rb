@@ -111,7 +111,7 @@ module Fortnox
           decoded_token = JWT.decode token, nil, false
           decoded_token[0]['exp'] < (Time.now.to_i - TIME_MARGIN_FOR_ACCESS_TOKEN_RENEWAL)
         rescue JWT::DecodeError
-          raise Exception, "Could not decode access token for token store \"#{@token_store_name}\""
+          raise StandardError, "Could not decode access token for token store \"#{@token_store_name}\""
         end
 
         def renew_access_token
@@ -142,7 +142,7 @@ module Fortnox
                       "Response message: #{response.message}. " \
                       "Response body: #{response.body}"
 
-            raise Exception, message
+            raise StandardError, message
           end
 
           new_access_token = response.parsed_response['access_token']

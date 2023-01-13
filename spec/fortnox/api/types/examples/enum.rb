@@ -38,7 +38,7 @@ shared_examples_for 'enum' do |name, values, auto_crop: false|
       context 'with a string that starts like a random member from the enum' do
         subject { -> { klass[input] } }
 
-        let(:input) { enum_value.downcase + 'more string' }
+        let(:input) { "#{enum_value.downcase}more string" }
 
         if auto_crop
           it { is_expected.to eq enum_value }

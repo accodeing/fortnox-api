@@ -37,7 +37,7 @@ describe Fortnox::API::Types::Email do
 
   context 'when created with more than 1024 characters' do
     legal_characters = 'abcdefghijklmnopqrstuvwxyz0123456789.-_+'.split('')
-    too_long_email = (legal_characters * 35).shuffle.join + '@example.com'
+    too_long_email = "#{(legal_characters * 35).shuffle.join}@example.com"
     include_examples 'raises ConstraintError', too_long_email
   end
 end

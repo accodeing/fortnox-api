@@ -11,19 +11,19 @@ class TokenStore
   end
 
   def refresh_token
-    raise Exception,
+    raise StandardError,
           'Something went wrong, #refresh_token should not be called during this test. ' \
           'Verify that the access token is valid.'
   end
 
   def access_token=(_token)
-    raise Exception,
+    raise StandardError,
           'Something went wrong, #access_token= should not be called during this test. ' \
           'Verify that the access token is valid.'
   end
 
   def refresh_token=(_token)
-    raise Exception,
+    raise StandardError,
           'Something went wrong, #refresh_token= should not be called during this test. ' \
           'Verify that the access token is valid.'
   end
