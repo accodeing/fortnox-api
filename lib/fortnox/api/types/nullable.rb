@@ -15,8 +15,8 @@ module Fortnox
 
           begin
             ::Date.parse(value.to_s)
-          rescue StandardError
-            nil
+          rescue ::Date::Error
+            raise Fortnox::API::AttributeError, 'invalid date'
           end
         end
       end
