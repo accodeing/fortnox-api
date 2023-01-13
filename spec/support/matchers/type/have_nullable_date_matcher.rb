@@ -11,9 +11,6 @@ module Matchers
         @attribute = attribute
         @valid_value = valid_value
         @invalid_value = invalid_value
-        @expected_error = ArgumentError
-        @expected_error_message = 'invalid date'
-        @failure_description = ''
       end
 
       def matches?(klass)
@@ -24,10 +21,6 @@ module Matchers
 
       def description
         "have nullable attribute #{@attribute.inspect}"
-      end
-
-      def failure_message
-        "Expected class to have nullable attribute #{@attribute.inspect}" << @failure_description
       end
 
       private
@@ -43,15 +36,6 @@ module Matchers
 
       def rejects_invalid_value?
         @klass.new(@attribute => @invalid_value)
-
-        @failure_description << " (Expected #{@expected_error}, but got none)"
-        false
-      rescue @expected_error => error
-        return true if error.message == @expected_error_message
-
-        fail_message = "Expected error message to include #{expected_message.inspect}, "\
-                       "but was #{error.message.inspect}"
-        raise(fail_message)
       end
     end
   end

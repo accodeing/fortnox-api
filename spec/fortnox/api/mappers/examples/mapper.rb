@@ -12,7 +12,7 @@ shared_examples_for 'mapper' do |key_map, json_entity_wrapper = nil, json_collec
     describe 'key_map' do
       subject { described_class::KEY_MAP }
 
-      it { is_expected.to eq(key_map) }
+      it { expect(subject).to eq(key_map) }
     end
 
     unless json_entity_wrapper.nil?
