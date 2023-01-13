@@ -36,15 +36,14 @@ shared_examples_for 'enum' do |name, values, auto_crop: false|
       end
 
       context 'with a string that starts like a random member from the enum' do
-        subject { -> { klass[input] } }
-
         let(:input) { "#{enum_value.downcase}more string" }
 
         if auto_crop
           it { is_expected.to eq enum_value }
         else
-
-          it { is_expected.to raise_error(Dry::Types::ConstraintError) }
+          it do
+            expect { klass[input] }.to raise_error(Dry::Types::ConstraintError)
+          end
         end
       end
     end
