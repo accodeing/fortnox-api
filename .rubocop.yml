@@ -32,3 +32,6 @@ Style/WordArray:
 
 RSpec/MultipleMemoizedHelpers:
   Max: 7
+
+Lint/RaiseException:
+  AllowedImplicitNamespaces: ['Fortnox::API']

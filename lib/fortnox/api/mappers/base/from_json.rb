@@ -4,7 +4,7 @@ module Fortnox
   module API
     module Mapper
       module FromJSON
-        class MissingModelOrMapperException < StandardError
+        class MissingModelOrMapperException < Fortnox::API::Exception
         end
 
         def wrapped_json_collection_to_entities_hash(json_collection_hash)
