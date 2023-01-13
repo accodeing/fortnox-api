@@ -9,7 +9,6 @@ Gemfile.lock
 
 # Ruby version files
 .ruby-version
-.tool-versions
 
 # Simplecov
 coverage/
