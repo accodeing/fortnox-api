@@ -5,10 +5,10 @@ lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require_relative 'lib/fortnox/api/version'
 
-Gem::Specification.new do |spec| # rubocop:disable Metrics/BlockLength
+Gem::Specification.new do |spec|
   spec.name          = 'fortnox-api'
   spec.version       = Fortnox::API::VERSION
-  spec.authors       = ['Jonas Schubert Erlandsson', 'Hannes Elvemyr', 'Felix Holmgren']
+  spec.authors       = ['Jonas Schubert Erlandsson', 'Hannes Elvemyr', 'Felix Holmgren', 'Mike Eirih']
   spec.email         = ['info@accodeing.com']
   spec.summary       = 'Gem to use Fortnox REST API in Ruby.'
   spec.description   = 'This gem uses the HTTParty library to abstract away the REST calls. It gives you access to a '\
