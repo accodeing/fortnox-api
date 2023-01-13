@@ -14,9 +14,9 @@ describe Fortnox::API::Repository::Customer, order: :defined, integration: true 
   include Helpers::Configuration
   include Helpers::Repositories
 
-  before { set_api_test_configuration }
-
   subject(:repository) { described_class.new }
+
+  before { set_api_test_configuration }
 
   include_examples '.save', :name
 

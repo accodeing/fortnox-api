@@ -16,9 +16,9 @@ describe Fortnox::API::Repository::Invoice, order: :defined, integration: true d
   include Helpers::Configuration
   include Helpers::Repositories
 
-  before { set_api_test_configuration }
-
   subject(:repository) { described_class.new }
+
+  before { set_api_test_configuration }
 
   required_hash = { customer_number: '1' }
 
@@ -152,7 +152,7 @@ describe Fortnox::API::Repository::Invoice, order: :defined, integration: true d
         end
 
         it 'does not reset the value' do
-          is_expected.to eq('A comment to be reset')
+          expect(subject).to eq('A comment to be reset')
         end
       end
     end
@@ -194,7 +194,7 @@ describe Fortnox::API::Repository::Invoice, order: :defined, integration: true d
         end
 
         it 'does not reset the country' do
-          is_expected.to eq('SE')
+          expect(subject).to eq('SE')
         end
       end
     end

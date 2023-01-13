@@ -46,11 +46,11 @@ module Matchers
 
         @failure_description << " (Expected #{@expected_error}, but got none)"
         false
-      rescue @expected_error => e
-        return true if e.message == @expected_error_message
+      rescue @expected_error => exception
+        return true if exception.message == @expected_error_message
 
         fail_message = "Expected error message to include #{@expected_error_message.inspect}, "\
-                       "but was #{e.message.inspect}"
+                       "but was #{exception.message.inspect}"
         raise(fail_message)
       end
     end

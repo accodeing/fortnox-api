@@ -15,9 +15,9 @@ describe Fortnox::API::Repository::Order, order: :defined, integration: true do
   include Helpers::Configuration
   include Helpers::Repositories
 
-  before { set_api_test_configuration }
-
   subject(:repository) { described_class.new }
+
+  before { set_api_test_configuration }
 
   required_hash = { customer_number: '1' }
 

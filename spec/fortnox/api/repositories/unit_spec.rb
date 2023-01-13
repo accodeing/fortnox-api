@@ -13,9 +13,9 @@ describe Fortnox::API::Repository::Unit, order: :defined, integration: true do
   include Helpers::Configuration
   include Helpers::Repositories
 
-  before { set_api_test_configuration }
-
   subject(:repository) { described_class.new }
+
+  before { set_api_test_configuration }
 
   # When recording new VCR cassettes, code needs to be changed to a unique value
   include_examples '.save',
