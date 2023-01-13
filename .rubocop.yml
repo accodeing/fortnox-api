@@ -29,3 +29,6 @@ Naming/RescuedExceptionsVariableName:
 
 Style/WordArray:
   EnforcedStyle: brackets
+
+RSpec/MultipleMemoizedHelpers:
+  Max: 7
