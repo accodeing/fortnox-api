@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 require 'set'
-require 'dry-struct'
+require 'dry-configurable'
+require 'dry-container'
 require 'logger'
 
 require_relative 'api/version'
@@ -18,19 +19,19 @@ module Fortnox
       token_url: 'https://apps.fortnox.se/oauth-v1/token',
       debugging: false,
       logger: lambda {
-        logger = Logger.new(STDOUT)
+        logger = Logger.new($stdout)
         logger.level = Logger::WARN
         return logger
       }.call
     }.freeze
 
-    setting :base_url, DEFAULT_CONFIGURATION[:base_url]
-    setting :client_id, DEFAULT_CONFIGURATION[:client_id]
-    setting :client_secret, DEFAULT_CONFIGURATION[:client_secret]
-    setting :token_stores, DEFAULT_CONFIGURATION[:token_stores]
-    setting :token_url, DEFAULT_CONFIGURATION[:token_url]
-    setting :debugging, DEFAULT_CONFIGURATION[:debugging], reader: true
-    setting :logger, DEFAULT_CONFIGURATION[:logger], reader: true
+    setting :base_url, default: DEFAULT_CONFIGURATION[:base_url]
+    setting :client_id, default: DEFAULT_CONFIGURATION[:client_id]
+    setting :client_secret, default: DEFAULT_CONFIGURATION[:client_secret]
+    setting :token_stores, default: DEFAULT_CONFIGURATION[:token_stores]
+    setting :token_url, default: DEFAULT_CONFIGURATION[:token_url]
+    setting :debugging, default: DEFAULT_CONFIGURATION[:debugging], reader: true
+    setting :logger, default: DEFAULT_CONFIGURATION[:logger], reader: true
 
     class Exception < StandardError
     end

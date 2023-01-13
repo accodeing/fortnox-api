@@ -12,11 +12,7 @@ module Dry
         new_options = option_names.each_with_object({}) do |name, hash|
           hash[name] = true
         end
-        with(new_options)
-      end
-
-      def is?(option_name)
-        @options[option_name]
+        with(**new_options)
       end
     end
   end
@@ -25,7 +21,7 @@ end
 module Fortnox
   module API
     module Types
-      include Dry::Types.module
+      include Dry.Types(default: :nominal)
       ISO3166.configure { |config| config.locales = %i[en sv] }
 
       THE_TRUTH = { true => true, 'true' => true, false => false, 'false' => false }.freeze
@@ -35,10 +31,9 @@ module Fortnox
       require_relative 'types/nullable'
 
       require_relative 'types/enums'
-
       require_relative 'types/sized'
 
-      AccountNumber = Strict::Int
+      AccountNumber = Strict::Integer
                       .constrained(gteq: 0, lteq: 9999)
                       .optional
                       .constructor do |value|
@@ -61,7 +56,7 @@ module Fortnox
                   next CountryString.new('SE') if value.match?(/^s(e$|we|ve)/i)
 
                   country = ::ISO3166::Country[value] ||
-                            ::ISO3166::Country.find_country_by_name(value) ||
+                            ::ISO3166::Country.find_country_by_any_name(value) ||
                             ::ISO3166::Country.find_country_by_translated_names(value)
 
                   raise Dry::Types::ConstraintError.new('value violates constraints', value) if country.nil?
@@ -131,9 +126,8 @@ module Fortnox
                      .constrained(format: /^[0-9]{4}$/)
                      .optional
                      .constructor do |value|
-                       next nil if value == ''
-
-                       next value.to_s if value.is_a?(Integer)
+                       next nil if value == '' || value.nil?
+                       next value.to_s if value.is_a?(::Integer)
 
                        value
                      end
