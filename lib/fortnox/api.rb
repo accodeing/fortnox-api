@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require 'set'
+require 'dry-configurable'
+require 'dry-container'
 require 'dry-struct'
 require 'logger'
 
@@ -19,29 +21,29 @@ module Fortnox
       access_tokens: nil,
       debugging: false,
       logger: lambda {
-        logger = Logger.new(STDOUT)
+        logger = Logger.new($stdout)
         logger.level = Logger::WARN
         return logger
       }.call
     }.freeze
 
-    setting :base_url, DEFAULT_CONFIGURATION[:base_url]
-    setting :client_secret, DEFAULT_CONFIGURATION[:client_secret]
-    setting :token_store, DEFAULT_CONFIGURATION[:token_store]
-    setting :access_token, DEFAULT_CONFIGURATION[:access_token] do |value|
+    setting :base_url, default: DEFAULT_CONFIGURATION[:base_url]
+    setting :client_secret, default: DEFAULT_CONFIGURATION[:client_secret]
+    setting :token_store, default: DEFAULT_CONFIGURATION[:token_store]
+    setting :access_token, default: DEFAULT_CONFIGURATION[:access_token], constructor: (proc do |value|
       next if value.nil? # nil is a valid unassigned value
       invalid_access_token_format!(value) unless value.is_a?(String)
       config.token_store = { default: value }
       value
-    end
-    setting :access_tokens, DEFAULT_CONFIGURATION[:access_tokens] do |value|
+    end)
+    setting :access_tokens, default: DEFAULT_CONFIGURATION[:access_tokens], constructor: (proc do |value|
       next if value.nil? # nil is a valid unassigned value
       invalid_access_tokens_format!(value) unless value.is_a?(Hash) || value.is_a?(Array)
       config.token_store = value.is_a?(Hash) ? value : { default: value }
       value
-    end
-    setting :debugging, DEFAULT_CONFIGURATION[:debugging], reader: true
-    setting :logger, DEFAULT_CONFIGURATION[:logger], reader: true
+    end)
+    setting :debugging, default: DEFAULT_CONFIGURATION[:debugging], reader: true
+    setting :logger, default: DEFAULT_CONFIGURATION[:logger], reader: true
 
     class Exception < StandardError
     end

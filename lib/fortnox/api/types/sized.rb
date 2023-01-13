@@ -14,8 +14,8 @@ module Fortnox
 
         module Integer
           def self.[](low, high)
-            Types::Strict::Int.constrained(gteq: low, lteq: high).optional.constructor do |value|
-              value.to_i unless value.nil?
+            Types::Strict::Integer.constrained(gteq: low, lteq: high).optional.constructor do |value|
+              value&.to_i
             end
           end
         end
