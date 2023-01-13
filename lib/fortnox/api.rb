@@ -3,7 +3,6 @@
 require 'set'
 require 'dry-configurable'
 require 'dry-container'
-require 'dry-struct'
 require 'logger'
 
 require_relative 'api/circular_queue'
