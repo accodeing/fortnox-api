@@ -15,7 +15,7 @@ module Matchers
         @expected_error_message = 'invalid date'
         @failure_description = ''
 
-        super
+        super(attribute, valid_value, invalid_value, nil)
       end
 
       def matches?(klass)
