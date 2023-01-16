@@ -24,19 +24,19 @@ describe Fortnox::API::Model::Base do
     end
 
     context 'without required attribute' do
-      subject { -> { entity_class.new({}) } }
-
-      it { is_expected.to raise_error Fortnox::API::Exception }
-      it { is_expected.to raise_error Fortnox::API::MissingAttributeError }
-      it { is_expected.to raise_error Fortnox::API::MissingAttributeError, /Missing attribute :string/ }
+      it do
+        expect do
+          entity_class.new({})
+        end.to raise_error Fortnox::API::MissingAttributeError, /Missing attribute :string/
+      end
     end
 
     context 'with invalid attribute value' do
-      subject { -> { entity_class.new(string: 'Test', account: 13_337) } }
-
-      it { is_expected.to raise_error Fortnox::API::Exception }
-      it { is_expected.to raise_error Fortnox::API::AttributeError }
-      it { is_expected.to raise_error Fortnox::API::AttributeError, /invalid type for :account/ }
+      it do
+        expect do
+          entity_class.new(string: 'Test', account: 13_337)
+        end.to raise_error Fortnox::API::AttributeError, /invalid type for :account/
+      end
     end
   end
 
@@ -44,15 +44,13 @@ describe Fortnox::API::Model::Base do
     let(:original) { entity_class.new(string: 'Test') }
 
     context 'with new, simple value' do
-      subject { updated_model }
-
-      let(:updated_model) { original.update(string: 'Variant') }
+      subject(:updated_model) { original.update(string: 'Variant') }
 
       it { is_expected.to be_new }
       it { is_expected.not_to be_saved }
 
       it 'returns a new object' do
-        expect(subject).not_to eql(original)
+        expect(updated_model).not_to eql(original)
       end
 
       describe 'updated attribute' do
@@ -72,7 +70,7 @@ describe Fortnox::API::Model::Base do
       subject(:updated_model) { original.update(string: 'Test') }
 
       it 'returns the same object' do
-        expect(subject).to eql(original)
+        expect(updated_model).to eql(original)
       end
 
       it 'returns a object with the same value' do

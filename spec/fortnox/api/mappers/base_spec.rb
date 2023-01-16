@@ -127,10 +127,10 @@ describe Fortnox::API::Mapper::Base do
 
     describe 'special cases' do
       context 'with SE' do
-        subject { mapper.call('SE') }
+        subject(:se_mapper) { mapper.call('SE') }
 
         it 'translates code to country name in Swedish' do
-          expect(subject).to eq('Sverige')
+          expect(se_mapper).to eq('Sverige')
         end
       end
 

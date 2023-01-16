@@ -9,7 +9,7 @@ describe Fortnox::API::Mapper::FromJSON do
 
   before do
     Test::BaseMapper.class_eval do
-      include Fortnox::API::Mapper::FromJSON
+      include Fortnox::API::Mapper::FromJSON # rubocop:disable RSpec/DescribedClass
     end
 
     register_mapper(:categories, Test::CategoryMapper)

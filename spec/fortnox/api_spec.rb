@@ -64,18 +64,18 @@ describe Fortnox::API do
 
   describe 'readers for' do
     describe 'debugging' do
-      subject { described_class.debugging }
+      subject(:debugging) { described_class.debugging }
 
       it 'is available' do
-        expect(subject).to be false
+        expect(debugging).to be false
       end
     end
 
     describe 'logger' do
-      subject { described_class.logger }
+      subject(:logger) { described_class.logger }
 
       it 'is available' do
-        expect(subject).to be_a Logger
+        expect(logger).to be_a Logger
       end
     end
   end
