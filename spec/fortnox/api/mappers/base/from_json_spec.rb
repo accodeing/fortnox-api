@@ -8,10 +8,8 @@ describe Fortnox::API::Mapper::FromJSON do
   include_context 'with JSON conversion'
 
   before do
-    module Test
-      class BaseMapper
-        include Fortnox::API::Mapper::FromJSON
-      end
+    Test::BaseMapper.class_eval do
+      include Fortnox::API::Mapper::FromJSON
     end
 
     register_mapper(:categories, Test::CategoryMapper)
