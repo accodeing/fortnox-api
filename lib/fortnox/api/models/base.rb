@@ -78,7 +78,7 @@ module Fortnox
 
         # dry-types filter anything that isn't specified as an attribute on the
         # class that is being instantiated. This wrapper preserves the meta
-        # properties we need to track object state during that initialization and
+        # properties we need to track object state during that initialisation and
         # sets them on the object after dry-types is done with it.
         def self.preserve_meta_properties(hash)
           is_unsaved = hash.delete(:unsaved) { true }
