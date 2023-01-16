@@ -23,13 +23,13 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.required_ruby_version = '>= 2.7'
-  spec.add_dependency 'countries', '~> 5.2'
-  spec.add_dependency 'dry-configurable', '~> 1.0.1'
-  spec.add_dependency 'dry-container', '~> 0.11.0'
-  spec.add_dependency 'dry-struct', '~> 1.6.0'
-  spec.add_dependency 'dry-types', '~> 1.7.0'
-  spec.add_dependency 'httparty', '~> 0.17.3'
-  spec.add_dependency 'jwt', '~> 2.6.0'
+  spec.add_dependency 'countries', '~> 5.0'
+  spec.add_dependency 'dry-configurable', '~> 1.0'
+  spec.add_dependency 'dry-container', '~> 0.10'
+  spec.add_dependency 'dry-struct', '~> 1.6'
+  spec.add_dependency 'dry-types', '~> 1.7'
+  spec.add_dependency 'httparty', '~> 0.17'
+  spec.add_dependency 'jwt', '~> 2.3'
 
   spec.add_development_dependency 'bundler', '~> 2.4'
   spec.add_development_dependency 'dotenv', '~> 2.8'
