@@ -35,6 +35,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'dotenv', '~> 2.8'
   spec.add_development_dependency 'guard', '~> 2.18'
   spec.add_development_dependency 'guard-rspec', '~> 4.7'
+  spec.add_development_dependency 'guard-rubocop', '~> 1.5'
   spec.add_development_dependency 'pry', '~> 0'
   spec.add_development_dependency 'rake', '~> 13.0'
   spec.add_development_dependency 'rspec', '~> 3.12'
