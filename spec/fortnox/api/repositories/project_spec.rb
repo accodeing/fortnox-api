@@ -8,7 +8,7 @@ require 'fortnox/api/repositories/examples/all'
 require 'fortnox/api/repositories/examples/find'
 require 'fortnox/api/repositories/examples/save'
 
-describe Fortnox::API::Repository::Project, order: :defined, integration: true do
+describe Fortnox::API::Repository::Project, integration: true, order: :defined do
   include Helpers::Configuration
   include Helpers::Repositories
 

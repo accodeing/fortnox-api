@@ -12,7 +12,7 @@ require 'fortnox/api/repositories/examples/save_with_nested_model'
 require 'fortnox/api/repositories/examples/save_with_specially_named_attribute'
 require 'fortnox/api/repositories/examples/only'
 
-describe Fortnox::API::Repository::Invoice, order: :defined, integration: true do
+describe Fortnox::API::Repository::Invoice, integration: true, order: :defined do
   include Helpers::Configuration
   include Helpers::Repositories
 

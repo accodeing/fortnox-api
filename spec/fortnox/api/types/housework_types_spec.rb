@@ -136,7 +136,7 @@ describe 'HouseworkTypes', integration: true do
 
     let(:error_message) do
       "Dokument med skattereduktionstypen '#{TYPE_RUT}' " \
-      "får inte innehålla rader med husarbetestypen '#{type}'."
+        "får inte innehålla rader med husarbetestypen '#{type}'."
     end
 
     it 'raises an error' do

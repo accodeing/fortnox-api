@@ -45,7 +45,7 @@ describe Fortnox::API::Types::Country do
         expect(described_class['SV']).to eq 'SV'
       end
 
-      it 'translated Switzerland to ' do
+      it 'translated Switzerland to' do
         expect(described_class['Switzerland']).to eq 'CH'
       end
     end
