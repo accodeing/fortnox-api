@@ -11,9 +11,9 @@ Gem::Specification.new do |spec|
   spec.email         = ['info@accodeing.com']
   spec.summary       = 'Gem to use Fortnox REST API in Ruby.'
   spec.description   = 'This gem uses the HTTParty library to abstract away the REST calls. It gives you access to a ' \
-                       'number of objects that behave a lot like ActiveRecord instances, giving you access to methods ' \
-                       'like `all`, `find`, `find_by_...` and so on. And each individual instance can be easily' \
-                       'persistable to Fortnox again using the `save` method.'
+                       'number of objects that behave a lot like ActiveRecord instances, giving you access to ' \
+                       'methods like `all`, `find`, `find_by_...` and so on. And each individual instance can be' \
+                       'easily persistable to Fortnox again using the `save` method.'
   spec.homepage      = 'http://github.com/accodeing/fortnox-api'
   spec.license       = 'LGPL-3.0'
 
