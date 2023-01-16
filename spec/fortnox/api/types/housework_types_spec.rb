@@ -11,7 +11,11 @@ describe 'HouseworkTypes', integration: true do
   include Helpers::Configuration
   include Helpers::Repositories
 
-  before { set_api_test_configuration }
+  before do
+    set_api_test_configuration
+    stub_const('TYPE_ROT', Fortnox::API::Types::TaxReductionTypes['rot'])
+    stub_const('TYPE_RUT', Fortnox::API::Types::TaxReductionTypes['rut'])
+  end
 
   let(:repository) { Fortnox::API::Repository::Order.new }
 
@@ -24,7 +28,7 @@ describe 'HouseworkTypes', integration: true do
     let(:document) do
       Fortnox::API::Model::Order.new(
         customer_number: '1',
-        tax_reduction_type: tax_reduction_type,
+        tax_reduction_type: Object.const_get(tax_reduction_type),
         order_rows: [
           Fortnox::API::Types::OrderRow.new(
             ordered_quantity: 1,
@@ -49,28 +53,25 @@ describe 'HouseworkTypes', integration: true do
     end
   end
 
-  TYPE_ROT = Fortnox::API::Types::TaxReductionTypes['rot']
-  TYPE_RUT = Fortnox::API::Types::TaxReductionTypes['rut']
+  it_behaves_like 'housework type', 'CONSTRUCTION', 'TYPE_ROT'
+  it_behaves_like 'housework type', 'ELECTRICITY', 'TYPE_ROT'
+  it_behaves_like 'housework type', 'GLASSMETALWORK', 'TYPE_ROT'
+  it_behaves_like 'housework type', 'GROUNDDRAINAGEWORK', 'TYPE_ROT'
+  it_behaves_like 'housework type', 'MASONRY', 'TYPE_ROT'
+  it_behaves_like 'housework type', 'PAINTINGWALLPAPERING', 'TYPE_ROT'
+  it_behaves_like 'housework type', 'HVAC', 'TYPE_ROT'
+  it_behaves_like 'housework type', 'OTHERCOSTS', 'TYPE_ROT', housework: false
 
-  it_behaves_like 'housework type', 'CONSTRUCTION', TYPE_ROT
-  it_behaves_like 'housework type', 'ELECTRICITY', TYPE_ROT
-  it_behaves_like 'housework type', 'GLASSMETALWORK', TYPE_ROT
-  it_behaves_like 'housework type', 'GROUNDDRAINAGEWORK', TYPE_ROT
-  it_behaves_like 'housework type', 'MASONRY', TYPE_ROT
-  it_behaves_like 'housework type', 'PAINTINGWALLPAPERING', TYPE_ROT
-  it_behaves_like 'housework type', 'HVAC', TYPE_ROT
-  it_behaves_like 'housework type', 'OTHERCOSTS', TYPE_ROT, housework: false
-
-  it_behaves_like 'housework type', 'MAJORAPPLIANCEREPAIR', TYPE_RUT
-  it_behaves_like 'housework type', 'MOVINGSERVICES', TYPE_RUT
-  it_behaves_like 'housework type', 'ITSERVICES', TYPE_RUT
-  it_behaves_like 'housework type', 'CLEANING', TYPE_RUT
-  it_behaves_like 'housework type', 'TEXTILECLOTHING', TYPE_RUT
-  it_behaves_like 'housework type', 'SNOWPLOWING', TYPE_RUT
-  it_behaves_like 'housework type', 'GARDENING', TYPE_RUT
-  it_behaves_like 'housework type', 'BABYSITTING', TYPE_RUT
-  it_behaves_like 'housework type', 'OTHERCARE', TYPE_RUT
-  it_behaves_like 'housework type', 'OTHERCOSTS', TYPE_RUT, housework: false
+  it_behaves_like 'housework type', 'MAJORAPPLIANCEREPAIR', 'TYPE_RUT'
+  it_behaves_like 'housework type', 'MOVINGSERVICES', 'TYPE_RUT'
+  it_behaves_like 'housework type', 'ITSERVICES', 'TYPE_RUT'
+  it_behaves_like 'housework type', 'CLEANING', 'TYPE_RUT'
+  it_behaves_like 'housework type', 'TEXTILECLOTHING', 'TYPE_RUT'
+  it_behaves_like 'housework type', 'SNOWPLOWING', 'TYPE_RUT'
+  it_behaves_like 'housework type', 'GARDENING', 'TYPE_RUT'
+  it_behaves_like 'housework type', 'BABYSITTING', 'TYPE_RUT'
+  it_behaves_like 'housework type', 'OTHERCARE', 'TYPE_RUT'
+  it_behaves_like 'housework type', 'OTHERCOSTS', 'TYPE_RUT', housework: false
 
   # rubocop:disable RSpec/RepeatedExample
   # rubocop:disable RSpec/RepeatedDescription
@@ -92,8 +93,8 @@ describe 'HouseworkTypes', integration: true do
   # rubocop:enable RSpec/RepeatedExample
   # rubocop:enable RSpec/RepeatedDescription
 
-  it_behaves_like 'housework type', 'COOKING', TYPE_RUT, legacy: true
-  it_behaves_like 'housework type', 'TUTORING', TYPE_RUT, legacy: true
+  it_behaves_like 'housework type', 'COOKING', 'TYPE_RUT', legacy: true
+  it_behaves_like 'housework type', 'TUTORING', 'TYPE_RUT', legacy: true
 
   describe 'with OTHERCOSTS' do
     subject do

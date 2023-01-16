@@ -5,12 +5,7 @@ require 'fortnox/api'
 
 describe Fortnox::API do
   before do
-    module Fortnox
-      module API
-        class TestBase
-        end
-      end
-    end
+    stub_const('Fortnox::API::TestBase', Class.new)
   end
 
   describe 'configuration defaults' do

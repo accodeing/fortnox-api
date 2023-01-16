@@ -21,9 +21,10 @@ describe Fortnox::API::Types::Required, type: :type do
 
   describe 'String' do
     before do
-      class TestClass
+      test_class = Class.new(TestClass) do
         attribute :required_attribute, Fortnox::API::Types::Required::String
       end
+      stub_const('TestClass', test_class)
     end
 
     include_examples 'required attribute', String
@@ -31,9 +32,10 @@ describe Fortnox::API::Types::Required, type: :type do
 
   describe 'Float' do
     before do
-      class TestClass
+      test_class = Class.new(TestClass) do
         attribute :required_attribute, Fortnox::API::Types::Required::Float
       end
+      stub_const('TestClass', test_class)
     end
 
     include_examples 'required attribute', Float
