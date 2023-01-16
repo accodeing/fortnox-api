@@ -35,7 +35,7 @@ module Fortnox
           end
 
           def default_key_to_json_transform(key)
-            key.to_s.split('_').map(&:capitalize).join('')
+            key.to_s.split('_').map(&:capitalize).join
           end
 
           def sanitise(hash, keys_to_filter)

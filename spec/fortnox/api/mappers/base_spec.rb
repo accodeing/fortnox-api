@@ -135,7 +135,7 @@ describe Fortnox::API::Mapper::Base do
       context 'with nil value' do
         subject { mapper.call(nil) }
 
-        it { is_expected.to eq(nil) }
+        it { is_expected.to be_nil }
       end
 
       context 'with empty string' do

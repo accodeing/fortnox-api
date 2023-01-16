@@ -139,7 +139,7 @@ describe Fortnox::API::Repository::Invoice, integration: true, order: :defined d
           end
         end
 
-        pending { is_expected.to eq(nil) }
+        pending { is_expected.to be_nil }
       end
 
       context 'when setting value to empty string' do
@@ -181,7 +181,7 @@ describe Fortnox::API::Repository::Invoice, integration: true, order: :defined d
           end
         end
 
-        pending { is_expected.to eq(nil) }
+        pending { is_expected.to be_nil }
       end
 
       context 'when setting value to empty string' do

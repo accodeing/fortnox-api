@@ -405,8 +405,6 @@ describe Fortnox::API::Repository::Base do
           attr_reader :received_access_token
           attr_reader :received_refresh_token
 
-          def initialize; end
-
           def access_token
             JWT.encode({ exp: 1_654_159_274 }, nil, 'none')
           end
