@@ -30,13 +30,11 @@ shared_examples_for '.only' do |matching_filter, expected_matches, missing_filte
     end
 
     context 'with invalid filter' do
-      subject do
-        when_performing do
+      it do
+        expect do
           repository_only(repository, 'filter_invalid', 'doesntexist')
-        end
+        end.to raise_error(Fortnox::API::RemoteServerError, /ogiltigt filter/)
       end
-
-      it { is_expected.to raise_error(Fortnox::API::RemoteServerError, /ogiltigt filter/) }
     end
   end
 end
