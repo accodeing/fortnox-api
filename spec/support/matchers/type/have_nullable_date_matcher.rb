@@ -14,6 +14,8 @@ module Matchers
         @expected_error = Fortnox::API::AttributeError
         @expected_error_message = 'invalid date'
         @failure_description = ''
+
+        super
       end
 
       def matches?(klass)

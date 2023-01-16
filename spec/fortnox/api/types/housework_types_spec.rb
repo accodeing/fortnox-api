@@ -97,11 +97,6 @@ describe 'HouseworkTypes', integration: true do
   it_behaves_like 'housework type', 'TUTORING', 'TYPE_RUT', legacy: true
 
   describe 'with OTHERCOSTS' do
-    subject do
-      cassette = 'orders/housework_othercoses_invalid'
-      -> { VCR.use_cassette(cassette) { repository.save(document) } }
-    end
-
     let(:document) do
       Fortnox::API::Model::Order.new(
         customer_number: '1',
@@ -120,16 +115,13 @@ describe 'HouseworkTypes', integration: true do
     let(:error_message) { 'Kan inte sätta typen övrig kostnad på en rad markerad som husarbete.' }
 
     it "can't have housework set to true" do
-      expect(subject).to raise_error(Fortnox::API::RemoteServerError, error_message)
+      expect do
+        VCR.use_cassette('orders/housework_othercoses_invalid') { repository.save(document) }
+      end.to raise_error(Fortnox::API::RemoteServerError, error_message)
     end
   end
 
   describe 'with wrong tax reduction type' do
-    subject do
-      cassette = 'orders/housework_invalid_tax_reduction_type'
-      -> { VCR.use_cassette(cassette) { repository.save(document) } }
-    end
-
     let(:type) { 'CONSTRUCTION' }
     let(:document) do
       Fortnox::API::Model::Order.new(
@@ -152,7 +144,9 @@ describe 'HouseworkTypes', integration: true do
     end
 
     it 'raises an error' do
-      expect(subject).to raise_error(Fortnox::API::RemoteServerError, error_message)
+      expect do
+        VCR.use_cassette('orders/housework_invalid_tax_reduction_type') { repository.save(document) }
+      end.to raise_error(Fortnox::API::RemoteServerError, error_message)
     end
   end
 end
