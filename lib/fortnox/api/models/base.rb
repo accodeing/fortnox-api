@@ -37,17 +37,6 @@ module Fortnox
           new(self::STUB.dup)
         end
 
-        # This filtering logic could be improved since it is currently O(N*M).
-        def attributes(*options)
-          return self.class.schema if options.nil?
-
-          options = Array(options)
-
-          self.class.schema.find_all do |_name, attribute|
-            options.all? { |option| attribute.is?(option) }
-          end
-        end
-
         def unique_id
           send(self.class::UNIQUE_ID)
         end
@@ -87,17 +76,9 @@ module Fortnox
           @parent || self.class.new(self.class::STUB.dup)
         end
 
-        def to_hash(recursive = false)
-          return super() if recursive
-
-          self.class.schema.keys.each_with_object({}) do |key, result|
-            result[key] = self[key]
-          end
-        end
-
         # dry-types filter anything that isn't specified as an attribute on the
         # class that is being instantiated. This wrapper preserves the meta
-        # properties we need to track object state during that initilisation and
+        # properties we need to track object state during that initialisation and
         # sets them on the object after dry-types is done with it.
         def self.preserve_meta_properties(hash)
           is_unsaved = hash.delete(:unsaved) { true }

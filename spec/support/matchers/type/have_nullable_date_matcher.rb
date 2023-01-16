@@ -11,7 +11,7 @@ module Matchers
         @attribute = attribute
         @valid_value = valid_value
         @invalid_value = invalid_value
-        @expected_error = ArgumentError
+        @expected_error = Fortnox::API::AttributeError
         @expected_error_message = 'invalid date'
         @failure_description = ''
       end
@@ -46,11 +46,11 @@ module Matchers
 
         @failure_description << " (Expected #{@expected_error}, but got none)"
         false
-      rescue @expected_error => error
-        return true if error.message == @expected_error_message
+      rescue @expected_error => e
+        return true if e.message == @expected_error_message
 
-        fail_message = "Expected error message to include #{expected_message.inspect}, "\
-                       "but was #{error.message.inspect}"
+        fail_message = "Expected error message to include #{@expected_error_message.inspect}, "\
+                       "but was #{e.message.inspect}"
         raise(fail_message)
       end
     end

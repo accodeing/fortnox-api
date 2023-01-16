@@ -65,5 +65,15 @@ describe Fortnox::API::Types::Nullable, type: :type do
     end
 
     it { is_expected.to have_nullable_date(:date, Date.new(2016, 1, 1), 'Not a Date!') }
+
+    context 'with empty string' do
+      subject { TestStruct.new(date: '').date }
+
+      it { is_expected.to be_nil }
+    end
+
+    context 'with invalid date' do
+      it { expect { TestStruct.new(date: 'Not a Date!') }.to raise_error(Fortnox::API::AttributeError, /invalid date/) }
+    end
   end
 end

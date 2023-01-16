@@ -10,11 +10,11 @@ OAUTH_ENDPOINT = 'https://apps.fortnox.se/oauth-v1'
 
 Dotenv.load(DOTENV_FILE_NAME)
 
-ERROR_MESSAGE = "Missing environment variabel %s! Exiting."
-CLIENT_ID = ENV.fetch('FORTNOX_API_CLIENT_ID'){ |key| raise(ERROR_MESSAGE % [ key ]) }
-CLIENT_SECRET = ENV.fetch('FORTNOX_API_CLIENT_SECRET'){ |key| raise(ERROR_MESSAGE % [ key ]) }
-REDIRECT_URI = ENV.fetch('FORTNOX_API_REDIRECT_URI'){ |key| raise(ERROR_MESSAGE % [ key ]) }
-SCOPES = ENV.fetch('FORTNOX_API_SCOPES'){ |key| raise(ERROR_MESSAGE % [ key ]) }
+ERROR_MESSAGE = 'Missing environment variabel %s! Exiting.'
+CLIENT_ID = ENV.fetch('FORTNOX_API_CLIENT_ID') { |key| raise(format(ERROR_MESSAGE, key)) }
+CLIENT_SECRET = ENV.fetch('FORTNOX_API_CLIENT_SECRET') { |key| raise(format(ERROR_MESSAGE, key)) }
+REDIRECT_URI = ENV.fetch('FORTNOX_API_REDIRECT_URI') { |key| raise(format(ERROR_MESSAGE, key)) }
+SCOPES = ENV.fetch('FORTNOX_API_SCOPES') { |key| raise(format(ERROR_MESSAGE, key)) }
 CREDENTIALS = Base64.encode64("#{CLIENT_ID}:#{CLIENT_SECRET}").to_s
 
 AUTH_PARAMS =
@@ -34,7 +34,7 @@ print "\nVisit the URL below, login with the account you want to authorize and g
 print "\n#{AUTHORIZE_URL}"
 
 print "\nEnter authorization code: "
-authorization_code = STDIN.gets.chomp
+authorization_code = $stdin.gets.chomp
 
 headers = {
   Authorization: "Basic #{CREDENTIALS}",
@@ -68,7 +68,7 @@ print "\nRequested scopes: #{response.parsed_response['scope']}"
 print "\n"
 
 print "Write tokens to #{DOTENV_FILE_NAME} [y/n]? "
-store_tokens_in_env = STDIN.gets.chomp
+store_tokens_in_env = $stdin.gets.chomp
 
 exit unless store_tokens_in_env.casecmp('y').zero?
 

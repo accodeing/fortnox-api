@@ -25,8 +25,8 @@ module Fortnox
           # PRIVATE
 
           def convert_hash_keys_to_json_format(hash)
-            hash.each_with_object({}) do |(key, value), json_hash|
-              json_hash[convert_key_to_json(key)] = value
+            hash.transform_keys do |key|
+              convert_key_to_json(key)
             end
           end
 
