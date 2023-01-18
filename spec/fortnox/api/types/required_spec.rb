@@ -14,9 +14,7 @@ describe Fortnox::API::Types::Required, type: :type do
       "[#{TestClass}.new] #{:required_attribute.inspect} is missing in Hash input"
     end
 
-    it 'raises an error' do
-      expect(subject).to raise_error(Dry::Struct::Error, error_message)
-    end
+    it { is_expected.to raise_error(Dry::Struct::Error, error_message) }
   end
 
   describe 'String' do
