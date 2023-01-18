@@ -16,12 +16,12 @@ PRs of your own 😃
 [![Maintainability](https://api.codeclimate.com/v1/badges/89d30a43fedf210d470b/maintainability)](https://codeclimate.com/github/accodeing/fortnox-api/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/89d30a43fedf210d470b/test_coverage)](https://codeclimate.com/github/accodeing/fortnox-api/test_coverage)
 
-The rough status of this project is as follows (as of summer 2022):
+The rough status of this project is as follows (as of spring 2023):
 
 - `master` branch and the released versions should be production ready.
-- We are planning on continue with our work with
-  [rest_easy gem](https://github.com/accodeing/rest_easy) in the near future.
-  It's a way to generalize REST API's in general.
+- We are actively working on our generalization of this gem:
+  [rest_easy gem](https://github.com/accodeing/rest_easy). It will be a base for
+  REST API's in general.
 - Basic structure complete. Things like getting customers and invoices, updating
   and saving etc.
 - Some advanced features implemented, for instance support for multiple Fortnox
@@ -209,8 +209,8 @@ When you have authorized your integration you get an access token. It's a JWT
 with an expiration time of 1 hour. You also get a refresh token that lasts for
 **31 days**. When a new access token is requested, a new refresh token is also
 provided and the old one is invalidated. As long as the refresh token is valid,
-the gem will do all of this automatically. _You just need to make sure the gem
-makes a request the Fortnox API before the current refresh token expires_,
+the **gem will do all of this automatically**. **You just need to make sure the
+gem makes a request the Fortnox API before the current refresh token expires**,
 otherwise you need to start over again with the
 [Initialization](#initialization).
 
@@ -236,6 +236,18 @@ Fortnox::API.configure do |config|
   config.setting = 'value'
 end
 ```
+
+| Setting         | Description                                     | Required | Default                                                         |
+| --------------- | ----------------------------------------------- | -------- | --------------------------------------------------------------- |
+| `client_id`     | The client id from your Fortnox integration     | Yes      | `nil`                                                           |
+| `client_secret` | The client secret from your Fortnox integration | Yes      | `nil`                                                           |
+| `token_stores`  | See more regarding token stores below           | Yes      | `{}`                                                            |
+| `base_url`      | The base url to Fortnox API                     | No       | `'https://api.fortnox.se/3/'`                                   |
+| `token_url`     | The url to Fortnox token endpoint               | No       | `'https://apps.fortnox.se/oauth-v1/token'`                      |
+| `debugging`     | For debugging                                   | No       | `false`                                                         |
+| `logger`        | The logger to use                               | No       | A simple logger that writes to `$stdout` with log level `WARN`. |
+
+#### Token Store
 
 Due to Fortnox use of refresh tokens, the gem needs a storage, called a "token
 store", of some sort to keep the tokens. The only thing the store needs to
@@ -282,8 +294,8 @@ Fortnox::API.configure do |config|
 end
 ```
 
-The gem will then automatically refresh the tokens and keep them in the provided
-store.
+**Note that the gem will then automatically refresh the tokens and keep them in
+the provided store.**
 
 ### Support for multiple Fortnox accounts
 
