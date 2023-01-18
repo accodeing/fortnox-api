@@ -16,12 +16,12 @@ PRs of your own 😃
 [![Maintainability](https://api.codeclimate.com/v1/badges/89d30a43fedf210d470b/maintainability)](https://codeclimate.com/github/accodeing/fortnox-api/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/89d30a43fedf210d470b/test_coverage)](https://codeclimate.com/github/accodeing/fortnox-api/test_coverage)
 
-The rough status of this project is as follows (as of summer 2022):
+The rough status of this project is as follows (as of spring 2023):
 
 - `master` branch and the released versions should be production ready.
-- We are planning on continue with our work with
-  [rest_easy gem](https://github.com/accodeing/rest_easy) in the near future.
-  It's a way to generalize REST API's in general.
+- We are actively working on our generalization of this gem:
+  [rest_easy gem](https://github.com/accodeing/rest_easy). It will be a base for
+  REST API's in general.
 - Basic structure complete. Things like getting customers and invoices, updating
   and saving etc.
 - Some advanced features implemented, for instance support for multiple Fortnox
@@ -209,8 +209,8 @@ When you have authorized your integration you get an access token. It's a JWT
 with an expiration time of 1 hour. You also get a refresh token that lasts for
 **31 days**. When a new access token is requested, a new refresh token is also
 provided and the old one is invalidated. As long as the refresh token is valid,
-the gem will do all of this automatically. _You just need to make sure the gem
-makes a request the Fortnox API before the current refresh token expires_,
+the **gem will do all of this automatically**. **You just need to make sure the
+gem makes a request the Fortnox API before the current refresh token expires**,
 otherwise you need to start over again with the
 [Initialization](#initialization).
 
@@ -228,7 +228,26 @@ script itself to see what's needed.
 
 ### Configuration
 
-The gem is configured in a `configure` block.
+The gem is configured in a `configure` block, where `setting` is one of the
+settings from the table below.
+
+```ruby
+Fortnox::API.configure do |config|
+  config.setting = 'value'
+end
+```
+
+| Setting         | Description                                     | Required | Default                                                         |
+| --------------- | ----------------------------------------------- | -------- | --------------------------------------------------------------- |
+| `client_id`     | The client id from your Fortnox integration     | Yes      | `nil`                                                           |
+| `client_secret` | The client secret from your Fortnox integration | Yes      | `nil`                                                           |
+| `token_stores`  | See more regarding token stores below           | Yes      | `{}`                                                            |
+| `base_url`      | The base url to Fortnox API                     | No       | `'https://api.fortnox.se/3/'`                                   |
+| `token_url`     | The url to Fortnox token endpoint               | No       | `'https://apps.fortnox.se/oauth-v1/token'`                      |
+| `debugging`     | For debugging                                   | No       | `false`                                                         |
+| `logger`        | The logger to use                               | No       | A simple logger that writes to `$stdout` with log level `WARN`. |
+
+#### Token Store
 
 Due to Fortnox use of refresh tokens, the gem needs a storage, called a "token
 store", of some sort to keep the tokens. The only thing the store needs to
@@ -268,14 +287,15 @@ And could then be used like this:
 
 ```ruby
 Fortnox::API.configure do |config|
+  ...
   config.token_stores = {
     default: MyTokenStore.new
   }
 end
 ```
 
-The gem will then automatically refresh the tokens and keep them in the provided
-store.
+**Note that the gem will then automatically refresh the tokens and keep them in
+the provided store.**
 
 ### Support for multiple Fortnox accounts
 
@@ -324,6 +344,7 @@ class MyTokenStore
 end
 
 Fortnox::API.configure do |config|
+  ...
   config.token_stores = {
     default: MyTokenStore.new,
     another_account: MyTokenStore.new(account: :another_account)
@@ -353,6 +374,8 @@ The calls are subject to network latency and are blocking. Do make sure to
 rescue appropriate network errors in your code.
 
 ```ruby
+require 'fortnox/api'
+
 # Instanciate a repository
 repo = Fortnox::API::Repository::Customer.new
 
@@ -372,7 +395,7 @@ version of a class is used in thouse cases where the API-server doesn't return a
 full set of attributes for an entity. For customers the simple version has 10
 attributes while the full have over 40.
 
-> ​:info: \*\* Collections not implemented yet.
+> :info: \*\* Collections not implemented yet.
 
 You should try to get by using the simple versions for as long as possible. Both
 the `Collection` and `Simple` classes have a `.full` method that will give you
@@ -380,7 +403,7 @@ full versions of the entities. Bare in mind though that a collection of 20
 simple models that you run `.full` on will call out to the server 20 times, in
 sequence.
 
-> ​:info: \*\* We have opened a dialog with Fortnox about this API practice to
+> :info: \*\* We have opened a dialog with Fortnox about this API practice to
 > allow for full models in the list request, on demand, and/or the ability for
 > the client to specify the fields of interest when making the request, as per
 > usual in REST APIs with partial load.
@@ -395,6 +418,8 @@ appropriate attributes changed (see the Immutable section under Architecture
 above for more details). To change the properties of a model works like this:
 
 ```ruby
+require 'fortnox/api'
+
 customer #=> <Fortnox::API::Model::Customer:0x007fdf228db310>
 customer.name #=> "Nelly Bloom"
 customer.update( name: "Ned Stark" ) #=> <Fortnox::API::Model::Customer:0x0193a456ff0307>
@@ -406,55 +431,6 @@ updated_customer.name #=> "Ned Stark"
 
 The update method takes an implicit hash of attributes to update, so you can
 update as many as you like in one go.
-
-# Development
-
-## Testing
-
-This gem has integration tests to verify the code against the real API. It uses
-[vcr](https://github.com/vcr/vcr) to record API endpoint responses. These
-responses are stored locally and are called vcr cassettes. If no cassettes are
-available, vcr will record new ones for you. Once in a while, it's good to throw
-away all cassettes and rerecord them. Fortnox updates their endpoints and we
-need to keep our code up to date with the reality. There's a handy rake task for
-removing all cassettes, see `rake -T`. Note that when rerecording all cassettes,
-do it one repository at a time, otherwise you'll definitely get
-`429 Too Many Requests` from Fortnox. Run them manually with something like
-`bundle exec rspec spec/fortnox/api/repositories/article_spec.rb`. Also, you
-will need to update some test data in specs, see notes in specs.
-
-### Test environment variables
-
-`.env.test` includes environment variables used for testing. There's a
-`MOCK_VALID_ACCCESS_TOKEN` setting that's `true` by default. If you want to run
-tests against a real (or test) Fortnox account, set that to `false` and provide
-a valid access token in `.env`. See [Get tokens](get-tokens) for how to issue
-valid tokens.
-
-### Seeding
-
-There's a Rake task for seeding the Test Fortnox instance with data that the
-test suite needs. See `rake -T` to find the task.
-
-## Rubocop
-
-When updating Rubocop in `fortnox-api.gemspec`, you need to set the explicit
-version that codeclimate runs in `.codeclimate.yml`
-
-## Updating Ruby version
-
-When updating the required Ruby version, you need to do the following:
-
-- Bump Ruby version in `fortnox-api.gemspec`
-- Update gems if needed
-- Verify that the test suite is passing
-- Bump `TargetRubyVersion` in `.rubocop.yml` and verify that the Rubocop version
-  we are using is supporting that Ruby version. Otherwise you need to upgrade
-  Rubocop as well, see [Rubocop instructions](#rubocop).
-- Update your local `.ruby-version` if you are using rbenv
-- Update `.travis.yml` with the new Ruby versions
-- Update required Ruby version in this readme
-- Verify that all GitHub integrations works in the pull request you are creating
 
 # Contributing
 
