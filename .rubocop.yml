@@ -34,4 +34,7 @@ RSpec/MultipleMemoizedHelpers:
   Max: 7
 
 Lint/RaiseException:
-  AllowedImplicitNamespaces: ['Fortnox::API']
+  # You must specify the nearest module, not the fully qualified name
+  AllowedImplicitNamespaces:
+    - 'API'
+    - 'Repository'
