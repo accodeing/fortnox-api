@@ -44,9 +44,7 @@ describe 'HouseworkTypes', integration: true do
       if legacy
         let(:error_message) { 'Skattereduktion för den valda typen av husarbete har upphört.' }
 
-        it 'raises an error' do
-          expect(subject).to raise_error(Fortnox::API::RemoteServerError, error_message)
-        end
+        it { is_expected.to raise_error(Fortnox::API::RemoteServerError, error_message) }
       else
         it { is_expected.not_to raise_error }
       end
