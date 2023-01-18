@@ -228,7 +228,14 @@ script itself to see what's needed.
 
 ### Configuration
 
-The gem is configured in a `configure` block.
+The gem is configured in a `configure` block, where `setting` is one of the
+settings from the table below.
+
+```ruby
+Fortnox::API.configure do |config|
+  config.setting = 'value'
+end
+```
 
 Due to Fortnox use of refresh tokens, the gem needs a storage, called a "token
 store", of some sort to keep the tokens. The only thing the store needs to
@@ -268,6 +275,7 @@ And could then be used like this:
 
 ```ruby
 Fortnox::API.configure do |config|
+  ...
   config.token_stores = {
     default: MyTokenStore.new
   }
@@ -324,6 +332,7 @@ class MyTokenStore
 end
 
 Fortnox::API.configure do |config|
+  ...
   config.token_stores = {
     default: MyTokenStore.new,
     another_account: MyTokenStore.new(account: :another_account)
