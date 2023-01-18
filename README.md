@@ -362,6 +362,8 @@ The calls are subject to network latency and are blocking. Do make sure to
 rescue appropriate network errors in your code.
 
 ```ruby
+require 'fortnox/api'
+
 # Instanciate a repository
 repo = Fortnox::API::Repository::Customer.new
 
@@ -381,7 +383,7 @@ version of a class is used in thouse cases where the API-server doesn't return a
 full set of attributes for an entity. For customers the simple version has 10
 attributes while the full have over 40.
 
-> ​:info: \*\* Collections not implemented yet.
+> :info: \*\* Collections not implemented yet.
 
 You should try to get by using the simple versions for as long as possible. Both
 the `Collection` and `Simple` classes have a `.full` method that will give you
@@ -389,7 +391,7 @@ full versions of the entities. Bare in mind though that a collection of 20
 simple models that you run `.full` on will call out to the server 20 times, in
 sequence.
 
-> ​:info: \*\* We have opened a dialog with Fortnox about this API practice to
+> :info: \*\* We have opened a dialog with Fortnox about this API practice to
 > allow for full models in the list request, on demand, and/or the ability for
 > the client to specify the fields of interest when making the request, as per
 > usual in REST APIs with partial load.
@@ -404,6 +406,8 @@ appropriate attributes changed (see the Immutable section under Architecture
 above for more details). To change the properties of a model works like this:
 
 ```ruby
+require 'fortnox/api'
+
 customer #=> <Fortnox::API::Model::Customer:0x007fdf228db310>
 customer.name #=> "Nelly Bloom"
 customer.update( name: "Ned Stark" ) #=> <Fortnox::API::Model::Customer:0x0193a456ff0307>
@@ -415,55 +419,6 @@ updated_customer.name #=> "Ned Stark"
 
 The update method takes an implicit hash of attributes to update, so you can
 update as many as you like in one go.
-
-# Development
-
-## Testing
-
-This gem has integration tests to verify the code against the real API. It uses
-[vcr](https://github.com/vcr/vcr) to record API endpoint responses. These
-responses are stored locally and are called vcr cassettes. If no cassettes are
-available, vcr will record new ones for you. Once in a while, it's good to throw
-away all cassettes and rerecord them. Fortnox updates their endpoints and we
-need to keep our code up to date with the reality. There's a handy rake task for
-removing all cassettes, see `rake -T`. Note that when rerecording all cassettes,
-do it one repository at a time, otherwise you'll definitely get
-`429 Too Many Requests` from Fortnox. Run them manually with something like
-`bundle exec rspec spec/fortnox/api/repositories/article_spec.rb`. Also, you
-will need to update some test data in specs, see notes in specs.
-
-### Test environment variables
-
-`.env.test` includes environment variables used for testing. There's a
-`MOCK_VALID_ACCCESS_TOKEN` setting that's `true` by default. If you want to run
-tests against a real (or test) Fortnox account, set that to `false` and provide
-a valid access token in `.env`. See [Get tokens](get-tokens) for how to issue
-valid tokens.
-
-### Seeding
-
-There's a Rake task for seeding the Test Fortnox instance with data that the
-test suite needs. See `rake -T` to find the task.
-
-## Rubocop
-
-When updating Rubocop in `fortnox-api.gemspec`, you need to set the explicit
-version that codeclimate runs in `.codeclimate.yml`
-
-## Updating Ruby version
-
-When updating the required Ruby version, you need to do the following:
-
-- Bump Ruby version in `fortnox-api.gemspec`
-- Update gems if needed
-- Verify that the test suite is passing
-- Bump `TargetRubyVersion` in `.rubocop.yml` and verify that the Rubocop version
-  we are using is supporting that Ruby version. Otherwise you need to upgrade
-  Rubocop as well, see [Rubocop instructions](#rubocop).
-- Update your local `.ruby-version` if you are using rbenv
-- Update `.travis.yml` with the new Ruby versions
-- Update required Ruby version in this readme
-- Verify that all GitHub integrations works in the pull request you are creating
 
 # Contributing
 
