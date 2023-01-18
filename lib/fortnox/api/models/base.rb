@@ -26,8 +26,8 @@ module Fortnox
             obj = preserve_meta_properties(hash) do
               super(hash)
             end
-          rescue Dry::Struct::Error => e
-            raise Fortnox::API::AttributeError, e
+          rescue Dry::Struct::Error => exception
+            raise Fortnox::API::AttributeError, exception
           end
 
           IceNine.deep_freeze(obj)

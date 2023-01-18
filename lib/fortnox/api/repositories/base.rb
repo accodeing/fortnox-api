@@ -36,7 +36,7 @@ module Fortnox
         attr_accessor :headers
         attr_reader :mapper, :keys_filtered_on_save
 
-        def self.set_headers(headers = {}) # rubocop:disable Naming/AccessorMethodName
+        def self.set_headers(headers = {})
           self.headers.merge!(headers)
         end
 

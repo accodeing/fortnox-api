@@ -17,9 +17,7 @@ RSpec.describe Fortnox::API::Types::Model do
     end
 
     describe "User inheriting from #{described_class}" do
-      subject { -> { TypesModelUser.new(args) } }
-
-      it { is_expected.to raise_error(error) }
+      specify { expect { TypesModelUser.new(args) }.to raise_error(error) }
     end
   end
 
@@ -30,8 +28,6 @@ RSpec.describe Fortnox::API::Types::Model do
   end
 
   context 'when omitting optional keys' do
-    subject { -> { User.new } }
-
     before do
       stub_const('Types::Nullable::String', Dry::Types['strict.string'].optional)
 
@@ -42,7 +38,7 @@ RSpec.describe Fortnox::API::Types::Model do
       stub_const('User', user_class)
     end
 
-    it { is_expected.not_to raise_error }
+    specify { expect { User.new }.not_to raise_error }
 
     describe 'optional attribute' do
       subject { User.new.optional_string }

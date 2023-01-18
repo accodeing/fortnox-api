@@ -5,12 +5,7 @@ require 'fortnox/api'
 
 describe Fortnox::API do
   before do
-    module Fortnox
-      module API
-        class TestBase
-        end
-      end
-    end
+    stub_const('Fortnox::API::TestBase', Class.new)
   end
 
   describe 'configuration defaults' do
@@ -69,18 +64,18 @@ describe Fortnox::API do
 
   describe 'readers for' do
     describe 'debugging' do
-      subject { described_class.debugging }
+      subject(:debugging) { described_class.debugging }
 
       it 'is available' do
-        is_expected.to be false
+        expect(debugging).to be false
       end
     end
 
     describe 'logger' do
-      subject { described_class.logger }
+      subject(:logger) { described_class.logger }
 
       it 'is available' do
-        is_expected.to be_a Logger
+        expect(logger).to be_a Logger
       end
     end
   end

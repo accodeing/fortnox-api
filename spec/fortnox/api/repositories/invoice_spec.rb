@@ -16,9 +16,9 @@ describe Fortnox::API::Repository::Invoice, order: :defined, integration: true d
   include Helpers::Configuration
   include Helpers::Repositories
 
-  before { set_api_test_configuration }
-
   subject(:repository) { described_class.new }
+
+  before { set_api_test_configuration }
 
   required_hash = { customer_number: '1' }
 
@@ -143,7 +143,7 @@ describe Fortnox::API::Repository::Invoice, order: :defined, integration: true d
       end
 
       context 'when setting value to empty string' do
-        subject { updated_persisted_invoice.comments }
+        subject(:comments) { updated_persisted_invoice.comments }
 
         let(:updated_persisted_invoice) do
           VCR.use_cassette("#{vcr_dir}/save_old_with_empty_comments") do
@@ -152,7 +152,7 @@ describe Fortnox::API::Repository::Invoice, order: :defined, integration: true d
         end
 
         it 'does not reset the value' do
-          is_expected.to eq('A comment to be reset')
+          expect(comments).to eq('A comment to be reset')
         end
       end
     end
@@ -185,7 +185,7 @@ describe Fortnox::API::Repository::Invoice, order: :defined, integration: true d
       end
 
       context 'when setting value to empty string' do
-        subject { updated_persisted_invoice.country }
+        subject(:country) { updated_persisted_invoice.country }
 
         let(:updated_persisted_invoice) do
           VCR.use_cassette("#{vcr_dir}/save_old_with_empty_country") do
@@ -194,7 +194,7 @@ describe Fortnox::API::Repository::Invoice, order: :defined, integration: true d
         end
 
         it 'does not reset the country' do
-          is_expected.to eq('SE')
+          expect(country).to eq('SE')
         end
       end
     end

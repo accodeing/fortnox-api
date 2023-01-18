@@ -36,16 +36,29 @@ module Fortnox
         'AMOUNT', 'PERCENT'
       )
       HOUSEWORK_TYPES = {
-        rot: %w[
-          CONSTRUCTION ELECTRICITY GLASSMETALWORK GROUNDDRAINAGEWORK
-          MASONRY PAINTINGWALLPAPERING HVAC OTHERCOSTS
+        rot: [
+          'CONSTRUCTION',
+          'ELECTRICITY',
+          'GLASSMETALWORK',
+          'GROUNDDRAINAGEWORK',
+          'HVAC',
+          'MASONRY',
+          'OTHERCOSTS',
+          'PAINTINGWALLPAPERING'
         ],
-        rut: %w[
-          MAJORAPPLIANCEREPAIR MOVINGSERVICES ITSERVICES CLEANING
-          TEXTILECLOTHING SNOWPLOWING GARDENING BABYSITTING OTHERCARE
-          OTHERCOSTS
+        rut: [
+          'BABYSITTING',
+          'CLEANING',
+          'GARDENING',
+          'ITSERVICES',
+          'MAJORAPPLIANCEREPAIR',
+          'MOVINGSERVICES',
+          'OTHERCARE',
+          'OTHERCOSTS',
+          'SNOWPLOWING',
+          'TEXTILECLOTHING'
         ],
-        legacy_rut: %w[COOKING TUTORING]
+        legacy_rut: ['COOKING', 'TUTORING']
       }.freeze
 
       # TODO: RUT to be added:

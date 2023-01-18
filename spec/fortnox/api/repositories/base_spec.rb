@@ -221,19 +221,19 @@ describe Fortnox::API::Repository::Base do
       before do
         Fortnox::API.configure do |config|
           config.token_stores = {
-              default: Class.new do
-              def access_token
-                ''
-              end
+            default: Class.new do
+                       def access_token
+                         ''
+                       end
 
-              def refresh_token
-                ''
-              end
+                       def refresh_token
+                         ''
+                       end
 
-              def access_token=; end
+                       def access_token=; end
 
-              def refresh_token=; end
-            end.new
+                       def refresh_token=; end
+                     end.new
           }
         end
       end
@@ -503,7 +503,7 @@ describe Fortnox::API::Repository::Base do
       it do
         expect do
           repository.post('/test', body: '')
-        end.to raise_error(/\<HTTParty\:\:Request\:0x/)
+        end.to raise_error(/<HTTParty::Request:0x/)
       end
     end
   end
