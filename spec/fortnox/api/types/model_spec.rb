@@ -38,7 +38,7 @@ RSpec.describe Fortnox::API::Types::Model do
       stub_const('User', user_class)
     end
 
-    it { expect { User.new }.not_to raise_error }
+    specify { expect { User.new }.not_to raise_error }
 
     describe 'optional attribute' do
       subject { User.new.optional_string }
