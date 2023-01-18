@@ -41,10 +41,11 @@ When updating the required Ruby version, you need to do the following:
 - Verify that the test suite is passing
 - Bump `TargetRubyVersion` in `.rubocop.yml` and verify that the Rubocop version
   we are using is supporting that Ruby version. Otherwise you need to upgrade
-  Rubocop as well, see [Rubocop instructions](#rubocop).
-- Update your local `.ruby-version` if you are using rbenv
+  Rubocop as well, see [Rubocop instructions](#rubocop). The version here should
+  be the lowest version we support.
+- Update `.tool-versions` to the **newest version we support**
 - Update `.travis.yml` with the new Ruby versions
-- Update required Ruby version in this readme
+- Update required Ruby version in the readme
 - Verify that all GitHub integrations works in the pull request you are creating
 
 # Contributing

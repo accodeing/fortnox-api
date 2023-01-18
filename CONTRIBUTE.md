@@ -14,7 +14,7 @@ To contribute:
 3. Create your feature branch (`git checkout -b my-new-feature`)
 4. Commit your changes (`git commit -am 'Add some feature'`)
 5. Push to the branch (`git push origin my-new-feature`)
-6. Create new Pull Request
+6. Create new Pull Request against our `development` branch
 
 # Adding upstream remote
 
@@ -26,7 +26,8 @@ can do something like this to update your fork:
 1. Fetch branches from upstream (`git fetch upstream`)
 2. Checkout your master branch (`git checkout master`)
 3. Update it (`git rebase upstream/master`)
-4. And push it to your fork (`git push origin master`)
+4. And push it to your fork (`git push origin master`) (might need a `--force`
+   if branches have diverged)
 
 If you want to update another branch:
 
