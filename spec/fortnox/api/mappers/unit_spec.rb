@@ -8,7 +8,6 @@ require 'fortnox/api/mappers/examples/mapper'
 
 module Fortnox
   module API
-    # Shhh Rubocop, we don't need a comment here ... Really
     module Mapper
       describe Unit do
         context 'when mapping model' do

@@ -145,10 +145,8 @@ describe Fortnox::API::Mapper::Base do
       end
 
       context 'with nonsense' do
-        subject { -> { mapper.call('nonsense') } }
-
         it 'is not supported (since input is sanitised) and therefore blows up' do
-          raise_error(NoMethodError)
+          expect { mapper.call('nonsense') }.to raise_error(NoMethodError)
         end
       end
     end

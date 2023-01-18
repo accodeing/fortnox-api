@@ -20,11 +20,6 @@ describe 'HouseworkTypes', integration: true do
   let(:repository) { Fortnox::API::Repository::Order.new }
 
   shared_examples_for 'housework type' do |type, tax_reduction_type, legacy: false, housework: true|
-    subject do
-      cassette = "orders/housework_type_#{type.downcase}"
-      -> { VCR.use_cassette(cassette) { repository.save(document) } }
-    end
-
     let(:document) do
       Fortnox::API::Model::Order.new(
         customer_number: '1',
@@ -39,14 +34,17 @@ describe 'HouseworkTypes', integration: true do
         ]
       )
     end
+    let(:save) do
+      -> { VCR.use_cassette("orders/housework_type_#{type.downcase}") { repository.save(document) } }
+    end
 
     context "when creating an OrderRow with housework_type set to #{type}" do
       if legacy
         let(:error_message) { 'Skattereduktion för den valda typen av husarbete har upphört.' }
 
-        it { is_expected.to raise_error(Fortnox::API::RemoteServerError, error_message) }
+        specify { expect { save.call }.to raise_error(Fortnox::API::RemoteServerError, error_message) }
       else
-        it { is_expected.not_to raise_error }
+        specify { expect { save.call }.not_to raise_error }
       end
     end
   end
