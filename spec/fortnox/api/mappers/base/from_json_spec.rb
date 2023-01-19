@@ -26,8 +26,8 @@ describe Fortnox::API::Mapper::FromJSON do
           '@url': 'someurl@example.com',
           Name: 'Ford Mustang',
           VAT: 30_000,
-          Categories: [{ 'Name' => 'Cars', 'ID' => '1' }, { 'Name' => 'Fast cars', 'ID' => '2' }],
-          Designer: { 'Name' => 'John Najjar', 'ID' => '23' }
+          Categories: [{ Name: 'Cars', ID: '1' }, { Name: 'Fast cars', ID: '2' }],
+          Designer: { Name: 'John Najjar', ID: '23' }
         }
       }
     end
