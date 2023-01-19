@@ -219,13 +219,12 @@ describe Fortnox::API::Repository::Invoice, integration: true, order: :defined d
           ]
         )
       end
+      let(:saving_with_max_row_description) do
+        VCR.use_cassette("#{vcr_dir}/row_description_limit") { repository.save(model) }
+      end
 
       it 'allows 255 characters' do
-        expect do
-          VCR.use_cassette("#{vcr_dir}/row_description_limit") do
-            repository.save(model)
-          end
-        end.not_to raise_error
+        expect { saving_with_max_row_description }.not_to raise_error
       end
     end
   end
