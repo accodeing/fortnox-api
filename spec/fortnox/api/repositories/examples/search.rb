@@ -26,13 +26,13 @@ shared_examples_for '.search' do |attribute_hash_key_name, value, matches|
       end
 
       context 'with special characters' do
-        it do
-          expect do
-            VCR.use_cassette("#{vcr_dir}/search_with_special_char") do
-              repository.search(attribute_hash_key_name => 'special char å')
-            end
-          end.not_to raise_error
+        let(:search_with_special_char) do
+          VCR.use_cassette("#{vcr_dir}/search_with_special_char") do
+            repository.search(attribute_hash_key_name => 'special char å')
+          end
         end
+
+        specify { expect { search_with_special_char }.not_to raise_error }
       end
     end
   end
