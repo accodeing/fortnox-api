@@ -2,14 +2,8 @@
 
 shared_examples_for '.only' do |matching_filter, expected_matches, missing_filter: nil|
   describe '.only' do
-    def repository_only(repository, vcr_cassette, filter)
-      VCR.use_cassette("#{vcr_dir}/#{vcr_cassette}") do
-        repository.only(filter)
-      end
-    end
-
     shared_examples '.only response' do |vcr_cassette, expected_entries|
-      subject { repository_only(repository, vcr_cassette, filter) }
+      subject { VCR.use_cassette("#{vcr_dir}/#{vcr_cassette}") { repository.only(filter) } }
 
       it { is_expected.to be_instance_of(Array) }
       it { is_expected.to have(expected_entries).entries }
@@ -30,10 +24,10 @@ shared_examples_for '.only' do |matching_filter, expected_matches, missing_filte
     end
 
     context 'with invalid filter' do
-      it do
-        expect do
-          repository_only(repository, 'filter_invalid', 'doesntexist')
-        end.to raise_error(Fortnox::API::RemoteServerError, /ogiltigt filter/)
+      let(:with_invalid_fiilter) { VCR.use_cassette("#{vcr_dir}/filter_invalid") { repository.only('doesntexist') } }
+
+      specify do
+        expect { with_invalid_fiilter.call }.to raise_error(Fortnox::API::RemoteServerError, /ogiltigt filter/)
       end
     end
   end
