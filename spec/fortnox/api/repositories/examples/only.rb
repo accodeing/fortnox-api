@@ -24,10 +24,12 @@ shared_examples_for '.only' do |matching_filter, expected_matches, missing_filte
     end
 
     context 'with invalid filter' do
-      let(:with_invalid_fiilter) { VCR.use_cassette("#{vcr_dir}/filter_invalid") { repository.only('doesntexist') } }
+      let(:call_only_with_invalid_filter) do
+        VCR.use_cassette("#{vcr_dir}/filter_invalid") { repository.only('doesntexist') }
+      end
 
       specify do
-        expect { with_invalid_fiilter.call }.to raise_error(Fortnox::API::RemoteServerError, /ogiltigt filter/)
+        expect { call_only_with_invalid_filter }.to raise_error(Fortnox::API::RemoteServerError, /ogiltigt filter/)
       end
     end
   end
