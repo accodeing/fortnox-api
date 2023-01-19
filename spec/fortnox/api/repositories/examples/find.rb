@@ -28,12 +28,12 @@ shared_examples_for '.find' do |searched_entity_id, find_by_hash: true|
     end
 
     context 'when not found' do
-      let(:call_find_with_non_existing_id) do
+      let(:find_with_non_existing_id) do
         VCR.use_cassette("#{vcr_dir}/find_failure") { repository.find('123456789') }
       end
 
       specify do
-        expect { call_find_with_non_existing_id }.to raise_error(Fortnox::API::RemoteServerError, /Kan inte hitta /)
+        expect { find_with_non_existing_id }.to raise_error(Fortnox::API::RemoteServerError, /Kan inte hitta /)
       end
     end
   end
