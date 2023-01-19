@@ -16,6 +16,9 @@ Gem::Specification.new do |spec|
                        'easily persistable to Fortnox again using the `save` method.'
   spec.homepage      = 'http://github.com/accodeing/fortnox-api'
   spec.license       = 'LGPL-3.0'
+  spec.metadata = {
+    'rubygems_mfa_required' => 'true'
+  }
 
   spec.files         = `git ls-files -z`.split("\x0")
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
@@ -45,5 +48,4 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'timecop', '~> 0.9.6'
   spec.add_development_dependency 'vcr', '~> 6.1'
   spec.add_development_dependency 'webmock', '~> 3.18'
-  spec.metadata['rubygems_mfa_required'] = 'true'
 end
