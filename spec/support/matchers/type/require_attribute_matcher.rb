@@ -55,12 +55,12 @@ module Matchers
       end
 
       def no_exception_failure_message
-        "Expected class to raise #{EXCEPTION} "\
+        "Expected class to raise #{EXCEPTION} " \
           "when attribute #{@attribute.inspect} is missing."
       end
 
       def wrong_error_message
-        "Expected exception to equal #{expected_error_message.inspect}. "\
+        "Expected exception to equal #{expected_error_message.inspect}. " \
           "Message was #{@wrong_error_message.inspect}."
       end
     end

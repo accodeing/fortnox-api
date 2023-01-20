@@ -19,7 +19,7 @@ module Matchers
       end
 
       def failure_message
-        "Expected class to have attribute #{@attribute.inspect} defined as #{@attribute_type}, "\
+        "Expected class to have attribute #{@attribute.inspect} defined as #{@attribute_type}, " \
         "but got following errors:
         #{@errors}"
       end

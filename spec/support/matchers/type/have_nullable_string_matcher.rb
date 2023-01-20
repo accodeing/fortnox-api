@@ -34,11 +34,11 @@ module Matchers
         non_string = 10.0
         @klass.new(@valid_hash.merge(@attribute => non_string))
       rescue Fortnox::API::AttributeError => exception
-        expected_message = "#{non_string.inspect} (#{non_string.class}) "\
+        expected_message = "#{non_string.inspect} (#{non_string.class}) " \
                            "has invalid type for #{@attribute.inspect}"
         return true if exception.message.include?(expected_message)
 
-        fail_message = "Expected error message to include #{expected_message.inspect}, "\
+        fail_message = "Expected error message to include #{expected_message.inspect}, " \
                        "but was #{exception.message.inspect}"
         raise(fail_message)
       end

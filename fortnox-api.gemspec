@@ -10,16 +10,18 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Jonas Schubert Erlandsson', 'Hannes Elvemyr', 'Felix Holmgren', 'Mike Eirih']
   spec.email         = ['info@accodeing.com']
   spec.summary       = 'Gem to use Fortnox REST API in Ruby.'
-  spec.description   = 'This gem uses the HTTParty library to abstract away the REST calls. It gives you access to a '\
-                       'number of objects that behave a lot like ActiveRecord instances, giving you access to methods '\
-                       'like `all`, `find`, `find_by_...` and so on. And each individual instance can be easily'\
-                       'persistable to Fortnox again using the `save` method.'
+  spec.description   = 'This gem uses the HTTParty library to abstract away the REST calls. It gives you access to a ' \
+                       'number of objects that behave a lot like ActiveRecord instances, giving you access to ' \
+                       'methods like `all`, `find`, `find_by_...` and so on. And each individual instance can be' \
+                       'easily persistable to Fortnox again using the `save` method.'
   spec.homepage      = 'http://github.com/accodeing/fortnox-api'
   spec.license       = 'LGPL-3.0'
+  spec.metadata = {
+    'rubygems_mfa_required' => 'true'
+  }
 
   spec.files         = `git ls-files -z`.split("\x0")
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
-  spec.test_files    = spec.files.grep(%r{^(spec)/})
   spec.require_paths = ['lib']
 
   spec.required_ruby_version = '>= 2.7'

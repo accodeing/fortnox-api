@@ -71,7 +71,8 @@ describe 'HouseworkTypes', integration: true do
 
   # rubocop:disable RSpec/RepeatedExample
   # rubocop:disable RSpec/RepeatedDescription
-  pending 'to be added' do
+  it 'will soon be added' do
+    pending 'todo'
     raise StandardError, 'Will be supported 2021-01-01'
     # it_behaves_like 'housework type', 'HOMEMAINTENANCE', TYPE_RUT
     # it_behaves_like 'housework type', 'FURNISHING', TYPE_RUT
@@ -79,7 +80,8 @@ describe 'HouseworkTypes', integration: true do
     # it_behaves_like 'housework type', 'WASHINGANDCAREOFCLOTHING', TYPE_RUT
   end
 
-  pending 'to be added' do
+  it 'will soon be added' do
+    pending 'todo'
     raise StandardError, 'Will be supported 2021-01-01'
     # it_behaves_like 'housework type', 'SOLARCELLS', TYPE_GREEN
     # it_behaves_like 'housework type', 'STORAGESELFPRODUCEDELECTRICTY', TYPE_GREEN
@@ -136,7 +138,7 @@ describe 'HouseworkTypes', integration: true do
 
     let(:error_message) do
       "Dokument med skattereduktionstypen '#{TYPE_RUT}' " \
-      "får inte innehålla rader med husarbetestypen '#{type}'."
+        "får inte innehålla rader med husarbetestypen '#{type}'."
     end
 
     it 'raises an error' do

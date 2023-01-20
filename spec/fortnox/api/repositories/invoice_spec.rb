@@ -12,7 +12,7 @@ require 'fortnox/api/repositories/examples/save_with_nested_model'
 require 'fortnox/api/repositories/examples/save_with_specially_named_attribute'
 require 'fortnox/api/repositories/examples/only'
 
-describe Fortnox::API::Repository::Invoice, order: :defined, integration: true do
+describe Fortnox::API::Repository::Invoice, integration: true, order: :defined do
   include Helpers::Configuration
   include Helpers::Repositories
 
@@ -131,7 +131,7 @@ describe Fortnox::API::Repository::Invoice, order: :defined, integration: true d
       before { persisted_invoice }
 
       context 'when setting value to nil' do
-        subject { updated_persisted_invoice.comments }
+        subject(:comments) { updated_persisted_invoice.comments }
 
         let(:updated_persisted_invoice) do
           VCR.use_cassette("#{vcr_dir}/save_old_with_nil_comments") do
@@ -139,7 +139,10 @@ describe Fortnox::API::Repository::Invoice, order: :defined, integration: true d
           end
         end
 
-        pending { is_expected.to eq(nil) }
+        it do
+          pending "test to rerecord VCR cassette, maybe it's working now"
+          expect(comments).to be_nil
+        end
       end
 
       context 'when setting value to empty string' do
@@ -171,7 +174,7 @@ describe Fortnox::API::Repository::Invoice, order: :defined, integration: true d
       before { persisted_invoice }
 
       context 'when setting value to nil' do
-        subject { updated_persisted_invoice.country }
+        subject(:country) { updated_persisted_invoice.country }
 
         let(:updated_persisted_invoice) do
           # TODO: This VCR cassette needs to be re-recorded again
@@ -181,7 +184,10 @@ describe Fortnox::API::Repository::Invoice, order: :defined, integration: true d
           end
         end
 
-        pending { is_expected.to eq(nil) }
+        it 'is nil' do
+          pending 'see comment above'
+          expect(country).to be_nil
+        end
       end
 
       context 'when setting value to empty string' do
@@ -213,11 +219,12 @@ describe Fortnox::API::Repository::Invoice, order: :defined, integration: true d
           ]
         )
       end
+      let(:saving_with_max_row_description) do
+        VCR.use_cassette("#{vcr_dir}/row_description_limit") { repository.save(model) }
+      end
 
       it 'allows 255 characters' do
-        VCR.use_cassette("#{vcr_dir}/row_description_limit") do
-          repository.save(model)
-        end
+        expect { saving_with_max_row_description }.not_to raise_error
       end
     end
   end

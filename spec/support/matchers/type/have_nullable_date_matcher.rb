@@ -51,7 +51,7 @@ module Matchers
       rescue @expected_error => exception
         return true if exception.message == @expected_error_message
 
-        fail_message = "Expected error message to include #{@expected_error_message.inspect}, "\
+        fail_message = "Expected error message to include #{@expected_error_message.inspect}, " \
                        "but was #{exception.message.inspect}"
         raise(fail_message)
       end

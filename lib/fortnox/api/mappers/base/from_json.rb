@@ -45,8 +45,8 @@ module Fortnox
             # Raise exception during test run if this happens so that we can
             # add it before a new release.
 
-            message = "for #{key} (#{mapper_name}, #{Fortnox::API::Mapper::DefaultTemplates.canonical_name_sym}) with"\
-                      " #{collection}"
+            message = "for #{key} (#{mapper_name}, #{Fortnox::API::Mapper::DefaultTemplates.canonical_name_sym}) " \
+                      "with #{collection}"
 
             raise MissingModelOrMapperException, message if ENV['RUBY_ENV']
 

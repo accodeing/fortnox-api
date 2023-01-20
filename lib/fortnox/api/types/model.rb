@@ -18,9 +18,7 @@ module Fortnox
         private
 
         def missing_keys(attributes)
-          non_nil_attributes = attributes.reject { |_, value| value.nil? }
-
-          attribute_keys = non_nil_attributes.keys
+          attribute_keys = attributes.compact.keys
           schema_keys = self.class.schema.keys.map(&:name)
 
           schema_keys - attribute_keys

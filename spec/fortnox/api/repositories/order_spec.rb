@@ -11,7 +11,7 @@ require 'fortnox/api/repositories/examples/save'
 require 'fortnox/api/repositories/examples/save_with_nested_model'
 require 'fortnox/api/repositories/examples/search'
 
-describe Fortnox::API::Repository::Order, order: :defined, integration: true do
+describe Fortnox::API::Repository::Order, integration: true, order: :defined do
   include Helpers::Configuration
   include Helpers::Repositories
 

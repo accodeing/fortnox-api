@@ -43,7 +43,7 @@ RSpec.describe Fortnox::API::Types::Model do
     describe 'optional attribute' do
       subject { User.new.optional_string }
 
-      it { is_expected.to be nil }
+      it { is_expected.to be_nil }
     end
   end
 end
