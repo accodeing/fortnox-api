@@ -30,7 +30,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'dry-container', '~> 0.10'
   spec.add_dependency 'dry-struct', '~> 1.6'
   spec.add_dependency 'dry-types', '~> 1.7'
-  spec.add_dependency 'httparty', '~> 0.17'
+  spec.add_dependency 'httparty', '~> 0.21'
   spec.add_dependency 'jwt', '~> 2.3'
 
   spec.add_development_dependency 'bundler', '~> 2.4'
