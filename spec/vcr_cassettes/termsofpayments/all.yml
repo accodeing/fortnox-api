@@ -23,21 +23,21 @@ http_interactions:
       message: OK
     headers:
       Content-Length:
-      - '290'
+      - '989'
       Content-Type:
       - application/json
       Date:
-      - Thu, 02 Jun 2022 11:50:10 GMT
+      - Fri, 27 Jan 2023 18:17:16 GMT
       Vary:
       - Accept-Encoding
       X-Build:
-      - 380d444b08
+      - 16d854443d
       X-Frame-Options:
       - sameorigin
       X-Rack-Responsetime:
-      - '130'
+      - '58'
       X-Uid:
-      - ccb25f03
+      - e1c985e2
       Server:
       - Fortnox
       X-Content-Type-Options:
@@ -49,9 +49,10 @@ http_interactions:
       Content-Security-Policy:
       - 'upgrade-insecure-requests;frame-ancestors https://*.fortnox.se;report-uri
         /api/cspreport;connect-src ''self'' https://a.storyblok.com wss://*.fortnox.se
-        *.fortnox.se *.findity.com *.livechatinc.com mybusiness.pwc.se themes.googleusercontent.com
+        *.fortnox.se *.findity.com mybusiness.pwc.se themes.googleusercontent.com
         s3.amazonaws.com/helpjuice-static/ *.helpjuice.com *.vimeo.com fonts.googleapis.com
-        fonts.gstatic.com ''unsafe-inline'' ''unsafe-eval'' blob: data:'
+        fonts.gstatic.com api.cling.se wss://api.cling.se ''unsafe-inline'' ''unsafe-eval''
+        blob: data:'
       Strict-Transport-Security:
       - max-age=31536000; includeSubdomains
     body:
@@ -59,10 +60,9 @@ http_interactions:
       string: '{"MetaInformation":{"@TotalResources":9,"@TotalPages":1,"@CurrentPage":1},"TermsOfPayments":[{"@url":"https:\/\/api.fortnox.se\/3\/termsofpayments\/0","Code":"0","Description":"0
         dagar"},{"@url":"https:\/\/api.fortnox.se\/3\/termsofpayments\/10","Code":"10","Description":"10
         dagar"},{"@url":"https:\/\/api.fortnox.se\/3\/termsofpayments\/15","Code":"15","Description":"15
-        dagar"},{"@url":"https:\/\/api.fortnox.se\/3\/termsofpayments\/19DAYS","Code":"19DAYS","Description":"Updated
-        description"},{"@url":"https:\/\/api.fortnox.se\/3\/termsofpayments\/20","Code":"20","Description":"20
-        dagar"},{"@url":"https:\/\/api.fortnox.se\/3\/termsofpayments\/30","Code":"30","Description":"30
+        dagar"},{"@url":"https:\/\/api.fortnox.se\/3\/termsofpayments\/20","Code":"20","Description":"20
+        dagar"},{"@url":"https:\/\/api.fortnox.se\/3\/termsofpayments\/21DAYS","Code":"21DAYS","Description":"Updated
+        description"},{"@url":"https:\/\/api.fortnox.se\/3\/termsofpayments\/30","Code":"30","Description":"30
         dagar"},{"@url":"https:\/\/api.fortnox.se\/3\/termsofpayments\/AG","Code":"AG","Description":"Autogiro"},{"@url":"https:\/\/api.fortnox.se\/3\/termsofpayments\/K","Code":"K","Description":"Kontant"},{"@url":"https:\/\/api.fortnox.se\/3\/termsofpayments\/PF","Code":"PF","Description":"Postf\u00f6rskott"}]}'
-    http_version: 
-  recorded_at: Thu, 02 Jun 2022 11:50:10 GMT
-recorded_with: VCR 4.0.0
+  recorded_at: Fri, 27 Jan 2023 18:17:16 GMT
+recorded_with: VCR 6.1.0
