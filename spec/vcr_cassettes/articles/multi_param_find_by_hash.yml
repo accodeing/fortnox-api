@@ -23,21 +23,21 @@ http_interactions:
       message: OK
     headers:
       Content-Length:
-      - '266'
+      - '400'
       Content-Type:
       - application/json
       Date:
-      - Thu, 02 Jun 2022 15:50:20 GMT
+      - Fri, 27 Jan 2023 17:56:41 GMT
       Vary:
       - Accept-Encoding
       X-Build:
-      - 380d444b08
+      - 16d854443d
       X-Frame-Options:
       - sameorigin
       X-Rack-Responsetime:
-      - '130'
+      - '62'
       X-Uid:
-      - ede60631
+      - 7f16e690
       Server:
       - Fortnox
       X-Content-Type-Options:
@@ -49,14 +49,14 @@ http_interactions:
       Content-Security-Policy:
       - 'upgrade-insecure-requests;frame-ancestors https://*.fortnox.se;report-uri
         /api/cspreport;connect-src ''self'' https://a.storyblok.com wss://*.fortnox.se
-        *.fortnox.se *.findity.com *.livechatinc.com mybusiness.pwc.se themes.googleusercontent.com
+        *.fortnox.se *.findity.com mybusiness.pwc.se themes.googleusercontent.com
         s3.amazonaws.com/helpjuice-static/ *.helpjuice.com *.vimeo.com fonts.googleapis.com
-        fonts.gstatic.com ''unsafe-inline'' ''unsafe-eval'' blob: data:'
+        fonts.gstatic.com api.cling.se wss://api.cling.se ''unsafe-inline'' ''unsafe-eval''
+        blob: data:'
       Strict-Transport-Security:
       - max-age=31536000; includeSubdomains
     body:
       encoding: ASCII-8BIT
-      string: '{"MetaInformation":{"@TotalResources":1,"@TotalPages":1,"@CurrentPage":1},"Articles":[{"@url":"https:\/\/api.fortnox.se\/3\/articles\/101","ArticleNumber":"101","Description":"Hammer","DisposableQuantity":"0","EAN":"","Housework":false,"PurchasePrice":"0","SalesPrice":null,"QuantityInStock":"0","ReservedQuantity":"0","StockPlace":null,"StockValue":"0","Unit":"","VAT":null,"WebshopArticle":false}]}'
-    http_version: 
-  recorded_at: Thu, 02 Jun 2022 15:50:20 GMT
-recorded_with: VCR 4.0.0
+      string: '{"MetaInformation":{"@TotalResources":1,"@TotalPages":1,"@CurrentPage":1},"Articles":[{"@url":"https:\/\/api.fortnox.se\/3\/articles\/101","ArticleNumber":"101","Description":"Hammer","DisposableQuantity":"0","EAN":"","Housework":false,"PurchasePrice":"0","SalesPrice":null,"QuantityInStock":"0","ReservedQuantity":"0","StockPlace":"","StockValue":"0","Unit":null,"VAT":null,"WebshopArticle":false}]}'
+  recorded_at: Fri, 27 Jan 2023 17:56:41 GMT
+recorded_with: VCR 6.1.0
