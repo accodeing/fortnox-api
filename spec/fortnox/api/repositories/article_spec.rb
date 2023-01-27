@@ -18,6 +18,7 @@ describe Fortnox::API::Repository::Article, integration: true, order: :defined d
 
   before { set_api_test_configuration }
 
+  # Requires a Financial Year in Fortnox, otherwise the sales account is not be available.
   include_examples '.save',
                    :description,
                    additional_attrs: { sales_account: 1250 }
