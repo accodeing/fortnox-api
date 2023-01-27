@@ -22,6 +22,9 @@ credentials in `.env`. See [Get tokens](get-tokens) for how to issue valid
 tokens and `.env.template` for which values you need to provide. Then, you must
 move these into `.env.test` since that's the environment file used for testing.
 
+If you want the gem to refresh your tokens during testing, you can enable that
+feature by setting the environment variable `REFRESH_TOKENS=true`.
+
 ### Seeding
 
 There's a Rake task for seeding the Test Fortnox instance with data that the
