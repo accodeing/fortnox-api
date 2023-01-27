@@ -214,6 +214,10 @@ gem makes a request the Fortnox API before the current refresh token expires**,
 otherwise you need to start over again with the
 [Initialization](#initialization).
 
+Note that when the gem automatially fetches a new access token, both the client
+id and client secret are required to generate the authorization headers for that
+request. Therefore, the gem needs access to those values as well.
+
 ## Initialization
 
 As described in the [Authorization](#authorization) section, the gem refreshes
