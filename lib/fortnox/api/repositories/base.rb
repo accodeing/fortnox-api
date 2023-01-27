@@ -109,7 +109,12 @@ module Fortnox
 
         def expired?(token)
           decoded_token = JWT.decode token, nil, false
-          decoded_token[0]['exp'] < (Time.now.to_i - TIME_MARGIN_FOR_ACCESS_TOKEN_RENEWAL)
+
+          # Token gets expired when it's smaller than current time.
+          # The greater the current time is, the more "expired" the token will get,
+          # so the expiration token needs to be smaller than the time now
+          # plus some time margin.
+          decoded_token[0]['exp'] < (Time.now.to_i + TIME_MARGIN_FOR_ACCESS_TOKEN_RENEWAL)
         rescue JWT::DecodeError
           raise Exception, "Could not decode access token for token store \"#{@token_store_name}\""
         end
