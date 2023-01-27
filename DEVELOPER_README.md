@@ -19,7 +19,8 @@ will need to update some test data in specs, see notes in specs.
 `.env.test` includes environment variables used for testing. If you want to run
 tests against a real (or test) Fortnox account you need to provide valid
 credentials in `.env`. See [Get tokens](get-tokens) for how to issue valid
-tokens and `.env.template` for which values you need to provide.
+tokens and `.env.template` for which values you need to provide. Then, you must
+move these into `.env.test` since that's the environment file used for testing.
 
 ### Seeding
 
