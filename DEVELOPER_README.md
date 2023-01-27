@@ -16,11 +16,10 @@ will need to update some test data in specs, see notes in specs.
 
 ### Test environment variables
 
-`.env.test` includes environment variables used for testing. There's a
-`MOCK_VALID_ACCCESS_TOKEN` setting that's `true` by default. If you want to run
-tests against a real (or test) Fortnox account, set that to `false` and provide
-a valid access token in `.env`. See [Get tokens](get-tokens) for how to issue
-valid tokens.
+`.env.test` includes environment variables used for testing. If you want to run
+tests against a real (or test) Fortnox account you need to provide valid
+credentials in `.env`. See [Get tokens](get-tokens) for how to issue valid
+tokens and `.env.template` for which values you need to provide.
 
 ### Seeding
 
