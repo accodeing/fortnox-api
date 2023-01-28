@@ -139,6 +139,13 @@ module Fortnox
             refresh_token: @token_store.refresh_token
           }
 
+          if Fortnox::API.debugging
+            logger.log('Renewing token')
+            logger.log("Token url: #{config.token_url}")
+            logger.log("Headers: #{renew_headers}")
+            logger.log("Body: #{body}")
+          end
+
           response = HTTParty.post(config.token_url, headers: renew_headers, body: body)
 
           if response.code != 200
