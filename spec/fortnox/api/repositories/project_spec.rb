@@ -20,7 +20,7 @@ describe Fortnox::API::Repository::Project, integration: true, order: :defined d
                    :comments,
                    additional_attrs: { description: 'Some important project' }
 
-  # It is not yet possible to delete Projects. Therefore, expected nr of
+  # VCR: It is not yet possible to delete Projects. Therefore, expected nr of
   # Projects when running .all will continue to increase
   # (until 100, which is max by default).
   include_examples '.all', 1

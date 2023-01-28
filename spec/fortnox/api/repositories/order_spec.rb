@@ -46,6 +46,7 @@ describe Fortnox::API::Repository::Order, integration: true, order: :defined do
     end
   end
 
+  # VCR: Searched Order needs to be created manually
   include_examples '.search', :customername, 'A customer', 1
 
   include_examples '.only', :cancelled, 2

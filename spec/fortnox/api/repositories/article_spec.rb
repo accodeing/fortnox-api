@@ -18,7 +18,8 @@ describe Fortnox::API::Repository::Article, integration: true, order: :defined d
 
   before { set_api_test_configuration }
 
-  # Requires a Financial Year in Fortnox, otherwise the sales account is not be available.
+  # VCR: Requires a Financial Year in Fortnox, otherwise the sales account is not be available.
+  # VCR: Update requires that default accounts exists in the chart of accounts
   include_examples '.save',
                    :description,
                    additional_attrs: { sales_account: 1250 }
@@ -28,10 +29,11 @@ describe Fortnox::API::Repository::Article, integration: true, order: :defined d
                    :ean,
                    '5901234123457'
 
-  # When recording new VCR cassettes, expected matches must be increased
-  include_examples '.all', 1
+  # VCR: expected matches must be increased
+  include_examples '.all', 3
 
-  # When recording new VCR cassettes, expected matches must be increased
+  # VCR: expected matches must be increased
+  # VCR: Create the searched Articles manually in Fortnox
   include_examples '.find', '1' do
     let(:find_by_hash_failure) { { description: 'Not Found' } }
     let(:single_param_find_by_hash) { { find_hash: { articlenumber: 101 }, matches: 1 } }
@@ -41,5 +43,5 @@ describe Fortnox::API::Repository::Article, integration: true, order: :defined d
     end
   end
 
-  include_examples '.search', :description, 'Test article', 3
+  include_examples '.search', :description, 'Test article', 1
 end
