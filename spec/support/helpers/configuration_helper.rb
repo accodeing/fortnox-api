@@ -34,7 +34,7 @@ class TokenStore
     text = File.read(DOTENV_FILE_NAME)
     updated_text = text
                    .gsub(/FORTNOX_API_ACCESS_TOKEN=.*$/, "FORTNOX_API_ACCESS_TOKEN=#{token}")
-    File.open(DOTENV_FILE_NAME, 'w') { |file| file.write(updated_text) }
+    File.write(DOTENV_FILE_NAME, updated_text)
   end
 
   def refresh_token=(token)
@@ -47,7 +47,7 @@ class TokenStore
     text = File.read(DOTENV_FILE_NAME)
     updated_text = text
                    .gsub(/FORTNOX_API_REFRESH_TOKEN=.*$/, "FORTNOX_API_REFRESH_TOKEN=#{token}")
-    File.open(DOTENV_FILE_NAME, 'w') { |file| file.write(updated_text) }
+    File.write(DOTENV_FILE_NAME, updated_text)
   end
 end
 

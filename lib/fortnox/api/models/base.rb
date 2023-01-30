@@ -56,8 +56,8 @@ module Fortnox
           return super() if recursive
 
           self.class.schema.each_with_object({}) do |key, result|
-              # Only output attributes that have a value set
-              result[key.name] = self[key.name] if self.send("#{key.name}?")
+            # Only output attributes that have a value set
+            result[key.name] = self[key.name] if send("#{key.name}?")
           end
         end
 
