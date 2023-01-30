@@ -53,7 +53,7 @@ end
 
 module Helpers
   module Configuration
-    def set_api_test_configuration
+    def set_api_test_configuration # rubocop:disable Metrics/MethodLength
       Fortnox::API.configure do |config|
         config.token_stores = { default: TokenStore.new }
         config.debugging = DEBUG

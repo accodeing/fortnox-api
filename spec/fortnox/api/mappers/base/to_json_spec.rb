@@ -19,11 +19,12 @@ describe Fortnox::API::Mapper::ToJSON do
 
   let(:mapper) { Test::ProductMapper.new }
 
-  describe 'entity_to_hash' do
-    let(:category1) { Test::Category.new(name: 'Cars', id: '1') }
-    let(:category2) { Test::Category.new(name: 'Fast Cars', id: '2') }
-    let(:product_designer) { Test::ProductDesigner.new(name: 'John Najjar', id: '23') }
+  describe '#entity_to_hash' do
     let(:product) do
+      category1 = Test::Category.new(name: 'Cars', id: '1')
+      category2 = Test::Category.new(name: 'Fast Cars', id: '2')
+      product_designer = Test::ProductDesigner.new(name: 'John Najjar', id: '23')
+
       Test::Product.new(url: 'someurl@example.com',
                         name: 'Ford Mustang',
                         vat: 30_000.0,
