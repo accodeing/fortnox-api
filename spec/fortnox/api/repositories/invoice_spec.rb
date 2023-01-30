@@ -26,13 +26,17 @@ describe Fortnox::API::Repository::Invoice, integration: true, order: :defined d
 
   describe '#save' do
     context 'with unsaved parent' do
-      let(:parent_invoice) { Fortnox::API::Model::Invoice.new(customer_number: '1') }
-      let(:child_invoice) { parent_invoice.update(due_date: '2023-01-01') }
+      subject(:saved_child) do
+        parent_invoice = Fortnox::API::Model::Invoice.new(customer_number: '1')
+        child_invoice = parent_invoice.update(due_date: '2023-01-01')
 
-      it 'sets correct attributes when saving' do
         VCR.use_cassette("#{vcr_dir}/save_new_with_unsaved_parent") do
           described_class.new.save(child_invoice)
         end
+      end
+
+      it 'sets attribute from parent when saved' do
+        expect(saved_child.customer_number).to eq '1'
       end
     end
   end

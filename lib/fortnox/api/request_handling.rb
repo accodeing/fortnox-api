@@ -18,8 +18,7 @@ module Fortnox
 
         if response.headers['content-type'].start_with?('text/html')
           raise Fortnox::API::RemoteServerError,
-                "Fortnox API's response has content type \"text/html\" instead" \
-                'of requested "application/json".' \
+                "Fortnox API's response has content type \"text/html\" instead of requested \"application/json\"." \
                 'This could be due to invalid endpoint or when the API is down. ' \
                 "Body: #{response.body}"
         end
