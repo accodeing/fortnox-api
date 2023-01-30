@@ -27,7 +27,7 @@ http_interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 27 Jan 2023 17:49:44 GMT
+      - Mon, 30 Jan 2023 10:35:04 GMT
       Vary:
       - Accept-Encoding
       X-Build:
@@ -35,9 +35,9 @@ http_interactions:
       X-Frame-Options:
       - sameorigin
       X-Rack-Responsetime:
-      - '82'
+      - '91'
       X-Uid:
-      - 6e3a53c1
+      - '71616897'
       Server:
       - Fortnox
       X-Content-Type-Options:
@@ -59,5 +59,5 @@ http_interactions:
       encoding: ASCII-8BIT
       string: '{"Article":{"@url":"https:\/\/api.fortnox.se\/3\/articles\/1","ArticleNumber":"1","Bulky":false,"ConstructionAccount":0,"Depth":0,"Description":"Test
         article","DisposableQuantity":0,"EAN":"5901234123457","EUAccount":3108,"EUVATAccount":3106,"ExportAccount":3105,"Height":0,"Housework":false,"HouseworkType":null,"Active":true,"Manufacturer":null,"ManufacturerArticleNumber":"","Note":"","PurchaseAccount":4000,"PurchasePrice":0,"QuantityInStock":0,"ReservedQuantity":0,"SalesAccount":3004,"StockGoods":false,"StockPlace":null,"StockValue":0,"StockWarning":0,"SupplierName":null,"SupplierNumber":null,"Type":"STOCK","Unit":null,"VAT":0,"WebshopArticle":false,"Weight":0,"Width":0,"Expired":false,"SalesPrice":null,"CostCalculationMethod":null,"StockAccount":null,"StockChangeAccount":null,"DirectCost":null,"FreightCost":null,"OtherCost":null,"DefaultStockPoint":null,"DefaultStockLocation":null}}'
-  recorded_at: Fri, 27 Jan 2023 17:49:44 GMT
+  recorded_at: Mon, 30 Jan 2023 10:35:04 GMT
 recorded_with: VCR 6.1.0

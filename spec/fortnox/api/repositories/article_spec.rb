@@ -31,7 +31,7 @@ describe Fortnox::API::Repository::Article, integration: true, order: :defined d
 
   include_examples '.all'
 
-  # VCR: expected matches must be increased
+  # VCR: Expected matches must be increased
   # VCR: Create the searched Articles manually in Fortnox
   include_examples '.find', '1' do
     let(:find_by_hash_failure) { { description: 'Not Found' } }
@@ -42,5 +42,6 @@ describe Fortnox::API::Repository::Article, integration: true, order: :defined d
     end
   end
 
-  include_examples '.search', :description, 'Test article', 1
+  # VCR: Expected mathes must be updated
+  include_examples '.search', :description, 'Test article', 3
 end

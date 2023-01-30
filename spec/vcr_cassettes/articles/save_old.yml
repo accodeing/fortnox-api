@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: put
-    uri: https://api.fortnox.se/3/articles/2
+    uri: https://api.fortnox.se/3/articles/102
     body:
       encoding: UTF-8
       string: '{"Article":{"Description":"Updated description"}}'
@@ -23,11 +23,11 @@ http_interactions:
       message: OK
     headers:
       Content-Length:
-      - '890'
+      - '894'
       Content-Type:
       - application/json
       Date:
-      - Fri, 27 Jan 2023 17:49:05 GMT
+      - Mon, 30 Jan 2023 10:35:04 GMT
       Vary:
       - Accept-Encoding
       X-Build:
@@ -35,9 +35,9 @@ http_interactions:
       X-Frame-Options:
       - sameorigin
       X-Rack-Responsetime:
-      - '188'
+      - '136'
       X-Uid:
-      - 9f65c02a
+      - e9beac57
       Server:
       - Fortnox
       X-Content-Type-Options:
@@ -57,7 +57,7 @@ http_interactions:
       - max-age=31536000; includeSubdomains
     body:
       encoding: ASCII-8BIT
-      string: '{"Article":{"@url":"https:\/\/api.fortnox.se\/3\/articles\/2","ArticleNumber":"2","Bulky":false,"ConstructionAccount":0,"Depth":0,"Description":"Updated
+      string: '{"Article":{"@url":"https:\/\/api.fortnox.se\/3\/articles\/102","ArticleNumber":"102","Bulky":false,"ConstructionAccount":0,"Depth":0,"Description":"Updated
         description","DisposableQuantity":0,"EAN":"","EUAccount":3108,"EUVATAccount":3106,"ExportAccount":3105,"Height":0,"Housework":false,"HouseworkType":null,"Active":true,"Manufacturer":null,"ManufacturerArticleNumber":"","Note":"","PurchaseAccount":4000,"PurchasePrice":0,"QuantityInStock":0,"ReservedQuantity":0,"SalesAccount":1250,"StockGoods":false,"StockPlace":null,"StockValue":0,"StockWarning":0,"SupplierName":null,"SupplierNumber":null,"Type":"STOCK","Unit":null,"VAT":0,"WebshopArticle":false,"Weight":0,"Width":0,"Expired":false,"SalesPrice":null,"CostCalculationMethod":null,"StockAccount":null,"StockChangeAccount":null,"DirectCost":null,"FreightCost":null,"OtherCost":null,"DefaultStockPoint":null,"DefaultStockLocation":null}}'
-  recorded_at: Fri, 27 Jan 2023 17:49:05 GMT
+  recorded_at: Mon, 30 Jan 2023 10:35:04 GMT
 recorded_with: VCR 6.1.0

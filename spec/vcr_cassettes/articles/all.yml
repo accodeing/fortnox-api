@@ -23,11 +23,11 @@ http_interactions:
       message: OK
     headers:
       Content-Length:
-      - '1067'
+      - '2040'
       Content-Type:
       - application/json
       Date:
-      - Fri, 27 Jan 2023 17:49:33 GMT
+      - Mon, 30 Jan 2023 10:35:04 GMT
       Vary:
       - Accept-Encoding
       X-Build:
@@ -35,9 +35,9 @@ http_interactions:
       X-Frame-Options:
       - sameorigin
       X-Rack-Responsetime:
-      - '87'
+      - '99'
       X-Uid:
-      - 18d04c71
+      - 97b8da1b
       Server:
       - Fortnox
       X-Content-Type-Options:
@@ -57,9 +57,11 @@ http_interactions:
       - max-age=31536000; includeSubdomains
     body:
       encoding: ASCII-8BIT
-      string: '{"MetaInformation":{"@TotalResources":3,"@TotalPages":1,"@CurrentPage":1},"Articles":[{"@url":"https:\/\/api.fortnox.se\/3\/articles\/1","ArticleNumber":"1","Description":"Test
+      string: '{"MetaInformation":{"@TotalResources":6,"@TotalPages":1,"@CurrentPage":1},"Articles":[{"@url":"https:\/\/api.fortnox.se\/3\/articles\/1","ArticleNumber":"1","Description":"Test
         article","DisposableQuantity":"0","EAN":"5901234123457","Housework":false,"PurchasePrice":"0","SalesPrice":null,"QuantityInStock":"0","ReservedQuantity":"0","StockPlace":null,"StockValue":"0","Unit":"","VAT":null,"WebshopArticle":false},{"@url":"https:\/\/api.fortnox.se\/3\/articles\/2","ArticleNumber":"2","Description":"Updated
         description","DisposableQuantity":"0","EAN":"","Housework":false,"PurchasePrice":"0","SalesPrice":null,"QuantityInStock":"0","ReservedQuantity":"0","StockPlace":null,"StockValue":"0","Unit":null,"VAT":null,"WebshopArticle":false},{"@url":"https:\/\/api.fortnox.se\/3\/articles\/3","ArticleNumber":"3","Description":"Test
+        article","DisposableQuantity":"0","EAN":"5901234123457","Housework":false,"PurchasePrice":"0","SalesPrice":null,"QuantityInStock":"0","ReservedQuantity":"0","StockPlace":null,"StockValue":"0","Unit":"","VAT":null,"WebshopArticle":false},{"@url":"https:\/\/api.fortnox.se\/3\/articles\/101","ArticleNumber":"101","Description":"Hammer","DisposableQuantity":"0","EAN":"","Housework":false,"PurchasePrice":"0","SalesPrice":null,"QuantityInStock":"0","ReservedQuantity":"0","StockPlace":"","StockValue":"0","Unit":null,"VAT":null,"WebshopArticle":false},{"@url":"https:\/\/api.fortnox.se\/3\/articles\/102","ArticleNumber":"102","Description":"Updated
+        description","DisposableQuantity":"0","EAN":"","Housework":false,"PurchasePrice":"0","SalesPrice":null,"QuantityInStock":"0","ReservedQuantity":"0","StockPlace":null,"StockValue":"0","Unit":null,"VAT":null,"WebshopArticle":false},{"@url":"https:\/\/api.fortnox.se\/3\/articles\/103","ArticleNumber":"103","Description":"Test
         article","DisposableQuantity":"0","EAN":"5901234123457","Housework":false,"PurchasePrice":"0","SalesPrice":null,"QuantityInStock":"0","ReservedQuantity":"0","StockPlace":null,"StockValue":"0","Unit":"","VAT":null,"WebshopArticle":false}]}'
-  recorded_at: Fri, 27 Jan 2023 17:49:33 GMT
+  recorded_at: Mon, 30 Jan 2023 10:35:04 GMT
 recorded_with: VCR 6.1.0
