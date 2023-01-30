@@ -23,7 +23,9 @@ module Fortnox
                 "Body: #{response.body}"
         end
 
+        # TODO: Add tests for these cases and include the error messages from Fortnox
         raise Fortnox::API::RemoteServerError, 'Unauthorized request' if response.code == 401
+        raise Fortnox::API::RemoteServerError, 'Forbidden request' if response.code == 403
 
         api_error = response.parsed_response['ErrorInformation']
         raise_api_error(api_error, response) if api_error
