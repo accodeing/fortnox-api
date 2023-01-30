@@ -139,16 +139,6 @@ module Fortnox
             refresh_token: @token_store.refresh_token
           }
 
-          if Fortnox::API.debugging
-            Fortnox::API.logger.debug('--- renew_access_token ---')
-            Fortnox::API.logger.debug("Access token before renewal: #{ENV.fetch('FORTNOX_API_ACCESS_TOKEN')}")
-            Fortnox::API.logger.debug("Refresh token before renewal: #{ENV.fetch('FORTNOX_API_REFRESH_TOKEN')}")
-            Fortnox::API.logger.debug("Token url: #{config.token_url}")
-            Fortnox::API.logger.debug("Headers: #{renew_headers}")
-            Fortnox::API.logger.debug("Body: #{body}")
-            Fortnox::API.logger.debug('--- /renew_access_token ---')
-          end
-
           response = HTTParty.post(config.token_url, headers: renew_headers, body: body)
 
           if response.code != 200
