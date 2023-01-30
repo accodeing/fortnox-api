@@ -30,7 +30,7 @@ describe Fortnox::API::Repository::Article, integration: true, order: :defined d
                    '5901234123457'
 
   # VCR: expected matches must be increased
-  include_examples '.all', 3
+  include_examples '.all', 6
 
   # VCR: Expected matches must be increased
   # VCR: Create the searched Articles manually in Fortnox

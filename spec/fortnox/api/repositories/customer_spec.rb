@@ -28,7 +28,7 @@ describe Fortnox::API::Repository::Customer, integration: true, order: :defined 
   # VCR: It is not yet possible to delete Customers. Therefore, expected nr of
   # Customers when running .all will continue to increase
   # (until 100, which is max by default).
-  include_examples '.all', 2
+  include_examples '.all', 7
 
   # VCR: Searched Customers needs to be created manually
   include_examples '.find', '1' do

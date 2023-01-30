@@ -30,7 +30,8 @@ describe Fortnox::API::Repository::Order, integration: true, order: :defined do
                    nested_model_hash,
                    [Fortnox::API::Types::OrderRow.new(nested_model_hash)]
 
-  include_examples '.all'
+  # VCR: Update expected result
+  include_examples '.all', 7
 
   # VCR: Searched Orders needs to be created manually in Fortnox
   include_examples '.find', 1 do
