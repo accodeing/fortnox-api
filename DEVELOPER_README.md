@@ -16,16 +16,24 @@ will need to update some test data in specs, see notes in specs.
 
 ### Test environment variables
 
-`.env.test` includes environment variables used for testing. There's a
-`MOCK_VALID_ACCCESS_TOKEN` setting that's `true` by default. If you want to run
-tests against a real (or test) Fortnox account, set that to `false` and provide
-a valid access token in `.env`. See [Get tokens](get-tokens) for how to issue
-valid tokens.
+`.env.test` includes environment variables used for testing. If you want to run
+tests against a real (or test) Fortnox account you need to provide valid
+credentials in `.env`. See [Get tokens](get-tokens) for how to issue valid
+tokens and `.env.template` for which values you need to provide. Then, you must
+move these into `.env.test` since that's the environment file used for testing.
+
+If you want the gem to refresh your tokens during testing, you can enable that
+feature by setting the environment variable `REFRESH_TOKENS=true`.
 
 ### Seeding
 
 There's a Rake task for seeding the Test Fortnox instance with data that the
 test suite needs. See `rake -T` to find the task.
+
+### Debug mode while running tests
+
+There's a `DEBUG` environment variable to set if you want to debug during
+testing.
 
 ## Rubocop
 

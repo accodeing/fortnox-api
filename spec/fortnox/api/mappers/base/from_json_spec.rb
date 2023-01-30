@@ -45,7 +45,7 @@ describe Fortnox::API::Mapper::FromJSON do
     # expect( entity_hash[:url] ).to eq 'someurl@example.com'
     # end
 
-    context 'with nested models' do
+    describe 'nested models' do
       let(:expected_nested_model_hash) do
         [{ name: 'Cars', id: '1' }, { name: 'Fast cars', id: '2' }]
       end
@@ -55,7 +55,7 @@ describe Fortnox::API::Mapper::FromJSON do
       end
     end
 
-    context 'with nested model' do
+    describe 'nested model' do
       let(:expected_nested_model_hash) { { name: 'John Najjar', id: '23' } }
 
       specify 'is converted correctly' do

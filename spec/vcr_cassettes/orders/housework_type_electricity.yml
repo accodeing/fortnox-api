@@ -22,22 +22,22 @@ http_interactions:
       code: 201
       message: Created
     headers:
-      Content-Length:
-      - '2041'
       Content-Type:
       - application/json
       Date:
-      - Thu, 02 Jun 2022 18:50:55 GMT
+      - Mon, 30 Jan 2023 10:34:03 GMT
       Location:
       - orders
       X-Build:
-      - 380d444b08
+      - 16d854443d
       X-Frame-Options:
       - sameorigin
       X-Rack-Responsetime:
-      - '677'
+      - '367'
       X-Uid:
-      - c39a2481
+      - f801e3fe
+      Transfer-Encoding:
+      - chunked
       Server:
       - Fortnox
       X-Content-Type-Options:
@@ -49,16 +49,17 @@ http_interactions:
       Content-Security-Policy:
       - 'upgrade-insecure-requests;frame-ancestors https://*.fortnox.se;report-uri
         /api/cspreport;connect-src ''self'' https://a.storyblok.com wss://*.fortnox.se
-        *.fortnox.se *.findity.com *.livechatinc.com mybusiness.pwc.se themes.googleusercontent.com
+        *.fortnox.se *.findity.com mybusiness.pwc.se themes.googleusercontent.com
         s3.amazonaws.com/helpjuice-static/ *.helpjuice.com *.vimeo.com fonts.googleapis.com
-        fonts.gstatic.com ''unsafe-inline'' ''unsafe-eval'' blob: data:'
+        fonts.gstatic.com api.cling.se wss://api.cling.se ''unsafe-inline'' ''unsafe-eval''
+        blob: data:'
       Strict-Transport-Security:
       - max-age=31536000; includeSubdomains
     body:
       encoding: UTF-8
-      string: '{"Order":{"@url":"https:\/\/api.fortnox.se\/3\/orders\/22","@urlTaxReductionList":"https:\/\/api.fortnox.se\/3\/taxreductions?filter=orders&referencenumber=22","AdministrationFee":0,"AdministrationFeeVAT":0,"Address1":"","Address2":"","BasisTaxReduction":0,"Cancelled":false,"City":"","Comments":"","ContributionPercent":0,"ContributionValue":0,"CopyRemarks":false,"Country":"","CostCenter":"","Currency":"SEK","CurrencyRate":1,"CurrencyUnit":1,"CustomerName":"Updated
+      string: '{"Order":{"@url":"https:\/\/api.fortnox.se\/3\/orders\/22","@urlTaxReductionList":"https:\/\/api.fortnox.se\/3\/taxreductions?filter=orders&referencenumber=22","AdministrationFee":0,"AdministrationFeeVAT":0,"Address1":"","Address2":"","BasisTaxReduction":0,"Cancelled":false,"City":"New
+        York","Comments":"","ContributionPercent":0,"ContributionValue":0,"CopyRemarks":false,"Country":"","CostCenter":"","Currency":"SEK","CurrencyRate":1,"CurrencyUnit":1,"CustomerName":"Updated
         name","CustomerNumber":"1","DeliveryState":"delivery","DeliveryAddress1":"","DeliveryAddress2":"","DeliveryCity":"","DeliveryCountry":"","DeliveryDate":null,"DeliveryName":"","DeliveryZipCode":"","DocumentNumber":"22","EmailInformation":{"EmailAddressFrom":null,"EmailAddressTo":"","EmailAddressCC":null,"EmailAddressBCC":null,"EmailSubject":"Order
-        {no} bifogas","EmailBody":" "},"ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","Freight":0,"FreightVAT":0,"Gross":0,"HouseWork":false,"InvoiceReference":0,"Labels":[],"Language":"SV","Net":0,"NotCompleted":false,"OfferReference":0,"OrderDate":"2022-06-02","OrderRows":[{"AccountNumber":3004,"ArticleNumber":"101","ContributionPercent":0,"ContributionValue":0,"CostCenter":"","DeliveredQuantity":"0.00","Description":"Hammer","Discount":0,"DiscountType":"PERCENT","HouseWork":true,"HouseWorkHoursToReport":null,"HouseWorkType":"ELECTRICITY","OrderedQuantity":"1.00","Price":0,"Project":"","ReservedQuantity":"0.00","RowId":24,"StockPointCode":null,"StockPointId":null,"Total":0,"Unit":"","VAT":0}],"OrderType":"Order","OrganisationNumber":"","OurReference":"","Phone1":"","Phone2":"","PriceList":"A","PrintTemplate":"oc","Project":"","WarehouseReady":true,"OutboundDate":"2022-06-02","Remarks":"","RoundOff":0,"Sent":false,"TaxReduction":null,"TermsOfDelivery":"","TermsOfPayment":"30","TimeBasisReference":null,"Total":0,"TotalToPay":0,"TotalVAT":0,"VATIncluded":false,"WayOfDelivery":"","YourReference":"","YourOrderNumber":"","ZipCode":"","StockPointCode":null,"StockPointId":null,"TaxReductionType":"rot"}}'
-    http_version: 
-  recorded_at: Thu, 02 Jun 2022 18:50:54 GMT
-recorded_with: VCR 4.0.0
+        {no} bifogas","EmailBody":" "},"ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","Freight":0,"FreightVAT":0,"Gross":0,"HouseWork":false,"InvoiceReference":"0","Labels":[],"Language":"SV","Net":0,"NotCompleted":false,"OfferReference":"0","OrderDate":"2023-01-30","OrderRows":[{"AccountNumber":3001,"ArticleNumber":"101","ContributionPercent":"0","ContributionValue":"0","Cost":0,"CostCenter":"","DeliveredQuantity":"0","Description":"Hammer","Discount":0,"DiscountType":"PERCENT","HouseWork":true,"HouseWorkHoursToReport":null,"HouseWorkType":"ELECTRICITY","OrderedQuantity":"1","Price":0,"Project":"","ReservedQuantity":"0","RowId":20,"StockPointCode":null,"StockPointId":null,"Total":0,"Unit":"","VAT":0}],"OrderType":"Order","OrganisationNumber":"","OurReference":"","Phone1":"","Phone2":"","PriceList":"A","PrintTemplate":"oc","Project":"","WarehouseReady":true,"OutboundDate":"2023-01-30","Remarks":"","RoundOff":0,"Sent":false,"TaxReduction":null,"TermsOfDelivery":"","TermsOfPayment":"30","TimeBasisReference":null,"Total":0,"TotalToPay":0,"TotalVAT":0,"VATIncluded":false,"WayOfDelivery":"","YourReference":"","YourOrderNumber":"","ZipCode":"10001","StockPointCode":null,"StockPointId":null,"TaxReductionType":"rot"}}'
+  recorded_at: Mon, 30 Jan 2023 10:34:03 GMT
+recorded_with: VCR 6.1.0

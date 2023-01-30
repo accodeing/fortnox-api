@@ -25,11 +25,12 @@ describe Fortnox::API::Repository::Customer, integration: true, order: :defined 
                    :email_invoice_cc,
                    'test@example.com'
 
-  # NOTE: It is not yet possible to delete Customers. Therefore, expected nr of
+  # VCR: It is not yet possible to delete Customers. Therefore, expected nr of
   # Customers when running .all will continue to increase
   # (until 100, which is max by default).
-  include_examples '.all', 2
+  include_examples '.all', 7
 
+  # VCR: Searched Customers needs to be created manually
   include_examples '.find', '1' do
     let(:find_by_hash_failure) { { city: 'Not Found' } }
     let(:single_param_find_by_hash) { { find_hash: { city: 'New York' }, matches: 2 } }
@@ -40,7 +41,7 @@ describe Fortnox::API::Repository::Customer, integration: true, order: :defined 
   end
 
   # NOTE: When recording new VCR casettes, expected matches must be increased
-  include_examples '.search', :name, 'Test', 1
+  include_examples '.search', :name, 'Test', 2
 
   describe 'country reference' do
     describe 'with valid country code \'SE\'' do
@@ -70,6 +71,7 @@ describe Fortnox::API::Repository::Customer, integration: true, order: :defined 
   end
 
   describe 'sales account' do
+    # VCR: The Sales Account needs to be created manually in Fortnox
     context 'when saving a Customer with a Sales Account set' do
       let(:customer) do
         VCR.use_cassette("#{vcr_dir}/save_new_with_sales_account") do

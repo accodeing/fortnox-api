@@ -18,11 +18,14 @@ module Fortnox
 
         if response.headers['content-type'].start_with?('text/html')
           raise Fortnox::API::RemoteServerError,
-                "Fortnox API's response has content type \"text/html\" instead" \
-                'of requested "application/json".' \
+                "Fortnox API's response has content type \"text/html\" instead of requested \"application/json\"." \
                 'This could be due to invalid endpoint or when the API is down. ' \
                 "Body: #{response.body}"
         end
+
+        # TODO: Add tests for these cases and include the error messages from Fortnox
+        raise Fortnox::API::RemoteServerError, 'Unauthorized request' if response.code == 401
+        raise Fortnox::API::RemoteServerError, 'Forbidden request' if response.code == 403
 
         api_error = response.parsed_response['ErrorInformation']
         raise_api_error(api_error, response) if api_error

@@ -30,10 +30,10 @@ describe Fortnox::API::Repository::Order, integration: true, order: :defined do
                    nested_model_hash,
                    [Fortnox::API::Types::OrderRow.new(nested_model_hash)]
 
-  # It is not possible to delete Orders. Therefore, expected nr of Orders
-  # when running .all will continue to increase (until 100, which is max by default).
-  include_examples '.all', 3
+  # VCR: Update expected result
+  include_examples '.all', 7
 
+  # VCR: Searched Orders needs to be created manually in Fortnox
   include_examples '.find', 1 do
     let(:find_by_hash_failure) { { ourreference: 'Not found' } }
 
@@ -46,6 +46,7 @@ describe Fortnox::API::Repository::Order, integration: true, order: :defined do
     end
   end
 
+  # VCR: Searched Order needs to be created manually
   include_examples '.search', :customername, 'A customer', 1
 
   include_examples '.only', :cancelled, 2

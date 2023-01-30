@@ -17,22 +17,23 @@ describe Fortnox::API::Repository::Unit, integration: true, order: :defined do
 
   before { set_api_test_configuration }
 
-  # When recording new VCR cassettes, code needs to be changed to a unique value
+  # VCR: code needs to be changed to a unique value
   include_examples '.save',
                    :description,
-                   additional_attrs: { code: 'blarg7' }
+                   additional_attrs: { code: 'blarg9' }
 
-  # When recording new VCR cassettes, code needs to be changed to a unique value
+  # VCR: code needs to be changed to a unique value
   include_examples '.save with specially named attribute',
                    { description: 'Happy clouds' },
                    :code,
-                   'woooh6'
+                   'woooh7'
 
-  # When recording new VCR cassettes, expected number must be updated
+  # VCR: expected number must be updated
   include_examples '.all', 7
 
-  include_examples '.find', 'blarg6', find_by_hash: false do
+  # VCR: code must be updated
+  include_examples '.find', 'blarg7', find_by_hash: false do
     let(:find_by_hash_failure) { { code: 'notfound' } }
-    let(:single_param_find_by_hash) { { find_hash: { code: 'blarg6' }, matches: 1 } }
+    let(:single_param_find_by_hash) { { find_hash: { code: 'blarg7' }, matches: 1 } }
   end
 end

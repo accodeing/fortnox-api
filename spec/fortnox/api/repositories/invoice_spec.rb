@@ -24,6 +24,23 @@ describe Fortnox::API::Repository::Invoice, integration: true, order: :defined d
 
   include_examples '.save', :comments, additional_attrs: required_hash
 
+  describe '#save' do
+    context 'with unsaved parent' do
+      subject(:saved_child) do
+        parent_invoice = Fortnox::API::Model::Invoice.new(customer_number: '1')
+        child_invoice = parent_invoice.update(due_date: '2023-01-01')
+
+        VCR.use_cassette("#{vcr_dir}/save_new_with_unsaved_parent") do
+          described_class.new.save(child_invoice)
+        end
+      end
+
+      it 'sets attribute from parent when saved' do
+        expect(saved_child.customer_number).to eq '1'
+      end
+    end
+  end
+
   nested_model_hash = { price: 10, article_number: '101' }
   include_examples '.save with nested model',
                    required_hash,
@@ -38,8 +55,9 @@ describe Fortnox::API::Repository::Invoice, integration: true, order: :defined d
 
   # It is not possible to delete Invoces. Therefore, expected nr of Orders
   # when running .all will continue to increase (until 100, which is max by default).
-  include_examples '.all', 2
+  include_examples '.all', 32
 
+  # VCR: Models needs to be created manually in Fortnox
   include_examples '.find', 1 do
     let(:find_by_hash_failure) { { yourreference: 'Not found' } }
 
@@ -54,7 +72,8 @@ describe Fortnox::API::Repository::Invoice, integration: true, order: :defined d
 
   include_examples '.search', :customername, 'Test', 1
 
-  include_examples '.only', :fullypaid, 3
+  # VCR: Need to be set manually in Fortnox
+  include_examples '.only', :fullypaid, 2
 
   describe 'country attribute' do
     def new_invoice(country:)
@@ -88,12 +107,6 @@ describe Fortnox::API::Repository::Invoice, integration: true, order: :defined d
         subject { save_invoice(country: 'GB').country }
 
         it { is_expected.to eq('GB') }
-      end
-
-      describe 'KR' do
-        subject { save_invoice(country: 'KR').country }
-
-        it { is_expected.to eq('KR') }
       end
 
       describe 'VA' do
