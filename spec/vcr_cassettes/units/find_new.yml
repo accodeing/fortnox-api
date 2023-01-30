@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.fortnox.se/3/units/blarg8
+    uri: https://api.fortnox.se/3/units/blarg9
     body:
       encoding: US-ASCII
       string: ''
@@ -27,17 +27,17 @@ http_interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 30 Jan 2023 10:39:16 GMT
+      - Mon, 30 Jan 2023 11:57:23 GMT
       Vary:
       - Accept-Encoding
       X-Build:
-      - 16d854443d
+      - cc2c3a0388
       X-Frame-Options:
       - sameorigin
       X-Rack-Responsetime:
-      - '82'
+      - '75'
       X-Uid:
-      - 280b09e8
+      - bfce41b2
       Server:
       - Fortnox
       X-Content-Type-Options:
@@ -57,7 +57,7 @@ http_interactions:
       - max-age=31536000; includeSubdomains
     body:
       encoding: ASCII-8BIT
-      string: '{"Unit":{"@url":"https:\/\/api.fortnox.se\/3\/units\/blarg8","Code":"blarg8","CodeEnglish":"","Description":"A
+      string: '{"Unit":{"@url":"https:\/\/api.fortnox.se\/3\/units\/blarg9","Code":"blarg9","CodeEnglish":"","Description":"A
         value"}}'
-  recorded_at: Mon, 30 Jan 2023 10:39:16 GMT
+  recorded_at: Mon, 30 Jan 2023 11:57:23 GMT
 recorded_with: VCR 6.1.0

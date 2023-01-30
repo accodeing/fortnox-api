@@ -20,7 +20,7 @@ describe Fortnox::API::Repository::Unit, integration: true, order: :defined do
   # VCR: code needs to be changed to a unique value
   include_examples '.save',
                    :description,
-                   additional_attrs: { code: 'blarg8' }
+                   additional_attrs: { code: 'blarg9' }
 
   # VCR: code needs to be changed to a unique value
   include_examples '.save with specially named attribute',
