@@ -7,6 +7,7 @@ DOTENV_FILE_NAME = '.env.test'
 Dotenv.load(DOTENV_FILE_NAME)
 
 REFRESH_TOKENS = ENV.fetch('REFRESH_TOKENS')
+DEBUG = ENV.fetch('DEBUG', false)
 
 class TokenStore
   def access_token
@@ -55,7 +56,15 @@ module Helpers
     def set_api_test_configuration
       Fortnox::API.configure do |config|
         config.token_stores = { default: TokenStore.new }
-        config.debugging = ENV.fetch('DEBUGGING', false)
+        config.debugging = DEBUG
+
+        if DEBUG
+          config.logger = lambda {
+            logger = Logger.new($stdout)
+            logger.level = Logger::DEBUG
+            return logger
+          }.call
+        end
 
         if REFRESH_TOKENS
           config.client_id = ENV.fetch('FORTNOX_API_CLIENT_ID')
