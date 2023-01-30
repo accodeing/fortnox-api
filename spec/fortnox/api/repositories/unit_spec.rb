@@ -28,8 +28,7 @@ describe Fortnox::API::Repository::Unit, integration: true, order: :defined do
                    :code,
                    'woooh6'
 
-  # VCR: expected number must be updated
-  include_examples '.all', 5
+  include_examples '.all'
 
   # VCR: code must be updated
   include_examples '.find', 'blarg7', find_by_hash: false do

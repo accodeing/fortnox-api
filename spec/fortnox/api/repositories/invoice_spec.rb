@@ -49,9 +49,7 @@ describe Fortnox::API::Repository::Invoice, integration: true, order: :defined d
                    :ocr,
                    '426523791'
 
-  # It is not possible to delete Invoces. Therefore, expected nr of Orders
-  # when running .all will continue to increase (until 100, which is max by default).
-  include_examples '.all', 2
+  include_examples '.all'
 
   include_examples '.find', 1 do
     let(:find_by_hash_failure) { { yourreference: 'Not found' } }
