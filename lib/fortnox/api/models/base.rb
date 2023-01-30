@@ -52,7 +52,7 @@ module Fortnox
           end
         end
 
-        def to_hash(recursive = false)
+        def to_hash(recursive = false) # rubocop:disable Style/OptionalBooleanParameter
           return super() if recursive
 
           self.class.schema.each_with_object({}) do |key, result|

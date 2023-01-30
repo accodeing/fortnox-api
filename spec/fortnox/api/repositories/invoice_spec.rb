@@ -31,7 +31,7 @@ describe Fortnox::API::Repository::Invoice, integration: true, order: :defined d
 
       it 'sets correct attributes when saving' do
         VCR.use_cassette("#{vcr_dir}/save_new_with_unsaved_parent") do
-          Fortnox::API::Repository::Invoice.new.save(child_invoice)
+          described_class.new.save(child_invoice)
         end
       end
     end

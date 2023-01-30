@@ -23,14 +23,12 @@ describe Fortnox::API::Repository::Order, integration: true, order: :defined do
 
   include_examples '.save', :comments, additional_attrs: required_hash
 
-  describe do
-    nested_model_hash = { price: -9_999_999_999, article_number: '101', ordered_quantity: 1 }
-    include_examples '.save with nested model',
-                     required_hash,
-                     :order_rows,
-                     nested_model_hash,
-                     [Fortnox::API::Types::OrderRow.new(nested_model_hash)]
-  end
+  nested_model_hash = { price: -9_999_999_999, article_number: '101', ordered_quantity: 1 }
+  include_examples '.save with nested model',
+                   required_hash,
+                   :order_rows,
+                   nested_model_hash,
+                   [Fortnox::API::Types::OrderRow.new(nested_model_hash)]
 
   include_examples '.all'
 

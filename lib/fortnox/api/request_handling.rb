@@ -24,9 +24,7 @@ module Fortnox
                 "Body: #{response.body}"
         end
 
-        if response.code === 401
-          raise Fortnox::API::RemoteServerError, "Unauthorized request"
-        end
+        raise Fortnox::API::RemoteServerError, 'Unauthorized request' if response.code == 401
 
         api_error = response.parsed_response['ErrorInformation']
         raise_api_error(api_error, response) if api_error
