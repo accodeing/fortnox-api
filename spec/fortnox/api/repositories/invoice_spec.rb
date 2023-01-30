@@ -24,6 +24,19 @@ describe Fortnox::API::Repository::Invoice, integration: true, order: :defined d
 
   include_examples '.save', :comments, additional_attrs: required_hash
 
+  describe '#save' do
+    context 'with unsaved parent' do
+      let(:parent_invoice) { Fortnox::API::Model::Invoice.new(customer_number: '1') }
+      let(:child_invoice) { parent_invoice.update(due_date: '2023-01-01') }
+
+      it 'sets correct attributes when saving'
+        VCR.use_cassette("#{vcr_dir}/save_new_with_unsaved_parent") do
+          Fortnox::API::Repository::Invoice.new.save(child_invoice)
+        end
+      end
+    end
+  end
+
   nested_model_hash = { price: 10, article_number: '101' }
   include_examples '.save with nested model',
                    required_hash,
