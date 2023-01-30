@@ -41,6 +41,26 @@ module Fortnox
           send(self.class::UNIQUE_ID)
         end
 
+        # This filtering logic could be improved since it is currently O(N*M).
+        def attributes(*options)
+          return self.class.schema if options.nil?
+
+          options = Array(options)
+
+          self.class.schema.find_all do |_name, attribute|
+            options.all? { |option| attribute.is?(option) }
+          end
+        end
+
+        def to_hash(recursive = false)
+          return super() if recursive
+
+          self.class.schema.each_with_object({}) do |key, result|
+              # Only output attributes that have a value set
+              result[key.name] = self[key.name] if self.send("#{key.name}?")
+          end
+        end
+
         def update(hash)
           old_attributes = to_hash
           new_attributes = old_attributes.merge(hash)
