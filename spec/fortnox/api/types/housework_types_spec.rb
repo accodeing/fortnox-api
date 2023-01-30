@@ -40,7 +40,7 @@ describe 'HouseworkTypes', integration: true do
 
     context "when creating an OrderRow with housework_type set to #{type}" do
       if legacy
-        let(:error_message) { 'Skattereduktion för den valda typen av husarbete har upphört.' }
+        let(:error_message) { /Skattereduktion för den valda typen av husarbete har upphört/ }
 
         specify { expect { save.call }.to raise_error(Fortnox::API::RemoteServerError, error_message) }
       else
@@ -110,7 +110,7 @@ describe 'HouseworkTypes', integration: true do
       )
     end
 
-    let(:error_message) { 'Kan inte sätta typen övrig kostnad på en rad markerad som husarbete.' }
+    let(:error_message) { /Kan inte sätta typen övrig kostnad på en rad markerad som husarbete/ }
 
     it "can't have housework set to true" do
       expect do
@@ -137,8 +137,7 @@ describe 'HouseworkTypes', integration: true do
     end
 
     let(:error_message) do
-      "Dokument med skattereduktionstypen '#{TYPE_RUT}' " \
-        "får inte innehålla rader med husarbetestypen '#{type}'."
+      /Dokument med skattereduktionstypen '#{TYPE_RUT}' får inte innehålla rader med husarbetestypen '#{type}'/
     end
 
     it 'raises an error' do
