@@ -25,7 +25,10 @@ describe Fortnox::API::Repository::Customer, integration: true, order: :defined 
                    :email_invoice_cc,
                    'test@example.com'
 
-  include_examples '.all'
+  # VCR: It is not yet possible to delete Customers. Therefore, expected nr of
+  # Customers when running .all will continue to increase
+  # (until 100, which is max by default).
+  include_examples '.all', 2
 
   # VCR: Searched Customers needs to be created manually
   include_examples '.find', '1' do

@@ -23,7 +23,8 @@ describe Fortnox::API::Repository::TermsOfPayment, integration: true, order: :de
 
   include_examples '.save', :description, additional_attrs: required_hash
 
-  include_examples '.all'
+  # VCR: expected matches needs to be increased
+  include_examples '.all', 9
 
   # VCR: The terms of payment searched here needs to be created manually in Fortnox
   include_examples '.find', '19DAYS', find_by_hash: false do

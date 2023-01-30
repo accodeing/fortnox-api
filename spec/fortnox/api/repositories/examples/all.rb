@@ -1,16 +1,16 @@
 # frozen_string_literal: true
 
-RSpec.shared_examples_for '.all' do
+RSpec.shared_examples_for '.all' do |count|
   describe '.all' do
     let(:response) do
       VCR.use_cassette("#{vcr_dir}/all") { subject.all }
     end
 
-    it 'returns a list of records' do
-      expect(response).not_to be_empty
+    specify 'returns correct number of records' do
+      expect(response.size).to be count
     end
 
-    it 'returns correct class' do
+    specify 'returns correct class' do
       expect(response.first.class).to be described_class::MODEL
     end
   end
