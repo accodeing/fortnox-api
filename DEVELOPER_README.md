@@ -30,6 +30,11 @@ feature by setting the environment variable `REFRESH_TOKENS=true`.
 There's a Rake task for seeding the Test Fortnox instance with data that the
 test suite needs. See `rake -T` to find the task.
 
+### Debug mode while running tests
+
+There's a `DEBUG` environment variable to set if you want to debug during
+testing.
+
 ## Rubocop
 
 When updating Rubocop in `fortnox-api.gemspec`, you need to set the explicit
