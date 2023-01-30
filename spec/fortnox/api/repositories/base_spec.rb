@@ -4,6 +4,7 @@ require 'spec_helper'
 require 'fortnox/api'
 require 'jwt'
 require 'timecop'
+require 'dry/container/stub'
 
 describe Fortnox::API::Repository::Base do
   before do
@@ -11,14 +12,15 @@ describe Fortnox::API::Repository::Base do
     stub_const('Repository::Test', Class.new(described_class))
     stub_const('Repository::Test::MODEL', Model::RepositoryBaseTest)
 
-    Fortnox::API::Registry.register(:repositorybasetest, Model::RepositoryBaseTest)
-  end
+    Fortnox::API::Registry.enable_stubs!
 
-  after do
-    # HACK: Currently, there is no way to remove keys from the Dry::Container#register.
-    # We could move the register call to a before(:all) hook, but that registered key
-    # would then leak into other tests. Instead, we can simply delete it with this little hack :)
-    Fortnox::API::Registry._container.delete('repositorybasetest')
+    # Only register the key once...
+    unless Fortnox::API::Registry.key? :repositorybasetest
+      Fortnox::API::Registry.register(:repositorybasetest, Model::RepositoryBaseTest)
+    end
+
+    # ... but stub the value each test run
+    Fortnox::API::Registry.stub(:repositorybasetest, Model::RepositoryBaseTest)
   end
 
   let(:token_store) do
