@@ -51,6 +51,7 @@ describe Fortnox::API::Repository::Invoice, integration: true, order: :defined d
 
   include_examples '.all'
 
+  # VCR: Models needs to be created manually in Fortnox
   include_examples '.find', 1 do
     let(:find_by_hash_failure) { { yourreference: 'Not found' } }
 
@@ -65,7 +66,8 @@ describe Fortnox::API::Repository::Invoice, integration: true, order: :defined d
 
   include_examples '.search', :customername, 'Test', 1
 
-  include_examples '.only', :fullypaid, 3
+  # VCR: Need to be set manually in Fortnox
+  include_examples '.only', :fullypaid, 2
 
   describe 'country attribute' do
     def new_invoice(country:)
@@ -99,12 +101,6 @@ describe Fortnox::API::Repository::Invoice, integration: true, order: :defined d
         subject { save_invoice(country: 'GB').country }
 
         it { is_expected.to eq('GB') }
-      end
-
-      describe 'KR' do
-        subject { save_invoice(country: 'KR').country }
-
-        it { is_expected.to eq('KR') }
       end
 
       describe 'VA' do

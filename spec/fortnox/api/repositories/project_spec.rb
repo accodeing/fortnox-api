@@ -27,7 +27,7 @@ describe Fortnox::API::Repository::Project, integration: true, order: :defined d
     let(:single_param_find_by_hash) { { find_hash: { limit: 1 }, matches: 1 } }
 
     let(:multi_param_find_by_hash) do
-      { find_hash: { limit: 2, offset: 0 }, matches: 1 }
+      { find_hash: { limit: 2, offset: 0 }, matches: 2 }
     end
   end
 end
