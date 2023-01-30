@@ -5,7 +5,7 @@ http_interactions:
     uri: https://api.fortnox.se/3/units/
     body:
       encoding: UTF-8
-      string: '{"Unit":{"Code":"woooh6","Description":"Happy clouds"}}'
+      string: '{"Unit":{"Code":"woooh7","Description":"Happy clouds"}}'
     headers:
       Content-Type:
       - application/json
@@ -27,17 +27,17 @@ http_interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 27 Jan 2023 11:37:30 GMT
+      - Mon, 30 Jan 2023 10:39:37 GMT
       Location:
       - units
       X-Build:
-      - 5a7c4f364e
+      - 16d854443d
       X-Frame-Options:
       - sameorigin
       X-Rack-Responsetime:
-      - '82'
+      - '96'
       X-Uid:
-      - '18966660'
+      - b726c305
       Server:
       - Fortnox
       X-Content-Type-Options:
@@ -57,7 +57,7 @@ http_interactions:
       - max-age=31536000; includeSubdomains
     body:
       encoding: UTF-8
-      string: '{"Unit":{"@url":"https:\/\/api.fortnox.se\/3\/units\/woooh6","Code":"woooh6","CodeEnglish":"","Description":"Happy
+      string: '{"Unit":{"@url":"https:\/\/api.fortnox.se\/3\/units\/woooh7","Code":"woooh7","CodeEnglish":"","Description":"Happy
         clouds"}}'
-  recorded_at: Fri, 27 Jan 2023 11:37:30 GMT
+  recorded_at: Mon, 30 Jan 2023 10:39:37 GMT
 recorded_with: VCR 6.1.0

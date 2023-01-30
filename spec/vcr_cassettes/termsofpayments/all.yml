@@ -23,11 +23,11 @@ http_interactions:
       message: OK
     headers:
       Content-Length:
-      - '989'
+      - '1094'
       Content-Type:
       - application/json
       Date:
-      - Fri, 27 Jan 2023 18:17:16 GMT
+      - Mon, 30 Jan 2023 10:38:26 GMT
       Vary:
       - Accept-Encoding
       X-Build:
@@ -35,9 +35,9 @@ http_interactions:
       X-Frame-Options:
       - sameorigin
       X-Rack-Responsetime:
-      - '58'
+      - '125'
       X-Uid:
-      - e1c985e2
+      - e7eddcf2
       Server:
       - Fortnox
       X-Content-Type-Options:
@@ -57,12 +57,12 @@ http_interactions:
       - max-age=31536000; includeSubdomains
     body:
       encoding: ASCII-8BIT
-      string: '{"MetaInformation":{"@TotalResources":9,"@TotalPages":1,"@CurrentPage":1},"TermsOfPayments":[{"@url":"https:\/\/api.fortnox.se\/3\/termsofpayments\/0","Code":"0","Description":"0
+      string: '{"MetaInformation":{"@TotalResources":10,"@TotalPages":1,"@CurrentPage":1},"TermsOfPayments":[{"@url":"https:\/\/api.fortnox.se\/3\/termsofpayments\/0","Code":"0","Description":"0
         dagar"},{"@url":"https:\/\/api.fortnox.se\/3\/termsofpayments\/10","Code":"10","Description":"10
         dagar"},{"@url":"https:\/\/api.fortnox.se\/3\/termsofpayments\/15","Code":"15","Description":"15
-        dagar"},{"@url":"https:\/\/api.fortnox.se\/3\/termsofpayments\/20","Code":"20","Description":"20
+        dagar"},{"@url":"https:\/\/api.fortnox.se\/3\/termsofpayments\/19DAYS","Code":"19DAYS","Description":"Testing"},{"@url":"https:\/\/api.fortnox.se\/3\/termsofpayments\/20","Code":"20","Description":"20
         dagar"},{"@url":"https:\/\/api.fortnox.se\/3\/termsofpayments\/21DAYS","Code":"21DAYS","Description":"Updated
         description"},{"@url":"https:\/\/api.fortnox.se\/3\/termsofpayments\/30","Code":"30","Description":"30
         dagar"},{"@url":"https:\/\/api.fortnox.se\/3\/termsofpayments\/AG","Code":"AG","Description":"Autogiro"},{"@url":"https:\/\/api.fortnox.se\/3\/termsofpayments\/K","Code":"K","Description":"Kontant"},{"@url":"https:\/\/api.fortnox.se\/3\/termsofpayments\/PF","Code":"PF","Description":"Postf\u00f6rskott"}]}'
-  recorded_at: Fri, 27 Jan 2023 18:17:16 GMT
+  recorded_at: Mon, 30 Jan 2023 10:38:26 GMT
 recorded_with: VCR 6.1.0

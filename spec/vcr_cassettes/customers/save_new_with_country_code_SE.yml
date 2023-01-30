@@ -28,7 +28,7 @@ http_interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 27 Jan 2023 17:58:06 GMT
+      - Mon, 30 Jan 2023 10:36:44 GMT
       Location:
       - customers
       X-Build:
@@ -36,9 +36,9 @@ http_interactions:
       X-Frame-Options:
       - sameorigin
       X-Rack-Responsetime:
-      - '111'
+      - '168'
       X-Uid:
-      - 925edbca
+      - bd757879
       Server:
       - Fortnox
       X-Content-Type-Options:
@@ -58,7 +58,7 @@ http_interactions:
       - max-age=31536000; includeSubdomains
     body:
       encoding: UTF-8
-      string: '{"Customer":{"@url":"https:\/\/api.fortnox.se\/3\/customers\/3","Address1":null,"Address2":null,"City":null,"Country":"Sverige","Comments":null,"Currency":"SEK","CostCenter":null,"CountryCode":"SE","Active":true,"CustomerNumber":"3","DefaultDeliveryTypes":{"Invoice":"PRINT","Order":"PRINT","Offer":"PRINT"},"DefaultTemplates":{"Order":"DEFAULTTEMPLATE","Offer":"DEFAULTTEMPLATE","Invoice":"DEFAULTTEMPLATE","CashInvoice":"DEFAULTTEMPLATE"},"DeliveryAddress1":null,"DeliveryAddress2":null,"DeliveryCity":null,"DeliveryCountry":null,"DeliveryCountryCode":null,"DeliveryFax":null,"DeliveryName":null,"DeliveryPhone1":null,"DeliveryPhone2":null,"DeliveryZipCode":null,"Email":"","EmailInvoice":"","EmailInvoiceBCC":"","EmailInvoiceCC":"","EmailOffer":"","EmailOfferBCC":"","EmailOfferCC":"","EmailOrder":"","EmailOrderBCC":"","EmailOrderCC":"","ExternalReference":null,"Fax":null,"GLN":null,"GLNDelivery":null,"InvoiceAdministrationFee":null,"InvoiceDiscount":null,"InvoiceFreight":null,"InvoiceRemark":"","Name":"Customer
+      string: '{"Customer":{"@url":"https:\/\/api.fortnox.se\/3\/customers\/8","Address1":null,"Address2":null,"City":null,"Country":"Sverige","Comments":null,"Currency":"SEK","CostCenter":null,"CountryCode":"SE","Active":true,"CustomerNumber":"8","DefaultDeliveryTypes":{"Invoice":"PRINT","Order":"PRINT","Offer":"PRINT"},"DefaultTemplates":{"Order":"DEFAULTTEMPLATE","Offer":"DEFAULTTEMPLATE","Invoice":"DEFAULTTEMPLATE","CashInvoice":"DEFAULTTEMPLATE"},"DeliveryAddress1":null,"DeliveryAddress2":null,"DeliveryCity":null,"DeliveryCountry":null,"DeliveryCountryCode":null,"DeliveryFax":null,"DeliveryName":null,"DeliveryPhone1":null,"DeliveryPhone2":null,"DeliveryZipCode":null,"Email":"","EmailInvoice":"","EmailInvoiceBCC":"","EmailInvoiceCC":"","EmailOffer":"","EmailOfferBCC":"","EmailOfferCC":"","EmailOrder":"","EmailOrderBCC":"","EmailOrderCC":"","ExternalReference":null,"Fax":null,"GLN":null,"GLNDelivery":null,"InvoiceAdministrationFee":null,"InvoiceDiscount":null,"InvoiceFreight":null,"InvoiceRemark":"","Name":"Customer
         with Swedish country code","OrganisationNumber":"","OurReference":"","Phone1":null,"Phone2":null,"PriceList":"A","Project":"","SalesAccount":null,"ShowPriceVATIncluded":false,"TermsOfDelivery":"","TermsOfPayment":"","Type":"COMPANY","VATNumber":"","VATType":"SEVAT","VisitingAddress":null,"VisitingCity":null,"VisitingCountry":null,"VisitingCountryCode":null,"VisitingZipCode":null,"WayOfDelivery":"","WWW":"","YourReference":"","ZipCode":null}}'
-  recorded_at: Fri, 27 Jan 2023 17:58:06 GMT
+  recorded_at: Mon, 30 Jan 2023 10:36:44 GMT
 recorded_with: VCR 6.1.0

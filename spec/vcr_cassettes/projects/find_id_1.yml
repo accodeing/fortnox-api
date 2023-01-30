@@ -27,7 +27,7 @@ http_interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 27 Jan 2023 18:21:46 GMT
+      - Mon, 30 Jan 2023 10:37:29 GMT
       Vary:
       - Accept-Encoding
       X-Build:
@@ -35,9 +35,9 @@ http_interactions:
       X-Frame-Options:
       - sameorigin
       X-Rack-Responsetime:
-      - '52'
+      - '65'
       X-Uid:
-      - e2d7a798
+      - 3a914a06
       Server:
       - Fortnox
       X-Content-Type-Options:
@@ -59,5 +59,5 @@ http_interactions:
       encoding: ASCII-8BIT
       string: '{"Project":{"@url":"https:\/\/api.fortnox.se\/3\/projects\/1","Comments":"Updated
         comments","ContactPerson":null,"Description":"Some important project","EndDate":null,"ProjectLeader":null,"ProjectNumber":"1","Status":"ONGOING","StartDate":null}}'
-  recorded_at: Fri, 27 Jan 2023 18:21:46 GMT
+  recorded_at: Mon, 30 Jan 2023 10:37:29 GMT
 recorded_with: VCR 6.1.0

@@ -27,7 +27,7 @@ http_interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 27 Jan 2023 18:21:46 GMT
+      - Mon, 30 Jan 2023 10:37:29 GMT
       Vary:
       - Accept-Encoding
       X-Build:
@@ -35,9 +35,9 @@ http_interactions:
       X-Frame-Options:
       - sameorigin
       X-Rack-Responsetime:
-      - '53'
+      - '70'
       X-Uid:
-      - d7ed5c18
+      - 4d18ed53
       Server:
       - Fortnox
       X-Content-Type-Options:
@@ -57,7 +57,7 @@ http_interactions:
       - max-age=31536000; includeSubdomains
     body:
       encoding: ASCII-8BIT
-      string: '{"MetaInformation":{"@TotalResources":1,"@TotalPages":1,"@CurrentPage":1},"Projects":[{"@url":"https:\/\/api.fortnox.se\/3\/projects\/1","Description":"Some
+      string: '{"MetaInformation":{"@TotalResources":2,"@TotalPages":2,"@CurrentPage":1},"Projects":[{"@url":"https:\/\/api.fortnox.se\/3\/projects\/1","Description":"Some
         important project","EndDate":null,"ProjectLeader":null,"ProjectNumber":"1","Status":"ONGOING","StartDate":null}]}'
-  recorded_at: Fri, 27 Jan 2023 18:21:46 GMT
+  recorded_at: Mon, 30 Jan 2023 10:37:29 GMT
 recorded_with: VCR 6.1.0

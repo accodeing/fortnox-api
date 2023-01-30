@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: put
-    uri: https://api.fortnox.se/3/projects/1
+    uri: https://api.fortnox.se/3/projects/2
     body:
       encoding: UTF-8
       string: '{"Project":{"Comments":"Updated comments"}}'
@@ -27,7 +27,7 @@ http_interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 27 Jan 2023 18:21:46 GMT
+      - Mon, 30 Jan 2023 10:37:28 GMT
       Vary:
       - Accept-Encoding
       X-Build:
@@ -35,9 +35,9 @@ http_interactions:
       X-Frame-Options:
       - sameorigin
       X-Rack-Responsetime:
-      - '66'
+      - '104'
       X-Uid:
-      - d0f8e6f2
+      - 4b0d8f5f
       Server:
       - Fortnox
       X-Content-Type-Options:
@@ -57,7 +57,7 @@ http_interactions:
       - max-age=31536000; includeSubdomains
     body:
       encoding: ASCII-8BIT
-      string: '{"Project":{"@url":"https:\/\/api.fortnox.se\/3\/projects\/1","Comments":"Updated
-        comments","ContactPerson":null,"Description":"Some important project","EndDate":null,"ProjectLeader":null,"ProjectNumber":"1","Status":"ONGOING","StartDate":null}}'
-  recorded_at: Fri, 27 Jan 2023 18:21:46 GMT
+      string: '{"Project":{"@url":"https:\/\/api.fortnox.se\/3\/projects\/2","Comments":"Updated
+        comments","ContactPerson":null,"Description":"Some important project","EndDate":null,"ProjectLeader":null,"ProjectNumber":"2","Status":"ONGOING","StartDate":null}}'
+  recorded_at: Mon, 30 Jan 2023 10:37:28 GMT
 recorded_with: VCR 6.1.0

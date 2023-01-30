@@ -27,7 +27,7 @@ http_interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 27 Jan 2023 18:01:47 GMT
+      - Mon, 30 Jan 2023 10:36:43 GMT
       Vary:
       - Accept-Encoding
       X-Build:
@@ -35,9 +35,9 @@ http_interactions:
       X-Frame-Options:
       - sameorigin
       X-Rack-Responsetime:
-      - '70'
+      - '64'
       X-Uid:
-      - 5c98298e
+      - 00be7577
       Server:
       - Fortnox
       X-Content-Type-Options:
@@ -60,5 +60,5 @@ http_interactions:
       string: '{"MetaInformation":{"@TotalResources":2,"@TotalPages":1,"@CurrentPage":1},"Customers":[{"@url":"https:\/\/api.fortnox.se\/3\/customers\/1","Address1":"","Address2":"","City":"New
         York","CustomerNumber":"1","Email":"","Name":"Updated name","OrganisationNumber":"","Phone":"","ZipCode":"10001"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/2","Address1":"","Address2":"","City":"New
         York","CustomerNumber":"2","Email":"","Name":"Test customer","OrganisationNumber":"","Phone":"","ZipCode":""}]}'
-  recorded_at: Fri, 27 Jan 2023 18:01:47 GMT
+  recorded_at: Mon, 30 Jan 2023 10:36:43 GMT
 recorded_with: VCR 6.1.0
