@@ -4,7 +4,7 @@ require 'spec_helper'
 require 'fortnox/api'
 require 'fortnox/api/repositories/authentication'
 
-describe Fortnox::API::Repository::Authentication, integration: true, order: :defined do
+describe Fortnox::API::Repository::Authentication, integration: true do
   include Helpers::Configuration
 
   subject(:repository) { described_class.new }
