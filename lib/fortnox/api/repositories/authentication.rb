@@ -45,14 +45,14 @@ module Fortnox
             raise Fortnox::API::RemoteServerError, "Unauthorized request. Error: \"#{response.body}\""
           end
 
-          if response.code != 200
-            message = 'Unable to renew access token. ' \
-                      "Response code: #{response.code}. " \
-                      "Response message: #{response.message}. " \
-                      "Response body: #{response.body}"
+          return unless response.code != 200
 
-            raise Exception, message
-          end
+          message = 'Unable to renew access token. ' \
+                    "Response code: #{response.code}. " \
+                    "Response message: #{response.message}. " \
+                    "Response body: #{response.body}"
+
+          raise Exception, message
         end
 
         def client_id

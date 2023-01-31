@@ -35,7 +35,7 @@ module Fortnox
       Thread.current[:access_token] = token
     end
 
-    def self.access_token()
+    def self.access_token
       Thread.current[:access_token]
     end
 

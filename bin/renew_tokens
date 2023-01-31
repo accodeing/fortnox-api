@@ -9,11 +9,11 @@ DOTENV_FILE_NAME = '.env'
 Dotenv.load(DOTENV_FILE_NAME)
 
 Fortnox::API.configure do |config|
-  config.client_secret = ENV['FORTNOX_API_CLIENT_SECRET']
-  config.client_id = ENV['FORTNOX_API_CLIENT_ID']
+  config.client_secret = ENV.fetch('FORTNOX_API_CLIENT_SECRET', nil)
+  config.client_id = ENV.fetch('FORTNOX_API_CLIENT_ID', nil)
 end
 
-tokens = Fortnox::API::Repository::Authentication.new.renew_tokens(ENV['FORTNOX_API_REFRESH_TOKEN'])
+tokens = Fortnox::API::Repository::Authentication.new.renew_tokens(ENV.fetch('FORTNOX_API_REFRESH_TOKEN', nil))
 
 puts tokens
 

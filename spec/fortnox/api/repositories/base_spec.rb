@@ -51,7 +51,7 @@ describe Fortnox::API::Repository::Base do
 
       it 'raises an error' do
         expect do
-          VCR.use_cassette("authentication/expired_token") { expect(repository.get('/customers', body: '')) }
+          VCR.use_cassette('authentication/expired_token') { expect(repository.get('/customers', body: '')) }
         end.to raise_error(Fortnox::API::RemoteServerError, /Unauthorized request(.)*"message":"unauthorized"/)
       end
     end

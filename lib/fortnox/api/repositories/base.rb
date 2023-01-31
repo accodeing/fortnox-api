@@ -9,9 +9,6 @@ require_relative 'base/savers'
 require_relative '../request_handling'
 
 # TODO: Temporarily disables metrics since this will be rewritten soon...
-# rubocop:disable Metrics/ClassLength
-# rubocop:disable Metrics/MethodLength
-# rubocop:disable Metrics/AbcSize
 module Fortnox
   module API
     module Repository
@@ -52,11 +49,11 @@ module Fortnox
         def initialize(keys_filtered_on_save: [:url])
           @keys_filtered_on_save = keys_filtered_on_save
           @mapper = Registry[Mapper::Base.canonical_name_sym(self.class::MODEL)].new
-          if access_token.nil?
-            raise MissingAccessToken,
-              'No Access Token provided! You need to provide an Access Token: ' \
-              'Fortnox::API.access_token = token'
-          end
+          return unless access_token.nil?
+
+          raise MissingAccessToken,
+                'No Access Token provided! You need to provide an Access Token: ' \
+                'Fortnox::API.access_token = token'
         end
 
         private
@@ -85,6 +82,3 @@ module Fortnox
     end
   end
 end
-# rubocop:enable Metrics/ClassLength
-# rubocop:enable Metrics/MethodLength
-# rubocop:enable Metrics/AbcSize
