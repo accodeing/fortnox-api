@@ -9,19 +9,14 @@ module Fortnox
         def renew_tokens(refresh_token)
           raise ArgumentError, 'Refresh token is empty!' if refresh_token.nil? || refresh_token.empty?
 
-          credentials = Base64.encode64("#{client_id}:#{client_secret}")
-
-          renew_headers = {
-            'Content-type' => 'application/x-www-form-urlencoded',
-            Authorization: "Basic #{credentials}"
-          }
-
           body = {
             grant_type: 'refresh_token',
             refresh_token: refresh_token
           }
 
-          response = HTTParty.post(config.token_url, headers: renew_headers, body: body)
+          response = HTTParty.post(config.token_url,
+                                   headers: renew_headers(client_id, client_secret),
+                                   body: body)
 
           validate_response(response)
 
@@ -37,6 +32,15 @@ module Fortnox
             expires_in: parsed_response['expires_in'],
             token_type: parsed_response['token_type'],
             scope: parsed_response['scope']
+          }
+        end
+
+        def renew_headers(client_id, client_secret)
+          credentials = Base64.encode64("#{client_id}:#{client_secret}")
+
+          {
+            'Content-type' => 'application/x-www-form-urlencoded',
+            Authorization: "Basic #{credentials}"
           }
         end
 
