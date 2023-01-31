@@ -21,20 +21,7 @@ module Fortnox
 
           response = HTTParty.post(config.token_url, headers: renew_headers, body: body)
 
-          raise Fortnox::API::RemoteServerError, "Bad request. Error: \"#{response.body}\"" if response.code == 400
-
-          if response.code == 401
-            raise Fortnox::API::RemoteServerError, "Unauthorized request. Error: \"#{response.body}\""
-          end
-
-          if response.code != 200
-            message = 'Unable to renew access token. ' \
-                      "Response code: #{response.code}. " \
-                      "Response message: #{response.message}. " \
-                      "Response body: #{response.body}"
-
-            raise Exception, message
-          end
+          handle_errors(response)
 
           response_to_hash(response.parsed_response)
         end
@@ -49,6 +36,23 @@ module Fortnox
             token_type: parsed_response['token_type'],
             scope: parsed_response['scope']
           }
+        end
+
+        def handle_errors(response)
+          raise Fortnox::API::RemoteServerError, "Bad request. Error: \"#{response.body}\"" if response.code == 400
+
+          if response.code == 401
+            raise Fortnox::API::RemoteServerError, "Unauthorized request. Error: \"#{response.body}\""
+          end
+
+          if response.code != 200
+            message = 'Unable to renew access token. ' \
+                      "Response code: #{response.code}. " \
+                      "Response message: #{response.message}. " \
+                      "Response body: #{response.body}"
+
+            raise Exception, message
+          end
         end
 
         def client_id
