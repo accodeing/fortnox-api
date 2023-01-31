@@ -23,7 +23,7 @@ module Helpers
         end
       end
 
-      Fortnox::API.access_token = 'a_test_token'
+      Fortnox::API.access_token = ENV.fetch('FORTNOX_API_ACCESS_TOKEN')
     end
   end
 end
