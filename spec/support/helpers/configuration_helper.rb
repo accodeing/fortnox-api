@@ -6,7 +6,6 @@ require 'jwt'
 DOTENV_FILE_NAME = '.env.test'
 Dotenv.load(DOTENV_FILE_NAME)
 
-REFRESH_TOKENS = ENV.fetch('REFRESH_TOKENS')
 DEBUG = ENV.fetch('DEBUG', false)
 
 class TokenStore
@@ -15,47 +14,28 @@ class TokenStore
   end
 
   def refresh_token
-    unless REFRESH_TOKENS
-      raise StandardError,
-            'Something went wrong, #refresh_token should not be called during this test. ' \
-            'Verify that the access token is valid.'
-    end
-
-    ENV.fetch('FORTNOX_API_REFRESH_TOKEN')
+    raise StandardError,
+          'Something went wrong, #refresh_token should not be called during this test. ' \
+          'Verify that the access token is valid.'
   end
 
   def access_token=(token)
-    unless REFRESH_TOKENS
-      raise StandardError,
-            'Something went wrong, #access_token= should not be called during this test. ' \
-            'Verify that the access token is valid.'
-    end
-
-    text = File.read(DOTENV_FILE_NAME)
-    updated_text = text
-                   .gsub(/FORTNOX_API_ACCESS_TOKEN=.*$/, "FORTNOX_API_ACCESS_TOKEN=#{token}")
-    File.write(DOTENV_FILE_NAME, updated_text)
+    raise StandardError,
+          'Something went wrong, #access_token= should not be called during this test. ' \
+          'Verify that the access token is valid.'
   end
 
   def refresh_token=(token)
-    unless REFRESH_TOKENS
-      raise StandardError,
-            'Something went wrong, #refresh_token= should not be called during this test. ' \
-            'Verify that the access token is valid.'
-    end
-
-    text = File.read(DOTENV_FILE_NAME)
-    updated_text = text
-                   .gsub(/FORTNOX_API_REFRESH_TOKEN=.*$/, "FORTNOX_API_REFRESH_TOKEN=#{token}")
-    File.write(DOTENV_FILE_NAME, updated_text)
+    raise StandardError,
+          'Something went wrong, #refresh_token= should not be called during this test. ' \
+          'Verify that the access token is valid.'
   end
 end
 
 module Helpers
   module Configuration
-    def set_api_test_configuration # rubocop:disable Metrics/MethodLength
+    def set_api_test_configuration
       Fortnox::API.configure do |config|
-        config.token_stores = { default: TokenStore.new }
         config.debugging = DEBUG
 
         if DEBUG
@@ -65,12 +45,9 @@ module Helpers
             return logger
           }.call
         end
-
-        if REFRESH_TOKENS
-          config.client_id = ENV.fetch('FORTNOX_API_CLIENT_ID')
-          config.client_secret = ENV.fetch('FORTNOX_API_CLIENT_SECRET')
-        end
       end
+
+      Fortnox::API.access_token = 'a_test_token'
     end
   end
 end

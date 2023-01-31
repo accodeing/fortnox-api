@@ -13,21 +13,21 @@ describe Fortnox::API::Repository::Authentication, integration: true do
 
   let(:vcr_dir) { 'authentication' }
 
-  describe '#renew_access_token' do
+  describe '#renew_tokens' do
     context 'with nil' do
       it 'raises an error' do
-        expect { repository.renew_access_token(nil) }.to raise_error(ArgumentError, 'Refresh token is empty!')
+        expect { repository.renew_tokens(nil) }.to raise_error(ArgumentError, 'Refresh token is empty!')
       end
     end
 
     context 'with empty string' do
       it 'raises an error' do
-        expect { repository.renew_access_token('') }.to raise_error(ArgumentError, 'Refresh token is empty!')
+        expect { repository.renew_tokens('') }.to raise_error(ArgumentError, 'Refresh token is empty!')
       end
     end
 
     describe 'missing configuration' do
-      let(:calling_renew_access_token) { repository.renew_access_token('access_token') }
+      let(:calling_renew_access_token) { repository.renew_tokens('access_token') }
 
       context 'without client_id' do
         before { Fortnox::API.configure { |c| c.client_secret = 'a secret' } }
@@ -57,7 +57,7 @@ describe Fortnox::API::Repository::Authentication, integration: true do
       it 'raises an error' do
         expect do
           VCR.use_cassette("#{vcr_dir}/invalid_client") do
-            puts repository.renew_access_token('invalid_refresh_token')
+            repository.renew_tokens('invalid_refresh_token')
           end
         end.to raise_error(Fortnox::API::RemoteServerError, /Unauthorized request(.)*Error:(.)*invalid_client/)
       end
@@ -76,7 +76,7 @@ describe Fortnox::API::Repository::Authentication, integration: true do
         it 'raises an error' do
           expect do
             VCR.use_cassette("#{vcr_dir}/invalid_refresh_token") do
-              puts repository.renew_access_token('invalid_refresh_token')
+              repository.renew_tokens('invalid_refresh_token')
             end
           end.to raise_error(Fortnox::API::RemoteServerError, /Bad request(.)*Error:(.)*Invalid refresh token/)
         end
@@ -85,7 +85,7 @@ describe Fortnox::API::Repository::Authentication, integration: true do
       context 'with valid refresh token' do
         let(:response) do
           VCR.use_cassette("#{vcr_dir}/valid_refresh_token") do
-            repository.renew_access_token(ENV.fetch('FORTNOX_API_REFRESH_TOKEN'))
+            repository.renew_tokens(ENV.fetch('FORTNOX_API_REFRESH_TOKEN'))
           end
         end
 
