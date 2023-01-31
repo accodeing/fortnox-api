@@ -119,14 +119,14 @@ describe Fortnox::API::Repository::Authentication, integration: true do
           it { is_expected.to be_a(Integer) }
         end
 
-        describe 'refresh_token' do
+        describe 'token_type' do
           subject { response[:token_type] }
 
           it { is_expected.to be_a(String) }
           it { is_expected.not_to be_empty }
         end
 
-        describe 'refresh_token' do
+        describe 'scope' do
           subject { response[:scope] }
 
           it { is_expected.to be_a(String) }
