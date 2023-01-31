@@ -13,7 +13,7 @@ Fortnox::API.configure do |config|
   config.client_id = ENV.fetch('FORTNOX_API_CLIENT_ID', nil)
 end
 
-tokens = Fortnox::API::Repository::Authentication.new.renew_tokens(ENV.fetch('FORTNOX_API_REFRESH_TOKEN', nil))
+tokens = Fortnox::API::Repository::Authentication.new.renew_tokens(ENV.fetch('FORTNOX_API_REFRESH_TOKEN'))
 
 puts tokens
 
