@@ -24,7 +24,7 @@ module Fortnox
         end
 
         raise Fortnox::API::RemoteServerError, "Unauthorized request. Error: #{response.body}" if response.code == 401
-        raise Fortnox::API::RemoteServerError, 'Forbidden request. Error: #{response.body}' if response.code == 403
+        raise Fortnox::API::RemoteServerError, "Forbidden request. Error: #{response.body}" if response.code == 403
 
         api_error = response.parsed_response['ErrorInformation']
         raise_api_error(api_error, response) if api_error
