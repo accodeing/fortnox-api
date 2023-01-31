@@ -272,10 +272,10 @@ Yes, we support working with several accounts at once. Simply switch access
 token between calls.
 
 ```ruby
-Fortnox::API.access_token = account1_access_token
+Fortnox::API.access_token = 'account1_access_token'
 Fortnox::API::Repository::Customer.new # Calls account1
 
-Fortnox::API.access_token = account2_access_token
+Fortnox::API.access_token = 'account2_access_token'
 Fortnox::API::Repository::Customer.new # Calls account2
 ```
 
@@ -296,6 +296,8 @@ rescue appropriate network errors in your code.
 
 ```ruby
 require 'fortnox/api'
+
+Fortnox::API.access_token = 'your_access_token'
 
 # Instanciate a repository
 repo = Fortnox::API::Repository::Customer.new
