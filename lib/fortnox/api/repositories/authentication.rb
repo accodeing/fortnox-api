@@ -15,17 +15,17 @@ module Fortnox
           }
 
           response = HTTParty.post(config.token_url,
-                                   headers: renew_headers(client_id, client_secret),
+                                   headers: headers(client_id, client_secret),
                                    body: body)
 
           validate_response(response)
 
-          response_to_hash(response.parsed_response)
+          parsed_response_to_hash(response.parsed_response)
         end
 
         private
 
-        def response_to_hash(parsed_response)
+        def parsed_response_to_hash(parsed_response)
           {
             access_token: parsed_response['access_token'],
             refresh_token: parsed_response['refresh_token'],
@@ -35,7 +35,7 @@ module Fortnox
           }
         end
 
-        def renew_headers(client_id, client_secret)
+        def headers(client_id, client_secret)
           credentials = Base64.encode64("#{client_id}:#{client_secret}")
 
           {
