@@ -48,6 +48,9 @@ module Fortnox
     class MissingConfiguration < Fortnox::API::Exception
     end
 
+    class MissingAccessToken < Fortnox::API::Exception
+    end
+
     Registry = Dry::Container.new
   end
 end
