@@ -5,7 +5,7 @@ module Fortnox
     module Repository
       class Authentication
         def renew_access_token(refresh_token)
-          raise ArgumentError, "Refresh token is empty!" if refresh_token.nil? || refresh_token.empty?
+          raise ArgumentError, 'Refresh token is empty!' if refresh_token.nil? || refresh_token.empty?
 
           credentials = Base64.encode64("#{client_id}:#{client_secret}")
 
@@ -21,9 +21,7 @@ module Fortnox
 
           response = HTTParty.post(config.token_url, headers: renew_headers, body: body)
 
-          if response.code == 400
-            raise Fortnox::API::RemoteServerError, "Bad request. Error: \"#{response.body}\""
-          end
+          raise Fortnox::API::RemoteServerError, "Bad request. Error: \"#{response.body}\"" if response.code == 400
 
           if response.code == 401
             raise Fortnox::API::RemoteServerError, "Unauthorized request. Error: \"#{response.body}\""
@@ -37,7 +35,7 @@ module Fortnox
 
             raise Exception, message
           end
-          
+
           response_to_hash(response.parsed_response)
         end
 
@@ -49,7 +47,7 @@ module Fortnox
             refresh_token: parsed_response['refresh_token'],
             expires_in: parsed_response['expires_in'],
             token_type: parsed_response['token_type'],
-            scope: parsed_response['scope'],
+            scope: parsed_response['scope']
           }
         end
 

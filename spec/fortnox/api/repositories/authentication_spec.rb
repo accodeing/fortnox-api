@@ -27,12 +27,12 @@ describe Fortnox::API::Repository::Authentication, integration: true, order: :de
     end
 
     describe 'missing configuration' do
-      let(:calling_renew_access_token) { repository.renew_access_token('access_token')}
+      let(:calling_renew_access_token) { repository.renew_access_token('access_token') }
 
       context 'without client_id' do
         before { Fortnox::API.configure { |c| c.client_secret = 'a secret' } }
 
-        it 'raises an error'  do
+        it 'raises an error' do
           expect { calling_renew_access_token }.to raise_error(Fortnox::API::MissingConfiguration, /client id/)
         end
       end
@@ -40,7 +40,7 @@ describe Fortnox::API::Repository::Authentication, integration: true, order: :de
       context 'without client_secret' do
         before { Fortnox::API.configure { |c| c.client_id = 'an id' } }
 
-        it 'raises an error'  do
+        it 'raises an error' do
           expect { calling_renew_access_token }.to raise_error(Fortnox::API::MissingConfiguration, /client secret/)
         end
       end
@@ -53,7 +53,7 @@ describe Fortnox::API::Repository::Authentication, integration: true, order: :de
           config.client_id = 'nonsense'
         end
       end
-       
+
       it 'raises an error' do
         expect do
           VCR.use_cassette("#{vcr_dir}/invalid_client") do
@@ -71,7 +71,7 @@ describe Fortnox::API::Repository::Authentication, integration: true, order: :de
           config.client_id = ENV.fetch('FORTNOX_API_CLIENT_ID')
         end
       end
-       
+
       context 'with invalid refresh token' do
         it 'raises an error' do
           expect do
@@ -92,42 +92,42 @@ describe Fortnox::API::Repository::Authentication, integration: true, order: :de
         describe 'returned hash' do
           subject { response }
 
-          it { is_expected.to include(:access_token)}
-          it { is_expected.to include(:refresh_token)}
-          it { is_expected.to include(:expires_in)}
-          it { is_expected.to include(:token_type)}
-          it { is_expected.to include(:scope)}
+          it { is_expected.to include(:access_token) }
+          it { is_expected.to include(:refresh_token) }
+          it { is_expected.to include(:expires_in) }
+          it { is_expected.to include(:token_type) }
+          it { is_expected.to include(:scope) }
         end
 
         describe 'access_token' do
-          subject { response[:access_token]}
+          subject { response[:access_token] }
 
           it { is_expected.to be_a(String) }
           it { is_expected.not_to be_empty }
         end
 
         describe 'refresh_token' do
-          subject { response[:refresh_token]}
+          subject { response[:refresh_token] }
 
           it { is_expected.to be_a(String) }
           it { is_expected.not_to be_empty }
         end
 
         describe 'expires_in' do
-          subject { response[:expires_in]}
+          subject { response[:expires_in] }
 
           it { is_expected.to be_a(Integer) }
         end
 
         describe 'refresh_token' do
-          subject { response[:token_type]}
+          subject { response[:token_type] }
 
           it { is_expected.to be_a(String) }
           it { is_expected.not_to be_empty }
         end
 
         describe 'refresh_token' do
-          subject { response[:scope]}
+          subject { response[:scope] }
 
           it { is_expected.to be_a(String) }
           it { is_expected.not_to be_empty }
