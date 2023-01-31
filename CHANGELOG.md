@@ -10,7 +10,10 @@ and this project adheres to
 
 ### Added
 
-- Script in `bin/get_tokens` to issue access and refresh tokens.
+- Script in `bin/get_tokens` to issue access and refresh tokens
+- Script in `bin/renew_tokens` (convenience feature for developers)
+- `Fortnox::API::Repository::Authentication.renew_token` to request token
+  renewal
 
 ### Changed
 
@@ -21,7 +24,7 @@ and this project adheres to
 
 ### Fixed
 
-- Missing runtime dependencies dry-configurable and dry-container is added.
+- Missing runtime dependencies `dry-configurable` and `dry-container` is added.
   Those were indirect dependencies before via other dry libs, but we use them
   explicitly in the gem, so they should be included as real dependencies. Also,
   newer versions of these gems did actually break the gem.
