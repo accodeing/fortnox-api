@@ -1,0 +1,29 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'bundler/setup'
+require 'fortnox/api'
+require 'dotenv'
+
+DOTENV_FILE_NAME = '.env'
+Dotenv.load(DOTENV_FILE_NAME)
+
+Fortnox::API.configure do |config|
+  config.client_secret = ENV['FORTNOX_API_CLIENT_SECRET']
+  config.client_id = ENV['FORTNOX_API_CLIENT_ID']
+end
+
+tokens = Fortnox::API::Repository::Authentication.new.renew_tokens(ENV['FORTNOX_API_REFRESH_TOKEN'])
+
+puts tokens
+
+print "Write tokens to #{DOTENV_FILE_NAME} [y/n]? "
+store_tokens_in_env = $stdin.gets.chomp
+
+exit unless store_tokens_in_env.casecmp('y').zero?
+
+text = File.read(DOTENV_FILE_NAME)
+updated_text = text
+               .gsub(/FORTNOX_API_ACCESS_TOKEN=.*$/, "FORTNOX_API_ACCESS_TOKEN=#{tokens[:access_token]}")
+               .gsub(/FORTNOX_API_REFRESH_TOKEN=.*$/, "FORTNOX_API_REFRESH_TOKEN=#{tokens[:refresh_token]}")
+File.write(DOTENV_FILE_NAME, updated_text)
