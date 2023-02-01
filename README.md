@@ -218,8 +218,11 @@ The gem exposes a specific repository for renewing tokens. You use it like this:
 ```ruby
 require 'fortnox/api'
 
-# Request new tokens
-tokens = Fortnox::API::Repository::Authentication.new.renew_tokens(your_refresh_token)
+tokens = Fortnox::API::Repository::Authentication.new.renew_tokens(
+  refresh_token: 'a valid refresh token',
+  client_id: "the integration's client id",
+  client_secret: "the integration's client secret"
+)
 
 # You probably want to persist your tokens somehow...
 store_refresh_token(tokens[:refresh_token])
@@ -228,7 +231,7 @@ store_access_token(tokens[:access_token])
 # Set the new access token
 Fortnox::API.access_token = tokens[:access_token]
 
-# The gem will now use the new token
+# The gem will now use the new access token
 Fortnox::API::Repository::Customer.new.all
 ```
 
@@ -248,7 +251,7 @@ script itself to see what's needed.
 
 ### Configuration
 
-The gem is configured in a `configure` block, where `setting` is one of the
+The gem can be configured in a `configure` block, where `setting` is one of the
 settings from the table below.
 
 ```ruby
@@ -257,14 +260,12 @@ Fortnox::API.configure do |config|
 end
 ```
 
-| Setting         | Description                                     | Required | Default                                                         |
-| --------------- | ----------------------------------------------- | -------- | --------------------------------------------------------------- |
-| `client_id`     | The client id from your Fortnox integration     | Yes      | `nil`                                                           |
-| `client_secret` | The client secret from your Fortnox integration | Yes      | `nil`                                                           |
-| `base_url`      | The base url to Fortnox API                     | No       | `'https://api.fortnox.se/3/'`                                   |
-| `token_url`     | The url to Fortnox token endpoint               | No       | `'https://apps.fortnox.se/oauth-v1/token'`                      |
-| `debugging`     | For debugging                                   | No       | `false`                                                         |
-| `logger`        | The logger to use                               | No       | A simple logger that writes to `$stdout` with log level `WARN`. |
+| Setting     | Description                       | Required | Default                                                         |
+| ----------- | --------------------------------- | -------- | --------------------------------------------------------------- |
+| `base_url`  | The base url to Fortnox API       | No       | `'https://api.fortnox.se/3/'`                                   |
+| `token_url` | The url to Fortnox token endpoint | No       | `'https://apps.fortnox.se/oauth-v1/token'`                      |
+| `debugging` | For debugging                     | No       | `false`                                                         |
+| `logger`    | The logger to use                 | No       | A simple logger that writes to `$stdout` with log level `WARN`. |
 
 ### Support for multiple Fortnox accounts
 
@@ -273,10 +274,10 @@ token between calls.
 
 ```ruby
 Fortnox::API.access_token = 'account1_access_token'
-Fortnox::API::Repository::Customer.new # Calls account1
+Fortnox::API::Repository::Customer.new.all # Calls account1
 
 Fortnox::API.access_token = 'account2_access_token'
-Fortnox::API::Repository::Customer.new # Calls account2
+Fortnox::API::Repository::Customer.new.all # Calls account2
 ```
 
 ### Automatic access tokens rotation (deprecated)
@@ -297,7 +298,7 @@ rescue appropriate network errors in your code.
 ```ruby
 require 'fortnox/api'
 
-Fortnox::API.access_token = 'your_access_token'
+Fortnox::API.access_token = 'valid_access_token'
 
 # Instanciate a repository
 repo = Fortnox::API::Repository::Customer.new
