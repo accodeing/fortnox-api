@@ -43,20 +43,20 @@ module Fortnox
         end
 
         def validate_response(response)
-          raise Fortnox::API::RemoteServerError, "Bad request. Error: \"#{response.body}\"" if response.code == 400
+          return if response.code == 200
 
-          if response.code == 401
+          case response.code
+          when 400 then
+            raise Fortnox::API::RemoteServerError, "Bad request. Error: \"#{response.body}\""
+          when 401 then
             raise Fortnox::API::RemoteServerError, "Unauthorized request. Error: \"#{response.body}\""
+          else
+            message = 'Unable to renew access token. ' \
+              "Response code: #{response.code}. " \
+              "Response message: #{response.message}. " \
+              "Response body: #{response.body}"
+            raise Exception, message
           end
-
-          return unless response.code != 200
-
-          message = 'Unable to renew access token. ' \
-                    "Response code: #{response.code}. " \
-                    "Response message: #{response.message}. " \
-                    "Response body: #{response.body}"
-
-          raise Exception, message
         end
       end
     end
