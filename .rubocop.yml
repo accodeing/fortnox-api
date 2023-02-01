@@ -9,7 +9,7 @@ RSpec/FilePath:
   Enabled: false
 
 RSpec/NestedGroups:
-  Max: 5
+  Max: 4
 
 Style/Documentation:
   Enabled: false
