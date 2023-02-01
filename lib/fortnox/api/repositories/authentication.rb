@@ -6,15 +6,13 @@ module Fortnox
   module API
     module Repository
       class Authentication
-        def renew_tokens(refresh_token)
-          raise ArgumentError, 'Refresh token is empty!' if refresh_token.nil? || refresh_token.empty?
-
+        def renew_tokens(refresh_token:, client_id:, client_secret:)
           body = {
             grant_type: 'refresh_token',
             refresh_token: refresh_token
           }
 
-          response = HTTParty.post(config.token_url,
+          response = HTTParty.post(Fortnox::API.config.token_url,
                                    headers: headers(client_id, client_secret),
                                    body: body)
 
@@ -59,24 +57,6 @@ module Fortnox
                     "Response body: #{response.body}"
 
           raise Exception, message
-        end
-
-        def client_id
-          client_id = config.client_id
-          raise MissingConfiguration, 'You have to provide your client id.' unless client_id
-
-          client_id
-        end
-
-        def client_secret
-          client_secret = config.client_secret
-          raise MissingConfiguration, 'You have to provide your client secret.' unless client_secret
-
-          client_secret
-        end
-
-        def config
-          Fortnox::API.config
         end
       end
     end
