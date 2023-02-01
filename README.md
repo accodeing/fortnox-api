@@ -239,10 +239,6 @@ It's up to you to provide a valid token to the gem and to renew it regularly,
 otherwise you need to start over again with the
 [Initialization](#initialization).
 
-Note that when the gem fetches new tokens, both the client id and client secret
-are required to generate the authorization headers for that request. Therefore,
-the gem needs access to those values as well.
-
 ## Get tokens
 
 There's a script in `bin/get_tokens` to issue valid access and refresh tokens.
