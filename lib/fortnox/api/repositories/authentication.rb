@@ -46,15 +46,15 @@ module Fortnox
           return if response.code == 200
 
           case response.code
-          when 400 then
+          when 400
             raise Fortnox::API::RemoteServerError, "Bad request. Error: \"#{response.body}\""
-          when 401 then
+          when 401
             raise Fortnox::API::RemoteServerError, "Unauthorized request. Error: \"#{response.body}\""
           else
             message = 'Unable to renew access token. ' \
-              "Response code: #{response.code}. " \
-              "Response message: #{response.message}. " \
-              "Response body: #{response.body}"
+                      "Response code: #{response.code}. " \
+                      "Response message: #{response.message}. " \
+                      "Response body: #{response.body}"
             raise Exception, message
           end
         end
