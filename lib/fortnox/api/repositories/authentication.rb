@@ -51,11 +51,8 @@ module Fortnox
           when 401
             raise Fortnox::API::RemoteServerError, "Unauthorized request. Error: \"#{response.body}\""
           else
-            message = 'Unable to renew access token. ' \
-                      "Response code: #{response.code}. " \
-                      "Response message: #{response.message}. " \
-                      "Response body: #{response.body}"
-            raise Exception, message
+            raise Exception, "Unable to renew access token. Response code: #{response.code}. " \
+                             "Response message: #{response.message}. Response body: #{response.body}"
           end
         end
       end
