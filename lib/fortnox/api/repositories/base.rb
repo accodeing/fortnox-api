@@ -8,10 +8,6 @@ require_relative 'base/loaders'
 require_relative 'base/savers'
 require_relative '../request_handling'
 
-# TODO: Temporarily disables metrics since this will be rewritten soon...
-# rubocop:disable Metrics/ClassLength
-# rubocop:disable Metrics/MethodLength
-# rubocop:disable Metrics/AbcSize
 module Fortnox
   module API
     module Repository
@@ -20,9 +16,6 @@ module Fortnox
         include Fortnox::API::RequestHandling
         include Loaders
         include Savers
-
-        TIME_MARGIN_FOR_ACCESS_TOKEN_RENEWAL = 5 * 60 # 5 minutes
-        private_constant :TIME_MARGIN_FOR_ACCESS_TOKEN_RENEWAL
 
         HTTParty::Parser::SupportedFormats['text/html'] = :json
 
@@ -52,29 +45,21 @@ module Fortnox
           end
         end
 
-        def initialize(keys_filtered_on_save: [:url], token_store: :default)
+        def initialize(keys_filtered_on_save: [:url])
           @keys_filtered_on_save = keys_filtered_on_save
           @mapper = Registry[Mapper::Base.canonical_name_sym(self.class::MODEL)].new
-          @token_store_name = token_store
-          @token_store = config.token_stores.fetch(token_store.to_sym) do |key|
-            raise MissingConfiguration,
-                  "There is no token store named \"#{key}\". " \
-                  "Available token stores: #{config.token_stores}."
-          end
-        end
+          return unless access_token.nil?
 
-        def access_token
-          token = @token_store.access_token
-
-          if token.nil? || token.empty? || expired?(token)
-            renew_access_token
-            return @token_store.access_token
-          end
-
-          token
+          raise MissingAccessToken,
+                'No Access Token provided! You need to provide an Access Token: ' \
+                'Fortnox::API.access_token = token'
         end
 
         private
+
+        def access_token
+          Fortnox::API.access_token
+        end
 
         def instantiate(hash)
           hash[:new] = false
@@ -89,76 +74,10 @@ module Fortnox
           base_url
         end
 
-        def client_id
-          client_id = config.client_id
-          raise MissingConfiguration, 'You have to provide your client id.' unless client_id
-
-          client_id
-        end
-
-        def client_secret
-          client_secret = config.client_secret
-          raise MissingConfiguration, 'You have to provide your client secret.' unless client_secret
-
-          client_secret
-        end
-
         def config
           Fortnox::API.config
-        end
-
-        def expired?(token)
-          decoded_token = JWT.decode token, nil, false
-
-          # Token gets expired when it's smaller than current time.
-          # The greater the current time is, the more "expired" the token will get,
-          # so the expiration token needs to be smaller than the time now
-          # plus some time margin.
-          decoded_token[0]['exp'] < (Time.now.to_i + TIME_MARGIN_FOR_ACCESS_TOKEN_RENEWAL)
-        rescue JWT::DecodeError
-          raise Exception, "Could not decode access token for token store \"#{@token_store_name}\""
-        end
-
-        def renew_access_token
-          refresh_token = @token_store.refresh_token
-
-          if refresh_token.nil? || refresh_token.empty?
-            raise MissingConfiguration,
-                  "Refresh token for store \"#{@token_store_name}\" is empty!"
-          end
-
-          credentials = Base64.encode64("#{client_id}:#{client_secret}")
-
-          renew_headers = {
-            'Content-type' => 'application/x-www-form-urlencoded',
-            Authorization: "Basic #{credentials}"
-          }
-
-          body = {
-            grant_type: 'refresh_token',
-            refresh_token: @token_store.refresh_token
-          }
-
-          response = HTTParty.post(config.token_url, headers: renew_headers, body: body)
-
-          if response.code != 200
-            message = 'Unable to renew access token. ' \
-                      "Response code: #{response.code}. " \
-                      "Response message: #{response.message}. " \
-                      "Response body: #{response.body}"
-
-            raise Exception, message
-          end
-
-          new_access_token = response.parsed_response['access_token']
-          new_refresh_token = response.parsed_response['refresh_token']
-          @token_store.access_token = new_access_token
-          @token_store.refresh_token = new_refresh_token
         end
       end
     end
   end
 end
-# rubocop:enable Metrics/ClassLength
-# rubocop:enable Metrics/MethodLength
-# rubocop:enable Metrics/AbcSize

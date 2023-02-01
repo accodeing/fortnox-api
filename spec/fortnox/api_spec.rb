@@ -4,9 +4,7 @@ require 'spec_helper'
 require 'fortnox/api'
 
 describe Fortnox::API do
-  before do
-    stub_const('Fortnox::API::TestBase', Class.new)
-  end
+  before { stub_const('Fortnox::API::TestBase', Class.new) }
 
   describe 'configuration defaults' do
     subject(:config_value) { described_class.config[config_key] }
@@ -19,34 +17,10 @@ describe Fortnox::API do
       it { is_expected.to eq 'https://api.fortnox.se/3/' }
     end
 
-    describe 'client_id' do
-      let(:config_key) { :client_id }
-
-      it { is_expected.to be_nil }
-    end
-
-    describe 'client_secret' do
-      let(:config_key) { :client_secret }
-
-      it { is_expected.to be_nil }
-    end
-
     describe 'token_url' do
       let(:config_key) { :token_url }
 
       it { is_expected.to eq 'https://apps.fortnox.se/oauth-v1/token' }
-    end
-
-    describe 'token_stores' do
-      let(:config_key) { :token_stores }
-
-      it { is_expected.to eq({}) }
-    end
-
-    describe 'debugging' do
-      let(:config_key) { :debugging }
-
-      it { is_expected.to be false }
     end
 
     describe 'logger' do
@@ -76,6 +50,16 @@ describe Fortnox::API do
 
       it 'is available' do
         expect(logger).to be_a Logger
+      end
+    end
+  end
+
+  describe '#access_token' do
+    context 'when token is set' do
+      before { described_class.access_token = 'an_access_token' }
+
+      it 'returns the token' do
+        expect(described_class.access_token).to eq('an_access_token')
       end
     end
   end

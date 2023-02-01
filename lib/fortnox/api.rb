@@ -13,9 +13,6 @@ module Fortnox
 
     DEFAULT_CONFIGURATION = {
       base_url: 'https://api.fortnox.se/3/',
-      client_id: nil,
-      client_secret: nil,
-      token_stores: {},
       token_url: 'https://apps.fortnox.se/oauth-v1/token',
       debugging: false,
       logger: lambda {
@@ -26,12 +23,17 @@ module Fortnox
     }.freeze
 
     setting :base_url, default: DEFAULT_CONFIGURATION[:base_url]
-    setting :client_id, default: DEFAULT_CONFIGURATION[:client_id]
-    setting :client_secret, default: DEFAULT_CONFIGURATION[:client_secret]
-    setting :token_stores, default: DEFAULT_CONFIGURATION[:token_stores]
     setting :token_url, default: DEFAULT_CONFIGURATION[:token_url]
     setting :debugging, default: DEFAULT_CONFIGURATION[:debugging], reader: true
     setting :logger, default: DEFAULT_CONFIGURATION[:logger], reader: true
+
+    def self.access_token=(token)
+      Thread.current[:access_token] = token
+    end
+
+    def self.access_token
+      Thread.current[:access_token]
+    end
 
     class Exception < StandardError
     end
@@ -46,6 +48,9 @@ module Fortnox
     end
 
     class MissingConfiguration < Fortnox::API::Exception
+    end
+
+    class MissingAccessToken < Fortnox::API::Exception
     end
 
     Registry = Dry::Container.new

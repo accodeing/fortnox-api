@@ -1,0 +1,63 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://apps.fortnox.se/oauth-v1/token
+    body:
+      encoding: UTF-8
+      string: grant_type=refresh_token&refresh_token=<REFRESH_TOKEN>
+    headers:
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Authorization:
+      - "<AUTHORIZATION>"
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-store
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 01 Feb 2023 09:31:52 GMT
+      Pragma:
+      - no-cache
+      Vary:
+      - Accept-Encoding
+      X-Uid:
+      - ad7d3f90
+      Transfer-Encoding:
+      - chunked
+      Server:
+      - Fortnox
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - '0'
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Content-Security-Policy:
+      - 'upgrade-insecure-requests;frame-ancestors https://*.fortnox.se;report-uri
+        /api/cspreport;connect-src ''self'' https://a.storyblok.com wss://*.fortnox.se
+        *.fortnox.se *.findity.com mybusiness.pwc.se themes.googleusercontent.com
+        s3.amazonaws.com/helpjuice-static/ *.helpjuice.com *.vimeo.com fonts.googleapis.com
+        fonts.gstatic.com api.cling.se wss://api.cling.se ''unsafe-inline'' ''unsafe-eval''
+        blob: data:'
+      X-Frame-Options:
+      - sameorigin
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains
+    body:
+      encoding: ASCII-8BIT
+      string: '{"access_token":"<ACCESS_TOKEN>","expires_in":3600,"token_type":"bearer","scope":"article
+        invoice settings customer order project","refresh_token":"<REFRESH_TOKEN>"}'
+  recorded_at: Wed, 01 Feb 2023 09:31:52 GMT
+recorded_with: VCR 6.1.0
