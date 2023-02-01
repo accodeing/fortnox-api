@@ -270,7 +270,8 @@ end
 ### Support for multiple Fortnox accounts
 
 Yes, we support working with several accounts at once. Simply switch access
-token between calls.
+token between calls. The token is stored in the current thread, so it's thread
+safe.
 
 ```ruby
 Fortnox::API.access_token = 'account1_access_token'
