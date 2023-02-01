@@ -8,7 +8,6 @@ require_relative 'base/loaders'
 require_relative 'base/savers'
 require_relative '../request_handling'
 
-# TODO: Temporarily disables metrics since this will be rewritten soon...
 module Fortnox
   module API
     module Repository
