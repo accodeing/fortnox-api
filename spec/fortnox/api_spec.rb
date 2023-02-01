@@ -17,18 +17,6 @@ describe Fortnox::API do
       it { is_expected.to eq 'https://api.fortnox.se/3/' }
     end
 
-    describe 'client_id' do
-      let(:config_key) { :client_id }
-
-      it { is_expected.to be_nil }
-    end
-
-    describe 'client_secret' do
-      let(:config_key) { :client_secret }
-
-      it { is_expected.to be_nil }
-    end
-
     describe 'token_url' do
       let(:config_key) { :token_url }
 
