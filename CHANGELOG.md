@@ -12,8 +12,7 @@ and this project adheres to
 
 - Script in `bin/get_tokens` to issue access and refresh tokens
 - Script in `bin/renew_tokens` (convenience feature for developers)
-- `Fortnox::API::Repository::Authentication.renew_token` to request token
-  renewal
+- `Fortnox::API::Repository::Authentication.renew_token`, used for token renewal
 
 ### Changed
 
