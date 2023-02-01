@@ -5,7 +5,9 @@ require 'fortnox/api'
 require 'jwt'
 require 'dry/container/stub'
 
-describe Fortnox::API::Repository::Base do
+describe Fortnox::API::Repository::Base, integration: true do
+  include Helpers::Configuration
+
   before do
     stub_const('Model::RepositoryBaseTest', Class.new)
     stub_const('Repository::Test', Class.new(described_class))
@@ -22,18 +24,7 @@ describe Fortnox::API::Repository::Base do
     Fortnox::API::Registry.stub(:repositorybasetest, Model::RepositoryBaseTest)
   end
 
-  let(:client_id) { 'test-client-id' }
-  let(:client_secret) { 'test-client-secret' }
   let(:repository) { Repository::Test.new }
-
-  def set_required_config
-    Fortnox::API.configure do |config|
-      config.client_secret = nil
-      config.client_id = nil
-    end
-
-    Fortnox::API.access_token = 'an_access_token'
-  end
 
   describe '#initialize' do
     context 'without providing an access token' do
@@ -61,7 +52,7 @@ describe Fortnox::API::Repository::Base do
     subject { repository.get('/test', body: '') }
 
     before do
-      set_required_config
+      set_api_test_configuration
 
       stub_request(
         :get,
@@ -76,7 +67,7 @@ describe Fortnox::API::Repository::Base do
 
   context 'when receiving an error from remote server' do
     before do
-      set_required_config
+      set_api_test_configuration
 
       stub_request(
         :post,
@@ -96,7 +87,7 @@ describe Fortnox::API::Repository::Base do
     it 'raises an error' do
       expect do
         repository.post('/test', body: '')
-      end.to raise_error(Fortnox::API::RemoteServerError, 'some-error-message')
+      end.to raise_error(Fortnox::API::RemoteServerError, /some-error-message/)
     end
 
     context 'with debugging enabled' do
@@ -116,7 +107,7 @@ describe Fortnox::API::Repository::Base do
 
   context 'when receiving HTML from remote server' do
     before do
-      set_required_config
+      set_api_test_configuration
 
       stub_request(
         :get,
