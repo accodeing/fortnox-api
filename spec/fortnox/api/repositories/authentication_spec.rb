@@ -25,30 +25,38 @@ describe Fortnox::API::Repository::Authentication, integration: true do
 
   describe '#renew_tokens' do
     context 'with invalid authorization' do
+      let(:request_with_nonsense_credentials) do
+        VCR.use_cassette("#{vcr_dir}/invalid_authorization") do
+          repository.renew_tokens(
+            refresh_token: ENV.fetch('FORTNOX_API_REFRESH_TOKEN'),
+            client_id: 'nonsense_id',
+            client_secret: 'nonsense_secret'
+          )
+        end
+      end
+
       it 'raises an error' do
-        expect do
-          VCR.use_cassette("#{vcr_dir}/invalid_authorization") do
-            repository.renew_tokens(
-              refresh_token: ENV.fetch('FORTNOX_API_REFRESH_TOKEN'),
-              client_id: 'nonsense_id',
-              client_secret: 'nonsense_secret'
-            )
-          end
-        end.to raise_error(Fortnox::API::RemoteServerError, /Unauthorized request(.)*Error:(.)*invalid_client/)
+        expect { request_with_nonsense_credentials }.to(
+          raise_error(Fortnox::API::RemoteServerError, /Unauthorized request(.)*Error:(.)*invalid_client/)
+        )
       end
     end
 
     context 'with invalid refresh token' do
+      let(:request_with_invalid_refresh_token) do
+        VCR.use_cassette("#{vcr_dir}/invalid_refresh_token") do
+          repository.renew_tokens(
+            refresh_token: 'invalid_refresh_token',
+            client_id: ENV.fetch('FORTNOX_API_CLIENT_ID'),
+            client_secret: ENV.fetch('FORTNOX_API_CLIENT_SECRET')
+          )
+        end
+      end
+
       it 'raises an error' do
-        expect do
-          VCR.use_cassette("#{vcr_dir}/invalid_refresh_token") do
-            repository.renew_tokens(
-              refresh_token: 'invalid_refresh_token',
-              client_id: ENV.fetch('FORTNOX_API_CLIENT_ID'),
-              client_secret: ENV.fetch('FORTNOX_API_CLIENT_SECRET')
-            )
-          end
-        end.to raise_error(Fortnox::API::RemoteServerError, /Bad request(.)*Error:(.)*Invalid refresh token/)
+        expect { request_with_invalid_refresh_token }.to(
+          raise_error(Fortnox::API::RemoteServerError, /Bad request(.)*Error:(.)*Invalid refresh token/)
+        )
       end
     end
 
