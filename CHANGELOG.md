@@ -18,8 +18,9 @@ and this project adheres to
 
 - **Breaking** The auth process is rewritten to support
   [the new auth flow](https://developer.fortnox.se/general/authentication/) that
-  Fortnox has implemented. The configuration part of the gem is new, have a look
-  at the readme.
+  Fortnox has implemented. You also need to set the access token explicitly with
+  `Fortnox::API.access_token ' your token'`. See [README](README.md) for more
+  instructions.
 
 ### Fixed
 
@@ -34,6 +35,10 @@ and this project adheres to
 - Token rotation is removed since Fortnox counts rate limit on tenant and client
   id. Before, you could get around this by using multiple access tokens. That's
   not possible anymore, so token rotation is simply removed.
+- **Breaking** Removes `client_id` and `client_secret` from configuration. These
+  value are only used for token renewal, so they are now arguments to the
+  `Authentication` repository. This means there are no longer any required
+  configuration to set in `Fortnox::API.configuration`.
 
 ## [0.8.0]
 
