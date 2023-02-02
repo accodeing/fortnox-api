@@ -270,11 +270,13 @@ token between calls. The token is stored in the current thread, so it's thread
 safe.
 
 ```ruby
+repository = Fortnox::API::Repository::Customer.new
+
 Fortnox::API.access_token = 'account1_access_token'
-Fortnox::API::Repository::Customer.new.all # Calls account1
+repository.all # Calls account1
 
 Fortnox::API.access_token = 'account2_access_token'
-Fortnox::API::Repository::Customer.new.all # Calls account2
+repository.all # Calls account2
 ```
 
 ### Automatic access tokens rotation (deprecated)
