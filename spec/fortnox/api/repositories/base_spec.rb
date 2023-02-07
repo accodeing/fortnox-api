@@ -9,29 +9,23 @@ describe Fortnox::API::Repository::Base, integration: true do
   include Helpers::Configuration
 
   before do
-    stub_const('Model::RepositoryBaseTest', Class.new)
-    stub_const('Repository::Test', Class.new(described_class))
-    stub_const('Repository::Test::MODEL', Model::RepositoryBaseTest)
+    stub_const('TestModel', Class.new)
+    stub_const('TestRepository', Class.new(described_class))
+    stub_const('TestRepository::MODEL', TestModel)
 
     Fortnox::API::Registry.enable_stubs!
 
-    # Only register the key once...
-    unless Fortnox::API::Registry.key? :repositorybasetest
-      Fortnox::API::Registry.register(:repositorybasetest, Model::RepositoryBaseTest)
-    end
-
-    # ... but stub the value each test run
-    Fortnox::API::Registry.stub(:repositorybasetest, Model::RepositoryBaseTest)
+    add_to_registry(:testmodel, TestModel)
   end
 
-  let(:repository) { Repository::Test.new }
+  let(:repository) { TestRepository.new }
 
   describe '#initialize' do
     context 'without providing an access token' do
       before { Fortnox::API.access_token = nil }
 
       it 'raises an error' do
-        expect { Repository::Test.new }.to raise_error(Fortnox::API::MissingAccessToken)
+        expect { TestRepository.new }.to raise_error(Fortnox::API::MissingAccessToken)
       end
     end
 
@@ -122,6 +116,54 @@ describe Fortnox::API::Repository::Base, integration: true do
         repository.get('nonsense')
       end.to raise_error(Fortnox::API::RemoteServerError,
                          %r{Fortnox API's response has content type "text/html"})
+    end
+  end
+
+  describe 'update existing' do
+    context 'with no change' do
+      before do
+        set_api_test_configuration
+
+        stub_const(
+          'Product',
+          Class.new(Fortnox::API::Model::Base) do
+            attribute :name, 'strict.string'
+            attribute :description, 'string' # nullable
+          end
+        )
+        stub_const('Product::STUB', { name: '' }.freeze)
+        stub_const('Product::UNIQUE_ID', :name)
+
+        stub_const('ProductMapper', Class.new(Fortnox::API::Mapper::Base))
+        stub_const('ProductMapper::JSON_ENTITY_WRAPPER', 'Product')
+        stub_const('ProductMapper::JSON_COLLECTION_WRAPPER', 'Products')
+        stub_const('ProductMapper::KEY_MAP', {})
+
+        stub_const('TestRepository::MODEL', Product)
+        stub_const('TestRepository::MAPPER', ProductMapper)
+        stub_const('TestRepository::URI', '/test/')
+
+        Fortnox::API::Registry.enable_stubs!
+        add_to_registry(:product, ProductMapper)
+
+        stub_request(
+          :post,
+          'https://api.fortnox.se/3/test/'
+        ).to_return(
+          status: 200,
+          body: '{"Product" : {"Name": "test", "Desription": null}}',
+          headers: { 'Content-Type' => 'application/json' }
+        ).times(1)
+
+      end
+
+      let(:updated_entity) do
+        repository.save(Product.new(name: 'test')).update({description: nil})
+      end
+
+      it 'does not call Fortnox' do
+        expect { repository.save(updated_entity) }.not_to raise_error
+      end
     end
   end
 end
