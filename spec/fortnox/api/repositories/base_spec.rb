@@ -34,9 +34,7 @@ describe Fortnox::API::Repository::Base, integration: true do
         expect { Repository::Test.new }.to raise_error(Fortnox::API::MissingAccessToken)
       end
     end
-  end
 
-  describe '#access_token' do
     context 'with expired access token' do
       before { Fortnox::API.access_token = ENV.fetch('EXPIRED_ACCESS_TOKEN') }
 
