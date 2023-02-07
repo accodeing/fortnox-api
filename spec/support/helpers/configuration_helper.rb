@@ -6,7 +6,7 @@ require 'jwt'
 DOTENV_FILE_NAME = '.env.test'
 Dotenv.load(DOTENV_FILE_NAME)
 
-DEBUG = ENV.fetch('DEBUG', false)
+DEBUG = ENV.fetch('DEBUG', false) == true
 
 module Helpers
   module Configuration

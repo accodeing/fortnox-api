@@ -91,11 +91,8 @@ describe Fortnox::API::Repository::Base, integration: true do
     end
 
     context 'with debugging enabled' do
-      around do |example|
-        Fortnox::API.config.debugging = true
-        example.run
-        Fortnox::API.config.debugging = false
-      end
+      before { Fortnox::API.config.debugging = true }
+      after { Fortnox::API.config.debugging = false }
 
       it do
         expect do
