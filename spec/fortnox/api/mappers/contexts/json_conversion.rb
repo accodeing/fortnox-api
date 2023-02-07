@@ -5,9 +5,9 @@ require 'fortnox/api/mappers'
 require 'dry/container/stub'
 
 shared_context 'with JSON conversion' do
-  before do
-    Fortnox::API::Registry.enable_stubs!
+  include Helpers::Configuration
 
+  before do
     stub_const('Test::BaseMapper', Class.new)
 
     stub_const('Test::CategoryMapper', Class.new(Test::BaseMapper))
@@ -54,18 +54,9 @@ shared_context 'with JSON conversion' do
       end
     )
 
-    def register_mapper(mapper_sym, mapper)
-      unless Fortnox::API::Registry.key? mapper_sym
-        # Only register the key once...
-        Fortnox::API::Registry.register(mapper_sym) { mapper }
-      end
-
-      # ... but stub the value each test run
-      Fortnox::API::Registry.stub(mapper_sym, mapper)
-    end
-
-    register_mapper(:category, Test::CategoryMapper)
-    register_mapper(:productdesigner, Test::ProductDesignerMapper)
-    register_mapper(:product, Test::ProductMapper)
+    Fortnox::API::Registry.enable_stubs!
+    add_to_registry(:category, Test::CategoryMapper)
+    add_to_registry(:productdesigner, Test::ProductDesignerMapper)
+    add_to_registry(:product, Test::ProductMapper)
   end
 end
