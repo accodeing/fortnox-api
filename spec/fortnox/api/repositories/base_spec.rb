@@ -153,12 +153,11 @@ describe Fortnox::API::Repository::Base, integration: true do
           status: 200,
           body: '{"Product" : {"Name": "test", "Desription": null}}',
           headers: { 'Content-Type' => 'application/json' }
-        ).times(1)
-
+        ).times(1) # Only stub the first save request
       end
 
       let(:updated_entity) do
-        repository.save(Product.new(name: 'test')).update({description: nil})
+        repository.save(Product.new(name: 'test')).update({ description: nil })
       end
 
       it 'does not call Fortnox' do
