@@ -39,6 +39,12 @@ module Fortnox
             provided_headers['Authorization'] = "Bearer #{access_token}"
             options[:headers] = provided_headers
             options[:base_uri] ||= base_url
+
+            if Fortnox::API.debugging
+              Fortnox::API.logger.debug("path: #{path.inspect}")
+              Fortnox::API.logger.debug("options: #{options.inspect}")
+            end
+
             execute do |remote|
               remote.send(method, path, options, &block)
             end
