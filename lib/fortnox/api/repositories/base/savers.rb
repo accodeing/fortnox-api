@@ -5,7 +5,6 @@ module Fortnox
     module Repository
       module Savers
         def save(entity)
-          puts "entity.saved? #{entity.saved?}"
           return true if entity.saved?
 
           return save_new(entity) if entity.new?
@@ -17,7 +16,6 @@ module Fortnox
 
         def execute_save(entity)
           body = get_changes_on(entity).to_json
-          puts "body: #{body}"
           result = yield body
           instantiate_saved(result)
         end
@@ -29,7 +27,6 @@ module Fortnox
         end
 
         def update_existing(entity)
-          puts "update_existing: #{entity.inspect}"
           execute_save(entity) do |body|
             put(get_update_url_for(entity), body: body)
           end
