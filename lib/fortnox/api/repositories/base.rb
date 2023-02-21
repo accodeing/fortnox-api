@@ -62,6 +62,7 @@ module Fortnox
 
         def debug_log_request(path, options)
           return unless Fortnox::API.debugging
+
           Fortnox::API.logger.debug("path: #{path.inspect}")
           Fortnox::API.logger.debug("options: #{options.inspect}")
         end
