@@ -4,7 +4,7 @@ module Fortnox
   module API
     module Mapper
       module FromJSON
-        class MissingModelOrMapperException < StandardError
+        class MissingModelOrMapperException < Fortnox::API::Exception
         end
 
         def wrapped_json_collection_to_entities_hash(json_collection_hash)
@@ -45,12 +45,13 @@ module Fortnox
             # Raise exception during test run if this happens so that we can
             # add it before a new release.
 
-            message = "for #{key} (#{mapper_name}, #{Fortnox::API::Mapper::DefaultTemplates.canonical_name_sym}) with"\
-                      " #{collection}"
+            message = "for #{key} (#{mapper_name}, #{Fortnox::API::Mapper::DefaultTemplates.canonical_name_sym}) " \
+                      "with #{collection}"
 
             raise MissingModelOrMapperException, message if ENV['RUBY_ENV']
+
             Fortnox::API.logger.warn("Missing Model or Mapper implementation for #{key} with attributes: #{collection}")
-            return convert_hash_keys_from_json_format(collection, {})
+            convert_hash_keys_from_json_format(collection, {})
           end
         end
 

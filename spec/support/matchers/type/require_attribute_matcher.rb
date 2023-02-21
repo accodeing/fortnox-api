@@ -43,10 +43,10 @@ module Matchers
 
       def includes_error_message
         @klass.new(@invalid_hash)
-      rescue EXCEPTION => error
-        return true if error.message.include? expected_error_message
+      rescue EXCEPTION => exception
+        return true if exception.message.include? expected_error_message
 
-        @wrong_error_message = error.message
+        @wrong_error_message = exception.message
         false
       end
 
@@ -55,12 +55,12 @@ module Matchers
       end
 
       def no_exception_failure_message
-        "Expected class to raise #{EXCEPTION} "\
+        "Expected class to raise #{EXCEPTION} " \
           "when attribute #{@attribute.inspect} is missing."
       end
 
       def wrong_error_message
-        "Expected exception to equal #{expected_error_message.inspect}. "\
+        "Expected exception to equal #{expected_error_message.inspect}. " \
           "Message was #{@wrong_error_message.inspect}."
       end
     end

@@ -8,14 +8,12 @@ describe Fortnox::API::Mapper::FromJSON do
   include_context 'with JSON conversion'
 
   before do
-    module Test
-      class BaseMapper
-        include Fortnox::API::Mapper::FromJSON
-      end
+    Test::BaseMapper.class_eval do
+      include Fortnox::API::Mapper::FromJSON # rubocop:disable RSpec/DescribedClass
     end
 
-    register_mapper(:categories, Test::CategoryMapper)
-    register_mapper(:designer, Test::ProductDesignerMapper)
+    add_to_registry(:categories, Test::CategoryMapper)
+    add_to_registry(:designer, Test::ProductDesignerMapper)
   end
 
   let(:mapper) { Test::ProductMapper.new }
@@ -26,10 +24,10 @@ describe Fortnox::API::Mapper::FromJSON do
       {
         'Product' => {
           '@url': 'someurl@example.com',
-          'Name': 'Ford Mustang',
-          'VAT': 30_000,
-          'Categories': [{ 'Name' => 'Cars', 'ID' => '1' }, { 'Name' => 'Fast cars', 'ID' => '2' }],
-          'Designer': { 'Name' => 'John Najjar', 'ID' => '23' }
+          Name: 'Ford Mustang',
+          VAT: 30_000,
+          Categories: [{ Name: 'Cars', ID: '1' }, { Name: 'Fast cars', ID: '2' }],
+          Designer: { Name: 'John Najjar', ID: '23' }
         }
       }
     end
@@ -47,7 +45,7 @@ describe Fortnox::API::Mapper::FromJSON do
     # expect( entity_hash[:url] ).to eq 'someurl@example.com'
     # end
 
-    context 'with nested models' do
+    describe 'nested models' do
       let(:expected_nested_model_hash) do
         [{ name: 'Cars', id: '1' }, { name: 'Fast cars', id: '2' }]
       end
@@ -57,7 +55,7 @@ describe Fortnox::API::Mapper::FromJSON do
       end
     end
 
-    context 'with nested model' do
+    describe 'nested model' do
       let(:expected_nested_model_hash) { { name: 'John Najjar', id: '23' } }
 
       specify 'is converted correctly' do

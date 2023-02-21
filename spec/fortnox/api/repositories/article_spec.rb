@@ -10,13 +10,16 @@ require 'fortnox/api/repositories/examples/save'
 require 'fortnox/api/repositories/examples/save_with_specially_named_attribute'
 require 'fortnox/api/repositories/examples/search'
 
-describe Fortnox::API::Repository::Article, order: :defined, integration: true do
+describe Fortnox::API::Repository::Article, integration: true, order: :defined do
   include Helpers::Configuration
-
-  before { set_api_test_configuration }
+  include Helpers::Repositories
 
   subject(:repository) { described_class.new }
 
+  before { set_api_test_configuration }
+
+  # VCR: Requires a Financial Year in Fortnox, otherwise the sales account is not be available.
+  # VCR: Update requires that default accounts exists in the chart of accounts
   include_examples '.save',
                    :description,
                    additional_attrs: { sales_account: 1250 }
@@ -26,18 +29,20 @@ describe Fortnox::API::Repository::Article, order: :defined, integration: true d
                    :ean,
                    '5901234123457'
 
-  # When recording new VCR cassettes, expected matches must be increased
-  include_examples '.all', 29
+  # VCR: expected matches must be increased
+  include_examples '.all', 6
 
-  # When recording new VCR cassettes, expected matches must be increased
+  # VCR: Expected matches must be increased
+  # VCR: Create the searched Articles manually in Fortnox
   include_examples '.find', '1' do
     let(:find_by_hash_failure) { { description: 'Not Found' } }
-    let(:single_param_find_by_hash) { { find_hash: { articlenumber: 1 }, matches: 13 } }
+    let(:single_param_find_by_hash) { { find_hash: { articlenumber: 101 }, matches: 1 } }
 
     let(:multi_param_find_by_hash) do
-      { find_hash: { articlenumber: 1, description: 'Cykelpump' }, matches: 1 }
+      { find_hash: { articlenumber: 101, description: 'Hammer' }, matches: 1 }
     end
   end
 
-  include_examples '.search', :description, 'Testartikel', 2
+  # VCR: Expected mathes must be updated
+  include_examples '.search', :description, 'Test article', 3
 end

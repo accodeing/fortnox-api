@@ -4,7 +4,7 @@ module Fortnox
   module API
     module Types
       class Model < Dry::Struct
-        constructor_type(:schema)
+        transform_types(&:omittable)
 
         def initialize(input_attributes)
           if (missing_key = first_missing_required_key(input_attributes))
@@ -15,23 +15,19 @@ module Fortnox
           super
         end
 
-        def self.is?(*_args) end
-
         private
 
         def missing_keys(attributes)
-          non_nil_attributes = attributes.reject { |_, value| value.nil? }
-
-          attribute_keys = non_nil_attributes.keys
-          schema_keys =  self.class.schema.keys
+          attribute_keys = attributes.compact.keys
+          schema_keys = self.class.schema.keys.map(&:name)
 
           schema_keys - attribute_keys
         end
 
         def first_missing_required_key(attributes)
           missing_keys(attributes).find do |name|
-            attribute = self.class.schema[name]
-            attribute.respond_to?(:options) && attribute.options[:required]
+            attribute = self.class.schema.keys.find { |key| key.name == name }
+            attribute.type.respond_to?(:options) && attribute.type.options[:required]
           end
         end
       end

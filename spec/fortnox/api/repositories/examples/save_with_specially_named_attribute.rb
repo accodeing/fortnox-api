@@ -7,8 +7,6 @@
 shared_examples_for '.save with specially named attribute' do |required_hash, attribute, value|
   describe '.save' do
     context 'with specially named attribute' do
-      subject { -> { save_model } }
-
       let(:new_model) { described_class::MODEL.new(required_hash.merge(attribute => value)) }
       let(:save_model) do
         VCR.use_cassette("#{vcr_dir}/save_with_specially_named_attribute") do
@@ -16,7 +14,7 @@ shared_examples_for '.save with specially named attribute' do |required_hash, at
         end
       end
 
-      it { is_expected.not_to raise_error }
+      it { expect { save_model }.not_to raise_error }
 
       describe 'response' do
         subject { save_model.send(attribute) }
@@ -26,4 +24,3 @@ shared_examples_for '.save with specially named attribute' do |required_hash, at
     end
   end
 end
-# rubocop:enable RSpec/DescribeClass

@@ -8,7 +8,7 @@ require 'fortnox/api/mappers/examples/mapper'
 describe Fortnox::API::Mapper::DefaultDeliveryTypes do
   key_map = {}
 
-  it_behaves_like 'mapper', key_map do
+  it_behaves_like 'mapper', key_map, nil, nil do
     let(:mapper) { described_class.new }
   end
 end

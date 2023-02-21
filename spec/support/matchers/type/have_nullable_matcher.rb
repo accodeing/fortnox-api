@@ -45,7 +45,7 @@ module Matchers
         value = model.send(@attribute)
         return true if value == @default_value
 
-        @failure_description << " (Expected #{@invalid_value.inspect} to default to "\
+        @failure_description << " (Expected #{@invalid_value.inspect} to default to " \
                                 "#{@default_value.inspect}), but got #{value.inspect}"
         false
       end

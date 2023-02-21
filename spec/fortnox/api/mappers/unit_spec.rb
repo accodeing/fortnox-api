@@ -8,7 +8,6 @@ require 'fortnox/api/mappers/examples/mapper'
 
 module Fortnox
   module API
-    # Shhh Rubocop, we don't need a comment here ... Really
     module Mapper
       describe Unit do
         context 'when mapping model' do
@@ -17,13 +16,13 @@ module Fortnox
           let(:model_hash) { { code: 'lbs', description: 'Pounds' } }
 
           describe '#entity_to_hash' do
-            subject { Unit.new.entity_to_hash(model, {}) }
+            subject { described_class.new.entity_to_hash(model, {}) }
 
             it { is_expected.to eq(serialised_model_hash) }
           end
 
           describe '#wrapped_json_hash_to_entity_hash' do
-            subject { Unit.new.wrapped_json_hash_to_entity_hash(serialised_model_hash) }
+            subject { described_class.new.wrapped_json_hash_to_entity_hash(serialised_model_hash) }
 
             it { is_expected.to eq(model_hash) }
           end
@@ -46,7 +45,7 @@ module Fortnox
           end
 
           describe '#wrapped_json_collection_to_entities_hash' do
-            subject { Unit.new.wrapped_json_collection_to_entities_hash(serialised_collection_hash) }
+            subject { described_class.new.wrapped_json_collection_to_entities_hash(serialised_collection_hash) }
 
             it { is_expected.to eq(collection_hash) }
           end

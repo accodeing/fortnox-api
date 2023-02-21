@@ -7,6 +7,7 @@ module Fortnox
         def self.sized(size)
           lambda do |value|
             return nil if value == ''
+
             value.to_s.upcase[0...size] unless value.nil?
           end
         end
@@ -14,14 +15,16 @@ module Fortnox
         def self.default
           lambda do |value|
             return nil if value == ''
-            value.to_s.upcase unless value.nil?
+
+            value&.to_s&.upcase
           end
         end
 
         def self.lower_case
           lambda do |value|
             return nil if value == ''
-            value.to_s.downcase unless value.nil?
+
+            value&.to_s&.downcase
           end
         end
       end
@@ -33,16 +36,29 @@ module Fortnox
         'AMOUNT', 'PERCENT'
       )
       HOUSEWORK_TYPES = {
-        rot: %w[
-          CONSTRUCTION ELECTRICITY GLASSMETALWORK GROUNDDRAINAGEWORK
-          MASONRY PAINTINGWALLPAPERING HVAC OTHERCOSTS
+        rot: [
+          'CONSTRUCTION',
+          'ELECTRICITY',
+          'GLASSMETALWORK',
+          'GROUNDDRAINAGEWORK',
+          'HVAC',
+          'MASONRY',
+          'OTHERCOSTS',
+          'PAINTINGWALLPAPERING'
         ],
-        rut: %w[
-          MAJORAPPLIANCEREPAIR MOVINGSERVICES ITSERVICES CLEANING
-          TEXTILECLOTHING SNOWPLOWING GARDENING BABYSITTING OTHERCARE
-          OTHERCOSTS
+        rut: [
+          'BABYSITTING',
+          'CLEANING',
+          'GARDENING',
+          'ITSERVICES',
+          'MAJORAPPLIANCEREPAIR',
+          'MOVINGSERVICES',
+          'OTHERCARE',
+          'OTHERCOSTS',
+          'SNOWPLOWING',
+          'TEXTILECLOTHING'
         ],
-        legacy_rut: %w[COOKING TUTORING]
+        legacy_rut: ['COOKING', 'TUTORING']
       }.freeze
 
       # TODO: RUT to be added:
@@ -85,7 +101,7 @@ module Fortnox
         'SEVAT', 'SEREVERSEDVAT', 'EUREVERSEDVAT', 'EUVAT', 'EXPORT'
       )
       DefaultDeliveryTypeValues = Types::Strict::String.enum(
-        'PRINT', 'EMAIL', 'PRINTSERVICE'
+        'PRINT', 'EMAIL', 'PRINTSERVICE', 'ELECTRONICINVOICE'
       )
       ProjectStatusTypes = Types::Strict::String.enum(
         'NOTSTARTED', 'ONGOING', 'COMPLETED'

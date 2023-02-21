@@ -26,17 +26,14 @@ shared_examples_for '.search' do |attribute_hash_key_name, value, matches|
       end
 
       context 'with special characters' do
-        subject do
-          when_performing do
-            VCR.use_cassette("#{vcr_dir}/search_with_special_char") do
-              repository.search(attribute_hash_key_name => 'special char å')
-            end
+        let(:search_with_special_char) do
+          VCR.use_cassette("#{vcr_dir}/search_with_special_char") do
+            repository.search(attribute_hash_key_name => 'special char å')
           end
         end
 
-        it { is_expected.not_to raise_error }
+        specify { expect { search_with_special_char }.not_to raise_error }
       end
     end
   end
 end
-# rubocop:enable RSpec/DescribeClass

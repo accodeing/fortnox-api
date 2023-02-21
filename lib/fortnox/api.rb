@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
 require 'set'
-require 'dry-struct'
-require 'fortnox/api/circular_queue'
-require 'fortnox/api/version'
+require 'dry-configurable'
+require 'dry-container'
 require 'logger'
+
+require_relative 'api/version'
 
 module Fortnox
   module API
@@ -12,35 +13,27 @@ module Fortnox
 
     DEFAULT_CONFIGURATION = {
       base_url: 'https://api.fortnox.se/3/',
-      client_secret: nil,
-      token_store: {},
-      access_token: nil,
-      access_tokens: nil,
+      token_url: 'https://apps.fortnox.se/oauth-v1/token',
       debugging: false,
       logger: lambda {
-        logger = Logger.new(STDOUT)
+        logger = Logger.new($stdout)
         logger.level = Logger::WARN
         return logger
       }.call
     }.freeze
 
-    setting :base_url, DEFAULT_CONFIGURATION[:base_url]
-    setting :client_secret, DEFAULT_CONFIGURATION[:client_secret]
-    setting :token_store, DEFAULT_CONFIGURATION[:token_store]
-    setting :access_token, DEFAULT_CONFIGURATION[:access_token] do |value|
-      next if value.nil? # nil is a valid unassigned value
-      invalid_access_token_format!(value) unless value.is_a?(String)
-      config.token_store = { default: value }
-      value
+    setting :base_url, default: DEFAULT_CONFIGURATION[:base_url]
+    setting :token_url, default: DEFAULT_CONFIGURATION[:token_url]
+    setting :debugging, default: DEFAULT_CONFIGURATION[:debugging], reader: true
+    setting :logger, default: DEFAULT_CONFIGURATION[:logger], reader: true
+
+    def self.access_token=(token)
+      Thread.current[:access_token] = token
     end
-    setting :access_tokens, DEFAULT_CONFIGURATION[:access_tokens] do |value|
-      next if value.nil? # nil is a valid unassigned value
-      invalid_access_tokens_format!(value) unless value.is_a?(Hash) || value.is_a?(Array)
-      config.token_store = value.is_a?(Hash) ? value : { default: value }
-      value
+
+    def self.access_token
+      Thread.current[:access_token]
     end
-    setting :debugging, DEFAULT_CONFIGURATION[:debugging], reader: true
-    setting :logger, DEFAULT_CONFIGURATION[:logger], reader: true
 
     class Exception < StandardError
     end
@@ -57,24 +50,13 @@ module Fortnox
     class MissingConfiguration < Fortnox::API::Exception
     end
 
+    class MissingAccessToken < Fortnox::API::Exception
+    end
+
     Registry = Dry::Container.new
-
-    def self.invalid_access_token_format!(value)
-      raise ArgumentError,
-            'expected a String, but '\
-            "#{value.inspect} is a(n) #{value.class}"
-    end
-    private_class_method :invalid_access_token_format!
-
-    def self.invalid_access_tokens_format!(value)
-      raise ArgumentError,
-            'expected a Hash or an Array, but '\
-            "#{value.inspect} is a(n) #{value.class}"
-    end
-    private_class_method :invalid_access_tokens_format!
   end
 end
 
-require 'fortnox/api/models'
-require 'fortnox/api/repositories'
-require 'fortnox/api/mappers'
+require_relative 'api/models'
+require_relative 'api/repositories'
+require_relative 'api/mappers'

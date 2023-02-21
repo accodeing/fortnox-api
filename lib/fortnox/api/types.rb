@@ -3,7 +3,7 @@
 require 'dry-struct'
 require 'dry-types'
 require 'countries'
-require 'fortnox/api/types/shim/country_string'
+require_relative 'types/shim/country_string'
 
 module Dry
   module Types
@@ -12,11 +12,7 @@ module Dry
         new_options = option_names.each_with_object({}) do |name, hash|
           hash[name] = true
         end
-        with(new_options)
-      end
-
-      def is?(option_name)
-        @options[option_name]
+        with(**new_options)
       end
     end
   end
@@ -25,24 +21,24 @@ end
 module Fortnox
   module API
     module Types
-      include Dry::Types.module
+      include Dry.Types(default: :nominal)
       ISO3166.configure { |config| config.locales = %i[en sv] }
 
       THE_TRUTH = { true => true, 'true' => true, false => false, 'false' => false }.freeze
 
-      require 'fortnox/api/types/required'
-      require 'fortnox/api/types/defaulted'
-      require 'fortnox/api/types/nullable'
+      require_relative 'types/required'
+      require_relative 'types/defaulted'
+      require_relative 'types/nullable'
 
-      require 'fortnox/api/types/enums'
+      require_relative 'types/enums'
+      require_relative 'types/sized'
 
-      require 'fortnox/api/types/sized'
-
-      AccountNumber = Strict::Int
+      AccountNumber = Strict::Integer
                       .constrained(gteq: 0, lteq: 9999)
                       .optional
                       .constructor do |value|
                         next nil if value.nil? || value == ''
+
                         value
                       end
 
@@ -60,7 +56,7 @@ module Fortnox
                   next CountryString.new('SE') if value.match?(/^s(e$|we|ve)/i)
 
                   country = ::ISO3166::Country[value] ||
-                            ::ISO3166::Country.find_country_by_name(value) ||
+                            ::ISO3166::Country.find_country_by_any_name(value) ||
                             ::ISO3166::Country.find_country_by_translated_names(value)
 
                   raise Dry::Types::ConstraintError.new('value violates constraints', value) if country.nil?
@@ -97,7 +93,7 @@ module Fortnox
       Email = Strict::String
               .constrained(max_size: 1024, format: /^$|\A[[[:alnum:]]+-_.]+@[\w+-_.]+\.[a-z]+\z/i)
               .optional
-              .constructor { |v| v.to_s.downcase unless v.nil? }
+              .constructor { |v| v&.to_s&.downcase }
 
       HouseworkType = Strict::String
                       .constrained(included_in: HouseworkTypes.values)
@@ -124,13 +120,25 @@ module Fortnox
                          .optional
                          .constructor(EnumConstructors.lower_case)
 
-      require 'fortnox/api/types/model'
-      require 'fortnox/api/types/default_delivery_types'
-      require 'fortnox/api/types/default_templates'
-      require 'fortnox/api/types/email_information'
-      require 'fortnox/api/types/edi_information'
-      require 'fortnox/api/types/invoice_row'
-      require 'fortnox/api/types/order_row'
+      # Some Fortnox endpoints returns a String and some returns an Integer...
+      # The documentation says it should be a string, so let's keep it as a string.
+      SalesAccount = Strict::String
+                     .constrained(format: /^[0-9]{4}$/)
+                     .optional
+                     .constructor do |value|
+                       next nil if value == '' || value.nil?
+                       next value.to_s if value.is_a?(::Integer)
+
+                       value
+                     end
+
+      require_relative 'types/model'
+      require_relative 'types/default_delivery_types'
+      require_relative 'types/default_templates'
+      require_relative 'types/email_information'
+      require_relative 'types/edi_information'
+      require_relative 'types/invoice_row'
+      require_relative 'types/order_row'
     end
   end
 end

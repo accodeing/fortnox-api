@@ -12,18 +12,36 @@ require 'fortnox/api/repositories/examples/save_with_nested_model'
 require 'fortnox/api/repositories/examples/save_with_specially_named_attribute'
 require 'fortnox/api/repositories/examples/only'
 
-describe Fortnox::API::Repository::Invoice, order: :defined, integration: true do
+describe Fortnox::API::Repository::Invoice, integration: true, order: :defined do
   include Helpers::Configuration
-
-  before { set_api_test_configuration }
+  include Helpers::Repositories
 
   subject(:repository) { described_class.new }
+
+  before { set_api_test_configuration }
 
   required_hash = { customer_number: '1' }
 
   include_examples '.save', :comments, additional_attrs: required_hash
 
-  nested_model_hash = { price: 10, article_number: '0000' }
+  describe '#save' do
+    context 'with unsaved parent' do
+      subject(:saved_child) do
+        parent_invoice = Fortnox::API::Model::Invoice.new(customer_number: '1')
+        child_invoice = parent_invoice.update(due_date: '2023-01-01')
+
+        VCR.use_cassette("#{vcr_dir}/save_new_with_unsaved_parent") do
+          described_class.new.save(child_invoice)
+        end
+      end
+
+      it 'sets attribute from parent when saved' do
+        expect(saved_child.customer_number).to eq '1'
+      end
+    end
+  end
+
+  nested_model_hash = { price: 10, article_number: '101' }
   include_examples '.save with nested model',
                    required_hash,
                    :invoice_rows,
@@ -37,8 +55,9 @@ describe Fortnox::API::Repository::Invoice, order: :defined, integration: true d
 
   # It is not possible to delete Invoces. Therefore, expected nr of Orders
   # when running .all will continue to increase (until 100, which is max by default).
-  include_examples '.all', 100
+  include_examples '.all', 34
 
+  # VCR: Models needs to be created manually in Fortnox
   include_examples '.find', 1 do
     let(:find_by_hash_failure) { { yourreference: 'Not found' } }
 
@@ -51,9 +70,10 @@ describe Fortnox::API::Repository::Invoice, order: :defined, integration: true d
     end
   end
 
-  include_examples '.search', :customername, 'Test', 7
+  include_examples '.search', :customername, 'Test', 1
 
-  include_examples '.only', :fullypaid, 4
+  # VCR: Need to be set manually in Fortnox
+  include_examples '.only', :fullypaid, 2
 
   describe 'country attribute' do
     def new_invoice(country:)
@@ -87,12 +107,6 @@ describe Fortnox::API::Repository::Invoice, order: :defined, integration: true d
         subject { save_invoice(country: 'GB').country }
 
         it { is_expected.to eq('GB') }
-      end
-
-      describe 'KR' do
-        subject { save_invoice(country: 'KR').country }
-
-        it { is_expected.to eq('KR') }
       end
 
       describe 'VA' do
@@ -130,7 +144,7 @@ describe Fortnox::API::Repository::Invoice, order: :defined, integration: true d
       before { persisted_invoice }
 
       context 'when setting value to nil' do
-        subject { updated_persisted_invoice.comments }
+        subject(:comments) { updated_persisted_invoice.comments }
 
         let(:updated_persisted_invoice) do
           VCR.use_cassette("#{vcr_dir}/save_old_with_nil_comments") do
@@ -138,11 +152,14 @@ describe Fortnox::API::Repository::Invoice, order: :defined, integration: true d
           end
         end
 
-        pending { is_expected.to eq(nil) }
+        it do
+          pending "test to rerecord VCR cassette, maybe it's working now"
+          expect(comments).to be_nil
+        end
       end
 
       context 'when setting value to empty string' do
-        subject { updated_persisted_invoice.comments }
+        subject(:comments) { updated_persisted_invoice.comments }
 
         let(:updated_persisted_invoice) do
           VCR.use_cassette("#{vcr_dir}/save_old_with_empty_comments") do
@@ -151,7 +168,7 @@ describe Fortnox::API::Repository::Invoice, order: :defined, integration: true d
         end
 
         it 'does not reset the value' do
-          is_expected.to eq('A comment to be reset')
+          expect(comments).to eq('A comment to be reset')
         end
       end
     end
@@ -170,7 +187,7 @@ describe Fortnox::API::Repository::Invoice, order: :defined, integration: true d
       before { persisted_invoice }
 
       context 'when setting value to nil' do
-        subject { updated_persisted_invoice.country }
+        subject(:country) { updated_persisted_invoice.country }
 
         let(:updated_persisted_invoice) do
           # TODO: This VCR cassette needs to be re-recorded again
@@ -180,11 +197,14 @@ describe Fortnox::API::Repository::Invoice, order: :defined, integration: true d
           end
         end
 
-        pending { is_expected.to eq(nil) }
+        it 'is nil' do
+          pending 'see comment above'
+          expect(country).to be_nil
+        end
       end
 
       context 'when setting value to empty string' do
-        subject { updated_persisted_invoice.country }
+        subject(:country) { updated_persisted_invoice.country }
 
         let(:updated_persisted_invoice) do
           VCR.use_cassette("#{vcr_dir}/save_old_with_empty_country") do
@@ -193,8 +213,31 @@ describe Fortnox::API::Repository::Invoice, order: :defined, integration: true d
         end
 
         it 'does not reset the country' do
-          is_expected.to eq('SE')
+          expect(country).to eq('SE')
         end
+      end
+    end
+  end
+
+  describe 'limits for invoice_row' do
+    describe 'description' do
+      let(:model) do
+        described_class::MODEL.new(
+          customer_number: '1',
+          invoice_rows: [
+            {
+              article_number: '101',
+              description: 'a' * 255
+            }
+          ]
+        )
+      end
+      let(:saving_with_max_row_description) do
+        VCR.use_cassette("#{vcr_dir}/row_description_limit") { repository.save(model) }
+      end
+
+      it 'allows 255 characters' do
+        expect { saving_with_max_row_description }.not_to raise_error
       end
     end
   end

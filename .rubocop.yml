@@ -1,8 +1,9 @@
 require: rubocop-rspec
 
 AllCops:
-  TargetRubyVersion: 2.5
+  TargetRubyVersion: 2.7
   DisplayCopNames: true
+  NewCops: enable
 
 RSpec/FilePath:
   Enabled: false
@@ -13,7 +14,7 @@ RSpec/NestedGroups:
 Style/Documentation:
   Enabled: false
   
-Metrics/LineLength:
+Layout/LineLength:
   Max: 120
 
 Metrics/BlockLength:
@@ -23,3 +24,18 @@ Metrics/BlockLength:
 Naming/PredicateName:
   Exclude:
     - 'spec/support/matchers/**/*'
+
+Naming/RescuedExceptionsVariableName:
+  PreferredName: exception
+
+Style/WordArray:
+  EnforcedStyle: brackets
+
+RSpec/MultipleMemoizedHelpers:
+  Max: 7
+
+Lint/RaiseException:
+  # You must specify the nearest module, not the fully qualified name
+  AllowedImplicitNamespaces:
+    - 'API'
+    - 'Repository'

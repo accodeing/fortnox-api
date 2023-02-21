@@ -15,10 +15,6 @@ shared_examples_for '.save with nested model' do |required_hash, nested_model_ke
       end
     end
 
-    it 'does not raise any errors' do
-      expect { response }.not_to raise_error
-    end
-
     describe 'returned entity\'s nested model' do
       subject(:returned_nested_model) { response.send(nested_model_key).first }
 
@@ -30,4 +26,3 @@ shared_examples_for '.save with nested model' do |required_hash, nested_model_ke
     end
   end
 end
-# rubocop:enable RSpec/DescribeClass

@@ -19,7 +19,7 @@ module Matchers
       end
 
       def failure_message
-        "Expected class to have attribute #{@attribute.inspect} defined as #{@attribute_type}, "\
+        "Expected class to have attribute #{@attribute.inspect} defined as #{@attribute_type}, " \
         "but got following errors:
         #{@errors}"
       end
@@ -29,7 +29,7 @@ module Matchers
       def expect_error(msg)
         yield
 
-        @errors << msg
+        @errors = @errors += msg
         false # Fail test since expected error not thrown
       rescue Dry::Struct::Error
         # TODO: check if error message is correct

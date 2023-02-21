@@ -7,8 +7,14 @@ Gemfile.lock
 # Vim swap files
 *.swp
 
-# rbenv Ruby version file
+# Ruby version files
 .ruby-version
 
 # Simplecov
 coverage/
+
+# Dotenv
+.env
+
+# Rake
+.rake_tasks~

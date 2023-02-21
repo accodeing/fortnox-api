@@ -2,56 +2,61 @@
 
 require 'fortnox/api'
 require 'fortnox/api/mappers'
+require 'dry/container/stub'
 
 shared_context 'with JSON conversion' do
+  include Helpers::Configuration
+
   before do
-    module Test
-      class BaseMapper
-      end
+    stub_const('Test::BaseMapper', Class.new)
 
-      class CategoryMapper < BaseMapper
-        KEY_MAP = { id: 'ID' }.freeze
-      end
+    stub_const('Test::CategoryMapper', Class.new(Test::BaseMapper))
+    stub_const('Test::CategoryMapper::KEY_MAP', { id: 'ID' }.freeze)
 
-      class ProductDesignerMapper < BaseMapper
-        KEY_MAP = { id: 'ID' }.freeze
-      end
+    stub_const('Test::ProductDesignerMapper', Class.new(Test::BaseMapper))
+    stub_const('Test::ProductDesignerMapper::KEY_MAP', { id: 'ID' }.freeze)
 
-      class ProductMapper < BaseMapper
-        KEY_MAP = {
-          vat: 'VAT',
-          url: '@url' # TODO: How to handle url attribute?
-        }.freeze
-        JSON_ENTITY_WRAPPER = 'Product'
-        JSON_COLLECTION_WRAPPER = 'Products'
-      end
+    stub_const('Test::ProductMapper', Class.new(Test::BaseMapper))
+    stub_const(
+      'Test::ProductMapper::KEY_MAP',
+      {
+        vat: 'VAT',
+        url: '@url' # TODO: How to handle url attribute?
+      }.freeze
+    )
+    stub_const('Test::ProductMapper::JSON_ENTITY_WRAPPER', 'Product')
+    stub_const('Test::ProductMapper::JSON_COLLECTION_WRAPPER', 'Products')
 
-      class Category < Fortnox::API::Model::Base
+    stub_const(
+      'Test::Category',
+      Class.new(Fortnox::API::Model::Base) do
         attribute :name, 'strict.string'
         attribute :id, 'strict.string'
       end
+    )
 
-      class ProductDesigner < Fortnox::API::Model::Base
+    stub_const(
+      'Test::ProductDesigner',
+      Class.new(Fortnox::API::Model::Base) do
         attribute :name, 'strict.string'
         attribute :id, 'strict.string'
       end
+    )
 
-      class Product < Fortnox::API::Model::Base
+    stub_const(
+      'Test::Product',
+      Class.new(Fortnox::API::Model::Base) do
         attribute :url, 'strict.string'
         attribute :name, 'strict.string'
         attribute :vat, 'strict.float'
         attribute :categories, Dry::Types['coercible.array'].of(Test::Category)
         attribute :designer, Test::ProductDesigner
       end
-    end
+    )
 
-    def register_mapper(mapper_sym, mapper)
-      return if Fortnox::API::Registry.key? mapper_sym
-      Fortnox::API::Registry.register(mapper_sym, mapper)
-    end
-
-    register_mapper(:category, Test::CategoryMapper)
-    register_mapper(:productdesigner, Test::ProductDesignerMapper)
-    register_mapper(:product, Test::ProductMapper)
+    Fortnox::API::Registry.enable_stubs!
+    add_to_registry(:category, Test::CategoryMapper)
+    add_to_registry(:productdesigner, Test::ProductDesignerMapper)
+    add_to_registry(:product, Test::ProductMapper)
   end
 end

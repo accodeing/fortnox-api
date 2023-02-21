@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require 'fortnox/api/mappers/base'
-require 'fortnox/api/mappers/edi_information'
-require 'fortnox/api/mappers/email_information'
-require 'fortnox/api/mappers/invoice_row'
+require_relative 'base'
+require_relative 'edi_information'
+require_relative 'email_information'
+require_relative 'invoice_row'
 
 module Fortnox
   module API

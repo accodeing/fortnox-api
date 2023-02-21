@@ -99,6 +99,7 @@ describe Fortnox::API::Mapper::Base do
       let(:value) { true }
     end
   end
+
   describe 'falseclass' do
     include_examples 'identity mapper', :falseclass do
       let(:value) { false }
@@ -126,17 +127,15 @@ describe Fortnox::API::Mapper::Base do
 
     describe 'special cases' do
       context 'with SE' do
-        subject { mapper.call('SE') }
-
         it 'translates code to country name in Swedish' do
-          is_expected.to eq('Sverige')
+          expect(mapper.call('SE')).to eq('Sverige')
         end
       end
 
       context 'with nil value' do
         subject { mapper.call(nil) }
 
-        it { is_expected.to eq(nil) }
+        it { is_expected.to be_nil }
       end
 
       context 'with empty string' do
@@ -146,10 +145,8 @@ describe Fortnox::API::Mapper::Base do
       end
 
       context 'with nonsense' do
-        subject { -> { mapper.call('nonsense') } }
-
         it 'is not supported (since input is sanitised) and therefore blows up' do
-          raise_error(NoMethodError)
+          expect { mapper.call('nonsense') }.to raise_error(NoMethodError)
         end
       end
     end

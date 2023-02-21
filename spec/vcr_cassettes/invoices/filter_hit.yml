@@ -11,10 +11,8 @@ http_interactions:
       - application/json
       Accept:
       - application/json
-      Client-Secret:
-      - 9aBA8ZgsvR
-      Access-Token:
-      - ccaef817-d5d8-4b1c-a316-54f3e55c5c54
+      Authorization:
+      - "<AUTHORIZATION>"
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       User-Agent:
@@ -24,39 +22,43 @@ http_interactions:
       code: 200
       message: OK
     headers:
-      Server:
-      - nginx
-      Date:
-      - Mon, 21 Dec 2020 20:41:47 GMT
+      Content-Length:
+      - '1215'
       Content-Type:
       - application/json
-      Connection:
-      - close
+      Date:
+      - Mon, 30 Jan 2023 10:24:41 GMT
       Vary:
       - Accept-Encoding
-      X-Rack-Responsetime:
-      - '60'
-      X-Uid:
-      - 51fc2fec
       X-Build:
-      - d59e2acefa
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubdomains
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Content-Type-Options:
-      - nosniff
+      - 16d854443d
       X-Frame-Options:
       - sameorigin
+      X-Rack-Responsetime:
+      - '147'
+      X-Uid:
+      - 807ebaf9
+      Server:
+      - Fortnox
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - '0'
       Referrer-Policy:
       - strict-origin-when-cross-origin
+      Content-Security-Policy:
+      - 'upgrade-insecure-requests;frame-ancestors https://*.fortnox.se;report-uri
+        /api/cspreport;connect-src ''self'' https://a.storyblok.com wss://*.fortnox.se
+        *.fortnox.se *.findity.com mybusiness.pwc.se themes.googleusercontent.com
+        s3.amazonaws.com/helpjuice-static/ *.helpjuice.com *.vimeo.com fonts.googleapis.com
+        fonts.gstatic.com api.cling.se wss://api.cling.se ''unsafe-inline'' ''unsafe-eval''
+        blob: data:'
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains
     body:
       encoding: ASCII-8BIT
-      string: '{"MetaInformation":{"@TotalResources":4,"@TotalPages":1,"@CurrentPage":1},"Invoices":[{"@url":"https:\/\/api.fortnox.se\/3\/invoices\/15","Balance":0,"Booked":true,"Cancelled":false,"CostCenter":"","Currency":"SEK","CurrencyRate":"1","CurrencyUnit":1,"CustomerName":"Test
-        customer","CustomerNumber":"3","DocumentNumber":"15","DueDate":"2016-05-15","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","InvoiceDate":"2016-05-15","InvoiceType":"INVOICE","NoxFinans":false,"OCR":"1545","VoucherNumber":1,"VoucherSeries":"B","VoucherYear":1,"WayOfDelivery":"","TermsOfPayment":"0","Project":"2","Sent":false,"Total":138,"FinalPayDate":"2016-05-15"},{"@url":"https:\/\/api.fortnox.se\/3\/invoices\/64","Balance":0,"Booked":true,"Cancelled":false,"CostCenter":"","Currency":"SEK","CurrencyRate":"1","CurrencyUnit":1,"CustomerName":"Anna
-        Norman","CustomerNumber":"82","DocumentNumber":"64","DueDate":"2016-11-25","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","InvoiceDate":"2016-11-25","InvoiceType":"INVOICE","NoxFinans":false,"OCR":"6445","VoucherNumber":5,"VoucherSeries":"B","VoucherYear":1,"WayOfDelivery":"","TermsOfPayment":"0","Project":"3","Sent":false,"Total":875,"FinalPayDate":"2016-11-25"},{"@url":"https:\/\/api.fortnox.se\/3\/invoices\/66","Balance":0,"Booked":true,"Cancelled":false,"CostCenter":"","Currency":"SEK","CurrencyRate":"1","CurrencyUnit":1,"CustomerName":"Ertan
-        AB","CustomerNumber":"164","DocumentNumber":"66","DueDate":"2016-11-25","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","InvoiceDate":"2016-11-25","InvoiceType":"INVOICE","NoxFinans":false,"OCR":"6643","VoucherNumber":6,"VoucherSeries":"B","VoucherYear":1,"WayOfDelivery":"","TermsOfPayment":"0","Project":"3","Sent":false,"Total":1250,"FinalPayDate":"2016-11-25"},{"@url":"https:\/\/api.fortnox.se\/3\/invoices\/77","Balance":0,"Booked":true,"Cancelled":false,"CostCenter":"","Currency":"SEK","CurrencyRate":"1","CurrencyUnit":1,"CustomerName":"En
-        Appstudio i J\u00f6nk\u00f6ping AB","CustomerNumber":"170","DocumentNumber":"77","DueDate":"2017-01-15","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","InvoiceDate":"2017-01-15","InvoiceType":"INVOICE","NoxFinans":false,"OCR":"7740","VoucherNumber":2,"VoucherSeries":"B","VoucherYear":2,"WayOfDelivery":"","TermsOfPayment":"0","Project":"1","Sent":false,"Total":3000,"FinalPayDate":"2017-01-15"}]}'
-    http_version: 
-  recorded_at: Mon, 21 Dec 2020 20:41:47 GMT
-recorded_with: VCR 4.0.0
+      string: '{"MetaInformation":{"@TotalResources":2,"@TotalPages":1,"@CurrentPage":1},"Invoices":[{"@url":"https:\/\/api.fortnox.se\/3\/invoices\/32","Balance":0,"Booked":true,"Cancelled":false,"CostCenter":"","Currency":"SEK","CurrencyRate":"1","CurrencyUnit":1,"CustomerName":"Updated
+        name","CustomerNumber":"1","DocumentNumber":"32","DueDate":"2023-03-01","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","InvoiceDate":"2023-01-30","InvoiceType":"INVOICE","NoxFinans":false,"OCR":"3244","VoucherNumber":1,"VoucherSeries":"B","VoucherYear":1,"WayOfDelivery":"","TermsOfPayment":"30","Project":"","Sent":false,"Total":0,"FinalPayDate":"2023-01-30"},{"@url":"https:\/\/api.fortnox.se\/3\/invoices\/33","Balance":0,"Booked":true,"Cancelled":false,"CostCenter":"","Currency":"SEK","CurrencyRate":"1","CurrencyUnit":1,"CustomerName":"A
+        customer","CustomerNumber":"5","DocumentNumber":"33","DueDate":"2023-03-01","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","InvoiceDate":"2023-01-30","InvoiceType":"INVOICE","NoxFinans":false,"OCR":"3343","VoucherNumber":2,"VoucherSeries":"B","VoucherYear":1,"WayOfDelivery":"","TermsOfPayment":"30","Project":"","Sent":false,"Total":0,"FinalPayDate":"2023-01-30"}]}'
+  recorded_at: Mon, 30 Jan 2023 10:24:41 GMT
+recorded_with: VCR 6.1.0

@@ -11,10 +11,8 @@ http_interactions:
       - application/json
       Accept:
       - application/json
-      Client-Secret:
-      - 9aBA8ZgsvR
-      Access-Token:
-      - ccaef817-d5d8-4b1c-a316-54f3e55c5c54
+      Authorization:
+      - "<AUTHORIZATION>"
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       User-Agent:
@@ -24,61 +22,46 @@ http_interactions:
       code: 200
       message: OK
     headers:
-      Server:
-      - nginx
-      Date:
-      - Mon, 21 Dec 2020 20:40:04 GMT
+      Content-Length:
+      - '2040'
       Content-Type:
       - application/json
-      Connection:
-      - close
+      Date:
+      - Mon, 30 Jan 2023 10:35:04 GMT
       Vary:
       - Accept-Encoding
-      X-Rack-Responsetime:
-      - '30'
-      X-Uid:
-      - f81e8818
       X-Build:
-      - d59e2acefa
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubdomains
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Content-Type-Options:
-      - nosniff
+      - 16d854443d
       X-Frame-Options:
       - sameorigin
+      X-Rack-Responsetime:
+      - '99'
+      X-Uid:
+      - 97b8da1b
+      Server:
+      - Fortnox
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - '0'
       Referrer-Policy:
       - strict-origin-when-cross-origin
+      Content-Security-Policy:
+      - 'upgrade-insecure-requests;frame-ancestors https://*.fortnox.se;report-uri
+        /api/cspreport;connect-src ''self'' https://a.storyblok.com wss://*.fortnox.se
+        *.fortnox.se *.findity.com mybusiness.pwc.se themes.googleusercontent.com
+        s3.amazonaws.com/helpjuice-static/ *.helpjuice.com *.vimeo.com fonts.googleapis.com
+        fonts.gstatic.com api.cling.se wss://api.cling.se ''unsafe-inline'' ''unsafe-eval''
+        blob: data:'
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains
     body:
       encoding: ASCII-8BIT
-      string: '{"MetaInformation":{"@TotalResources":29,"@TotalPages":1,"@CurrentPage":1},"Articles":[{"@url":"https:\/\/api.fortnox.se\/3\/articles\/0000","ArticleNumber":"0000","Description":"Testartikel","DisposableQuantity":"0","EAN":"","Housework":false,"PurchasePrice":"0","SalesPrice":null,"QuantityInStock":"0","ReservedQuantity":"0","StockPlace":"","StockValue":"0","Unit":null,"VAT":null,"WebshopArticle":false},{"@url":"https:\/\/api.fortnox.se\/3\/articles\/0001","ArticleNumber":"0001","Description":"Cykelpump","DisposableQuantity":"0","EAN":"","Housework":false,"PurchasePrice":"0","SalesPrice":"100","QuantityInStock":"0","ReservedQuantity":"0","StockPlace":"","StockValue":"0","Unit":null,"VAT":null,"WebshopArticle":false},{"@url":"https:\/\/api.fortnox.se\/3\/articles\/1","ArticleNumber":"1","Description":"Testartikel","DisposableQuantity":"0","EAN":"","Housework":false,"PurchasePrice":"0","SalesPrice":"100","QuantityInStock":"0","ReservedQuantity":"0","StockPlace":"","StockValue":"0","Unit":null,"VAT":null,"WebshopArticle":false},{"@url":"https:\/\/api.fortnox.se\/3\/articles\/2","ArticleNumber":"2","Description":"A
-        value","DisposableQuantity":"0","EAN":"","Housework":false,"PurchasePrice":"0","SalesPrice":null,"QuantityInStock":"0","ReservedQuantity":"0","StockPlace":null,"StockValue":"0","Unit":"","VAT":null,"WebshopArticle":false},{"@url":"https:\/\/api.fortnox.se\/3\/articles\/3","ArticleNumber":"3","Description":"Test
-        article","DisposableQuantity":"0","EAN":"","Housework":false,"PurchasePrice":"0","SalesPrice":null,"QuantityInStock":"0","ReservedQuantity":"0","StockPlace":null,"StockValue":"0","Unit":"","VAT":null,"WebshopArticle":false},{"@url":"https:\/\/api.fortnox.se\/3\/articles\/4","ArticleNumber":"4","Description":"Test
-        article","DisposableQuantity":"0","EAN":"","Housework":false,"PurchasePrice":"0","SalesPrice":null,"QuantityInStock":"0","ReservedQuantity":"0","StockPlace":null,"StockValue":"0","Unit":"","VAT":null,"WebshopArticle":false},{"@url":"https:\/\/api.fortnox.se\/3\/articles\/5","ArticleNumber":"5","Description":"Test
-        article","DisposableQuantity":"0","EAN":"5901234123457","Housework":false,"PurchasePrice":"0","SalesPrice":null,"QuantityInStock":"0","ReservedQuantity":"0","StockPlace":null,"StockValue":"0","Unit":"","VAT":null,"WebshopArticle":false},{"@url":"https:\/\/api.fortnox.se\/3\/articles\/6","ArticleNumber":"6","Description":"A
-        value","DisposableQuantity":"0","EAN":"","Housework":false,"PurchasePrice":"0","SalesPrice":null,"QuantityInStock":"0","ReservedQuantity":"0","StockPlace":null,"StockValue":"0","Unit":"","VAT":null,"WebshopArticle":false},{"@url":"https:\/\/api.fortnox.se\/3\/articles\/7","ArticleNumber":"7","Description":"Test
-        article","DisposableQuantity":"0","EAN":"5901234123457","Housework":false,"PurchasePrice":"0","SalesPrice":null,"QuantityInStock":"0","ReservedQuantity":"0","StockPlace":null,"StockValue":"0","Unit":"","VAT":null,"WebshopArticle":false},{"@url":"https:\/\/api.fortnox.se\/3\/articles\/8","ArticleNumber":"8","Description":"A
-        value","DisposableQuantity":"0","EAN":"","Housework":false,"PurchasePrice":"0","SalesPrice":null,"QuantityInStock":"0","ReservedQuantity":"0","StockPlace":null,"StockValue":"0","Unit":"","VAT":null,"WebshopArticle":false},{"@url":"https:\/\/api.fortnox.se\/3\/articles\/9","ArticleNumber":"9","Description":"A
-        value","DisposableQuantity":"0","EAN":"","Housework":false,"PurchasePrice":"0","SalesPrice":null,"QuantityInStock":"0","ReservedQuantity":"0","StockPlace":null,"StockValue":"0","Unit":"","VAT":null,"WebshopArticle":false},{"@url":"https:\/\/api.fortnox.se\/3\/articles\/10","ArticleNumber":"10","Description":"Abc
-        123","DisposableQuantity":"0","EAN":"","Housework":false,"PurchasePrice":"0","SalesPrice":null,"QuantityInStock":"0","ReservedQuantity":"0","StockPlace":null,"StockValue":"0","Unit":"","VAT":null,"WebshopArticle":false},{"@url":"https:\/\/api.fortnox.se\/3\/articles\/11","ArticleNumber":"11","Description":"A
-        value","DisposableQuantity":"0","EAN":"","Housework":false,"PurchasePrice":"0","SalesPrice":null,"QuantityInStock":"0","ReservedQuantity":"0","StockPlace":null,"StockValue":"0","Unit":"","VAT":null,"WebshopArticle":false},{"@url":"https:\/\/api.fortnox.se\/3\/articles\/12","ArticleNumber":"12","Description":"Test
-        article","DisposableQuantity":"0","EAN":"5901234123457","Housework":false,"PurchasePrice":"0","SalesPrice":null,"QuantityInStock":"0","ReservedQuantity":"0","StockPlace":null,"StockValue":"0","Unit":"","VAT":null,"WebshopArticle":false},{"@url":"https:\/\/api.fortnox.se\/3\/articles\/13","ArticleNumber":"13","Description":"Test
-        article","DisposableQuantity":"0","EAN":"5901234123457","Housework":false,"PurchasePrice":"0","SalesPrice":null,"QuantityInStock":"0","ReservedQuantity":"0","StockPlace":null,"StockValue":"0","Unit":"","VAT":null,"WebshopArticle":false},{"@url":"https:\/\/api.fortnox.se\/3\/articles\/14","ArticleNumber":"14","Description":"A
-        value","DisposableQuantity":"0","EAN":"","Housework":false,"PurchasePrice":"0","SalesPrice":null,"QuantityInStock":"0","ReservedQuantity":"0","StockPlace":null,"StockValue":"0","Unit":null,"VAT":null,"WebshopArticle":false},{"@url":"https:\/\/api.fortnox.se\/3\/articles\/15","ArticleNumber":"15","Description":"A
-        value","DisposableQuantity":"0","EAN":"","Housework":false,"PurchasePrice":"0","SalesPrice":null,"QuantityInStock":"0","ReservedQuantity":"0","StockPlace":null,"StockValue":"0","Unit":"","VAT":null,"WebshopArticle":false},{"@url":"https:\/\/api.fortnox.se\/3\/articles\/16","ArticleNumber":"16","Description":"Test
-        article","DisposableQuantity":"0","EAN":"5901234123457","Housework":false,"PurchasePrice":"0","SalesPrice":null,"QuantityInStock":"0","ReservedQuantity":"0","StockPlace":null,"StockValue":"0","Unit":"","VAT":null,"WebshopArticle":false},{"@url":"https:\/\/api.fortnox.se\/3\/articles\/17","ArticleNumber":"17","Description":"A
-        value","DisposableQuantity":"0","EAN":"","Housework":false,"PurchasePrice":"0","SalesPrice":null,"QuantityInStock":"0","ReservedQuantity":"0","StockPlace":null,"StockValue":"0","Unit":"","VAT":null,"WebshopArticle":false},{"@url":"https:\/\/api.fortnox.se\/3\/articles\/18","ArticleNumber":"18","Description":"Updated
-        description","DisposableQuantity":"0","EAN":"","Housework":false,"PurchasePrice":"0","SalesPrice":null,"QuantityInStock":"0","ReservedQuantity":"0","StockPlace":null,"StockValue":"0","Unit":null,"VAT":null,"WebshopArticle":false},{"@url":"https:\/\/api.fortnox.se\/3\/articles\/19","ArticleNumber":"19","Description":"Updated
-        description","DisposableQuantity":"0","EAN":"","Housework":false,"PurchasePrice":"0","SalesPrice":null,"QuantityInStock":"0","ReservedQuantity":"0","StockPlace":null,"StockValue":"0","Unit":null,"VAT":null,"WebshopArticle":false},{"@url":"https:\/\/api.fortnox.se\/3\/articles\/20","ArticleNumber":"20","Description":"Test
-        article","DisposableQuantity":"0","EAN":"5901234123457","Housework":false,"PurchasePrice":"0","SalesPrice":null,"QuantityInStock":"0","ReservedQuantity":"0","StockPlace":null,"StockValue":"0","Unit":"","VAT":null,"WebshopArticle":false},{"@url":"https:\/\/api.fortnox.se\/3\/articles\/21","ArticleNumber":"21","Description":"Updated
-        description","DisposableQuantity":"0","EAN":"","Housework":false,"PurchasePrice":"0","SalesPrice":null,"QuantityInStock":"0","ReservedQuantity":"0","StockPlace":null,"StockValue":"0","Unit":null,"VAT":null,"WebshopArticle":false},{"@url":"https:\/\/api.fortnox.se\/3\/articles\/22","ArticleNumber":"22","Description":"Test
-        article","DisposableQuantity":"0","EAN":"5901234123457","Housework":false,"PurchasePrice":"0","SalesPrice":null,"QuantityInStock":"0","ReservedQuantity":"0","StockPlace":null,"StockValue":"0","Unit":"","VAT":null,"WebshopArticle":false},{"@url":"https:\/\/api.fortnox.se\/3\/articles\/23","ArticleNumber":"23","Description":"Updated
-        description","DisposableQuantity":"0","EAN":"","Housework":false,"PurchasePrice":"0","SalesPrice":null,"QuantityInStock":"0","ReservedQuantity":"0","StockPlace":null,"StockValue":"0","Unit":null,"VAT":null,"WebshopArticle":false},{"@url":"https:\/\/api.fortnox.se\/3\/articles\/24","ArticleNumber":"24","Description":"Test
-        article","DisposableQuantity":"0","EAN":"5901234123457","Housework":false,"PurchasePrice":"0","SalesPrice":null,"QuantityInStock":"0","ReservedQuantity":"0","StockPlace":null,"StockValue":"0","Unit":"","VAT":null,"WebshopArticle":false},{"@url":"https:\/\/api.fortnox.se\/3\/articles\/25","ArticleNumber":"25","Description":"A
-        value","DisposableQuantity":"0","EAN":"","Housework":false,"PurchasePrice":"0","SalesPrice":null,"QuantityInStock":"0","ReservedQuantity":"0","StockPlace":null,"StockValue":"0","Unit":"","VAT":null,"WebshopArticle":false},{"@url":"https:\/\/api.fortnox.se\/3\/articles\/26","ArticleNumber":"26","Description":"Updated
-        description","DisposableQuantity":"0","EAN":"","Housework":false,"PurchasePrice":"0","SalesPrice":null,"QuantityInStock":"0","ReservedQuantity":"0","StockPlace":null,"StockValue":"0","Unit":null,"VAT":null,"WebshopArticle":false},{"@url":"https:\/\/api.fortnox.se\/3\/articles\/27","ArticleNumber":"27","Description":"Test
+      string: '{"MetaInformation":{"@TotalResources":6,"@TotalPages":1,"@CurrentPage":1},"Articles":[{"@url":"https:\/\/api.fortnox.se\/3\/articles\/1","ArticleNumber":"1","Description":"Test
+        article","DisposableQuantity":"0","EAN":"5901234123457","Housework":false,"PurchasePrice":"0","SalesPrice":null,"QuantityInStock":"0","ReservedQuantity":"0","StockPlace":null,"StockValue":"0","Unit":"","VAT":null,"WebshopArticle":false},{"@url":"https:\/\/api.fortnox.se\/3\/articles\/2","ArticleNumber":"2","Description":"Updated
+        description","DisposableQuantity":"0","EAN":"","Housework":false,"PurchasePrice":"0","SalesPrice":null,"QuantityInStock":"0","ReservedQuantity":"0","StockPlace":null,"StockValue":"0","Unit":null,"VAT":null,"WebshopArticle":false},{"@url":"https:\/\/api.fortnox.se\/3\/articles\/3","ArticleNumber":"3","Description":"Test
+        article","DisposableQuantity":"0","EAN":"5901234123457","Housework":false,"PurchasePrice":"0","SalesPrice":null,"QuantityInStock":"0","ReservedQuantity":"0","StockPlace":null,"StockValue":"0","Unit":"","VAT":null,"WebshopArticle":false},{"@url":"https:\/\/api.fortnox.se\/3\/articles\/101","ArticleNumber":"101","Description":"Hammer","DisposableQuantity":"0","EAN":"","Housework":false,"PurchasePrice":"0","SalesPrice":null,"QuantityInStock":"0","ReservedQuantity":"0","StockPlace":"","StockValue":"0","Unit":null,"VAT":null,"WebshopArticle":false},{"@url":"https:\/\/api.fortnox.se\/3\/articles\/102","ArticleNumber":"102","Description":"Updated
+        description","DisposableQuantity":"0","EAN":"","Housework":false,"PurchasePrice":"0","SalesPrice":null,"QuantityInStock":"0","ReservedQuantity":"0","StockPlace":null,"StockValue":"0","Unit":null,"VAT":null,"WebshopArticle":false},{"@url":"https:\/\/api.fortnox.se\/3\/articles\/103","ArticleNumber":"103","Description":"Test
         article","DisposableQuantity":"0","EAN":"5901234123457","Housework":false,"PurchasePrice":"0","SalesPrice":null,"QuantityInStock":"0","ReservedQuantity":"0","StockPlace":null,"StockValue":"0","Unit":"","VAT":null,"WebshopArticle":false}]}'
-    http_version: 
-  recorded_at: Mon, 21 Dec 2020 20:40:04 GMT
-recorded_with: VCR 4.0.0
+  recorded_at: Mon, 30 Jan 2023 10:35:04 GMT
+recorded_with: VCR 6.1.0

@@ -9,9 +9,11 @@ module Fortnox
     module Model
       describe Unit, type: :model do
         context 'when created from empty hash' do
-          subject { -> { described_class.new } }
-
-          it { is_expected.to raise_error(Fortnox::API::MissingAttributeError, /Missing attribute.*:code/) }
+          it {
+            expect do
+              described_class.new
+            end.to raise_error(Fortnox::API::MissingAttributeError, /Missing attribute.*:code/)
+          }
         end
 
         context 'when created from stub' do

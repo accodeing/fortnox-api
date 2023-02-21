@@ -25,8 +25,8 @@ module Fortnox
           # PRIVATE
 
           def convert_hash_keys_to_json_format(hash)
-            hash.each_with_object({}) do |(key, value), json_hash|
-              json_hash[convert_key_to_json(key)] = value
+            hash.transform_keys do |key|
+              convert_key_to_json(key)
             end
           end
 
@@ -35,13 +35,12 @@ module Fortnox
           end
 
           def default_key_to_json_transform(key)
-            key.to_s.split('_').map(&:capitalize).join('')
+            key.to_s.split('_').map(&:capitalize).join
           end
 
           def sanitise(hash, keys_to_filter)
             hash.reject do |key, value|
-              next false if keys_to_filter.include?(key)
-              value.nil?
+              keys_to_filter.include?(key) || value.nil?
             end
           end
         end
