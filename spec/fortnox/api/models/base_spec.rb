@@ -81,7 +81,7 @@ describe Fortnox::API::Model::Base do
       it { is_expected.not_to be_saved }
     end
 
-    context 'when updating' do
+    context 'when updating a saved entity' do
       let(:updated_entity) do
         saved_entity = entity_class.new(string: 'Saved', new: false, unsaved: false)
         saved_entity.update(string: 'Updated')
@@ -99,6 +99,19 @@ describe Fortnox::API::Model::Base do
 
         it { is_expected.to eq('Updated') }
       end
+    end
+
+    context 'when updating a saved entity with nil values' do
+      subject(:updated_entity) { original.update(number: nil) }
+
+      let(:original) { entity_class.new(string: 'Saved', new: false, unsaved: false) }
+
+      it 'returns the same object' do
+        expect(updated_entity).to eql(original)
+      end
+
+      it { is_expected.not_to be_new }
+      it { is_expected.to be_saved }
     end
   end
 end

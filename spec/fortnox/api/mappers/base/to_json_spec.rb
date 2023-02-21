@@ -11,10 +11,6 @@ describe Fortnox::API::Mapper::ToJSON do
     Test::BaseMapper.class_eval do
       include Fortnox::API::Mapper::ToJSON # rubocop:disable RSpec/DescribedClass
     end
-
-    # Are these needed?
-    register_mapper(:categories, Test::CategoryMapper)
-    register_mapper(:designer, Test::ProductDesignerMapper)
   end
 
   let(:mapper) { Test::ProductMapper.new }

@@ -12,8 +12,8 @@ describe Fortnox::API::Mapper::FromJSON do
       include Fortnox::API::Mapper::FromJSON # rubocop:disable RSpec/DescribedClass
     end
 
-    register_mapper(:categories, Test::CategoryMapper)
-    register_mapper(:designer, Test::ProductDesignerMapper)
+    add_to_registry(:categories, Test::CategoryMapper)
+    add_to_registry(:designer, Test::ProductDesignerMapper)
   end
 
   let(:mapper) { Test::ProductMapper.new }

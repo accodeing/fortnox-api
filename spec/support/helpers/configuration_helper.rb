@@ -25,5 +25,15 @@ module Helpers
 
       Fortnox::API.access_token = ENV.fetch('FORTNOX_API_ACCESS_TOKEN')
     end
+
+    def add_to_registry(symbol, klass)
+      unless Fortnox::API::Registry.key? symbol
+        # Only register the key once...
+        Fortnox::API::Registry.register(symbol) { klass }
+      end
+
+      # ... but stub the value each test run
+      Fortnox::API::Registry.stub(symbol, klass)
+    end
   end
 end

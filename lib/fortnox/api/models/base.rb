@@ -63,14 +63,13 @@ module Fortnox
 
         def update(hash)
           old_attributes = to_hash
-          new_attributes = old_attributes.merge(hash)
+          new_attributes = old_attributes.merge(hash).compact
 
           return self if new_attributes == old_attributes
 
-          new_hash = new_attributes.delete_if { |_, value| value.nil? }
-          new_hash[:new] = @new
-          new_hash[:parent] = self
-          self.class.new(new_hash)
+          new_attributes[:new] = @new
+          new_attributes[:parent] = self
+          self.class.new(new_attributes)
         end
 
         # Generic comparison, by value, use .eql? or .equal? for object identity.
