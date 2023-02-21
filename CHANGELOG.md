@@ -28,6 +28,8 @@ and this project adheres to
   Those were indirect dependencies before via other dry libs, but we use them
   explicitly in the gem, so they should be included as real dependencies. Also,
   newer versions of these gems did actually break the gem.
+- Not trying to update resource if diff against parent is an empty object
+  (#238).
 
 ### Removed
 
