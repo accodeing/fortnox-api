@@ -40,7 +40,7 @@ module Fortnox
             options[:headers] = provided_headers
             options[:base_uri] ||= base_url
 
-            debug_log_request(path, options) if Fortnox::API.debugging
+            debug_log_request(path, options)
 
             execute do |remote|
               remote.send(method, path, options, &block)
@@ -61,6 +61,7 @@ module Fortnox
         private
 
         def debug_log_request(path, options)
+          return unless Fortnox::API.debugging
           Fortnox::API.logger.debug("path: #{path.inspect}")
           Fortnox::API.logger.debug("options: #{options.inspect}")
         end
