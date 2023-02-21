@@ -63,7 +63,7 @@ module Fortnox
 
         def update(hash)
           old_attributes = to_hash
-          new_attributes = old_attributes.merge(hash).delete_if { |_, value| value.nil? }
+          new_attributes = old_attributes.merge(hash).compact
 
           return self if new_attributes == old_attributes
 
