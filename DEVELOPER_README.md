@@ -56,6 +56,13 @@ When updating the required Ruby version, you need to do the following:
 - Update required Ruby version in the readme
 - Verify that all GitHub integrations works in the pull request you are creating
 
+# Release
+
+1. Update `CHANGELOG.md`
+2. Bump version in `lib/fortnox/api/version.rb`
+3. Release gem with `gem build fortnox-api.gemspec` and
+   `gem push fortnox-api-[VERSION].gem`
+
 # Contributing
 
 See the [CONTRIBUTE](CONTRIBUTE.md) readme.
