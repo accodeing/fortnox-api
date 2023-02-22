@@ -58,10 +58,7 @@ When updating the required Ruby version, you need to do the following:
 
 # Release
 
-1. Update `CHANGELOG.md`
-2. Bump version in `lib/fortnox/api/version.rb`
-3. Release gem with `gem build fortnox-api.gemspec` and
-   `gem push fortnox-api-[VERSION].gem`
+See our separate guide for releasing Ruby gems.
 
 # Contributing
 
