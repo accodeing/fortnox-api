@@ -8,6 +8,8 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [0.9.0]
+
 ### Added
 
 - Script in `bin/get_tokens` to issue access and refresh tokens
