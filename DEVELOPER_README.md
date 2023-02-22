@@ -59,3 +59,7 @@ When updating the required Ruby version, you need to do the following:
 # Contributing
 
 See the [CONTRIBUTE](CONTRIBUTE.md) readme.
+
+# Dummy trigger
+
+A dummy trigger: 1
