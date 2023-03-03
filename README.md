@@ -313,23 +313,23 @@ repo.find_by( customer_number: 5 ) #=> <Fortnox::API::Collection:0x007fdf2299431
 ```
 
 If you are eagle eyed you might have spotted the different classes for the
-entities returned in a collection vs the one we get from find. The `Simple`
+entities returned in a collection vs the one we get from find. The simple
 version of a class is used in thouse cases where the API-server doesn't return a
 full set of attributes for an entity. For customers the simple version has 10
 attributes while the full have over 40.
 
-> :info: \*\* Collections not implemented yet.
+### Additional parameters
 
-You should try to get by using the simple versions for as long as possible. Both
-the `Collection` and `Simple` classes have a `.full` method that will give you
-full versions of the entities. Bare in mind though that a collection of 20
-simple models that you run `.full` on will call out to the server 20 times, in
-sequence.
+Note that `find` also supports a hash as an argument, which simply adds given
+hash keys ar HTTP parameters to the call. This will let you search, sort, use
+limits and offsets as well as pagination. See
+[Fortnox documentation](https://developer.fortnox.se/general/parameters/) for
+more information about available parameters.
 
-> :info: \*\* We have opened a dialog with Fortnox about this API practice to
-> allow for full models in the list request, on demand, and/or the ability for
-> the client to specify the fields of interest when making the request, as per
-> usual in REST APIs with partial load.
+```ruby
+# Get second page of Customers
+Fortnox::API::Repository::Customer.new.find { page: 2 }
+```
 
 ## Entities
 
