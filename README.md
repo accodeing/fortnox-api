@@ -321,8 +321,8 @@ attributes while the full have over 40.
 ### Additional parameters
 
 Note that `find` also supports a hash as an argument, which simply adds given
-hash keys ar HTTP parameters to the call. This will let you search, sort, use
-limits and offsets as well as pagination. See
+hash keys as HTTP parameters to the call. This will let you search, sort, use
+limits and offsets as well as do pagination. See
 [Fortnox documentation](https://developer.fortnox.se/general/parameters/) for
 more information about available parameters.
 
