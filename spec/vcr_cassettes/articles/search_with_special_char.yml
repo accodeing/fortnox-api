@@ -24,35 +24,41 @@ http_interactions:
       code: 200
       message: OK
     headers:
-      Server:
-      - nginx
-      Date:
-      - Mon, 21 Dec 2020 20:40:05 GMT
+      Content-Length:
+      - '88'
       Content-Type:
       - application/json
-      Connection:
-      - close
+      Date:
+      - Mon, 22 Jan 2024 14:52:31 GMT
       Vary:
       - Accept-Encoding
-      X-Rack-Responsetime:
-      - '28'
-      X-Uid:
-      - da707608
       X-Build:
-      - d59e2acefa
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubdomains
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Content-Type-Options:
-      - nosniff
+      - 9dd4e26746
       X-Frame-Options:
       - sameorigin
+      X-Rack-Responsetime:
+      - '52'
+      X-Uid:
+      - 644a7b61
+      Server:
+      - Fortnox
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - '0'
       Referrer-Policy:
       - strict-origin-when-cross-origin
+      Content-Security-Policy:
+      - 'upgrade-insecure-requests;frame-ancestors https://*.fortnox.se;report-uri
+        /api/cspreport;connect-src ''self'' https://a.storyblok.com wss://*.fortnox.se
+        *.fortnox.se *.findity.com mybusiness.pwc.se themes.googleusercontent.com
+        s3.amazonaws.com/helpjuice-static/ *.helpjuice.com *.vimeo.com fonts.googleapis.com
+        fonts.gstatic.com fortnox.piwik.pro api.cling.se wss://api.cling.se ''unsafe-inline''
+        ''unsafe-eval'' blob: data:'
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains
     body:
       encoding: ASCII-8BIT
       string: '{"MetaInformation":{"@TotalResources":0,"@TotalPages":0,"@CurrentPage":1},"Articles":[]}'
-    http_version: 
-  recorded_at: Mon, 21 Dec 2020 20:40:05 GMT
-recorded_with: VCR 4.0.0
+  recorded_at: Mon, 22 Jan 2024 14:52:30 GMT
+recorded_with: VCR 6.2.0

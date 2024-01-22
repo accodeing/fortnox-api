@@ -24,35 +24,41 @@ http_interactions:
       code: 200
       message: OK
     headers:
-      Server:
-      - nginx
-      Date:
-      - Mon, 21 Dec 2020 20:40:04 GMT
+      Content-Length:
+      - '935'
       Content-Type:
       - application/json
-      Connection:
-      - close
+      Date:
+      - Mon, 22 Jan 2024 14:52:30 GMT
       Vary:
       - Accept-Encoding
-      X-Rack-Responsetime:
-      - '27'
-      X-Uid:
-      - b06edbf5
       X-Build:
-      - d59e2acefa
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubdomains
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Content-Type-Options:
-      - nosniff
+      - 9dd4e26746
       X-Frame-Options:
       - sameorigin
+      X-Rack-Responsetime:
+      - '70'
+      X-Uid:
+      - 35ba4578
+      Server:
+      - Fortnox
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - '0'
       Referrer-Policy:
       - strict-origin-when-cross-origin
+      Content-Security-Policy:
+      - 'upgrade-insecure-requests;frame-ancestors https://*.fortnox.se;report-uri
+        /api/cspreport;connect-src ''self'' https://a.storyblok.com wss://*.fortnox.se
+        *.fortnox.se *.findity.com mybusiness.pwc.se themes.googleusercontent.com
+        s3.amazonaws.com/helpjuice-static/ *.helpjuice.com *.vimeo.com fonts.googleapis.com
+        fonts.gstatic.com fortnox.piwik.pro api.cling.se wss://api.cling.se ''unsafe-inline''
+        ''unsafe-eval'' blob: data:'
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains
     body:
       encoding: ASCII-8BIT
-      string: '{"Article":{"@url":"https:\/\/api.fortnox.se\/3\/articles\/1","ArticleNumber":"1","Bulky":false,"ConstructionAccount":1030,"Depth":null,"Description":"Testartikel","DisposableQuantity":-163995.5,"EAN":"","EUAccount":1030,"EUVATAccount":1030,"ExportAccount":1030,"Height":null,"Housework":false,"HouseworkType":null,"Active":true,"Manufacturer":null,"ManufacturerArticleNumber":null,"Note":"","PurchaseAccount":1030,"PurchasePrice":0,"QuantityInStock":0,"ReservedQuantity":163995.5,"SalesAccount":1030,"StockGoods":false,"StockPlace":"","StockValue":0,"StockWarning":null,"SupplierName":null,"SupplierNumber":null,"Type":"STOCK","Unit":null,"VAT":0,"WebshopArticle":false,"Weight":null,"Width":null,"Expired":false,"SalesPrice":100,"CostCalculationMethod":null,"StockAccount":null,"StockChangeAccount":null,"DirectCost":null,"FreightCost":null,"OtherCost":null,"DefaultStockPoint":null,"DefaultStockLocation":null}}'
-    http_version: 
-  recorded_at: Mon, 21 Dec 2020 20:40:04 GMT
-recorded_with: VCR 4.0.0
+      string: '{"Article":{"@url":"https:\/\/api.fortnox.se\/3\/articles\/1","ArticleNumber":"1","Bulky":false,"ConstructionAccount":1030,"Depth":null,"Description":"Testartikel","DisposableQuantity":-217995.5,"EAN":"","EUAccount":1030,"EUVATAccount":1030,"ExportAccount":1030,"Height":null,"Housework":false,"HouseworkType":null,"Active":true,"Manufacturer":null,"ManufacturerArticleNumber":null,"Note":"","PurchaseAccount":1030,"PurchasePrice":0,"QuantityInStock":0,"ReservedQuantity":217995.5,"SalesAccount":1030,"StockGoods":false,"StockPlace":"","StockValue":0,"StockWarning":null,"SupplierName":null,"SupplierNumber":null,"Type":"STOCK","Unit":null,"VAT":0,"WebshopArticle":false,"Weight":null,"Width":null,"Expired":false,"SalesPrice":100,"CostCalculationMethod":null,"StockAccount":null,"StockChangeAccount":null,"DirectCost":null,"FreightCost":null,"OtherCost":null,"DefaultStockPoint":null,"DefaultStockLocation":null,"CommodityCode":null}}'
+  recorded_at: Mon, 22 Jan 2024 14:52:29 GMT
+recorded_with: VCR 6.2.0

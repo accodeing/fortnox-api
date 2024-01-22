@@ -24,38 +24,44 @@ http_interactions:
       code: 200
       message: OK
     headers:
-      Server:
-      - nginx
-      Date:
-      - Mon, 21 Dec 2020 20:41:29 GMT
+      Content-Length:
+      - '1056'
       Content-Type:
       - application/json
-      Connection:
-      - close
+      Date:
+      - Mon, 22 Jan 2024 14:52:56 GMT
       Vary:
       - Accept-Encoding
-      X-Rack-Responsetime:
-      - '33'
-      X-Uid:
-      - 7defa0ff
       X-Build:
-      - d59e2acefa
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubdomains
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Content-Type-Options:
-      - nosniff
+      - 9dd4e26746
       X-Frame-Options:
       - sameorigin
+      X-Rack-Responsetime:
+      - '50'
+      X-Uid:
+      - f92c8f6c
+      Server:
+      - Fortnox
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - '0'
       Referrer-Policy:
       - strict-origin-when-cross-origin
+      Content-Security-Policy:
+      - 'upgrade-insecure-requests;frame-ancestors https://*.fortnox.se;report-uri
+        /api/cspreport;connect-src ''self'' https://a.storyblok.com wss://*.fortnox.se
+        *.fortnox.se *.findity.com mybusiness.pwc.se themes.googleusercontent.com
+        s3.amazonaws.com/helpjuice-static/ *.helpjuice.com *.vimeo.com fonts.googleapis.com
+        fonts.gstatic.com fortnox.piwik.pro api.cling.se wss://api.cling.se ''unsafe-inline''
+        ''unsafe-eval'' blob: data:'
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains
     body:
       encoding: ASCII-8BIT
       string: '{"MetaInformation":{"@TotalResources":3,"@TotalPages":1,"@CurrentPage":1},"Orders":[{"@url":"https:\/\/api.fortnox.se\/3\/orders\/4","Cancelled":false,"Currency":"SEK","CustomerName":"A
         customer","CustomerNumber":"26","DeliveryDate":null,"DocumentNumber":"4","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","OrderDate":"2016-04-21","OrderType":"Order","Project":"1","Sent":false,"Total":0},{"@url":"https:\/\/api.fortnox.se\/3\/orders\/60","Cancelled":false,"Currency":"SEK","CustomerName":"A
         customer","CustomerNumber":"2","DeliveryDate":null,"DocumentNumber":"60","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","OrderDate":"2016-05-09","OrderType":"Order","Project":"1","Sent":false,"Total":19},{"@url":"https:\/\/api.fortnox.se\/3\/orders\/269","Cancelled":false,"Currency":"SEK","CustomerName":"A
         customer","CustomerNumber":"2","DeliveryDate":null,"DocumentNumber":"269","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","OrderDate":"2018-01-02","OrderType":"Order","Project":"5582","Sent":false,"Total":1250}]}'
-    http_version: 
-  recorded_at: Mon, 21 Dec 2020 20:41:29 GMT
-recorded_with: VCR 4.0.0
+  recorded_at: Mon, 22 Jan 2024 14:52:56 GMT
+recorded_with: VCR 6.2.0

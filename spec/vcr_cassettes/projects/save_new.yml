@@ -24,36 +24,42 @@ http_interactions:
       code: 201
       message: Created
     headers:
-      Server:
-      - nginx
-      Date:
-      - Mon, 21 Dec 2020 20:34:22 GMT
+      Content-Length:
+      - '242'
       Content-Type:
       - application/json
-      Connection:
-      - close
+      Date:
+      - Mon, 22 Jan 2024 14:57:30 GMT
       Location:
       - project
-      X-Rack-Responsetime:
-      - '247'
-      X-Uid:
-      - 45d9ef86
       X-Build:
-      - d59e2acefa
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubdomains
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Content-Type-Options:
-      - nosniff
+      - 9dd4e26746
       X-Frame-Options:
       - sameorigin
+      X-Rack-Responsetime:
+      - '89'
+      X-Uid:
+      - 2f79bfeb
+      Server:
+      - Fortnox
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - '0'
       Referrer-Policy:
       - strict-origin-when-cross-origin
+      Content-Security-Policy:
+      - 'upgrade-insecure-requests;frame-ancestors https://*.fortnox.se;report-uri
+        /api/cspreport;connect-src ''self'' https://a.storyblok.com wss://*.fortnox.se
+        *.fortnox.se *.findity.com mybusiness.pwc.se themes.googleusercontent.com
+        s3.amazonaws.com/helpjuice-static/ *.helpjuice.com *.vimeo.com fonts.googleapis.com
+        fonts.gstatic.com fortnox.piwik.pro api.cling.se wss://api.cling.se ''unsafe-inline''
+        ''unsafe-eval'' blob: data:'
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains
     body:
       encoding: UTF-8
-      string: '{"Project":{"@url":"https:\/\/api.fortnox.se\/3\/projects\/5595","Comments":"A
-        value","ContactPerson":null,"Description":"Some important project","EndDate":null,"ProjectLeader":null,"ProjectNumber":"5595","Status":"ONGOING","StartDate":null}}'
-    http_version: 
-  recorded_at: Mon, 21 Dec 2020 20:34:22 GMT
-recorded_with: VCR 4.0.0
+      string: '{"Project":{"@url":"https:\/\/api.fortnox.se\/3\/projects\/5600","Comments":"A
+        value","ContactPerson":null,"Description":"Some important project","EndDate":null,"ProjectLeader":null,"ProjectNumber":"5600","Status":"ONGOING","StartDate":null}}'
+  recorded_at: Mon, 22 Jan 2024 14:57:30 GMT
+recorded_with: VCR 6.2.0
