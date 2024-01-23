@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'fortnox/api/mappers/base/canonical_name_sym'
+require_relative '../base/canonical_name_sym'
 
 module Fortnox
   module API

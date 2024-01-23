@@ -24,32 +24,39 @@ http_interactions:
       code: 200
       message: OK
     headers:
-      Server:
-      - nginx
-      Date:
-      - Mon, 21 Dec 2020 20:41:47 GMT
+      Content-Length:
+      - '4077'
       Content-Type:
       - application/json
-      Connection:
-      - close
+      Date:
+      - Mon, 22 Jan 2024 14:54:32 GMT
       Vary:
       - Accept-Encoding
-      X-Rack-Responsetime:
-      - '69'
-      X-Uid:
-      - 7313549f
       X-Build:
-      - d59e2acefa
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubdomains
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Content-Type-Options:
-      - nosniff
+      - 9dd4e26746
       X-Frame-Options:
       - sameorigin
+      X-Rack-Responsetime:
+      - '77'
+      X-Uid:
+      - a1813228
+      Server:
+      - Fortnox
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - '0'
       Referrer-Policy:
       - strict-origin-when-cross-origin
+      Content-Security-Policy:
+      - 'upgrade-insecure-requests;frame-ancestors https://*.fortnox.se;report-uri
+        /api/cspreport;connect-src ''self'' https://a.storyblok.com wss://*.fortnox.se
+        *.fortnox.se *.findity.com mybusiness.pwc.se themes.googleusercontent.com
+        s3.amazonaws.com/helpjuice-static/ *.helpjuice.com *.vimeo.com fonts.googleapis.com
+        fonts.gstatic.com fortnox.piwik.pro api.cling.se wss://api.cling.se ''unsafe-inline''
+        ''unsafe-eval'' blob: data:'
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains
     body:
       encoding: ASCII-8BIT
       string: '{"MetaInformation":{"@TotalResources":7,"@TotalPages":1,"@CurrentPage":1},"Invoices":[{"@url":"https:\/\/api.fortnox.se\/3\/invoices\/1","Balance":0,"Booked":false,"Cancelled":false,"CostCenter":"","Currency":"SEK","CurrencyRate":"1","CurrencyUnit":1,"CustomerName":"Test","CustomerNumber":"1","DocumentNumber":"1","DueDate":"2016-02-04","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","InvoiceDate":"2016-02-04","InvoiceType":"INVOICE","NoxFinans":false,"OCR":"133","VoucherNumber":null,"VoucherSeries":null,"VoucherYear":null,"WayOfDelivery":"","TermsOfPayment":"0","Project":"","Sent":true,"Total":0,"FinalPayDate":null},{"@url":"https:\/\/api.fortnox.se\/3\/invoices\/15","Balance":0,"Booked":true,"Cancelled":false,"CostCenter":"","Currency":"SEK","CurrencyRate":"1","CurrencyUnit":1,"CustomerName":"Test
@@ -60,6 +67,5 @@ http_interactions:
         customer","CustomerNumber":"3","DocumentNumber":"72","DueDate":"2017-08-25","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","InvoiceDate":"2017-08-25","InvoiceType":"INVOICE","NoxFinans":false,"OCR":"7245","VoucherNumber":null,"VoucherSeries":null,"VoucherYear":null,"WayOfDelivery":"","TermsOfPayment":"0","Project":"1","Sent":false,"Total":395,"FinalPayDate":null},{"@url":"https:\/\/api.fortnox.se\/3\/invoices\/75","Balance":0,"Booked":false,"Cancelled":true,"CostCenter":"","Currency":"SEK","CurrencyRate":"1","CurrencyUnit":1,"CustomerName":"Test
         customer","CustomerNumber":"3","DocumentNumber":"75","DueDate":"2017-10-19","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","InvoiceDate":"2017-10-19","InvoiceType":"INVOICE","NoxFinans":false,"OCR":"7542","VoucherNumber":null,"VoucherSeries":null,"VoucherYear":null,"WayOfDelivery":"","TermsOfPayment":"0","Project":"5576","Sent":false,"Total":0,"FinalPayDate":null},{"@url":"https:\/\/api.fortnox.se\/3\/invoices\/76","Balance":50000,"Booked":false,"Cancelled":false,"CostCenter":"","Currency":"SEK","CurrencyRate":"1","CurrencyUnit":1,"CustomerName":"Test
         customer","CustomerNumber":"3","DocumentNumber":"76","DueDate":"2017-10-19","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","InvoiceDate":"2017-10-19","InvoiceType":"INVOICE","NoxFinans":false,"OCR":"7641","VoucherNumber":null,"VoucherSeries":null,"VoucherYear":null,"WayOfDelivery":"","TermsOfPayment":"0","Project":"5576","Sent":false,"Total":50000,"FinalPayDate":null}]}'
-    http_version: 
-  recorded_at: Mon, 21 Dec 2020 20:41:47 GMT
-recorded_with: VCR 4.0.0
+  recorded_at: Mon, 22 Jan 2024 14:54:32 GMT
+recorded_with: VCR 6.2.0

@@ -4,19 +4,11 @@ require 'spec_helper'
 require 'fortnox/api'
 
 describe Fortnox::API::Repository::Base do
-  using_test_class do
-    module Model
-      class RepositoryBaseTest
-      end
-    end
-    module Repository
-      class Test < Fortnox::API::Repository::Base
-        MODEL = Model::RepositoryBaseTest
-      end
-    end
-  end
-
   before do
+    stub_const('Model::RepositoryBaseTest', Class.new)
+    stub_const('Repository::Test', Class.new(described_class))
+    stub_const('Repository::Test::MODEL', Model::RepositoryBaseTest)
+
     Fortnox::API::Registry.register(:repositorybasetest, Model::RepositoryBaseTest)
   end
 

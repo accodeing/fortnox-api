@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'fortnox/api/mappers/base'
+require_relative 'base'
 
 module Fortnox
   module API

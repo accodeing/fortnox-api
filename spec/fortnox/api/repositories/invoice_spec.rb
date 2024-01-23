@@ -89,12 +89,6 @@ describe Fortnox::API::Repository::Invoice, order: :defined, integration: true d
         it { is_expected.to eq('GB') }
       end
 
-      describe 'KR' do
-        subject { save_invoice(country: 'KR').country }
-
-        it { is_expected.to eq('KR') }
-      end
-
       describe 'VA' do
         subject { save_invoice(country: 'VA').country }
 

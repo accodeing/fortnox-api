@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
 require 'httparty'
-require 'fortnox/api/request_handling'
-require 'fortnox/api/repositories/base/loaders'
-require 'fortnox/api/repositories/base/savers'
+
+require_relative 'base/loaders'
+require_relative 'base/savers'
+require_relative '../request_handling'
 
 module Fortnox
   module API

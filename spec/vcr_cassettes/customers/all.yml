@@ -24,35 +24,42 @@ http_interactions:
       code: 200
       message: OK
     headers:
-      Server:
-      - nginx
-      Date:
-      - Mon, 21 Dec 2020 20:34:24 GMT
       Content-Type:
       - application/json
-      Connection:
-      - close
+      Date:
+      - Mon, 22 Jan 2024 14:52:50 GMT
       Vary:
       - Accept-Encoding
-      X-Rack-Responsetime:
-      - '21'
-      X-Uid:
-      - 064e6739
       X-Build:
-      - d59e2acefa
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubdomains
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Content-Type-Options:
-      - nosniff
+      - 9dd4e26746
       X-Frame-Options:
       - sameorigin
+      X-Rack-Responsetime:
+      - '43'
+      X-Uid:
+      - fa3e4f62
+      Transfer-Encoding:
+      - chunked
+      Server:
+      - Fortnox
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - '0'
       Referrer-Policy:
       - strict-origin-when-cross-origin
+      Content-Security-Policy:
+      - 'upgrade-insecure-requests;frame-ancestors https://*.fortnox.se;report-uri
+        /api/cspreport;connect-src ''self'' https://a.storyblok.com wss://*.fortnox.se
+        *.fortnox.se *.findity.com mybusiness.pwc.se themes.googleusercontent.com
+        s3.amazonaws.com/helpjuice-static/ *.helpjuice.com *.vimeo.com fonts.googleapis.com
+        fonts.gstatic.com fortnox.piwik.pro api.cling.se wss://api.cling.se ''unsafe-inline''
+        ''unsafe-eval'' blob: data:'
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains
     body:
       encoding: ASCII-8BIT
-      string: '{"MetaInformation":{"@TotalResources":232,"@TotalPages":3,"@CurrentPage":1},"Customers":[{"@url":"https:\/\/api.fortnox.se\/3\/customers\/1","Address1":"","Address2":"","City":"","CustomerNumber":"1","Email":"","Name":"Old
+      string: '{"MetaInformation":{"@TotalResources":247,"@TotalPages":3,"@CurrentPage":1},"Customers":[{"@url":"https:\/\/api.fortnox.se\/3\/customers\/1","Address1":"","Address2":"","City":"","CustomerNumber":"1","Email":"","Name":"Old
         name","OrganisationNumber":"860101-8735","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/2","Address1":"","Address2":"","City":"New
         York","CustomerNumber":"2","Email":"","Name":"A customer","OrganisationNumber":"600102-7447","Phone":"","ZipCode":"10001"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/3","Address1":"","Address2":"","City":"New
         York","CustomerNumber":"3","Email":"","Name":"Test customer","OrganisationNumber":"400101-8383","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/4","Address1":"","Address2":"","City":"","CustomerNumber":"4","Email":"","Name":"Arthur
@@ -165,6 +172,5 @@ http_interactions:
         testsson","OrganisationNumber":"","Phone":"1241415151","ZipCode":"111 11"},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/100","Address1":"testgatan
         6","Address2":"","City":"teststan","CustomerNumber":"100","Email":"test@email.com","Name":"test12313","OrganisationNumber":"","Phone":"123141","ZipCode":"111
         11"}]}'
-    http_version: 
-  recorded_at: Mon, 21 Dec 2020 20:34:24 GMT
-recorded_with: VCR 4.0.0
+  recorded_at: Mon, 22 Jan 2024 14:52:50 GMT
+recorded_with: VCR 6.2.0

@@ -24,35 +24,42 @@ http_interactions:
       code: 200
       message: OK
     headers:
-      Server:
-      - nginx
-      Date:
-      - Mon, 21 Dec 2020 20:34:23 GMT
+      Content-Length:
+      - '7030'
       Content-Type:
       - application/json
-      Connection:
-      - close
+      Date:
+      - Mon, 22 Jan 2024 14:52:58 GMT
       Vary:
       - Accept-Encoding
-      X-Rack-Responsetime:
-      - '14'
-      X-Uid:
-      - 33876d4d
       X-Build:
-      - d59e2acefa
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubdomains
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Content-Type-Options:
-      - nosniff
+      - 9dd4e26746
       X-Frame-Options:
       - sameorigin
+      X-Rack-Responsetime:
+      - '42'
+      X-Uid:
+      - cebf526b
+      Server:
+      - Fortnox
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - '0'
       Referrer-Policy:
       - strict-origin-when-cross-origin
+      Content-Security-Policy:
+      - 'upgrade-insecure-requests;frame-ancestors https://*.fortnox.se;report-uri
+        /api/cspreport;connect-src ''self'' https://a.storyblok.com wss://*.fortnox.se
+        *.fortnox.se *.findity.com mybusiness.pwc.se themes.googleusercontent.com
+        s3.amazonaws.com/helpjuice-static/ *.helpjuice.com *.vimeo.com fonts.googleapis.com
+        fonts.gstatic.com fortnox.piwik.pro api.cling.se wss://api.cling.se ''unsafe-inline''
+        ''unsafe-eval'' blob: data:'
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains
     body:
       encoding: ASCII-8BIT
-      string: '{"MetaInformation":{"@TotalResources":33,"@TotalPages":1,"@CurrentPage":1},"Projects":[{"@url":"https:\/\/api.fortnox.se\/3\/projects\/1","Description":"Test
+      string: '{"MetaInformation":{"@TotalResources":37,"@TotalPages":1,"@CurrentPage":1},"Projects":[{"@url":"https:\/\/api.fortnox.se\/3\/projects\/1","Description":"Test
         project","EndDate":null,"ProjectLeader":null,"ProjectNumber":"1","Status":"ONGOING","StartDate":"2016-05-02"},{"@url":"https:\/\/api.fortnox.se\/3\/projects\/17","Description":"Benjamin
         Andersson","EndDate":null,"ProjectLeader":null,"ProjectNumber":"17","Status":"ONGOING","StartDate":"2017-06-16"},{"@url":"https:\/\/api.fortnox.se\/3\/projects\/18","Description":"Andrea
         Johansson","EndDate":null,"ProjectLeader":null,"ProjectNumber":"18","Status":"ONGOING","StartDate":"2017-06-16"},{"@url":"https:\/\/api.fortnox.se\/3\/projects\/2","Description":"BolagsKraft","EndDate":null,"ProjectLeader":null,"ProjectNumber":"2","Status":"ONGOING","StartDate":"2016-05-13"},{"@url":"https:\/\/api.fortnox.se\/3\/projects\/3","Description":"AK
@@ -71,7 +78,10 @@ http_interactions:
         important project","EndDate":null,"ProjectLeader":null,"ProjectNumber":"5592","Status":"ONGOING","StartDate":null},{"@url":"https:\/\/api.fortnox.se\/3\/projects\/5593","Description":"Some
         important project","EndDate":null,"ProjectLeader":null,"ProjectNumber":"5593","Status":"ONGOING","StartDate":null},{"@url":"https:\/\/api.fortnox.se\/3\/projects\/5594","Description":"aaaaaaaaaa
         aaaaaaaaaa, 20100202-1234","EndDate":null,"ProjectLeader":null,"ProjectNumber":"5594","Status":"ONGOING","StartDate":"2020-10-29"},{"@url":"https:\/\/api.fortnox.se\/3\/projects\/5595","Description":"Some
-        important project","EndDate":null,"ProjectLeader":null,"ProjectNumber":"5595","Status":"ONGOING","StartDate":null}]}'
-    http_version: 
-  recorded_at: Mon, 21 Dec 2020 20:34:23 GMT
-recorded_with: VCR 4.0.0
+        important project","EndDate":null,"ProjectLeader":null,"ProjectNumber":"5595","Status":"ONGOING","StartDate":null},{"@url":"https:\/\/api.fortnox.se\/3\/projects\/5596","Description":"H
+        A, 19800101-5871","EndDate":null,"ProjectLeader":null,"ProjectNumber":"5596","Status":"ONGOING","StartDate":"2020-12-22"},{"@url":"https:\/\/api.fortnox.se\/3\/projects\/5597","Description":"First
+        name 34 Last name 34, 19890102-3286","EndDate":null,"ProjectLeader":null,"ProjectNumber":"5597","Status":"ONGOING","StartDate":"2020-12-22"},{"@url":"https:\/\/api.fortnox.se\/3\/projects\/5598","Description":"H
+        E, 19800101-1013","EndDate":null,"ProjectLeader":null,"ProjectNumber":"5598","Status":"ONGOING","StartDate":"2020-12-23"},{"@url":"https:\/\/api.fortnox.se\/3\/projects\/5599","Description":"Some
+        important project","EndDate":null,"ProjectLeader":null,"ProjectNumber":"5599","Status":"ONGOING","StartDate":null}]}'
+  recorded_at: Mon, 22 Jan 2024 14:52:58 GMT
+recorded_with: VCR 6.2.0

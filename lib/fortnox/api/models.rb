@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require 'fortnox/api/models/article'
-require 'fortnox/api/models/customer'
-require 'fortnox/api/models/invoice'
-require 'fortnox/api/models/order'
-require 'fortnox/api/models/project'
-require 'fortnox/api/models/unit'
-require 'fortnox/api/models/terms_of_payment'
+require_relative 'models/article'
+require_relative 'models/customer'
+require_relative 'models/invoice'
+require_relative 'models/order'
+require_relative 'models/project'
+require_relative 'models/unit'
+require_relative 'models/terms_of_payment'
