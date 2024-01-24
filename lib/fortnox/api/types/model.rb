@@ -5,6 +5,7 @@ module Fortnox
     module Types
       class Model < Dry::Struct
         transform_types(&:omittable)
+        transform_keys(&:to_sym)
 
         def initialize(input_attributes)
           if (missing_key = first_missing_required_key(input_attributes))
