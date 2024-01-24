@@ -50,4 +50,24 @@ RSpec.describe Fortnox::API::Types::Model do
       it { is_expected.to be nil }
     end
   end
+
+  context 'with required keys' do
+    before do
+      stub_const('Types::Age', Dry::Types['strict.integer'].constrained(gt: 18).is(:required))
+
+      test_class = Class.new(Fortnox::API::Types::Model) do
+        attribute :age, Types::Age
+      end
+
+      stub_const('Model', test_class)
+    end
+
+    it 'does not raise error' do
+      expect { Model.new(age: 20) }.not_to raise_error
+    end
+
+    it 'supports string keys' do
+      expect { Model.new('age' => 20) }.not_to raise_error
+    end
+  end
 end
