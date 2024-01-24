@@ -8,6 +8,10 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Fixed
+- Restored undocumented support for string keys in model attributes,
+  which was inadvertently removed in `v0.9.0`.
+
 ## [0.9.0]
 
 ### Added
