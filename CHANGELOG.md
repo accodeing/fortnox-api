@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to
 [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [0.8.2]
+
+### Fixed
+- Restored undocumented support for string keys in model attributes,
+  which was inadvertently removed in `v0.8.1`.
+
 ## [0.8.1]
 
 ### Fixed
@@ -74,6 +80,7 @@ and this project adheres to
 
 - Model attribute `url` is no longer null
 
+[0.8.2]: https://github.com/accodeing/fortnox-api/compare/v0.8.1...v0.8.2
 [0.8.1]: https://github.com/accodeing/fortnox-api/compare/v0.8.0...v0.8.1
 [0.8.0]: https://github.com/accodeing/fortnox-api/compare/v0.7.2...v0.8.0
 [0.7.2]: https://github.com/accodeing/fortnox-api/compare/v0.7.1...v0.7.2
