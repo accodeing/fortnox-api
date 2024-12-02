@@ -76,7 +76,7 @@ module Fortnox
         attribute :purchase_price, Types::Sized::Float[0.0, 99_999_999_999_999.9]
 
         # QuantityInStock Quantity in stock of the article
-        attribute :quantity_in_stock, Types::Sized::Float[0.0, 99_999_999_999_999.9]
+        attribute :quantity_in_stock, Types::Sized::Float[-100_000_000_000_000.0, 99_999_999_999_999.9]
 
         # ReservedQuantity Reserved quantity of the article
         attribute :reserved_quantity, Types::Nullable::Float.is(:read_only)
