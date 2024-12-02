@@ -45,4 +45,36 @@ describe Fortnox::API::Repository::Article, integration: true, order: :defined d
 
   # VCR: Expected mathes must be updated
   include_examples '.search', :description, 'Test article', 3
+
+  describe 'limits' do
+    let(:article) do
+      VCR.use_cassette("#{vcr_dir}/#{cassette}") do
+        repository.save(described_class::MODEL.new(**attributes))
+      end
+    end
+
+    describe 'quantity_in_stock' do
+      let(:cassette) { 'limits/quantity_in_stock_min_value' }
+      let(:attributes) do
+        {
+          description: 'Test article',
+          quantity_in_stock: quantity_in_stock
+        }
+      end
+      let(:quantity_in_stock) { -99_999_999_999_999.9 }
+
+      it 'has a lower limit' do
+        expect(article.quantity_in_stock).to eq(-100_000_000_000_000.0)
+      end
+
+      context 'when positive' do
+        let(:cassette) { 'limits/quantity_in_stock_rounding_positive_value' }
+        let(:quantity_in_stock) { 1.123 }
+
+        it 'rounds to two decimals' do
+          expect(article.quantity_in_stock).to eq(1.12)
+        end
+      end
+    end
+  end
 end
