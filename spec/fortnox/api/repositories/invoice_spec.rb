@@ -220,24 +220,77 @@ describe Fortnox::API::Repository::Invoice, integration: true, order: :defined d
   end
 
   describe 'limits for invoice_row' do
+    let(:invoice_attributes) { { customer_number: '1', invoice_rows: invoice_rows } }
+    let(:model) { described_class::MODEL.new(invoice_attributes) }
+    let(:invoice) { VCR.use_cassette("#{vcr_dir}/#{cassette}") { repository.save(model) } }
+
     describe 'description' do
-      let(:model) do
-        described_class::MODEL.new(
-          customer_number: '1',
-          invoice_rows: [
-            {
-              article_number: '101',
-              description: 'a' * 255
-            }
-          ]
-        )
-      end
-      let(:saving_with_max_row_description) do
-        VCR.use_cassette("#{vcr_dir}/row_description_limit") { repository.save(model) }
+      let(:cassette) { 'row_description_limit' }
+      let(:invoice_rows) do
+        [
+          {
+            article_number: '101',
+            description: 'a' * 255
+          }
+        ]
       end
 
       it 'allows 255 characters' do
-        expect { saving_with_max_row_description }.not_to raise_error
+        expect(invoice.invoice_rows.first.description).to eq('a' * 255)
+      end
+    end
+
+    describe 'delivered_quantity' do
+      let(:cassette) { 'row_delivered_quantity_decimals' }
+      let(:invoice_rows) do
+        [
+          {
+            article_number: '101',
+            description: 'Test',
+            delivered_quantity: delivered_quantity
+          }
+        ]
+      end
+      let(:delivered_quantity) { 1.123 }
+
+      it 'rounds to two decimals' do
+        expect(invoice.invoice_rows.first.delivered_quantity).to eq 1.12
+      end
+
+      context 'when third decimal is 5' do
+        let(:cassette) { 'row_delivered_quantity_decimals_round_up' }
+        let(:delivered_quantity) { 1.125 }
+
+        it 'rounds up' do
+          expect(invoice.invoice_rows.first.delivered_quantity).to eq 1.13
+        end
+      end
+    end
+
+    describe 'price' do
+      let(:cassette) { 'row_price_limit' }
+      let(:invoice_rows) do
+        [
+          {
+            article_number: '101',
+            description: 'Test',
+            price: price
+          }
+        ]
+      end
+      let(:price) { 1.123 }
+
+      it 'rounds to two decimals' do
+        expect(invoice.invoice_rows.first.price).to eq 1.12
+      end
+
+      context 'when third decimal is 5' do
+        let(:cassette) { 'row_price_limit_round_up' }
+        let(:price) { 1.125 }
+
+        it 'rounds up' do
+          expect(invoice.invoice_rows.first.price).to eq 1.13
+        end
       end
     end
   end
