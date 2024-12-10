@@ -11,6 +11,7 @@ and this project adheres to
 ### Fixed
 - Restored undocumented support for string keys in model attributes,
   which was inadvertently removed in `v0.9.0`.
+- Set correct lower limit for `Article#quantity_in_stock`
 
 ## [0.9.0]
 
