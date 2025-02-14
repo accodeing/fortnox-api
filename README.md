@@ -16,12 +16,9 @@ PRs of your own 😃
 [![Maintainability](https://api.codeclimate.com/v1/badges/89d30a43fedf210d470b/maintainability)](https://codeclimate.com/github/accodeing/fortnox-api/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/89d30a43fedf210d470b/test_coverage)](https://codeclimate.com/github/accodeing/fortnox-api/test_coverage)
 
-The rough status of this project is as follows (as of spring 2023):
+The rough status of this project is as follows (as of spring 2025):
 
-- `master` branch and the released versions should be production ready.
-- We are actively working on our generalization of this gem:
-  [rest_easy gem](https://github.com/accodeing/rest_easy). It will be a base for
-  REST API's in general.
+- `master` branch and the released versions is production ready.
 - Basic structure complete. Things like getting customers and invoices, updating
   and saving etc.
 - Some advanced features implemented, for instance support for multiple Fortnox
@@ -175,11 +172,9 @@ $ gem install fortnox-api
 ## Authorization
 
 > :warning: Before 2022, Fortnox used a client ID and a fixed access token for
-> authorization. This way of is now deprecated. The old access tokens have a
-> life span of 10 years according to Fortnox. They can still be used, but you
-> can't issue any new long lived tokens and they recommend to migrate to the new
-> authorization process. This gem will no longer support the old way of
-> authorization since v0.9.0.
+> authorization. This way of is now deprecated. The old access tokens will be
+> deprecated April 30, 2025 according to Fortnox. This gem will no longer support
+> the old way of authorization from v0.9.0.
 
 You need to have a Fortnox app and to create such an app, you need to register
 as a Fortnox developer. It might feel as if "I just want to create an
@@ -207,7 +202,7 @@ Things you need:
 
 When you have authorized your integration you get an access token from Fortnox.
 It's a JWT with a expiration time (currently **1 hour**). You also get a long
-lived refresh token (currently lasts for **31 days** ). When you need a new
+lived refresh token (currently lasts for **45 days** ). When you need a new
 access token you send a renewal request to Fortnox. That request contains the
 new access token as well as a new refresh token and some other data. Note that
 **the old refresh token is invalidated when new tokens are requested**. As long
