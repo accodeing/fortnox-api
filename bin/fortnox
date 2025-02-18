@@ -1,0 +1,285 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+lib = File.expand_path('../lib', __dir__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+
+require 'bundler/setup'
+require 'dry/cli'
+require 'securerandom'
+require 'base64'
+require 'socket'
+require 'cgi'
+require 'uri'
+require 'faraday'
+
+# TODO: Not implemented yet
+# require "fortnox/version"
+
+module Fortnox
+  module CLI
+    module Server
+      def self.start(port)
+        socket = TCPServer.new(port)
+        client = socket.accept
+        request = client.gets
+        _, path, = request.split
+        client.puts("HTTP/1.1 200\r\n\r\n#{response_html}")
+        client.close
+        socket.close
+
+        URI.decode_www_form(path[2..]).to_h.transform_keys(&:to_sym)
+      end
+
+      def self.response_html
+        assets_root = 'https://accodeing.com/assets/images'
+
+        favicon = "#{assets_root}/favicon-32x32.png"
+        bkg = "#{assets_root}/background.svg"
+        logo = "#{assets_root}/only_logo.svg"
+
+        <<~HTML
+          <html>
+            <head>
+              <title>Fortnox gem local server</title>
+              <link rel="icon" type="image/png" sizes="32x32" href="#{favicon}" />
+              <style>
+                main{display:block;width:800px;margin:2rem auto 0}html{color:#222;font-family:sans-serif}body{margin:0;background-color:#31926f;color:#fff;font-family:'Open Sans',sans-serif;background-image:url(#{bkg});background-repeat:no-repeat;background-size:cover;font-size:1em;line-height:1.4}h1{font-family:Quicksand,sans-serif;font-size:2em;margin:.67em 0;color:#f2dfc3}img{width:100%}
+              </style>
+            </head>
+            <body>
+              <main>
+                <img src="#{logo}" alt="According to you's logo, a happy otter.">
+                <h1>The response from Fortnox has been caught.</h1>
+                <p>You can safely close this tab now and continue in the terminal.</p>
+              </main>
+            </body>
+          </html>
+        HTML
+      end
+    end
+
+    module Commands
+      extend Dry::CLI::Registry
+
+      class Version < Dry::CLI::Command
+        desc 'Print version'
+
+        def call(*)
+          puts Fortnox::VERSION
+        end
+      end
+
+      class Init < Dry::CLI::Command # rubocop:disable Metrics/ClassLength
+        desc "Create initial authentication and refresh tokens using Fortnox's OAuth screen. " \
+             'If started without arguments it will run through a wizzard to get you set up. ' \
+             'If all the arguments are given it will run the process automatically, without prompting.'
+        option :port, default: '4242', type: :integer,
+                      desc: "Port used by a local server to catch Fortnox's auth response"
+        argument :client_id, type: :string, desc: 'Client ID'
+        argument :client_secret, type: :string, desc: 'Client secret'
+        argument :scopes, type: :array, desc: 'Array of scopes'
+
+        def call(port: 4242, client_id: nil, client_secret: nil, scopes: [], **) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
+          fast_track = !(client_id.nil? || client_secret.nil? || scopes.empty?)
+
+          confirm_ready unless fast_track
+
+          if fast_track
+            scopes = scopes.join(' ')
+          else
+            client_id = get_client_id
+            client_secret = get_client_secret
+            scopes = get_scopes
+          end
+
+          credentials = Base64.encode64("#{client_id}:#{client_secret}")
+          redirect_uri = "http://localhost:#{port}"
+          nonce = SecureRandom.base64
+          params = {
+            client_id:,
+            redirect_uri:,
+            scope: scopes,
+            state: nonce,
+            access_type: 'offline',
+            response_type: 'code',
+            account_type: 'service'
+          }
+          url = "https://apps.fortnox.se/oauth-v1/auth?#{URI.encode_www_form(params)}"
+
+          confirm_redirect_uri(redirect_uri) unless fast_track
+          launch_fortnox_authorisation(url)
+          auth_code = get_auth_code(port, nonce)
+          tokens = exchange_auth_code_for_tokens(auth_code, credentials, redirect_uri)
+          print_tokens(tokens)
+        end
+
+        private
+
+        def confirm_ready
+          puts "Before you can complete this setup you need to complete all the steps on Fortnox's side " \
+               "as documented in #{gem_homepage}/docs/getting_set_up.md"
+          print 'Do you have client ID, client secret and a list of scopes handy? [Y/n] '
+
+          confirmation = $stdin.gets.chomp.downcase
+
+          if confirmation == 'n'
+            puts 'Ok. Go read the guide, get setup as a developer in Fortnox and come back here when you are ready.'
+            exit 0
+          end
+
+          puts "Excellent, let's go! Input the information from Fortnox in the following prompts."
+        end
+
+        def get_client_id # rubocop:disable Naming/AccessorMethodName
+          print 'Client ID: '
+          $stdin.gets.chomp
+        end
+
+        def get_client_secret # rubocop:disable Naming/AccessorMethodName
+          print 'Client secret: '
+          $stdin.gets.chomp
+        end
+
+        def get_scopes # rubocop:disable Naming/AccessorMethodName
+          print 'Give a space separated list of all the scopes you will need. ' \
+                "See #{gem_homepage}/docs/scopes.md for reference.\n" \
+                'Scopes: '
+          $stdin.gets.chomp
+        end
+
+        def confirm_redirect_uri(url)
+          print "Set the redirect URL in your Fortnox application to #{url}, then press enter to continue."
+          $stdin.gets
+        end
+
+        def get_auth_code(port, nonce) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
+          response = Server.start(port)
+
+          if response[:error]
+            puts "An error occured. Fortnox returned \"#{response[:error]}\":\n   #{response[:description]}"
+            exit(-1)
+          end
+
+          normalized_state_response = CGI.unescape(response[:state]).gsub(' ', '+')
+
+          if normalized_state_response != nonce
+            puts 'The nonce returned from Fortnox did not match the one we sent, possible replay attack!'
+            puts "Raw sent: #{nonce.inspect}"
+            puts "Escaped sent: #{URI.encode_www_form({ nonce: }).inspect}"
+            puts "Raw returned: #{response[:state].inspect}"
+            puts "CGI escaped returned: #{CGI.unescape(response[:state]).inspect}"
+            puts "URI escaped returned: #{URI.decode_www_form(response[:state]).first.first.inspect}"
+            exit(-1)
+          end
+
+          response[:code]
+        rescue SocketError
+          puts "The local server failed to start so we can't catch the auth code automatically. " \
+               'If you look in the addressbar of the missing page Fortnox redirected you to after you completed ' \
+               'the authorisation you will see a request parameter called "code", paste the value below.'
+          print 'Auth code:'
+          $stdin.gets.chomp
+        end
+
+        def launch_fortnox_authorisation(url)
+          if (cmd = system_open)
+            system "#{cmd} \"#{url}\""
+          else
+            puts 'Could not identify a way to open default browser. ' \
+                 'Please open the following url in your prefered browser:'
+            puts url
+          end
+        end
+
+        def system_open
+          case RbConfig::CONFIG['host_os']
+          when /mswin|mingw|cygwin/
+            'start'
+          when /darwin/
+            'open'
+          when /linux|bsd/
+            'xdg-open'
+          end
+        end
+
+        def exchange_auth_code_for_tokens(auth_code, credentials, redirect_uri)
+          headers = {
+            'Content-type' => 'application/x-www-form-urlencoded',
+            'Authorization' => "Basic #{credentials}"
+          }
+          body = "grant_type=authorization_code&code=#{auth_code}&redirect_uri=#{redirect_uri}"
+
+          response = Faraday.post('https://apps.fortnox.se/oauth-v1/token', body, headers)
+
+          JSON.parse(response.body).transform_keys(&:to_sym)
+        end
+
+        def print_tokens(tokens) # rubocop:disable Metrics/MethodLength
+          puts 'Save these tokens in an appropriate place:'
+          puts ''
+          puts "refresh token: #{tokens[:refresh_token]}"
+          puts ''
+          puts "access token: #{tokens[:access_token]}"
+          puts ''
+          puts 'You can run this command with all the inputs as parameters if you want to reauthorize ' \
+               'without the guide in the future.'
+          puts ''
+          puts 'There is also a `fortnox refresh` command to run the refresh cycle manually ' \
+               'for use in cron jobs or other automated token refresh scenarios. ' \
+               'See `fortnox help` for more information.'
+          puts ''
+        end
+
+        def gem_homepage
+          @gem_homepage ||= gem_homepage_from_gemspec
+        end
+
+        def gem_homepage_from_gemspec
+          gem_root = File.expand_path('..', __dir__)
+          file = Dir.entries(gem_root).find do |f|
+            puts f
+            f.end_with? '.gemspec'
+          end
+          our_gemspec = Gem::Specification.load("#{gem_root}/#{file}")
+          our_gemspec.homepage
+        end
+      end
+
+      class Refresh < Dry::CLI::Command
+        desc 'Get a new set of tokens from Fortnox given a valid refresh token. ' \
+             'If you do not already have a set of tokens you want `fortnox init` instead.'
+        argument :client_id, required: true, type: :string, desc: 'Client ID'
+        argument :client_secret, required: true, type: :string, desc: 'Client secret'
+        argument :refresh_token, required: true, type: :string, desc: 'Valid refresh token'
+
+        def call(client_id:, client_secret:, refresh_token:, **)
+          credentials = Base64.encode64("#{client_id}:#{client_secret}")
+          headers = {
+            'Content-type' => 'application/x-www-form-urlencoded',
+            'Authorization' => "Basic #{credentials}"
+          }
+          body = "grant_type=refresh_token&refresh_token=#{refresh_token}"
+
+          response = Faraday.post('https://apps.fortnox.se/oauth-v1/token', body, headers)
+
+          print_tokens(JSON.parse(response.body).transform_keys(&:to_sym))
+        end
+
+        def print_tokens(tokens)
+          puts ''
+          puts "refresh token: #{tokens[:refresh_token]}"
+          puts ''
+          puts "access token: #{tokens[:access_token]}"
+          puts ''
+        end
+      end
+
+      register 'version', Version, aliases: ['v', '-v', '--version']
+      register 'init', Init, aliases: ['i', '-i', '--init']
+      register 'refresh', Refresh, aliases: ['r', '-r', '--refresh']
+    end
+  end
+end
+
+Dry::CLI.new(Fortnox::CLI::Commands).call
