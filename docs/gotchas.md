@@ -141,3 +141,6 @@ When you then fetch **the same Customer you just created**, you get the `SalesAc
 ```
 {"Customer": "@url":"https:\/\/api.fortnox.se\/3\/customers\/242", ..., "SalesAccount":"3001"}}
 ```
+
+## Authentication
+You can only have one active refresh token per Fortnox account and Fortnox integration. If you want multiple refresh tokens per Fortnox account you can create multiple integrations.
