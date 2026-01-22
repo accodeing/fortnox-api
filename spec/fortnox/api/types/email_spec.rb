@@ -23,7 +23,8 @@ describe Fortnox::API::Types::Email do
     valid_emails = [
       'valid@example.com',
       'kanal_75_ab-faktura@mail.unit4agresso.readsoftonline.com',
-      'sköldpadda@example.com'
+      'sköldpadda@example.com',
+      'user@teståäö.se'
     ]
 
     valid_emails.each do |email|
@@ -32,7 +33,19 @@ describe Fortnox::API::Types::Email do
   end
 
   context 'when created with invalid email' do
-    include_examples 'raises ConstraintError', 'te$£@st@example.com'
+    invalid_emails = [
+      'te$£@st@example.com',
+      'user@exam!ple.com',
+      'user@exam<ple.com',
+      'user@exam>ple.com',
+      'user@exam=ple.com',
+      'user@exam[ple.com',
+      'user@exam]ple.com'
+    ]
+
+    invalid_emails.each do |email|
+      include_examples 'raises ConstraintError', email
+    end
   end
 
   context 'when created with more than 1024 characters' do

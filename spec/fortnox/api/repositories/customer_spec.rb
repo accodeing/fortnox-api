@@ -97,4 +97,23 @@ describe Fortnox::API::Repository::Customer, integration: true, order: :defined 
       end
     end
   end
+
+  describe 'internationalized domain name email' do
+    context 'when saving a Customer with an IDN email address' do
+      subject(:customer) do
+        VCR.use_cassette("#{vcr_dir}/save_new_with_idn_email") do
+          repository.save(
+            described_class::MODEL.new(
+              name: 'Customer with IDN email',
+              email: 'user@teståäö.se'
+            )
+          )
+        end
+      end
+
+      it 'saves the email' do
+        expect(customer.email).to eq('user@teståäö.se')
+      end
+    end
+  end
 end
