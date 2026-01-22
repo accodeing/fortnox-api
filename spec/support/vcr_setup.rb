@@ -9,7 +9,8 @@ VCR.configure do |c|
     interaction.request.headers['Authorization']&.first
   end
   c.filter_sensitive_data('<REFRESH_TOKEN>') do |interaction|
-    interaction.request.body.split('&refresh_token=').last
+    body = interaction.request.body
+    body&.split('&refresh_token=')&.last if body&.include?('&refresh_token=')
   end
   c.filter_sensitive_data('<ACCESS_TOKEN>') do |interaction|
     body = interaction.response.body
