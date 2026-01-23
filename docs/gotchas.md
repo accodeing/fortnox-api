@@ -63,7 +63,7 @@ You get the following when you query the created Invoice:
 
 Notice that the `Price` and `PriceExcludingVAT` have the exact same amount. The same goes for `Total` and `TotalExcludingVAT`. Strange, right? The `VAT` is set to `25`%.
 
-It works like this: `Invoice` (and `Order`) has a `VATIncluded` attribute. If it is set to `true`, `Price` and `Total` will be VAT included and `PriceExcludingVAT` and `TotalExcludingVAT` will obviously be VAT excluded. BUT if you set `VATIncluded` to false, all those attributes will be VAT exclusive and none inclusive. If you want to know the VAT for each row, then you have to calculate it yourself! I have suggested to Fortnox to fix this wierd logic by adding a `TotalVAT` and `PriceWithVAT` that always holds the `VAT` amount. Then `Price` and `Total` can be VAT included/excluded depending on the value of `VATIncluded`. Fortnox said they will add this to their to do list...
+It works like this: `Invoice` (and `Order`) has a `VATIncluded` attribute. If it is set to `true`, `Price` and `Total` will be VAT included and `PriceExcludingVAT` and `TotalExcludingVAT` will obviously be VAT excluded. BUT if you set `VATIncluded` to false, all those attributes will be VAT exclusive and none inclusive. If you want to know the VAT for each row, then you have to calculate it yourself! I have suggested to Fortnox to fix this weird logic by adding a `TotalVAT` and `PriceWithVAT` that always holds the `VAT` amount. Then `Price` and `Total` can be VAT included/excluded depending on the value of `VATIncluded`. Fortnox said they will add this to their to do list...
 
 ## Dependent attributes
 Some attributes depends on other attributes.
