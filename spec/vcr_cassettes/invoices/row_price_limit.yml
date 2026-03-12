@@ -1,0 +1,65 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.fortnox.se/3/invoices/
+    body:
+      encoding: UTF-8
+      string: "<REFRESH_TOKEN>"
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      Authorization:
+      - "<AUTHORIZATION>"
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 02 Dec 2024 09:22:00 GMT
+      Location:
+      - invoices
+      X-Build:
+      - f42866f6f7
+      X-Frame-Options:
+      - sameorigin
+      X-Rack-Responsetime:
+      - '487'
+      X-Uid:
+      - a75367ce
+      Transfer-Encoding:
+      - chunked
+      Server:
+      - Fortnox
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - '0'
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Content-Security-Policy:
+      - 'upgrade-insecure-requests;frame-ancestors https://*.fortnox.se;report-uri
+        /api/cspreport;connect-src ''self'' https://a.storyblok.com wss://*.fortnox.se
+        *.fortnox.se *.findity.com *.ingest.de.sentry.io mybusiness.pwc.se themes.googleusercontent.com
+        s3.amazonaws.com/helpjuice-static/ *.helpjuice.com *.vimeo.com fonts.googleapis.com
+        fonts.gstatic.com fortnox.piwik.pro api.cling.se wss://api.cling.se ''unsafe-inline''
+        ''unsafe-eval'' blob: data:'
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains
+    body:
+      encoding: UTF-8
+      string: '{"Invoice":{"@url":"https:\/\/api.fortnox.se\/3\/invoices\/39","@urlTaxReductionList":"https:\/\/api.fortnox.se\/3\/taxreductions?filter=invoices&referencenumber=39","AccountingMethod":"ACCRUAL","Address1":"","Address2":"","AdministrationFee":0,"AdministrationFeeVAT":0,"Balance":0,"BasisTaxReduction":0,"Booked":false,"Cancelled":false,"City":"New
+        York","Comments":"","ContractReference":"0","ContributionPercent":0,"ContributionValue":0,"CostCenter":"","Country":"","Credit":"false","CreditInvoiceReference":"0","Currency":"SEK","CurrencyRate":1,"CurrencyUnit":1,"CustomerName":"Updated
+        name","CustomerNumber":"1","DeliveryAddress1":"","DeliveryAddress2":"","DeliveryCity":"","DeliveryCountry":"","DeliveryDate":null,"DeliveryName":"","DeliveryZipCode":"","DocumentNumber":"39","DueDate":"2025-01-01","EDIInformation":{"EDIGlobalLocationNumber":null,"EDIGlobalLocationNumberDelivery":null,"EDIInvoiceExtra1":null,"EDIInvoiceExtra2":null,"EDIOurElectronicReference":null,"EDIYourElectronicReference":null,"EDIStatus":""},"EUQuarterlyReport":false,"EmailInformation":{"EmailAddressFrom":null,"EmailAddressTo":"","EmailAddressCC":null,"EmailAddressBCC":null,"EmailSubject":"Faktura
+        {no} bifogas","EmailBody":" "},"ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","FinalPayDate":null,"Freight":0,"FreightVAT":0,"Gross":0,"HouseWork":false,"InvoiceDate":"2024-12-02","InvoicePeriodEnd":"","InvoicePeriodStart":"","InvoiceReference":"0","InvoiceRows":[{"AccountNumber":3001,"ArticleNumber":"101","ContributionPercent":"0","ContributionValue":"0","Cost":0,"CostCenter":"","DeliveredQuantity":"0","Description":"Test","Discount":0,"DiscountType":"PERCENT","HouseWork":false,"HouseWorkHoursToReport":null,"HouseWorkType":null,"Price":1.12,"PriceExcludingVAT":1.12,"Project":"","RowId":27,"StockPointCode":null,"Total":0,"TotalExcludingVAT":0,"Unit":"","VAT":0,"VATCode":null}],"InvoiceType":"INVOICE","Labels":[],"Language":"SV","LastRemindDate":null,"Net":0,"NotCompleted":false,"NoxFinans":false,"OCR":"3947","OfferReference":"0","OrderReference":"0","OrganisationNumber":"","OurReference":"","OutboundDate":"2024-12-02","PaymentWay":"","Phone1":"","Phone2":"","PriceList":"A","PrintTemplate":"st","Project":"","Remarks":"","Reminders":0,"RoundOff":0,"Sent":false,"TaxReduction":null,"TaxReductionType":"none","TermsOfDelivery":"","TermsOfPayment":"30","TimeBasisReference":null,"Total":0,"TotalToPay":0,"TotalVAT":0,"VATIncluded":false,"VoucherNumber":null,"VoucherSeries":null,"VoucherYear":null,"WarehouseReady":true,"WayOfDelivery":"","YourOrderNumber":"","YourReference":"","ZipCode":"10001"}}'
+  recorded_at: Mon, 02 Dec 2024 09:22:00 GMT
+recorded_with: VCR 6.2.0
