@@ -10,9 +10,6 @@ module Fortnox
       collection_wrapper "Invoices"
     end
 
-    # UrlTaxReductionList Direct url to the tax reduction for the invoice.
-    attr :url_tax_reduction_list, Nullable::String, :read_only
-
     # AccountingMethod Accounting Method.
     attr :accounting_method, Nullable::String
 
@@ -61,9 +58,6 @@ module Fortnox
     # InvoiceType The type of invoice.
     attr :invoice_type, Nullable::String
 
-    # Language Language code.
-    attr :language, Nullable::String
-
     # LastRemindDate Date of last reminder.
     attr :last_remind_date, Nullable::Date, :read_only
 
@@ -77,19 +71,10 @@ module Fortnox
     attr :order_reference, Nullable::Integer, :read_only
 
     # TODO: new attribute
-    attr :outbound_date, String
-
-    # TODO: new attribute
     attr :payment_way, String
 
     # Reminders Number of reminders sent to the customer.
     attr :reminders, Nullable::Integer, :read_only
-
-    # TODO: new attribute
-    attr :time_basis_reference, String
-
-    # TODO: new attribute
-    attr :total_to_pay, Nullable::Integer
 
     # VoucherNumber Voucher number for the invoice.
     attr :voucher_number, Nullable::Integer, :read_only
@@ -99,8 +84,5 @@ module Fortnox
 
     # VoucherYear Voucher year for the invoice.
     attr :voucher_year, Nullable::Integer, :read_only
-
-    # TODO: new attribute
-    attr :warehouse_ready, Boolean
   end
 end

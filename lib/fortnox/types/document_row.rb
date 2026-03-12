@@ -48,7 +48,7 @@ module Fortnox
       attribute? :housework_type, HouseworkTypes
 
       # Price Price per unit. 12 digits
-      attribute? :price, Sized::Float[0.0, 99_999_999_999.9]
+      attribute? :price, Sized::Float[-99_999_999_999.9, 99_999_999_999.9]
 
       # Project Code of the project for the row.
       attribute? :project, Nullable::String

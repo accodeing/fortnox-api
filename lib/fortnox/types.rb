@@ -90,6 +90,6 @@ module Fortnox
     require 'fortnox/types/email_information'
     require 'fortnox/types/edi_information'
     require 'fortnox/types/invoice_row'
-    # require 'fortnox/types/order_row'  # TODO: needs migration — with_stub is a Resource method, not Model
+    require 'fortnox/types/order_row'
   end
 end

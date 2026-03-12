@@ -183,5 +183,20 @@ module Fortnox
 
     # ZipCode Zip code of the document. 1024 characters
     attr :zip_code, Sized::String[1024]
+
+    # Language Language code.
+    attr :language, Nullable::String
+
+    # TODO: new attribute
+    attr :outbound_date, String
+
+    # TODO: new attribute
+    attr :time_basis_reference, String
+
+    # TODO: new attribute
+    attr :total_to_pay, Nullable::Integer
+
+    # TODO: new attribute
+    attr :warehouse_ready, Boolean
   end
 end

@@ -4,7 +4,7 @@ require 'fortnox/types/document_row'
 
 module Fortnox
   module Types
-    class OrderRowClass < DocumentRow
+    class OrderRow < DocumentRow
       # OrderedQuantity Ordered quantity
       attribute :ordered_quantity, Required::Float
     end
