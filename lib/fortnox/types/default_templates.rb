@@ -3,6 +3,10 @@
 module Fortnox
   module Types
     class DefaultTemplates < Dry::Struct
+      transform_keys do |key|
+        RestEasy::Conventions::PascalCase.new.parse(key)
+      end
+
       # Default template for orders. Must be a name of an existing print template.
       attribute? :order, Required::String
 
