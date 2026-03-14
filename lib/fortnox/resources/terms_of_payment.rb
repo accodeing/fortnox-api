@@ -11,7 +11,7 @@ module Fortnox
     end
 
     # @url Direct URL to the record.
-    attr :url <=> '@url', Nullable::String, :read_only
+    attr :url <=> '@url', Coercible::String.optional, :read_only
 
     # Code The code of the term of payment.
     key :code, Strict::String

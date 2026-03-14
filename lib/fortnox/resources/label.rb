@@ -2,7 +2,7 @@
 
 module Fortnox
   class Label < Fortnox::Resource
-    attr :id, Nullable::Integer, :read_only
+    attr :id, Coercible::Integer.optional, :read_only
     attr :description, Sized::String[25], :read_only
   end
 end

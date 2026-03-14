@@ -3,24 +3,6 @@
 require 'dry-struct'
 require 'dry-types'
 require 'countries'
-require 'fortnox/types/shim/country_code_string'
-
-module Dry
-  module Types
-    module Options
-      def is(*option_names)
-        new_options = option_names.each_with_object({}) do |name, hash|
-          hash[name] = true
-        end
-        with( **new_options )
-      end
-
-      def is?(option_name)
-        @options[option_name]
-      end
-    end
-  end
-end
 
 module Fortnox
   module Types
@@ -29,67 +11,98 @@ module Fortnox
 
     THE_TRUTH = { true => true, 'true' => true, false => false, 'false' => false }.freeze
 
-    require 'fortnox/types/required'
-    require 'fortnox/types/defaulted'
-    require 'fortnox/types/nullable'
+    ArticleTypes = Types::Strict::String.enum(
+      'SERVICE', 'STOCK'
+    )
 
-    require 'fortnox/types/enums'
+    DiscountTypes = Types::Strict::String.enum(
+      'AMOUNT', 'PERCENT'
+    )
 
-    require 'fortnox/types/sized'
+    CURRENT_HOUSEWORK_TYPES = %w[
+      CONSTRUCTION ELECTRICITY GLASSMETALWORK GROUNDDRAINAGEWORK
+      MASONRY PAINTINGWALLPAPERING HVAC MAJORAPPLIANCEREPAIR
+      MOVINGSERVICES ITSERVICES CLEANING TEXTILECLOTHING
+      SNOWPLOWING GARDENING BABYSITTING OTHERCARE OTHERCOSTS
+    ].freeze
 
-    AccountNumber = Strict::Integer
+    LEGACY_HOUSEWORK_TYPES = %w[COOKING TUTORING].freeze
+
+    HouseworkTypes = Types::Strict::String.enum(
+      *(CURRENT_HOUSEWORK_TYPES + LEGACY_HOUSEWORK_TYPES)
+    )
+
+    Currencies = Types::Strict::String.enum(
+      'AED', 'AFN', 'ALL', 'AMD', 'ANG', 'AOA', 'ARS', 'AUD', 'AWG', 'AZN',
+      'BAM', 'BBD', 'BDT', 'BGN', 'BHD', 'BIF', 'BMD', 'BND', 'BOB', 'BOV',
+      'BRL', 'BSD', 'BTN', 'BWP', 'BYR', 'BZD', 'CAD', 'CDF', 'CHE', 'CHF',
+      'CHW', 'CLF', 'CLP', 'CNY', 'COP', 'COU', 'CRC', 'CUP', 'CVE', 'CZK',
+      'DJF', 'DKK', 'DOP', 'DZD', 'EGP', 'ERN', 'ETB', 'EUR', 'FJD', 'FKP',
+      'GBP', 'GEL', 'GHS', 'GIP', 'GMD', 'GNF', 'GTQ', 'GYD', 'HKD', 'HNL',
+      'HRK', 'HTG', 'HUF', 'IDR', 'ILS', 'INR', 'IQD', 'IRR', 'ISK', 'JMD',
+      'JOD', 'JPY', 'KES', 'KGS', 'KHR', 'KUR', 'KMF', 'KPW', 'KRW', 'KWD',
+      'KYD', 'KZT', 'LAK', 'LBP', 'LKR', 'LRD', 'LSL', 'LYD', 'MAD', 'MDL',
+      'MGA', 'MKD', 'MMK', 'MNT', 'MOP', 'MRO', 'MUR', 'MVR', 'MWK', 'MXN',
+      'MXV', 'MYR', 'MZN', 'NAD', 'NGN', 'NIO', 'NOK', 'NPR', 'NZD', 'OMR',
+      'PAB', 'PEN', 'PGK', 'PHP', 'PKR', 'PLN', 'PYG', 'QAR', 'RON', 'RSD',
+      'RUB', 'RWF', 'SAR', 'SBD', 'SCR', 'SDG', 'SEK', 'SGD', 'SHP', 'SLL',
+      'SOS', 'SRD', 'SSP', 'STD', 'SYP', 'SZL', 'THB', 'TJS', 'TMM', 'TND',
+      'TOP', 'TRY', 'TTD', 'TWD', 'TZS', 'UAH', 'UGX', 'USD', 'USN', 'USS',
+      'UYU', 'UZS', 'VEF', 'VND', 'VUV', 'WST', 'XAF', 'XAG', 'XAU', 'XBA',
+      'XBB', 'XBC', 'XBD', 'XCD', 'XDR', 'XFU', 'XOF', 'XPD', 'XPF', 'XPT',
+      'XTS', 'XXX', 'YER', 'ZAR', 'ZMK', 'ZWD'
+    )
+
+    CustomerTypes = Types::Strict::String.enum(
+      'PRIVATE', 'COMPANY'
+    )
+
+    VATTypes = Types::Strict::String.enum(
+      'SEVAT', 'SEREVERSEDVAT', 'EUREVERSEDVAT', 'EUVAT', 'EXPORT'
+    )
+
+    DefaultDeliveryTypeValues = Types::Strict::String.enum(
+      'PRINT', 'EMAIL', 'PRINTSERVICE'
+    )
+
+    ProjectStatusTypes = Types::Strict::String.enum(
+      'NOTSTARTED', 'ONGOING', 'COMPLETED'
+    )
+
+    AccountNumber = Coercible::Integer
                     .constrained(gteq: 0, lteq: 9999)
                     .optional
-
-    ArticleType = Strict::String
-                  .constrained(included_in: ArticleTypes.values)
-                  .optional
-                  .constructor(EnumConstructors.default)
-
-    Currency = Strict::String
-               .constrained(included_in: Currencies.values)
-               .optional
-               .constructor(EnumConstructors.sized(3))
-    CustomerType = Strict::String
-                   .constrained(included_in: CustomerTypes.values)
-                   .optional
-                   .constructor(EnumConstructors.default)
-
-    DiscountType = Strict::String
-                   .constrained(included_in: DiscountTypes.values)
-                   .optional
-                   .constructor(EnumConstructors.default)
 
     Email = Strict::String
             .constrained(max_size: 1024, format: /^$|\A[[[:alnum:]]+-_.]+@[[[:alnum:]]+-_.]+\.[a-z]+\z/i)
             .optional
             .constructor { |v| v.to_s.downcase unless v.nil? }
 
-    HouseworkType = Strict::String
-                    .constrained(included_in: HouseworkTypes.values)
-                    .optional
-                    .constructor(EnumConstructors.default)
+    module Sized
+      module String
+        def self.[](size)
+          Types::Coercible::String.constrained(max_size: size).optional
+        end
+      end
 
-    VATType = Strict::String
-              .constrained(included_in: VATTypes.values)
-              .optional
-              .constructor(EnumConstructors.default)
+      module Integer
+        def self.[](low, high)
+          Types::Coercible::Integer.constrained(gteq: low, lteq: high).optional
+        end
+      end
 
-    DefaultDeliveryType = Strict::String
-                          .constrained(included_in: DefaultDeliveryTypeValues.values)
-                          .optional
-                          .constructor(EnumConstructors.default)
+      module Float
+        def self.[](low, high)
+          Types::Coercible::Float.constrained(gteq: low, lteq: high).optional
+        end
+      end
+    end
 
-    ProjectStatusType = Strict::String
-                        .constrained(included_in: ProjectStatusTypes.values)
-                        .optional
-                        .constructor(EnumConstructors.default)
-
-    require 'fortnox/types/default_delivery_types'
-    require 'fortnox/types/default_templates'
-    require 'fortnox/types/email_information'
-    require 'fortnox/types/edi_information'
-    require 'fortnox/types/invoice_row'
-    require 'fortnox/types/order_row'
+    require 'fortnox/structs/default_delivery_types'
+    require 'fortnox/structs/default_templates'
+    require 'fortnox/structs/email_information'
+    require 'fortnox/structs/edi_information'
+    require 'fortnox/structs/invoice_row'
+    require 'fortnox/structs/order_row'
   end
 end

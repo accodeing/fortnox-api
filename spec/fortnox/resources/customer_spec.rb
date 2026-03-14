@@ -220,7 +220,7 @@ RSpec.describe Fortnox::Customer, order: :defined do
         end
 
         it "has correct sales account" do
-          expect(fetched_customer.sales_account).to eq("3001")
+          expect(fetched_customer.sales_account).to eq(3001)
         end
       end
     end

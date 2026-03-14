@@ -1,12 +1,10 @@
 # frozen_string_literal: true
 
-require 'fortnox/types/document_row'
-
 module Fortnox
-  module Types
+  module Structs
     class OrderRow < DocumentRow
       # OrderedQuantity Ordered quantity
-      attribute :ordered_quantity, Required::Float
+      attribute :ordered_quantity, Types::Coercible::Float
     end
   end
 end

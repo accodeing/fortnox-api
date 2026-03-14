@@ -11,78 +11,78 @@ module Fortnox
     end
 
     # AccountingMethod Accounting Method.
-    attr :accounting_method, Nullable::String
+    attr :accounting_method, Coercible::String.optional
 
     # Balance Balance of the invoice.
-    attr :balance, Nullable::Float, :read_only
+    attr :balance, Coercible::Float.optional, :read_only
 
     # Booked If the invoice is bookkept.
-    attr :booked, Nullable::Boolean, :read_only
+    attr :booked, Bool.optional, :read_only, Boolean
 
     # Credit If the invoice is a credit invoice.
-    attr :credit, Nullable::Boolean, :read_only
+    attr :credit, Bool.optional, :read_only, Boolean
 
     # CreditInvoiceReference Reference to the credit invoice, if one exits.
-    attr :credit_invoice_reference, Nullable::Integer
+    attr :credit_invoice_reference, Coercible::Integer.optional
 
     # ContractReference Reference to the contract, if one exists.
-    attr :contract_reference, Nullable::Integer, :read_only
+    attr :contract_reference, Coercible::Integer.optional, :read_only
 
     # DueDate Due date of the invoice.
-    attr :due_date, Nullable::Date
+    attr :due_date, Date.optional, Parsers:Date
 
     # EDIInformation Separate EDIInformation object
-    attr :edi_information <=> 'EDIInformation', EDIInformation
+    attr :edi_information <=> 'EDIInformation', Structs::EDIInformation
 
     # EUQuarterlyReport EU Quarterly Report On / Off
-    attr :eu_quarterly_report <=> 'EUQuarterlyReport', Nullable::Boolean
+    attr :eu_quarterly_report <=> 'EUQuarterlyReport', Bool.optional, Boolean
 
     # TODO: new attribute
     attr :final_pay_date, String
 
     # InvoiceDate Invoice date.
-    attr :invoice_date, Nullable::Date
+    attr :invoice_date, Date.optional, Parsers:Date
 
     # InvoicePeriodStart Start date of the invoice period.
-    attr :invoice_period_start, Nullable::Date, :read_only
+    attr :invoice_period_start, Date.optional, :read_only, Parsers:Date
 
     # InvoicePeriodEnd End date of the invoice period.
-    attr :invoice_period_end, Nullable::Date, :read_only
+    attr :invoice_period_end, Date.optional, :read_only, Parsers:Date
 
     # TODO: This is a new attribute
-    attr :invoice_reference, Nullable::Integer
+    attr :invoice_reference, Coercible::Integer.optional
 
     # InvoiceRows Separate object
-    attr :invoice_rows, Strict::Array.of(InvoiceRow)
+    attr :invoice_rows, Strict::Array.of(Structs::InvoiceRow)
 
     # InvoiceType The type of invoice.
-    attr :invoice_type, Nullable::String
+    attr :invoice_type, Coercible::String.optional
 
     # LastRemindDate Date of last reminder.
-    attr :last_remind_date, Nullable::Date, :read_only
+    attr :last_remind_date, Date.optional, :read_only, Parsers:Date
 
     # NoxFinans If the invoice is managed by NoxFinans
-    attr :nox_finans, Nullable::Boolean, :read_only
+    attr :nox_finans, Bool.optional, :read_only, Boolean
 
     # OCR OCR number of the invoice.
-    attr :ocr <=> 'OCR', Nullable::String
+    attr :ocr <=> 'OCR', Coercible::String.optional
 
     # OrderReference Reference to the order, if one exists.
-    attr :order_reference, Nullable::Integer, :read_only
+    attr :order_reference, Coercible::Integer.optional, :read_only
 
     # TODO: new attribute
     attr :payment_way, String
 
     # Reminders Number of reminders sent to the customer.
-    attr :reminders, Nullable::Integer, :read_only
+    attr :reminders, Coercible::Integer.optional, :read_only
 
     # VoucherNumber Voucher number for the invoice.
-    attr :voucher_number, Nullable::Integer, :read_only
+    attr :voucher_number, Coercible::Integer.optional, :read_only
 
     # VoucherSeries Voucher series for the invoice.
-    attr :voucher_series, Nullable::String, :read_only
+    attr :voucher_series, Coercible::String.optional, :read_only
 
     # VoucherYear Voucher year for the invoice.
-    attr :voucher_year, Nullable::Integer, :read_only
+    attr :voucher_year, Coercible::Integer.optional, :read_only
   end
 end

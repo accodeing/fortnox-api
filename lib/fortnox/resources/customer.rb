@@ -11,7 +11,7 @@ module Fortnox
     end
 
     # @url Direct URL to the record.
-    attr :url <=> '@url', Nullable::String, :read_only
+    attr :url <=> '@url', String.optional, :read_only
 
     # Address1 First address of the customer. 1024 characters
     attr :address1, Sized::String[1024]
@@ -23,7 +23,7 @@ module Fortnox
     attr :city, Sized::String[1024]
 
     # Country Country of the customer. Read-only.
-    attr :country, Nullable::String, :read_only
+    attr :country, String.optional, :read_only
 
     # Comments Comments. 1024 characters.
     attr :comments, Sized::String[1024]
@@ -32,7 +32,7 @@ module Fortnox
     attr :currency, Currencies
 
     # CostCenter Cost center of the customer
-    attr :cost_center, Nullable::String
+    attr :cost_center, String.optional
 
     # CountryCode Country code of the customer, 2 letters
     attr :country_code, Sized::String[2]
@@ -41,10 +41,10 @@ module Fortnox
     key :customer_number, Sized::String[1024]
 
     # DefaultDeliveryTypes
-    attr :default_delivery_types, DefaultDeliveryTypes
+    attr :default_delivery_types, Structs::DefaultDeliveryTypes
 
     # DefaultTemplates
-    attr :default_templates, DefaultTemplates
+    attr :default_templates, Structs::DefaultTemplates
 
     # DeliveryAddress1 First delivery address of the customer. 1024 characters
     attr :delivery_address1, Sized::String[1024]
@@ -56,7 +56,7 @@ module Fortnox
     attr :delivery_city, Sized::String[1024]
 
     # DeliveryCountry Delivery country of the customer. Read-only.
-    attr :delivery_country, Nullable::String, :read_only
+    attr :delivery_country, String.optional, :read_only
 
     # DeliveryCountryCode Delivery country code of the customer, 2 letters
     attr :delivery_country_code, Sized::String[2]
@@ -137,28 +137,28 @@ module Fortnox
     attr :phone2, Sized::String[1024]
 
     # PriceList Price list of the customer
-    attr :price_list, Nullable::String
+    attr :price_list, String.optional
 
     # Project Project of the customer
-    attr :project, Nullable::String
+    attr :project, String.optional
 
     # SalesAccount Sales account of the customer
-    attr :sales_account, Nullable::String
+    attr :sales_account, AccountNumber
 
     # ShowPriceVATIncluded Show prices with VAT included or not
-    attr :show_price_vat_included <=> 'ShowPriceVATIncluded', Nullable::Boolean
+    attr :show_price_vat_included <=> 'ShowPriceVATIncluded', Boolean.optional
 
     # TermsOfDelivery Terms of delivery code of the customer
-    attr :terms_of_delivery, Nullable::String
+    attr :terms_of_delivery, String.optional
 
     # TermsOfPayment Terms of payment code of the customer
-    attr :terms_of_payment, Nullable::String
+    attr :terms_of_payment, String.optional
 
     # Type Customer type, PRIVATE / COMPANY
     attr :type, CustomerTypes
 
     # VATNumber VAT number of the customer
-    attr :vat_number <=> 'VATNumber', Nullable::String
+    attr :vat_number <=> 'VATNumber', String.optional
 
     # VATType VAT type of the customer
     attr :vat_type <=> 'VATType', VATTypes
@@ -170,7 +170,7 @@ module Fortnox
     attr :visiting_city, Sized::String[128]
 
     # VisitingCountry Visit country of the customer, read-only
-    attr :visiting_country, Nullable::String, :read_only
+    attr :visiting_country, String.optional, :read_only
 
     # VisitingCountryCode Code of the visiting country for the customer, 2 letters
     attr :visiting_country_code, Sized::String[2]
@@ -179,7 +179,7 @@ module Fortnox
     attr :visiting_zip_code, Sized::String[10]
 
     # WayOfDelivery Way of delivery code of the customer
-    attr :way_of_delivery, Nullable::String
+    attr :way_of_delivery, String.optional
 
     # YourReference Your reference of the customer. 50 characters
     attr :your_reference, Sized::String[50]
@@ -188,21 +188,21 @@ module Fortnox
     attr :zip_code, Sized::String[10]
 
     # TODO: new attribute
-    attr :active, Nullable::Boolean
+    attr :active, Boolean.optional
 
     # TODO: new attribute — only present in collection responses
-    attr :phone, Nullable::String
+    attr :phone, String.optional
 
     # TODO: new attribute
-    attr :external_reference, Nullable::String
+    attr :external_reference, String.optional
 
     # TODO: new attribute
-    attr :gln <=> 'GLN', Nullable::String
+    attr :gln <=> 'GLN', String.optional
 
     # TODO: new attribute
-    attr :gln_delivery <=> 'GLNDelivery', Nullable::String
+    attr :gln_delivery <=> 'GLNDelivery', String.optional
 
     # TODO: new attribute
-    attr :www <=> 'WWW', Nullable::String
+    attr :www <=> 'WWW', String.optional
   end
 end

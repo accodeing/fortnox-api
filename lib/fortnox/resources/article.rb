@@ -11,16 +11,16 @@ module Fortnox
     end
 
     # @url Direct URL to the record.
-    attr :url <=> '@url', Nullable::String, :read_only
+    attr :url <=> '@url', Coercible::String.optional, :read_only
 
     # Active If the article is active
-    attr :active, Nullable::Boolean
+    attr :active, Bool.optional, Boolean
 
     # ArticleNumber Article number. 50 characters
     key :article_number, Sized::String[50]
 
     # Bulky If the article is bulky.
-    attr :bulky, Nullable::Boolean
+    attr :bulky, Bool.optional, Boolean
 
     # ConstructionAccount Account number for construction work (special VAT rules in Sweden).
     # The number must be of an existing account.
@@ -33,7 +33,7 @@ module Fortnox
     attr :description, Sized::String[200], :required
 
     # DisposableQuantity Disposable quantity of the article.
-    attr :disposable_quantity, Nullable::Float, :read_only
+    attr :disposable_quantity, Coercible::Float.optional, :read_only
 
     # EAN EAN bar code
     attr :ean <=> 'EAN', Sized::String[30]
@@ -54,7 +54,7 @@ module Fortnox
     attr :height, Sized::Integer[0, 99_999_999]
 
     # Housework If the article is housework
-    attr :housework, Nullable::Boolean
+    attr :housework, Bool.optional, Boolean
 
     # HouseworkType The type of housework.
     attr :housework_type, HouseworkTypes
@@ -79,46 +79,46 @@ module Fortnox
     attr :quantity_in_stock, Sized::Float[-100_000_000_000_000.0, 99_999_999_999_999.9]
 
     # ReservedQuantity Reserved quantity of the article
-    attr :reserved_quantity, Nullable::Float, :read_only
+    attr :reserved_quantity, Coercible::Float.optional, :read_only
 
     # SalesAccount Account number for the sales account in Sweden.
     # The number must be of an existing account.
     attr :sales_account, Sized::Integer[0, 9_999]
 
     # SalesPrice Price of article for its default price list
-    attr :sales_price, Nullable::Float, :read_only
+    attr :sales_price, Coercible::Float.optional, :read_only
 
     # StockGoods If the article is stock goods
-    attr :stock_goods, Nullable::Boolean
+    attr :stock_goods, Bool.optional, Boolean
 
     # StockPlace Storage place for the article
     attr :stock_place, Sized::String[100]
 
     # StockValue Value in stock of the article
-    attr :stock_value, Nullable::Float, :read_only
+    attr :stock_value, Coercible::Float.optional, :read_only
 
     # StockWarning When to start warning for low quantity in stock
     attr :stock_warning, Sized::Float[0.0, 99_999_999_999_999.9]
 
     # SupplierName Name of the supplier
-    attr :supplier_name, Nullable::String, :read_only
+    attr :supplier_name, Coercible::String.optional, :read_only
 
     # SupplierNumber Supplier number for the article.
     # The number must be of an existing supplier.
-    attr :supplier_number, Nullable::String
+    attr :supplier_number, Coercible::String.optional
 
     # Type The type of the article
     attr :type, ArticleTypes
 
     # Unit Unit code for the article.
     # The code must be of an existing unit.
-    attr :unit, Nullable::String
+    attr :unit, Coercible::String.optional
 
     # VAT VAT percent, this is predefined by the VAT for the sales account
-    attr :vat <=> 'VAT', Nullable::Float
+    attr :vat <=> 'VAT', Coercible::Float.optional
 
     # WebshopArticle If the article is a webshop article
-    attr :webshop_article, Nullable::Boolean
+    attr :webshop_article, Bool.optional, Boolean
 
     # Weight Weight of the article in grams
     attr :weight, Sized::Integer[0, 99_999_999]
@@ -127,33 +127,33 @@ module Fortnox
     attr :width, Sized::Integer[0, 99_999_999]
 
     # Expired If the article has expired
-    attr :expired, Nullable::Boolean
+    attr :expired, Bool.optional, Boolean
 
     # TODO: new attribute
-    attr :cost_calculation_method, Nullable::String
+    attr :cost_calculation_method, Coercible::String.optional
 
     # TODO: new attribute
-    attr :stock_account, Nullable::Integer
+    attr :stock_account, Coercible::Integer.optional
 
     # TODO: new attribute
-    attr :stock_change_account, Nullable::Integer
+    attr :stock_change_account, Coercible::Integer.optional
 
     # TODO: new attribute
-    attr :direct_cost, Nullable::Float
+    attr :direct_cost, Coercible::Float.optional
 
     # TODO: new attribute
-    attr :freight_cost, Nullable::Float
+    attr :freight_cost, Coercible::Float.optional
 
     # TODO: new attribute
-    attr :other_cost, Nullable::Float
+    attr :other_cost, Coercible::Float.optional
 
     # TODO: new attribute
-    attr :default_stock_point, Nullable::String
+    attr :default_stock_point, Coercible::String.optional
 
     # TODO: new attribute
-    attr :default_stock_location, Nullable::String
+    attr :default_stock_location, Coercible::String.optional
 
     # TODO: new attribute
-    attr :commodity_code, Nullable::String
+    attr :commodity_code, Coercible::String.optional
   end
 end

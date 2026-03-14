@@ -11,27 +11,27 @@ module Fortnox
     end
 
     # CopyRemarks If remarks shall be copied from order to invoice
-    attr :copy_remarks, Nullable::Boolean
+    attr :copy_remarks, Bool.optional, Boolean
 
     # InvoiceReference Reference if an invoice is created from order
-    attr :invoice_reference, Nullable::Integer, :read_only
+    attr :invoice_reference, Coercible::Integer.optional, :read_only
 
     # OrderDate Date of order
-    attr :order_date, Nullable::Date
+    attr :order_date, Date.optional, Parsers:Date
 
     # OrderRows Separate object
-    attr :order_rows, Strict::Array.of(OrderRow)
+    attr :order_rows, Strict::Array.of(Structs::OrderRow)
 
     # TODO: new attribute
-    attr :delivery_state, Nullable::String
+    attr :delivery_state, Coercible::String.optional
 
     # TODO: new attribute
-    attr :order_type, Nullable::String
+    attr :order_type, Coercible::String.optional
 
     # TODO: new attribute
-    attr :stock_point_code, Nullable::String
+    attr :stock_point_code, Coercible::String.optional
 
     # TODO: new attribute
-    attr :stock_point_id, Nullable::String
+    attr :stock_point_id, Coercible::String.optional
   end
 end

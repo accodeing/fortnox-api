@@ -41,7 +41,7 @@ RSpec.describe Fortnox::Invoice, order: :defined do
     let(:new_model) do
       described_class.stub(
         customer_number: "1",
-        invoice_rows: [Fortnox::Types::InvoiceRow.new(nested_model_hash)]
+        invoice_rows: [Fortnox::Structs::InvoiceRow.new(nested_model_hash)]
       )
     end
     let(:response) do
@@ -381,7 +381,7 @@ RSpec.describe Fortnox::Invoice, order: :defined do
         described_class.stub(
           customer_number: "1",
           invoice_rows: [
-            Fortnox::Types::InvoiceRow.new(
+            Fortnox::Structs::InvoiceRow.new(
               article_number: "101",
               description: "a" * 255
             )

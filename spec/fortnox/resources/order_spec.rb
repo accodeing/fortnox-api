@@ -41,7 +41,7 @@ RSpec.describe Fortnox::Order, order: :defined do
     let(:new_model) do
       described_class.stub(
         customer_number: "1",
-        order_rows: [Fortnox::Types::OrderRow.new(nested_model_hash)]
+        order_rows: [Fortnox::Structs::OrderRow.new(nested_model_hash)]
       )
     end
     let(:response) do

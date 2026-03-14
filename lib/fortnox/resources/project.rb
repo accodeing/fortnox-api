@@ -11,7 +11,7 @@ module Fortnox
     end
 
     # @url Direct URL to the record.
-    attr :url <=> '@url', Nullable::String, :read_only
+    attr :url <=> '@url', Coercible::String.optional, :read_only
 
     # Comments Comments on project. 512 characters
     attr :comments, Sized::String[512]
@@ -23,7 +23,7 @@ module Fortnox
     attr :description, Sized::String[50]
 
     # EndDate End date of the project.
-    attr :end_date, Nullable::Date
+    attr :end_date, Date.optional, Parsers:Date
 
     # ProjectLeader Projectleader. 50 characters
     attr :project_leader, Sized::String[50]
@@ -32,9 +32,9 @@ module Fortnox
     key :project_number, Sized::String[20]
 
     # Status Status of the project
-    attr :status, ProjectStatusType
+    attr :status, ProjectStatusTypes
 
     # StartDate Start date of the project
-    attr :start_date, Nullable::Date
+    attr :start_date, Date.optional, Parsers:Date
   end
 end

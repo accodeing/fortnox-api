@@ -11,15 +11,15 @@ module Fortnox
     end
 
     # @url Direct URL to the record.
-    attr :url <=> '@url', Nullable::String, :read_only
+    attr :url <=> '@url', Coercible::String.optional, :read_only
 
     # Code The code of the unit.
     key :code, Strict::String
 
     # Description The description of the unit.
-    attr :description, Nullable::String
+    attr :description, Coercible::String.optional
 
     # TODO: new attribute
-    attr :code_english, Nullable::String
+    attr :code_english, Coercible::String.optional
   end
 end
