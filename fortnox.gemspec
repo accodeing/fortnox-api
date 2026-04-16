@@ -21,7 +21,7 @@ Gem::Specification.new do |spec|
 
   spec.required_ruby_version = ">= 3.1.0"
 
-  spec.add_runtime_dependency "rest-easy", "~> 0.1.0"
+  spec.add_runtime_dependency "rest-easy", "~> 1.0.0"
   spec.add_runtime_dependency "countries"
   spec.add_runtime_dependency "dry-struct"
 

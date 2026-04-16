@@ -3,5 +3,3 @@
 source "https://gem.coop"
 
 gemspec
-
-gem "rest-easy", path: "../rest-easy"
