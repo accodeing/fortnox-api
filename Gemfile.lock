@@ -1,20 +1,10 @@
 PATH
-  remote: ../rest-easy
-  specs:
-    rest-easy (0.1.0)
-      dry-configurable (~> 0.14)
-      dry-inflector (~> 0.2.1)
-      dry-types (~> 1.2)
-      faraday (~> 2.0)
-      zeitwerk (~> 2.6)
-
-PATH
   remote: .
   specs:
     rest-easy-fortnox (0.0.1)
       countries
       dry-struct
-      rest-easy (~> 0.1.0)
+      rest-easy (~> 1.0.0)
 
 GEM
   remote: https://gem.coop/
@@ -68,6 +58,12 @@ GEM
       uri (>= 0.11.1)
     public_suffix (6.0.2)
     rake (13.3.1)
+    rest-easy (1.0.0)
+      dry-configurable (~> 0.14)
+      dry-inflector (~> 0.2.1)
+      dry-types (~> 1.2)
+      faraday (~> 2.0)
+      zeitwerk (~> 2.6)
     rexml (3.4.4)
     rspec (3.13.2)
       rspec-core (~> 3.13.0)
@@ -93,12 +89,12 @@ GEM
 
 PLATFORMS
   arm64-darwin-21
+  arm64-darwin-22
 
 DEPENDENCIES
   bundler
   faraday-net_http
   rake
-  rest-easy!
   rest-easy-fortnox!
   rspec
   vcr
