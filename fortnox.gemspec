@@ -25,15 +25,5 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'dry-struct'
   spec.add_dependency 'rest-easy', '~> 1.0.0'
 
-  spec.add_development_dependency 'bundler'
-  spec.add_development_dependency 'dotenv'
-  spec.add_development_dependency 'faraday-net_http'
-  spec.add_development_dependency 'rake'
-  spec.add_development_dependency 'rspec'
-  spec.add_development_dependency 'rubocop'
-  spec.add_development_dependency 'rubocop-rake'
-  spec.add_development_dependency 'rubocop-rspec'
-  spec.add_development_dependency 'vcr'
-  spec.add_development_dependency 'webmock'
   spec.metadata['rubygems_mfa_required'] = 'true'
 end

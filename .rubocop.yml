@@ -28,9 +28,6 @@ RSpec/MultipleMemoizedHelpers:
 RSpec/NestedGroups:
   Max: 5
 
-Gemspec/DevelopmentDependencies:
-  Enabled: false
-
 Naming/VariableNumber:
   AllowedIdentifiers:
     - request_1
