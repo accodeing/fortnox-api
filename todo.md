@@ -2,55 +2,38 @@
 
 ## TODO
 
-### Missing files (present on development, needed for 1.0)
-* [ ] README.md (rewrite for new rest-easy architecture, document that auth config is required before use)
-* [ ] CHANGELOG.md (start fresh for 1.0, reference old changelog)
+### Documentation
+* [x] README.md
+* [x] CHANGELOG.md
 * [x] LICENSE.txt
-* [x] Rakefile
-* [ ] bin/ scripts (console, get_tokens, renew_tokens — adapt for rest-easy)
+* [x] CONTRIBUTE.md
+* [x] DEVELOPER_README.md
+* [x] MIGRATING.md
+* [x] .rspec
+* [x] docs/gotchas.md
+* [x] docs/scopes.md (removed — use Fortnox developer docs instead)
 
-### Auth & testing
+### Auth
 * [x] Set up proper authentication in lib/fortnox.rb (`Fortnox.access_token = token`)
 * [x] Set up proper authentication in spec_helper.rb for recording VCR cassettes
 * [x] Set up .env loading for tests (dotenv with .env.test / .env.test.local)
+* [ ] Implement `Fortnox.request_access_token` (client credentials flow)
+* [ ] Implement `fortnox-setup` executable (initial OAuth + tenant ID discovery)
+
+### Testing
+* [ ] Write label spec
 * [ ] Re-record VCR cassettes with real auth to verify the gem works
-* [ ] Decide on token refresh strategy (see notes below)
 
 ### Code issues
-* [x] Remove dead boolean parser — never invoked by rest-easy
-* [x] Fix date parser — `Parsers: Date` (hash) → `Parsers::Date` (module), fix typo and recursion bug
+* [x] Remove dead boolean parser
+* [x] Fix date parser
 * [ ] Implement `# TODO: new attribute` items across resources (25+ attributes pending)
 * [ ] Uncomment/implement pagination support in `lib/fortnox/resource.rb` (MetaInformation parsing)
+* [ ] Improve error handling: rest-easy raises `RequestError` for all non-2xx responses (has `RemoteServerError` and `RateLimitError` classes but doesn't use them). Fix in rest-easy to raise different errors for 4xx vs 5xx, then use those in the Fortnox gem.
 
-### Nice to have / later
+### Infrastructure
+* [x] Rakefile
+* [x] .gitignore
 * [ ] CI setup (GitHub Actions to replace Travis CI)
-* [ ] CONTRIBUTE.md
-* [ ] Consider adding `bin/console` for development convenience
 * [ ] Gem version bump strategy (currently 0.0.1, target 1.0.0)
-
----
-
-## Token refresh (design notes)
-
-```ruby
-Fortnox::RefreshToken.call(
-  refresh_token: credentials.refresh_token,
-  client_id: ENV.fetch('FORTNOX_API_CLIENT_ID'),
-  client_secret: ENV.fetch('FORTNOX_API_CLIENT_SECRET')
-)
-```
-
-Alternative:
-```ruby
-class Fortnox::Token < Fortnox::Resource
-  def refresh(refresh_token:, client_id:, client_secret:)
-    # post...
-  end
-end
-
-Fortnox::Token.refresh(
-  refresh_token: credentials.refresh_token,
-  client_id: ENV.fetch('FORTNOX_API_CLIENT_ID'),
-  client_secret: ENV.fetch('FORTNOX_API_CLIENT_SECRET')
-)
-```
+* [ ] Consider adding `bin/console` for development convenience
