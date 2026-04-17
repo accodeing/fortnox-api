@@ -16,9 +16,6 @@ Style/Attr:
 Style/Documentation:
   Enabled: false
 
-Naming/RescuedExceptionsVariableName:
-  PreferredName: exception
-
 Style/WordArray:
   EnforcedStyle: brackets
 
