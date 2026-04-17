@@ -29,7 +29,7 @@ module Fortnox
     attr :contract_reference, Coercible::Integer.optional, :read_only
 
     # DueDate Due date of the invoice.
-    attr :due_date, Date.optional, Parsers: Date
+    attr :due_date, Date.optional, Parsers::Date
 
     # EDIInformation Separate EDIInformation object
     attr :edi_information <=> 'EDIInformation', Structs::EDIInformation
@@ -41,13 +41,13 @@ module Fortnox
     attr :final_pay_date, String
 
     # InvoiceDate Invoice date.
-    attr :invoice_date, Date.optional, Parsers: Date
+    attr :invoice_date, Date.optional, Parsers::Date
 
     # InvoicePeriodStart Start date of the invoice period.
-    attr :invoice_period_start, Date.optional, :read_only, Parsers: Date
+    attr :invoice_period_start, Date.optional, :read_only, Parsers::Date
 
     # InvoicePeriodEnd End date of the invoice period.
-    attr :invoice_period_end, Date.optional, :read_only, Parsers: Date
+    attr :invoice_period_end, Date.optional, :read_only, Parsers::Date
 
     # TODO: This is a new attribute
     attr :invoice_reference, Coercible::Integer.optional
@@ -59,7 +59,7 @@ module Fortnox
     attr :invoice_type, Coercible::String.optional
 
     # LastRemindDate Date of last reminder.
-    attr :last_remind_date, Date.optional, :read_only, Parsers: Date
+    attr :last_remind_date, Date.optional, :read_only, Parsers::Date
 
     # NoxFinans If the invoice is managed by NoxFinans
     attr :nox_finans, Bool.optional, :read_only, Boolean

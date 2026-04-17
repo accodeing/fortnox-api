@@ -77,7 +77,7 @@ module Fortnox
     attr :delivery_country, Sized::String[2], Parsers::CountryCode
 
     # DeliveryDate Date of delivery.
-    attr :delivery_date, Date.optional, Parsers: Date
+    attr :delivery_date, Date.optional, Parsers::Date
 
     # DeliveryName  Name of the recipient of the delivery
     attr :delivery_name, Sized::String[1024]
