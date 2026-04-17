@@ -5,9 +5,8 @@
 ### Missing files (present on development, needed for 1.0)
 * [ ] README.md (rewrite for new rest-easy architecture, document that auth config is required before use)
 * [ ] CHANGELOG.md (start fresh for 1.0, reference old changelog)
-* [ ] LICENSE.txt
-* [ ] .env.template (document required env vars for contributors)
-* [ ] Rakefile
+* [x] LICENSE.txt
+* [x] Rakefile
 * [ ] bin/ scripts (console, get_tokens, renew_tokens — adapt for rest-easy)
 
 ### Auth & testing
@@ -28,7 +27,6 @@
 * [ ] CONTRIBUTE.md
 * [ ] Consider adding `bin/console` for development convenience
 * [ ] Gem version bump strategy (currently 0.0.1, target 1.0.0)
-* [ ] Clean up old .gem files from repo root
 
 ---
 
