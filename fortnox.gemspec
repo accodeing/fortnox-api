@@ -14,7 +14,7 @@ Gem::Specification.new do |spec|
   spec.summary       = 'Fortnox F3 REST API library, based on rest-easy.'
   spec.description   = spec.summary
   spec.homepage      = 'https://github.com/accodeing/fortnox'
-  spec.files         = Dir['CHANGELOG.md', 'LICENSE', 'README.md', 'fortnox.gemspec', 'lib/**/*', 'config/*.yml']
+  spec.files         = Dir['CHANGELOG.md', 'LICENSE.txt', 'README.md', 'fortnox.gemspec', 'lib/**/*', 'config/*.yml']
   spec.bindir        = 'bin'
   spec.executables   = []
   spec.require_paths = ['lib']
