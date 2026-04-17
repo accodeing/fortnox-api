@@ -20,8 +20,8 @@
 * [ ] Decide on token refresh strategy (see notes below)
 
 ### Code issues
-* [ ] Fix typo in `lib/fortnox/resources/parsers/date.rb` — `date_sting` should be `date_string`
-* [ ] Fix typo in `lib/fortnox/resources/parsers/boolean.rb` — `boolean_sting` should be `boolean_string`
+* [x] Remove dead boolean parser — never invoked by rest-easy
+* [x] Fix date parser — `Parsers: Date` (hash) → `Parsers::Date` (module), fix typo and recursion bug
 * [ ] Implement `# TODO: new attribute` items across resources (25+ attributes pending)
 * [ ] Uncomment/implement pagination support in `lib/fortnox/resource.rb` (MetaInformation parsing)
 

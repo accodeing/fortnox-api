@@ -23,7 +23,7 @@ module Fortnox
     attr :description, Sized::String[50]
 
     # EndDate End date of the project.
-    attr :end_date, Date.optional, Parsers: Date
+    attr :end_date, Date.optional, Parsers::Date
 
     # ProjectLeader Projectleader. 50 characters
     attr :project_leader, Sized::String[50]
@@ -35,6 +35,6 @@ module Fortnox
     attr :status, ProjectStatusTypes
 
     # StartDate Start date of the project
-    attr :start_date, Date.optional, Parsers: Date
+    attr :start_date, Date.optional, Parsers::Date
   end
 end
