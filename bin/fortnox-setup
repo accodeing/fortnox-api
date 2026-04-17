@@ -1,0 +1,188 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# rubocop:disable Metrics/MethodLength, Metrics/AbcSize
+
+require 'base64'
+require 'cgi'
+require 'json'
+require 'rbconfig'
+require 'securerandom'
+require 'socket'
+require 'uri'
+require 'faraday'
+
+OAUTH_ENDPOINT = 'https://apps.fortnox.se/oauth-v1'
+LOCAL_PORT = 4242
+LOCAL_REDIRECT_URI = "http://localhost:#{LOCAL_PORT}".freeze
+
+def prompt(message, default: nil)
+  if default
+    print "#{message} [#{default}]: "
+  else
+    print "#{message}: "
+  end
+  input = $stdin.gets.chomp
+  input.empty? && default ? default : input
+end
+
+def open_browser(url)
+  cmd = case RbConfig::CONFIG['host_os']
+        when /mswin|mingw|cygwin/ then 'start'
+        when /darwin/ then 'open'
+        when /linux|bsd/ then 'xdg-open'
+        end
+
+  if cmd
+    system "#{cmd} \"#{url}\""
+  else
+    puts 'Could not open browser automatically. Please open this URL manually:'
+    puts url
+  end
+end
+
+def start_local_server(port)
+  server = TCPServer.new(port)
+  client = server.accept
+  request = client.gets
+  _, path, = request.split
+
+  client.puts "HTTP/1.1 200\r\n\r\n"
+  client.puts '<html><body>'
+  client.puts '<h1>Authorization received</h1>'
+  client.puts '<p>You can close this tab and return to the terminal.</p>'
+  client.puts '</body></html>'
+  client.close
+  server.close
+
+  URI.decode_www_form(path[2..]).to_h.transform_keys(&:to_sym)
+end
+
+def get_auth_code_from_server(port, nonce)
+  response = start_local_server(port)
+
+  if response[:error]
+    puts "\nFortnox returned an error: #{response[:error]}"
+    puts "  #{response[:description]}" if response[:description]
+    exit 1
+  end
+
+  normalized_state = CGI.unescape(response[:state]).gsub(' ', '+')
+  if normalized_state != nonce
+    puts "\nSecurity error: the state parameter returned from Fortnox did not match."
+    puts 'This could indicate a replay attack. Aborting.'
+    exit 1
+  end
+
+  response[:code]
+rescue SocketError, Errno::EADDRINUSE => e
+  puts "\nCould not start local server (#{e.message})."
+  auth_code_manually
+end
+
+def auth_code_manually
+  puts
+  puts "After granting access you will be redirected. Copy the 'code' parameter"
+  puts 'from the URL you were redirected to.'
+  puts
+  prompt('Authorization code')
+end
+
+# --- Main ---
+
+puts 'Fortnox Setup'
+puts '============='
+puts
+puts 'This script will authorize your Fortnox app and retrieve your tenant ID.'
+puts 'You only need to do this once per Fortnox account.'
+puts
+
+client_id = prompt('Client ID')
+client_secret = prompt('Client secret')
+puts
+puts 'Enter the scopes you need. These must match the scopes configured on your'
+puts 'Fortnox app in the developer portal.'
+scopes = prompt('Scopes', default: 'article customer invoice order project settings')
+
+puts
+puts 'The script can catch the authorization response automatically using a'
+puts "local server. This requires your Fortnox app's redirect URI to be set to"
+puts LOCAL_REDIRECT_URI
+puts
+use_local = prompt('Use local server?', default: 'Y')
+use_local_server = use_local.downcase.start_with?('y')
+
+redirect_uri = use_local_server ? LOCAL_REDIRECT_URI : prompt('Redirect URI')
+
+nonce = SecureRandom.base64
+
+auth_params = URI.encode_www_form(
+  client_id: client_id,
+  redirect_uri: redirect_uri,
+  scope: scopes,
+  state: nonce,
+  access_type: 'offline',
+  response_type: 'code',
+  account_type: 'service'
+)
+
+authorize_url = "#{OAUTH_ENDPOINT}/auth?#{auth_params}"
+
+puts
+puts 'Opening browser for Fortnox authorization...'
+
+open_browser(authorize_url)
+
+if use_local_server
+  puts
+  puts 'Waiting for Fortnox to redirect back...'
+  authorization_code = get_auth_code_from_server(LOCAL_PORT, nonce)
+else
+  authorization_code = auth_code_manually
+end
+
+credentials = Base64.strict_encode64("#{client_id}:#{client_secret}")
+
+response = Faraday.post("#{OAUTH_ENDPOINT}/token") do |req|
+  req.headers['Authorization'] = "Basic #{credentials}"
+  req.headers['Content-Type'] = 'application/x-www-form-urlencoded'
+  req.body = URI.encode_www_form(
+    grant_type: 'authorization_code',
+    code: authorization_code,
+    redirect_uri: redirect_uri
+  )
+end
+
+parsed = JSON.parse(response.body)
+
+unless response.success?
+  puts "\nSomething went wrong."
+  puts "Response code: #{response.status}"
+  puts "Error: #{parsed['error_description'] || parsed['error'] || response.body}"
+  exit 1
+end
+
+access_token = parsed['access_token']
+
+# The tenant ID is in the JWT payload (second segment)
+jwt_payload = JSON.parse(Base64.decode64(access_token.split('.')[1]))
+tenant_id = jwt_payload['tenantId']
+
+puts
+puts 'Setup complete!'
+puts
+puts "Tenant ID:    #{tenant_id}"
+puts "Access token: #{access_token}"
+puts "Expires in:   #{parsed['expires_in']} seconds"
+puts "Scopes:       #{parsed['scope']}"
+puts
+puts 'Store your tenant ID somewhere safe. Together with your client ID and'
+puts 'client secret, you can use it to request new access tokens at any time:'
+puts
+puts '  Fortnox.request_access_token('
+puts "    client_id: '#{client_id}',"
+puts "    client_secret: '<your-secret>',"
+puts "    tenant_id: '#{tenant_id}'"
+puts '  )'
+
+# rubocop:enable Metrics/MethodLength, Metrics/AbcSize
