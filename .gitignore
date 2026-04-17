@@ -1,3 +1,15 @@
+# Deployment
+*.gem
+
 # Development
-**/__*
 .env.test.local
+.rake_tasks~
+coverage/
+tmp/
+
+# MacOS
+.DS_Store
+
+# Vim
+*.swp
+*.swo

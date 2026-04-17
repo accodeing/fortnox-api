@@ -7,8 +7,6 @@
 * [ ] CHANGELOG.md (start fresh for 1.0, reference old changelog)
 * [ ] LICENSE.txt
 * [ ] .env.template (document required env vars for contributors)
-* [ ] .gitignore (currently missing — .env, coverage/, *.gem, tmp/ should be ignored)
-* [ ] .rspec
 * [ ] Rakefile
 * [ ] bin/ scripts (console, get_tokens, renew_tokens — adapt for rest-easy)
 
@@ -28,7 +26,6 @@
 ### Nice to have / later
 * [ ] CI setup (GitHub Actions to replace Travis CI)
 * [ ] CONTRIBUTE.md
-* [ ] Rubocop config
 * [ ] Consider adding `bin/console` for development convenience
 * [ ] Gem version bump strategy (currently 0.0.1, target 1.0.0)
 * [ ] Clean up old .gem files from repo root
@@ -58,25 +55,4 @@ Fortnox::Token.refresh(
   client_id: ENV.fetch('FORTNOX_API_CLIENT_ID'),
   client_secret: ENV.fetch('FORTNOX_API_CLIENT_SECRET')
 )
-```
-
-## Access Token
-
-```ruby
-Fortnox.configure do |config|
-  # some configs
-end
-
-access_token = FetchAccessToken.call(
-  refresh_token: credentials.refresh_token,
-  client_id: ENV.fetch('FORTNOX_API_CLIENT_ID'),
-  client_secret: ENV.fetch('FORTNOX_API_CLIENT_SECRET')
-)
-
-# We could do:
-authentication = Fortnox::Auth::PSK.new(access_token:)
-Fortnox.config.authentication = authentication
-
-# But better would be:
-Fortnox.access_token = access_token
 ```
