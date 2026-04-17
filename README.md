@@ -112,8 +112,7 @@ You need:
 - A Fortnox app in the developer portal with:
   - Service account setting enabled
   - Correct scopes configured
-  - A redirect URL (can be a dummy URL, you just need the authorization code
-    from the redirect)
+  - A redirect URL
 - A Fortnox test environment for testing your integration
 
 Read the
@@ -136,12 +135,15 @@ fortnox-setup
 
 The script will:
 
-1. Ask for your client ID, client secret, redirect URI, and scopes
-2. Print an authorization URL for you to visit
-3. You log in to Fortnox and grant your app access
-4. You paste the authorization code back into the script
-5. The script exchanges the code for an access token and extracts the tenant ID
-   from the JWT
+1. Ask for your client ID, client secret, and scopes
+2. Offer to use a local server on `http://localhost:4242` to catch the
+   authorization response automatically. If you choose this, set your Fortnox
+   app's redirect URL to `http://localhost:4242`. Otherwise, enter your existing
+   redirect URL and paste the authorization code manually.
+3. Open your browser to the Fortnox authorization page
+4. You log in to Fortnox and grant your app access
+5. The script exchanges the authorization code for an access token and extracts
+   the tenant ID from the JWT
 6. The tenant ID is printed for you to store in your application's configuration
 
 After this you have a tenant ID and never need to run this script again (unless
