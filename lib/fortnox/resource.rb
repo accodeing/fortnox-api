@@ -18,12 +18,12 @@ module Fortnox
       # end
 
       # Unwrap response body
-      if data.has_key?(config.instance_wrapper)
+      if data.key?(config.instance_wrapper)
         next data[config.instance_wrapper]
-      elsif data.has_key?(config.collection_wrapper)
+      elsif data.key?(config.collection_wrapper)
         next data[config.collection_wrapper]
       else
-        raise Fortnox::RequestError, "Unknown response format: #{ data }"
+        raise Fortnox::RequestError, "Unknown response format: #{data}"
       end
     end
 
@@ -34,13 +34,13 @@ module Fortnox
 
     class << self
       def only(filter)
-        response = get( path: config.path, params: { filter: } )
+        response = get(path: config.path, params: { filter: })
         parse(response)
       end
 
       def search(hash)
         attribute, value = hash.first
-        response = get( path: config.path, params: { attribute => value } )
+        response = get(path: config.path, params: { attribute => value })
         parse(response)
       end
 
@@ -51,12 +51,12 @@ module Fortnox
       end
 
       def find_one_by(id)
-        response = get( path: "#{config.path}/#{id}" )
+        response = get(path: "#{config.path}/#{id}")
         parse(response)
       end
 
       def find_all_by(hash)
-        response = get( path: "#{config.path}", params: hash )
+        response = get(path: config.path.to_s, params: hash)
         parse(response)
       end
     end

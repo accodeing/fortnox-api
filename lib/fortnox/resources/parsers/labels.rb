@@ -3,7 +3,7 @@
 module Fortnox
   module Parsers
     module Labels
-      def self.parse( labels )
+      def self.parse(labels)
         return [] unless labels.is_a?(Array)
 
         labels.map do |label|
@@ -11,13 +11,11 @@ module Fortnox
         end
       end
 
-      def self.serialise( labels )
+      def self.serialise(labels)
         return [] if labels.nil?
         return [] unless labels.is_a?(Array)
 
-        labels.map do |label|
-          label.serialise
-        end
+        labels.map(&:serialise)
       end
     end
   end

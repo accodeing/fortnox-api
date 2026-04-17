@@ -5,9 +5,9 @@ module Fortnox
     using RestEasy::Refinements
 
     configure do
-      path "articles"
-      instance_wrapper "Article"
-      collection_wrapper "Articles"
+      path 'articles'
+      instance_wrapper 'Article'
+      collection_wrapper 'Articles'
     end
 
     # @url Direct URL to the record.

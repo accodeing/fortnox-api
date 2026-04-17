@@ -5,9 +5,9 @@ module Fortnox
     using RestEasy::Refinements
 
     configure do
-      path "termsofpayments"
-      instance_wrapper "TermsOfPayment"
-      collection_wrapper "TermsOfPayments"
+      path 'termsofpayments'
+      instance_wrapper 'TermsOfPayment'
+      collection_wrapper 'TermsOfPayments'
     end
 
     # @url Direct URL to the record.

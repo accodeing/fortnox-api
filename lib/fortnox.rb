@@ -1,10 +1,12 @@
-require "rest_easy"
-require "zeitwerk"
+# frozen_string_literal: true
+
+require 'rest_easy'
+require 'zeitwerk'
 
 loader = Zeitwerk::Loader.for_gem
 loader.collapse("#{__dir__}/fortnox/resources")
 loader.inflector.inflect(
-  "edi_information" => "EDIInformation"
+  'edi_information' => 'EDIInformation'
 )
 loader.setup
 
@@ -21,7 +23,7 @@ module Fortnox
   end
 
   configure do
-    base_url "https://api.fortnox.se/3"
+    base_url 'https://api.fortnox.se/3'
     max_retries 3
     attribute_convention :PascalCase
   end

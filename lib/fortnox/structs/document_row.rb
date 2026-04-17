@@ -4,6 +4,7 @@ module Fortnox
   module Structs
     class DocumentRow < Dry::Struct
       include Fortnox::Types
+
       transform_keys do |key|
         RestEasy::Conventions::PascalCase.new.parse(key)
       end
