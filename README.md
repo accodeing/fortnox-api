@@ -170,6 +170,19 @@ It is up to you to manage the token lifecycle in your application. A common
 approach is to request a new token before each batch of API calls, or to cache
 the token and refresh it when it expires.
 
+### Updating access tokens in env files
+
+For development and testing, the gem includes an executable that reads your
+credentials from an env file, requests a new access token, and writes it back:
+
+```shell
+fortnox-update-env              # reads/writes .env
+fortnox-update-env .env.local   # reads/writes a specific file
+```
+
+See [.env.test.local.template](.env.test.local.template) for the required
+variables.
+
 ### Multiple Fortnox accounts
 
 Switch access token between calls. Each call uses the token that is currently

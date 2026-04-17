@@ -15,9 +15,14 @@ get your tenant ID by running the setup script from within the gem directory:
 bundle exec ruby bin/fortnox-setup
 ```
 
-Once you have a tenant ID, you can request access tokens programmatically with
-`Fortnox.request_access_token`. See the [README](README.md#authorization) for
-details.
+Then create `.env.test.local` from the template and fill in your credentials:
+
+```shell
+cp .env.test.local.template .env.test.local
+```
+
+Use `fortnox-update-env` to request a fresh access token. See the
+[README](README.md#updating-access-tokens-in-env-files) for details.
 
 ## Testing
 

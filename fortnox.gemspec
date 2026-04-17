@@ -16,7 +16,7 @@ Gem::Specification.new do |spec|
   spec.homepage      = 'https://github.com/accodeing/fortnox'
   spec.files         = Dir['CHANGELOG.md', 'LICENSE.txt', 'README.md', 'fortnox.gemspec', 'lib/**/*', 'config/*.yml']
   spec.bindir        = 'bin'
-  spec.executables   = ['fortnox-setup']
+  spec.executables   = ['fortnox-setup', 'fortnox-update-env']
   spec.require_paths = ['lib']
 
   spec.required_ruby_version = '>= 3.1.0'
