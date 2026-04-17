@@ -156,7 +156,7 @@ RSpec.describe Fortnox::Customer, order: :defined do
     end
 
     context 'with matches' do
-      subject do
+      subject(:results) do
         VCR.use_cassette("#{vcr_dir}/search_by_name") do
           described_class.search(name: 'Test')
         end
@@ -165,7 +165,7 @@ RSpec.describe Fortnox::Customer, order: :defined do
       it { is_expected.to be_instance_of(Array) }
 
       it 'returns 2 matches' do
-        expect(subject.size).to eq 2
+        expect(results.size).to eq 2
       end
     end
 
