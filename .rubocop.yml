@@ -1,0 +1,53 @@
+plugins:
+  - rubocop-rake
+  - rubocop-rspec
+
+AllCops:
+  TargetRubyVersion: 3.1
+  DisplayCopNames: true
+  NewCops: enable
+
+RSpec/SpecFilePathFormat:
+  Enabled: false
+
+Style/Attr:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Layout/LineLength:
+  Max: 120
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+
+Naming/RescuedExceptionsVariableName:
+  PreferredName: exception
+
+Style/WordArray:
+  EnforcedStyle: brackets
+
+Style/SymbolArray:
+  EnforcedStyle: brackets
+
+RSpec/MultipleMemoizedHelpers:
+  Max: 7
+
+RSpec/NestedGroups:
+  Max: 5
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/NamedSubject:
+  Enabled: false
+
+Gemspec/DevelopmentDependencies:
+  Enabled: false
+
+Naming/VariableNumber:
+  AllowedIdentifiers:
+    - request_1
+    - request_2

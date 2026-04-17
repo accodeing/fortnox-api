@@ -7,7 +7,8 @@ require 'countries'
 module Fortnox
   module Types
     include Dry.Types()
-    ISO3166.configure { |config| config.locales = %i[en sv] }
+
+    ISO3166.configure { |config| config.locales = [:en, :sv] }
 
     THE_TRUTH = { true => true, 'true' => true, false => false, 'false' => false }.freeze
 
@@ -19,14 +20,14 @@ module Fortnox
       'AMOUNT', 'PERCENT'
     )
 
-    CURRENT_HOUSEWORK_TYPES = %w[
-      CONSTRUCTION ELECTRICITY GLASSMETALWORK GROUNDDRAINAGEWORK
-      MASONRY PAINTINGWALLPAPERING HVAC MAJORAPPLIANCEREPAIR
-      MOVINGSERVICES ITSERVICES CLEANING TEXTILECLOTHING
-      SNOWPLOWING GARDENING BABYSITTING OTHERCARE OTHERCOSTS
+    CURRENT_HOUSEWORK_TYPES = [
+      'CONSTRUCTION', 'ELECTRICITY', 'GLASSMETALWORK', 'GROUNDDRAINAGEWORK',
+      'MASONRY', 'PAINTINGWALLPAPERING', 'HVAC', 'MAJORAPPLIANCEREPAIR',
+      'MOVINGSERVICES', 'ITSERVICES', 'CLEANING', 'TEXTILECLOTHING',
+      'SNOWPLOWING', 'GARDENING', 'BABYSITTING', 'OTHERCARE', 'OTHERCOSTS'
     ].freeze
 
-    LEGACY_HOUSEWORK_TYPES = %w[COOKING TUTORING].freeze
+    LEGACY_HOUSEWORK_TYPES = ['COOKING', 'TUTORING'].freeze
 
     HouseworkTypes = Types::Strict::String.enum(
       *(CURRENT_HOUSEWORK_TYPES + LEGACY_HOUSEWORK_TYPES)
@@ -76,7 +77,7 @@ module Fortnox
     Email = Strict::String
             .constrained(max_size: 1024, format: /^$|\A[[[:alnum:]]+-_.]+@[[[:alnum:]]+-_.]+\.[a-z]+\z/i)
             .optional
-            .constructor { |v| v.to_s.downcase unless v.nil? }
+            .constructor { |v| v&.to_s&.downcase }
 
     module Sized
       module String

@@ -17,7 +17,7 @@ module Fortnox
     attr :administration_fee, Coercible::Float.optional
 
     # AdministrationFeeVAT VAT of the document administration fee.
-    attr :administration_fee_vat <=> "AdministrationFeeVAT", Coercible::Float.optional, :read_only
+    attr :administration_fee_vat <=> 'AdministrationFeeVAT', Coercible::Float.optional, :read_only
 
     # Address1 Document address 1. 1024 characters
     attr :address1, Sized::String[1024]
@@ -77,7 +77,7 @@ module Fortnox
     attr :delivery_country, Sized::String[2], Parsers::CountryCode
 
     # DeliveryDate Date of delivery.
-    attr :delivery_date, Date.optional, Parsers:Date
+    attr :delivery_date, Date.optional, Parsers: Date
 
     # DeliveryName  Name of the recipient of the delivery
     attr :delivery_name, Sized::String[1024]

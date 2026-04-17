@@ -5,9 +5,9 @@ module Fortnox
     using RestEasy::Refinements
 
     configure do
-      path "orders"
-      instance_wrapper "Order"
-      collection_wrapper "Orders"
+      path 'orders'
+      instance_wrapper 'Order'
+      collection_wrapper 'Orders'
     end
 
     # CopyRemarks If remarks shall be copied from order to invoice
@@ -17,7 +17,7 @@ module Fortnox
     attr :invoice_reference, Coercible::Integer.optional, :read_only
 
     # OrderDate Date of order
-    attr :order_date, Date.optional, Parsers:Date
+    attr :order_date, Date.optional, Parsers: Date
 
     # OrderRows Separate object
     attr :order_rows, Strict::Array.of(Structs::OrderRow)
