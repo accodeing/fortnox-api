@@ -28,9 +28,6 @@ RSpec/MultipleMemoizedHelpers:
 RSpec/NestedGroups:
   Max: 5
 
-RSpec/MultipleExpectations:
-  Enabled: false
-
 RSpec/NamedSubject:
   Enabled: false
 

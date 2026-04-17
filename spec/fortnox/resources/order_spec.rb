@@ -57,7 +57,7 @@ RSpec.describe Fortnox::Order, order: :defined do
     describe "returned entity's nested model" do
       subject(:returned_nested_model) { response.model.order_rows.first }
 
-      it 'has the wanted attributes' do
+      it 'has the wanted attributes', :aggregate_failures do
         expect(returned_nested_model.article_number).to eq('101')
         expect(returned_nested_model.ordered_quantity).to eq(1.0)
       end
