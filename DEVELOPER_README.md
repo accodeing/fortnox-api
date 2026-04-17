@@ -6,6 +6,19 @@
 bundle install
 ```
 
+### Getting a Fortnox access token
+
+To run tests against a real Fortnox account you need an access token. First,
+get your tenant ID by running the setup script from within the gem directory:
+
+```shell
+bundle exec ruby bin/fortnox-setup
+```
+
+Once you have a tenant ID, you can request access tokens programmatically with
+`Fortnox.request_access_token`. See the [README](README.md#authorization) for
+details.
+
 ## Testing
 
 This gem has integration tests to verify the code against the real API. It uses

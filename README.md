@@ -257,6 +257,11 @@ Some resources support server-side filters:
 Fortnox::Invoice.only('unpaid')
 ```
 
+### Gotchas
+
+See [docs/gotchas.md](docs/gotchas.md) for known quirks and edge cases in the
+Fortnox API.
+
 ### Resources
 
 Each resource maps to a Fortnox API endpoint. Attributes are typed and
