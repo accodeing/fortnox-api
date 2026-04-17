@@ -23,7 +23,7 @@ Style/SymbolArray:
   EnforcedStyle: brackets
 
 RSpec/MultipleMemoizedHelpers:
-  Max: 7
+  Max: 6
 
 RSpec/NestedGroups:
   Max: 5
