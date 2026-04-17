@@ -3,7 +3,7 @@
 ## TODO
 
 ### Missing files (present on development, needed for 1.0)
-* [ ] README.md (rewrite for new rest-easy architecture)
+* [ ] README.md (rewrite for new rest-easy architecture, document that auth config is required before use)
 * [ ] CHANGELOG.md (start fresh for 1.0, reference old changelog)
 * [ ] LICENSE.txt
 * [ ] .env.template (document required env vars for contributors)
@@ -13,9 +13,9 @@
 * [ ] bin/ scripts (console, get_tokens, renew_tokens — adapt for rest-easy)
 
 ### Auth & testing
-* [ ] Set up proper authentication in lib/fortnox.rb (Bearer token via Fortnox OAuth2 access token)
-* [ ] Set up proper authentication in spec_helper.rb for recording VCR cassettes
-* [ ] Set up .env loading for tests (FORTNOX_ACCESS_TOKEN or similar)
+* [x] Set up proper authentication in lib/fortnox.rb (`Fortnox.access_token = token`)
+* [x] Set up proper authentication in spec_helper.rb for recording VCR cassettes
+* [x] Set up .env loading for tests (dotenv with .env.test / .env.test.local)
 * [ ] Re-record VCR cassettes with real auth to verify the gem works
 * [ ] Decide on token refresh strategy (see notes below)
 

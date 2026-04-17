@@ -1,11 +1,15 @@
 # frozen_string_literal: true
 
+require "dotenv"
+Dotenv.load(".env.test.local", ".env.test")
 require "fortnox"
 require "vcr"
 require "webmock/rspec"
 
 require "faraday/net_http"
 Faraday.default_adapter = :net_http
+
+Fortnox.access_token = ENV.fetch("FORTNOX_ACCESS_TOKEN")
 
 VCR.configure do |c|
   c.cassette_library_dir = "spec/vcr_cassettes"

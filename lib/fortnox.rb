@@ -14,10 +14,15 @@ module Fortnox
   class RequestError < RestEasy::Error; end
   class AttributeError < RestEasy::Error; end
 
+  class << self
+    def access_token=(token)
+      config.authentication = RestEasy::Auth::PSK.new(api_key: token)
+    end
+  end
+
   configure do
     base_url "https://api.fortnox.se/3"
     max_retries 3
-    authentication RestEasy::Auth::Null.new
     attribute_convention :PascalCase
   end
 end
