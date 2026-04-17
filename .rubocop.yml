@@ -27,8 +27,3 @@ RSpec/MultipleMemoizedHelpers:
 
 RSpec/NestedGroups:
   Max: 5
-
-Naming/VariableNumber:
-  AllowedIdentifiers:
-    - request_1
-    - request_2
