@@ -25,7 +25,7 @@ RSpec.describe Fortnox::Parsers::CountryCode do
         expect(described_class.parse('SE')).to eq('SE')
       end
 
-      it 'is case-insensitive' do
+      it 'is case-insensitive', :aggregate_failures do
         expect(described_class.parse('sverige')).to eq('SE')
         expect(described_class.parse('SVERIGE')).to eq('SE')
         expect(described_class.parse('se')).to eq('SE')
