@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'dry-struct'
+
 module Fortnox
   module Structs
     class DefaultDeliveryTypes < Dry::Struct
