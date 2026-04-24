@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    rest-easy-fortnox (0.0.1)
+    fortnox-api (0.0.1)
       countries
       dry-struct
       rest-easy (~> 1.0.0)
@@ -131,8 +131,8 @@ DEPENDENCIES
   bundler
   dotenv
   faraday-net_http
+  fortnox-api!
   rake
-  rest-easy-fortnox!
   rspec
   rubocop
   rubocop-rake
