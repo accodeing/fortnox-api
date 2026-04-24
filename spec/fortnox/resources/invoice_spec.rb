@@ -101,7 +101,7 @@ RSpec.describe Fortnox::Invoice, order: :defined do
   describe '.find' do
     describe 'by id' do
       let(:returned_object) do
-        VCR.use_cassette("#{vcr_dir}/find_id_1") { described_class.find(1) }
+        VCR.use_cassette("#{vcr_dir}/find_by_id") { described_class.find(1) }
       end
 
       context 'when found' do
@@ -136,26 +136,31 @@ RSpec.describe Fortnox::Invoice, order: :defined do
     describe 'by hash' do
       context 'when found' do
         context 'with single parameter' do
-          let(:returned_array) do
+          it 'returns matching invoices', :aggregate_failures do # rubocop:disable RSpec/ExampleLength
             VCR.use_cassette("#{vcr_dir}/single_param_find_by_hash") do
-              described_class.find(yourreference: 'Gandalf the Grey')
-            end
-          end
+              results = described_class.find(yourreference: 'Gandalf the Grey')
+              expect(results).not_to be_empty
 
-          it 'returns 2 matches' do
-            expect(returned_array.size).to eq 2
+              results.each do |result|
+                full = described_class.find(result.model.document_number)
+                expect(full.model.your_reference).to eq('Gandalf the Grey')
+              end
+            end
           end
         end
 
         context 'with multiple parameters' do
-          let(:returned_array) do
+          it 'returns matching invoices', :aggregate_failures do # rubocop:disable RSpec/ExampleLength
             VCR.use_cassette("#{vcr_dir}/multi_param_find_by_hash") do
-              described_class.find(yourreference: 'Gandalf the Grey', ourreference: 'Radagast the Brown')
-            end
-          end
+              results = described_class.find(yourreference: 'Gandalf the Grey', ourreference: 'Radagast the Brown')
+              expect(results).not_to be_empty
 
-          it 'returns 1 match' do
-            expect(returned_array.size).to eq 1
+              results.each do |result|
+                full = described_class.find(result.model.document_number)
+                expect(full.model.your_reference).to eq('Gandalf the Grey')
+                expect(full.model.our_reference).to eq('Radagast the Brown')
+              end
+            end
           end
         end
       end
@@ -189,14 +194,15 @@ RSpec.describe Fortnox::Invoice, order: :defined do
     context 'with matches' do
       subject(:results) do
         VCR.use_cassette("#{vcr_dir}/search_by_name") do
-          described_class.search(customername: 'Test')
+          described_class.search(customername: 'customer')
         end
       end
 
       it { is_expected.to be_instance_of(Array) }
 
-      it 'returns 1 match' do
-        expect(results.size).to eq 1
+      it 'returns matching invoices', :aggregate_failures do
+        expect(results).not_to be_empty
+        expect(results).to all(satisfy { |result| result.model.customer_name.downcase.include?('customer') })
       end
     end
 
@@ -221,8 +227,9 @@ RSpec.describe Fortnox::Invoice, order: :defined do
 
       it { is_expected.to be_instance_of(Array) }
 
-      it 'returns 2 matches' do
-        expect(results.size).to eq 2
+      it 'returns fully paid invoices', :aggregate_failures do
+        expect(results).not_to be_empty
+        expect(results).to all(satisfy { |result| result.model.balance == 0 })
       end
     end
 
@@ -250,7 +257,7 @@ RSpec.describe Fortnox::Invoice, order: :defined do
       end
 
       it 'accepts English country names' do
-        expect(save_invoice(country_code: 'NO', vcr_cassette: 'Norway').model.country_code).to eq('NO')
+        expect(save_invoice(country_code: 'NO').model.country_code).to eq('NO')
       end
 
       it 'skips nil values' do
@@ -280,7 +287,7 @@ RSpec.describe Fortnox::Invoice, order: :defined do
       end
 
       describe 'SE' do
-        subject { save_invoice(country_code: 'SE', vcr_cassette: 'Sverige').model.country_code }
+        subject { save_invoice(country_code: 'SE').model.country_code }
 
         it { is_expected.to eq('SE') }
       end
@@ -310,10 +317,7 @@ RSpec.describe Fortnox::Invoice, order: :defined do
           end
         end
 
-        it do
-          pending "test to rerecord VCR cassette, maybe it's working now"
-          expect(comments).to be_nil
-        end
+        it { is_expected.to be_nil }
       end
 
       context 'when setting value to empty string' do
@@ -325,8 +329,8 @@ RSpec.describe Fortnox::Invoice, order: :defined do
           end
         end
 
-        it 'does not reset the value' do
-          expect(comments).to eq('A comment to be reset')
+        it 'resets the value' do
+          expect(comments).to be_nil
         end
       end
     end
@@ -353,9 +357,8 @@ RSpec.describe Fortnox::Invoice, order: :defined do
           end
         end
 
-        it 'is nil' do
-          pending 'see comment above'
-          expect(country_code).to be_nil
+        it 'is replaced by Fortnox with the default value' do
+          expect(country_code).to eq('SE')
         end
       end
 
@@ -368,7 +371,7 @@ RSpec.describe Fortnox::Invoice, order: :defined do
           end
         end
 
-        it 'does not reset the country' do
+        it 'is replaced by Fortnox with the default value' do
           expect(country_code).to eq('SE')
         end
       end
@@ -394,6 +397,74 @@ RSpec.describe Fortnox::Invoice, order: :defined do
 
       it 'allows 255 characters' do
         expect { saving_with_max_row_description }.not_to raise_error
+      end
+    end
+
+    describe 'delivered_quantity' do
+      let(:invoice) do
+        model = described_class.stub(
+          customer_number: '1',
+          invoice_rows: [
+            Fortnox::Structs::InvoiceRow.new(
+              article_number: '101',
+              description: 'Test',
+              delivered_quantity: delivered_quantity
+            )
+          ]
+        )
+        VCR.use_cassette("#{vcr_dir}/#{cassette}") { described_class.save(model) }
+      end
+
+      context 'with three decimals' do
+        let(:cassette) { 'row_delivered_quantity_decimals' }
+        let(:delivered_quantity) { 1.123 }
+
+        it 'rounds to two decimals' do
+          expect(invoice.model.invoice_rows.first.delivered_quantity).to eq 1.12
+        end
+      end
+
+      context 'when third decimal is 5' do
+        let(:cassette) { 'row_delivered_quantity_decimals_round_up' }
+        let(:delivered_quantity) { 1.125 }
+
+        it 'rounds up' do
+          expect(invoice.model.invoice_rows.first.delivered_quantity).to eq 1.13
+        end
+      end
+    end
+
+    describe 'price' do
+      let(:invoice) do
+        model = described_class.stub(
+          customer_number: '1',
+          invoice_rows: [
+            Fortnox::Structs::InvoiceRow.new(
+              article_number: '101',
+              description: 'Test',
+              price: price
+            )
+          ]
+        )
+        VCR.use_cassette("#{vcr_dir}/#{cassette}") { described_class.save(model) }
+      end
+
+      context 'with three decimals' do
+        let(:cassette) { 'row_price_limit' }
+        let(:price) { 1.123 }
+
+        it 'rounds to two decimals' do
+          expect(invoice.model.invoice_rows.first.price).to eq 1.12
+        end
+      end
+
+      context 'when third decimal is 5' do
+        let(:cassette) { 'row_price_limit_round_up' }
+        let(:price) { 1.125 }
+
+        it 'rounds up' do
+          expect(invoice.model.invoice_rows.first.price).to eq 1.13
+        end
       end
     end
   end

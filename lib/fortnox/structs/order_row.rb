@@ -4,7 +4,7 @@ module Fortnox
   module Structs
     class OrderRow < DocumentRow
       # OrderedQuantity Ordered quantity
-      attribute :ordered_quantity, Types::Coercible::Float
+      attr :ordered_quantity, Types::Coercible::Float
     end
   end
 end

@@ -41,10 +41,10 @@ module Fortnox
     key :customer_number, Sized::String[1024]
 
     # DefaultDeliveryTypes
-    attr :default_delivery_types, Structs::DefaultDeliveryTypes
+    attr :default_delivery_types, Structs::DefaultDeliveryTypes, Parsers::Struct.for(Structs::DefaultDeliveryTypes)
 
     # DefaultTemplates
-    attr :default_templates, Structs::DefaultTemplates
+    attr :default_templates, Structs::DefaultTemplates, Parsers::Struct.for(Structs::DefaultTemplates)
 
     # DeliveryAddress1 First delivery address of the customer. 1024 characters
     attr :delivery_address1, Sized::String[1024]

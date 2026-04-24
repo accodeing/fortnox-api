@@ -2,11 +2,13 @@
 http_interactions:
 - request:
     method: post
-    uri: https://api.fortnox.se/3/orders/
+    uri: https://api.fortnox.se/3/orders
     body:
       encoding: UTF-8
-      string: '{"Order":{"CustomerNumber":"1","TaxReductionType":"rut","OrderRows":[{"ArticleNumber":"101","HouseWork":true,"HouseWorkType":"MOVINGSERVICES","OrderedQuantity":1.0}]}}'
+      string: '{"Order":{"Country":"","CustomerNumber":"1","DeliveryCountry":"","Labels":[],"TaxReductionType":"rut","OrderRows":[{"ArticleNumber":"101","HouseWork":true,"HouseWorkType":"MOVINGSERVICES","OrderedQuantity":1.0}]}}'
     headers:
+      User-Agent:
+      - Faraday v2.14.1
       Content-Type:
       - application/json
       Accept:
@@ -15,8 +17,6 @@ http_interactions:
       - "<AUTHORIZATION>"
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      User-Agent:
-      - Ruby
   response:
     status:
       code: 201
@@ -25,17 +25,21 @@ http_interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 30 Jan 2023 10:33:59 GMT
+      - Fri, 24 Apr 2026 12:59:45 GMT
       Location:
       - orders
       X-Build:
-      - 16d854443d
+      - 58ce5df7dc
       X-Frame-Options:
       - sameorigin
+      X-Krakend:
+      - Version 2.13.3
+      X-Krakend-Completed:
+      - 'false'
       X-Rack-Responsetime:
-      - '274'
+      - '466'
       X-Uid:
-      - 158036d9
+      - 21c79a59
       Transfer-Encoding:
       - chunked
       Server:
@@ -49,17 +53,16 @@ http_interactions:
       Content-Security-Policy:
       - 'upgrade-insecure-requests;frame-ancestors https://*.fortnox.se;report-uri
         /api/cspreport;connect-src ''self'' https://a.storyblok.com wss://*.fortnox.se
-        *.fortnox.se *.findity.com mybusiness.pwc.se themes.googleusercontent.com
+        *.fortnox.se *.findity.com *.ingest.de.sentry.io mybusiness.pwc.se themes.googleusercontent.com
         s3.amazonaws.com/helpjuice-static/ *.helpjuice.com *.vimeo.com fonts.googleapis.com
-        fonts.gstatic.com api.cling.se wss://api.cling.se ''unsafe-inline'' ''unsafe-eval''
-        blob: data:'
+        fonts.gstatic.com fortnox.piwik.pro api.cling.se wss://api.cling.se app.boardeaser.com
+        ''unsafe-inline'' ''unsafe-eval'' blob: data:'
       Strict-Transport-Security:
       - max-age=31536000; includeSubdomains
     body:
       encoding: UTF-8
-      string: '{"Order":{"@url":"https:\/\/api.fortnox.se\/3\/orders\/14","@urlTaxReductionList":"https:\/\/api.fortnox.se\/3\/taxreductions?filter=orders&referencenumber=14","AdministrationFee":0,"AdministrationFeeVAT":0,"Address1":"","Address2":"","BasisTaxReduction":0,"Cancelled":false,"City":"New
-        York","Comments":"","ContributionPercent":0,"ContributionValue":0,"CopyRemarks":false,"Country":"","CostCenter":"","Currency":"SEK","CurrencyRate":1,"CurrencyUnit":1,"CustomerName":"Updated
-        name","CustomerNumber":"1","DeliveryState":"delivery","DeliveryAddress1":"","DeliveryAddress2":"","DeliveryCity":"","DeliveryCountry":"","DeliveryDate":null,"DeliveryName":"","DeliveryZipCode":"","DocumentNumber":"14","EmailInformation":{"EmailAddressFrom":null,"EmailAddressTo":"","EmailAddressCC":null,"EmailAddressBCC":null,"EmailSubject":"Order
-        {no} bifogas","EmailBody":" "},"ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","Freight":0,"FreightVAT":0,"Gross":0,"HouseWork":false,"InvoiceReference":"0","Labels":[],"Language":"SV","Net":0,"NotCompleted":false,"OfferReference":"0","OrderDate":"2023-01-30","OrderRows":[{"AccountNumber":3001,"ArticleNumber":"101","ContributionPercent":"0","ContributionValue":"0","Cost":0,"CostCenter":"","DeliveredQuantity":"0","Description":"Hammer","Discount":0,"DiscountType":"PERCENT","HouseWork":true,"HouseWorkHoursToReport":null,"HouseWorkType":"MOVINGSERVICES","OrderedQuantity":"1","Price":0,"Project":"","ReservedQuantity":"0","RowId":12,"StockPointCode":null,"StockPointId":null,"Total":0,"Unit":"","VAT":0}],"OrderType":"Order","OrganisationNumber":"","OurReference":"","Phone1":"","Phone2":"","PriceList":"A","PrintTemplate":"oc","Project":"","WarehouseReady":true,"OutboundDate":"2023-01-30","Remarks":"","RoundOff":0,"Sent":false,"TaxReduction":null,"TermsOfDelivery":"","TermsOfPayment":"30","TimeBasisReference":null,"Total":0,"TotalToPay":0,"TotalVAT":0,"VATIncluded":false,"WayOfDelivery":"","YourReference":"","YourOrderNumber":"","ZipCode":"10001","StockPointCode":null,"StockPointId":null,"TaxReductionType":"rut"}}'
-  recorded_at: Mon, 30 Jan 2023 10:33:59 GMT
-recorded_with: VCR 6.1.0
+      string: '{"Order":{"@url":"https:\/\/api.fortnox.se\/3\/orders\/19","@urlTaxReductionList":"https:\/\/api.fortnox.se\/3\/taxreductions?filter=orders&referencenumber=19","Address1":"","Address2":"","AdministrationFee":0,"AdministrationFeeVAT":0,"BasisTaxReduction":0,"Cancelled":false,"City":"","Comments":"","ContributionPercent":0,"ContributionValue":0,"CopyRemarks":false,"CostCenter":"","Country":"","Currency":"SEK","CurrencyRate":1,"CurrencyUnit":1,"CustomerName":"Customer
+        with IDN email","CustomerNumber":"1","DeliveryAddress1":"","DeliveryAddress2":"","DeliveryCity":"","DeliveryCountry":"","DeliveryDate":null,"DeliveryName":"","DeliveryState":"delivery","DeliveryZipCode":"","DocumentNumber":"19","EmailInformation":{"EmailAddressFrom":null,"EmailAddressTo":"user@test.se","EmailAddressCC":null,"EmailAddressBCC":null,"EmailSubject":"Order
+        {no} bifogas","EmailBody":" "},"ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","Freight":0,"FreightVAT":0,"Gross":0,"HouseWork":false,"InvoiceReference":"0","Labels":[],"Language":"SV","Net":0,"NotCompleted":false,"OfferReference":"0","OrderDate":"2026-04-24","OrderRows":[{"AccountNumber":3001,"ArticleNumber":"101","ContributionPercent":"0","ContributionValue":"0","Cost":0,"CostCenter":"","DeliveredQuantity":"0","Description":"Hammer","Discount":0,"DiscountType":"PERCENT","HouseWork":true,"HouseWorkHoursToReport":null,"HouseWorkType":"MOVINGSERVICES","OrderedQuantity":"1","Price":0,"Project":"","ReservedQuantity":"0","RowId":32,"StockPointCode":null,"StockPointId":null,"Total":0,"Unit":"","VAT":25,"VATCode":"MP1"}],"OrderType":"Order","OrganisationNumber":"","OurReference":"","OutboundDate":"2026-04-24","Phone1":"","Phone2":"","PriceList":"A","PrintTemplate":"oc","Project":"","Remarks":"","RoundOff":0,"Sent":false,"StockPointCode":null,"StockPointId":null,"TaxReduction":null,"TaxReductionType":"rut","TermsOfDelivery":"","TermsOfPayment":"30","TimeBasisReference":null,"Total":0,"TotalToPay":0,"TotalVAT":0,"VATIncluded":false,"WarehouseReady":true,"WayOfDelivery":"","YourOrderNumber":"","YourReference":"","ZipCode":""}}'
+  recorded_at: Fri, 24 Apr 2026 12:59:45 GMT
+recorded_with: VCR 6.4.0

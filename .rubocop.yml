@@ -13,6 +13,13 @@ RSpec/SpecFilePathFormat:
 Style/Attr:
   Enabled: false
 
+Style/AccessorGrouping:
+  Exclude:
+    - 'lib/fortnox/resources/**/*'
+    - 'lib/fortnox/struct.rb'
+    - 'spec/fortnox/struct_spec.rb'
+    - 'spec/fortnox/resource_spec.rb'
+
 Style/Documentation:
   Enabled: false
 

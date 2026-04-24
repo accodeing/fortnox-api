@@ -27,9 +27,33 @@ module Fortnox
       end
     end
 
-    after_serialise do |data|
-      # Wrap request body
-      { config.instance_wrapper => data }
+    def serialise
+      data = if meta.new?
+               # For new records, serialise all attributes and strip nils (rely on Fortnox defaults)
+               super.compact
+             elsif __changes__.empty?
+               super
+             else
+               serialise_changes_only
+             end
+
+      { self.class.config.instance_wrapper => data }
+    end
+
+    private
+
+    # Only serialise changed attributes, preserve nils
+    def serialise_changes_only
+      klass = self.class
+      data = {}
+      __changes__.each do |model_name, value|
+        attr_def = klass.all_attribute_definitions[model_name]
+        next unless attr_def
+
+        data[attr_def.api_name] = attr_def.serialise_value(value)
+      end
+
+      data
     end
 
     class << self
@@ -58,6 +82,15 @@ module Fortnox
       def find_all_by(hash)
         response = get(path: config.path.to_s, params: hash)
         parse(response)
+      end
+
+      [:get, :post, :put, :delete].each do |method|
+        define_method(method) do |**options|
+          options[:headers] ||= {}
+          options[:headers]['Content-Type'] = 'application/json'
+          options[:headers]['Accept'] = 'application/json'
+          super(**options)
+        end
       end
     end
   end

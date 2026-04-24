@@ -27,7 +27,7 @@ module Fortnox
 
         return 'Sverige' if country_code == 'SE'
 
-        ::ISO3166::Country.new(country_code).iso_short_name
+        ::ISO3166::Country.new(country_code).translations['en']
       end
     end
   end

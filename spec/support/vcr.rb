@@ -15,7 +15,11 @@ VCR.configure do |c|
   c.filter_sensitive_data('<ACCESS_TOKEN>') { ENV.fetch('FORTNOX_ACCESS_TOKEN', 'dummy') }
   c.filter_sensitive_data('<ACCESS_TOKEN>') do |interaction|
     if interaction.response.headers['Content-Type']&.first&.include?('application/json')
-      body = JSON.parse(interaction.response.body) rescue nil
+      body = begin
+        JSON.parse(interaction.response.body)
+      rescue JSON::ParserError
+        nil
+      end
       body&.dig('access_token')
     end
   end
@@ -33,8 +37,16 @@ VCR.configure do |c|
     elsif actual.body.empty? || expected.body.empty?
       false
     else
-      actual_json = JSON.parse(actual.body) rescue actual.body
-      expected_json = JSON.parse(expected.body) rescue expected.body
+      actual_json = begin
+        JSON.parse(actual.body)
+      rescue JSON::ParserError
+        actual.body
+      end
+      expected_json = begin
+        JSON.parse(expected.body)
+      rescue JSON::ParserError
+        expected.body
+      end
       actual_json == expected_json
     end
   end

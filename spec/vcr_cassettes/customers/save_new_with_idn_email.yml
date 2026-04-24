@@ -2,11 +2,13 @@
 http_interactions:
 - request:
     method: post
-    uri: https://api.fortnox.se/3/customers/
+    uri: https://api.fortnox.se/3/customers
     body:
       encoding: UTF-8
       string: '{"Customer":{"Email":"user@teståäö.se","Name":"Customer with IDN email"}}'
     headers:
+      User-Agent:
+      - Faraday v2.14.1
       Content-Type:
       - application/json
       Accept:
@@ -15,33 +17,31 @@ http_interactions:
       - "<AUTHORIZATION>"
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      User-Agent:
-      - Ruby
   response:
     status:
       code: 201
       message: Created
     headers:
       Content-Length:
-      - '1479'
+      - '1481'
       Content-Type:
       - application/json
       Date:
-      - Thu, 22 Jan 2026 21:10:13 GMT
+      - Fri, 24 Apr 2026 12:22:02 GMT
       Location:
       - customers
       X-Build:
-      - 0a146b2789
+      - 58ce5df7dc
       X-Frame-Options:
       - sameorigin
       X-Krakend:
-      - Version 2.9.4
+      - Version 2.13.3
       X-Krakend-Completed:
       - 'false'
       X-Rack-Responsetime:
-      - '227'
+      - '214'
       X-Uid:
-      - 5e6d835b
+      - 21f8cd34
       Server:
       - Fortnox
       X-Content-Type-Options:
@@ -61,7 +61,7 @@ http_interactions:
       - max-age=31536000; includeSubdomains
     body:
       encoding: UTF-8
-      string: '{"Customer":{"@url":"https:\/\/api.fortnox.se\/3\/customers\/2","Address1":null,"Address2":null,"City":null,"Country":null,"Comments":null,"Currency":"SEK","CostCenter":null,"CountryCode":null,"Active":true,"CustomerNumber":"2","DefaultDeliveryTypes":{"Invoice":"PRINT","Order":"PRINT","Offer":"PRINT"},"DefaultTemplates":{"Order":"DEFAULTTEMPLATE","Offer":"DEFAULTTEMPLATE","Invoice":"DEFAULTTEMPLATE","CashInvoice":"DEFAULTTEMPLATE"},"DeliveryAddress1":null,"DeliveryAddress2":null,"DeliveryCity":null,"DeliveryCountry":null,"DeliveryCountryCode":null,"DeliveryFax":null,"DeliveryName":null,"DeliveryPhone1":null,"DeliveryPhone2":null,"DeliveryZipCode":null,"Email":"user@test\u00e5\u00e4\u00f6.se","EmailInvoice":"","EmailInvoiceBCC":"","EmailInvoiceCC":"","EmailOffer":"","EmailOfferBCC":"","EmailOfferCC":"","EmailOrder":"","EmailOrderBCC":"","EmailOrderCC":"","ExternalReference":null,"Fax":null,"GLN":null,"GLNDelivery":null,"InvoiceAdministrationFee":null,"InvoiceDiscount":null,"InvoiceFreight":null,"InvoiceRemark":"","Name":"Customer
+      string: '{"Customer":{"@url":"https:\/\/api.fortnox.se\/3\/customers\/25","Address1":null,"Address2":null,"City":null,"Country":null,"Comments":null,"Currency":"SEK","CostCenter":null,"CountryCode":null,"Active":true,"CustomerNumber":"25","DefaultDeliveryTypes":{"Invoice":"PRINT","Order":"PRINT","Offer":"PRINT"},"DefaultTemplates":{"Order":"DEFAULTTEMPLATE","Offer":"DEFAULTTEMPLATE","Invoice":"DEFAULTTEMPLATE","CashInvoice":"DEFAULTTEMPLATE"},"DeliveryAddress1":null,"DeliveryAddress2":null,"DeliveryCity":null,"DeliveryCountry":null,"DeliveryCountryCode":null,"DeliveryFax":null,"DeliveryName":null,"DeliveryPhone1":null,"DeliveryPhone2":null,"DeliveryZipCode":null,"Email":"user@test\u00e5\u00e4\u00f6.se","EmailInvoice":"","EmailInvoiceBCC":"","EmailInvoiceCC":"","EmailOffer":"","EmailOfferBCC":"","EmailOfferCC":"","EmailOrder":"","EmailOrderBCC":"","EmailOrderCC":"","ExternalReference":null,"Fax":null,"GLN":null,"GLNDelivery":null,"InvoiceAdministrationFee":null,"InvoiceDiscount":null,"InvoiceFreight":null,"InvoiceRemark":"","Name":"Customer
         with IDN email","OrganisationNumber":"","OurReference":"","Phone1":null,"Phone2":null,"PriceList":"A","Project":"","SalesAccount":null,"ShowPriceVATIncluded":false,"TermsOfDelivery":"","TermsOfPayment":"","Type":"COMPANY","VATNumber":"","VATType":"SEVAT","VisitingAddress":null,"VisitingCity":null,"VisitingCountry":null,"VisitingCountryCode":null,"VisitingZipCode":null,"WayOfDelivery":"","WWW":"","YourReference":"","ZipCode":null}}'
-  recorded_at: Thu, 22 Jan 2026 21:10:13 GMT
-recorded_with: VCR 6.2.0
+  recorded_at: Fri, 24 Apr 2026 12:22:00 GMT
+recorded_with: VCR 6.4.0

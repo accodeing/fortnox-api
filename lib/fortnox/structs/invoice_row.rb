@@ -3,11 +3,13 @@
 module Fortnox
   module Structs
     class InvoiceRow < DocumentRow
-      # PriceExcludingVAT Price per unit excluding VAT.
-      attribute? :price_excluding_vat, Coercible::Float.optional.with(private: true)
+      using RestEasy::Refinements
 
-      # TotalExcludingVAT  Total amount for the row excluding VAT.
-      attribute? :total_excluding_vat, Coercible::Float.optional.with(private: true)
+      # PriceExcludingVAT Price per unit excluding VAT.
+      attr :price_excluding_vat <=> 'PriceExcludingVAT', Coercible::Float.optional, :read_only
+
+      # TotalExcludingVAT Total amount for the row excluding VAT.
+      attr :total_excluding_vat <=> 'TotalExcludingVAT', Coercible::Float.optional, :read_only
     end
   end
 end
