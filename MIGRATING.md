@@ -7,18 +7,6 @@ architecture.
 For the old code and documentation, see the
 [v0.9.2 release](https://github.com/accodeing/fortnox-api/tree/v0.9.2).
 
-## Gem name
-
-The gem has been renamed from `fortnox-api` to `rest-easy-fortnox`.
-
-```ruby
-# Before
-gem 'fortnox-api'
-
-# After
-gem 'rest-easy-fortnox'
-```
-
 ## Ruby version
 
 The minimum Ruby version is now 3.1 (was 2.7).

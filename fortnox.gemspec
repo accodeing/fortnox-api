@@ -5,7 +5,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'fortnox/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'rest-easy-fortnox'
+  spec.name          = 'fortnox-api'
   spec.authors       = ['Jonas Schubert Erlandsson', 'Hannes Elvemyr', 'Felix Holmgren', 'Mike Eirih', 'Claude Code']
   spec.email         = ['info@accodeing.com']
   spec.license       = "LGPL-3.0"

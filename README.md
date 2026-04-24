@@ -82,7 +82,7 @@ Ruby 3.1 or higher.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'rest-easy-fortnox'
+gem 'fortnox-api'
 ```
 
 And then execute:
