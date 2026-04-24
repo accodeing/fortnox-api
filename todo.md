@@ -45,7 +45,7 @@
 * [x] Invoice/Order filter tests — seeded data manually (fully paid invoices, cancelled orders)
 * [x] Invoice/Order search — fixed search terms to match seeded data
 * [x] Country code handling: parser used `iso_short_name` (e.g. 'United Kingdom of Great Britain and Northern Ireland') instead of `translations['en']` ('United Kingdom')
-* [ ] Order nested model test uses price that exceeds Fortnox limit after VAT — fix test data
+* [x] Order nested model test uses price that exceeds Fortnox limit after VAT — fix test data
 * [ ] Implement `# TODO: new attribute` items across resources (25+ attributes pending)
 * [ ] Pagination metadata and Collection class:
   - Basic pagination works — users can pass `find(page: 2, limit: 50)` and get the correct page back.
@@ -58,9 +58,9 @@
 ### Tests to port from old gem
 * [ ] Housework type tests — 18+ types tested against Fortnox API, each with own VCR cassette. Verifies each type is accepted and catches legacy/deprecated types. Was in separate `housework_types_spec.rb`, not in order spec. Includes ROT/RUT tax reduction type validation and edge cases (OTHERCOSTS can't have housework=true, wrong tax reduction type raises error).
 
-### Pending test issues (3 pending)
-* Invoice: reset to nil (2 tests — pre-existing pending, testing Fortnox behaviour)
-* Order: nested model save (2 tests) — price `-9_999_999_999` worked with old gem (sent only specified fields) but now rest-easy sends all attributes, causing Fortnox to calculate VAT that exceeds the limit. Fix after rest-easy gets diff support, then re-record cassette. Separate commit since this is a Fortnox behaviour change.
+### Pending test issues (resolved)
+* [x] Invoice: reset to nil — resolved
+* [x] Order: nested model save — fixed by using a reasonable price (`10` instead of `-9_999_999_999`)
 
 ### Testing strategy
 * All failures found during re-recording were serialisation issues (sending data TO Fortnox), never parsing issues (reading data FROM Fortnox). VCR cassettes only protect against parsing regressions — serialisation bugs are invisible during replay because VCR matches on method + URL, not request body.
