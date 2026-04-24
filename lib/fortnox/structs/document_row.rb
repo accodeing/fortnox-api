@@ -1,70 +1,65 @@
 # frozen_string_literal: true
 
-require 'dry-struct'
-
 module Fortnox
   module Structs
-    class DocumentRow < Dry::Struct
+    class DocumentRow < Fortnox::Struct
+      using RestEasy::Refinements
       include Fortnox::Types
 
-      transform_keys do |key|
-        RestEasy::Conventions::PascalCase.new.parse(key)
-      end
-
       # AccountNumber Account number. 4 digits
-      attribute? :account_number, Types::AccountNumber
+      attr :account_number, Types::AccountNumber
 
       # ArticleNumber Article number. 50 characters
-      attribute? :article_number, Types::Sized::String[50]
+      attr :article_number, Types::Sized::String[50]
 
       # ContributionPercent Contribution Percent.
-      attribute? :contribution_percent, Coercible::Float.optional.with(private: true)
+      attr :contribution_percent, Coercible::Float.optional, :read_only
 
       # ContributionValue Contribution Value.
-      attribute? :contribution_value, Coercible::Float.optional.with(private: true)
+      attr :contribution_value, Coercible::Float.optional, :read_only
 
       # CostCenter Code of the cost center for the row.
-      attribute? :cost_center, Coercible::String.optional
+      attr :cost_center, Coercible::String.optional
 
       # DeliveredQuantity Delivered quantity. 14 digits
-      attribute? :delivered_quantity, Types::Sized::Float[-9_999_999_999_999.9, 9_999_999_999_999.9]
+      attr :delivered_quantity, Types::Sized::Float[-9_999_999_999_999.9, 9_999_999_999_999.9]
 
       # Description Description Row description. 255 characters
-      attribute? :description, Types::Sized::String[255]
+      attr :description, Types::Sized::String[255]
 
       # Discount amount. 12 digits (for amount) / 5 digits (for percent)
       # TODO(hannes): Verify that we can send in more than 5 digits through
       # the actual API for DiscountType PERCENT. This cannot be done until
       # we fix issue #62...
-      attribute? :discount, Types::Sized::Float[0.0, 99_999_999_999.9]
+      attr :discount, Types::Sized::Float[0.0, 99_999_999_999.9]
 
       # DiscountType The type of discount used for the row.
-      attribute? :discount_type, Types::DiscountTypes
+      attr :discount_type, Types::DiscountTypes
 
       # HouseWork If the row is housework
-      attribute? :housework, Bool.optional
+      attr :housework <=> 'HouseWork', Bool.optional
 
       # HouseWorkHoursToReport Hours to be reported if the quantity of the row should not be used as hours.
       # 5 digits
-      attribute? :housework_hours_to_report, Types::Sized::Integer[0, 99_999]
+      attr :housework_hours_to_report <=> 'HouseWorkHoursToReport', Types::Sized::Integer[0, 99_999]
 
       # HouseWorkType The type of housework.
-      attribute? :housework_type, Types::HouseworkTypes
+      attr :housework_type <=> 'HouseWorkType', Types::HouseworkTypes
 
       # Price Price per unit. 12 digits
-      attribute? :price, Types::Sized::Float[-99_999_999_999.9, 99_999_999_999.9]
+      attr :price, Types::Sized::Float[-99_999_999_999.9, 99_999_999_999.9]
 
       # Project Code of the project for the row.
-      attribute? :project, Coercible::String.optional
+      attr :project, Coercible::String.optional
 
       # Total Total amount for the row.
-      attribute? :total, Coercible::Float.optional.with(private: true)
+      attr :total, Coercible::Float.optional, :read_only
 
       # Unit Code of the unit for the row.
-      attribute? :unit, Coercible::String.optional
+      attr :unit, Coercible::String.optional
 
       # VAT VAT percentage of the row.
-      attribute? :vat, Coercible::Integer.optional
+      attr :vat, Coercible::Integer.optional
     end
   end
 end

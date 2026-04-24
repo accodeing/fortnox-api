@@ -47,6 +47,7 @@ module Fortnox
       Faraday.post(OAUTH_TOKEN_URL) do |req|
         req.headers['Authorization'] = "Basic #{credentials}"
         req.headers['Content-Type'] = 'application/x-www-form-urlencoded'
+        req.headers['Accept'] = 'application/json'
         req.headers['TenantId'] = tenant_id.to_s
         req.body = URI.encode_www_form(body)
       end

@@ -1,25 +1,19 @@
 # frozen_string_literal: true
 
-require 'dry-struct'
-
 module Fortnox
   module Structs
-    class DefaultTemplates < Dry::Struct
-      transform_keys do |key|
-        RestEasy::Conventions::PascalCase.new.parse(key)
-      end
-
+    class DefaultTemplates < Fortnox::Struct
       # Default template for orders. Must be a name of an existing print template.
-      attribute :order, Types::Strict::String
+      attr :order, Types::Strict::String
 
       # Default template for offers. Must be a name of an existing print template.
-      attribute :offer, Types::Strict::String
+      attr :offer, Types::Strict::String
 
       # Default template for invoices. Must be a name of an existing print template.
-      attribute :invoice, Types::Strict::String
+      attr :invoice, Types::Strict::String
 
       # Default template for cash invoices. Must be a name of an existing print template.
-      attribute :cash_invoice, Types::Strict::String
+      attr :cash_invoice, Types::Strict::String
     end
   end
 end
