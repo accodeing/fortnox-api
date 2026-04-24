@@ -39,7 +39,7 @@
 * [x] Label: split single `attr` line into two, add `path` and `:key`
 * [x] Strip nil values in `after_serialise` — Fortnox rejects explicit nulls
 * [x] Add `require 'dry-struct'` to struct files
-* [x] Generic `Parsers::Struct.for(klass)` and `Parsers::StructArray.for(klass)` with unit tests
+* [x] Generic `Mappers::Struct.for(klass)` and `Mappers::StructArray.for(klass)` with unit tests
 * [x] KEY_MAP for EDIInformation and EmailInformation (acronym key serialisation)
 * [x] Wire struct parsers to resources (customer, document, invoice, order)
 * [x] Invoice/Order filter tests — seeded data manually (fully paid invoices, cancelled orders)
@@ -58,7 +58,7 @@
 ### Tests to port from old gem
 * [ ] Housework type tests — 18+ types tested against Fortnox API, each with own VCR cassette. Verifies each type is accepted and catches legacy/deprecated types. Was in separate `housework_types_spec.rb`, not in order spec. Includes ROT/RUT tax reduction type validation and edge cases (OTHERCOSTS can't have housework=true, wrong tax reduction type raises error).
 
-### Pending test issues (4 pending)
+### Pending test issues (3 pending)
 * Invoice: reset to nil (2 tests — pre-existing pending, testing Fortnox behaviour)
 * Order: nested model save (2 tests) — price `-9_999_999_999` worked with old gem (sent only specified fields) but now rest-easy sends all attributes, causing Fortnox to calculate VAT that exceeds the limit. Fix after rest-easy gets diff support, then re-record cassette. Separate commit since this is a Fortnox behaviour change.
 
@@ -71,15 +71,15 @@
 * [ ] Update sends all attributes — add a `full_update` setting (default `true` for backwards compatibility). When `false`, use `__changes__` to only send changed fields. Fortnox gem should set `full_update false`.
 * [ ] Error classes — rest-easy defines `RemoteServerError` and `RateLimitError` but never uses them. Consider removing them to avoid confusion.
 * [ ] Missing test: stub → update → save flow (updating an unsaved instance and saving it). Not tested in rest-easy specs.
-* [ ] Nested object serialisation — `Attribute#to_json_value` falls back to `.to_s` for unknown types, silently producing garbage like `"#<Fortnox::Structs::...>"`. Add a check for `respond_to?(:to_hash)` and call `value.to_hash`. No new dependencies needed. Currently worked around with parsers in Fortnox gem.
-* [ ] Type as parser — when a type argument to `attr` responds to `.parse` and `.serialise`, rest-easy should use it as both type and parser. Currently it consumes it as the parser and leaves no type, requiring an explicit parser argument. This would allow `attr :edi_information, Structs::EDIInformation` instead of `attr :edi_information, Structs::EDIInformation, Parsers::Struct.for(Structs::EDIInformation)`.
+* [ ] Nested object serialisation — `Attribute#to_json_value` falls back to `.to_s` for unknown types, silently producing garbage like `"#<Fortnox::Structs::...>"`. Add a check for `respond_to?(:to_hash)` and call `value.to_hash`. No new dependencies needed. Currently worked around with mappers in Fortnox gem.
+* [ ] Type as parser — when a type argument to `attr` responds to `.parse` and `.serialise`, rest-easy should use it as both type and parser. Currently it consumes it as the parser and leaves no type, requiring an explicit parser argument. This would allow `attr :edi_information, Structs::EDIInformation` instead of `attr :edi_information, Structs::EDIInformation, Mappers::Struct.for(Structs::EDIInformation)`.
 * [ ] Nil stripping — currently worked around in `Fortnox::Resource.after_serialise`. Should be resolved by `full_update false` — unchanged nil attributes won't be sent. Remove the workaround after that.
 
 ### Struct improvements
 * [x] Read-only/computed fields on structs — added `:read_only` flag to `Fortnox::Struct.attr`. Fields like `total`, `contribution_percent`, `price_excluding_vat` are now excluded from serialisation. Replaces the old `.with(private: true)` which was never enforced.
 
 ### Naming
-* [ ] Rename `Parsers` to `Mappers` to align with rest-easy documentation terminology
+* [x] Rename `Parsers` to `Mappers` to align with rest-easy documentation terminology
 * [x] Rename project from `fortnox` to `fortnox-api`
 
 ### Infrastructure
