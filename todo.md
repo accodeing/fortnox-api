@@ -56,7 +56,7 @@
 * [x] Missing `:key` flag — all resources now have key defined (Invoice/Order inherit from Document, Label has `:key` on `id`)
 
 ### Tests to port from old gem
-* [ ] Housework type tests — 18+ types tested against Fortnox API, each with own VCR cassette. Verifies each type is accepted and catches legacy/deprecated types. Was in separate `housework_types_spec.rb`, not in order spec. Includes ROT/RUT tax reduction type validation and edge cases (OTHERCOSTS can't have housework=true, wrong tax reduction type raises error).
+* [x] Housework type tests — 22 tests, all passing. Covers ROT/RUT types, legacy types, OTHERCOSTS edge case, and tax reduction type validation.
 
 ### Pending test issues (resolved)
 * [x] Invoice: reset to nil — resolved
@@ -86,8 +86,7 @@
 * [x] License — LGPL-3.0, same as old gem
 * [ ] CI setup (GitHub Actions to replace Travis CI)
 * [ ] Gem version bump strategy (currently 0.0.1, target 1.0.0)
-* [ ] Consider adding `bin/console` for development convenience
-* [ ] Create PR of current work and send to Jonas for review
+* [x] Create PR of current work and send to Jonas for review
 
 ### Collection
 ```Ruby
