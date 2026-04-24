@@ -80,12 +80,12 @@
 
 ### Naming
 * [ ] Rename `Parsers` to `Mappers` to align with rest-easy documentation terminology
-* [ ] Rename project from `fortnox` to `fortnox-api` — partially done, some places still reference the old name
+* [x] Rename project from `fortnox` to `fortnox-api`
 
 ### Infrastructure
 * [x] Rakefile
 * [x] .gitignore
-* [ ] License — should be LGPL-3.0, same as old gem. Currently set to MIT.
+* [x] License — LGPL-3.0, same as old gem
 * [ ] CI setup (GitHub Actions to replace Travis CI)
 * [ ] Gem version bump strategy (currently 0.0.1, target 1.0.0)
 * [ ] Consider adding `bin/console` for development convenience
