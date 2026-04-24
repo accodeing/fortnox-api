@@ -2,15 +2,15 @@
 
 require 'spec_helper'
 
-module FortnoxArrayParserTestStructs
+module FortnoxArrayMapperTestStructs
   class Simple < Fortnox::Struct
     attr :name, Fortnox::Types::Coercible::String.optional
   end
 end
 
-RSpec.describe Fortnox::Parsers::StructArray do
-  let(:parser) { described_class.for(FortnoxArrayParserTestStructs::Simple) }
-  let(:struct_parser) { Fortnox::Parsers::Struct.for(FortnoxArrayParserTestStructs::Simple) }
+RSpec.describe Fortnox::Mappers::StructArray do
+  let(:parser) { described_class.for(FortnoxArrayMapperTestStructs::Simple) }
+  let(:struct_parser) { Fortnox::Mappers::Struct.for(FortnoxArrayMapperTestStructs::Simple) }
 
   describe '.parse' do
     it 'returns empty array for nil input' do
@@ -35,7 +35,7 @@ RSpec.describe Fortnox::Parsers::StructArray do
     end
 
     it 'delegates each element to the struct parser' do
-      struct = FortnoxArrayParserTestStructs::Simple.new(name: 'hello')
+      struct = FortnoxArrayMapperTestStructs::Simple.new(name: 'hello')
       result = parser.serialise([struct])
       expect(result).to eq([struct_parser.serialise(struct)])
     end

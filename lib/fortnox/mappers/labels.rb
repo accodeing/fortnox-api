@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Fortnox
-  module Parsers
+  module Mappers
     module Labels
       def self.parse(labels)
         return [] unless labels.is_a?(Array)

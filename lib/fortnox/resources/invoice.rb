@@ -29,10 +29,10 @@ module Fortnox
     attr :contract_reference, Coercible::Integer.optional, :read_only
 
     # DueDate Due date of the invoice.
-    attr :due_date, Date.optional, Parsers::Date
+    attr :due_date, Date.optional, Mappers::Date
 
     # EDIInformation Separate EDIInformation object
-    attr :edi_information <=> 'EDIInformation', Structs::EDIInformation, Parsers::Struct.for(Structs::EDIInformation)
+    attr :edi_information <=> 'EDIInformation', Structs::EDIInformation, Mappers::Struct.for(Structs::EDIInformation)
 
     # EUQuarterlyReport EU Quarterly Report On / Off
     attr :eu_quarterly_report <=> 'EUQuarterlyReport', Bool.optional, Boolean
@@ -41,25 +41,25 @@ module Fortnox
     attr :final_pay_date, String
 
     # InvoiceDate Invoice date.
-    attr :invoice_date, Date.optional, Parsers::Date
+    attr :invoice_date, Date.optional, Mappers::Date
 
     # InvoicePeriodStart Start date of the invoice period.
-    attr :invoice_period_start, Date.optional, :read_only, Parsers::Date
+    attr :invoice_period_start, Date.optional, :read_only, Mappers::Date
 
     # InvoicePeriodEnd End date of the invoice period.
-    attr :invoice_period_end, Date.optional, :read_only, Parsers::Date
+    attr :invoice_period_end, Date.optional, :read_only, Mappers::Date
 
     # TODO: This is a new attribute
     attr :invoice_reference, Coercible::Integer.optional
 
     # InvoiceRows Separate object
-    attr :invoice_rows, Strict::Array.of(Structs::InvoiceRow), Parsers::StructArray.for(Structs::InvoiceRow)
+    attr :invoice_rows, Strict::Array.of(Structs::InvoiceRow), Mappers::StructArray.for(Structs::InvoiceRow)
 
     # InvoiceType The type of invoice.
     attr :invoice_type, Coercible::String.optional
 
     # LastRemindDate Date of last reminder.
-    attr :last_remind_date, Date.optional, :read_only, Parsers::Date
+    attr :last_remind_date, Date.optional, :read_only, Mappers::Date
 
     # NoxFinans If the invoice is managed by NoxFinans
     attr :nox_finans, Bool.optional, :read_only, Boolean
