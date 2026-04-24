@@ -3,7 +3,7 @@
 require 'countries'
 
 module Fortnox
-  module Parsers
+  module Mappers
     module CountryCode
       ISO3166.configure { |config| config.locales = [:en, :sv] }
 

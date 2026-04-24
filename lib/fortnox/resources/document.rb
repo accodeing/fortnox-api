@@ -44,7 +44,7 @@ module Fortnox
     attr :contribution_value, Coercible::Float.optional, :read_only
 
     # Country Country for the document address.
-    attr :country_code <=> 'Country', Sized::String[2], Parsers::CountryCode
+    attr :country_code <=> 'Country', Sized::String[2], Mappers::CountryCode
 
     # CostCenter Code of the cost center.
     attr :cost_center, Coercible::String.optional
@@ -74,10 +74,10 @@ module Fortnox
     attr :delivery_city, Sized::String[1024]
 
     # DeliveryCountry Country for the document delivery address.
-    attr :delivery_country, Sized::String[2], Parsers::CountryCode
+    attr :delivery_country, Sized::String[2], Mappers::CountryCode
 
     # DeliveryDate Date of delivery.
-    attr :delivery_date, Date.optional, Parsers::Date
+    attr :delivery_date, Date.optional, Mappers::Date
 
     # DeliveryName  Name of the recipient of the delivery
     attr :delivery_name, Sized::String[1024]
@@ -89,7 +89,7 @@ module Fortnox
     key :document_number, Coercible::Integer.optional
 
     # EmailInformation Separate EmailInformation object
-    attr :email_information, Structs::EmailInformation, Parsers::Struct.for(Structs::EmailInformation)
+    attr :email_information, Structs::EmailInformation, Mappers::Struct.for(Structs::EmailInformation)
 
     # ExternalInvoiceReference1 External document reference 1. 80 characters
     attr :external_invoice_reference1, Sized::String[80]
@@ -110,7 +110,7 @@ module Fortnox
     attr :housework <=> 'HouseWork', Bool.optional, :read_only, Boolean
 
     # TODO: Update comment to something resonable
-    attr :labels, Strict::Array.of(Types.Instance(Label)), Parsers::Labels
+    attr :labels, Strict::Array.of(Types.Instance(Label)), Mappers::Labels
 
     # Net Net amount
     attr :net, Coercible::Float.optional, :read_only

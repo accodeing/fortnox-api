@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Fortnox::Parsers::CountryCode do
+RSpec.describe Fortnox::Mappers::CountryCode do
   describe '.parse' do
     context 'with nil or empty string' do
       it 'returns empty string for nil' do
