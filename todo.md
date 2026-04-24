@@ -31,7 +31,7 @@
 * [x] Invoice — mostly passing, 7 pending (country code parser, EDI update, reset tests)
 * [x] Order — mostly passing, 7 pending (EmailInformation update, nested model price, search/filter data)
 * [x] Auth — all passing (2 tests)
-* [ ] Re-record all cassettes after rest-easy fixes (headers, update diff)
+* [x] Re-record all cassettes (rest-easy workarounds are in place)
 
 ### Code issues — found during re-recording
 * [x] Remove dead boolean parser
@@ -66,14 +66,12 @@
 * All failures found during re-recording were serialisation issues (sending data TO Fortnox), never parsing issues (reading data FROM Fortnox). VCR cassettes only protect against parsing regressions — serialisation bugs are invisible during replay because VCR matches on method + URL, not request body.
 * [x] Enable VCR request body matching — added custom `:json_body` matcher that compares parsed JSON (ignoring key order). Catches serialisation regressions during cassette replay.
 
-### rest-easy fixes needed (blocking cassette re-recording)
-* [ ] Default headers — add a `default_headers` setting to rest-easy that defaults to `{ 'Accept' => 'application/json', 'Content-Type' => 'application/json' }`. Client gems can override or extend via configure, same pattern as authentication.
-* [ ] Update sends all attributes — add a `full_update` setting (default `true` for backwards compatibility). When `false`, use `__changes__` to only send changed fields. Fortnox gem should set `full_update false`.
-* [ ] Error classes — rest-easy defines `RemoteServerError` and `RateLimitError` but never uses them. Consider removing them to avoid confusion.
-* [ ] Missing test: stub → update → save flow (updating an unsaved instance and saving it). Not tested in rest-easy specs.
-* [ ] Nested object serialisation — `Attribute#to_json_value` falls back to `.to_s` for unknown types, silently producing garbage like `"#<Fortnox::Structs::...>"`. Add a check for `respond_to?(:to_hash)` and call `value.to_hash`. No new dependencies needed. Currently worked around with mappers in Fortnox gem.
-* [ ] Type as parser — when a type argument to `attr` responds to `.parse` and `.serialise`, rest-easy should use it as both type and parser. Currently it consumes it as the parser and leaves no type, requiring an explicit parser argument. This would allow `attr :edi_information, Structs::EDIInformation` instead of `attr :edi_information, Structs::EDIInformation, Mappers::Struct.for(Structs::EDIInformation)`.
-* [ ] Nil stripping — currently worked around in `Fortnox::Resource.after_serialise`. Should be resolved by `full_update false` — unchanged nil attributes won't be sent. Remove the workaround after that.
+### rest-easy improvements (nice to have, no longer blocking)
+* Default headers — add a `default_headers` setting so client gems don't need to override every HTTP method. Currently worked around in `Fortnox::Resource`.
+* Error classes — `RemoteServerError` and `RateLimitError` are defined but never raised. Consider removing.
+* Missing test: stub → update → save flow (updating an unsaved instance and saving it).
+* Nested object serialisation — `Attribute#to_json_value` falls back to `.to_s` for unknown types. Add a `respond_to?(:to_hash)` check. Currently worked around with mappers in Fortnox gem.
+* Type as parser — when a type responds to `.parse`/`.serialise`, use it as both type and parser. Would simplify `attr :edi_information, Structs::EDIInformation` without needing an explicit mapper argument.
 
 ### Struct improvements
 * [x] Read-only/computed fields on structs — added `:read_only` flag to `Fortnox::Struct.attr`. Fields like `total`, `contribution_percent`, `price_excluding_vat` are now excluded from serialisation. Replaces the old `.with(private: true)` which was never enforced.
