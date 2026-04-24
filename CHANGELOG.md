@@ -12,7 +12,6 @@ and this project adheres to
 
 - Complete rewrite based on [rest-easy](https://gem.coop), replacing the
   HTTParty + Data Mapper architecture with a simpler resource class per entity
-- Gem renamed from `fortnox-api` to `rest-easy-fortnox`
 - Minimum Ruby version raised to 3.1
 
 For changes prior to the 1.0 rewrite, see the
