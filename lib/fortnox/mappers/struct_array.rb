@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Fortnox
-  module Parsers
+  module Mappers
     module StructArray
       def self.for(klass)
         Handler.new(Struct.for(klass))

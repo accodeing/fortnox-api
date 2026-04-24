@@ -3,7 +3,7 @@
 require 'date'
 
 module Fortnox
-  module Parsers
+  module Mappers
     module Date
       def self.parse(date_string)
         return nil if date_string.nil? || (date_string == '')

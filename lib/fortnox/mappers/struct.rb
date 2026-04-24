@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Fortnox
-  module Parsers
+  module Mappers
     module Struct
       def self.for(klass)
         Module.new do

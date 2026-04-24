@@ -17,10 +17,10 @@ module Fortnox
     attr :invoice_reference, Coercible::Integer.optional, :read_only
 
     # OrderDate Date of order
-    attr :order_date, Date.optional, Parsers::Date
+    attr :order_date, Date.optional, Mappers::Date
 
     # OrderRows Separate object
-    attr :order_rows, Strict::Array.of(Structs::OrderRow), Parsers::StructArray.for(Structs::OrderRow)
+    attr :order_rows, Strict::Array.of(Structs::OrderRow), Mappers::StructArray.for(Structs::OrderRow)
 
     # TODO: new attribute
     attr :delivery_state, Coercible::String.optional

@@ -2,14 +2,14 @@
 
 require 'spec_helper'
 
-module FortnoxParserTestStructs
+module FortnoxMapperTestStructs
   class Simple < Fortnox::Struct
     attr :name, Fortnox::Types::Coercible::String.optional
   end
 end
 
-RSpec.describe Fortnox::Parsers::Struct do
-  let(:parser) { described_class.for(FortnoxParserTestStructs::Simple) }
+RSpec.describe Fortnox::Mappers::Struct do
+  let(:parser) { described_class.for(FortnoxMapperTestStructs::Simple) }
 
   describe '.parse' do
     it 'creates a struct from a hash' do
@@ -24,7 +24,7 @@ RSpec.describe Fortnox::Parsers::Struct do
     end
 
     it 'delegates to the struct' do
-      struct = FortnoxParserTestStructs::Simple.new(name: 'hello')
+      struct = FortnoxMapperTestStructs::Simple.new(name: 'hello')
       expect(parser.serialise(struct)).to eq(struct.to_api_hash)
     end
   end
