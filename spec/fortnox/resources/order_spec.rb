@@ -37,7 +37,7 @@ RSpec.describe Fortnox::Order, order: :defined do
   end
 
   describe '.save with nested model' do
-    let(:nested_model_hash) { { price: -9_999_999_999, article_number: '101', ordered_quantity: 1 } }
+    let(:nested_model_hash) { { price: -7_999_999_999, article_number: '101', ordered_quantity: 1 } }
     let(:new_model) do
       described_class.stub(
         customer_number: '1',
@@ -51,7 +51,6 @@ RSpec.describe Fortnox::Order, order: :defined do
     end
 
     it 'does not raise any errors' do
-      pending 'Negative price exceeds Fortnox limit after VAT calculation'
       expect { response }.not_to raise_error
     end
 
@@ -59,9 +58,9 @@ RSpec.describe Fortnox::Order, order: :defined do
       subject(:returned_nested_model) { response.model.order_rows.first }
 
       it 'has the wanted attributes', :aggregate_failures do
-        pending 'Negative price exceeds Fortnox limit after VAT calculation'
-        expect(returned_nested_model.article_number).to eq('101')
-        expect(returned_nested_model.ordered_quantity).to eq(1.0)
+        nested_model_hash.each do |attribute, value|
+          expect(returned_nested_model.send(attribute)).to eq(value)
+        end
       end
     end
   end
