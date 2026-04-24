@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.name          = 'fortnox-api'
   spec.authors       = ['Jonas Schubert Erlandsson', 'Hannes Elvemyr', 'Felix Holmgren', 'Mike Eirih', 'Claude Code']
   spec.email         = ['info@accodeing.com']
-  spec.license       = "LGPL-3.0"
+  spec.license       = 'LGPL-3.0'
   spec.version       = Fortnox::VERSION.dup
 
   spec.summary       = 'Fortnox F3 REST API library, based on rest-easy.'
