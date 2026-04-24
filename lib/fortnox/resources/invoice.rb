@@ -32,7 +32,7 @@ module Fortnox
     attr :due_date, Date.optional, Parsers::Date
 
     # EDIInformation Separate EDIInformation object
-    attr :edi_information <=> 'EDIInformation', Structs::EDIInformation
+    attr :edi_information <=> 'EDIInformation', Structs::EDIInformation, Parsers::Struct.for(Structs::EDIInformation)
 
     # EUQuarterlyReport EU Quarterly Report On / Off
     attr :eu_quarterly_report <=> 'EUQuarterlyReport', Bool.optional, Boolean
@@ -53,7 +53,7 @@ module Fortnox
     attr :invoice_reference, Coercible::Integer.optional
 
     # InvoiceRows Separate object
-    attr :invoice_rows, Strict::Array.of(Structs::InvoiceRow)
+    attr :invoice_rows, Strict::Array.of(Structs::InvoiceRow), Parsers::StructArray.for(Structs::InvoiceRow)
 
     # InvoiceType The type of invoice.
     attr :invoice_type, Coercible::String.optional

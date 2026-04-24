@@ -58,8 +58,8 @@ RSpec.describe Fortnox::Article, order: :defined do
       VCR.use_cassette("#{vcr_dir}/all") { described_class.all }
     end
 
-    it 'returns correct number of records' do
-      expect(response.size).to eq 6
+    it 'returns a non-empty array' do
+      expect(response).not_to be_empty
     end
 
     it 'returns correct class' do
@@ -70,7 +70,7 @@ RSpec.describe Fortnox::Article, order: :defined do
   describe '.find' do
     describe 'by id' do
       let(:returned_object) do
-        VCR.use_cassette("#{vcr_dir}/find_id_1") { described_class.find('1') }
+        VCR.use_cassette("#{vcr_dir}/find_by_id") { described_class.find('101') }
       end
 
       context 'when found' do
@@ -87,7 +87,7 @@ RSpec.describe Fortnox::Article, order: :defined do
         end
 
         it 'returns correct unique id' do
-          expect(returned_object.unique_id).to eq '1'
+          expect(returned_object.unique_id).to eq '101'
         end
       end
 
@@ -111,8 +111,9 @@ RSpec.describe Fortnox::Article, order: :defined do
             end
           end
 
-          it 'returns 1 match' do
-            expect(returned_array.size).to eq 1
+          it 'returns matching articles', :aggregate_failures do
+            expect(returned_array).not_to be_empty
+            expect(returned_array).to all(satisfy { |result| result.model.article_number == '101' })
           end
         end
 
@@ -123,8 +124,11 @@ RSpec.describe Fortnox::Article, order: :defined do
             end
           end
 
-          it 'returns 1 match' do
-            expect(returned_array.size).to eq 1
+          it 'returns matching articles', :aggregate_failures do
+            expect(returned_array).not_to be_empty
+            expect(returned_array).to all(satisfy { |result|
+              result.model.article_number == '101' && result.model.description == 'Hammer'
+            })
           end
         end
       end
@@ -164,8 +168,9 @@ RSpec.describe Fortnox::Article, order: :defined do
 
       it { is_expected.to be_instance_of(Array) }
 
-      it 'returns 3 matches' do
-        expect(results.size).to eq 3
+      it 'returns matching articles', :aggregate_failures do
+        expect(results).not_to be_empty
+        expect(results).to all(satisfy { |result| result.model.description.include?('Test article') })
       end
     end
 

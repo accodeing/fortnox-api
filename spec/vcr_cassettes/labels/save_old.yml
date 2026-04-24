@@ -1,12 +1,14 @@
 ---
 http_interactions:
 - request:
-    method: get
-    uri: https://api.fortnox.se/3/units/blarg7
+    method: put
+    uri: https://api.fortnox.se/3/labels/6
     body:
-      encoding: US-ASCII
-      string: ''
+      encoding: UTF-8
+      string: '{"Label":{"Description":"LabelSpec6"}}'
     headers:
+      User-Agent:
+      - Faraday v2.14.1
       Content-Type:
       - application/json
       Accept:
@@ -15,29 +17,31 @@ http_interactions:
       - "<AUTHORIZATION>"
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      User-Agent:
-      - Ruby
   response:
     status:
       code: 200
       message: OK
     headers:
       Content-Length:
-      - '131'
+      - '45'
       Content-Type:
       - application/json
       Date:
-      - Mon, 30 Jan 2023 10:38:52 GMT
+      - Fri, 24 Apr 2026 12:20:44 GMT
       Vary:
       - Accept-Encoding
       X-Build:
-      - 16d854443d
+      - 58ce5df7dc
       X-Frame-Options:
       - sameorigin
+      X-Krakend:
+      - Version 2.13.3
+      X-Krakend-Completed:
+      - 'false'
       X-Rack-Responsetime:
-      - '80'
+      - '133'
       X-Uid:
-      - 9f84032d
+      - a2489b6f
       Server:
       - Fortnox
       X-Content-Type-Options:
@@ -49,15 +53,14 @@ http_interactions:
       Content-Security-Policy:
       - 'upgrade-insecure-requests;frame-ancestors https://*.fortnox.se;report-uri
         /api/cspreport;connect-src ''self'' https://a.storyblok.com wss://*.fortnox.se
-        *.fortnox.se *.findity.com mybusiness.pwc.se themes.googleusercontent.com
+        *.fortnox.se *.findity.com *.ingest.de.sentry.io mybusiness.pwc.se themes.googleusercontent.com
         s3.amazonaws.com/helpjuice-static/ *.helpjuice.com *.vimeo.com fonts.googleapis.com
-        fonts.gstatic.com api.cling.se wss://api.cling.se ''unsafe-inline'' ''unsafe-eval''
-        blob: data:'
+        fonts.gstatic.com fortnox.piwik.pro api.cling.se wss://api.cling.se app.boardeaser.com
+        ''unsafe-inline'' ''unsafe-eval'' blob: data:'
       Strict-Transport-Security:
       - max-age=31536000; includeSubdomains
     body:
-      encoding: ASCII-8BIT
-      string: '{"Unit":{"@url":"https:\/\/api.fortnox.se\/3\/units\/blarg7","Code":"blarg7","CodeEnglish":"","Description":"Updated
-        description"}}'
-  recorded_at: Mon, 30 Jan 2023 10:38:52 GMT
-recorded_with: VCR 6.1.0
+      encoding: UTF-8
+      string: '{"Label":{"Id":6,"Description":"LabelSpec6"}}'
+  recorded_at: Fri, 24 Apr 2026 12:20:42 GMT
+recorded_with: VCR 6.4.0

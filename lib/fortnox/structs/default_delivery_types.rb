@@ -1,22 +1,16 @@
 # frozen_string_literal: true
 
-require 'dry-struct'
-
 module Fortnox
   module Structs
-    class DefaultDeliveryTypes < Dry::Struct
-      transform_keys do |key|
-        RestEasy::Conventions::PascalCase.new.parse(key)
-      end
-
+    class DefaultDeliveryTypes < Fortnox::Struct
       # Default delivery type for invoices. Can be PRINT EMAIL or PRINTSERVICE.
-      attribute? :invoice, Types::DefaultDeliveryTypeValues
+      attr :invoice, Types::DefaultDeliveryTypeValues
 
       # Default delivery type for orders. Can be PRINT EMAIL or PRINTSERVICE.
-      attribute? :order, Types::DefaultDeliveryTypeValues
+      attr :order, Types::DefaultDeliveryTypeValues
 
       # Default delivery type for offers. Can be PRINT EMAIL or PRINTSERVICE.
-      attribute? :offer, Types::DefaultDeliveryTypeValues
+      attr :offer, Types::DefaultDeliveryTypeValues
     end
   end
 end

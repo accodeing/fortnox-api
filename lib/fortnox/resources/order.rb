@@ -20,7 +20,7 @@ module Fortnox
     attr :order_date, Date.optional, Parsers::Date
 
     # OrderRows Separate object
-    attr :order_rows, Strict::Array.of(Structs::OrderRow)
+    attr :order_rows, Strict::Array.of(Structs::OrderRow), Parsers::StructArray.for(Structs::OrderRow)
 
     # TODO: new attribute
     attr :delivery_state, Coercible::String.optional
