@@ -10,7 +10,7 @@ module Fortnox
     # Url Direct url to the record.
     attr :url <=> '@url', Coercible::String.optional, :read_only
 
-    # TODO: new attribute
+    # @urlTaxReductionList Direct URL to the tax reduction list.
     attr :tax_reduction_list_url <=> '@urlTaxReductionList', Coercible::String.optional, :read_only
 
     # AdministrationFee The document administration fee.
@@ -19,10 +19,10 @@ module Fortnox
     # AdministrationFeeVAT VAT of the document administration fee.
     attr :administration_fee_vat <=> 'AdministrationFeeVAT', Coercible::Float.optional, :read_only
 
-    # Address1 Document address 1. 1024 characters
+    # Address1 Document address 1.
     attr :address1, Sized::String[1024]
 
-    # Address2 Document address 2. 1024 characters
+    # Address2 Document address 2
     attr :address2, Sized::String[1024]
 
     # BasisTaxReduction Basis of tax reduction.
@@ -58,7 +58,7 @@ module Fortnox
     # CurrencyUnit Currency unit used for the document
     attr :currency_unit, Coercible::Float.optional
 
-    # CustomerName Name of the customer. 1024 characters
+    # CustomerName Name of the customer
     attr :customer_name, Sized::String[1024]
 
     # CustomerNumber Customer number of the customer.
@@ -91,10 +91,10 @@ module Fortnox
     # EmailInformation Separate EmailInformation object
     attr :email_information, Structs::EmailInformation, Mappers::Struct.for(Structs::EmailInformation)
 
-    # ExternalInvoiceReference1 External document reference 1. 80 characters
+    # ExternalInvoiceReference1 External document reference 1
     attr :external_invoice_reference1, Sized::String[80]
 
-    # ExternalInvoiceReference2 External document reference 2. 80 characters
+    # ExternalInvoiceReference2 External document reference 2
     attr :external_invoice_reference2, Sized::String[80]
 
     # Freight Freight cost of the document. 12 digits (incl. decimals)
@@ -124,13 +124,13 @@ module Fortnox
     # OrganisationNumber Organisation number of the customer for the document.
     attr :organisation_number, Coercible::String.optional, :read_only
 
-    # OurReference Our reference. 50 characters
+    # OurReference Our reference
     attr :our_reference, Sized::String[50]
 
-    # Phone1 Phone number 1 of the customer for the document. 1024 characters
+    # Phone1 Phone number 1 of the customer for the document
     attr :phone1, Sized::String[1024]
 
-    # Phone2 Phone number 2 of the customer for the document. 1024 characters
+    # Phone2 Phone number 2 of the customer for the document
     attr :phone2, Sized::String[1024]
 
     # PriceList Code of the price list.
@@ -142,7 +142,7 @@ module Fortnox
     # Project Code of the project.
     attr :project, Coercible::String.optional
 
-    # Remarks Remarks of the document. 1024 characters
+    # Remarks Remarks of the document
     attr :remarks, Sized::String[1024]
 
     # RoundOff Round off amount for the document.
@@ -154,8 +154,8 @@ module Fortnox
     # TaxReduction The amount of tax reduction.
     attr :tax_reduction, Coercible::Integer.optional, :read_only
 
-    # TODO: new attribute
-    attr :tax_reduction_type, String
+    # TaxReductionType Type of tax reduction.
+    attr :tax_reduction_type, TaxReductionTypes
 
     # TermsOfDelivery Code of the terms of delivery.
     attr :terms_of_delivery, Coercible::String.optional
@@ -175,28 +175,28 @@ module Fortnox
     # WayOfDelivery Code of the way of delivery.
     attr :way_of_delivery, Coercible::String.optional
 
-    # YourOrderNumber Your order number. 30 characters
-    attr :your_order_number, Sized::String[30]
+    # YourOrderNumber Your order number
+    attr :your_order_number, Sized::String[75]
 
-    # YourReference Your reference. 50 characters
+    # YourReference Your reference
     attr :your_reference, Sized::String[50]
 
-    # ZipCode Zip code of the document. 1024 characters
+    # ZipCode Zip code of the document
     attr :zip_code, Sized::String[1024]
 
     # Language Language code.
     attr :language, Coercible::String.optional
 
-    # TODO: new attribute
-    attr :outbound_date, String
+    # OutboundDate Date of outbound delivery.
+    attr :outbound_date, Date.optional, Mappers::Date
 
-    # TODO: new attribute
-    attr :time_basis_reference, String
+    # TimeBasisReference Reference to time basis.
+    attr :time_basis_reference, Coercible::Integer.optional
 
-    # TODO: new attribute
-    attr :total_to_pay, Coercible::Integer.optional
+    # TotalToPay Total amount to pay.
+    attr :total_to_pay, Coercible::Float.optional
 
-    # TODO: new attribute
+    # WarehouseReady If the document is warehouse ready.
     attr :warehouse_ready, Boolean
   end
 end

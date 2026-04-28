@@ -24,7 +24,10 @@ module Fortnox
       'CONSTRUCTION', 'ELECTRICITY', 'GLASSMETALWORK', 'GROUNDDRAINAGEWORK',
       'MASONRY', 'PAINTINGWALLPAPERING', 'HVAC', 'MAJORAPPLIANCEREPAIR',
       'MOVINGSERVICES', 'ITSERVICES', 'CLEANING', 'TEXTILECLOTHING',
-      'SNOWPLOWING', 'GARDENING', 'BABYSITTING', 'OTHERCARE', 'OTHERCOSTS'
+      'SNOWPLOWING', 'GARDENING', 'BABYSITTING', 'OTHERCARE', 'OTHERCOSTS',
+      'FURNISHING', 'HOMEMAINTENANCE', 'TRANSPORTATIONSERVICES',
+      'WASHINGANDCAREOFCLOTHING', 'SOLARCELLS', 'STORAGESELFPRODUCEDELECTRICITY',
+      'CHARGINGSTATIONELECTRICVEHICLE', 'EMPTYHOUSEWORK'
     ].freeze
 
     LEGACY_HOUSEWORK_TYPES = ['COOKING', 'TUTORING'].freeze
@@ -66,8 +69,28 @@ module Fortnox
       'PRINT', 'EMAIL', 'PRINTSERVICE'
     )
 
+    AccountingMethods = Types::Strict::String.enum(
+      '', 'ACCRUAL', 'CASH'
+    )
+
+    DeliveryStates = Types::Strict::String.enum(
+      '', 'registration', 'reservation', 'delivery'
+    )
+
+    PaymentWays = Types::Strict::String.enum(
+      '', 'CASH', 'CARD', 'AG'
+    )
+
     ProjectStatusTypes = Types::Strict::String.enum(
       'NOTSTARTED', 'ONGOING', 'COMPLETED'
+    )
+
+    InvoiceTypes = Types::Strict::String.enum(
+      '', 'INVOICE', 'AGREEMENTINVOICE', 'INTRESTINVOICE', 'SUMMARYINVOICE', 'CASHINVOICE'
+    )
+
+    TaxReductionTypes = Types::Strict::String.enum(
+      '', 'none', 'rot', 'rut', 'green'
     )
 
     AccountNumber = Coercible::Integer
