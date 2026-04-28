@@ -27,33 +27,19 @@ module Fortnox
       end
     end
 
-    def serialise
-      data = if meta.new?
-               # For new records, serialise all attributes and strip nils (rely on Fortnox defaults)
-               super.compact
-             elsif __changes__.empty?
-               super
-             else
-               serialise_changes_only
-             end
-
-      { self.class.config.instance_wrapper => data }
-    end
-
-    private
-
-    # Only serialise changed attributes, preserve nils
-    def serialise_changes_only
-      klass = self.class
-      data = {}
-      __changes__.each do |model_name, value|
-        attr_def = klass.all_attribute_definitions[model_name]
-        next unless attr_def
-
-        data[attr_def.api_name] = attr_def.serialise_value(value)
+    after_serialise do |data|
+      if meta.new?
+        # Strip nils for new records — rely on Fortnox defaults
+        data = data.compact
+      elsif __changes__.any?
+        # Only send changed attributes on update, preserving explicit nils
+        changed_api_names = __changes__.keys.filter_map do |model_name|
+          self.class.all_attribute_definitions[model_name]&.api_name
+        end
+        data = data.slice(*changed_api_names)
       end
 
-      data
+      { config.instance_wrapper => data }
     end
 
     class << self
