@@ -13,22 +13,22 @@ module Fortnox
     # @url Direct URL to the record.
     attr :url <=> '@url', Coercible::String.optional, :read_only
 
-    # Comments Comments on project. 512 characters
+    # Comments Comments on project
     attr :comments, Sized::String[512]
 
-    # ContactPerson ContactPerson for project. 50 characters
+    # ContactPerson ContactPerson for project
     attr :contact_person, Sized::String[50]
 
-    # Description Description of the project. 50 characters
+    # Description Description of the project
     attr :description, Sized::String[50]
 
     # EndDate End date of the project.
     attr :end_date, Date.optional, Mappers::Date
 
-    # ProjectLeader Projectleader. 50 characters
+    # ProjectLeader Projectleader
     attr :project_leader, Sized::String[50]
 
-    # ProjectNumber Projectnumber. 20 characters
+    # ProjectNumber Projectnumber
     key :project_number, Sized::String[20]
 
     # Status Status of the project

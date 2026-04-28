@@ -22,16 +22,16 @@ module Fortnox
     # OrderRows Separate object
     attr :order_rows, Strict::Array.of(Structs::OrderRow), Mappers::StructArray.for(Structs::OrderRow)
 
-    # TODO: new attribute
-    attr :delivery_state, Coercible::String.optional
+    # DeliveryState Delivery state of the order.
+    attr :delivery_state, DeliveryStates
 
-    # TODO: new attribute
+    # OrderType Type of order.
     attr :order_type, Coercible::String.optional
 
-    # TODO: new attribute
+    # StockPointCode Code of the stock point.
     attr :stock_point_code, Coercible::String.optional
 
-    # TODO: new attribute
+    # StockPointId ID of the stock point.
     attr :stock_point_id, Coercible::String.optional
   end
 end

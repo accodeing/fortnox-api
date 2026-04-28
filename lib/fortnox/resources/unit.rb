@@ -19,7 +19,7 @@ module Fortnox
     # Description The description of the unit.
     attr :description, Coercible::String.optional
 
-    # TODO: new attribute
-    attr :code_english, Coercible::String.optional
+    # CodeEnglish English code of the unit
+    attr :code_english, Sized::String[100]
   end
 end
