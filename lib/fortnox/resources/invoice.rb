@@ -11,7 +11,7 @@ module Fortnox
     end
 
     # AccountingMethod Accounting Method.
-    attr :accounting_method, Coercible::String.optional
+    attr :accounting_method, AccountingMethods
 
     # Balance Balance of the invoice.
     attr :balance, Coercible::Float.optional, :read_only
@@ -37,8 +37,8 @@ module Fortnox
     # EUQuarterlyReport EU Quarterly Report On / Off
     attr :eu_quarterly_report <=> 'EUQuarterlyReport', Bool.optional, Boolean
 
-    # TODO: new attribute
-    attr :final_pay_date, String
+    # FinalPayDate Final pay date of the invoice.
+    attr :final_pay_date, Date.optional, Mappers::Date
 
     # InvoiceDate Invoice date.
     attr :invoice_date, Date.optional, Mappers::Date
@@ -49,14 +49,17 @@ module Fortnox
     # InvoicePeriodEnd End date of the invoice period.
     attr :invoice_period_end, Date.optional, :read_only, Mappers::Date
 
-    # TODO: This is a new attribute
-    attr :invoice_reference, Coercible::Integer.optional
+    # InvoicePeriodReference Reference to the invoice period.
+    attr :invoice_period_reference, Coercible::String.optional
+
+    # InvoiceReference Reference to another invoice.
+    attr :invoice_reference, Coercible::String.optional
 
     # InvoiceRows Separate object
     attr :invoice_rows, Strict::Array.of(Structs::InvoiceRow), Mappers::StructArray.for(Structs::InvoiceRow)
 
     # InvoiceType The type of invoice.
-    attr :invoice_type, Coercible::String.optional
+    attr :invoice_type, InvoiceTypes
 
     # LastRemindDate Date of last reminder.
     attr :last_remind_date, Date.optional, :read_only, Mappers::Date
@@ -70,8 +73,8 @@ module Fortnox
     # OrderReference Reference to the order, if one exists.
     attr :order_reference, Coercible::Integer.optional, :read_only
 
-    # TODO: new attribute
-    attr :payment_way, String
+    # PaymentWay Payment way of the invoice.
+    attr :payment_way, PaymentWays
 
     # Reminders Number of reminders sent to the customer.
     attr :reminders, Coercible::Integer.optional, :read_only

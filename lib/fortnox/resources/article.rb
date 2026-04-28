@@ -16,7 +16,7 @@ module Fortnox
     # Active If the article is active
     attr :active, Bool.optional, Boolean
 
-    # ArticleNumber Article number. 50 characters
+    # ArticleNumber Article number
     key :article_number, Sized::String[50]
 
     # Bulky If the article is bulky.
@@ -24,10 +24,10 @@ module Fortnox
 
     # ConstructionAccount Account number for construction work (special VAT rules in Sweden).
     # The number must be of an existing account.
-    attr :construction_account, Sized::Integer[0, 9_999]
+    attr :construction_account, Sized::Integer[0, 99_999]
 
     # Depth The depth of the article in millimeters
-    attr :depth, Sized::Integer[0, 99_999_999]
+    attr :depth, Sized::Integer[0, 999_999_999]
 
     # Description The description of the article
     attr :description, Sized::String[200], :required
@@ -40,18 +40,18 @@ module Fortnox
 
     # EUAccount Account number for the sales account to EU.
     # The number must be of an existing account.
-    attr :eu_account <=> 'EUAccount', Sized::Integer[0, 9_999]
+    attr :eu_account <=> 'EUAccount', Sized::Integer[0, 99_999]
 
     # EUVATAccount Account number for the sales account to EU with VAT.
     # The number must be of an existing account.
-    attr :eu_vat_account <=> 'EUVATAccount', Sized::Integer[0, 9_999]
+    attr :eu_vat_account <=> 'EUVATAccount', Sized::Integer[0, 99_999]
 
     # ExportAccount Account number for the sales account outside EU.
     # The number must be of an existing account.
-    attr :export_account, Sized::Integer[0, 9_999]
+    attr :export_account, Sized::Integer[0, 99_999]
 
     # Height The height of the article in millimeters
-    attr :height, Sized::Integer[0, 99_999_999]
+    attr :height, Sized::Integer[0, 999_999_999]
 
     # Housework If the article is housework
     attr :housework, Bool.optional, Boolean
@@ -70,7 +70,7 @@ module Fortnox
 
     # PurchaseAccount Account number for purchase.
     # The number must be of an existing account.
-    attr :purchase_account, Sized::Integer[0, 9_999]
+    attr :purchase_account, Sized::Integer[0, 99_999]
 
     # PurchasePrice Purchase price of the article
     attr :purchase_price, Sized::Float[0.0, 99_999_999_999_999.9]
@@ -83,7 +83,7 @@ module Fortnox
 
     # SalesAccount Account number for the sales account in Sweden.
     # The number must be of an existing account.
-    attr :sales_account, Sized::Integer[0, 9_999]
+    attr :sales_account, Sized::Integer[0, 99_999]
 
     # SalesPrice Price of article for its default price list
     attr :sales_price, Coercible::Float.optional, :read_only
@@ -121,39 +121,39 @@ module Fortnox
     attr :webshop_article, Bool.optional, Boolean
 
     # Weight Weight of the article in grams
-    attr :weight, Sized::Integer[0, 99_999_999]
+    attr :weight, Sized::Integer[0, 999_999_999]
 
     # Width Width of the article in millimeters.
-    attr :width, Sized::Integer[0, 99_999_999]
+    attr :width, Sized::Integer[0, 999_999_999]
 
     # Expired If the article has expired
     attr :expired, Bool.optional, Boolean
 
-    # TODO: new attribute
+    # CostCalculationMethod Cost calculation method used for the article.
     attr :cost_calculation_method, Coercible::String.optional
 
-    # TODO: new attribute
+    # StockAccount Account number for stock.
     attr :stock_account, Coercible::Integer.optional
 
-    # TODO: new attribute
+    # StockChangeAccount Account number for stock changes.
     attr :stock_change_account, Coercible::Integer.optional
 
-    # TODO: new attribute
+    # DirectCost Direct cost of the article.
     attr :direct_cost, Coercible::Float.optional
 
-    # TODO: new attribute
+    # FreightCost Freight cost of the article.
     attr :freight_cost, Coercible::Float.optional
 
-    # TODO: new attribute
+    # OtherCost Other cost of the article.
     attr :other_cost, Coercible::Float.optional
 
-    # TODO: new attribute
+    # DefaultStockPoint Default stock point for the article.
     attr :default_stock_point, Coercible::String.optional
 
-    # TODO: new attribute
+    # DefaultStockLocation Default stock location for the article.
     attr :default_stock_location, Coercible::String.optional
 
-    # TODO: new attribute
+    # CommodityCode Commodity code of the article.
     attr :commodity_code, Coercible::String.optional
   end
 end
