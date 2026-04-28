@@ -28,16 +28,16 @@
 * [x] TermsOfPayment — all passing (9 tests)
 * [x] Article — all passing (21 tests)
 * [x] Customer — all passing (23 tests)
-* [x] Invoice — mostly passing, 7 pending (country code parser, EDI update, reset tests)
-* [x] Order — mostly passing, 7 pending (EmailInformation update, nested model price, search/filter data)
+* [x] Invoice — all passing
+* [x] Order — all passing
 * [x] Auth — all passing (2 tests)
-* [x] Re-record all cassettes (rest-easy workarounds are in place)
+* [x] Re-record all cassettes
 
 ### Code issues — found during re-recording
 * [x] Remove dead boolean parser
 * [x] Fix date parser
 * [x] Label: split single `attr` line into two, add `path` and `:key`
-* [x] Strip nil values in `after_serialise` — Fortnox rejects explicit nulls
+* [x] Serialise: strip nils for new records, only send changes on update (preserving explicit nils)
 * [x] Add `require 'dry-struct'` to struct files
 * [x] Generic `Mappers::Struct.for(klass)` and `Mappers::StructArray.for(klass)` with unit tests
 * [x] KEY_MAP for EDIInformation and EmailInformation (acronym key serialisation)
@@ -46,7 +46,7 @@
 * [x] Invoice/Order search — fixed search terms to match seeded data
 * [x] Country code handling: parser used `iso_short_name` (e.g. 'United Kingdom of Great Britain and Northern Ireland') instead of `translations['en']` ('United Kingdom')
 * [x] Order nested model test uses price that exceeds Fortnox limit after VAT — fix test data
-* [ ] Implement `# TODO: new attribute` items across resources (25+ attributes pending)
+* [x] Implement new attributes across resources
 * [ ] Pagination metadata and Collection class:
   - Basic pagination works — users can pass `find(page: 2, limit: 50)` and get the correct page back.
   - Fortnox returns `MetaInformation` (`@TotalResources`, `@TotalPages`, `@CurrentPage`) in collection responses, but this is currently stripped in `before_parse`.
@@ -57,10 +57,6 @@
 
 ### Tests to port from old gem
 * [x] Housework type tests — 22 tests, all passing. Covers ROT/RUT types, legacy types, OTHERCOSTS edge case, and tax reduction type validation.
-
-### Pending test issues (resolved)
-* [x] Invoice: reset to nil — resolved
-* [x] Order: nested model save — fixed by using a reasonable price (`10` instead of `-9_999_999_999`)
 
 ### Testing strategy
 * All failures found during re-recording were serialisation issues (sending data TO Fortnox), never parsing issues (reading data FROM Fortnox). VCR cassettes only protect against parsing regressions — serialisation bugs are invisible during replay because VCR matches on method + URL, not request body.
