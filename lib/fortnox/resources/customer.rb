@@ -190,10 +190,10 @@ module Fortnox
     # Active If the customer is active.
     attr :active, Boolean.optional
 
-    # Phone Phone number of the customer. Only present in collection responses.
+    # Phone number of the customer. Only present in collection responses.
     attr :phone, String.optional
 
-    # ExternalReference External reference
+    # External reference
     attr :external_reference, Sized::String[1024]
 
     # GLN Global Location Number
