@@ -25,11 +25,11 @@ http_interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 24 Apr 2026 12:59:48 GMT
+      - Wed, 29 Apr 2026 09:11:23 GMT
       Location:
       - orders
       X-Build:
-      - 58ce5df7dc
+      - 1fbde2b71a
       X-Frame-Options:
       - sameorigin
       X-Krakend:
@@ -37,9 +37,9 @@ http_interactions:
       X-Krakend-Completed:
       - 'false'
       X-Rack-Responsetime:
-      - '1090'
+      - '510'
       X-Uid:
-      - 426ce92e
+      - c79dc772
       Transfer-Encoding:
       - chunked
       Server:
@@ -61,8 +61,8 @@ http_interactions:
       - max-age=31536000; includeSubdomains
     body:
       encoding: UTF-8
-      string: '{"Order":{"@url":"https:\/\/api.fortnox.se\/3\/orders\/24","@urlTaxReductionList":"https:\/\/api.fortnox.se\/3\/taxreductions?filter=orders&referencenumber=24","Address1":"","Address2":"","AdministrationFee":0,"AdministrationFeeVAT":0,"BasisTaxReduction":0,"Cancelled":false,"City":"","Comments":"","ContributionPercent":0,"ContributionValue":0,"CopyRemarks":false,"CostCenter":"","Country":"","Currency":"SEK","CurrencyRate":1,"CurrencyUnit":1,"CustomerName":"Customer
-        with IDN email","CustomerNumber":"1","DeliveryAddress1":"","DeliveryAddress2":"","DeliveryCity":"","DeliveryCountry":"","DeliveryDate":null,"DeliveryName":"","DeliveryState":"delivery","DeliveryZipCode":"","DocumentNumber":"24","EmailInformation":{"EmailAddressFrom":null,"EmailAddressTo":"user@test.se","EmailAddressCC":null,"EmailAddressBCC":null,"EmailSubject":"Order
-        {no} bifogas","EmailBody":" "},"ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","Freight":0,"FreightVAT":0,"Gross":0,"HouseWork":false,"InvoiceReference":"0","Labels":[],"Language":"SV","Net":0,"NotCompleted":false,"OfferReference":"0","OrderDate":"2026-04-24","OrderRows":[{"AccountNumber":3001,"ArticleNumber":"101","ContributionPercent":"0","ContributionValue":"0","Cost":0,"CostCenter":"","DeliveredQuantity":"0","Description":"Hammer","Discount":0,"DiscountType":"PERCENT","HouseWork":true,"HouseWorkHoursToReport":null,"HouseWorkType":"GARDENING","OrderedQuantity":"1","Price":0,"Project":"","ReservedQuantity":"0","RowId":37,"StockPointCode":null,"StockPointId":null,"Total":0,"Unit":"","VAT":25,"VATCode":"MP1"}],"OrderType":"Order","OrganisationNumber":"","OurReference":"","OutboundDate":"2026-04-24","Phone1":"","Phone2":"","PriceList":"A","PrintTemplate":"oc","Project":"","Remarks":"","RoundOff":0,"Sent":false,"StockPointCode":null,"StockPointId":null,"TaxReduction":null,"TaxReductionType":"rut","TermsOfDelivery":"","TermsOfPayment":"30","TimeBasisReference":null,"Total":0,"TotalToPay":0,"TotalVAT":0,"VATIncluded":false,"WarehouseReady":true,"WayOfDelivery":"","YourOrderNumber":"","YourReference":"","ZipCode":""}}'
-  recorded_at: Fri, 24 Apr 2026 12:59:48 GMT
+      string: '{"Order":{"@url":"https:\/\/api.fortnox.se\/3\/orders\/47","@urlTaxReductionList":"https:\/\/api.fortnox.se\/3\/taxreductions?filter=orders&referencenumber=47","Address1":"","Address2":"","AdministrationFee":0,"AdministrationFeeVAT":0,"BasisTaxReduction":0,"Cancelled":false,"City":"","Comments":"","ContributionPercent":0,"ContributionValue":0,"CopyRemarks":false,"CostCenter":"","Country":"","Currency":"SEK","CurrencyRate":1,"CurrencyUnit":1,"CustomerName":"Customer
+        with IDN email","CustomerNumber":"1","DeliveryAddress1":"","DeliveryAddress2":"","DeliveryCity":"","DeliveryCountry":"","DeliveryDate":null,"DeliveryName":"","DeliveryState":"delivery","DeliveryZipCode":"","DocumentNumber":"47","EmailInformation":{"EmailAddressFrom":null,"EmailAddressTo":"user@test.se","EmailAddressCC":null,"EmailAddressBCC":null,"EmailSubject":"Order
+        {no} bifogas","EmailBody":" "},"ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","Freight":0,"FreightVAT":0,"Gross":0,"HouseWork":false,"InvoiceReference":"0","Labels":[],"Language":"SV","Net":0,"NotCompleted":false,"OfferReference":"0","OrderDate":"2026-04-29","OrderRows":[{"AccountNumber":3001,"ArticleNumber":"101","ContributionPercent":"0","ContributionValue":"0","Cost":0,"CostCenter":"","DeliveredQuantity":"0","Description":"Hammer","Discount":0,"DiscountType":"PERCENT","HouseWork":true,"HouseWorkHoursToReport":null,"HouseWorkType":"GARDENING","OrderedQuantity":"1","Price":0,"Project":"","ReservedQuantity":"0","RowId":60,"StockPointCode":null,"StockPointId":null,"Total":0,"Unit":"","VAT":25,"VATCode":"MP1"}],"OrderType":"Order","OrganisationNumber":"","OurReference":"","OutboundDate":"2026-04-29","Phone1":"","Phone2":"","PriceList":"A","PrintTemplate":"oc","Project":"","Remarks":"","RoundOff":0,"Sent":false,"StockPointCode":null,"StockPointId":null,"TaxReduction":null,"TaxReductionType":"rut","TermsOfDelivery":"","TermsOfPayment":"30","TimeBasisReference":null,"Total":0,"TotalToPay":0,"TotalVAT":0,"VATIncluded":false,"WarehouseReady":true,"WayOfDelivery":"","YourOrderNumber":"","YourReference":"","ZipCode":""}}'
+  recorded_at: Wed, 29 Apr 2026 09:11:23 GMT
 recorded_with: VCR 6.4.0

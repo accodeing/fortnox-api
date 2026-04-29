@@ -27,11 +27,11 @@ http_interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 24 Apr 2026 11:03:43 GMT
+      - Wed, 29 Apr 2026 09:00:08 GMT
       Vary:
       - Accept-Encoding
       X-Build:
-      - 58ce5df7dc
+      - 1fbde2b71a
       X-Frame-Options:
       - sameorigin
       X-Krakend:
@@ -39,9 +39,9 @@ http_interactions:
       X-Krakend-Completed:
       - 'false'
       X-Rack-Responsetime:
-      - '436'
+      - '195'
       X-Uid:
-      - 63b3fdfc
+      - 1902827c
       Server:
       - Fortnox
       X-Content-Type-Options:
@@ -63,5 +63,5 @@ http_interactions:
       encoding: UTF-8
       string: '{"Customer":{"@url":"https:\/\/api.fortnox.se\/3\/customers\/1","Address1":null,"Address2":null,"City":null,"Country":null,"Comments":null,"Currency":"SEK","CostCenter":null,"CountryCode":null,"Active":true,"CustomerNumber":"1","DefaultDeliveryTypes":{"Invoice":"PRINT","Order":"PRINT","Offer":"PRINT"},"DefaultTemplates":{"Order":"DEFAULTTEMPLATE","Offer":"DEFAULTTEMPLATE","Invoice":"DEFAULTTEMPLATE","CashInvoice":"DEFAULTTEMPLATE"},"DeliveryAddress1":null,"DeliveryAddress2":null,"DeliveryCity":null,"DeliveryCountry":null,"DeliveryCountryCode":null,"DeliveryFax":null,"DeliveryName":null,"DeliveryPhone1":null,"DeliveryPhone2":null,"DeliveryZipCode":null,"Email":"user@test.se","EmailInvoice":"","EmailInvoiceBCC":"","EmailInvoiceCC":"","EmailOffer":"","EmailOfferBCC":"","EmailOfferCC":"","EmailOrder":"","EmailOrderBCC":"","EmailOrderCC":"","ExternalReference":null,"Fax":null,"GLN":null,"GLNDelivery":null,"InvoiceAdministrationFee":null,"InvoiceDiscount":null,"InvoiceFreight":null,"InvoiceRemark":"","Name":"Customer
         with IDN email","OrganisationNumber":"","OurReference":"","Phone1":null,"Phone2":null,"PriceList":"A","Project":"","SalesAccount":null,"ShowPriceVATIncluded":false,"TermsOfDelivery":"","TermsOfPayment":"","Type":"COMPANY","VATNumber":"","VATType":"SEVAT","VisitingAddress":null,"VisitingCity":null,"VisitingCountry":null,"VisitingCountryCode":null,"VisitingZipCode":null,"WayOfDelivery":"","WWW":"","YourReference":"","ZipCode":null}}'
-  recorded_at: Fri, 24 Apr 2026 11:03:42 GMT
+  recorded_at: Wed, 29 Apr 2026 09:00:08 GMT
 recorded_with: VCR 6.4.0

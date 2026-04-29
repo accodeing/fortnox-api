@@ -27,11 +27,11 @@ http_interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 24 Apr 2026 11:03:12 GMT
+      - Wed, 29 Apr 2026 09:12:04 GMT
       Vary:
       - Accept-Encoding
       X-Build:
-      - 58ce5df7dc
+      - 1fbde2b71a
       X-Frame-Options:
       - sameorigin
       X-Krakend:
@@ -39,9 +39,9 @@ http_interactions:
       X-Krakend-Completed:
       - 'false'
       X-Rack-Responsetime:
-      - '461'
+      - '136'
       X-Uid:
-      - 86d34cc7
+      - 1c31e00d
       Server:
       - Fortnox
       X-Content-Type-Options:
@@ -61,8 +61,8 @@ http_interactions:
       - max-age=31536000; includeSubdomains
     body:
       encoding: UTF-8
-      string: '{"MetaInformation":{"@TotalResources":3,"@TotalPages":2,"@CurrentPage":1},"Projects":[{"@url":"https:\/\/api.fortnox.se\/3\/projects\/1","Description":"Some
+      string: '{"MetaInformation":{"@TotalResources":5,"@TotalPages":3,"@CurrentPage":1},"Projects":[{"@url":"https:\/\/api.fortnox.se\/3\/projects\/1","Description":"Some
         important project","EndDate":null,"ProjectLeader":null,"ProjectNumber":"1","Status":"ONGOING","StartDate":null},{"@url":"https:\/\/api.fortnox.se\/3\/projects\/2","Description":"Some
         important project","EndDate":null,"ProjectLeader":null,"ProjectNumber":"2","Status":"ONGOING","StartDate":null}]}'
-  recorded_at: Fri, 24 Apr 2026 11:03:12 GMT
+  recorded_at: Wed, 29 Apr 2026 09:12:04 GMT
 recorded_with: VCR 6.4.0

@@ -29,13 +29,13 @@ http_interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 24 Apr 2026 12:15:53 GMT
+      - Wed, 29 Apr 2026 08:49:42 GMT
       Pragma:
       - no-cache
       Vary:
       - Accept-Encoding
       X-Uid:
-      - 9972214d
+      - f5560448
       Transfer-Encoding:
       - chunked
       Server:
@@ -61,5 +61,5 @@ http_interactions:
       encoding: ASCII-8BIT
       string: '{"access_token":"<ACCESS_TOKEN>","expires_in":3600,"token_type":"bearer","scope":"article
         customer invoice order project settings"}'
-  recorded_at: Fri, 24 Apr 2026 12:15:51 GMT
+  recorded_at: Wed, 29 Apr 2026 08:49:42 GMT
 recorded_with: VCR 6.4.0
