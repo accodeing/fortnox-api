@@ -5,7 +5,7 @@
 ### Documentation
 * [x] README.md
 * [x] CHANGELOG.md
-* [x] LICENSE.txt
+* [x] LICENSE.md
 * [x] CONTRIBUTE.md
 * [x] DEVELOPER_README.md
 * [x] MIGRATING.md
