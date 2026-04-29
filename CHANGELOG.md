@@ -10,12 +10,12 @@ and this project adheres to
 
 Version 1.0 is a complete rewrite of the gem and is **not** a drop-in
 replacement for the 0.x series. Almost every public entry point has changed.
-See [MIGRATING.md](MIGRATING.md) for a guided upgrade and the sections below
+See [MIGRATING_TO_1.0.md](MIGRATING_TO_1.0.md) for a guided upgrade and the sections below
 for the full list of breaking changes.
 
 ### Changed
 
-- **Breaking** Complete rewrite based on [rest-easy](https://gem.coop),
+- **Breaking** Complete rewrite based on [rest-easy](https://github.com/accodeing/rest-easy),
   replacing the HTTParty + Data Mapper architecture with a single resource
   class per entity. The top-level namespace moves from `Fortnox::API` to
   `Fortnox` (e.g. `Fortnox::API::Repository::Customer` →
