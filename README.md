@@ -1,7 +1,7 @@
-# Fortnox
+# fortnox-api
 
 Ruby gem for Fortnox's version 3 REST API, built on
-[rest-easy](https://gem.coop). If you need to integrate an existing or new Ruby
+[rest-easy](https://github.com/accodeing/rest-easy). If you need to integrate an existing or new Ruby
 or Rails app against Fortnox this gem will save you a lot of time.
 
 Feel free to repay the community with some nice PRs of your own.
@@ -15,23 +15,19 @@ Adding more resources is quick and easy, see the
 
 ## Status
 
-The gem is being rewritten for version 1.0. The previous version used HTTParty
-and the Data Mapper pattern with separate model, type, mapper, and repository
-classes. The new version is built on [rest-easy](https://gem.coop), which
-replaces all of that with a single resource class per entity.
-
-The rewrite is in progress on the `rest-easy` branch. The core functionality
-(CRUD operations, typed attributes, immutable models) is in place. Authorization
-has been updated to use the Fortnox client credentials flow, replacing the old
-refresh token flow.
+Version 1.0 is a complete rewrite, built on
+[rest-easy](https://github.com/accodeing/rest-easy). The old HTTParty + Data
+Mapper architecture with separate model, type, mapper, and repository classes
+has been replaced by a single resource class per entity. Authorization uses the
+Fortnox client credentials flow.
 
 ## Migrating from 0.x
 
-See the [Migration guide](MIGRATING.md).
+See the [Migration guide](MIGRATING_TO_1.0.md).
 
 ## Architecture overview
 
-The gem uses the [rest-easy](https://gem.coop) framework to map between Ruby
+The gem uses the [rest-easy](https://github.com/accodeing/rest-easy) framework to map between Ruby
 objects and the Fortnox JSON API. Each resource is a class that declares its
 attributes with types and constraints. rest-easy handles the HTTP requests,
 JSON serialisation, and attribute convention mapping (PascalCase in the API,
@@ -301,4 +297,4 @@ See the [Contribute readme](CONTRIBUTE.md).
 
 ## License
 
-[MIT](LICENSE.txt). Copyright (c) 2015-2026 Accodeing to you KB.
+[LGPL-3.0](LICENSE.txt). Copyright (c) 2015-2026 Accodeing to you KB.
