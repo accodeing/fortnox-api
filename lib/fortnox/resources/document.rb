@@ -89,7 +89,7 @@ module Fortnox
     key :document_number, Coercible::Integer.optional
 
     # EmailInformation Separate EmailInformation object
-    attr :email_information, Structs::EmailInformation, Mappers::Struct.for(Structs::EmailInformation)
+    attr :email_information, Structs::EmailInformation, Mappers::EmailInformation
 
     # ExternalInvoiceReference1 External document reference 1
     attr :external_invoice_reference1, Sized::String[80]
