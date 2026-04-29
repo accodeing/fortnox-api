@@ -27,11 +27,11 @@ http_interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 24 Apr 2026 12:21:17 GMT
+      - Wed, 29 Apr 2026 09:12:06 GMT
       Vary:
       - Accept-Encoding
       X-Build:
-      - 58ce5df7dc
+      - 1fbde2b71a
       X-Frame-Options:
       - sameorigin
       X-Krakend:
@@ -39,9 +39,9 @@ http_interactions:
       X-Krakend-Completed:
       - 'false'
       X-Rack-Responsetime:
-      - '112'
+      - '123'
       X-Uid:
-      - 51bf8308
+      - d20d3947
       Server:
       - Fortnox
       X-Content-Type-Options:
@@ -62,5 +62,5 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"ErrorInformation":{"Error":1,"Message":"Kan inte hitta betalningsvillkoret.","Code":2000429}}'
-  recorded_at: Fri, 24 Apr 2026 12:21:15 GMT
+  recorded_at: Wed, 29 Apr 2026 09:12:06 GMT
 recorded_with: VCR 6.4.0

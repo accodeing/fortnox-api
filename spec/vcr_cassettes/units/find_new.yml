@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.fortnox.se/3/units/blarg20
+    uri: https://api.fortnox.se/3/units/blarg21
     body:
       encoding: US-ASCII
       string: ''
@@ -27,11 +27,11 @@ http_interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 24 Apr 2026 12:21:08 GMT
+      - Wed, 29 Apr 2026 09:02:00 GMT
       Vary:
       - Accept-Encoding
       X-Build:
-      - 58ce5df7dc
+      - 1fbde2b71a
       X-Frame-Options:
       - sameorigin
       X-Krakend:
@@ -39,9 +39,9 @@ http_interactions:
       X-Krakend-Completed:
       - 'false'
       X-Rack-Responsetime:
-      - '128'
+      - '159'
       X-Uid:
-      - 0e20d420
+      - 26bd084c
       Server:
       - Fortnox
       X-Content-Type-Options:
@@ -61,7 +61,7 @@ http_interactions:
       - max-age=31536000; includeSubdomains
     body:
       encoding: UTF-8
-      string: '{"Unit":{"@url":"https:\/\/api.fortnox.se\/3\/units\/blarg20","Code":"blarg20","CodeEnglish":"","Description":"A
+      string: '{"Unit":{"@url":"https:\/\/api.fortnox.se\/3\/units\/blarg21","Code":"blarg21","CodeEnglish":"","Description":"A
         value"}}'
-  recorded_at: Fri, 24 Apr 2026 12:21:06 GMT
+  recorded_at: Wed, 29 Apr 2026 09:02:00 GMT
 recorded_with: VCR 6.4.0

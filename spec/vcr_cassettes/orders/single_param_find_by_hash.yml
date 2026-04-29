@@ -27,11 +27,11 @@ http_interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 24 Apr 2026 11:04:38 GMT
+      - Wed, 29 Apr 2026 09:12:00 GMT
       Vary:
       - Accept-Encoding
       X-Build:
-      - 58ce5df7dc
+      - 1fbde2b71a
       X-Frame-Options:
       - sameorigin
       X-Krakend:
@@ -39,9 +39,9 @@ http_interactions:
       X-Krakend-Completed:
       - 'false'
       X-Rack-Responsetime:
-      - '467'
+      - '151'
       X-Uid:
-      - 62f0ba8d
+      - 89a35068
       Server:
       - Fortnox
       X-Content-Type-Options:
@@ -64,7 +64,7 @@ http_interactions:
       string: '{"MetaInformation":{"@TotalResources":2,"@TotalPages":1,"@CurrentPage":1},"Orders":[{"@url":"https:\/\/api.fortnox.se\/3\/orders\/1","Cancelled":false,"Currency":"SEK","CustomerName":"Customer
         with IDN email","CustomerNumber":"1","DeliveryDate":null,"DocumentNumber":"1","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","OrderDate":"2026-04-17","OrderType":"Order","Project":"","Sent":false,"Total":0},{"@url":"https:\/\/api.fortnox.se\/3\/orders\/2","Cancelled":false,"Currency":"SEK","CustomerName":"Customer
         with IDN email","CustomerNumber":"1","DeliveryDate":null,"DocumentNumber":"2","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","OrderDate":"2026-04-17","OrderType":"Order","Project":"","Sent":false,"Total":0}]}'
-  recorded_at: Fri, 24 Apr 2026 11:04:38 GMT
+  recorded_at: Wed, 29 Apr 2026 09:12:00 GMT
 - request:
     method: get
     uri: https://api.fortnox.se/3/orders/1
@@ -92,11 +92,11 @@ http_interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 24 Apr 2026 11:04:39 GMT
+      - Wed, 29 Apr 2026 09:12:00 GMT
       Vary:
       - Accept-Encoding
       X-Build:
-      - 58ce5df7dc
+      - 1fbde2b71a
       X-Frame-Options:
       - sameorigin
       X-Krakend:
@@ -104,9 +104,9 @@ http_interactions:
       X-Krakend-Completed:
       - 'false'
       X-Rack-Responsetime:
-      - '590'
+      - '298'
       X-Uid:
-      - ebadd7f0
+      - dea3e01e
       Server:
       - Fortnox
       X-Content-Type-Options:
@@ -130,7 +130,7 @@ http_interactions:
         with IDN email","CustomerNumber":"1","DeliveryAddress1":"","DeliveryAddress2":"","DeliveryCity":"","DeliveryCountry":"","DeliveryDate":null,"DeliveryName":"","DeliveryState":"delivery","DeliveryZipCode":"","DocumentNumber":"1","EmailInformation":{"EmailAddressFrom":null,"EmailAddressTo":"user@test.se","EmailAddressCC":null,"EmailAddressBCC":null,"EmailSubject":"Order
         {no} bifogas","EmailBody":" "},"ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","Freight":0,"FreightVAT":0,"Gross":0,"HouseWork":false,"InvoiceReference":"0","Labels":[],"Language":"SV","Net":0,"NotCompleted":false,"OfferReference":"0","OrderDate":"2026-04-17","OrderRows":[],"OrderType":"Order","OrganisationNumber":"","OurReference":"Belladonna
         Took","OutboundDate":"2026-04-17","Phone1":"","Phone2":"","PriceList":"A","PrintTemplate":"oc","Project":"","Remarks":"","RoundOff":0,"Sent":false,"StockPointCode":null,"StockPointId":null,"TaxReduction":null,"TaxReductionType":"none","TermsOfDelivery":"","TermsOfPayment":"30","TimeBasisReference":null,"Total":0,"TotalToPay":0,"TotalVAT":0,"VATIncluded":false,"WarehouseReady":true,"WayOfDelivery":"","YourOrderNumber":"","YourReference":"","ZipCode":""}}'
-  recorded_at: Fri, 24 Apr 2026 11:04:39 GMT
+  recorded_at: Wed, 29 Apr 2026 09:12:00 GMT
 - request:
     method: get
     uri: https://api.fortnox.se/3/orders/2
@@ -158,11 +158,11 @@ http_interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 24 Apr 2026 11:04:39 GMT
+      - Wed, 29 Apr 2026 09:12:00 GMT
       Vary:
       - Accept-Encoding
       X-Build:
-      - 58ce5df7dc
+      - 1fbde2b71a
       X-Frame-Options:
       - sameorigin
       X-Krakend:
@@ -170,9 +170,9 @@ http_interactions:
       X-Krakend-Completed:
       - 'false'
       X-Rack-Responsetime:
-      - '543'
+      - '237'
       X-Uid:
-      - a7bf1e86
+      - 4229d644
       Server:
       - Fortnox
       X-Content-Type-Options:
@@ -197,5 +197,5 @@ http_interactions:
         {no} bifogas","EmailBody":" "},"ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","Freight":0,"FreightVAT":0,"Gross":0,"HouseWork":false,"InvoiceReference":"0","Labels":[],"Language":"SV","Net":0,"NotCompleted":false,"OfferReference":"0","OrderDate":"2026-04-17","OrderRows":[],"OrderType":"Order","OrganisationNumber":"","OurReference":"Belladonna
         Took","OutboundDate":"2026-04-17","Phone1":"","Phone2":"","PriceList":"A","PrintTemplate":"oc","Project":"","Remarks":"","RoundOff":0,"Sent":false,"StockPointCode":null,"StockPointId":null,"TaxReduction":null,"TaxReductionType":"none","TermsOfDelivery":"","TermsOfPayment":"30","TimeBasisReference":null,"Total":0,"TotalToPay":0,"TotalVAT":0,"VATIncluded":false,"WarehouseReady":true,"WayOfDelivery":"","YourOrderNumber":"","YourReference":"Bodo
         Proudfoot","ZipCode":""}}'
-  recorded_at: Fri, 24 Apr 2026 11:04:39 GMT
+  recorded_at: Wed, 29 Apr 2026 09:12:00 GMT
 recorded_with: VCR 6.4.0
