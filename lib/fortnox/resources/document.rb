@@ -197,6 +197,6 @@ module Fortnox
     attr :total_to_pay, Coercible::Float.optional
 
     # WarehouseReady If the document is warehouse ready.
-    attr :warehouse_ready, Boolean
+    attr :warehouse_ready, Bool.optional, Boolean
   end
 end
