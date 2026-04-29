@@ -4,25 +4,28 @@ require 'spec_helper'
 
 module FortnoxArrayMapperTestStructs
   class Simple < Fortnox::Struct
-    attr :name, Fortnox::Types::Coercible::String.optional
+    attribute? :name, Fortnox::Types::Coercible::String.optional
   end
 end
 
+class FortnoxArrayMapperTestMapper < Fortnox::Mappers::Struct
+  struct FortnoxArrayMapperTestStructs::Simple
+end
+
 RSpec.describe Fortnox::Mappers::StructArray do
-  let(:parser) { described_class.for(FortnoxArrayMapperTestStructs::Simple) }
-  let(:struct_parser) { Fortnox::Mappers::Struct.for(FortnoxArrayMapperTestStructs::Simple) }
+  let(:mapper) { described_class.for(FortnoxArrayMapperTestMapper) }
 
   describe '.parse' do
     it 'returns empty array for nil input' do
-      expect(parser.parse(nil)).to eq([])
+      expect(mapper.parse(nil)).to eq([])
     end
 
     it 'raises an error for non-array input' do
-      expect { parser.parse('not an array') }.to raise_error(Fortnox::AttributeError)
+      expect { mapper.parse('not an array') }.to raise_error(Fortnox::AttributeError)
     end
 
-    it 'delegates each element to the struct parser', :aggregate_failures do
-      result = parser.parse([{ 'Name' => 'first' }, { 'Name' => 'second' }])
+    it 'delegates each element to the mapper', :aggregate_failures do
+      result = mapper.parse([{ 'Name' => 'first' }, { 'Name' => 'second' }])
       expect(result.size).to eq(2)
       expect(result.first.name).to eq('first')
       expect(result.last.name).to eq('second')
@@ -31,13 +34,13 @@ RSpec.describe Fortnox::Mappers::StructArray do
 
   describe '.serialise' do
     it 'returns empty array for nil input' do
-      expect(parser.serialise(nil)).to eq([])
+      expect(mapper.serialise(nil)).to eq([])
     end
 
-    it 'delegates each element to the struct parser' do
+    it 'delegates each element to the mapper' do
       struct = FortnoxArrayMapperTestStructs::Simple.new(name: 'hello')
-      result = parser.serialise([struct])
-      expect(result).to eq([struct_parser.serialise(struct)])
+      result = mapper.serialise([struct])
+      expect(result).to eq([FortnoxArrayMapperTestMapper.serialise(struct)])
     end
   end
 end

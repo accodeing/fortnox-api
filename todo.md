@@ -84,6 +84,10 @@
 * [ ] Gem version bump strategy (currently 0.0.1, target 1.0.0)
 * [x] Create PR of current work and send to Jonas for review
 
+### New changes
+- [ ] Try to revert structs to simple dry-struct objects. Let's move the mapper logic into the mappers.
+- [ ] Instead of overriding Resource#serialise, we should be able to use the already existing hooks, like after_serialise.
+
 ### Collection
 ```Ruby
 # frozen_string_literal: true
