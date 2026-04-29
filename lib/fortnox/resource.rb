@@ -39,6 +39,7 @@ module Fortnox
         data = data.slice(*changed_api_names)
       end
 
+      # TODO: rest-easy should do this wrapping for us.
       { config.instance_wrapper => data }
     end
 
