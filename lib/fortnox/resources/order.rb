@@ -20,7 +20,7 @@ module Fortnox
     attr :order_date, Date.optional, Mappers::Date
 
     # OrderRows Separate object
-    attr :order_rows, Strict::Array.of(Structs::OrderRow), Mappers::StructArray.for(Structs::OrderRow)
+    attr :order_rows, Strict::Array.of(Structs::OrderRow), Mappers::StructArray.for(Mappers::OrderRow)
 
     # DeliveryState Delivery state of the order.
     attr :delivery_state, DeliveryStates
