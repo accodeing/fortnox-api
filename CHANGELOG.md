@@ -8,23 +8,36 @@ and this project adheres to
 
 ## [Unreleased]
 
+Version 1.0 is a complete rewrite of the gem and is **not** a drop-in
+replacement for the 0.x series. Almost every public entry point has changed.
+See [MIGRATING.md](MIGRATING.md) for a guided upgrade and the sections below
+for the full list of breaking changes.
+
 ### Changed
 
-- Complete rewrite based on [rest-easy](https://gem.coop), replacing the
-  HTTParty + Data Mapper architecture with a single resource class per entity
-- Minimum Ruby version raised to 3.1
-- Authorization now uses the Fortnox client credentials flow, replacing the
-  old refresh token flow
-- `Fortnox.request_access_token` replaces
-  `Fortnox::API::Repository::Authentication` for token management
-- Country attributes on documents (`country_code`, `delivery_country`) now
-  only accept ISO alpha-2 codes (e.g. `'NO'`, `'SE'`). The old gem also
-  accepted country names like `'Norge'` or `'Norway'`.
-- Update requests now only send changed fields, matching the old gem's
-  behaviour. The full resource is no longer sent on every update.
-- Nested structs (EDIInformation, EmailInformation, InvoiceRow, etc.) now use
-  `Fortnox::Struct` base class with `attr` DSL and `<=>` for custom key
-  mappings
+- **Breaking** Complete rewrite based on [rest-easy](https://gem.coop),
+  replacing the HTTParty + Data Mapper architecture with a single resource
+  class per entity. The top-level namespace moves from `Fortnox::API` to
+  `Fortnox` (e.g. `Fortnox::API::Repository::Customer` →
+  `Fortnox::Customer`).
+- **Breaking** Minimum Ruby version raised to 3.1.
+- **Breaking** Authorization now uses the new Fortnox client credentials flow.
+  Refresh tokens are no longer needed, nor supported. A tenant ID is now required;
+  obtain one with the new `fortnox-setup` executable.
+- **Breaking** `Fortnox.request_access_token` replaces
+  `Fortnox::API::Repository::Authentication` for token management.
+- **Breaking** Configuration moves from `Fortnox::API.configuration` to
+  module-level setters such as `Fortnox.access_token=`.
+- **Breaking** Country attributes on documents (`country_code`,
+  `delivery_country`) now only accept ISO alpha-2 codes (e.g. `'NO'`,
+  `'SE'`). The old gem also accepted country names like `'Norge'` or
+  `'Norway'`.
+- **Breaking** Exception classes are renamed and consolidated, e.g.
+  `Fortnox::API::AttributeError` → `Fortnox::AttributeError` and
+  `Fortnox::API::RemoteServerError` → `Fortnox::RequestError`.
+- Nested structs (EDIInformation, EmailInformation, InvoiceRow, etc.) are
+  now plain `Dry::Struct` subclasses; key-mapping and serialisation logic
+  lives in dedicated classes under `Fortnox::Mappers`.
 
 ### Added
 
@@ -32,20 +45,22 @@ and this project adheres to
 - `fortnox-setup` executable for initial OAuth authorization and tenant ID
   discovery
 - `fortnox-update-env` executable for refreshing access tokens in env files
-- `Fortnox::Struct` base class for nested models with `attr` DSL, custom key
-  mappings via `<=>`, and `:read_only` flag support
-- Generic struct parsers (`Parsers::Struct.for`, `Parsers::StructArray.for`)
-- Label resource with specs
-- VCR JSON body matcher to catch serialisation regressions during cassette
-  replay
-- Row limit tests for invoice (delivered_quantity and price rounding)
+- `Fortnox::Struct` base class for nested models, extending `Dry::Struct`
+  with a `:read_only` attribute flag for computed/server-side fields
+- Label resource
 
-### Removed
+### Fixed
 
-- Refresh token support (replaced by client credentials)
-- `bin/renew_tokens` script (use `Fortnox.request_access_token` instead)
-- Separate model, type, mapper, and repository classes (replaced by single
-  resource classes)
+- Setting an attribute to `nil` on update now correctly sends `null` to
+  Fortnox, clearing the field. In 0.x this silently re-sent the original
+  value due to a bug in the mapper diff. (#172)
+- Read-only attributes like `total`, `balance`, and `booked` now load
+  correctly from Fortnox API responses. In 0.x these returned `nil` due
+  to missing writers for private attributes. (#50)
+- API base URL updated from `apps.fortnox.se/3` to `api.fortnox.se/3`,
+  avoiding the redirect introduced by Fortnox in February 2026. (#249)
+- All current housework types are now supported, including types added
+  after the 0.x release. (#196)
 
 For changes prior to the 1.0 rewrite, see the
 [0.x changelog](https://github.com/accodeing/fortnox-api/blob/v0.9.2/CHANGELOG.md).
