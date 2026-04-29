@@ -13,7 +13,7 @@ module Fortnox
     # @url Direct URL to the record.
     attr :url <=> '@url', Coercible::String.optional, :read_only
 
-    # Active If the article is active
+    # True If the article is active
     attr :active, Bool.optional, Boolean
 
     # ArticleNumber Article number
@@ -126,7 +126,7 @@ module Fortnox
     # Width Width of the article in millimeters.
     attr :width, Sized::Integer[0, 999_999_999]
 
-    # Expired If the article has expired
+    # True If the article has expired
     attr :expired, Bool.optional, Boolean
 
     # CostCalculationMethod Cost calculation method used for the article.
