@@ -24,7 +24,7 @@ module Fortnox
 
     # ConstructionAccount Account number for construction work (special VAT rules in Sweden).
     # The number must be of an existing account.
-    attr :construction_account, Sized::Integer[0, 99_999]
+    attr :construction_account, Types::AccountNumber
 
     # Depth The depth of the article in millimeters
     attr :depth, Sized::Integer[0, 999_999_999]
@@ -40,15 +40,15 @@ module Fortnox
 
     # EUAccount Account number for the sales account to EU.
     # The number must be of an existing account.
-    attr :eu_account <=> 'EUAccount', Sized::Integer[0, 99_999]
+    attr :eu_account <=> 'EUAccount', Types::AccountNumber
 
     # EUVATAccount Account number for the sales account to EU with VAT.
     # The number must be of an existing account.
-    attr :eu_vat_account <=> 'EUVATAccount', Sized::Integer[0, 99_999]
+    attr :eu_vat_account <=> 'EUVATAccount', Types::AccountNumber
 
     # ExportAccount Account number for the sales account outside EU.
     # The number must be of an existing account.
-    attr :export_account, Sized::Integer[0, 99_999]
+    attr :export_account, Types::AccountNumber
 
     # Height The height of the article in millimeters
     attr :height, Sized::Integer[0, 999_999_999]
@@ -70,7 +70,7 @@ module Fortnox
 
     # PurchaseAccount Account number for purchase.
     # The number must be of an existing account.
-    attr :purchase_account, Sized::Integer[0, 99_999]
+    attr :purchase_account, Types::AccountNumber
 
     # PurchasePrice Purchase price of the article
     attr :purchase_price, Sized::Float[0.0, 99_999_999_999_999.9]
@@ -83,7 +83,7 @@ module Fortnox
 
     # SalesAccount Account number for the sales account in Sweden.
     # The number must be of an existing account.
-    attr :sales_account, Sized::Integer[0, 99_999]
+    attr :sales_account, Types::AccountNumber
 
     # SalesPrice Price of article for its default price list
     attr :sales_price, Coercible::Float.optional, :read_only
@@ -133,10 +133,10 @@ module Fortnox
     attr :cost_calculation_method, Coercible::String.optional
 
     # StockAccount Account number for stock.
-    attr :stock_account, Coercible::Integer.optional
+    attr :stock_account, Types::AccountNumber
 
     # StockChangeAccount Account number for stock changes.
-    attr :stock_change_account, Coercible::Integer.optional
+    attr :stock_change_account, Types::AccountNumber
 
     # DirectCost Direct cost of the article.
     attr :direct_cost, Coercible::Float.optional
