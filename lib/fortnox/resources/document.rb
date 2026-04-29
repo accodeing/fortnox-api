@@ -110,7 +110,7 @@ module Fortnox
     attr :housework <=> 'HouseWork', Bool.optional, :read_only, Boolean
 
     # TODO: Update comment to something resonable
-    attr :labels, Strict::Array.of(Types.Instance(Label)), Mappers::Labels
+    attr :labels, Strict::Array.of(Types.Instance(Label)), Mappers::LabelReferences
 
     # Net Net amount
     attr :net, Coercible::Float.optional, :read_only

@@ -2,12 +2,12 @@
 
 module Fortnox
   module Mappers
-    module Labels
+    module LabelReferences
       def self.parse(labels)
         return [] unless labels.is_a?(Array)
 
         labels.map do |label|
-          Fortnox::Label.new(label)
+          Fortnox::Label.parse({ 'Label' => label })
         end
       end
 
@@ -15,7 +15,9 @@ module Fortnox
         return [] if labels.nil?
         return [] unless labels.is_a?(Array)
 
-        labels.map(&:serialise)
+        labels.map do |label|
+          { 'Id' => label.id }
+        end
       end
     end
   end

@@ -36,6 +36,32 @@ RSpec.describe Fortnox::Order, order: :defined do
     end
   end
 
+  describe '.save with labels' do
+    let(:labels) do
+      [
+        Fortnox::Label.stub(id: 1, description: 'TestLabel'),
+        Fortnox::Label.stub(id: 2, description: 'LabelSpec2')
+      ]
+    end
+    let(:new_model) do
+      described_class.stub(customer_number: '1', comments: 'Order with labels', labels: labels)
+    end
+    let(:response) do
+      VCR.use_cassette("#{vcr_dir}/save_new_with_labels") do
+        described_class.save(new_model)
+      end
+    end
+
+    it 'serialises labels as plain hashes without wrapper' do
+      expect { response }.not_to raise_error
+    end
+
+    it 'round-trips the labels', :aggregate_failures do
+      returned_labels = response.model.labels
+      expect(returned_labels.map(&:id)).to eq([1, 2])
+    end
+  end
+
   describe '.save with nested model' do
     let(:nested_model_hash) { { price: -7_999_999_999, article_number: '101', ordered_quantity: 1 } }
     let(:new_model) do
