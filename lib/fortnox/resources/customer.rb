@@ -146,7 +146,7 @@ module Fortnox
     attr :sales_account, AccountNumber
 
     # Show prices with VAT included or not
-    attr :show_price_vat_included <=> 'ShowPriceVATIncluded', Boolean.optional
+    attr :show_price_vat_included <=> 'ShowPriceVATIncluded', Bool.optional, Boolean
 
     # Terms of delivery code
     attr :terms_of_delivery, String.optional
@@ -188,7 +188,7 @@ module Fortnox
     attr :zip_code, Sized::String[10]
 
     # Active If the customer is active.
-    attr :active, Boolean.optional
+    attr :active, Bool.optional, Boolean
 
     # Phone number of the customer. Only present in collection responses.
     attr :phone, String.optional
