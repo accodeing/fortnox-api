@@ -6,7 +6,7 @@ require 'fortnox/version'
 
 Gem::Specification.new do |spec|
   spec.name          = 'fortnox-api'
-  spec.authors       = ['Jonas Schubert Erlandsson', 'Hannes Elvemyr', 'Felix Holmgren', 'Mike Eirih', 'Claude Code']
+  spec.authors       = ['Jonas Schubert Erlandsson', 'Hannes Elvemyr', 'Felix Holmgren', 'Mike Eirih']
   spec.email         = ['info@accodeing.com']
   spec.license       = 'LGPL-3.0'
   spec.version       = Fortnox::VERSION.dup
