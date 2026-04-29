@@ -81,7 +81,7 @@
 * [x] .gitignore
 * [x] License — LGPL-3.0, same as old gem
 * [ ] CI setup (GitHub Actions to replace Travis CI)
-* [ ] Gem version bump strategy (currently 0.0.1, target 1.0.0)
+* [x] Gem version bump strategy (currently 0.0.1, target 1.0.0)
 * [x] Create PR of current work and send to Jonas for review
 
 ### New changes
