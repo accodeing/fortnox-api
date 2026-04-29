@@ -27,11 +27,11 @@ http_interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 24 Apr 2026 11:04:07 GMT
+      - Wed, 29 Apr 2026 09:11:39 GMT
       Vary:
       - Accept-Encoding
       X-Build:
-      - 58ce5df7dc
+      - 1fbde2b71a
       X-Frame-Options:
       - sameorigin
       X-Krakend:
@@ -39,9 +39,9 @@ http_interactions:
       X-Krakend-Completed:
       - 'false'
       X-Rack-Responsetime:
-      - '432'
+      - '200'
       X-Uid:
-      - 3902abea
+      - d8c538ae
       Server:
       - Fortnox
       X-Content-Type-Options:
@@ -63,5 +63,5 @@ http_interactions:
       encoding: UTF-8
       string: '{"MetaInformation":{"@TotalResources":1,"@TotalPages":1,"@CurrentPage":1},"Invoices":[{"@url":"https:\/\/api.fortnox.se\/3\/invoices\/23","Balance":0,"Booked":true,"Cancelled":false,"CostCenter":"","Currency":"SEK","CurrencyRate":"1","CurrencyUnit":1,"CustomerName":"Test
         customer","CustomerNumber":"7","DocumentNumber":"23","DueDate":"2026-05-18","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","InvoiceDate":"2026-04-18","InvoiceType":"INVOICE","NoxFinans":false,"OCR":"2345","VoucherNumber":1,"VoucherSeries":"B","VoucherYear":1,"WayOfDelivery":"","TermsOfPayment":"30","Project":"","Sent":false,"Total":125,"FinalPayDate":"2026-04-18"}]}'
-  recorded_at: Fri, 24 Apr 2026 11:04:07 GMT
+  recorded_at: Wed, 29 Apr 2026 09:11:39 GMT
 recorded_with: VCR 6.4.0

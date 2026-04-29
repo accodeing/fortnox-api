@@ -6,7 +6,7 @@ RSpec.describe Fortnox::Unit, order: :defined do
   let(:vcr_dir) { 'units' }
 
   # NOTE: Bump code when re-recording VCR cassettes — Fortnox rejects duplicates
-  let(:code) { 'blarg20' }
+  let(:code) { 'blarg21' }
 
   describe '.save' do
     let(:new_model) { described_class.stub(code: code, description: 'A value') }
@@ -40,7 +40,7 @@ RSpec.describe Fortnox::Unit, order: :defined do
 
   describe '.save with code' do
     # NOTE: Bump code when re-recording VCR cassettes — Fortnox rejects duplicates
-    let(:new_model) { described_class.stub(code: 'woooh20', description: 'Happy clouds') }
+    let(:new_model) { described_class.stub(code: 'woooh21', description: 'Happy clouds') }
     let(:save_model) do
       VCR.use_cassette("#{vcr_dir}/save_with_specially_named_attribute") do
         described_class.save(new_model)
@@ -52,7 +52,7 @@ RSpec.describe Fortnox::Unit, order: :defined do
     end
 
     it 'returns the correct value' do
-      expect(save_model.model.code).to eq('woooh20')
+      expect(save_model.model.code).to eq('woooh21')
     end
   end
 

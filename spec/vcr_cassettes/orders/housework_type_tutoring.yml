@@ -27,9 +27,9 @@ http_interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 24 Apr 2026 12:59:53 GMT
+      - Wed, 29 Apr 2026 09:11:26 GMT
       X-Build:
-      - 58ce5df7dc
+      - 1fbde2b71a
       X-Frame-Options:
       - sameorigin
       X-Krakend:
@@ -37,9 +37,9 @@ http_interactions:
       X-Krakend-Completed:
       - 'false'
       X-Rack-Responsetime:
-      - '264'
+      - '295'
       X-Uid:
-      - d4e2c1bd
+      - d938f14a
       Server:
       - Fortnox
       X-Content-Type-Options:
@@ -61,5 +61,5 @@ http_interactions:
       encoding: UTF-8
       string: '{"ErrorInformation":{"error":1,"message":"Skattereduktion f\u00f6r
         den valda typen av husarbete har upph\u00f6rt.","code":2003157}}'
-  recorded_at: Fri, 24 Apr 2026 12:59:53 GMT
+  recorded_at: Wed, 29 Apr 2026 09:11:26 GMT
 recorded_with: VCR 6.4.0

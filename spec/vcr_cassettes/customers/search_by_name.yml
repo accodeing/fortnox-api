@@ -23,15 +23,15 @@ http_interactions:
       message: OK
     headers:
       Content-Length:
-      - '863'
+      - '1255'
       Content-Type:
       - application/json
       Date:
-      - Fri, 24 Apr 2026 11:03:45 GMT
+      - Wed, 29 Apr 2026 09:00:10 GMT
       Vary:
       - Accept-Encoding
       X-Build:
-      - 58ce5df7dc
+      - 1fbde2b71a
       X-Frame-Options:
       - sameorigin
       X-Krakend:
@@ -39,9 +39,9 @@ http_interactions:
       X-Krakend-Completed:
       - 'false'
       X-Rack-Responsetime:
-      - '371'
+      - '126'
       X-Uid:
-      - ede7c27c
+      - b73eb80b
       Server:
       - Fortnox
       X-Content-Type-Options:
@@ -61,9 +61,11 @@ http_interactions:
       - max-age=31536000; includeSubdomains
     body:
       encoding: UTF-8
-      string: '{"MetaInformation":{"@TotalResources":4,"@TotalPages":1,"@CurrentPage":1},"Customers":[{"@url":"https:\/\/api.fortnox.se\/3\/customers\/3","Address1":"","Address2":"","City":"","CustomerNumber":"3","Email":"","Name":"Testkund","OrganisationNumber":"","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/7","Address1":"","Address2":"","City":"","CustomerNumber":"7","Email":"","Name":"Test
+      string: '{"MetaInformation":{"@TotalResources":6,"@TotalPages":1,"@CurrentPage":1},"Customers":[{"@url":"https:\/\/api.fortnox.se\/3\/customers\/3","Address1":"","Address2":"","City":"","CustomerNumber":"3","Email":"","Name":"Testkund","OrganisationNumber":"","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/7","Address1":"","Address2":"","City":"","CustomerNumber":"7","Email":"","Name":"Test
         customer","OrganisationNumber":"","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/12","Address1":"","Address2":"","City":"","CustomerNumber":"12","Email":"","Name":"Test
         customer","OrganisationNumber":"","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/17","Address1":"","Address2":"","City":"","CustomerNumber":"17","Email":"","Name":"Test
+        customer","OrganisationNumber":"","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/22","Address1":"","Address2":"","City":"","CustomerNumber":"22","Email":"","Name":"Test
+        customer","OrganisationNumber":"","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/27","Address1":"","Address2":"","City":"","CustomerNumber":"27","Email":"","Name":"Test
         customer","OrganisationNumber":"","Phone":"","ZipCode":""}]}'
-  recorded_at: Fri, 24 Apr 2026 11:03:45 GMT
+  recorded_at: Wed, 29 Apr 2026 09:00:10 GMT
 recorded_with: VCR 6.4.0

@@ -27,9 +27,9 @@ http_interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 24 Apr 2026 11:04:43 GMT
+      - Wed, 29 Apr 2026 09:12:02 GMT
       X-Build:
-      - 58ce5df7dc
+      - 1fbde2b71a
       X-Frame-Options:
       - sameorigin
       X-Krakend:
@@ -37,9 +37,9 @@ http_interactions:
       X-Krakend-Completed:
       - 'false'
       X-Rack-Responsetime:
-      - '312'
+      - '120'
       X-Uid:
-      - bb35b99a
+      - 27ba4f9c
       Server:
       - Fortnox
       X-Content-Type-Options:
@@ -60,5 +60,5 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"ErrorInformation":{"error":1,"message":"Ett ogiltigt filter har anv\u00e4nts.","code":2000587}}'
-  recorded_at: Fri, 24 Apr 2026 11:04:43 GMT
+  recorded_at: Wed, 29 Apr 2026 09:12:02 GMT
 recorded_with: VCR 6.4.0

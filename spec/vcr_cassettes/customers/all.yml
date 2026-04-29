@@ -25,11 +25,11 @@ http_interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 24 Apr 2026 11:03:42 GMT
+      - Wed, 29 Apr 2026 09:00:08 GMT
       Vary:
       - Accept-Encoding
       X-Build:
-      - 58ce5df7dc
+      - 1fbde2b71a
       X-Frame-Options:
       - sameorigin
       X-Krakend:
@@ -37,9 +37,9 @@ http_interactions:
       X-Krakend-Completed:
       - 'false'
       X-Rack-Responsetime:
-      - '372'
+      - '195'
       X-Uid:
-      - 35cb1bc7
+      - a090f462
       Transfer-Encoding:
       - chunked
       Server:
@@ -61,7 +61,7 @@ http_interactions:
       - max-age=31536000; includeSubdomains
     body:
       encoding: UTF-8
-      string: '{"MetaInformation":{"@TotalResources":17,"@TotalPages":1,"@CurrentPage":1},"Customers":[{"@url":"https:\/\/api.fortnox.se\/3\/customers\/1","Address1":"","Address2":"","City":"","CustomerNumber":"1","Email":"user@test.se","Name":"Customer
+      string: '{"MetaInformation":{"@TotalResources":27,"@TotalPages":1,"@CurrentPage":1},"Customers":[{"@url":"https:\/\/api.fortnox.se\/3\/customers\/1","Address1":"","Address2":"","City":"","CustomerNumber":"1","Email":"user@test.se","Name":"Customer
         with IDN email","OrganisationNumber":"","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/2","Address1":"","Address2":"","City":"","CustomerNumber":"2","Email":"user@test\u00e5\u00e4\u00f6.se","Name":"Customer
         with IDN email","OrganisationNumber":"","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/3","Address1":"","Address2":"","City":"","CustomerNumber":"3","Email":"","Name":"Testkund","OrganisationNumber":"","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/4","Address1":"","Address2":"","City":"New
         York","CustomerNumber":"4","Email":"","Name":"A customer from New York","OrganisationNumber":"","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/5","Address1":"","Address2":"","City":"New
@@ -77,6 +77,16 @@ http_interactions:
         with Sales Account","OrganisationNumber":"","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/15","Address1":"","Address2":"","City":"","CustomerNumber":"15","Email":"user@test\u00e5\u00e4\u00f6.se","Name":"Customer
         with IDN email","OrganisationNumber":"","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/16","Address1":"","Address2":"","City":"","CustomerNumber":"16","Email":"","Name":"Updated
         name","OrganisationNumber":"","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/17","Address1":"","Address2":"","City":"","CustomerNumber":"17","Email":"","Name":"Test
+        customer","OrganisationNumber":"","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/18","Address1":"","Address2":"","City":"","CustomerNumber":"18","Email":"","Name":"Customer
+        with Swedish country code","OrganisationNumber":"","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/19","Address1":"","Address2":"","City":"","CustomerNumber":"19","Email":"","Name":"Customer
+        with Sales Account","OrganisationNumber":"","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/20","Address1":"","Address2":"","City":"","CustomerNumber":"20","Email":"user@test\u00e5\u00e4\u00f6.se","Name":"Customer
+        with IDN email","OrganisationNumber":"","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/21","Address1":"","Address2":"","City":"","CustomerNumber":"21","Email":"","Name":"Updated
+        name","OrganisationNumber":"","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/22","Address1":"","Address2":"","City":"","CustomerNumber":"22","Email":"","Name":"Test
+        customer","OrganisationNumber":"","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/23","Address1":"","Address2":"","City":"","CustomerNumber":"23","Email":"","Name":"Customer
+        with Swedish country code","OrganisationNumber":"","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/24","Address1":"","Address2":"","City":"","CustomerNumber":"24","Email":"","Name":"Customer
+        with Sales Account","OrganisationNumber":"","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/25","Address1":"","Address2":"","City":"","CustomerNumber":"25","Email":"user@test\u00e5\u00e4\u00f6.se","Name":"Customer
+        with IDN email","OrganisationNumber":"","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/26","Address1":"","Address2":"","City":"","CustomerNumber":"26","Email":"","Name":"Updated
+        name","OrganisationNumber":"","Phone":"","ZipCode":""},{"@url":"https:\/\/api.fortnox.se\/3\/customers\/27","Address1":"","Address2":"","City":"","CustomerNumber":"27","Email":"","Name":"Test
         customer","OrganisationNumber":"","Phone":"","ZipCode":""}]}'
-  recorded_at: Fri, 24 Apr 2026 11:03:42 GMT
+  recorded_at: Wed, 29 Apr 2026 09:00:08 GMT
 recorded_with: VCR 6.4.0

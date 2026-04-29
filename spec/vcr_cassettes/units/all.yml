@@ -25,11 +25,11 @@ http_interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 24 Apr 2026 12:21:09 GMT
+      - Wed, 29 Apr 2026 09:00:21 GMT
       Vary:
       - Accept-Encoding
       X-Build:
-      - 58ce5df7dc
+      - 1fbde2b71a
       X-Frame-Options:
       - sameorigin
       X-Krakend:
@@ -37,9 +37,9 @@ http_interactions:
       X-Krakend-Completed:
       - 'false'
       X-Rack-Responsetime:
-      - '124'
+      - '212'
       X-Uid:
-      - af7fab2b
+      - 81f9474c
       Transfer-Encoding:
       - chunked
       Server:
@@ -74,5 +74,5 @@ http_interactions:
         clouds"},{"@url":"https:\/\/api.fortnox.se\/3\/units\/woooh13","Code":"woooh13","CodeEnglish":"","Description":"Happy
         clouds"},{"@url":"https:\/\/api.fortnox.se\/3\/units\/woooh20","Code":"woooh20","CodeEnglish":"","Description":"Happy
         clouds"}]}'
-  recorded_at: Fri, 24 Apr 2026 12:21:07 GMT
+  recorded_at: Wed, 29 Apr 2026 09:00:21 GMT
 recorded_with: VCR 6.4.0

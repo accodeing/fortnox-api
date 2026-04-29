@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: put
-    uri: https://api.fortnox.se/3/labels/6
+    uri: https://api.fortnox.se/3/labels/7
     body:
       encoding: UTF-8
       string: '{"Label":{"Description":"LabelSpec6"}}'
@@ -27,11 +27,11 @@ http_interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 24 Apr 2026 12:20:44 GMT
+      - Wed, 29 Apr 2026 09:12:03 GMT
       Vary:
       - Accept-Encoding
       X-Build:
-      - 58ce5df7dc
+      - 1fbde2b71a
       X-Frame-Options:
       - sameorigin
       X-Krakend:
@@ -39,9 +39,9 @@ http_interactions:
       X-Krakend-Completed:
       - 'false'
       X-Rack-Responsetime:
-      - '133'
+      - '137'
       X-Uid:
-      - a2489b6f
+      - 72282fe3
       Server:
       - Fortnox
       X-Content-Type-Options:
@@ -61,6 +61,6 @@ http_interactions:
       - max-age=31536000; includeSubdomains
     body:
       encoding: UTF-8
-      string: '{"Label":{"Id":6,"Description":"LabelSpec6"}}'
-  recorded_at: Fri, 24 Apr 2026 12:20:42 GMT
+      string: '{"Label":{"Id":7,"Description":"LabelSpec6"}}'
+  recorded_at: Wed, 29 Apr 2026 09:12:03 GMT
 recorded_with: VCR 6.4.0

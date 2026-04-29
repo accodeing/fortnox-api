@@ -27,11 +27,11 @@ http_interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 24 Apr 2026 11:03:27 GMT
+      - Wed, 29 Apr 2026 08:59:56 GMT
       Vary:
       - Accept-Encoding
       X-Build:
-      - 58ce5df7dc
+      - 1fbde2b71a
       X-Frame-Options:
       - sameorigin
       X-Krakend:
@@ -39,9 +39,9 @@ http_interactions:
       X-Krakend-Completed:
       - 'false'
       X-Rack-Responsetime:
-      - '515'
+      - '245'
       X-Uid:
-      - 0db78ea9
+      - 89e63689
       Server:
       - Fortnox
       X-Content-Type-Options:
@@ -62,5 +62,5 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"MetaInformation":{"@TotalResources":1,"@TotalPages":1,"@CurrentPage":1},"Articles":[{"@url":"https:\/\/api.fortnox.se\/3\/articles\/101","ArticleNumber":"101","Description":"Hammer","DisposableQuantity":"0","EAN":"","Housework":false,"PurchasePrice":"0","SalesPrice":null,"QuantityInStock":"0","ReservedQuantity":"0","StockPlace":null,"StockValue":"0","Unit":"","VAT":"25","WebshopArticle":false}]}'
-  recorded_at: Fri, 24 Apr 2026 11:03:27 GMT
+  recorded_at: Wed, 29 Apr 2026 08:59:56 GMT
 recorded_with: VCR 6.4.0

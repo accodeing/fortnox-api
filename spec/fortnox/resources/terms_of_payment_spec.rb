@@ -6,7 +6,7 @@ RSpec.describe Fortnox::TermsOfPayment, order: :defined do
   let(:vcr_dir) { 'termsofpayments' }
 
   # NOTE: Bump code when re-recording VCR cassettes — Fortnox rejects duplicates
-  let(:save_code) { '24DAYS' }
+  let(:save_code) { '25DAYS' }
 
   describe '.save' do
     let(:new_model) { described_class.stub(code: save_code, description: 'A value') }

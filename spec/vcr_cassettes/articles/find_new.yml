@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.fortnox.se/3/articles/117
+    uri: https://api.fortnox.se/3/articles/121
     body:
       encoding: US-ASCII
       string: ''
@@ -27,11 +27,11 @@ http_interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 24 Apr 2026 12:21:51 GMT
+      - Wed, 29 Apr 2026 08:59:54 GMT
       Vary:
       - Accept-Encoding
       X-Build:
-      - 58ce5df7dc
+      - 1fbde2b71a
       X-Frame-Options:
       - sameorigin
       X-Krakend:
@@ -39,9 +39,9 @@ http_interactions:
       X-Krakend-Completed:
       - 'false'
       X-Rack-Responsetime:
-      - '218'
+      - '366'
       X-Uid:
-      - bab29505
+      - 2225f180
       Server:
       - Fortnox
       X-Content-Type-Options:
@@ -61,7 +61,7 @@ http_interactions:
       - max-age=31536000; includeSubdomains
     body:
       encoding: UTF-8
-      string: '{"Article":{"@url":"https:\/\/api.fortnox.se\/3\/articles\/117","ArticleNumber":"117","Bulky":false,"ConstructionAccount":0,"Depth":0,"Description":"A
+      string: '{"Article":{"@url":"https:\/\/api.fortnox.se\/3\/articles\/121","ArticleNumber":"121","Bulky":false,"ConstructionAccount":0,"Depth":0,"Description":"A
         value","DisposableQuantity":0,"EAN":"","EUAccount":3108,"EUVATAccount":3106,"ExportAccount":3105,"Height":0,"Housework":false,"HouseworkType":null,"Active":true,"Manufacturer":null,"ManufacturerArticleNumber":"","Note":"","PurchaseAccount":4000,"PurchasePrice":0,"QuantityInStock":0,"ReservedQuantity":0,"SalesAccount":1250,"StockGoods":false,"StockPlace":null,"StockValue":0,"StockWarning":null,"SupplierName":null,"SupplierNumber":null,"Type":"STOCK","Unit":null,"VAT":0,"WebshopArticle":false,"Weight":0,"Width":0,"Expired":false,"SalesPrice":null,"CostCalculationMethod":null,"StockAccount":null,"StockChangeAccount":null,"DirectCost":null,"FreightCost":null,"OtherCost":null,"DefaultStockPoint":null,"DefaultStockLocation":null,"CommodityCode":""}}'
-  recorded_at: Fri, 24 Apr 2026 12:21:49 GMT
+  recorded_at: Wed, 29 Apr 2026 08:59:54 GMT
 recorded_with: VCR 6.4.0
