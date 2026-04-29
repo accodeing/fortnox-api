@@ -297,4 +297,4 @@ See the [Contribute readme](CONTRIBUTE.md).
 
 ## License
 
-[LGPL-3.0](LICENSE.txt). Copyright (c) 2015-2026 Accodeing to you KB.
+[LGPL-3.0](LICENSE.md). Copyright (c) 2015-2026 Accodeing to you KB.
