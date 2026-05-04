@@ -181,8 +181,13 @@ variables.
 
 ### Multiple Fortnox accounts
 
-Switch access token between calls. Each call uses the token that is currently
-set:
+The access token is stored per thread (`Thread.current`), so concurrent
+threads — Sidekiq workers, Puma threads, etc. — can use different tokens
+without leaking to each other. Each thread must set its own token before
+making API calls.
+
+Within a single thread you can switch tokens between calls. Each call uses
+the token currently set on the calling thread:
 
 ```ruby
 Fortnox.access_token = 'account1_token'
