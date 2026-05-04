@@ -32,9 +32,10 @@ for the full list of breaking changes.
   `delivery_country`) now only accept ISO alpha-2 codes (e.g. `'NO'`,
   `'SE'`). The old gem also accepted country names like `'Norge'` or
   `'Norway'`.
-- **Breaking** Exception classes are renamed and consolidated. The gem
-  only ever raises Fortnox-namespaced exceptions; underlying framework
-  errors are translated at the boundary. 0.x → 1.0 mapping:
+- **Breaking** Exception classes are renamed and consolidated. Errors
+  raised by the underlying rest-easy framework are translated into
+  Fortnox-namespaced exceptions at the gem boundary, so callers do not
+  see rest-easy classes. 0.x → 1.0 mapping:
   - `Fortnox::API::AttributeError` → `Fortnox::AttributeError`.
   - `Fortnox::API::RemoteServerError` → `Fortnox::RequestError`, now
     carries the response object as `.response`.
