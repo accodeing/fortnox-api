@@ -181,10 +181,9 @@ variables.
 
 ### Multiple Fortnox accounts
 
-The access token is stored per thread (`Thread.current`), so concurrent
-threads — Sidekiq workers, Puma threads, etc. — can use different tokens
-without leaking to each other. Each thread must set its own token before
-making API calls.
+The access token is stored per thread, so concurrent threads — Sidekiq
+workers, Puma threads, etc. — can use different tokens without leaking to
+each other. Each thread must set its own token before making API calls.
 
 Within a single thread you can switch tokens between calls. Each call uses
 the token currently set on the calling thread:
