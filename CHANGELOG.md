@@ -61,6 +61,9 @@ for the full list of breaking changes.
   avoiding the redirect introduced by Fortnox in February 2026. (#249)
 - All current housework types are now supported, including types added
   after the 0.x release. (#196)
+- The `Currencies` enum no longer accepts `KUR`. It is not an ISO-4217
+  currency code and the Fortnox API would have rejected it; 0.x accepted
+  it client-side.
 
 For changes prior to the 1.0 rewrite, see the
 [0.x changelog](https://github.com/accodeing/fortnox-api/blob/v0.9.2/CHANGELOG.md).
