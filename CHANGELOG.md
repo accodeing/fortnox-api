@@ -71,6 +71,9 @@ for the full list of breaking changes.
   with a `:read_only` attribute flag for computed/server-side fields
 - `Fortnox::Collection` class wrapping the result of multi-record API calls
   and exposing pagination metadata via `.total`, `.pages`, and `.current_page`
+- `instance.meta.partial?` flag — true for instances parsed from a
+  collection response (which Fortnox returns with fewer attributes than
+  single-resource fetches), false for instances from `find(id)`
 - Label resource
 
 ### Fixed
