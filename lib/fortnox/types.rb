@@ -2,13 +2,10 @@
 
 require 'dry-struct'
 require 'dry-types'
-require 'countries'
 
 module Fortnox
   module Types
     include Dry.Types()
-
-    ISO3166.configure { |config| config.locales = [:en, :sv] }
 
     THE_TRUTH = { true => true, 'true' => true, false => false, 'false' => false }.freeze
 
