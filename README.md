@@ -66,6 +66,8 @@ Fortnox sometimes requires a specific combination of attributes.
 
 The gem raises the following exceptions:
 
+- `Fortnox::Error` — base class for everything below. Rescue this to catch
+  any error raised by the gem.
 - `Fortnox::RequestError` — 4xx/5xx responses from the Fortnox API. Carries
   the response object as `.response`.
 - `Fortnox::AttributeError` — base for attribute validation failures.
