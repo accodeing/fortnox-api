@@ -238,6 +238,17 @@ customers.current_page     # => 1
 `Collection` is `Enumerable`, so `.each`, `.map`, `.select`, `.first`, etc.
 all work as expected.
 
+Fortnox's collection endpoints return fewer attributes per record than
+single-resource endpoints, so instances from a `Collection` are flagged as
+partial. Check `instance.meta.partial?` and re-fetch via `find(id)` if you
+need the full record:
+
+```ruby
+customers = Fortnox::Customer.all
+customers.first.meta.partial?            # => true
+Fortnox::Customer.find(1).meta.partial?  # => false
+```
+
 ### Finding a record
 
 ```ruby
