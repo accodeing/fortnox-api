@@ -64,10 +64,18 @@ Fortnox sometimes requires a specific combination of attributes.
 
 #### Exceptions
 
-Resources can throw `Fortnox::AttributeError` if an attribute is invalid (for
-instance if you try to assign a too long string to a length-limited attribute).
+The gem raises the following exceptions:
 
-API errors (4xx/5xx responses) raise `Fortnox::RequestError`.
+- `Fortnox::RequestError` — 4xx/5xx responses from the Fortnox API. Carries
+  the response object as `.response`.
+- `Fortnox::AttributeError` — base for attribute validation failures.
+  - `Fortnox::ConstraintError` — an attribute value violates a type
+    constraint (max size, format, etc.). Carries `.attribute_name` and
+    `.value`.
+  - `Fortnox::MissingAttributeError` — a required attribute is missing
+    from an API response. Carries `.attribute_name`.
+- `Fortnox::MissingAccessToken` — `Fortnox.access_token=` was not called
+  on the current thread before an API call.
 
 ## Requirements
 

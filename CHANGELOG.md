@@ -32,9 +32,23 @@ for the full list of breaking changes.
   `delivery_country`) now only accept ISO alpha-2 codes (e.g. `'NO'`,
   `'SE'`). The old gem also accepted country names like `'Norge'` or
   `'Norway'`.
-- **Breaking** Exception classes are renamed and consolidated, e.g.
-  `Fortnox::API::AttributeError` → `Fortnox::AttributeError` and
-  `Fortnox::API::RemoteServerError` → `Fortnox::RequestError`.
+- **Breaking** Exception classes are renamed and consolidated.
+  0.x → 1.0 mapping:
+  - `Fortnox::API::AttributeError` → `Fortnox::AttributeError`.
+  - `Fortnox::API::RemoteServerError` → `Fortnox::RequestError`, now
+    carries the response object as `.response`.
+  - `Fortnox::API::MissingAttributeError` → `Fortnox::MissingAttributeError`,
+    now carries `.attribute_name`.
+  - `Fortnox::API::MissingAccessToken` → `Fortnox::MissingAccessToken`.
+    In 0.x this was raised eagerly when constructing a repository; in 1.0
+    it is raised lazily, on the first API call from a thread that has not
+    set a token.
+  - `Fortnox::API::MissingConfiguration` is removed — the configurable
+    surface is much smaller in 1.0 and the previous misconfigurations
+    are no longer expressible.
+  - *new* `Fortnox::ConstraintError < Fortnox::AttributeError` — raised
+    when an attribute value violates a type constraint. Carries
+    `.attribute_name` and `.value`.
 - Nested structs (EDIInformation, EmailInformation, InvoiceRow, etc.) are
   now plain `Dry::Struct` subclasses; key-mapping and serialisation logic
   lives in dedicated classes under `Fortnox::Mappers`.
