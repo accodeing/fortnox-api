@@ -15,11 +15,43 @@ loader.setup
 module Fortnox
   extend RestEasy
 
-  class RequestError < RestEasy::RequestError; end
-  class AttributeError < RestEasy::AttributeError; end
-  class ConstraintError < RestEasy::ConstraintError; end
-  class MissingAttributeError < RestEasy::MissingAttributeError; end
-  class MissingAccessToken < StandardError; end
+  class Error < StandardError; end
+
+  class RequestError < Error
+    attr_reader :response
+
+    def initialize(arg = nil)
+      if arg.respond_to?(:status)
+        @response = arg
+        super("Request failed: #{arg.status}")
+      else
+        super
+      end
+    end
+  end
+
+  class AttributeError < Error; end
+
+  class ConstraintError < AttributeError
+    attr_reader :attribute_name, :value
+
+    def initialize(attribute_name, value, message = nil)
+      @attribute_name = attribute_name
+      @value = value
+      super(message || "Constraint violation for attribute '#{attribute_name}' with value: #{value.inspect}")
+    end
+  end
+
+  class MissingAttributeError < AttributeError
+    attr_reader :attribute_name
+
+    def initialize(attribute_name)
+      @attribute_name = attribute_name
+      super("Missing required attribute: #{attribute_name}")
+    end
+  end
+
+  class MissingAccessToken < Error; end
 
   OAUTH_TOKEN_URL = 'https://apps.fortnox.se/oauth-v1/token'
 
