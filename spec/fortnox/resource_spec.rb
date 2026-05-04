@@ -14,6 +14,17 @@ class TestResource < Fortnox::Resource
   attr :count, Fortnox::Types::Coercible::Integer.optional
 end
 
+class StrictResource < Fortnox::Resource
+  configure do
+    path 'strict_things'
+    instance_wrapper 'StrictThing'
+    collection_wrapper 'StrictThings'
+  end
+
+  attr :name, Fortnox::Types::Strict::String, :required
+  attr :short_code, Fortnox::Types::Sized::String[5]
+end
+
 RSpec.describe Fortnox::Resource do
   describe '#serialise' do
     context 'with a new record' do
@@ -74,6 +85,18 @@ RSpec.describe Fortnox::Resource do
       it 'includes all attributes' do
         expect(serialised['Thing']).to include('Name' => 'test', 'Comment' => 'hello', 'Count' => 5)
       end
+    end
+  end
+
+  describe 'error translation' do
+    it 'raises Fortnox::ConstraintError when an attribute violates a type constraint' do
+      expect { StrictResource.stub(name: 'ok', short_code: 'too long') }
+        .to raise_error(Fortnox::ConstraintError)
+    end
+
+    it 'raises Fortnox::MissingAttributeError when a required attribute is absent on parse' do
+      expect { StrictResource.send(:parse, 'StrictThing' => {}) }
+        .to raise_error(Fortnox::MissingAttributeError)
     end
   end
 end
