@@ -15,7 +15,6 @@
 
 High-value:
 
-* [ ] `lib/fortnox/mappers/date.rb:14-18` — `serialise('')` returns `''` while `parse('')` returns `nil`. Make the two directions symmetric (both `nil`, or both reject).
 * [ ] `bin/fortnox-update-env:28-36` — regex-replace on the env file loses adjacent comments and has no rollback if the write fails. Switch to a temp-file + rename for atomicity, or at least preserve the original on error.
 * [ ] `bin/fortnox-setup:44-59` — `start_local_server` reads exactly one request line and never times out; if the user closes the browser tab without authorizing, the script hangs forever. Wrap in `Timeout.timeout` and print recovery instructions.
 * [ ] `bin/fortnox-setup:168` — uses `Base64.decode64` to decode a JWT payload. JWTs use base64url; switch to `Base64.urlsafe_decode64` (with padding) so it doesn't break on payloads containing `-`/`_`.
