@@ -54,6 +54,12 @@ for the full list of breaking changes.
 - Nested structs (EDIInformation, EmailInformation, InvoiceRow, etc.) are
   now plain `Dry::Struct` subclasses; key-mapping and serialisation logic
   lives in dedicated classes under `Fortnox::Mappers`.
+- **Breaking** Collection-returning methods (`.all`, `.search`, `.only`,
+  and `.find(hash)`) now return a `Fortnox::Collection` instead of a plain
+  `Array`. Collection is `Enumerable` and delegates `each`, `first`, `last`,
+  `size`, `length`, `empty?`, `[]`, and `to_a`, so most existing Array
+  usage works unchanged. Code that explicitly checks `is_a?(Array)` or
+  compares with `==` against an Array literal needs updating.
 
 ### Added
 
@@ -63,6 +69,8 @@ for the full list of breaking changes.
 - `fortnox-update-env` executable for refreshing access tokens in env files
 - `Fortnox::Struct` base class for nested models, extending `Dry::Struct`
   with a `:read_only` attribute flag for computed/server-side fields
+- `Fortnox::Collection` class wrapping the result of multi-record API calls
+  and exposing pagination metadata via `.total`, `.pages`, and `.current_page`
 - Label resource
 
 ### Fixed
