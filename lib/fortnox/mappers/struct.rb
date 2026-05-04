@@ -3,9 +3,9 @@
 module Fortnox
   module Mappers
     # Base class for declarative struct mappers. Subclasses declare the target
-    # struct, any API key overrides (acronyms like "EDIInformation" that the
-    # PascalCase convention can't derive), and any read-only attributes that
-    # should be excluded from serialisation.
+    # struct and any API key overrides (acronyms like "EDIInformation" that the
+    # PascalCase convention can't derive). Read-only attributes are read off
+    # the struct class itself and excluded from serialisation.
     #
     #   class EmailInformation < Struct
     #     struct    Structs::EmailInformation
@@ -25,10 +25,6 @@ module Fortnox
 
         def overrides(map)
           @overrides = map
-        end
-
-        def read_only(*names)
-          @read_only_attributes = names
         end
 
         def parse(data)
@@ -64,15 +60,6 @@ module Fortnox
                      {}
                    end
           @overrides ? parent.merge(@overrides) : parent
-        end
-
-        def read_only_attributes
-          parent = if superclass.respond_to?(:send, true) && superclass != Struct
-                     superclass.send(:read_only_attributes)
-                   else
-                     []
-                   end
-          @read_only_attributes ? (parent + @read_only_attributes).uniq : parent
         end
 
         def api_to_model_map
