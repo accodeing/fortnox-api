@@ -2,8 +2,8 @@ PATH
   remote: .
   specs:
     fortnox-api (1.0.0.rc1)
-      countries (~> 7)
-      dry-struct (~> 1)
+      countries (~> 7.1)
+      dry-struct (~> 1.5)
       rest-easy (~> 1.0.0)
 
 GEM
