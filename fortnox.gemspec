@@ -21,8 +21,8 @@ Gem::Specification.new do |spec|
 
   spec.required_ruby_version = '>= 3.1.0'
 
-  spec.add_dependency 'countries', '~> 7'
-  spec.add_dependency 'dry-struct', '~> 1'
+  spec.add_dependency 'countries', '~> 7.1'
+  spec.add_dependency 'dry-struct', '~> 1.5'
   spec.add_dependency 'rest-easy', '~> 1.0.0'
 
   spec.metadata['rubygems_mfa_required'] = 'true'
