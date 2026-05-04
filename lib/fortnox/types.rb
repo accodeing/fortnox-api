@@ -98,7 +98,7 @@ module Fortnox
                     .optional
 
     Email = Strict::String
-            .constrained(max_size: 1024, format: /^$|\A[[[:alnum:]]+-_.]+@[[[:alnum:]]+-_.]+\.[a-z]+\z/i)
+            .constrained(max_size: 1024, format: /\A\z|\A[[[:alnum:]]+-_.]+@[[[:alnum:]]+-_.]+\.[a-z]+\z/i)
             .optional
             .constructor { |v| v&.to_s&.downcase }
 
