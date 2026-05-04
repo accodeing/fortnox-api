@@ -15,9 +15,11 @@ loader.setup
 module Fortnox
   extend RestEasy
 
-  class RequestError < RestEasy::Error; end
-  class AttributeError < RestEasy::Error; end
-  class MissingAccessToken < RestEasy::Error; end
+  class RequestError < RestEasy::RequestError; end
+  class AttributeError < RestEasy::AttributeError; end
+  class ConstraintError < RestEasy::ConstraintError; end
+  class MissingAttributeError < RestEasy::MissingAttributeError; end
+  class MissingAccessToken < StandardError; end
 
   OAUTH_TOKEN_URL = 'https://apps.fortnox.se/oauth-v1/token'
 
