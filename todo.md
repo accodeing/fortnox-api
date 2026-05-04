@@ -18,7 +18,6 @@ High-value:
 
 Nits:
 
-* [ ] `fortnox.gemspec` — `countries` and `dry-struct` dependencies are unpinned. Pin to `~>` ranges.
 
 Rest-easy:
 
