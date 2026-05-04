@@ -109,7 +109,7 @@ module Fortnox
     # HouseWork If there is any row of the document marked "housework".
     attr :housework <=> 'HouseWork', Bool.optional, :read_only, Boolean
 
-    # Labels Labels associated with the document.
+    # Labels attached to the document.
     attr :labels, Strict::Array.of(Types.Instance(Label)), Mappers::LabelReferences
 
     # Net Net amount
