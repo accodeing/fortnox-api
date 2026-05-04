@@ -15,8 +15,6 @@
 
 High-value:
 
-* [ ] `lib/fortnox/resource.rb:42` — `# TODO: rest-easy should do this wrapping for us.` Open an upstream issue on rest-easy and link it here, or remove the TODO if we accept it as the gem's responsibility.
-* [ ] `lib/fortnox/mappers/struct.rb:30, 69-76` — `read_only(*names)` declarator and `read_only_attributes` resolver are defined but no subclass calls them; serialisation uses `struct.class.read_only_attributes` instead. Delete the dead API surface or wire it up.
 * [ ] `lib/fortnox/mappers/date.rb:14-18` — `serialise('')` returns `''` while `parse('')` returns `nil`. Make the two directions symmetric (both `nil`, or both reject).
 * [ ] `bin/fortnox-update-env:28-36` — regex-replace on the env file loses adjacent comments and has no rollback if the write fails. Switch to a temp-file + rename for atomicity, or at least preserve the original on error.
 * [ ] `bin/fortnox-setup:44-59` — `start_local_server` reads exactly one request line and never times out; if the user closes the browser tab without authorizing, the script hangs forever. Wrap in `Timeout.timeout` and print recovery instructions.
@@ -40,6 +38,10 @@ Nits:
 * [ ] `lib/fortnox/structs/invoice_row.rb:7-10` and `lib/fortnox/mappers/invoice_row.rb` — explicit overrides for `price_excluding_vat → PriceExcludingVAT` are redundant; the PascalCase convention produces this already. Remove if confirmed.
 * [ ] Mapper test coverage gaps: no direct specs for `date.rb`, `document_row.rb`, `edi_information.rb`, `email_information.rb`, `invoice_row.rb`, `label_references.rb`, `order_row.rb`. Match the bar set by `mappers/struct_spec.rb`, `struct_array_spec.rb`, `country_code_spec.rb`.
 * [ ] `README.md` "Supported resources" — list which CRUD operations each resource supports.
+
+Rest-easy:
+
+* [ ] `lib/fortnox/resource.rb:42` — `# TODO: rest-easy should do this wrapping for us.` Open an upstream issue on rest-easy and link it here, or remove the TODO if we accept it as the gem's responsibility.
 
 ### Collection
 ```Ruby

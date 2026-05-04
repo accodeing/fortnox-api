@@ -4,8 +4,8 @@ module Fortnox
   module Mappers
     # Base class for declarative struct mappers. Subclasses declare the target
     # struct and any API key overrides (acronyms like "EDIInformation" that the
-    # PascalCase convention can't derive). Read-only attributes are read off
-    # the struct class itself and excluded from serialisation.
+    # PascalCase convention can't derive). Read-only attributes are excluded
+    # from serialisation.
     #
     #   class EmailInformation < Struct
     #     struct    Structs::EmailInformation
