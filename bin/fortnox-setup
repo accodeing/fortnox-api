@@ -90,9 +90,10 @@ end
 
 # JWTs are header.payload.signature, all base64url-encoded without padding.
 def decode_jwt_payload(jwt)
-  payload = jwt.split('.')[1]
-  payload += '=' * ((4 - (payload.size % 4)) % 4)
-  JSON.parse(Base64.urlsafe_decode64(payload))
+  encoded_payload = jwt.split('.')[1]
+  missing_padding = (4 - (encoded_payload.size % 4)) % 4
+  padded = encoded_payload + ('=' * missing_padding)
+  JSON.parse(Base64.urlsafe_decode64(padded))
 end
 
 # --- Main ---
