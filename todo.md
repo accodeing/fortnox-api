@@ -18,9 +18,6 @@ High-value:
 
 Nits:
 
-* [ ] `lib/fortnox/resources/document.rb:82` — double-space typo: `# DeliveryName  Name of the recipient`.
-* [ ] `lib/fortnox/resources/document.rb:112` — `# TODO: Update comment to something resonable` (also typo: "resonable").
-* [ ] `lib/fortnox/resources/invoice.rb:25` — comment typo: `if one exits` → `if one exists`.
 * [ ] `lib/fortnox/resources/customer.rb` — uses bare `String.optional` in 8 places (lines 14, 26, 35, 59, 140, 143, 152, 173, 182) while every other resource uses `Coercible::String.optional`. Align.
 * [ ] `lib/fortnox/resources/customer.rb:146` — `attr :sales_account, AccountNumber` lacks the `Types::` prefix used in `article.rb`. Align.
 * [ ] `fortnox.gemspec` — `countries` and `dry-struct` dependencies are unpinned. Pin to `~>` ranges.
