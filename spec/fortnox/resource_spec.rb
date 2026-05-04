@@ -89,14 +89,25 @@ RSpec.describe Fortnox::Resource do
   end
 
   describe 'error translation' do
-    it 'raises Fortnox::ConstraintError when an attribute violates a type constraint' do
-      expect { StrictResource.stub(name: 'ok', short_code: 'too long') }
-        .to raise_error(Fortnox::ConstraintError)
+    it 'raises Fortnox::ConstraintError preserving attribute_name and value' do
+      expect { StrictResource.stub(name: 'ok', short_code: 'too long') }.to raise_error(
+        an_instance_of(Fortnox::ConstraintError)
+          .and(having_attributes(attribute_name: :short_code, value: 'too long'))
+      )
     end
 
-    it 'raises Fortnox::MissingAttributeError when a required attribute is absent on parse' do
-      expect { StrictResource.send(:parse, 'StrictThing' => {}) }
-        .to raise_error(Fortnox::MissingAttributeError)
+    it 'raises Fortnox::MissingAttributeError preserving attribute_name' do
+      expect { StrictResource.send(:parse, 'StrictThing' => {}) }.to raise_error(
+        an_instance_of(Fortnox::MissingAttributeError).and(having_attributes(attribute_name: :name))
+      )
+    end
+
+    it 'raises Fortnox::RequestError preserving the response' do
+      response = instance_double(Faraday::Response, status: 503)
+      raising = -> { TestResource.send(:with_translated_errors) { raise RestEasy::RequestError, response } }
+      expect(&raising).to raise_error(
+        an_instance_of(Fortnox::RequestError).and(having_attributes(response: response))
+      )
     end
   end
 end
