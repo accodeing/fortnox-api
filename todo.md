@@ -11,18 +11,6 @@
   - Removes the commented-out pagination block in `lib/fortnox/resource.rb:12-18`.
 * [ ] CI setup (GitHub Actions to replace Travis CI)
 
-### Review notes (rc1 polish)
-
-High-value:
-
-
-Nits:
-
-
-Rest-easy:
-
-* [ ] `lib/fortnox/resource.rb:42` — `# TODO: rest-easy should do this wrapping for us.` Open an upstream issue on rest-easy and link it here, or remove the TODO if we accept it as the gem's responsibility.
-
 ### Collection
 ```Ruby
 # frozen_string_literal: true
