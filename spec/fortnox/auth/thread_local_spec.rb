@@ -40,9 +40,9 @@ RSpec.describe Fortnox::Auth::ThreadLocal do
   end
 
   describe '#on_rejected' do
-    it 'raises RestEasy::RequestError so rest-easy stops retrying' do
+    it 'raises Fortnox::RequestError so rest-easy stops retrying' do
       response = instance_double(Faraday::Response, status: 401)
-      expect { described_class.new.on_rejected(response) }.to raise_error(RestEasy::RequestError)
+      expect { described_class.new.on_rejected(response) }.to raise_error(Fortnox::RequestError)
     end
   end
 end
