@@ -23,12 +23,7 @@ Nits:
 * [ ] `lib/fortnox/resources/invoice.rb:25` — comment typo: `if one exits` → `if one exists`.
 * [ ] `lib/fortnox/resources/customer.rb` — uses bare `String.optional` in 8 places (lines 14, 26, 35, 59, 140, 143, 152, 173, 182) while every other resource uses `Coercible::String.optional`. Align.
 * [ ] `lib/fortnox/resources/customer.rb:146` — `attr :sales_account, AccountNumber` lacks the `Types::` prefix used in `article.rb`. Align.
-* [ ] `lib/fortnox/resources/label.rb` — missing `using RestEasy::Refinements`. Currently fine because `label.rb` doesn't use the `<=>` API-mapping operator, but adding one later will produce a confusing error.
-* [ ] `Gemfile:3` — `source 'https://gem.coop'` instead of `https://rubygems.org`. Confirm intentional and add a comment, or revert.
 * [ ] `fortnox.gemspec` — `countries` and `dry-struct` dependencies are unpinned. Pin to `~>` ranges.
-* [ ] `lib/fortnox/structs/invoice_row.rb:7-10` and `lib/fortnox/mappers/invoice_row.rb` — explicit overrides for `price_excluding_vat → PriceExcludingVAT` are redundant; the PascalCase convention produces this already. Remove if confirmed.
-* [ ] Mapper test coverage gaps: no direct specs for `date.rb`, `document_row.rb`, `edi_information.rb`, `email_information.rb`, `invoice_row.rb`, `label_references.rb`, `order_row.rb`. Match the bar set by `mappers/struct_spec.rb`, `struct_array_spec.rb`, `country_code_spec.rb`.
-* [ ] `README.md` "Supported resources" — list which CRUD operations each resource supports.
 
 Rest-easy:
 
