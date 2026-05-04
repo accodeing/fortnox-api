@@ -43,7 +43,7 @@ RSpec.describe Fortnox::TermsOfPayment, order: :defined do
       VCR.use_cassette("#{vcr_dir}/all") { described_class.all }
     end
 
-    it 'returns a non-empty array' do
+    it 'returns a non-empty collection' do
       expect(response).not_to be_empty
     end
 
