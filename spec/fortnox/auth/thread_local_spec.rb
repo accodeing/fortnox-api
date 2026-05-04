@@ -18,7 +18,7 @@ RSpec.describe Fortnox::Auth::ThreadLocal do
   end
 
   def auth_header_for(token:)
-    request = Struct.new(:headers).new({})
+    request = instance_double(Faraday::Request, headers: {})
     in_thread(token:) { described_class.new.apply(request) }
     request.headers['Authorization']
   end
@@ -41,7 +41,7 @@ RSpec.describe Fortnox::Auth::ThreadLocal do
 
   describe '#on_rejected' do
     it 'raises RestEasy::RequestError so rest-easy stops retrying' do
-      response = Struct.new(:status).new(401)
+      response = instance_double(Faraday::Response, status: 401)
       expect { described_class.new.on_rejected(response) }.to raise_error(RestEasy::RequestError)
     end
   end
