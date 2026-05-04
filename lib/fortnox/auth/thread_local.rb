@@ -2,9 +2,9 @@
 
 module Fortnox
   module Auth
-    # Thread-local Bearer-token authentication. The token is stored in
-    # Thread.current so concurrent threads (Sidekiq workers, Puma threads)
-    # can use different tokens without leaking to each other.
+    # Bearer-token authentication isolated between threads, so concurrent
+    # contexts (Sidekiq workers, Puma threads) can use different tokens
+    # without leaking across them.
     class ThreadLocal
       THREAD_LOCAL_KEY = :fortnox_access_token
 
