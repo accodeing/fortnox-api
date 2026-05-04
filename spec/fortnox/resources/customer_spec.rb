@@ -58,12 +58,19 @@ RSpec.describe Fortnox::Customer, order: :defined do
       VCR.use_cassette("#{vcr_dir}/all") { described_class.all }
     end
 
-    it 'returns a non-empty array' do
+    it 'returns a non-empty collection' do
       expect(response).not_to be_empty
     end
 
     it 'returns correct class' do
       expect(response.first).to be_a(described_class)
+    end
+
+    it 'exposes pagination metadata from MetaInformation', :aggregate_failures do
+      expect(response).to be_a(Fortnox::Collection)
+      expect(response.total).to be_a(Integer).and(be > 0)
+      expect(response.pages).to be_a(Integer).and(be >= 1)
+      expect(response.current_page).to eq(1)
     end
   end
 
@@ -140,8 +147,8 @@ RSpec.describe Fortnox::Customer, order: :defined do
           end
         end
 
-        it 'returns empty array' do
-          expect(find_failure).to eq []
+        it 'returns an empty collection' do
+          expect(find_failure).to be_empty
         end
       end
     end
@@ -155,7 +162,7 @@ RSpec.describe Fortnox::Customer, order: :defined do
         end
       end
 
-      it { is_expected.to be_instance_of(Array) }
+      it { is_expected.to be_a(Fortnox::Collection) }
       it { is_expected.to be_empty }
     end
 
@@ -166,7 +173,7 @@ RSpec.describe Fortnox::Customer, order: :defined do
         end
       end
 
-      it { is_expected.to be_instance_of(Array) }
+      it { is_expected.to be_a(Fortnox::Collection) }
 
       it 'returns matching customers', :aggregate_failures do
         expect(results).not_to be_empty
