@@ -34,6 +34,8 @@ for the full list of breaking changes.
   `'Norway'`.
 - **Breaking** Exception classes are renamed and consolidated.
   0.x → 1.0 mapping:
+  - `Fortnox::API::Exception` → `Fortnox::Error`. Still the base class
+    for everything below; rescue it to catch any gem-raised error.
   - `Fortnox::API::AttributeError` → `Fortnox::AttributeError`.
   - `Fortnox::API::RemoteServerError` → `Fortnox::RequestError`, now
     carries the response object as `.response`.
