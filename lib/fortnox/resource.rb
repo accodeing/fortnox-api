@@ -71,13 +71,39 @@ module Fortnox
         parse(response)
       end
 
+      def parse(response)
+        with_translated_errors { super }
+      end
+
+      def stub(**model_data)
+        with_translated_errors { super }
+      end
+
+      def save(instance)
+        with_translated_errors { super }
+      end
+
       [:get, :post, :put, :delete].each do |method|
         define_method(method) do |**options|
           options[:headers] ||= {}
           options[:headers]['Content-Type'] = 'application/json'
           options[:headers]['Accept'] = 'application/json'
-          super(**options)
+          with_translated_errors { super(**options) }
         end
+      end
+
+      # Translate rest-easy errors at the gem boundary so callers only see
+      # Fortnox-namespaced exceptions.
+      def with_translated_errors
+        yield
+      rescue RestEasy::ConstraintError => e
+        raise Fortnox::ConstraintError.new(e.attribute_name, e.value, e.message)
+      rescue RestEasy::MissingAttributeError => e
+        raise Fortnox::MissingAttributeError, e.attribute_name
+      rescue RestEasy::AttributeError => e
+        raise Fortnox::AttributeError, e.message
+      rescue RestEasy::RequestError => e
+        raise Fortnox::RequestError, e.response || e.message
       end
     end
   end
