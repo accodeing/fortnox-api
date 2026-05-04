@@ -15,7 +15,6 @@
 
 High-value:
 
-* [ ] `lib/fortnox/types.rb:47` — `'KUR'` is not an ISO-4217 currency code. Verify against Fortnox API and remove or replace.
 * [ ] `lib/fortnox/types.rb:11` and `lib/fortnox/mappers/country_code.rb:8` — both call `ISO3166.configure { config.locales = [:en, :sv] }` at load time. Pick one.
 * [ ] `lib/fortnox/structs/document_row.rb:28-30` — `# TODO: ... fix issue #62` references an issue from the old repo that won't resolve in this fresh-history repo. Re-file or remove.
 
