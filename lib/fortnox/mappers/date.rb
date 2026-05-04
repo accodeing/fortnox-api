@@ -12,7 +12,7 @@ module Fortnox
       end
 
       def self.serialise(date)
-        return date if date.nil? || (date == '')
+        return nil if date.nil?
 
         date.strftime('%F')
       end
