@@ -15,7 +15,6 @@
 
 High-value:
 
-* [ ] `bin/fortnox-setup:168` — uses `Base64.decode64` to decode a JWT payload. JWTs use base64url; switch to `Base64.urlsafe_decode64` (with padding) so it doesn't break on payloads containing `-`/`_`.
 * [ ] `lib/fortnox.rb:24-26` — `Fortnox.access_token=` mutates global `config.authentication`; the README's "Multiple Fortnox accounts" pattern is not thread-safe. Either document the constraint in README/gotchas or add a `with_access_token(...) { ... }` helper.
 * [ ] `lib/fortnox/types.rb:101` — Email regex `/^$|\A...\z/i` mixes line anchors (`^$`) and string anchors (`\A...\z`). Replace `^$` with `\A\z` for consistency.
 * [ ] `lib/fortnox/types.rb:47` — `'KUR'` is not an ISO-4217 currency code. Verify against Fortnox API and remove or replace.
