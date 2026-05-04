@@ -135,7 +135,7 @@ RSpec.describe Fortnox::Order, order: :defined do
         end
 
         it 'raises an error' do
-          expect { find_with_non_existing_id }.to raise_error(RestEasy::Error)
+          expect { find_with_non_existing_id }.to raise_error(Fortnox::RequestError)
         end
       end
     end
@@ -246,7 +246,7 @@ RSpec.describe Fortnox::Order, order: :defined do
       end
 
       it 'raises an error' do
-        expect { only_with_invalid_filter }.to raise_error(RestEasy::Error)
+        expect { only_with_invalid_filter }.to raise_error(Fortnox::RequestError)
       end
     end
   end

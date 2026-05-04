@@ -31,7 +31,7 @@ RSpec.describe 'Housework types', order: :defined do # rubocop:disable RSpec/Des
 
       if legacy
         it 'raises an error' do
-          expect { save_order }.to raise_error(RestEasy::RequestError)
+          expect { save_order }.to raise_error(Fortnox::RequestError)
         end
       else
         it 'is accepted by the API' do
@@ -93,7 +93,7 @@ RSpec.describe 'Housework types', order: :defined do # rubocop:disable RSpec/Des
     end
 
     it 'raises an error' do
-      expect { save_order }.to raise_error(RestEasy::RequestError)
+      expect { save_order }.to raise_error(Fortnox::RequestError)
     end
   end
 
@@ -120,7 +120,7 @@ RSpec.describe 'Housework types', order: :defined do # rubocop:disable RSpec/Des
     end
 
     it 'raises an error' do
-      expect { save_order }.to raise_error(RestEasy::RequestError)
+      expect { save_order }.to raise_error(Fortnox::RequestError)
     end
   end
 end
