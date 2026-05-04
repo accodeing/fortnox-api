@@ -64,8 +64,7 @@ Fortnox sometimes requires a specific combination of attributes.
 
 #### Exceptions
 
-The gem-specific exceptions raised at the API boundary are all
-Fortnox-namespaced:
+The gem raises the following exceptions:
 
 - `Fortnox::RequestError` — 4xx/5xx responses from the Fortnox API. Carries
   the response object as `.response`.
