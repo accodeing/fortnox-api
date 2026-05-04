@@ -88,8 +88,22 @@ invoice.model.customer_name  # => 'Acme'
 Resource instances also have `.meta` (tracks whether the record is new or
 saved) and `.unique_id` (the primary key).
 
-`all`, `find(hash)`, `search`, and `only` return arrays of resource instances,
-just like before — but each element is a resource, not a model.
+`all`, `find(hash)`, `search`, and `only` return a `Fortnox::Collection` of
+resource instances. Collection is `Enumerable` and delegates `each`, `first`,
+`last`, `size`, `length`, `empty?`, `[]`, and `to_a`, so iteration and most
+existing Array usage works unchanged. Each element is a resource, not a
+model. Collections also expose pagination metadata:
+
+```ruby
+customers = Fortnox::Customer.all
+customers.first.model.name # => 'Acme'
+customers.total            # => 327
+customers.pages            # => 7
+customers.current_page     # => 1
+```
+
+Code that explicitly checks `is_a?(Array)` or compares with `==` against an
+Array literal needs updating.
 
 ## Creating and updating
 

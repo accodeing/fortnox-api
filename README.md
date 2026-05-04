@@ -222,6 +222,22 @@ Fortnox.access_token = 'your-access-token'
 Fortnox::Customer.all
 ```
 
+`.all`, `.search`, `.only`, and `.find(hash)` return a `Fortnox::Collection`
+— an iterable wrapper that also exposes the pagination metadata Fortnox
+returns alongside collection responses:
+
+```ruby
+customers = Fortnox::Customer.all
+customers.first.model.name # => "Acme Corp"
+customers.size             # => 50
+customers.total            # => 327
+customers.pages            # => 7
+customers.current_page     # => 1
+```
+
+`Collection` is `Enumerable`, so `.each`, `.map`, `.select`, `.first`, etc.
+all work as expected.
+
 ### Finding a record
 
 ```ruby
