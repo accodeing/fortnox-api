@@ -79,7 +79,7 @@ module Fortnox
     # DeliveryDate Date of delivery.
     attr :delivery_date, Date.optional, Mappers::Date
 
-    # DeliveryName  Name of the recipient of the delivery
+    # DeliveryName Name of the recipient of the delivery
     attr :delivery_name, Sized::String[1024]
 
     # DeliveryZipCode ZipCode for the document delivery address.
@@ -109,7 +109,7 @@ module Fortnox
     # HouseWork If there is any row of the document marked "housework".
     attr :housework <=> 'HouseWork', Bool.optional, :read_only, Boolean
 
-    # TODO: Update comment to something resonable
+    # Labels Labels associated with the document.
     attr :labels, Strict::Array.of(Types.Instance(Label)), Mappers::LabelReferences
 
     # Net Net amount

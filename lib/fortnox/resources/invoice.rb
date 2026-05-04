@@ -22,7 +22,7 @@ module Fortnox
     # Credit If the invoice is a credit invoice.
     attr :credit, Bool.optional, :read_only, Boolean
 
-    # CreditInvoiceReference Reference to the credit invoice, if one exits.
+    # CreditInvoiceReference Reference to the credit invoice, if one exists.
     attr :credit_invoice_reference, Coercible::Integer.optional
 
     # ContractReference Reference to the contract, if one exists.
