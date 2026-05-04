@@ -88,9 +88,11 @@ def auth_code_manually
   prompt('Authorization code')
 end
 
-# JWTs are header.payload.signature, all base64url-encoded without padding.
 def decode_jwt_payload(jwt)
   payload = jwt.split('.')[1]
+  # JWTs are base64url-encoded without padding (RFC 7515), but Ruby's
+  # urlsafe_decode64 is strict about padding before 3.2 — pad to a
+  # multiple of 4 chars so it accepts the input on 3.1.
   payload += '=' * ((4 - (payload.size % 4)) % 4)
   JSON.parse(Base64.urlsafe_decode64(payload))
 end
