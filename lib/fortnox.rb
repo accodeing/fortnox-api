@@ -17,12 +17,17 @@ module Fortnox
 
   class RequestError < RestEasy::Error; end
   class AttributeError < RestEasy::Error; end
+  class MissingAccessToken < RestEasy::Error; end
 
   OAUTH_TOKEN_URL = 'https://apps.fortnox.se/oauth-v1/token'
 
   class << self
     def access_token=(token)
-      config.authentication = RestEasy::Auth::PSK.new(api_key: token)
+      Thread.current[Auth::ThreadLocal::THREAD_LOCAL_KEY] = token
+    end
+
+    def access_token
+      Thread.current[Auth::ThreadLocal::THREAD_LOCAL_KEY]
     end
 
     def request_access_token(client_id:, client_secret:, tenant_id:, scopes: nil)
@@ -58,5 +63,6 @@ module Fortnox
     base_url 'https://api.fortnox.se/3'
     max_retries 3
     attribute_convention :PascalCase
+    authentication Auth::ThreadLocal.new
   end
 end
