@@ -110,4 +110,16 @@ RSpec.describe Fortnox::Resource do
       )
     end
   end
+
+  describe 'partial flag' do
+    it 'marks instances parsed from a collection response as partial' do
+      collection = TestResource.send(:parse, 'Things' => [{ 'Name' => 'a' }, { 'Name' => 'b' }])
+      expect(collection).to all(satisfy { |instance| instance.meta.partial? })
+    end
+
+    it 'marks an instance parsed from a single-resource response as not partial' do
+      instance = TestResource.send(:parse, 'Thing' => { 'Name' => 'a' })
+      expect(instance.meta.partial?).to be(false)
+    end
+  end
 end
