@@ -15,7 +15,6 @@
 
 High-value:
 
-* [ ] `bin/fortnox-update-env:28-36` — regex-replace on the env file loses adjacent comments and has no rollback if the write fails. Switch to a temp-file + rename for atomicity, or at least preserve the original on error.
 * [ ] `bin/fortnox-setup:44-59` — `start_local_server` reads exactly one request line and never times out; if the user closes the browser tab without authorizing, the script hangs forever. Wrap in `Timeout.timeout` and print recovery instructions.
 * [ ] `bin/fortnox-setup:168` — uses `Base64.decode64` to decode a JWT payload. JWTs use base64url; switch to `Base64.urlsafe_decode64` (with padding) so it doesn't break on payloads containing `-`/`_`.
 * [ ] `lib/fortnox.rb:24-26` — `Fortnox.access_token=` mutates global `config.authentication`; the README's "Multiple Fortnox accounts" pattern is not thread-safe. Either document the constraint in README/gotchas or add a `with_access_token(...) { ... }` helper.
