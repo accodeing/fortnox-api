@@ -82,7 +82,7 @@ RSpec.describe Fortnox::TermsOfPayment, order: :defined do
         end
 
         it 'raises an error' do
-          expect { find_with_non_existing_id }.to raise_error(RestEasy::Error)
+          expect { find_with_non_existing_id }.to raise_error(Fortnox::RequestError)
         end
       end
     end
