@@ -13,7 +13,7 @@ module Fortnox
       end
 
       def on_rejected(response)
-        raise RestEasy::RequestError, response
+        raise Fortnox::RequestError, response
       end
 
       private
