@@ -96,7 +96,7 @@ RSpec.describe Fortnox::Order, order: :defined do
       VCR.use_cassette("#{vcr_dir}/all") { described_class.all }
     end
 
-    it 'returns a non-empty array' do
+    it 'returns a non-empty collection' do
       expect(response).not_to be_empty
     end
 
@@ -179,8 +179,8 @@ RSpec.describe Fortnox::Order, order: :defined do
           end
         end
 
-        it 'returns empty array' do
-          expect(find_failure).to eq []
+        it 'returns an empty collection' do
+          expect(find_failure).to be_empty
         end
       end
     end
@@ -194,7 +194,7 @@ RSpec.describe Fortnox::Order, order: :defined do
         end
       end
 
-      it { is_expected.to be_instance_of(Array) }
+      it { is_expected.to be_a(Fortnox::Collection) }
       it { is_expected.to be_empty }
     end
 
@@ -205,7 +205,7 @@ RSpec.describe Fortnox::Order, order: :defined do
         end
       end
 
-      it { is_expected.to be_instance_of(Array) }
+      it { is_expected.to be_a(Fortnox::Collection) }
 
       it 'returns matching orders', :aggregate_failures do
         expect(results).not_to be_empty
@@ -232,7 +232,7 @@ RSpec.describe Fortnox::Order, order: :defined do
         VCR.use_cassette("#{vcr_dir}/filter_hit") { described_class.only(:cancelled) }
       end
 
-      it { is_expected.to be_instance_of(Array) }
+      it { is_expected.to be_a(Fortnox::Collection) }
 
       it 'returns cancelled orders', :aggregate_failures do
         expect(results).not_to be_empty
