@@ -164,8 +164,11 @@ end
 
 access_token = parsed['access_token']
 
-# The tenant ID is in the JWT payload (second segment)
-jwt_payload = JSON.parse(Base64.decode64(access_token.split('.')[1]))
+# The tenant ID is in the JWT payload (second segment). JWTs use unpadded
+# base64url encoding, so pad to a multiple of 4 before decoding.
+payload_b64 = access_token.split('.')[1]
+payload_b64 += '=' * ((4 - (payload_b64.size % 4)) % 4)
+jwt_payload = JSON.parse(Base64.urlsafe_decode64(payload_b64))
 tenant_id = jwt_payload['tenantId']
 
 puts
