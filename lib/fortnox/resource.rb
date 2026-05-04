@@ -9,10 +9,12 @@ module Fortnox
       setting :collection_wrapper, reader: true
     end
 
-    before_parse do |data|
+    before_parse do |data, meta|
       if data.key?(config.instance_wrapper)
+        meta.partial = false
         next data[config.instance_wrapper]
       elsif data.key?(config.collection_wrapper)
+        meta.partial = true
         next data[config.collection_wrapper]
       else
         raise Fortnox::RequestError, "Unknown response format: #{data}"
