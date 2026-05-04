@@ -2,7 +2,6 @@
 
 ## TODO
 
-* [ ] Partial vs full models from collections — Fortnox's collection endpoints return fewer attributes per record than single-resource endpoints. Today, an instance from `Customer.all` looks identical to one from `Customer.find(id)` but is missing fields. Either expose this as `instance.meta.partial?` or transparently re-fetch on accessing a missing field.
 * [ ] CI setup (GitHub Actions to replace Travis CI)
 
 ### Filters
