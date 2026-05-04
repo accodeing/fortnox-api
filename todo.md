@@ -15,7 +15,6 @@
 
 High-value:
 
-* [ ] `lib/fortnox/types.rb:11` and `lib/fortnox/mappers/country_code.rb:8` — both call `ISO3166.configure { config.locales = [:en, :sv] }` at load time. Pick one.
 
 Nits:
 
