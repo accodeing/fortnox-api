@@ -2,57 +2,8 @@
 
 ## TODO
 
-* [ ] Pagination metadata and Collection class:
-  - Basic pagination works — users can pass `find(page: 2, limit: 50)` and get the correct page back.
-  - Fortnox returns `MetaInformation` (`@TotalResources`, `@TotalPages`, `@CurrentPage`) in collection responses, but this is currently stripped in `before_parse`.
-  - To expose this metadata: parse MetaInformation and return it alongside results.
-  - rest-easy: needs a Collection class that's iterable but also carries pagination info. Currently `all`/`find_all_by` return plain arrays.
-  - Fortnox collection endpoints return partial models (fewer attributes than single-resource endpoints). The Collection class should account for this — models from collections are not the same as fully fetched models.
-  - Removes the commented-out pagination block in `lib/fortnox/resource.rb:12-18`.
+* [ ] Partial vs full models from collections — Fortnox's collection endpoints return fewer attributes per record than single-resource endpoints. Today, an instance from `Customer.all` looks identical to one from `Customer.find(id)` but is missing fields. Either expose this as `instance.meta.partial?` or transparently re-fetch on accessing a missing field.
 * [ ] CI setup (GitHub Actions to replace Travis CI)
-
-### Collection
-```Ruby
-# frozen_string_literal: true
-
-module Fortnox
-  class Collection
-    extend Forwardable
-
-    attr_reader :instances, :klass, :meta
-
-    def_delegator :@instances, :each
-
-    # usage ex:
-    # Fortnox::Collection.new( Fortnox::Invoice.all )
-
-    def initialize( array )
-      raise Error.new("Fortnox::Collection only accepts an array of Fortnox::Resource instances") unless array.ia_a?(Array)
-      return nil unless array.length > 1
-      array.each do |instance|
-      @class ||= instance.class
-      raise Error.new("Fortnox::Collection can only contain Fortnox::Resource instances") unless instance.is_a?(Resource)
-      raise Error.new("Fortnox::Collection can only contain one type of Fortnox::Resource instances") unless instance.class == @klass
-    end
-
-    @instances = array
-    @meta = instances.first.meta
-  end
-end
-```
-
-```Ruby
-  invoices = Fortnox::Collection.new(Fortnox::Invoice.all) # returns first page
-  invoices.all # => [#<Fortnox::Invoice ...>, #<Fortnox::Invoice ...>, ...]
-  # Internal runs instance.all
-  invoices.total # => 205
-
-  invoices.first.meta.total # => 100
-  invoices.first # => #<Fortnox::Invoice ...>
-  # Somewhere we need to support pagination here...
-
-  Fortnox::Collection.new()
-```
 
 ### Filters
 This is not something we need to do now, we can take it later.
