@@ -32,9 +32,18 @@ for the full list of breaking changes.
   `delivery_country`) now only accept ISO alpha-2 codes (e.g. `'NO'`,
   `'SE'`). The old gem also accepted country names like `'Norge'` or
   `'Norway'`.
-- **Breaking** Exception classes are renamed and consolidated, e.g.
-  `Fortnox::API::AttributeError` → `Fortnox::AttributeError` and
-  `Fortnox::API::RemoteServerError` → `Fortnox::RequestError`.
+- **Breaking** Exception classes are renamed and consolidated. The gem
+  only ever raises Fortnox-namespaced exceptions; rest-easy errors are
+  translated at the boundary:
+  - `Fortnox::RequestError` (was `Fortnox::API::RemoteServerError`),
+    carries `.response`.
+  - `Fortnox::AttributeError` (was `Fortnox::API::AttributeError`).
+    - `Fortnox::ConstraintError` — attribute value violates a type
+      constraint. Carries `.attribute_name` and `.value`.
+    - `Fortnox::MissingAttributeError` — required attribute missing from
+      an API response. Carries `.attribute_name`.
+  - `Fortnox::MissingAccessToken` — `Fortnox.access_token=` not called on
+    the current thread before an API call.
 - Nested structs (EDIInformation, EmailInformation, InvoiceRow, etc.) are
   now plain `Dry::Struct` subclasses; key-mapping and serialisation logic
   lives in dedicated classes under `Fortnox::Mappers`.
