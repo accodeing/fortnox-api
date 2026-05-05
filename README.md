@@ -16,7 +16,7 @@ Adding more resources is quick and easy, see the
 ## Status
 
 Version 1.0 is a complete rewrite, currently in release candidate
-(`1.0.0.rc1`). It is built on
+(`1.0.0.rc2`). It is built on
 [rest-easy](https://github.com/accodeing/rest-easy), replacing the old
 HTTParty + Data Mapper architecture with a single resource class per entity.
 Authorization uses the Fortnox client credentials flow.
