@@ -168,10 +168,18 @@ invoice = Fortnox::Invoice.stub(
 )
 ```
 
-## Country attributes
+## Stricter attribute validation
 
-Country attributes on documents (`country_code`, `delivery_country`) now only
-accept ISO alpha-2 codes. The old gem also accepted country names.
+Several attributes that 0.x accepted permissively are now validated client-side
+to match the Fortnox API specification. Code that was accidentally relying on
+the lenient 0.x behavior will raise `Fortnox::ConstraintError` (or
+`Fortnox::MissingAttributeError` for required fields) before the request
+goes out.
+
+### Country attributes
+
+`country_code` and `delivery_country` on documents only accept ISO alpha-2
+codes. The old gem also accepted country names.
 
 ```ruby
 # Before — accepted codes, Swedish names, and English names
@@ -181,6 +189,42 @@ invoice = Fortnox::API::Model::Invoice.new(country: 'NO')
 
 # After — only ISO alpha-2 codes
 invoice = Fortnox::Invoice.stub(country_code: 'NO')
+```
+
+### `Invoice.accounting_method`
+
+Now an enum. Only `''`, `'ACCRUAL'`, and `'CASH'` are accepted; 0.x took any
+string.
+
+```ruby
+# Before — any string passed client-side
+invoice = Fortnox::API::Model::Invoice.new(accounting_method: 'whatever')
+
+# After — only the documented values
+invoice = Fortnox::Invoice.stub(accounting_method: 'ACCRUAL')
+```
+
+### `Invoice.invoice_type`
+
+Now an enum. Accepted values: `''`, `'INVOICE'`, `'AGREEMENTINVOICE'`,
+`'INTRESTINVOICE'`, `'SUMMARYINVOICE'`, `'CASHINVOICE'`.
+
+```ruby
+# After
+invoice = Fortnox::Invoice.stub(invoice_type: 'INVOICE')
+```
+
+### `Unit.description`
+
+Now required. 0.x accepted `nil` client-side, but the Fortnox API rejected
+unset descriptions anyway — the new behavior fails earlier.
+
+```ruby
+# Before — accepted client-side, rejected by the API
+unit = Fortnox::API::Model::Unit.new(code: 'PCS')
+
+# After — must include description
+unit = Fortnox::Unit.stub(code: 'PCS', description: 'Pieces')
 ```
 
 ## Nil updates
