@@ -4,6 +4,10 @@ Version 1.0 is a complete rewrite. The gem is now built on
 [rest-easy](https://github.com/accodeing/rest-easy), replacing the old HTTParty + Data Mapper
 architecture.
 
+This guide covers the changes you need to make to upgrade your code. For the
+complete list of changes — including non-breaking improvements and bug fixes
+— see [CHANGELOG.md](CHANGELOG.md).
+
 For the old code and documentation, see the
 [v0.9.2 release](https://github.com/accodeing/fortnox-api/tree/v0.9.2).
 
