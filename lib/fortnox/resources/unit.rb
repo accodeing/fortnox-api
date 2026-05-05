@@ -15,10 +15,10 @@ module Fortnox
     attr :url <=> '@url', Coercible::String.optional, :read_only
 
     # Code The code of the unit.
-    key :code, Strict::String
+    key :code, Sized::String[20], :required
 
     # Description The description of the unit.
-    attr :description, Coercible::String.optional
+    attr :description, Sized::String[100], :required
 
     # CodeEnglish English code of the unit
     attr :code_english, Sized::String[100]

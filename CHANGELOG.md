@@ -22,6 +22,15 @@ and this project adheres to
   prescriptive default that didn't reflect the actual resource set. Other
   Fortnox scopes (`salary`, `bookkeeping`, etc.) can still be entered
   manually.
+- `TermsOfPayment.code` is now `Sized::String[25]` and required, matching
+  Fortnox API documentation. The rest-easy rewrite for rc1 briefly lost
+  the required flag.
+- `Unit.code` is now `Sized::String[20]` and required, matching Fortnox
+  API documentation. The rest-easy rewrite for rc1 briefly lost the
+  required flag.
+- `Unit.description` is now `Sized::String[100]` and required, matching
+  Fortnox API documentation. In 0.x and rc1 this was nullable client-side,
+  but the Fortnox API rejected unset descriptions anyway.
 
 ## [1.0.0.rc1] - 2026-05-04
 
@@ -85,6 +94,16 @@ for the full list of breaking changes.
   `size`, `length`, `empty?`, `[]`, and `to_a`, so most existing Array
   usage works unchanged. Code that explicitly checks `is_a?(Array)` or
   compares with `==` against an Array literal needs updating.
+- **Breaking** `Invoice.accounting_method` is now an enum accepting only
+  `''`, `'ACCRUAL'`, or `'CASH'`. In 0.x this was a free-form
+  `Nullable::String` so any value passed client-side.
+- **Breaking** `Invoice.invoice_type` is now an enum accepting only `''`,
+  `'INVOICE'`, `'AGREEMENTINVOICE'`, `'INTRESTINVOICE'`, `'SUMMARYINVOICE'`,
+  or `'CASHINVOICE'`. In 0.x this was a free-form `Nullable::String`.
+- `your_order_number` on Invoice and Order (inherited from Document) max
+  length raised from 30 to 75 characters to match the current Fortnox API.
+- Article dimension fields (`depth`, `height`, `weight`, `width`) max raised
+  from 99,999,999 to 999,999,999 to match the documented Fortnox range.
 
 ### Added
 

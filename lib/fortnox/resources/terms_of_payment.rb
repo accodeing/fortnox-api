@@ -15,7 +15,7 @@ module Fortnox
     attr :url <=> '@url', Coercible::String.optional, :read_only
 
     # Code The code of the term of payment.
-    key :code, Strict::String
+    key :code, Sized::String[25], :required
 
     # Description The description of the term of payment.
     attr :description, Strict::String, :required
