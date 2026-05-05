@@ -71,7 +71,8 @@ Fortnox::Customer.save(customer)
 ## Return values
 
 `find`, `save`, and `all` now return resource instances instead of model
-objects. Use `.model` to access attributes:
+objects. Attributes are accessed directly on the instance, so existing reads
+generally keep working:
 
 ```ruby
 # Before
@@ -81,8 +82,8 @@ invoice.customer_name  # => 'Acme'
 
 # After
 invoice = Fortnox::Invoice.find(1)
-invoice.model.total          # => 100.0
-invoice.model.customer_name  # => 'Acme'
+invoice.total          # => 100.0
+invoice.customer_name  # => 'Acme'
 ```
 
 Resource instances also have `.meta` (tracks whether the record is new or
@@ -96,10 +97,10 @@ model. Collections also expose pagination metadata:
 
 ```ruby
 customers = Fortnox::Customer.all
-customers.first.model.name # => 'Acme'
-customers.total            # => 327
-customers.pages            # => 7
-customers.current_page     # => 1
+customers.first.name   # => 'Acme'
+customers.total        # => 327
+customers.pages        # => 7
+customers.current_page # => 1
 ```
 
 Code that explicitly checks `is_a?(Array)` or compares with `==` against an

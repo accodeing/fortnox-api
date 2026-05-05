@@ -35,21 +35,21 @@ snake_case in Ruby).
 
 ### Immutability
 
-The model instances are immutable. That means:
+Resource instances are immutable. That means:
 
 ```ruby
-customer.model.name # => "Old Name"
-customer.model.name = 'New Name' # => NoMethodError
+customer.name # => "Old Name"
+customer.name = 'New Name' # => NoMethodError
 ```
 
 Any operation that updates state returns a new instance with the updated
 attributes while leaving the old instance alone:
 
 ```ruby
-customer.model.name # => "Old Name"
+customer.name # => "Old Name"
 updated_customer = customer.update(name: 'New Name')
-updated_customer.model.name # => "New Name"
-customer.model.name # => "Old Name"
+updated_customer.name # => "New Name"
+customer.name # => "Old Name"
 ```
 
 This is how all resources work, they are all immutable.
@@ -228,11 +228,11 @@ returns alongside collection responses:
 
 ```ruby
 customers = Fortnox::Customer.all
-customers.first.model.name # => "Acme Corp"
-customers.size             # => 50
-customers.total            # => 327
-customers.pages            # => 7
-customers.current_page     # => 1
+customers.first.name   # => "Acme Corp"
+customers.size         # => 50
+customers.total        # => 327
+customers.pages        # => 7
+customers.current_page # => 1
 ```
 
 `Collection` is `Enumerable`, so `.each`, `.map`, `.select`, `.first`, etc.
@@ -265,13 +265,13 @@ See the
 [Fortnox documentation](https://developer.fortnox.se/general/parameters/)
 for available parameters.
 
-The returned object wraps the model. Access attributes through `.model`:
+Attributes are exposed directly on the returned instance:
 
 ```ruby
 customer = Fortnox::Customer.find(1)
-customer.model.name       # => "Acme Corp"
-customer.model.city       # => "Stockholm"
-customer.unique_id        # => "1"
+customer.name      # => "Acme Corp"
+customer.city      # => "Stockholm"
+customer.unique_id # => "1"
 ```
 
 ### Creating a record
@@ -281,7 +281,7 @@ Use `.stub` to build a new instance and `.save` to persist it:
 ```ruby
 customer = Fortnox::Customer.stub(name: 'Acme Corp', city: 'Stockholm')
 result = Fortnox::Customer.save(customer)
-result.model.customer_number # => "1"
+result.customer_number # => "1"
 ```
 
 ### Updating a record
