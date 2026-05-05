@@ -155,6 +155,9 @@ The script will:
 After this you have a tenant ID and never need to run this script again (unless
 you need to authorize against a different Fortnox account).
 
+Note: If you change the integration configuration in Fortnox it takes some time for
+Fortnox to propagate the changes (for instance changing the Redirect URI or the scope).
+
 ### Requesting access tokens
 
 Once you have a tenant ID, you can request access tokens programmatically.
