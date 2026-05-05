@@ -6,6 +6,23 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to
 [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+
+- Per-resource OAuth scope declarations via the `scope` setting in
+  `Fortnox::Resource`, plus `Fortnox.scopes` returning a
+  `{ scope_string => [resource_classes] }` mapping derived from the
+  registered resources.
+
+### Changed
+
+- `fortnox-setup` lists the OAuth scopes covered by the gem's resources
+  and accepts a space-separated selection or `all`, replacing the
+  prescriptive default that didn't reflect the actual resource set. Other
+  Fortnox scopes (`salary`, `bookkeeping`, etc.) can still be entered
+  manually.
+
 ## [1.0.0.rc1] - 2026-05-04
 
 Version 1.0 is a complete rewrite of the gem and is **not** a drop-in

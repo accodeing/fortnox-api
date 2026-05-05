@@ -8,6 +8,7 @@ module Fortnox
       path 'projects'
       instance_wrapper 'Project'
       collection_wrapper 'Projects'
+      scope 'project'
     end
 
     # @url Direct URL to the record.

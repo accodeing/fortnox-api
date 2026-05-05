@@ -7,7 +7,10 @@ module Fortnox
     settings do
       setting :instance_wrapper, reader: true
       setting :collection_wrapper, reader: true
+      setting :scope, reader: true
     end
+
+    @registered_resources = []
 
     before_parse do |data, meta|
       if data.key?(config.instance_wrapper)
@@ -38,6 +41,13 @@ module Fortnox
     end
 
     class << self
+      attr_reader :registered_resources
+
+      def inherited(subclass)
+        super
+        Fortnox::Resource.registered_resources << subclass
+      end
+
       def parse(response)
         with_translated_errors do
           pagination = extract_pagination(response)

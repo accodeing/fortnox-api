@@ -8,6 +8,7 @@ module Fortnox
       path 'invoices'
       instance_wrapper 'Invoice'
       collection_wrapper 'Invoices'
+      scope 'invoice'
     end
 
     # AccountingMethod Accounting Method.

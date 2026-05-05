@@ -141,16 +141,19 @@ fortnox-setup
 
 The script will:
 
-1. Ask for your client ID, client secret, and scopes
-2. Offer to use a local server on `http://localhost:4242` to catch the
-   authorization response automatically. If you choose this, set your Fortnox
-   app's redirect URL to `http://localhost:4242`. Otherwise, enter your existing
-   redirect URL and paste the authorization code manually.
-3. Open your browser to the Fortnox authorization page
-4. You log in to Fortnox and grant your app access
-5. The script exchanges the authorization code for an access token and extracts
-   the tenant ID from the JWT
-6. The tenant ID is printed for you to store in your application's configuration
+1. Ask for your client ID and client secret.
+2. List the OAuth scopes covered by the gem's resources and ask which ones
+   you need. Enter a space-separated list, or `all` for everything the gem
+   supports. You can also enter scopes the gem doesn't expose directly
+   if you plan to call those endpoints manually.
+3. Offer to use a local server to catch the authorization response automatically.
+   If you choose this, set your Fortnox app's redirect URL to `http://localhost:4242`.
+   Otherwise, enter your existing redirect URL and paste the authorization code manually.
+4. Open your browser to the Fortnox authorization page.
+5. You log in to Fortnox and grant your app access.
+6. The script exchanges the authorization code for an access token and extracts
+   the tenant ID from the JWT.
+7. The tenant ID is printed for you to store in your application's configuration.
 
 After this you have a tenant ID and never need to run this script again (unless
 you need to authorize against a different Fortnox account).

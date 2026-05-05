@@ -8,6 +8,7 @@ module Fortnox
       path 'termsofpayments'
       instance_wrapper 'TermsOfPayment'
       collection_wrapper 'TermsOfPayments'
+      scope 'settings'
     end
 
     # @url Direct URL to the record.

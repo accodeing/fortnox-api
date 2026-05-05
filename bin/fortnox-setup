@@ -11,6 +11,7 @@ require 'securerandom'
 require 'socket'
 require 'uri'
 require 'faraday'
+require 'fortnox'
 
 OAUTH_ENDPOINT = 'https://apps.fortnox.se/oauth-v1'
 LOCAL_PORT = 4242
@@ -108,10 +109,25 @@ puts
 
 client_id = prompt('Client ID')
 client_secret = prompt('Client secret')
+
 puts
-puts 'Enter the scopes you need. These must match the scopes configured on your'
-puts 'Fortnox app in the developer portal.'
-scopes = prompt('Scopes', default: 'article customer invoice order project settings')
+puts 'Available scopes:'
+Fortnox.scopes.each do |scope, resources|
+  resource_names = resources.map { |r| r.name.split('::').last }.join(', ')
+  puts "  #{scope.ljust(10)} → #{resource_names}"
+end
+puts
+puts 'These must match the scopes configured on your Fortnox app in the developer'
+puts 'portal. Other Fortnox scopes (salary, bookkeeping, etc.) can be added manually.'
+puts
+
+scopes = loop do
+  input = prompt("Enter scopes (space-separated, or 'all')").strip
+  break Fortnox.scopes.keys.join(' ') if input == 'all'
+  break input unless input.empty?
+
+  puts 'Please enter at least one scope.'
+end
 
 puts
 puts 'The script can catch the authorization response automatically using a'

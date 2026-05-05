@@ -8,6 +8,7 @@ module Fortnox
       path 'orders'
       instance_wrapper 'Order'
       collection_wrapper 'Orders'
+      scope 'order'
     end
 
     # CopyRemarks If remarks shall be copied from order to invoice

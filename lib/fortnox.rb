@@ -5,14 +5,14 @@ require 'json'
 require 'rest_easy'
 require 'zeitwerk'
 
-loader = Zeitwerk::Loader.for_gem
-loader.collapse("#{__dir__}/fortnox/resources")
-loader.inflector.inflect(
-  'edi_information' => 'EDIInformation'
-)
-loader.setup
-
 module Fortnox
+  @loader = Zeitwerk::Loader.for_gem
+  @loader.collapse("#{__dir__}/fortnox/resources")
+  @loader.inflector.inflect(
+    'edi_information' => 'EDIInformation'
+  )
+  @loader.setup
+
   extend RestEasy
 
   class Error < StandardError; end
@@ -74,6 +74,15 @@ module Fortnox
       end
 
       parsed['access_token']
+    end
+
+    def scopes
+      @loader.eager_load
+      Resource.registered_resources
+              .group_by(&:scope)
+              .reject { |scope, _| scope.nil? }
+              .sort
+              .to_h
     end
 
     private

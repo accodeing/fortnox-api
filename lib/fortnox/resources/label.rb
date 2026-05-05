@@ -6,6 +6,7 @@ module Fortnox
       path 'labels'
       instance_wrapper 'Label'
       collection_wrapper 'Labels'
+      scope 'settings'
     end
 
     attr :id, Coercible::Integer.optional, :read_only, :key

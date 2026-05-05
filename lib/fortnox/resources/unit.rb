@@ -8,6 +8,7 @@ module Fortnox
       path 'units'
       instance_wrapper 'Unit'
       collection_wrapper 'Units'
+      scope 'settings'
     end
 
     # @url Direct URL to the record.

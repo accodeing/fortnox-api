@@ -8,6 +8,7 @@ module Fortnox
       path 'customers'
       instance_wrapper 'Customer'
       collection_wrapper 'Customers'
+      scope 'customer'
     end
 
     # Direct URL to the record.
