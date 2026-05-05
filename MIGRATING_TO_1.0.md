@@ -49,6 +49,26 @@ token = Fortnox.request_access_token(
 Fortnox.access_token = token
 ```
 
+## Environment variables
+
+If you read credentials from environment variables (for example via
+`fortnox-update-env` or your own loader), the variable names changed —
+the `_API_` infix is gone:
+
+- `FORTNOX_API_CLIENT_ID` → `FORTNOX_CLIENT_ID`
+- `FORTNOX_API_CLIENT_SECRET` → `FORTNOX_CLIENT_SECRET`
+- `FORTNOX_API_ACCESS_TOKEN` → `FORTNOX_ACCESS_TOKEN`
+
+Removed:
+
+- `FORTNOX_API_REFRESH_TOKEN` — refresh tokens are no longer supported
+- `FORTNOX_API_REDIRECT_URI` — passed interactively to `fortnox-setup`
+- `FORTNOX_API_SCOPES` — selected interactively in `fortnox-setup`
+
+New:
+
+- `FORTNOX_TENANT_ID` — required for the client credentials flow
+
 ## Resources replace repositories
 
 The separate model, type, mapper, and repository classes have been replaced by

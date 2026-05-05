@@ -41,6 +41,14 @@ for the full list of breaking changes.
 - **Breaking** Authorization now uses the new Fortnox client credentials flow.
   Refresh tokens are no longer needed, nor supported. A tenant ID is now required;
   obtain one with the new `fortnox-setup` executable.
+- **Breaking** Environment variables lose the `_API_` infix:
+  `FORTNOX_API_CLIENT_ID` → `FORTNOX_CLIENT_ID`, `FORTNOX_API_CLIENT_SECRET`
+  → `FORTNOX_CLIENT_SECRET`, `FORTNOX_API_ACCESS_TOKEN` →
+  `FORTNOX_ACCESS_TOKEN`. `FORTNOX_API_REFRESH_TOKEN`,
+  `FORTNOX_API_REDIRECT_URI`, and `FORTNOX_API_SCOPES` are removed —
+  refresh tokens are no longer supported, and the redirect URI and scopes
+  are now selected interactively in `fortnox-setup`. The new
+  `FORTNOX_TENANT_ID` is required for the client credentials flow.
 - **Breaking** `Fortnox.request_access_token` replaces
   `Fortnox::API::Repository::Authentication` for token management.
 - **Breaking** Configuration moves from `Fortnox::API.configuration` to
