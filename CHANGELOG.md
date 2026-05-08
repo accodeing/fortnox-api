@@ -45,15 +45,21 @@ and this project adheres to
   prescriptive default that didn't reflect the actual resource set. Other
   Fortnox scopes (`salary`, `bookkeeping`, etc.) can still be entered
   manually.
-- `TermsOfPayment.code` is now `Sized::String[25]` and required, matching
-  Fortnox API documentation. The rest-easy rewrite for rc1 briefly lost
-  the required flag.
-- `Unit.code` is now `Sized::String[20]` and required, matching Fortnox
-  API documentation. The rest-easy rewrite for rc1 briefly lost the
-  required flag.
+- `TermsOfPayment.code` now has a 25-character limit, matching Fortnox
+  API documentation.
+- `Unit.code` now has a 20-character limit, matching Fortnox API
+  documentation.
 - `Unit.description` is now `Sized::String[100]` and required, matching
   Fortnox API documentation. In 0.x and rc1 this was nullable client-side,
   but the Fortnox API rejected unset descriptions anyway.
+
+### Fixed
+
+- `TermsOfPayment.code` is required again, matching Fortnox API
+  documentation. The rest-easy rewrite for rc1 briefly lost the required
+  flag.
+- `Unit.code` is required again, matching Fortnox API documentation. The
+  rest-easy rewrite for rc1 briefly lost the required flag.
 
 ## [1.0.0.rc1] - 2026-05-04
 
