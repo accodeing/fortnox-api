@@ -23,10 +23,48 @@ module Fortnox
     def initialize(arg = nil)
       if arg.respond_to?(:status)
         @response = arg
-        super("Request failed: #{arg.status}")
+        super("Request failed: #{arg.status}#{format_body(arg.body)}")
       else
         super
       end
+    end
+
+    BODY_FALLBACK_LIMIT = 500
+    private_constant :BODY_FALLBACK_LIMIT
+
+    private
+
+    def format_body(body)
+      return '' if body.nil? || body.empty?
+
+      " - #{error_details(body) || truncate(body.to_s)}"
+    end
+
+    # Fortnox have at least in the past sometimes returned HTML responses on error,
+    # for instance 503 Service Temporarily Unavailable.
+    # In that case, the body might be long and useful for debugging,
+    # so let's truncate it to a reasonable length if we end up here.
+    def truncate(string)
+      string.length > BODY_FALLBACK_LIMIT ? "#{string[0, BODY_FALLBACK_LIMIT]}…" : string
+    end
+
+    def error_details(body)
+      info = error_information(body)
+      message = info && info['message']
+      return nil unless message
+
+      code = info['code']
+      code ? "#{message} (#{code})" : message
+    end
+
+    def error_information(body)
+      parsed = body.is_a?(String) ? JSON.parse(body) : body
+      info = parsed['ErrorInformation'] if parsed.is_a?(Hash)
+      # Fortnox responds with an inconsistently cases on error keys (see tests)
+      # so let's normalise to lowercase before reading.
+      info.is_a?(Hash) ? info.transform_keys(&:downcase) : nil
+    rescue JSON::ParserError
+      nil
     end
   end
 

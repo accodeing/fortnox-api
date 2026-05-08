@@ -68,8 +68,10 @@ The gem raises the following exceptions:
 
 - `Fortnox::Error` — base class for everything below. Rescue this to catch
   any error raised by the gem.
-- `Fortnox::RequestError` — 4xx/5xx responses from the Fortnox API. Carries
-  the response object as `.response`.
+- `Fortnox::RequestError` — 4xx/5xx responses from the Fortnox API. The
+  exception message includes the API's `ErrorInformation.Message` and code
+  when present (Fortnox is inconsistent about the key casing — the gem
+  normalises both). The full response is on `.response`.
 - `Fortnox::AttributeError` — base for attribute validation failures.
   - `Fortnox::ConstraintError` — an attribute value violates a type
     constraint (max size, format, etc.). Carries `.attribute_name` and

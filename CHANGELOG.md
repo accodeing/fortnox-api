@@ -6,6 +6,16 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to
 [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Changed
+
+- `Fortnox::RequestError#message` now includes the API's
+  `ErrorInformation.Message` and code from the response body when present,
+  normalising Fortnox's inconsistent key casing (PascalCase vs lowercase)
+  across endpoints. Previously the message was only `"Request failed: <status>"`,
+  hiding the cause from logs and uncaught backtraces.
+
 ## [1.0.0.rc2] - 2026-05-05
 
 ### Added

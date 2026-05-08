@@ -41,7 +41,7 @@ RSpec.describe Fortnox::Auth::ThreadLocal do
 
   describe '#on_rejected' do
     it 'raises Fortnox::RequestError carrying the response' do
-      response = instance_double(Faraday::Response, status: 401)
+      response = instance_double(Faraday::Response, status: 401, body: nil)
       expect { described_class.new.on_rejected(response) }.to raise_error(
         an_instance_of(Fortnox::RequestError).and(having_attributes(response: response))
       )

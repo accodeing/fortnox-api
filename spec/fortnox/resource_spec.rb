@@ -103,11 +103,36 @@ RSpec.describe Fortnox::Resource do
     end
 
     it 'raises Fortnox::RequestError preserving the response' do
-      response = instance_double(Faraday::Response, status: 503)
+      response = instance_double(Faraday::Response, status: 503, body: nil)
       raising = -> { TestResource.send(:with_translated_errors) { raise RestEasy::RequestError, response } }
       expect(&raising).to raise_error(
         an_instance_of(Fortnox::RequestError).and(having_attributes(response: response))
       )
+    end
+
+    it "exposes the API's error message in the exception message (PascalCase body keys)" do
+      find_missing_customer = lambda {
+        VCR.use_cassette('customers/find_failure') { Fortnox::Customer.find('123456789') }
+      }
+      expect(&find_missing_customer).to raise_error(Fortnox::RequestError, /Kan inte hitta kunden/)
+    end
+
+    it "exposes the API's error message in the exception message (lowercase body keys)" do
+      filter_invalid_orders = lambda {
+        VCR.use_cassette('orders/filter_invalid') { Fortnox::Order.only('doesntexist') }
+      }
+      expect(&filter_invalid_orders).to raise_error(Fortnox::RequestError, /Ett ogiltigt filter har använts/)
+    end
+
+    it 'falls back to the raw body when no ErrorInformation is present' do
+      html = '<html><body>503 Service Temporarily Unavailable</body></html>'
+      response = instance_double(Faraday::Response, status: 503, body: html)
+      expect(Fortnox::RequestError.new(response).message).to eq("Request failed: 503 - #{html}")
+    end
+
+    it 'truncates the raw-body fallback to bound the exception message' do
+      response = instance_double(Faraday::Response, status: 503, body: 'x' * 600)
+      expect(Fortnox::RequestError.new(response).message).to eq("Request failed: 503 - #{'x' * 500}…")
     end
   end
 

@@ -128,6 +128,27 @@ The `code` attribute has no limits according to the documentations, but when sen
 The row description for `Invoice` (and I guess for `Offer` and `Order` as well) has a limit of 255 characters.
 
 ## Consistency
+### `ErrorInformation` body keys
+On a 4xx response, Fortnox returns details in an `ErrorInformation` object —
+but the casing of its keys depends on which endpoint you hit. `/customers`
+gives you PascalCase:
+
+```json
+{"ErrorInformation":{"Error":1,"Message":"Kan inte hitta kunden.","Code":2000433}}
+```
+
+while `/orders` gives you lowercase:
+
+```json
+{"ErrorInformation":{"error":1,"message":"Ett ogiltigt filter har använts.","code":2000587}}
+```
+
+**The gem solves this for you.** `Fortnox::RequestError#message` reads both
+shapes and surfaces the human-readable message and code in the exception text,
+so you get `Request failed: 400 - Ett ogiltigt filter har använts. (2000587)`
+in your logs no matter which endpoint produced the error. The full response
+is still available on `error.response` if you need the raw body.
+
 ### Customer's SalesAccount attribute
 If you create a `Customer` with the following JSON payload, with `SalesAccount` as a **string** just like the documentation says it should be
 ```
