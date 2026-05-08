@@ -6,7 +6,8 @@ module Fortnox
       struct    Structs::DocumentRow
       overrides housework: 'HouseWork',
                 housework_hours_to_report: 'HouseWorkHoursToReport',
-                housework_type: 'HouseWorkType'
+                housework_type: 'HouseWorkType',
+                vat: 'VAT'
     end
   end
 end

@@ -1,0 +1,72 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.fortnox.se/3/articles
+    body:
+      encoding: UTF-8
+      string: '{"Article":{"Active":true,"ArticleNumber":"FULL6","Bulky":true,"ConstructionAccount":3001,"Depth":100,"Description":"A
+        fully populated article","EAN":"5901234123457","EUAccount":3108,"EUVATAccount":3106,"ExportAccount":3105,"Height":200,"Manufacturer":"Acme
+        Tools","ManufacturerArticleNumber":"ACME-001","Note":"Some notes","PurchaseAccount":4000,"PurchasePrice":100.0,"SalesAccount":3001,"StockGoods":true,"StockPlace":"Aisle
+        3","StockWarning":5.0,"SupplierNumber":"1","Type":"STOCK","Unit":"blarg10","VAT":25.0,"WebshopArticle":true,"Weight":500,"Width":300,"Expired":false,"StockAccount":1410,"StockChangeAccount":4960}}'
+    headers:
+      User-Agent:
+      - Faraday v2.14.1
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      Authorization:
+      - "<AUTHORIZATION>"
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Content-Length:
+      - '986'
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 08 May 2026 12:40:13 GMT
+      Location:
+      - articles
+      X-Build:
+      - b653d4094e
+      X-Frame-Options:
+      - sameorigin
+      X-Krakend:
+      - Version 2.13.3
+      X-Krakend-Completed:
+      - 'false'
+      X-Rack-Responsetime:
+      - '346'
+      X-Uid:
+      - b6f7f9d2
+      Server:
+      - Fortnox
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - '0'
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Content-Security-Policy:
+      - 'upgrade-insecure-requests;frame-ancestors https://*.fortnox.se;report-uri
+        /api/cspreport;connect-src ''self'' https://a.storyblok.com wss://*.fortnox.se
+        *.fortnox.se *.findity.com *.ingest.de.sentry.io mybusiness.pwc.se themes.googleusercontent.com
+        s3.amazonaws.com/helpjuice-static/ *.helpjuice.com *.vimeo.com fonts.googleapis.com
+        fonts.gstatic.com fortnox.piwik.pro api.cling.se wss://api.cling.se app.boardeaser.com
+        ''unsafe-inline'' ''unsafe-eval'' blob: data:'
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains
+    body:
+      encoding: UTF-8
+      string: '{"Article":{"@url":"https:\/\/api.fortnox.se\/3\/articles\/FULL6","ArticleNumber":"FULL6","Bulky":true,"ConstructionAccount":3001,"Depth":100,"Description":"A
+        fully populated article","DisposableQuantity":0,"EAN":"5901234123457","EUAccount":3108,"EUVATAccount":3106,"ExportAccount":3105,"Height":200,"Housework":false,"HouseworkType":null,"Active":true,"Manufacturer":"Acme
+        Tools","ManufacturerArticleNumber":"ACME-001","Note":"Some notes","PurchaseAccount":4000,"PurchasePrice":100,"QuantityInStock":0,"ReservedQuantity":0,"SalesAccount":3001,"StockGoods":true,"StockPlace":"Aisle
+        3","StockValue":0,"StockWarning":5,"SupplierName":"Tets supplier","SupplierNumber":"1","Type":"STOCK","Unit":"blarg10","VAT":25,"WebshopArticle":true,"Weight":500,"Width":300,"Expired":false,"SalesPrice":null,"CostCalculationMethod":null,"StockAccount":1410,"StockChangeAccount":4960,"DirectCost":100,"FreightCost":0,"OtherCost":0,"DefaultStockPoint":null,"DefaultStockLocation":null,"CommodityCode":""}}'
+  recorded_at: Fri, 08 May 2026 12:40:13 GMT
+recorded_with: VCR 6.4.0

@@ -12,7 +12,7 @@ module Fortnox
     end
 
     # AccountingMethod Accounting Method.
-    attr :accounting_method, AccountingMethods
+    attr :accounting_method, AccountingMethods, :read_only
 
     # Balance Balance of the invoice.
     attr :balance, Coercible::Float.optional, :read_only
@@ -51,10 +51,10 @@ module Fortnox
     attr :invoice_period_end, Date.optional, :read_only, Mappers::Date
 
     # InvoicePeriodReference Reference to the invoice period.
-    attr :invoice_period_reference, Coercible::String.optional
+    attr :invoice_period_reference, Coercible::String.optional, :read_only
 
     # InvoiceReference Reference to another invoice.
-    attr :invoice_reference, Coercible::String.optional
+    attr :invoice_reference, Coercible::String.optional, :read_only
 
     # InvoiceRows Separate object
     attr :invoice_rows, Strict::Array.of(Structs::InvoiceRow), Mappers::StructArray.for(Mappers::InvoiceRow)

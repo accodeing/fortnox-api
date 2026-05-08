@@ -36,6 +36,34 @@ RSpec.describe Fortnox::Project, order: :defined do
     end
   end
 
+  describe '.save with all writable attributes' do
+    # NOTE: Bump project_number when re-recording VCR cassettes — Fortnox rejects duplicates
+    let(:fully_populated_project_number) { '901' }
+    let(:writable_attributes) do
+      {
+        project_number: fully_populated_project_number,
+        comments: 'Fully populated comments',
+        contact_person: 'Bilbo Baggins',
+        description: 'A fully populated project',
+        end_date: Date.new(2026, 12, 31),
+        project_leader: 'Frodo Baggins',
+        start_date: Date.new(2026, 1, 1),
+        status: 'NOTSTARTED'
+      }
+    end
+    let(:save_new) do
+      VCR.use_cassette("#{vcr_dir}/save_new_fully_populated") do
+        described_class.save(described_class.stub(**writable_attributes))
+      end
+    end
+
+    it 'round-trips every writable attribute', :aggregate_failures do
+      writable_attributes.each do |attribute, value|
+        expect(save_new.model.send(attribute)).to eq(value)
+      end
+    end
+  end
+
   describe '.all' do
     let(:response) do
       VCR.use_cassette("#{vcr_dir}/all") { described_class.all }

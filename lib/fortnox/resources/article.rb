@@ -155,6 +155,6 @@ module Fortnox
     attr :default_stock_location, Coercible::String.optional
 
     # CommodityCode Commodity code of the article.
-    attr :commodity_code, Coercible::String.optional
+    attr :commodity_code, Coercible::String.optional, :read_only
   end
 end

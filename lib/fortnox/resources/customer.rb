@@ -131,6 +131,9 @@ module Fortnox
     # Our reference
     attr :our_reference, Sized::String[50]
 
+    # Phone number of the customer. Only present in collection responses.
+    attr :phone, Coercible::String.optional, :read_only
+
     # First phone number of the customer
     attr :phone1, Sized::String[1024]
 
@@ -190,9 +193,6 @@ module Fortnox
 
     # Active If the customer is active.
     attr :active, Bool.optional, Boolean
-
-    # Phone number of the customer. Only present in collection responses.
-    attr :phone, Coercible::String.optional
 
     # External reference
     attr :external_reference, Sized::String[1024]

@@ -56,6 +56,29 @@ RSpec.describe Fortnox::Unit, order: :defined do
     end
   end
 
+  describe '.save with all writable attributes' do
+    # NOTE: Bump code when re-recording VCR cassettes — Fortnox rejects duplicates
+    let(:fully_populated_code) { 'full1' }
+    let(:writable_attributes) do
+      {
+        code: fully_populated_code,
+        description: 'A fully populated unit',
+        code_english: 'fully-populated'
+      }
+    end
+    let(:save_new) do
+      VCR.use_cassette("#{vcr_dir}/save_new_fully_populated") do
+        described_class.save(described_class.stub(**writable_attributes))
+      end
+    end
+
+    it 'round-trips every writable attribute', :aggregate_failures do
+      writable_attributes.each do |attribute, value|
+        expect(save_new.model.send(attribute)).to eq(value)
+      end
+    end
+  end
+
   describe '.all' do
     let(:response) do
       VCR.use_cassette("#{vcr_dir}/all") { described_class.all }

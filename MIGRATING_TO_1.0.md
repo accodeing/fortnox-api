@@ -195,19 +195,6 @@ invoice = Fortnox::API::Model::Invoice.new(country: 'NO')
 invoice = Fortnox::Invoice.stub(country_code: 'NO')
 ```
 
-### `Invoice.accounting_method`
-
-Now an enum. Only `''`, `'ACCRUAL'`, and `'CASH'` are accepted; 0.x took any
-string.
-
-```ruby
-# Before — any string passed client-side
-invoice = Fortnox::API::Model::Invoice.new(accounting_method: 'whatever')
-
-# After — only the documented values
-invoice = Fortnox::Invoice.stub(accounting_method: 'ACCRUAL')
-```
-
 ### `Invoice.invoice_type`
 
 Now an enum. Accepted values: `''`, `'INVOICE'`, `'AGREEMENTINVOICE'`,

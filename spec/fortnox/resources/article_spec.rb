@@ -53,6 +53,66 @@ RSpec.describe Fortnox::Article, order: :defined do
     end
   end
 
+  describe '.save with all writable attributes' do
+    # Excludes housework + housework_type — covered by housework_types_spec.
+    # Excludes default_stock_point + default_stock_location — require existing
+    # stock points configured in the tenant.
+    # Excludes cost_calculation_method — Fortnox silently drops the value
+    # despite stock accounting being enabled.
+    # Excludes direct_cost, freight_cost, other_cost — when set together with
+    # purchase_price, Fortnox overrides purchase_price with their sum.
+    # Excludes quantity_in_stock — for stock_goods=true articles, Fortnox
+    # derives this from inventory transactions and ignores the value sent.
+    # The limits specs below exercise it for stock_goods=false articles.
+    # NOTE: Bump article_number when re-recording VCR cassettes — Fortnox rejects duplicates
+    let(:fully_populated_article_number) { 'FULL6' }
+    let(:writable_attributes) do
+      {
+        article_number: fully_populated_article_number,
+        active: true,
+        bulky: true,
+        construction_account: 3001,
+        depth: 100,
+        description: 'A fully populated article',
+        ean: '5901234123457',
+        eu_account: 3108,
+        eu_vat_account: 3106,
+        expired: false,
+        export_account: 3105,
+        height: 200,
+        manufacturer: 'Acme Tools',
+        manufacturer_article_number: 'ACME-001',
+        note: 'Some notes',
+        purchase_account: 4000,
+        purchase_price: 100.0,
+        sales_account: 3001,
+        stock_account: 1410,
+        stock_change_account: 4960,
+        stock_goods: true,
+        stock_place: 'Aisle 3',
+        stock_warning: 5.0,
+        supplier_number: '1',
+        type: 'STOCK',
+        unit: 'blarg10',
+        vat: 25.0,
+        webshop_article: true,
+        weight: 500,
+        width: 300
+      }
+    end
+    let(:save_new) do
+      VCR.use_cassette("#{vcr_dir}/save_new_fully_populated") do
+        described_class.save(described_class.stub(**writable_attributes))
+      end
+    end
+
+    it 'round-trips every writable attribute', :aggregate_failures do
+      writable_attributes.each do |attribute, value|
+        expect(save_new.model.send(attribute)).to eq(value)
+      end
+    end
+  end
+
   describe '.all' do
     let(:response) do
       VCR.use_cassette("#{vcr_dir}/all") { described_class.all }

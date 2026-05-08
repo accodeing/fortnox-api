@@ -53,6 +53,93 @@ RSpec.describe Fortnox::Customer, order: :defined do
     end
   end
 
+  describe '.save with all writable attributes' do
+    # NOTE: Bump customer_number when re-recording VCR cassettes — Fortnox rejects duplicates
+    let(:fully_populated_customer_number) { '9003' }
+    let(:writable_attributes) do
+      {
+        customer_number: fully_populated_customer_number,
+        active: true,
+        address1: 'Storgatan 1',
+        address2: 'Box 100',
+        city: 'Stockholm',
+        comments: 'A fully populated customer',
+        cost_center: '1',
+        country_code: 'SE',
+        currency: 'SEK',
+        default_delivery_types: Fortnox::Structs::DefaultDeliveryTypes.new(
+          invoice: 'PRINT', order: 'PRINT', offer: 'PRINT'
+        ),
+        default_templates: Fortnox::Structs::DefaultTemplates.new(
+          order: 'DEFAULTTEMPLATE',
+          offer: 'DEFAULTTEMPLATE',
+          invoice: 'DEFAULTTEMPLATE',
+          cash_invoice: 'DEFAULTTEMPLATE'
+        ),
+        delivery_address1: 'Leveransvägen 2',
+        delivery_address2: 'Port B',
+        delivery_city: 'Göteborg',
+        delivery_country_code: 'SE',
+        delivery_fax: '+46 8 0000000',
+        delivery_name: 'Delivery Recipient',
+        delivery_phone1: '+46 8 1111111',
+        delivery_phone2: '+46 8 2222222',
+        delivery_zip_code: '41100',
+        email: 'customer@example.com',
+        email_invoice: 'invoice@example.com',
+        email_invoice_bcc: 'invoice-bcc@example.com',
+        email_invoice_cc: 'invoice-cc@example.com',
+        email_offer: 'offer@example.com',
+        email_offer_bcc: 'offer-bcc@example.com',
+        email_offer_cc: 'offer-cc@example.com',
+        email_order: 'order@example.com',
+        email_order_bcc: 'order-bcc@example.com',
+        email_order_cc: 'order-cc@example.com',
+        external_reference: 'EXT-001',
+        fax: '+46 8 3333333',
+        gln: '1234567890123',
+        gln_delivery: '3210987654321',
+        invoice_administration_fee: 50.0,
+        invoice_discount: 10.0,
+        invoice_freight: 25.0,
+        invoice_remark: 'Standard invoice remark',
+        name: 'Fully Populated Customer',
+        organisation_number: '556677-8899',
+        our_reference: 'Bilbo',
+        phone1: '+46 8 4444444',
+        phone2: '+46 8 5555555',
+        price_list: 'A',
+        project: '1',
+        sales_account: 3001,
+        show_price_vat_included: true,
+        terms_of_delivery: '',
+        terms_of_payment: '30',
+        type: 'COMPANY',
+        vat_number: 'SE556677889901',
+        vat_type: 'SEVAT',
+        visiting_address: 'Besöksgatan 3',
+        visiting_city: 'Malmö',
+        visiting_country_code: 'SE',
+        visiting_zip_code: '21100',
+        way_of_delivery: '',
+        www: 'https://example.com',
+        your_reference: 'Frodo',
+        zip_code: '11122'
+      }
+    end
+    let(:save_new) do
+      VCR.use_cassette("#{vcr_dir}/save_new_fully_populated") do
+        described_class.save(described_class.stub(**writable_attributes))
+      end
+    end
+
+    it 'round-trips every writable attribute', :aggregate_failures do
+      writable_attributes.each do |attribute, value|
+        expect(save_new.model.send(attribute)).to eq(value)
+      end
+    end
+  end
+
   describe '.all' do
     let(:response) do
       VCR.use_cassette("#{vcr_dir}/all") { described_class.all }

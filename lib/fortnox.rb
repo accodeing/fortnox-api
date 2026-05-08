@@ -60,7 +60,7 @@ module Fortnox
     def error_information(body)
       parsed = body.is_a?(String) ? JSON.parse(body) : body
       info = parsed['ErrorInformation'] if parsed.is_a?(Hash)
-      # Fortnox responds with an inconsistently cases on error keys (see tests)
+      # Fortnox responds with inconsistently-cased error keys (see tests),
       # so let's normalise to lowercase before reading.
       info.is_a?(Hash) ? info.transform_keys(&:downcase) : nil
     rescue JSON::ParserError

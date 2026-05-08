@@ -15,6 +15,19 @@ and this project adheres to
   normalising Fortnox's inconsistent key casing (PascalCase vs lowercase)
   across endpoints. Previously the message was only `"Request failed: <status>"`,
   hiding the cause from logs and uncaught backtraces.
+- `Article#commodity_code`, `Customer#phone`, `Invoice#accounting_method`,
+  `Invoice#invoice_period_reference`, `Invoice#invoice_reference`,
+  `Document#time_basis_reference`, `Document#total_to_pay`, and
+  `Document#warehouse_ready` are now flagged read-only to match the Fortnox
+  API. Values set on these attributes are silently excluded from save
+  requests; previously they were sent and rejected by the API.
+
+### Fixed
+
+- `Order` and `Invoice` rows now serialise the VAT field as `VAT` instead of
+  `Vat`. Saving rows with a `vat` value previously failed with Fortnox
+  rejecting the request as `"Felaktigt fältnamn"`. This bug was introduced in the 1.0.0.rc1,
+  it did not exist in 0.x.
 
 ## [1.0.0.rc2] - 2026-05-05
 

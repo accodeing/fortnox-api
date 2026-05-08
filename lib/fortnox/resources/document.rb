@@ -191,12 +191,12 @@ module Fortnox
     attr :outbound_date, Date.optional, Mappers::Date
 
     # TimeBasisReference Reference to time basis.
-    attr :time_basis_reference, Coercible::Integer.optional
+    attr :time_basis_reference, Coercible::Integer.optional, :read_only
 
     # TotalToPay Total amount to pay.
-    attr :total_to_pay, Coercible::Float.optional
+    attr :total_to_pay, Coercible::Float.optional, :read_only
 
     # WarehouseReady If the document is warehouse ready.
-    attr :warehouse_ready, Bool.optional, Boolean
+    attr :warehouse_ready, Bool.optional, :read_only, Boolean
   end
 end

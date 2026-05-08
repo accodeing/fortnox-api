@@ -82,6 +82,112 @@ RSpec.describe Fortnox::Invoice, order: :defined do
     end
   end
 
+  describe '.save with all writable attributes' do
+    # Excludes housework + housework_type on rows — covered by housework_types_spec.
+    # Excludes payment_way — only allowed when invoice_type is CASHINVOICE.
+    let(:row_attributes) do
+      {
+        account_number: 3001,
+        article_number: '101',
+        cost_center: '',
+        delivered_quantity: 1.0,
+        description: 'Row description',
+        discount: 0.0,
+        discount_type: 'PERCENT',
+        price: 100.0,
+        project: '1',
+        unit: 'blarg10',
+        vat: 25
+      }
+    end
+    let(:writable_attributes) do
+      {
+        customer_number: '1',
+        administration_fee: 50.0,
+        address1: 'Storgatan 1',
+        address2: 'Box 100',
+        city: 'Stockholm',
+        comments: 'A fully populated invoice',
+        cost_center: '',
+        country_code: 'SE',
+        currency: 'SEK',
+        currency_rate: 1.0,
+        currency_unit: 1.0,
+        customer_name: 'Customer with IDN email',
+        delivery_address1: 'Leveransvägen 2',
+        delivery_address2: 'Port B',
+        delivery_city: 'Göteborg',
+        delivery_country: 'SE',
+        delivery_date: Date.new(2026, 6, 1),
+        delivery_name: 'Delivery Recipient',
+        delivery_zip_code: '41100',
+        edi_information: Fortnox::Structs::EDIInformation.new(
+          edi_global_location_number: '1234567890123',
+          edi_global_location_number_delivery: '3210987654321',
+          edi_invoice_extra1: 'extra1',
+          edi_invoice_extra2: 'extra2',
+          edi_our_electronic_reference: 'our-ref',
+          edi_your_electronic_reference: 'your-ref'
+        ),
+        email_information: Fortnox::Structs::EmailInformation.new(
+          email_address_to: 'invoice@example.com',
+          email_address_cc: 'invoice-cc@example.com',
+          email_address_bcc: 'invoice-bcc@example.com',
+          email_subject: 'Invoice {no}',
+          email_body: 'Body'
+        ),
+        eu_quarterly_report: false,
+        external_invoice_reference1: 'EXT-1',
+        external_invoice_reference2: 'EXT-2',
+        freight: 25.0,
+        invoice_date: Date.new(2026, 5, 1),
+        invoice_type: 'INVOICE',
+        language: 'SV',
+        not_completed: false,
+        ocr: '426523791',
+        our_reference: 'Bilbo',
+        outbound_date: Date.new(2026, 5, 15),
+        phone1: '+46 8 4444444',
+        phone2: '+46 8 5555555',
+        price_list: 'A',
+        print_template: 'st',
+        project: '1',
+        remarks: 'Some remarks',
+        tax_reduction_type: 'none',
+        terms_of_delivery: '',
+        terms_of_payment: '30',
+        vat_included: false,
+        way_of_delivery: '',
+        your_order_number: 'YO-1',
+        your_reference: 'Frodo',
+        zip_code: '11122'
+      }
+    end
+    let(:save_new) do
+      VCR.use_cassette("#{vcr_dir}/save_new_fully_populated") do
+        described_class.save(
+          described_class.stub(
+            **writable_attributes,
+            invoice_rows: [Fortnox::Structs::InvoiceRow.new(row_attributes)]
+          )
+        )
+      end
+    end
+
+    it 'round-trips every writable attribute', :aggregate_failures do
+      writable_attributes.each do |attribute, value|
+        expect(save_new.model.send(attribute)).to eq(value)
+      end
+    end
+
+    it 'round-trips every writable row attribute', :aggregate_failures do
+      returned_row = save_new.model.invoice_rows.first
+      row_attributes.each do |attribute, value|
+        expect(returned_row.send(attribute)).to eq(value)
+      end
+    end
+  end
+
   # It is not possible to delete Invoices. Therefore, expected number of Invoices
   # when running .all will continue to increase (until 100, which is max by default).
   describe '.all' do

@@ -1,0 +1,70 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.fortnox.se/3/projects
+    body:
+      encoding: UTF-8
+      string: '{"Project":{"Comments":"Fully populated comments","ContactPerson":"Bilbo
+        Baggins","Description":"A fully populated project","EndDate":"2026-12-31","ProjectLeader":"Frodo
+        Baggins","ProjectNumber":"901","Status":"NOTSTARTED","StartDate":"2026-01-01"}}'
+    headers:
+      User-Agent:
+      - Faraday v2.14.1
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      Authorization:
+      - "<AUTHORIZATION>"
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Content-Length:
+      - '301'
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 08 May 2026 10:09:02 GMT
+      Location:
+      - project
+      X-Build:
+      - b653d4094e
+      X-Frame-Options:
+      - sameorigin
+      X-Krakend:
+      - Version 2.13.3
+      X-Krakend-Completed:
+      - 'false'
+      X-Rack-Responsetime:
+      - '270'
+      X-Uid:
+      - e9db56a4
+      Server:
+      - Fortnox
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - '0'
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Content-Security-Policy:
+      - 'upgrade-insecure-requests;frame-ancestors https://*.fortnox.se;report-uri
+        /api/cspreport;connect-src ''self'' https://a.storyblok.com wss://*.fortnox.se
+        *.fortnox.se *.findity.com *.ingest.de.sentry.io mybusiness.pwc.se themes.googleusercontent.com
+        s3.amazonaws.com/helpjuice-static/ *.helpjuice.com *.vimeo.com fonts.googleapis.com
+        fonts.gstatic.com fortnox.piwik.pro api.cling.se wss://api.cling.se app.boardeaser.com
+        ''unsafe-inline'' ''unsafe-eval'' blob: data:'
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains
+    body:
+      encoding: UTF-8
+      string: '{"Project":{"@url":"https:\/\/api.fortnox.se\/3\/projects\/901","Comments":"Fully
+        populated comments","ContactPerson":"Bilbo Baggins","Description":"A fully
+        populated project","EndDate":"2026-12-31","ProjectLeader":"Frodo Baggins","ProjectNumber":"901","Status":"NOTSTARTED","StartDate":"2026-01-01"}}'
+  recorded_at: Fri, 08 May 2026 10:09:02 GMT
+recorded_with: VCR 6.4.0
