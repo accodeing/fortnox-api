@@ -143,7 +143,6 @@ module Fortnox
   configure do
     base_url 'https://api.fortnox.se/3'
     max_retries 3
-    attribute_convention :PascalCase
     authentication Auth::ThreadLocal.new
   end
 end
