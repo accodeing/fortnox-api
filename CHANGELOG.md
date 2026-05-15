@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to
 [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [1.0.0.rc4] - 2026-05-15
+
+### Changed
+
+- Upgraded `rest-easy` dependency to `~> 1.1.1`. This drops the runtime
+  dependency on `dry-inflector`, which was never used.
+
 ## [1.0.0.rc3] - 2026-05-08
 
 ### Changed
@@ -168,6 +175,7 @@ for the full list of breaking changes.
 For changes prior to the 1.0 rewrite, see the
 [0.x changelog](https://github.com/accodeing/fortnox-api/blob/v0.9.2/CHANGELOG.md).
 
+[1.0.0.rc4]: https://github.com/accodeing/fortnox-api/compare/v1.0.0.rc3...v1.0.0.rc4
 [1.0.0.rc3]: https://github.com/accodeing/fortnox-api/compare/v1.0.0.rc2...v1.0.0.rc3
 [1.0.0.rc2]: https://github.com/accodeing/fortnox-api/compare/v1.0.0.rc1...v1.0.0.rc2
 [1.0.0.rc1]: https://github.com/accodeing/fortnox-api/releases/tag/v1.0.0.rc1
