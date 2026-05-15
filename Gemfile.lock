@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    fortnox-api (1.0.0.rc4)
+    fortnox-api (1.0.0.rc5)
       countries (~> 7.1)
       dry-struct (~> 1.5)
       rest-easy (~> 1.1.2)
