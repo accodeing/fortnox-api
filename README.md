@@ -322,6 +322,55 @@ Some resources support server-side filters:
 Fortnox::Invoice.only('unpaid')
 ```
 
+### Debugging
+
+The gem exposes two independent debugging knobs from rest-easy.
+
+#### HTTP wire logging
+
+Set a `Logger`-compatible instance on the gem-level config to log every
+HTTP request and response. Faraday's built-in logger middleware is attached
+only when this setting is non-nil — no overhead when unset:
+
+```ruby
+require 'logger'
+
+Fortnox.configure do
+  logger Logger.new($stdout)
+end
+```
+
+By default only request/response lines and headers are logged, with the
+standard auth headers (`Authorization`, `Proxy-Authorization`, `Cookie`,
+`Set-Cookie`) filtered to `[FILTERED]`. To also log bodies, opt in:
+
+```ruby
+Fortnox.configure do
+  logger     Logger.new($stdout)
+  log_bodies true
+end
+```
+
+The Faraday connection is built once on the first request and cached for
+the life of the process, so changes to `logger` or `log_bodies` after that
+take effect only on restart.
+
+The `fortnox-setup` and `fortnox-update-env` executables talk directly to
+the OAuth token endpoint and are not routed through this logger.
+
+#### Per-resource response-shape validation
+
+Set `debug true` on a resource to have rest-easy warn whenever an API
+response contains fields the resource doesn't declare with `attr` or
+`ignore`, or is missing a declared (non-required) attribute. Useful for
+catching schema drift when Fortnox adds or renames fields:
+
+```ruby
+Fortnox::Customer.configure do
+  debug true
+end
+```
+
 ### Gotchas
 
 See [docs/gotchas.md](docs/gotchas.md) for known quirks and edge cases in the

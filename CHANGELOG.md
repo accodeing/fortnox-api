@@ -6,6 +6,19 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to
 [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+
+- HTTP wire logging via `Fortnox.configure { logger ... }`, with an
+  optional `log_bodies` toggle for request/response bodies. Standard
+  auth headers are redacted automatically. Inherited from `rest-easy`
+  1.2.
+
+### Changed
+
+- Upgraded `rest-easy` dependency to `~> 1.2.0`.
+
 ## [1.0.0.rc5] - 2026-05-15
 
 ### Changed

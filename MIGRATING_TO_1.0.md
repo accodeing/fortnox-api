@@ -242,3 +242,43 @@ Fortnox::API::RemoteServerError
 Fortnox::AttributeError
 Fortnox::RequestError
 ```
+
+## Debugging and logging
+
+The 0.x gem had a single combined switch:
+
+```ruby
+# Before
+Fortnox::API.configure do |config|
+  config.debugging = true
+  config.logger    = Logger.new($stdout)
+end
+```
+
+In 1.x this splits into two unrelated knobs.
+
+For HTTP wire logging — request/response lines and headers, with the
+standard auth headers redacted — set a `Logger` on the gem-level config:
+
+```ruby
+# After
+Fortnox.configure do
+  logger Logger.new($stdout)
+end
+```
+
+To also log request/response bodies, opt in explicitly with `log_bodies true`.
+
+For catching schema drift — warnings when an API response contains fields a
+resource doesn't declare with `attr` or `ignore` — set `debug` on the
+individual resource. This is a different feature from the old `debugging`
+flag and is opt-in per resource:
+
+```ruby
+# After
+Fortnox::Customer.configure do
+  debug true
+end
+```
+
+See the [Debugging section in the README](README.md#debugging) for details.

@@ -4,7 +4,7 @@ PATH
     fortnox-api (1.0.0.rc5)
       countries (~> 7.1)
       dry-struct (~> 1.5)
-      rest-easy (~> 1.1.2)
+      rest-easy (~> 1.2.0)
 
 GEM
   remote: https://gem.coop/
@@ -70,7 +70,7 @@ GEM
     rainbow (3.1.1)
     rake (13.4.2)
     regexp_parser (2.12.0)
-    rest-easy (1.1.2)
+    rest-easy (1.2.0)
       dry-configurable (~> 1.0)
       dry-types (~> 1.2)
       faraday (~> 2.0)
