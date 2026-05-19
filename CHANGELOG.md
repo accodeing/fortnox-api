@@ -15,6 +15,10 @@ and this project adheres to
 
 ### Fixed
 
+- Declare `base64` as a runtime dependency. It is `require`d by the gem
+  and used for OAuth credential encoding, but `base64` was removed from
+  Ruby's default gems in 3.4, so the gem failed to load on Ruby 3.4 with
+  `LoadError: cannot load such file -- base64`.
 - Saving a persisted record with no changes is again a no-op, matching
   0.9. In that version `save` returned early for an unchanged persisted record
   without issuing a request. The 1.0.0.rc1 rest-easy rewrite regressed
