@@ -45,6 +45,14 @@ something like `bundle exec rspec spec/fortnox/resources/article_spec.rb`.
 bundle exec rake
 ```
 
+### Continuous integration
+
+GitHub Actions (`.github/workflows/ci.yml`) runs RuboCop and the full
+RSpec suite (Ruby 3.1–3.4) on every pull request and on pushes to
+`development` and `rest-easy`. The suite runs entirely offline against
+the committed VCR cassettes and the dummy values in `.env.test`, so CI
+needs no Fortnox credentials.
+
 ### Test environment variables
 
 `.env.test` includes environment variables used for testing with dummy values.

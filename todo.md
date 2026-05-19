@@ -2,8 +2,6 @@
 
 ## TODO
 
-* [ ] CI setup (GitHub Actions to replace Travis CI)
-
 ### Filters
 This is not something we need to do now, we can take it later.
 

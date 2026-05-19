@@ -1,5 +1,7 @@
 # fortnox-api
 
+[![CI](https://github.com/accodeing/fortnox-api/actions/workflows/ci.yml/badge.svg)](https://github.com/accodeing/fortnox-api/actions/workflows/ci.yml)
+
 Ruby gem for Fortnox's version 3 REST API, built on
 [rest-easy](https://github.com/accodeing/rest-easy). If you need to integrate an existing or new Ruby
 or Rails app against Fortnox this gem will save you a lot of time.
