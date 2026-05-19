@@ -8,6 +8,15 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Changed
+
+- `fortnox-setup` now prints the authorization URL and asks before
+  opening a browser when a non-localhost redirect URI is used, defaulting
+  to not opening it. Previously it always opened the URL locally, so the
+  browser immediately followed the redirect and the URL was lost — making
+  it impossible to hand off to whoever should log in (e.g. a customer).
+  The local-server flow is unchanged.
+
 ## [1.0.0.rc7] - 2026-05-19
 
 ### Changed

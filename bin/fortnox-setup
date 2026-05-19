@@ -154,15 +154,21 @@ auth_params = URI.encode_www_form(
 authorize_url = "#{OAUTH_ENDPOINT}/auth?#{auth_params}"
 
 puts
-puts 'Opening browser for Fortnox authorization...'
-
-open_browser(authorize_url)
 
 if use_local_server
+  puts 'Opening browser for Fortnox authorization...'
+  open_browser(authorize_url)
   puts
   puts 'Waiting for Fortnox to redirect back...'
   authorization_code = get_auth_code_from_server(LOCAL_PORT, nonce)
 else
+  puts 'Authorization URL. Open it to log in, or send it to whoever should'
+  puts 'log in to the Fortnox account being connected:'
+  puts
+  puts "  #{authorize_url}"
+  puts
+  open_here = prompt('Open it in your browser now?', default: 'n')
+  open_browser(authorize_url) if open_here.downcase.start_with?('y')
   authorization_code = auth_code_manually
 end
 
