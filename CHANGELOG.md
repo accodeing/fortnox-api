@@ -11,7 +11,7 @@ and this project adheres to
 ### Fixed
 
 - Saving a persisted record with no changes is again a no-op, matching
-  0.x. In 0.x `save` returned early for an unchanged persisted record
+  0.9. In that version `save` returned early for an unchanged persisted record
   without issuing a request. The 1.0.0.rc1 rest-easy rewrite regressed
   this: `save` on a record fetched via `find` re-sent every attribute
   via a full-record `PUT`, which could clobber fields changed elsewhere
