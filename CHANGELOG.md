@@ -12,6 +12,7 @@ and this project adheres to
 
 - **Breaking** Minimum Ruby version raised to 3.2. Ruby 3.1 reached
   end-of-life in March 2025 and is no longer supported or tested.
+- Upgraded `rest-easy` dependency to `~> 1.3.0`.
 
 ### Fixed
 
