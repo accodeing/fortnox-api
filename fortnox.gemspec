@@ -19,7 +19,7 @@ Gem::Specification.new do |spec|
   spec.executables   = ['fortnox-setup', 'fortnox-update-env']
   spec.require_paths = ['lib']
 
-  spec.required_ruby_version = '>= 3.1.0'
+  spec.required_ruby_version = '>= 3.2.0'
 
   spec.add_dependency 'countries', '~> 7.1'
   spec.add_dependency 'dry-struct', '~> 1.5'

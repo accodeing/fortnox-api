@@ -95,7 +95,7 @@ The gem raises the following exceptions:
 
 ## Requirements
 
-Ruby 3.1 or higher.
+Ruby 3.2 or higher.
 
 ### Installation
 

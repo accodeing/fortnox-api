@@ -8,6 +8,11 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Changed
+
+- **Breaking** Minimum Ruby version raised to 3.2. Ruby 3.1 reached
+  end-of-life in March 2025 and is no longer supported or tested.
+
 ### Fixed
 
 - Saving a persisted record with no changes is again a no-op, matching

@@ -48,7 +48,7 @@ bundle exec rake
 ### Continuous integration
 
 GitHub Actions (`.github/workflows/ci.yml`) runs RuboCop and the full
-RSpec suite (Ruby 3.1–3.4) on every pull request and on pushes to
+RSpec suite (Ruby 3.2–3.4) on every pull request and on pushes to
 `development` and `rest-easy`. The suite runs entirely offline against
 the committed VCR cassettes and the dummy values in `.env.test`, so CI
 needs no Fortnox credentials.

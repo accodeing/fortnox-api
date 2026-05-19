@@ -15,7 +15,7 @@ being the last release when this is written). References to "0.9" below mean tha
 
 ## Ruby version
 
-The minimum Ruby version is now 3.1.
+The minimum Ruby version is now 3.2.
 
 ## Require path
 
