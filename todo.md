@@ -2,6 +2,8 @@
 
 ## TODO
 
+- [ ] Adjust github workflow to include `development` and `main`, not `rest-easy`.
+
 ### Filters
 This is not something we need to do now, we can take it later.
 
