@@ -8,6 +8,8 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [1.0.0.rc7] - 2026-05-19
+
 ### Changed
 
 - **Breaking** Minimum Ruby version raised to 3.2. Ruby 3.1 reached
@@ -215,7 +217,8 @@ for the full list of breaking changes.
 For changes prior to the 1.0 rewrite, see the
 [0.x changelog](https://github.com/accodeing/fortnox-api/blob/v0.9.2/CHANGELOG.md).
 
-[Unreleased]: https://github.com/accodeing/fortnox-api/compare/v1.0.0.rc6...HEAD
+[Unreleased]: https://github.com/accodeing/fortnox-api/compare/v1.0.0.rc7...HEAD
+[1.0.0.rc7]: https://github.com/accodeing/fortnox-api/compare/v1.0.0.rc6...v1.0.0.rc7
 [1.0.0.rc6]: https://github.com/accodeing/fortnox-api/compare/v1.0.0.rc5...v1.0.0.rc6
 [1.0.0.rc5]: https://github.com/accodeing/fortnox-api/compare/v1.0.0.rc4...v1.0.0.rc5
 [1.0.0.rc4]: https://github.com/accodeing/fortnox-api/compare/v1.0.0.rc3...v1.0.0.rc4
