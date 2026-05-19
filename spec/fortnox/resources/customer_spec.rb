@@ -36,6 +36,28 @@ RSpec.describe Fortnox::Customer, order: :defined do
     end
   end
 
+  describe '.save with a persisted, unchanged record' do
+    # A record loaded via .find is persisted (meta.new? == false) with an
+    # empty change set. Saving it without calling .update must not PUT the
+    # whole record back — that would re-send every untouched attribute and
+    # risk clobbering changes made elsewhere since it was loaded.
+    let(:persisted) do
+      VCR.use_cassette("#{vcr_dir}/find_by_id") { described_class.find('1') }
+    end
+
+    it 'issues no write request', :aggregate_failures do
+      allow(described_class).to receive(:put)
+      allow(described_class).to receive(:post)
+      described_class.save(persisted)
+      expect(described_class).not_to have_received(:put)
+      expect(described_class).not_to have_received(:post)
+    end
+
+    it 'returns the same instance' do
+      expect(described_class.save(persisted)).to equal(persisted)
+    end
+  end
+
   describe '.save with specially named attribute' do
     let(:new_model) { described_class.stub(name: 'Test customer', email_invoice_cc: 'test@example.com') }
     let(:save_model) do

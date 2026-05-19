@@ -8,7 +8,9 @@ This guide covers the changes you need to make to upgrade your code. For the
 complete list of changes — including non-breaking improvements and bug fixes
 — see [CHANGELOG.md](CHANGELOG.md).
 
-For the old code and documentation, see the
+This guide compares against the final pre-1.0 release line, 0.9 (0.9.2
+being the last release when this is written). References to "0.9" below mean that line
+— earlier 0.x releases are not covered. For the old code and documentation, see the
 [v0.9.2 release](https://github.com/accodeing/fortnox-api/tree/v0.9.2).
 
 ## Ruby version
@@ -174,16 +176,16 @@ invoice = Fortnox::Invoice.stub(
 
 ## Stricter attribute validation
 
-Several attributes that 0.x accepted permissively are now validated client-side
+Several attributes that 0.9 accepted permissively are now validated client-side
 to match the Fortnox API specification. Code that was accidentally relying on
-the lenient 0.x behavior will raise `Fortnox::ConstraintError` (or
+the lenient 0.9 behavior will raise `Fortnox::ConstraintError` (or
 `Fortnox::MissingAttributeError` for required fields) before the request
 goes out.
 
 ### Country attributes
 
 `country_code` and `delivery_country` on documents only accept ISO alpha-2
-codes. The old gem also accepted country names.
+codes. 0.9 also accepted country names.
 
 ```ruby
 # Before — accepted codes, Swedish names, and English names
@@ -207,7 +209,7 @@ invoice = Fortnox::Invoice.stub(invoice_type: 'INVOICE')
 
 ### `Unit.description`
 
-Now required. 0.x accepted `nil` client-side, but the Fortnox API rejected
+Now required. 0.9 accepted `nil` client-side, but the Fortnox API rejected
 unset descriptions anyway — the new behavior fails earlier.
 
 ```ruby
@@ -218,17 +220,37 @@ unit = Fortnox::API::Model::Unit.new(code: 'PCS')
 unit = Fortnox::Unit.stub(code: 'PCS', description: 'Pieces')
 ```
 
-## Nil updates
+## Update payloads
 
-In 0.x, setting an attribute to `nil` on update silently re-sent the original
-value due to a bug in the mapper diff. This is now fixed — setting a field to
-`nil` sends `null` to Fortnox and clears the field.
+The dirty-tracking model changed from value-level to field-level.
+
+In 0.9 the mapper computed a diff between the updated entity and the
+originally-loaded record and sent only attributes whose **value** had
+actually changed. A side effect of that diff was a bug: `nil` was
+stripped before the comparison, so `update(attr: nil)` silently re-sent
+the original value instead of clearing the field.
+
+In 1.x the change set is the set of attributes you **pass to `.update`**,
+regardless of whether the value differs from the stored record. Every
+attribute in that set is sent on save; attributes you don't pass are not
+sent and are left untouched on the record. Practical consequences:
+
+- Passing an attribute equal to its current value still sends it (a
+  harmless no-op write on Fortnox's side). PUT bodies are therefore
+  somewhat larger than in 0.9.
+- `nil` is now a real change: `update(attr: nil)` sends `null` and
+  clears the field. This is the bug fix the old behavior masked.
+- Saving a persisted record **without** calling `.update` sends nothing
+  — it is a no-op rather than a full-record PUT.
 
 ```ruby
 invoice = Fortnox::Invoice.find(1)
 updated = invoice.update(comments: nil)
 Fortnox::Invoice.save(updated)
 # comments is now cleared in Fortnox
+
+# No .update call → nothing changed → save is a no-op, no request sent
+Fortnox::Invoice.save(Fortnox::Invoice.find(1))
 ```
 
 ## Exceptions
@@ -243,9 +265,25 @@ Fortnox::AttributeError
 Fortnox::RequestError
 ```
 
+`Fortnox::RequestError` also exposes the underlying response via
+`.response`, which carries the HTTP status code and body. The old
+`RemoteServerError` only carried the message string, so detecting
+specific error conditions required substring-matching the (Swedish)
+error text. Prefer the status code:
+
+```ruby
+# Before — substring-match the message text
+rescue Fortnox::API::RemoteServerError => e
+  not_found = e.message.include?('Kan inte hitta')
+
+# After — match the HTTP status code
+rescue Fortnox::RequestError => e
+  not_found = e.response&.status == 404
+```
+
 ## Debugging and logging
 
-The 0.x gem had a single combined switch:
+The 0.9 gem had a single combined switch:
 
 ```ruby
 # Before

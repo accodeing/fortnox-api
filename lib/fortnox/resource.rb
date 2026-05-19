@@ -29,7 +29,9 @@ module Fortnox
         # Strip nils for new records — rely on Fortnox defaults
         data = data.compact
       elsif __changes__.any?
-        # Only send changed attributes on update, preserving explicit nils
+        # Send only the attributes passed to .update — field-level dirty
+        # tracking, not a value diff, so an attribute equal to its stored
+        # value is still sent, and an explicit nil reaches Fortnox as a clear.
         changed_api_names = __changes__.keys.filter_map do |model_name|
           self.class.all_attribute_definitions[model_name]&.api_name
         end
@@ -61,6 +63,12 @@ module Fortnox
       end
 
       def save(instance)
+        # A persisted record with no recorded changes has nothing to write.
+        # Without this short-circuit rest-easy would PUT the entire record
+        # back, re-sending every untouched attribute and risking clobbering
+        # changes made elsewhere since it was loaded.
+        return instance if !instance.meta.new? && instance.__changes__.empty?
+
         with_translated_errors { super }
       end
 

@@ -10,8 +10,8 @@ Feel free to repay the community with some nice PRs of your own.
 
 Article, Customer, Invoice, Label, Order, Project, TermsOfPayment, Unit
 
-Adding more resources is quick and easy, see the
-[Contributing](#contributing) section.
+Adding more resources is quick and easy — see the
+[Developer readme](DEVELOPER_README.md).
 
 ## Status
 
@@ -71,7 +71,17 @@ The gem raises the following exceptions:
 - `Fortnox::RequestError` — 4xx/5xx responses from the Fortnox API. The
   exception message includes the API's `ErrorInformation.Message` and code
   when present (Fortnox is inconsistent about the key casing — the gem
-  normalises both). The full response is on `.response`.
+  normalises both). The full response is on `.response`, which exposes
+  the HTTP status code and body — match on `.status` rather than the
+  message text:
+
+  ```ruby
+  Fortnox::Customer.find(id)
+  rescue Fortnox::RequestError => e
+    return nil if e.response&.status == 404
+
+    raise
+  ```
 - `Fortnox::AttributeError` — base for attribute validation failures.
   - `Fortnox::ConstraintError` — an attribute value violates a type
     constraint (max size, format, etc.). Carries `.attribute_name` and
@@ -308,6 +318,19 @@ updated = customer.update(name: 'Acme Inc')
 Fortnox::Customer.save(updated)
 ```
 
+Updates are partial: only the attributes you pass to `.update` are sent to
+Fortnox. Attributes you don't touch are left as-is on the record (so a
+field changed elsewhere in the meantime is not clobbered). Note this is
+based on *which* attributes you pass, not a value comparison — passing an
+attribute equal to its stored value still sends it. Setting an attribute
+to `nil` is sent as an explicit clear:
+
+```ruby
+customer = Fortnox::Customer.find(1)
+updated = customer.update(phone1: nil)
+Fortnox::Customer.save(updated) # phone1 is now cleared in Fortnox
+```
+
 ### Searching
 
 ```ruby
@@ -322,11 +345,7 @@ Some resources support server-side filters:
 Fortnox::Invoice.only('unpaid')
 ```
 
-### Debugging
-
-The gem exposes two independent debugging knobs from rest-easy.
-
-#### HTTP wire logging
+### Logging
 
 Set a `Logger`-compatible instance on the gem-level config to log every
 HTTP request and response. Faraday's built-in logger middleware is attached
@@ -358,18 +377,10 @@ take effect only on restart.
 The `fortnox-setup` and `fortnox-update-env` executables talk directly to
 the OAuth token endpoint and are not routed through this logger.
 
-#### Per-resource response-shape validation
-
-Set `debug true` on a resource to have rest-easy warn whenever an API
-response contains fields the resource doesn't declare with `attr` or
-`ignore`, or is missing a declared (non-required) attribute. Useful for
-catching schema drift when Fortnox adds or renames fields:
-
-```ruby
-Fortnox::Customer.configure do
-  debug true
-end
-```
+If you suspect the gem is silently dropping a field Fortnox added — or
+hitting some other schema-drift issue — please open an issue. There's a
+maintainer-only knob to surface those warnings; see the
+[Developer readme](DEVELOPER_README.md) for details.
 
 ### Gotchas
 
