@@ -255,21 +255,65 @@ Fortnox::Invoice.save(Fortnox::Invoice.find(1))
 
 ## Exceptions
 
-```ruby
-# Before
-Fortnox::API::AttributeError
-Fortnox::API::RemoteServerError
+Every exception moved from the `Fortnox::API` namespace to `Fortnox`, and
+the base class was renamed. Rescue `Fortnox::Error` to catch anything the
+gem raises.
 
-# After
-Fortnox::AttributeError
-Fortnox::RequestError
+| 0.9                                   | 1.x                                |
+| ------------------------------------- | ---------------------------------- |
+| `Fortnox::API::Exception` (base)      | `Fortnox::Error` (base)            |
+| `Fortnox::API::AttributeError`        | `Fortnox::AttributeError`          |
+| `Fortnox::API::RemoteServerError`     | `Fortnox::RequestError`            |
+| `Fortnox::API::MissingAttributeError` | `Fortnox::MissingAttributeError`   |
+| `Fortnox::API::MissingAccessToken`    | `Fortnox::MissingAccessToken`      |
+| `Fortnox::API::MissingConfiguration`  | *removed* — no equivalent          |
+| *(none)*                              | `Fortnox::ConstraintError` *(new)* |
+
+### `Fortnox::ConstraintError` (new)
+
+A subclass of `Fortnox::AttributeError`, raised by the client-side
+coercion layer when an attribute value violates a type constraint (size,
+format, enum, …) — before the request is sent. Because of the stricter
+validation described in
+[Stricter attribute validation](#stricter-attribute-validation), this is
+the exception most likely to start firing during a migration. It carries
+`.attribute_name` (a symbol) and `.value`:
+
+```ruby
+begin
+  Fortnox::Invoice.stub(invoice_type: 'NOT_A_TYPE')
+rescue Fortnox::ConstraintError => e
+  e.attribute_name # => :invoice_type
+  e.value          # => "NOT_A_TYPE"
+end
 ```
 
-`Fortnox::RequestError` also exposes the underlying response via
-`.response`, which carries the HTTP status code and body. The old
-`RemoteServerError` only carried the message string, so detecting
-specific error conditions required substring-matching the (Swedish)
-error text. Prefer the status code:
+### Hierarchy change
+
+In 0.9, `MissingAttributeError` was a sibling of `AttributeError` — both
+sat directly under `Fortnox::API::Exception` — so `rescue
+Fortnox::API::AttributeError` did **not** catch it. In 1.x both
+`ConstraintError` and `MissingAttributeError` subclass
+`Fortnox::AttributeError`, so a single rescue catches every
+attribute-validation failure:
+
+```ruby
+rescue Fortnox::AttributeError => e
+  # catches ConstraintError and MissingAttributeError
+```
+
+`Fortnox::API::MissingConfiguration` no longer exists — configuration
+moved to a rest-easy `configure` block — so code that rescued it is now
+dead. `Fortnox::MissingAccessToken` also changed timing: it is raised on
+the first API call from a thread rather than at object construction.
+
+### `Fortnox::RequestError` exposes the response
+
+`Fortnox::RequestError` exposes the underlying response via `.response`,
+which carries the HTTP status code and body. The old `RemoteServerError`
+only carried the message string, so detecting specific error conditions
+required substring-matching the (Swedish) error text. Prefer the status
+code:
 
 ```ruby
 # Before — substring-match the message text

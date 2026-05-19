@@ -4,14 +4,6 @@
 
 * [ ] CI setup (GitHub Actions to replace Travis CI)
 
-* [ ] **MIGRATING_TO_1.0.md — call out `Fortnox::ConstraintError` in the Exceptions section.**
-  The current "Exceptions" table only maps `Fortnox::API::AttributeError → Fortnox::AttributeError`
-  and `Fortnox::API::RemoteServerError → Fortnox::RequestError`. `Fortnox::ConstraintError`
-  (new in 1.x, subclass of `AttributeError`, carries `.attribute_name` and `.value`) is the
-  exception most likely to start firing during a migration because of the new client-side
-  coercion layer. It's mentioned only obliquely under "Stricter attribute validation" but
-  not in the table where readers will look for it. Add it explicitly with a short example.
-
 * [ ] **MIGRATING_TO_1.0.md — document the change from eager to lazy `MissingAccessToken`.**
   In 0.9 (`fortnox/api/repositories/base.rb#initialize`, lines 51-59) `MissingAccessToken`
   was raised eagerly when constructing a repository (e.g.
