@@ -4,20 +4,6 @@
 
 * [ ] CI setup (GitHub Actions to replace Travis CI)
 
-* [ ] **MIGRATING_TO_1.0.md — document the change from eager to lazy `MissingAccessToken`.**
-  In 0.9 (`fortnox/api/repositories/base.rb#initialize`, lines 51-59) `MissingAccessToken`
-  was raised eagerly when constructing a repository (e.g.
-  `Fortnox::API::Repository::Customer.new` without a token would crash immediately).
-  In 1.x the auth middleware (`fortnox/auth/thread_local.rb#token!`) raises it lazily on
-  the first API call from a thread that hasn't set a token. Two practical consequences worth
-  documenting:
-    - Code with `rescue Fortnox::API::MissingAccessToken` at boot time / constructor level
-      will see that catch path silently stop firing — failures shift to call-site time.
-    - In multi-threaded apps (Sidekiq workers, Puma threads), each thread must set its own
-      token via `Fortnox.access_token = ...` before its first API call. The token doesn't
-      leak between threads (true in 0.9 too — but the lazy raise makes mis-setup more
-      visible at the actual call site rather than at boot).
-
 ### Filters
 This is not something we need to do now, we can take it later.
 

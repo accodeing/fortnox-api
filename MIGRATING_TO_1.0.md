@@ -94,6 +94,40 @@ Fortnox::Customer.find(1)
 Fortnox::Customer.save(customer)
 ```
 
+## Access token timing
+
+In 0.9 the access token was checked when you constructed a repository.
+`Fortnox::API::Repository::Customer.new` raised
+`Fortnox::API::MissingAccessToken` immediately if the thread had no token
+set, before any HTTP call.
+
+1.x has no repositories to construct (see
+[Resources replace repositories](#resources-replace-repositories)). The
+token is now checked lazily by the thread-local authentication, on the
+first API call from a thread that has no token set:
+
+```ruby
+# Before — raised at construction
+repo = Fortnox::API::Repository::Customer.new # => Fortnox::API::MissingAccessToken
+
+# After — nothing to construct; the first call raises
+Fortnox::Customer.find(1) # => Fortnox::MissingAccessToken
+```
+
+Two consequences when migrating:
+
+- **Rescue location moves.** Code that wrapped repository construction
+  (at boot, or in an initializer) with `rescue
+  Fortnox::API::MissingAccessToken` will find that catch path stops
+  firing — the failure now surfaces at the first API call. Move the
+  rescue to the call site.
+- **Each thread still needs its own token, and mis-setup surfaces
+  later.** The token is thread-local (this was true in 0.9 too): Sidekiq
+  workers, Puma threads, etc. must each set `Fortnox.access_token = …`
+  before their first API call. A thread that forgets no longer fails
+  early at construction — it fails on its first request, so the mistake
+  shows up at the call site rather than at boot.
+
 ## Return values
 
 `find`, `save`, and `all` now return resource instances instead of model
@@ -304,8 +338,8 @@ rescue Fortnox::AttributeError => e
 
 `Fortnox::API::MissingConfiguration` no longer exists — configuration
 moved to a rest-easy `configure` block — so code that rescued it is now
-dead. `Fortnox::MissingAccessToken` also changed timing: it is raised on
-the first API call from a thread rather than at object construction.
+dead. `Fortnox::MissingAccessToken` also changed timing — see
+[Access token timing](#access-token-timing).
 
 ### `Fortnox::RequestError` exposes the response
 
