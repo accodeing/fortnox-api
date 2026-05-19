@@ -90,7 +90,10 @@ When updating the required Ruby version:
 - Verify that the test suite is passing
 - Bump `TargetRubyVersion` in `.rubocop.yml` (should be the lowest version we
   support)
-- Update `.tool-versions` to the newest version we support
+- Update `.tool-versions` to the minimum supported Ruby (the gemspec floor) —
+  we develop against the floor so support-range breaks surface locally, not
+  just in CI or user reports
+- Update the Ruby matrix in `.github/workflows/ci.yml`
 - Update required Ruby version in the README
 
 ## Schema-drift warnings
