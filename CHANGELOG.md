@@ -10,10 +10,12 @@ and this project adheres to
 
 ### Fixed
 
-- Saving a persisted record with no changes is now a no-op instead of
-  issuing a full-record `PUT`. Previously `save` on an unchanged record
-  fetched via `find` re-sent every attribute, which could clobber fields
-  changed elsewhere since it was loaded.
+- Saving a persisted record with no changes is again a no-op, matching
+  0.x. In 0.x `save` returned early for an unchanged persisted record
+  without issuing a request. The 1.0.0.rc1 rest-easy rewrite regressed
+  this: `save` on a record fetched via `find` re-sent every attribute
+  via a full-record `PUT`, which could clobber fields changed elsewhere
+  since it was loaded.
 
 ## [1.0.0.rc6] - 2026-05-18
 
@@ -204,6 +206,8 @@ For changes prior to the 1.0 rewrite, see the
 [0.x changelog](https://github.com/accodeing/fortnox-api/blob/v0.9.2/CHANGELOG.md).
 
 [Unreleased]: https://github.com/accodeing/fortnox-api/compare/v1.0.0.rc6...HEAD
+[1.0.0.rc6]: https://github.com/accodeing/fortnox-api/compare/v1.0.0.rc5...v1.0.0.rc6
+[1.0.0.rc5]: https://github.com/accodeing/fortnox-api/compare/v1.0.0.rc4...v1.0.0.rc5
 [1.0.0.rc4]: https://github.com/accodeing/fortnox-api/compare/v1.0.0.rc3...v1.0.0.rc4
 [1.0.0.rc3]: https://github.com/accodeing/fortnox-api/compare/v1.0.0.rc2...v1.0.0.rc3
 [1.0.0.rc2]: https://github.com/accodeing/fortnox-api/compare/v1.0.0.rc1...v1.0.0.rc2

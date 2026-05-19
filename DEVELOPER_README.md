@@ -157,8 +157,14 @@ When bumping:
 
 ## Release process
 
-1. Update `CHANGELOG.md` — move unreleased entries under a new
-   `## [<VERSION>] - <YYYY-MM-DD>` heading.
+1. Update `CHANGELOG.md`:
+   - Rename the `## [Unreleased]` heading to
+     `## [<VERSION>] - <YYYY-MM-DD>`.
+   - At the bottom reference-link list, repoint `[Unreleased]` to
+     `compare/v<VERSION>...HEAD` and add a
+     `[<VERSION>]: …/compare/v<PREVIOUS>...v<VERSION>` line. Every
+     released version must have a matching compare link so the bracketed
+     headings render as links (Keep a Changelog convention).
 2. Bump `Fortnox::VERSION` in `lib/fortnox/version.rb`.
 3. Commit with a `Release <VERSION>` message.
 4. Tag the commit: `git tag v<VERSION>`.
