@@ -8,6 +8,8 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [1.0.0.rc9] - 2026-05-20
+
 ### Added
 
 - `Fortnox::ALLOWED_CHARACTERS_REGEXP` constant, exposing the character
@@ -242,7 +244,8 @@ for the full list of breaking changes.
 For changes prior to the 1.0 rewrite, see the
 [0.x changelog](https://github.com/accodeing/fortnox-api/blob/v0.9.2/CHANGELOG.md).
 
-[Unreleased]: https://github.com/accodeing/fortnox-api/compare/v1.0.0.rc8...HEAD
+[Unreleased]: https://github.com/accodeing/fortnox-api/compare/v1.0.0.rc9...HEAD
+[1.0.0.rc9]: https://github.com/accodeing/fortnox-api/compare/v1.0.0.rc8...v1.0.0.rc9
 [1.0.0.rc8]: https://github.com/accodeing/fortnox-api/compare/v1.0.0.rc7...v1.0.0.rc8
 [1.0.0.rc7]: https://github.com/accodeing/fortnox-api/compare/v1.0.0.rc6...v1.0.0.rc7
 [1.0.0.rc6]: https://github.com/accodeing/fortnox-api/compare/v1.0.0.rc5...v1.0.0.rc6
