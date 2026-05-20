@@ -64,6 +64,16 @@ sending it to the API, which saves you API calls and time debugging. You can
 still get errors from the server; our implementation is not perfect. Also,
 Fortnox sometimes requires a specific combination of attributes.
 
+#### Allowed characters
+
+`Fortnox::ALLOWED_CHARACTERS_REGEXP` exposes the character set Fortnox
+accepts in text fields, sourced from the [official Fortnox docs][formats].
+The gem itself does not apply this regex to attribute values — it is
+provided so consumers can pre-validate or sanitize strings before
+sending them to the API.
+
+[formats]: https://www.fortnox.se/developer/guides-and-good-to-know/formats-and-encoding
+
 #### Exceptions
 
 The gem raises the following exceptions:

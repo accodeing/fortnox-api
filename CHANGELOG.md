@@ -8,6 +8,12 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Added
+
+- `Fortnox::ALLOWED_CHARACTERS_REGEXP` constant, exposing the character
+  set Fortnox accepts in text fields. Sourced from the official Fortnox
+  docs. Useful for pre-validating strings before sending them to the API.
+
 ### Changed
 
 - `Customer#default_delivery_types.invoice` now accepts `'ELECTRONICINVOICE'`

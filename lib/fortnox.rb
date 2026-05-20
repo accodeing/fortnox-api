@@ -93,6 +93,14 @@ module Fortnox
 
   OAUTH_TOKEN_URL = 'https://apps.fortnox.se/oauth-v1/token'
 
+  # Character set allowed in Fortnox text fields, per the official Fortnox docs.
+  # Useful for pre-validating strings before sending them to the API.
+  # See: https://www.fortnox.se/developer/guides-and-good-to-know/formats-and-encoding
+  # (The docs spell Unicode codepoints as \x{NNNN}; Ruby's regex parser uses
+  # \u{NNNN} for the same thing, so the three codepoints below are translated.)
+  ALLOWED_CHARACTERS_REGEXP =
+    %r{\A[\p{L}’\\\u{0308}\u{030a}a-zåäöéáœæøüA-ZÅÄÖÉÁÜŒÆØ0-9 –:.`´,;\^¤#%§£$€¢¥©™°&/()=+\-*_!?²³®½@\u{00a0}\n\r]*\z}
+
   class << self
     def access_token=(token)
       Thread.current[Auth::ThreadLocal::THREAD_LOCAL_KEY] = token
