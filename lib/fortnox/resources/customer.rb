@@ -11,6 +11,10 @@ module Fortnox
       scope 'customer'
     end
 
+    before_serialise do |_attrs|
+      validate_electronic_invoice_delivery_type!(default_delivery_types&.invoice)
+    end
+
     # Direct URL to the record.
     attr :url <=> '@url', Coercible::String.optional, :read_only
 
@@ -205,5 +209,24 @@ module Fortnox
 
     # WWW Website URL
     attr :www <=> 'WWW', Sized::String[128]
+
+    private
+
+    # ELECTRONICINVOICE is only possible to set in the Fortnox UI.
+    # Raise if a consumer tries to set it from this gem.
+    def validate_electronic_invoice_delivery_type!(type)
+      return unless type == DefaultInvoiceDeliveryTypeValues['ELECTRONICINVOICE']
+
+      set_by_consumer = meta.new? || __changes__.key?(:default_delivery_types)
+
+      return unless set_by_consumer
+
+      raise Fortnox::ConstraintError.new(
+        :default_delivery_types,
+        'ELECTRONICINVOICE',
+        "Customer#default_delivery_types.invoice cannot be changed to 'ELECTRONICINVOICE' " \
+        'via the API, you can only do that change from within Fortnox.'
+      )
+    end
   end
 end

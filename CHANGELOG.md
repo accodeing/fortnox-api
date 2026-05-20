@@ -8,6 +8,14 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Changed
+
+- `Customer#default_delivery_types.invoice` now accepts `'ELECTRONICINVOICE'`
+  when returned by Fortnox. The value is read-only — attempting to set it from
+  consumer code raises `Fortnox::ConstraintError` at save time,
+  rather than letting Fortnox reject the request.
+  Unchanged values round-trip through `save` as before.
+
 ## [1.0.0.rc8] - 2026-05-19
 
 ### Changed

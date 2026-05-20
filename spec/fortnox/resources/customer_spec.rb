@@ -36,6 +36,50 @@ RSpec.describe Fortnox::Customer, order: :defined do
     end
   end
 
+  describe '.save with default_delivery_types.invoice set to ELECTRONICINVOICE' do
+    # ELECTRONICINVOICE is only possible to set in the Fortnox UI.
+    # The before_serialise hook on Customer raises so consumers fail loudly
+    # rather than silently losing the value or hitting an API 400.
+    # No VCR cassette is recorded for these — the Fortnox sandbox does not let us set the value,
+    # and the raise happens client-side before any HTTP request.
+    let(:bad_delivery_types) do
+      Fortnox::Structs::DefaultDeliveryTypes.new(
+        invoice: 'ELECTRONICINVOICE', order: 'PRINT', offer: 'PRINT'
+      )
+    end
+
+    describe 'on a new record' do
+      before { allow(described_class).to receive(:post) }
+
+      let(:new_model) { described_class.stub(name: 'A value', default_delivery_types: bad_delivery_types) }
+
+      it 'raises Fortnox::ConstraintError with attribute_name and value', :aggregate_failures do
+        expect { described_class.save(new_model) }.to raise_error(Fortnox::ConstraintError) do |error|
+          expect(error.attribute_name).to eq(:default_delivery_types)
+          expect(error.value).to eq('ELECTRONICINVOICE')
+        end
+        expect(described_class).not_to have_received(:post)
+      end
+    end
+
+    describe 'on a persisted record updated to ELECTRONICINVOICE' do
+      before { allow(described_class).to receive(:put) }
+
+      let(:updated) do
+        persisted = VCR.use_cassette("#{vcr_dir}/find_by_id") { described_class.find('1') }
+        persisted.update(default_delivery_types: bad_delivery_types)
+      end
+
+      it 'raises Fortnox::ConstraintError and issues no PUT', :aggregate_failures do
+        expect { described_class.save(updated) }.to raise_error(Fortnox::ConstraintError) do |error|
+          expect(error.attribute_name).to eq(:default_delivery_types)
+          expect(error.value).to eq('ELECTRONICINVOICE')
+        end
+        expect(described_class).not_to have_received(:put)
+      end
+    end
+  end
+
   describe '.save with a persisted, unchanged record' do
     # A record loaded via .find is persisted (meta.new? == false) with an
     # empty change set. Saving it without calling .update must not PUT the

@@ -66,6 +66,10 @@ module Fortnox
       'PRINT', 'EMAIL', 'PRINTSERVICE'
     )
 
+    DefaultInvoiceDeliveryTypeValues = Types::Strict::String.enum(
+      'PRINT', 'EMAIL', 'PRINTSERVICE', 'ELECTRONICINVOICE'
+    )
+
     AccountingMethods = Types::Strict::String.enum(
       '', 'ACCRUAL', 'CASH'
     )
