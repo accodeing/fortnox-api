@@ -21,3 +21,15 @@ and Semantic Versioning. Conventions:
 
 The full release procedure is in
 [DEVELOPER_README.md](DEVELOPER_README.md#release-process).
+
+## Releasing
+
+Use the rake tasks — do not run the steps by hand:
+
+```shell
+bundle exec rake release:prepare VERSION=<VERSION>   # bumps version, edits CHANGELOG, commits, tags
+bundle exec rake release:publish VERSION=<VERSION>   # gem build/push, git push --tags
+```
+
+`release:prepare` won't run if `[Unreleased]` is empty, so make sure
+the changelog is up to date first.

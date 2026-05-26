@@ -157,25 +157,37 @@ When bumping:
 
 ## Release process
 
-1. Update `CHANGELOG.md`:
-   - Rename the `## [Unreleased]` heading to
-     `## [<VERSION>] - <YYYY-MM-DD>`.
-   - At the bottom reference-link list, repoint `[Unreleased]` to
-     `compare/v<VERSION>...HEAD` and add a
-     `[<VERSION>]: …/compare/v<PREVIOUS>...v<VERSION>` line. Every
-     released version must have a matching compare link so the bracketed
-     headings render as links (Keep a Changelog convention).
-2. Bump `Fortnox::VERSION` in `lib/fortnox/version.rb`.
-3. Commit with a `Release <VERSION>` message.
-4. Tag the commit: `git tag v<VERSION>`.
-5. Build and push:
+Releases are driven by two rake tasks. Both take `VERSION=` and refuse
+to do anything destructive if their preconditions aren't met.
+
+1. Make sure `CHANGELOG.md`'s `## [Unreleased]` section lists the
+   changes going out. The release task will not invent entries.
+2. Prepare the release — bumps `Fortnox::VERSION`, inserts a new
+   `## [<VERSION>] - <today>` heading under `## [Unreleased]`,
+   repoints the `[Unreleased]` compare link and adds a
+   `[<VERSION>]` compare link, commits as `Release <VERSION>`, and
+   tags `v<VERSION>`:
    ```shell
-   gem build fortnox.gemspec
-   gem push fortnox-api-<VERSION>.gem
+   bundle exec rake release:prepare VERSION=<VERSION>
    ```
-6. Push the commit and tag: `git push && git push --tags`.
+   Aborts on: missing `VERSION=`, uncommitted changes to tracked
+   files (untracked files are ignored), tag already existing locally
+   or on `origin`, empty `[Unreleased]` section, or test-suite
+   failure.
+3. Publish — builds the gem, pushes to RubyGems, pushes the commit
+   and tag to `origin`:
+   ```shell
+   bundle exec rake release:publish VERSION=<VERSION>
+   ```
+   Aborts if the `v<VERSION>` tag doesn't exist (i.e. `release:prepare`
+   wasn't run).
 
 Built `.gem` files are gitignored and should not be committed.
+
+The tasks assume the existing `CHANGELOG.md` shape (single blank line
+after `## [Unreleased]`, `[Unreleased]: …...HEAD` compare link at the
+bottom). If you restructure that file, update `tasks/release.rake` to
+match.
 
 ## Maintainer notes on `bin/`
 
