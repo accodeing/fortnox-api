@@ -2,7 +2,74 @@
 
 ## TODO
 
+- [ ] Release 1.0.0
 - [ ] Adjust github workflow to include `development` and `main`, not `rest-easy`.
+- [ ] Decide how to expose Fortnox field length limits to callers (open design question).
+
+  **Context:** Downstream consumers (e.g. NABS) need to enforce or truncate user input
+  before it reaches the API, and currently have to duplicate Fortnox's field-length
+  limits. Examples in NABS today:
+  - `Orders::Types::INVOICE_REMARKS_MAX_LENGTH = 75` (mirrors `Document#your_order_number`,
+    `Sized::String[75]` in `lib/fortnox/resources/document.rb`), with a code comment
+    explicitly noting it comes from Fortnox — pure duplication, prone to silent drift.
+  - NABS-1840 will introduce another: truncating `InvoiceRow#description` to 252 chars
+    + ` …` because Fortnox caps it at 255 (`Sized::String[255]` in
+    `lib/fortnox/structs/document_row.rb`).
+
+  **The naive approach** — pick a handful of "important" fields and expose constants like
+  `Fortnox::Structs::DocumentRow::DESCRIPTION_MAX_LENGTH = 255` — was rejected because
+  the gem would have to hard-code which attributes get exposed and which don't. Every
+  new field a consumer wants to enforce becomes a gem PR. That doesn't scale and
+  pushes a policy decision (which fields are "user-facing enough" to deserve a constant)
+  into the wrong repo.
+
+  **Better directions to explore** (pick whichever fits the gem's design philosophy):
+  1. **Programmatic introspection helper.** Expose something like
+     `Fortnox::Structs::DocumentRow.max_size_for(:description) # => 255` that walks the
+     dry-struct schema for the requested attribute and pulls `max_size` out of the
+     constraint. Works for every `Sized::String[N]` attribute without per-field
+     bookkeeping. Risk: depends on dry-types internals — but the gem already owns those
+     definitions, so encapsulating the brittleness here (instead of in every consumer)
+     is exactly the point.
+  2. **A field-metadata DSL.** Replace `attribute? :description, Types::Sized::String[255]`
+     with something like `string_attribute :description, max_size: 255` that records the
+     limit in a class-level registry while still building the same dry-struct type.
+     Heavier change, but gives consumers a clean `Fortnox::Resources::Document.limits`
+     API and removes the dry-types dependency from the surface.
+  3. **Validation/truncation helpers on the gem side.** Instead of exposing the number,
+     expose a behaviour: `Fortnox::Structs::InvoiceRow.truncate(:description, str)` or
+     a `fits?` predicate. Moves the policy (truncate vs. raise vs. ellipsis) to the
+     caller, but the "how long is too long" stays inside the gem.
+
+  **Working direction from design discussion.** Lean toward (1), with the dry-types
+  brittleness concern addressed by tagging types with `.meta(max_size: N)` at construction
+  time and reading `schema.key(:foo).type.meta[:max_size]` (struct) /
+  `all_attribute_definitions[:foo].type.meta[:max_size]` (resource). `.meta` is the
+  blessed dry-types API, not an internal.
+
+  - **Single chokepoint, dual lookup.** Meta-tagging happens once in the `Sized` builders
+    in `lib/fortnox/types.rb`. Lookup is two thin methods with the same public signature —
+    one on `Fortnox::Struct`, one on `Fortnox::Resource` — so callers don't have to care
+    which kind of object they hold.
+  - **Opt-in per type, not automatic-from-constraints.** Tag only "user-input bounds the
+    caller should enforce":
+    - Tagged: `Sized::String[N]` (every `Sized::String` field, automatically); `Email`
+      (manual `.meta(max_size: 1024)`).
+    - Untagged: `AccountNumber` (0–9999 is a domain range, not a length cap);
+      `Sized::Integer` / `Sized::Float` (numeric ranges, same reasoning). Add later only
+      if a real consumer need surfaces.
+  - **API shape.** `max_size_for(:field) # => Integer | nil`. Raise on unknown attribute
+    names — `nil` is reserved for "exists but has no cap," and silently swallowing typos
+    would re-create the silent-drift problem.
+  - **Approach (3) layers on top, doesn't replace.** `fits?` / `truncate` are one-liners
+    against `max_size_for`. Truncation policy (`…` vs. `[truncated]` vs. hard cut vs.
+    raise) stays with the caller; the gem only owns "how long is too long." NABS-1840
+    gets its ellipsis behaviour by composing these.
+
+  Whichever direction is chosen, the goal is: **NABS (and any other consumer) should
+  never need to write a literal Fortnox field length in its own source.**
+
+  See NABS-1840 conversation for the discussion that surfaced this.
 
 ### Filters
 This is not something we need to do now, we can take it later.
