@@ -8,6 +8,10 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Changed
+
+- Upgraded `rest-easy` dependency to `~> 1.3.1`.
+
 ### Fixed
 
 - `Types::AccountNumber` no longer raises `Fortnox::ConstraintError` when
