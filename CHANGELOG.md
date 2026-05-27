@@ -8,6 +8,8 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [1.0.0.rc10] - 2026-05-27
+
 ### Changed
 
 - Upgraded `rest-easy` dependency to `~> 1.3.1`.
@@ -255,7 +257,8 @@ for the full list of breaking changes.
 For changes prior to the 1.0 rewrite, see the
 [0.x changelog](https://github.com/accodeing/fortnox-api/blob/v0.9.2/CHANGELOG.md).
 
-[Unreleased]: https://github.com/accodeing/fortnox-api/compare/v1.0.0.rc9...HEAD
+[Unreleased]: https://github.com/accodeing/fortnox-api/compare/v1.0.0.rc10...HEAD
+[1.0.0.rc10]: https://github.com/accodeing/fortnox-api/compare/v1.0.0.rc9...v1.0.0.rc10
 [1.0.0.rc9]: https://github.com/accodeing/fortnox-api/compare/v1.0.0.rc8...v1.0.0.rc9
 [1.0.0.rc8]: https://github.com/accodeing/fortnox-api/compare/v1.0.0.rc7...v1.0.0.rc8
 [1.0.0.rc7]: https://github.com/accodeing/fortnox-api/compare/v1.0.0.rc6...v1.0.0.rc7
