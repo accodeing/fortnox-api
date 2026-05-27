@@ -367,6 +367,15 @@ RSpec.describe Fortnox::Customer, order: :defined do
     end
   end
 
+  describe 'parsing a blank SalesAccount' do
+    let(:body) { { 'CustomerNumber' => '1', 'Name' => 'X', 'SalesAccount' => '' } }
+
+    it 'coerces "" to nil on the AccountNumber type' do
+      parsed = described_class.send(:parse, 'Customer' => body)
+      expect(parsed.sales_account).to be_nil
+    end
+  end
+
   describe 'sales account' do
     context 'when saving a Customer with a Sales Account set' do
       let(:customer) do

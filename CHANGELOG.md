@@ -8,6 +8,13 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Fixed
+
+- `Types::AccountNumber` no longer raises `Fortnox::ConstraintError` when
+  Fortnox returns `""` for an unset attribute using that type. Observed in production on
+  `Customer#sales_account`. Blank strings now coerce to `nil`.
+  This bug was introduced in 1.0.0.rc1 and did not exist in 0.x.
+
 ## [1.0.0.rc9] - 2026-05-20
 
 ### Added

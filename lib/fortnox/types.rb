@@ -94,9 +94,13 @@ module Fortnox
       '', 'none', 'rot', 'rut', 'green'
     )
 
+    # Fortnox sometimes returns "" for unset attributes using AccountNumber as type.
+    # Without this constructor, "" falls through to Coercible::Integer and
+    # `Integer("")` raises, surfacing as Fortnox::ConstraintError.
     AccountNumber = Coercible::Integer
                     .constrained(gteq: 0, lteq: 9999)
                     .optional
+                    .constructor { |v| v == '' ? nil : v }
 
     Email = Strict::String
             .constrained(max_size: 1024, format: /\A\z|\A[[[:alnum:]]+-_.]+@[[[:alnum:]]+-_.]+\.[a-z]+\z/i)
