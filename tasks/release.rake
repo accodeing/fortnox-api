@@ -10,6 +10,7 @@ namespace :release do
 
     previous = read_current_version
     update_version_file!(version)
+    refresh_lockfile!
     update_changelog!(version: version, previous: previous)
     commit_release!(version)
 
@@ -40,9 +41,17 @@ def validate_release_preconditions!(version)
 end
 
 def commit_release!(version)
-  sh 'git', 'add', 'CHANGELOG.md', 'lib/fortnox/version.rb'
+  sh 'git', 'add', 'CHANGELOG.md', 'lib/fortnox/version.rb', 'Gemfile.lock'
   sh 'git', 'commit', '-m', "Release #{version}"
   sh 'git', 'tag', "v#{version}"
+end
+
+def refresh_lockfile!
+  # Re-resolve Gemfile.lock so the bumped version in version.rb propagates
+  # to the `fortnox-api (X.Y.Z)` line of the lockfile. Without this the
+  # release commit leaves a stale lockfile (cosmetic, but a recurring
+  # follow-up commit otherwise — see c731c41 for rc9).
+  sh 'bundle', 'install'
 end
 
 def abort_on_tracked_modifications!
