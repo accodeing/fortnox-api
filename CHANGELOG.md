@@ -8,6 +8,8 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [1.0.0.rc12] - 2026-06-26
+
 ### Fixed
 
 - `Fortnox::Customer` no longer sends `OrganisationNumber` when updating a
@@ -279,7 +281,8 @@ for the full list of breaking changes.
 For changes prior to the 1.0 rewrite, see the
 [0.x changelog](https://github.com/accodeing/fortnox-api/blob/v0.9.2/CHANGELOG.md).
 
-[Unreleased]: https://github.com/accodeing/fortnox-api/compare/v1.0.0.rc11...HEAD
+[Unreleased]: https://github.com/accodeing/fortnox-api/compare/v1.0.0.rc12...HEAD
+[1.0.0.rc12]: https://github.com/accodeing/fortnox-api/compare/v1.0.0.rc11...v1.0.0.rc12
 [1.0.0.rc11]: https://github.com/accodeing/fortnox-api/compare/v1.0.0.rc10...v1.0.0.rc11
 [1.0.0.rc10]: https://github.com/accodeing/fortnox-api/compare/v1.0.0.rc9...v1.0.0.rc10
 [1.0.0.rc9]: https://github.com/accodeing/fortnox-api/compare/v1.0.0.rc8...v1.0.0.rc9
