@@ -8,6 +8,15 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Fixed
+
+- `Fortnox::Customer` no longer sends `OrganisationNumber` when updating a
+  customer that has an active e-fakturakoppling
+  (`default_delivery_types.invoice == ELECTRONICINVOICE`). Fortnox rejects edits
+  to the org/personal number for such customers, and field-level dirty tracking
+  meant an unchanged `OrganisationNumber` was always included on update,
+  blocking every other update to those customers.
+
 ## [1.0.0.rc11] - 2026-06-26
 
 ### Changed

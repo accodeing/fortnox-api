@@ -15,6 +15,15 @@ module Fortnox
       validate_electronic_invoice_delivery_type!(default_delivery_types&.invoice)
     end
 
+    # Fortnox refuses to edit OrganisationNumber once a customer has an active
+    # e-fakturakoppling. Drop it from the update payload in that case so the rest
+    # of the customer can still be updated. Field-level dirty tracking means an
+    # unchanged OrganisationNumber would otherwise always be sent on update.
+    after_serialise do |data|
+      data = data.except(organisation_number_api_name) if drop_organisation_number?
+      default_after_serialise(data)
+    end
+
     # Direct URL to the record.
     attr :url <=> '@url', Coercible::String.optional, :read_only
 
@@ -211,6 +220,14 @@ module Fortnox
     attr :www <=> 'WWW', Sized::String[128]
 
     private
+
+    def drop_organisation_number? = !meta.new? && electronic_invoice_active?
+
+    def electronic_invoice_active?
+      default_delivery_types&.invoice == DefaultInvoiceDeliveryTypeValues['ELECTRONICINVOICE']
+    end
+
+    def organisation_number_api_name = self.class.all_attribute_definitions[:organisation_number].api_name
 
     # ELECTRONICINVOICE is only possible to set in the Fortnox UI.
     # Raise if a consumer tries to set it from this gem.

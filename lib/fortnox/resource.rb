@@ -24,23 +24,7 @@ module Fortnox
       end
     end
 
-    after_serialise do |data|
-      if meta.new?
-        # Strip nils for new records — rely on Fortnox defaults
-        data = data.compact
-      elsif __changes__.any?
-        # Send only the attributes passed to .update — field-level dirty
-        # tracking, not a value diff, so an attribute equal to its stored
-        # value is still sent, and an explicit nil reaches Fortnox as a clear.
-        changed_api_names = __changes__.keys.filter_map do |model_name|
-          self.class.all_attribute_definitions[model_name]&.api_name
-        end
-        data = data.slice(*changed_api_names)
-      end
-
-      # TODO: rest-easy should do this wrapping for us.
-      { config.instance_wrapper => data }
-    end
+    after_serialise { |data| default_after_serialise(data) }
 
     class << self
       attr_reader :registered_resources
@@ -134,6 +118,26 @@ module Fortnox
           current_page: meta['@CurrentPage']&.to_i
         }
       end
+    end
+
+    private
+
+    # Shared serialisation tail used by the base after_serialise hook. Exposed
+    # as an instance method so subclass hooks can post-process the payload (e.g.
+    # drop a field) and still reuse it — rest-easy hooks override, not chain.
+    def default_after_serialise(data)
+      if meta.new?
+        # Strip nils for new records — rely on Fortnox defaults
+        data = data.compact
+      elsif __changes__.any?
+        # Send only the attributes passed to .update — field-level dirty
+        # tracking, not a value diff, so an attribute equal to its stored
+        # value is still sent, and an explicit nil reaches Fortnox as a clear.
+        data = data.slice(*__changes__.keys.filter_map { |name| self.class.all_attribute_definitions[name]&.api_name })
+      end
+
+      # TODO: rest-easy should do this wrapping for us.
+      { config.instance_wrapper => data }
     end
   end
 end

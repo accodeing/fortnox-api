@@ -80,6 +80,62 @@ RSpec.describe Fortnox::Customer, order: :defined do
     end
   end
 
+  describe '#serialise with OrganisationNumber and an active e-fakturakoppling' do
+    # Fortnox refuses to edit OrganisationNumber once a customer has an active
+    # e-fakturakoppling. Therefore we must drop it from the update payload.
+    # Note that we can't create such a customer in the sandbox since we can't
+    # create a e-fakturakoppling there.
+    def persisted_customer(invoice_delivery_type:)
+      described_class.parse(
+        'Customer' => {
+          'CustomerNumber' => '1',
+          'Name' => 'Acme',
+          'OrganisationNumber' => '556036-0793',
+          'DefaultDeliveryTypes' => { 'Invoice' => invoice_delivery_type, 'Order' => 'PRINT', 'Offer' => 'PRINT' }
+        }
+      )
+    end
+
+    context 'when e-faktura is active' do
+      let(:persisted) { persisted_customer(invoice_delivery_type: 'ELECTRONICINVOICE') }
+      let(:updated) { persisted.update(name: 'New name', organisation_number: '556036-0793') }
+
+      it 'drops OrganisationNumber but keeps other changed fields', :aggregate_failures do
+        body = updated.serialise.fetch('Customer')
+
+        expect(body).not_to have_key('OrganisationNumber')
+        expect(body).to include('Name' => 'New name')
+      end
+    end
+
+    context 'when e-faktura is not active' do
+      let(:persisted) { persisted_customer(invoice_delivery_type: 'PRINT') }
+      let(:updated) { persisted.update(name: 'New name', organisation_number: '556677-8899') }
+
+      it 'keeps OrganisationNumber in the update payload' do
+        body = updated.serialise.fetch('Customer')
+
+        expect(body).to include('OrganisationNumber' => '556677-8899')
+      end
+    end
+
+    context 'when the record is new and e-faktura is not active' do
+      let(:new_model) { described_class.stub(name: 'Acme', organisation_number: '556677-8899') }
+
+      it 'keeps OrganisationNumber (the drop only applies to updates)' do
+        body = new_model.serialise.fetch('Customer')
+
+        expect(body).to include('OrganisationNumber' => '556677-8899')
+      end
+    end
+
+    context 'when the record is new and e-faktura is active' do # rubocop:disable RSpec/EmptyExampleGroup
+      # Unreachable, documented for completeness: a new record can never have
+      # an active e-fakturakoppling because ELECTRONICINVOICE can only be set
+      # from the Fortnox UI.
+    end
+  end
+
   describe '.save with a persisted, unchanged record' do
     # A record loaded via .find is persisted (meta.new? == false) with an
     # empty change set. Saving it without calling .update must not PUT the
