@@ -8,6 +8,17 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Changed
+
+- Upgraded `rest-easy` dependency to `~> 1.4.0`. `Fortnox::MissingAttributeError`
+  is now raised at save time when a `:required` attribute is missing on the
+  outgoing payload, before any HTTP request reaches Fortnox. `stub` /
+  `init_from_model` stay permissive so callers can build an instance and
+  fill required attributes incrementally. Restores the 0.x behaviour that
+  rc1's rewrite to rest-easy dropped: missing required attributes were
+  previously only caught when parsing API responses, letting outbound
+  writes reach Fortnox and surface as generic `RequestError`.
+
 ## [1.0.0.rc10] - 2026-05-27
 
 ### Changed

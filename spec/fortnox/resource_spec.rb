@@ -102,6 +102,13 @@ RSpec.describe Fortnox::Resource do
       )
     end
 
+    it 'raises Fortnox::MissingAttributeError from save when a required attribute is missing' do
+      instance = StrictResource.stub(short_code: 'ok')
+      expect { StrictResource.save(instance) }.to raise_error(
+        an_instance_of(Fortnox::MissingAttributeError).and(having_attributes(attribute_name: :name))
+      )
+    end
+
     it 'raises Fortnox::RequestError preserving the response' do
       response = instance_double(Faraday::Response, status: 503, body: nil)
       raising = -> { TestResource.send(:with_translated_errors) { raise RestEasy::RequestError, response } }

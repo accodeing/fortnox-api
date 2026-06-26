@@ -98,8 +98,11 @@ The gem raises the following exceptions:
   - `Fortnox::ConstraintError` — an attribute value violates a type
     constraint (max size, format, etc.). Carries `.attribute_name` and
     `.value`.
-  - `Fortnox::MissingAttributeError` — a required attribute is missing
-    from an API response. Carries `.attribute_name`.
+  - `Fortnox::MissingAttributeError` — a required attribute is missing,
+    either from an API response or from an instance being saved (the
+    error is raised at save time, before any HTTP request — `stub` stays
+    permissive so you can build an instance and set attributes
+    incrementally). Carries `.attribute_name`.
 - `Fortnox::MissingAccessToken` — `Fortnox.access_token=` was not called
   on the current thread before an API call.
 
