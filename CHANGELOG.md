@@ -8,6 +8,8 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [1.0.0.rc13] - 2026-08-04
+
 ### Changed
 
 - String attributes now normalise `''` to `nil` at the type level. This
@@ -330,7 +332,8 @@ for the full list of breaking changes.
 For changes prior to the 1.0 rewrite, see the
 [0.x changelog](https://github.com/accodeing/fortnox-api/blob/v0.9.2/CHANGELOG.md).
 
-[Unreleased]: https://github.com/accodeing/fortnox-api/compare/v1.0.0.rc12...HEAD
+[Unreleased]: https://github.com/accodeing/fortnox-api/compare/v1.0.0.rc13...HEAD
+[1.0.0.rc13]: https://github.com/accodeing/fortnox-api/compare/v1.0.0.rc12...v1.0.0.rc13
 [1.0.0.rc12]: https://github.com/accodeing/fortnox-api/compare/v1.0.0.rc11...v1.0.0.rc12
 [1.0.0.rc11]: https://github.com/accodeing/fortnox-api/compare/v1.0.0.rc10...v1.0.0.rc11
 [1.0.0.rc10]: https://github.com/accodeing/fortnox-api/compare/v1.0.0.rc9...v1.0.0.rc10
