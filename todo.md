@@ -6,15 +6,13 @@
 - [ ] Adjust github workflow to include `development` and `main`, not `rest-easy`.
 - [ ] Decide how to expose Fortnox field length limits to callers (open design question).
 
-  **Context:** Downstream consumers (e.g. NABS) need to enforce or truncate user input
+  **Context:** Downstream consumers need to enforce or truncate user input
   before it reaches the API, and currently have to duplicate Fortnox's field-length
-  limits. Examples in NABS today:
+  limits. Examples in consumer today:
   - `Orders::Types::INVOICE_REMARKS_MAX_LENGTH = 75` (mirrors `Document#your_order_number`,
     `Sized::String[75]` in `lib/fortnox/resources/document.rb`), with a code comment
     explicitly noting it comes from Fortnox — pure duplication, prone to silent drift.
-  - NABS-1840 will introduce another: truncating `InvoiceRow#description` to 252 chars
-    + ` …` because Fortnox caps it at 255 (`Sized::String[255]` in
-    `lib/fortnox/structs/document_row.rb`).
+  - truncating `InvoiceRow#description` to 252 chars ` …` because Fortnox caps it at 255.
 
   **The naive approach** — pick a handful of "important" fields and expose constants like
   `Fortnox::Structs::DocumentRow::DESCRIPTION_MAX_LENGTH = 255` — was rejected because

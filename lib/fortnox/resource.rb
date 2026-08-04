@@ -26,6 +26,27 @@ module Fortnox
 
     after_serialise { |data| default_after_serialise(data) }
 
+    # Translate rest-easy errors at the gem boundary so callers only see
+    # Fortnox-namespaced exceptions.
+    module ErrorTranslation
+      private
+
+      def with_translated_errors
+        yield
+      rescue RestEasy::ConstraintError => e
+        raise Fortnox::ConstraintError.new(e.attribute_name, e.value, e.message)
+      rescue RestEasy::MissingAttributeError => e
+        raise Fortnox::MissingAttributeError, e.attribute_name
+      rescue RestEasy::AttributeError => e
+        raise Fortnox::AttributeError, e.message
+      rescue RestEasy::RequestError => e
+        raise Fortnox::RequestError, e.response || e.message
+      end
+    end
+
+    include ErrorTranslation # instance-level methods
+    extend ErrorTranslation # class-level methods
+
     class << self
       attr_reader :registered_resources
 
@@ -40,6 +61,10 @@ module Fortnox
           result = super
           result.is_a?(Array) ? Collection.new(result, **pagination) : result
         end
+      end
+
+      def new(...)
+        with_translated_errors { super }
       end
 
       def stub(**model_data)
@@ -94,20 +119,6 @@ module Fortnox
 
       private
 
-      # Translate rest-easy errors at the gem boundary so callers only see
-      # Fortnox-namespaced exceptions.
-      def with_translated_errors
-        yield
-      rescue RestEasy::ConstraintError => e
-        raise Fortnox::ConstraintError.new(e.attribute_name, e.value, e.message)
-      rescue RestEasy::MissingAttributeError => e
-        raise Fortnox::MissingAttributeError, e.attribute_name
-      rescue RestEasy::AttributeError => e
-        raise Fortnox::AttributeError, e.message
-      rescue RestEasy::RequestError => e
-        raise Fortnox::RequestError, e.response || e.message
-      end
-
       def extract_pagination(data)
         return {} unless data.is_a?(Hash) && data.key?('MetaInformation')
 
@@ -118,6 +129,14 @@ module Fortnox
           current_page: meta['@CurrentPage']&.to_i
         }
       end
+    end
+
+    def update(...)
+      with_translated_errors { super }
+    end
+
+    def serialise(...)
+      with_translated_errors { super }
     end
 
     private

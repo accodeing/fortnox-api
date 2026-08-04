@@ -50,6 +50,12 @@ and this project adheres to
   and float attributes (e.g. `Customer#invoice_discount`,
   `Invoice#balance`). Like that bug, this was introduced in 1.0.0.rc1
   and did not exist in 0.x, which coerced `""` to `0`/`0.0`.
+- `#update`, `#serialise` (and `#to_api`, which goes through it) and
+  `.new` now raise Fortnox-namespaced errors. A coercion failure like
+  `customer.update(email: 'not-an-email')` previously leaked
+  `RestEasy::ConstraintError`, which `rescue Fortnox::ConstraintError`
+  blocks don't catch — error translation only covered `save`, `parse`,
+  `find`, `stub` and the other class-level paths.
 
 ## [1.0.0.rc12] - 2026-06-26
 

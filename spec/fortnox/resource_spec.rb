@@ -102,6 +102,28 @@ RSpec.describe Fortnox::Resource do
       )
     end
 
+    it 'raises Fortnox::ConstraintError from instance-level #update' do
+      saved = StrictResource.send(:parse, 'StrictThing' => { 'Name' => 'x', 'ShortCode' => 'ok' })
+      expect { saved.update(short_code: 'too long') }.to raise_error(
+        an_instance_of(Fortnox::ConstraintError)
+          .and(having_attributes(attribute_name: :short_code, value: 'too long'))
+      )
+    end
+
+    it 'raises Fortnox::ConstraintError from .new' do
+      expect { StrictResource.new(name: 'ok', short_code: 'too long') }.to raise_error(
+        an_instance_of(Fortnox::ConstraintError)
+          .and(having_attributes(attribute_name: :short_code, value: 'too long'))
+      )
+    end
+
+    it 'raises Fortnox::MissingAttributeError from instance-level #serialise' do
+      instance = StrictResource.stub(short_code: 'ok')
+      expect { instance.serialise }.to raise_error(
+        an_instance_of(Fortnox::MissingAttributeError).and(having_attributes(attribute_name: :name))
+      )
+    end
+
     it 'raises Fortnox::MissingAttributeError from save when a required attribute is missing' do
       instance = StrictResource.stub(short_code: 'ok')
       expect { StrictResource.save(instance) }.to raise_error(
