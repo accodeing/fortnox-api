@@ -61,13 +61,11 @@
     would re-create the silent-drift problem.
   - **Approach (3) layers on top, doesn't replace.** `fits?` / `truncate` are one-liners
     against `max_size_for`. Truncation policy (`…` vs. `[truncated]` vs. hard cut vs.
-    raise) stays with the caller; the gem only owns "how long is too long." NABS-1840
+    raise) stays with the caller; the gem only owns "how long is too long." A consumer
     gets its ellipsis behaviour by composing these.
 
-  Whichever direction is chosen, the goal is: **NABS (and any other consumer) should
-  never need to write a literal Fortnox field length in its own source.**
-
-  See NABS-1840 conversation for the discussion that surfaced this.
+  Whichever direction is chosen, the goal is: **no consumer should ever need to
+  write a literal Fortnox field length in its own source.**
 
 ### Filters
 This is not something we need to do now, we can take it later.
