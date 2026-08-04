@@ -22,6 +22,24 @@ and Semantic Versioning. Conventions:
 The full release procedure is in
 [DEVELOPER_README.md](DEVELOPER_README.md#release-process).
 
+## VCR cassettes
+
+Integration specs record real Fortnox sandbox traffic with VCR
+(`spec/vcr_cassettes/`). Rules:
+
+- Never hand-edit a cassette. When the expected request or response
+  changes, delete the cassette file and re-record by running the
+  affected spec.
+- Recording needs a valid `FORTNOX_ACCESS_TOKEN` in `.env.test.local`
+  (gitignored). Tokens are short-lived — on a 401, refresh with
+  `bundle exec ruby bin/fortnox-update-env .env.test.local`, then
+  re-run the spec.
+- A failed recording run still writes a cassette (e.g. with the 401
+  response in it), and the next run replays that failure. Delete the
+  bad cassette before retrying.
+- Re-record one resource spec file at a time — running many against
+  the live API trips Fortnox rate limiting (429).
+
 ## Releasing
 
 Use the rake tasks — do not run the steps by hand:
