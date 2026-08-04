@@ -5,6 +5,15 @@ require 'spec_helper'
 RSpec.describe Fortnox::Article, order: :defined do
   let(:vcr_dir) { 'articles' }
 
+  describe 'parsing a blank numeric attribute' do
+    let(:body) { { 'ArticleNumber' => '1', 'Description' => 'X', 'Depth' => '' } }
+
+    it 'coerces "" to nil on the Sized::Integer type' do
+      parsed = described_class.send(:parse, 'Article' => body)
+      expect(parsed.depth).to be_nil
+    end
+  end
+
   describe '.save' do
     let(:new_model) { described_class.stub(description: 'A value', sales_account: 1250) }
     let(:save_new) do

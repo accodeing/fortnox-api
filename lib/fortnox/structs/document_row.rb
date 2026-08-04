@@ -10,13 +10,13 @@ module Fortnox
       attribute? :article_number, Types::Sized::String[50]
 
       # ContributionPercent Contribution Percent.
-      attribute? :contribution_percent, Types::Coercible::Float.optional, :read_only
+      attribute? :contribution_percent, Types::UnsizedFloat, :read_only
 
       # ContributionValue Contribution Value.
-      attribute? :contribution_value, Types::Coercible::Float.optional, :read_only
+      attribute? :contribution_value, Types::UnsizedFloat, :read_only
 
       # CostCenter Code of the cost center for the row.
-      attribute? :cost_center, Types::Coercible::String.optional
+      attribute? :cost_center, Types::UnsizedString
 
       # DeliveredQuantity Delivered quantity. 14 digits
       attribute? :delivered_quantity, Types::Sized::Float[-9_999_999_999_999.9, 9_999_999_999_999.9]
@@ -47,16 +47,16 @@ module Fortnox
       attribute? :price, Types::Sized::Float[-99_999_999_999.9, 99_999_999_999.9]
 
       # Project Code of the project for the row.
-      attribute? :project, Types::Coercible::String.optional
+      attribute? :project, Types::UnsizedString
 
       # Total Total amount for the row.
-      attribute? :total, Types::Coercible::Float.optional, :read_only
+      attribute? :total, Types::UnsizedFloat, :read_only
 
       # Unit Code of the unit for the row.
-      attribute? :unit, Types::Coercible::String.optional
+      attribute? :unit, Types::UnsizedString
 
       # VAT VAT percentage of the row.
-      attribute? :vat, Types::Coercible::Integer.optional
+      attribute? :vat, Types::UnsizedInteger
     end
   end
 end

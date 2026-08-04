@@ -89,7 +89,7 @@ RSpec.describe Fortnox::Invoice, order: :defined do
       {
         account_number: 3001,
         article_number: '101',
-        cost_center: '',
+        cost_center: '1',
         delivered_quantity: 1.0,
         description: 'Row description',
         discount: 0.0,
@@ -108,7 +108,7 @@ RSpec.describe Fortnox::Invoice, order: :defined do
         address2: 'Box 100',
         city: 'Stockholm',
         comments: 'A fully populated invoice',
-        cost_center: '',
+        cost_center: '1',
         country_code: 'SE',
         currency: 'SEK',
         currency_rate: 1.0,
@@ -154,10 +154,10 @@ RSpec.describe Fortnox::Invoice, order: :defined do
         project: '1',
         remarks: 'Some remarks',
         tax_reduction_type: 'none',
-        terms_of_delivery: '',
+        terms_of_delivery: 'FVL',
         terms_of_payment: '30',
         vat_included: false,
-        way_of_delivery: '',
+        way_of_delivery: 'P',
         your_order_number: 'YO-1',
         your_reference: 'Frodo',
         zip_code: '11122'
@@ -185,6 +185,25 @@ RSpec.describe Fortnox::Invoice, order: :defined do
       row_attributes.each do |attribute, value|
         expect(returned_row.send(attribute)).to eq(value)
       end
+    end
+  end
+
+  describe 'parsing blank numeric attributes' do
+    let(:body) do
+      { 'DocumentNumber' => '1', 'CustomerNumber' => '1', 'Balance' => '', 'CreditInvoiceReference' => '' }
+    end
+
+    it 'coerces "" to nil on the unsized numeric types', :aggregate_failures do
+      parsed = described_class.send(:parse, 'Invoice' => body)
+      expect(parsed.balance).to be_nil
+      expect(parsed.credit_invoice_reference).to be_nil
+    end
+
+    it 'coerces "" to nil inside rows', :aggregate_failures do
+      with_row = body.merge('InvoiceRows' => [{ 'ArticleNumber' => '101', 'Total' => '', 'VAT' => '' }])
+      row = described_class.send(:parse, 'Invoice' => with_row).invoice_rows.first
+      expect(row.total).to be_nil
+      expect(row.vat).to be_nil
     end
   end
 
@@ -366,12 +385,12 @@ RSpec.describe Fortnox::Invoice, order: :defined do
         expect(save_invoice(country_code: 'NO').model.country_code).to eq('NO')
       end
 
-      it 'skips nil values' do
-        expect(save_invoice(country_code: nil, vcr_cassette: 'nil').model.country_code).to eq('')
+      it 'accept nil values' do
+        expect(save_invoice(country_code: nil, vcr_cassette: 'nil').model.country_code).to be_nil
       end
 
-      it 'skips empty string values' do
-        expect(save_invoice(country_code: '', vcr_cassette: 'empty_string').model.country_code).to eq('')
+      it 'turns empty string values to nil' do
+        expect(save_invoice(country_code: '', vcr_cassette: 'empty_string').model.country_code).to be_nil
       end
 
       describe 'GB' do
@@ -441,7 +460,9 @@ RSpec.describe Fortnox::Invoice, order: :defined do
       end
     end
 
-    context 'with other values' do
+    context 'with mapper-backed values (country)' do
+      # The cassettes prove Fortnox clears the country when sent null.
+      # Blank handling is documented on Mappers::CountryCode.
       def new_invoice(country_code:)
         described_class.stub(customer_number: '1', country_code: country_code)
       end
@@ -463,8 +484,8 @@ RSpec.describe Fortnox::Invoice, order: :defined do
           end
         end
 
-        it 'is replaced by Fortnox with the default value' do
-          expect(country_code).to eq('SE')
+        it 'resets the value' do
+          expect(country_code).to be_nil
         end
       end
 
@@ -477,8 +498,8 @@ RSpec.describe Fortnox::Invoice, order: :defined do
           end
         end
 
-        it 'is replaced by Fortnox with the default value' do
-          expect(country_code).to eq('SE')
+        it 'resets the value' do
+          expect(country_code).to be_nil
         end
       end
     end

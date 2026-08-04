@@ -6,17 +6,17 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"Customer":{"Address1":"Storgatan 1","Address2":"Box 100","City":"Stockholm","Comments":"A
-        fully populated customer","Currency":"SEK","CostCenter":"1","CountryCode":"SE","CustomerNumber":"9003","DefaultDeliveryTypes":{"Invoice":"PRINT","Order":"PRINT","Offer":"PRINT"},"DefaultTemplates":{"Order":"DEFAULTTEMPLATE","Offer":"DEFAULTTEMPLATE","Invoice":"DEFAULTTEMPLATE","CashInvoice":"DEFAULTTEMPLATE"},"DeliveryAddress1":"Leveransvägen
+        fully populated customer","Currency":"SEK","CostCenter":"1","CountryCode":"SE","CustomerNumber":"9009","DefaultDeliveryTypes":{"Invoice":"PRINT","Order":"PRINT","Offer":"PRINT"},"DefaultTemplates":{"Order":"DEFAULTTEMPLATE","Offer":"DEFAULTTEMPLATE","Invoice":"DEFAULTTEMPLATE","CashInvoice":"DEFAULTTEMPLATE"},"DeliveryAddress1":"Leveransvägen
         2","DeliveryAddress2":"Port B","DeliveryCity":"Göteborg","DeliveryCountryCode":"SE","DeliveryFax":"+46
         8 0000000","DeliveryName":"Delivery Recipient","DeliveryPhone1":"+46 8 1111111","DeliveryPhone2":"+46
         8 2222222","DeliveryZipCode":"41100","Email":"customer@example.com","EmailInvoice":"invoice@example.com","EmailInvoiceBCC":"invoice-bcc@example.com","EmailInvoiceCC":"invoice-cc@example.com","EmailOffer":"offer@example.com","EmailOfferBCC":"offer-bcc@example.com","EmailOfferCC":"offer-cc@example.com","EmailOrder":"order@example.com","EmailOrderBCC":"order-bcc@example.com","EmailOrderCC":"order-cc@example.com","Fax":"+46
         8 3333333","InvoiceAdministrationFee":50.0,"InvoiceDiscount":10.0,"InvoiceFreight":25.0,"InvoiceRemark":"Standard
         invoice remark","Name":"Fully Populated Customer","OrganisationNumber":"556677-8899","OurReference":"Bilbo","Phone1":"+46
-        8 4444444","Phone2":"+46 8 5555555","PriceList":"A","Project":"1","SalesAccount":3001,"ShowPriceVATIncluded":true,"TermsOfDelivery":"","TermsOfPayment":"30","Type":"COMPANY","VATNumber":"SE556677889901","VATType":"SEVAT","VisitingAddress":"Besöksgatan
-        3","VisitingCity":"Malmö","VisitingCountryCode":"SE","VisitingZipCode":"21100","WayOfDelivery":"","YourReference":"Frodo","ZipCode":"11122","Active":true,"ExternalReference":"EXT-001","GLN":"1234567890123","GLNDelivery":"3210987654321","WWW":"https://example.com"}}'
+        8 4444444","Phone2":"+46 8 5555555","PriceList":"A","Project":"1","SalesAccount":3001,"ShowPriceVATIncluded":true,"TermsOfDelivery":"FVL","TermsOfPayment":"30","Type":"COMPANY","VATNumber":"SE556677889901","VATType":"SEVAT","VisitingAddress":"Besöksgatan
+        3","VisitingCity":"Malmö","VisitingCountryCode":"SE","VisitingZipCode":"21100","WayOfDelivery":"P","YourReference":"Frodo","ZipCode":"11122","Active":true,"ExternalReference":"EXT-001","GLN":"1234567890123","GLNDelivery":"3210987654321","WWW":"https://example.com"}}'
     headers:
       User-Agent:
-      - Faraday v2.14.1
+      - Faraday v2.14.3
       Content-Type:
       - application/json
       Accept:
@@ -31,15 +31,15 @@ http_interactions:
       message: Created
     headers:
       Content-Length:
-      - '1965'
+      - '1969'
       Content-Type:
       - application/json
       Date:
-      - Fri, 08 May 2026 12:39:16 GMT
+      - Tue, 04 Aug 2026 08:44:18 GMT
       Location:
       - customers
       X-Build:
-      - b653d4094e
+      - d19605fe96
       X-Frame-Options:
       - sameorigin
       X-Krakend:
@@ -47,9 +47,9 @@ http_interactions:
       X-Krakend-Completed:
       - 'false'
       X-Rack-Responsetime:
-      - '358'
+      - '603'
       X-Uid:
-      - 04ecb58a
+      - 8e3edd74
       Server:
       - Fortnox
       X-Content-Type-Options:
@@ -58,6 +58,8 @@ http_interactions:
       - '0'
       Referrer-Policy:
       - strict-origin-when-cross-origin
+      Reporting-Endpoints:
+      - default="/api/cspreport-v2"
       Content-Security-Policy:
       - 'upgrade-insecure-requests;frame-ancestors https://*.fortnox.se;report-uri
         /api/cspreport;connect-src ''self'' https://a.storyblok.com wss://*.fortnox.se
@@ -69,15 +71,15 @@ http_interactions:
       - max-age=31536000; includeSubdomains
     body:
       encoding: UTF-8
-      string: '{"Customer":{"@url":"https:\/\/api.fortnox.se\/3\/customers\/9003","Address1":"Storgatan
+      string: '{"Customer":{"@url":"https:\/\/api.fortnox.se\/3\/customers\/9009","Address1":"Storgatan
         1","Address2":"Box 100","City":"Stockholm","Country":"Sverige","Comments":"A
-        fully populated customer","Currency":"SEK","CostCenter":"1","CountryCode":"SE","Active":true,"CustomerNumber":"9003","DefaultDeliveryTypes":{"Invoice":"PRINT","Order":"PRINT","Offer":"PRINT"},"DefaultTemplates":{"Order":"DEFAULTTEMPLATE","Offer":"DEFAULTTEMPLATE","Invoice":"DEFAULTTEMPLATE","CashInvoice":"DEFAULTTEMPLATE"},"DeliveryAddress1":"Leveransv\u00e4gen
+        fully populated customer","Currency":"SEK","CostCenter":"1","CountryCode":"SE","Active":true,"CustomerNumber":"9009","DefaultDeliveryTypes":{"Invoice":"PRINT","Order":"PRINT","Offer":"PRINT"},"DefaultTemplates":{"Order":"DEFAULTTEMPLATE","Offer":"DEFAULTTEMPLATE","Invoice":"DEFAULTTEMPLATE","CashInvoice":"DEFAULTTEMPLATE"},"DeliveryAddress1":"Leveransv\u00e4gen
         2","DeliveryAddress2":"Port B","DeliveryCity":"G\u00f6teborg","DeliveryCountry":"Sverige","DeliveryCountryCode":"SE","DeliveryFax":"+46
         8 0000000","DeliveryName":"Delivery Recipient","DeliveryPhone1":"+46 8 1111111","DeliveryPhone2":"+46
         8 2222222","DeliveryZipCode":"41100","Email":"customer@example.com","EmailInvoice":"invoice@example.com","EmailInvoiceBCC":"invoice-bcc@example.com","EmailInvoiceCC":"invoice-cc@example.com","EmailOffer":"offer@example.com","EmailOfferBCC":"offer-bcc@example.com","EmailOfferCC":"offer-cc@example.com","EmailOrder":"order@example.com","EmailOrderBCC":"order-bcc@example.com","EmailOrderCC":"order-cc@example.com","ExternalReference":"EXT-001","Fax":"+46
         8 3333333","GLN":"1234567890123","GLNDelivery":"3210987654321","InvoiceAdministrationFee":50,"InvoiceDiscount":10,"InvoiceFreight":25,"InvoiceRemark":"Standard
         invoice remark","Name":"Fully Populated Customer","OrganisationNumber":"556677-8899","OurReference":"Bilbo","Phone1":"+46
-        8 4444444","Phone2":"+46 8 5555555","PriceList":"A","Project":"1","SalesAccount":3001,"ShowPriceVATIncluded":true,"TermsOfDelivery":"","TermsOfPayment":"30","Type":"COMPANY","VATNumber":"SE556677889901","VATType":"SEVAT","VisitingAddress":"Bes\u00f6ksgatan
-        3","VisitingCity":"Malm\u00f6","VisitingCountry":"Sverige","VisitingCountryCode":"SE","VisitingZipCode":"21100","WayOfDelivery":"","WWW":"https:\/\/example.com","YourReference":"Frodo","ZipCode":"11122"}}'
-  recorded_at: Fri, 08 May 2026 12:39:16 GMT
+        8 4444444","Phone2":"+46 8 5555555","PriceList":"A","Project":"1","SalesAccount":3001,"ShowPriceVATIncluded":true,"TermsOfDelivery":"FVL","TermsOfPayment":"30","Type":"COMPANY","VATNumber":"SE556677889901","VATType":"SEVAT","VisitingAddress":"Bes\u00f6ksgatan
+        3","VisitingCity":"Malm\u00f6","VisitingCountry":"Sverige","VisitingCountryCode":"SE","VisitingZipCode":"21100","WayOfDelivery":"P","WWW":"https:\/\/example.com","YourReference":"Frodo","ZipCode":"11122"}}'
+  recorded_at: Tue, 04 Aug 2026 08:44:18 GMT
 recorded_with: VCR 6.4.0

@@ -12,7 +12,7 @@ module Fortnox
     end
 
     # @url Direct URL to the record.
-    attr :url <=> '@url', Coercible::String.optional, :read_only
+    attr :url <=> '@url', UnsizedString, :read_only
 
     # Code The code of the unit.
     key :code, Sized::String[20], :required

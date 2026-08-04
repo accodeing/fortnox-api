@@ -12,7 +12,7 @@ module Fortnox
     end
 
     # @url Direct URL to the record.
-    attr :url <=> '@url', Coercible::String.optional, :read_only
+    attr :url <=> '@url', UnsizedString, :read_only
 
     # Comments Comments on project
     attr :comments, Sized::String[512]

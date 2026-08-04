@@ -2,13 +2,13 @@
 http_interactions:
 - request:
     method: put
-    uri: https://api.fortnox.se/3/invoices/79
+    uri: https://api.fortnox.se/3/invoices/102
     body:
       encoding: UTF-8
       string: '{"Invoice":{"Comments":"Updated comments"}}'
     headers:
       User-Agent:
-      - Faraday v2.14.1
+      - Faraday v2.14.3
       Content-Type:
       - application/json
       Accept:
@@ -25,11 +25,11 @@ http_interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 29 Apr 2026 09:11:35 GMT
+      - Tue, 04 Aug 2026 07:54:25 GMT
       Vary:
       - Accept-Encoding
       X-Build:
-      - 1fbde2b71a
+      - d19605fe96
       X-Frame-Options:
       - sameorigin
       X-Krakend:
@@ -37,9 +37,9 @@ http_interactions:
       X-Krakend-Completed:
       - 'false'
       X-Rack-Responsetime:
-      - '534'
+      - '785'
       X-Uid:
-      - f0148ba0
+      - 9422e5c8
       Transfer-Encoding:
       - chunked
       Server:
@@ -50,6 +50,8 @@ http_interactions:
       - '0'
       Referrer-Policy:
       - strict-origin-when-cross-origin
+      Reporting-Endpoints:
+      - default="/api/cspreport-v2"
       Content-Security-Policy:
       - 'upgrade-insecure-requests;frame-ancestors https://*.fortnox.se;report-uri
         /api/cspreport;connect-src ''self'' https://a.storyblok.com wss://*.fortnox.se
@@ -61,9 +63,9 @@ http_interactions:
       - max-age=31536000; includeSubdomains
     body:
       encoding: UTF-8
-      string: '{"Invoice":{"@url":"https:\/\/api.fortnox.se\/3\/invoices\/79","@urlTaxReductionList":"https:\/\/api.fortnox.se\/3\/taxreductions?filter=invoices&referencenumber=79","AccountingMethod":"ACCRUAL","Address1":"","Address2":"","AdministrationFee":0,"AdministrationFeeVAT":0,"Balance":0,"BasisTaxReduction":0,"Booked":false,"Cancelled":false,"City":"","Comments":"Updated
+      string: '{"Invoice":{"@url":"https:\/\/api.fortnox.se\/3\/invoices\/102","@urlTaxReductionList":"https:\/\/api.fortnox.se\/3\/taxreductions?filter=invoices&referencenumber=102","AccountingMethod":"ACCRUAL","Address1":"","Address2":"","AdministrationFee":0,"AdministrationFeeVAT":0,"Balance":0,"BasisTaxReduction":0,"Booked":false,"Cancelled":false,"City":"","Comments":"Updated
         comments","ContractReference":"0","ContributionPercent":0,"ContributionValue":0,"CostCenter":"","Country":"","Credit":"false","CreditInvoiceReference":"0","Currency":"SEK","CurrencyRate":1,"CurrencyUnit":1,"CustomerName":"Customer
-        with IDN email","CustomerNumber":"1","DeliveryAddress1":"","DeliveryAddress2":"","DeliveryCity":"","DeliveryCountry":"","DeliveryDate":null,"DeliveryName":"","DeliveryZipCode":"","DocumentNumber":"79","DueDate":"2026-05-29","EDIInformation":{"EDIGlobalLocationNumber":null,"EDIGlobalLocationNumberDelivery":null,"EDIInvoiceExtra1":null,"EDIInvoiceExtra2":null,"EDIOurElectronicReference":null,"EDIYourElectronicReference":null,"EDIStatus":""},"EUQuarterlyReport":false,"EmailInformation":{"EmailAddressFrom":null,"EmailAddressTo":"user@test.se","EmailAddressCC":null,"EmailAddressBCC":null,"EmailSubject":"Faktura
-        {no} bifogas","EmailBody":" "},"ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","FinalPayDate":null,"Freight":0,"FreightVAT":0,"Gross":0,"HouseWork":false,"InvoiceDate":"2026-04-29","InvoicePeriodEnd":"","InvoicePeriodStart":"","InvoiceReference":"0","InvoiceRows":[],"InvoiceType":"INVOICE","Labels":[],"Language":"SV","LastRemindDate":null,"Net":0,"NotCompleted":false,"NoxFinans":false,"OCR":"7948","OfferReference":"0","OrderReference":"0","OrganisationNumber":"","OurReference":"","OutboundDate":"2026-04-29","PaymentWay":"","Phone1":"","Phone2":"","PriceList":"A","PrintTemplate":"st","Project":"","Remarks":"","Reminders":0,"RoundOff":0,"Sent":false,"TaxReduction":null,"TaxReductionType":"none","TermsOfDelivery":"","TermsOfPayment":"30","TimeBasisReference":null,"Total":0,"TotalToPay":0,"TotalVAT":0,"VATIncluded":false,"VoucherNumber":null,"VoucherSeries":null,"VoucherYear":null,"WarehouseReady":true,"WayOfDelivery":"","YourOrderNumber":"","YourReference":"","ZipCode":""}}'
-  recorded_at: Wed, 29 Apr 2026 09:11:35 GMT
+        with IDN email","CustomerNumber":"1","DeliveryAddress1":"","DeliveryAddress2":"","DeliveryCity":"","DeliveryCountry":"","DeliveryDate":null,"DeliveryName":"","DeliveryZipCode":"","DocumentNumber":"102","DueDate":"2026-09-03","EDIInformation":{"EDIGlobalLocationNumber":null,"EDIGlobalLocationNumberDelivery":null,"EDIInvoiceExtra1":null,"EDIInvoiceExtra2":null,"EDIOurElectronicReference":null,"EDIYourElectronicReference":null,"EDIStatus":""},"EUQuarterlyReport":false,"EmailInformation":{"EmailAddressFrom":null,"EmailAddressTo":"user@test.se","EmailAddressCC":null,"EmailAddressBCC":null,"EmailSubject":"Faktura
+        {no} bifogas","EmailBody":" "},"ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","FinalPayDate":null,"Freight":0,"FreightVAT":0,"Gross":0,"HouseWork":false,"InvoiceDate":"2026-08-04","InvoicePeriodEnd":"","InvoicePeriodStart":"","InvoiceReference":"0","InvoiceRows":[],"InvoiceType":"INVOICE","Labels":[],"Language":"SV","LastRemindDate":null,"Net":0,"NotCompleted":false,"NoxFinans":false,"OCR":"10256","OfferReference":"0","OrderReference":"0","OrganisationNumber":"","OurReference":"","OutboundDate":"2026-08-04","PaymentWay":"","Phone1":"","Phone2":"","PriceList":"A","PrintTemplate":"st","Project":"","Remarks":"","Reminders":0,"RoundOff":0,"Sent":false,"TaxReduction":null,"TaxReductionType":"none","TermsOfDelivery":"","TermsOfPayment":"30","TimeBasisReference":null,"Total":0,"TotalToPay":0,"TotalVAT":0,"VATIncluded":false,"VoucherNumber":null,"VoucherSeries":null,"VoucherYear":null,"WarehouseReady":false,"WayOfDelivery":"","YourOrderNumber":"","YourReference":"","ZipCode":""}}'
+  recorded_at: Tue, 04 Aug 2026 07:54:24 GMT
 recorded_with: VCR 6.4.0

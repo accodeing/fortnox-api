@@ -9,7 +9,7 @@ module Fortnox
       scope 'settings'
     end
 
-    attr :id, Coercible::Integer.optional, :read_only, :key
+    attr :id, UnsizedInteger, :read_only, :key
     attr :description, Sized::String[25]
   end
 end

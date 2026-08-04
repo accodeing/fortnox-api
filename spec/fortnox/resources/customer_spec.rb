@@ -136,6 +136,70 @@ RSpec.describe Fortnox::Customer, order: :defined do
     end
   end
 
+  describe 'resetting comments in Fortnox' do
+    # Fortnox silently ignores empty strings in update payloads — a field can
+    # only be cleared with an explicit null. Clearing Customer#comments with
+    # '' therefore left the old comment intact in Fortnox. Both reset
+    # spellings go out as null ('' coerces to nil at the type level); the
+    # cassettes prove Fortnox actually clears the value when sent null.
+    # The cassettes' json_body matching also pins the outgoing PUT body.
+    let(:persisted_customer) do
+      VCR.use_cassette("#{vcr_dir}/save_new_with_comments") do
+        described_class.save(
+          described_class.stub(name: 'Customer with comment', comments: 'A comment to be reset')
+        )
+      end
+    end
+
+    before { persisted_customer }
+
+    context 'when setting value to nil' do
+      subject(:comments) { updated_persisted_customer.model.comments }
+
+      let(:updated_persisted_customer) do
+        VCR.use_cassette("#{vcr_dir}/save_old_with_nil_comments") do
+          described_class.save(persisted_customer.update(comments: nil))
+        end
+      end
+
+      it 'resets the value' do
+        expect(comments).to be_nil
+      end
+    end
+
+    context 'when setting value to empty string' do
+      subject(:comments) { updated_persisted_customer.model.comments }
+
+      let(:updated_persisted_customer) do
+        VCR.use_cassette("#{vcr_dir}/save_old_with_empty_comments") do
+          described_class.save(persisted_customer.update(comments: ''))
+        end
+      end
+
+      it 'resets the value' do
+        expect(comments).to be_nil
+      end
+    end
+  end
+
+  describe '.save with a required attribute reset to an empty string' do
+    # Clearing a required field is invalid: Fortnox rejects Name:null with
+    # 400 "Kundnamn kan inte vara tomt" and silently ignores Name:"" (both
+    # verified against the sandbox). With '' coercing to nil, the invalid
+    # operation fails loudly client-side instead of being silently ignored.
+    before { allow(described_class).to receive(:put) }
+
+    let(:updated) do
+      persisted = described_class.parse('Customer' => { 'CustomerNumber' => '1', 'Name' => 'Acme' })
+      persisted.update(name: '')
+    end
+
+    it 'raises Fortnox::MissingAttributeError and issues no PUT', :aggregate_failures do
+      expect { described_class.save(updated) }.to raise_error(Fortnox::MissingAttributeError)
+      expect(described_class).not_to have_received(:put)
+    end
+  end
+
   describe '.save with a persisted, unchanged record' do
     # A record loaded via .find is persisted (meta.new? == false) with an
     # empty change set. Saving it without calling .update must not PUT the
@@ -177,7 +241,7 @@ RSpec.describe Fortnox::Customer, order: :defined do
 
   describe '.save with all writable attributes' do
     # NOTE: Bump customer_number when re-recording VCR cassettes — Fortnox rejects duplicates
-    let(:fully_populated_customer_number) { '9003' }
+    let(:fully_populated_customer_number) { '9009' }
     let(:writable_attributes) do
       {
         customer_number: fully_populated_customer_number,
@@ -234,7 +298,7 @@ RSpec.describe Fortnox::Customer, order: :defined do
         project: '1',
         sales_account: 3001,
         show_price_vat_included: true,
-        terms_of_delivery: '',
+        terms_of_delivery: 'FVL',
         terms_of_payment: '30',
         type: 'COMPANY',
         vat_number: 'SE556677889901',
@@ -243,7 +307,7 @@ RSpec.describe Fortnox::Customer, order: :defined do
         visiting_city: 'Malmö',
         visiting_country_code: 'SE',
         visiting_zip_code: '21100',
-        way_of_delivery: '',
+        way_of_delivery: 'P',
         www: 'https://example.com',
         your_reference: 'Frodo',
         zip_code: '11122'
@@ -429,6 +493,15 @@ RSpec.describe Fortnox::Customer, order: :defined do
     it 'coerces "" to nil on the AccountNumber type' do
       parsed = described_class.send(:parse, 'Customer' => body)
       expect(parsed.sales_account).to be_nil
+    end
+  end
+
+  describe 'parsing a blank numeric attribute' do
+    let(:body) { { 'CustomerNumber' => '1', 'Name' => 'X', 'InvoiceDiscount' => '' } }
+
+    it 'coerces "" to nil on the Sized::Float type' do
+      parsed = described_class.send(:parse, 'Customer' => body)
+      expect(parsed.invoice_discount).to be_nil
     end
   end
 

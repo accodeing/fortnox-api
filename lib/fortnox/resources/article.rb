@@ -12,7 +12,7 @@ module Fortnox
     end
 
     # @url Direct URL to the record.
-    attr :url <=> '@url', Coercible::String.optional, :read_only
+    attr :url <=> '@url', UnsizedString, :read_only
 
     # True If the article is active
     attr :active, Bool.optional, Boolean
@@ -34,7 +34,7 @@ module Fortnox
     attr :description, Sized::String[200], :required
 
     # DisposableQuantity Disposable quantity of the article.
-    attr :disposable_quantity, Coercible::Float.optional, :read_only
+    attr :disposable_quantity, UnsizedFloat, :read_only
 
     # EAN EAN bar code
     attr :ean <=> 'EAN', Sized::String[30]
@@ -80,14 +80,14 @@ module Fortnox
     attr :quantity_in_stock, Sized::Float[-100_000_000_000_000.0, 99_999_999_999_999.9]
 
     # ReservedQuantity Reserved quantity of the article
-    attr :reserved_quantity, Coercible::Float.optional, :read_only
+    attr :reserved_quantity, UnsizedFloat, :read_only
 
     # SalesAccount Account number for the sales account in Sweden.
     # The number must be of an existing account.
     attr :sales_account, Types::AccountNumber
 
     # SalesPrice Price of article for its default price list
-    attr :sales_price, Coercible::Float.optional, :read_only
+    attr :sales_price, UnsizedFloat, :read_only
 
     # StockGoods If the article is stock goods
     attr :stock_goods, Bool.optional, Boolean
@@ -96,27 +96,27 @@ module Fortnox
     attr :stock_place, Sized::String[100]
 
     # StockValue Value in stock of the article
-    attr :stock_value, Coercible::Float.optional, :read_only
+    attr :stock_value, UnsizedFloat, :read_only
 
     # StockWarning When to start warning for low quantity in stock
     attr :stock_warning, Sized::Float[0.0, 99_999_999_999_999.9]
 
     # SupplierName Name of the supplier
-    attr :supplier_name, Coercible::String.optional, :read_only
+    attr :supplier_name, UnsizedString, :read_only
 
     # SupplierNumber Supplier number for the article.
     # The number must be of an existing supplier.
-    attr :supplier_number, Coercible::String.optional
+    attr :supplier_number, UnsizedString
 
     # Type The type of the article
     attr :type, ArticleTypes
 
     # Unit Unit code for the article.
     # The code must be of an existing unit.
-    attr :unit, Coercible::String.optional
+    attr :unit, UnsizedString
 
     # VAT VAT percent, this is predefined by the VAT for the sales account
-    attr :vat <=> 'VAT', Coercible::Float.optional
+    attr :vat <=> 'VAT', UnsizedFloat
 
     # WebshopArticle If the article is a webshop article
     attr :webshop_article, Bool.optional, Boolean
@@ -131,7 +131,7 @@ module Fortnox
     attr :expired, Bool.optional, Boolean
 
     # CostCalculationMethod Cost calculation method used for the article.
-    attr :cost_calculation_method, Coercible::String.optional
+    attr :cost_calculation_method, UnsizedString
 
     # StockAccount Account number for stock.
     attr :stock_account, Types::AccountNumber
@@ -140,21 +140,21 @@ module Fortnox
     attr :stock_change_account, Types::AccountNumber
 
     # DirectCost Direct cost of the article.
-    attr :direct_cost, Coercible::Float.optional
+    attr :direct_cost, UnsizedFloat
 
     # FreightCost Freight cost of the article.
-    attr :freight_cost, Coercible::Float.optional
+    attr :freight_cost, UnsizedFloat
 
     # OtherCost Other cost of the article.
-    attr :other_cost, Coercible::Float.optional
+    attr :other_cost, UnsizedFloat
 
     # DefaultStockPoint Default stock point for the article.
-    attr :default_stock_point, Coercible::String.optional
+    attr :default_stock_point, UnsizedString
 
     # DefaultStockLocation Default stock location for the article.
-    attr :default_stock_location, Coercible::String.optional
+    attr :default_stock_location, UnsizedString
 
     # CommodityCode Commodity code of the article.
-    attr :commodity_code, Coercible::String.optional, :read_only
+    attr :commodity_code, UnsizedString, :read_only
   end
 end

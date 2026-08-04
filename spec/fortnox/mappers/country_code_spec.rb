@@ -3,12 +3,12 @@
 RSpec.describe Fortnox::Mappers::CountryCode do
   describe '.parse' do
     context 'with nil or empty string' do
-      it 'returns empty string for nil' do
-        expect(described_class.parse(nil)).to eq('')
+      it 'returns nil for nil' do
+        expect(described_class.parse(nil)).to be_nil
       end
 
-      it 'returns empty string for empty string' do
-        expect(described_class.parse('')).to eq('')
+      it 'returns nil for empty string' do
+        expect(described_class.parse('')).to be_nil
       end
     end
 
@@ -63,12 +63,12 @@ RSpec.describe Fortnox::Mappers::CountryCode do
 
   describe '.serialise' do
     context 'with nil or empty string' do
-      it 'returns empty string for nil' do
-        expect(described_class.serialise(nil)).to eq('')
+      it 'returns nil for nil' do
+        expect(described_class.serialise(nil)).to be_nil
       end
 
-      it 'returns empty string for empty string' do
-        expect(described_class.serialise('')).to eq('')
+      it 'returns nil for empty string' do
+        expect(described_class.serialise('')).to be_nil
       end
     end
 

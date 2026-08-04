@@ -15,7 +15,7 @@ module Fortnox
     attr :copy_remarks, Bool.optional, Boolean
 
     # InvoiceReference Reference if an invoice is created from order
-    attr :invoice_reference, Coercible::Integer.optional, :read_only
+    attr :invoice_reference, UnsizedInteger, :read_only
 
     # OrderDate Date of order
     attr :order_date, Date.optional, Mappers::Date
@@ -27,12 +27,12 @@ module Fortnox
     attr :delivery_state, DeliveryStates
 
     # OrderType Type of order.
-    attr :order_type, Coercible::String.optional
+    attr :order_type, UnsizedString
 
     # StockPointCode Code of the stock point.
-    attr :stock_point_code, Coercible::String.optional
+    attr :stock_point_code, UnsizedString
 
     # StockPointId ID of the stock point.
-    attr :stock_point_id, Coercible::String.optional
+    attr :stock_point_id, UnsizedString
   end
 end

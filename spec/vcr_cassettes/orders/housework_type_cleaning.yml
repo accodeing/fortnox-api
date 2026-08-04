@@ -5,10 +5,10 @@ http_interactions:
     uri: https://api.fortnox.se/3/orders
     body:
       encoding: UTF-8
-      string: '{"Order":{"Country":"","CustomerNumber":"1","DeliveryCountry":"","Labels":[],"TaxReductionType":"rut","OrderRows":[{"ArticleNumber":"101","HouseWork":true,"HouseWorkType":"CLEANING","OrderedQuantity":1.0}]}}'
+      string: '{"Order":{"CustomerNumber":"1","Labels":[],"TaxReductionType":"rut","OrderRows":[{"ArticleNumber":"101","HouseWork":true,"HouseWorkType":"CLEANING","OrderedQuantity":1.0}]}}'
     headers:
       User-Agent:
-      - Faraday v2.14.1
+      - Faraday v2.14.3
       Content-Type:
       - application/json
       Accept:
@@ -25,11 +25,11 @@ http_interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 29 Apr 2026 09:11:21 GMT
+      - Tue, 04 Aug 2026 07:55:07 GMT
       Location:
       - orders
       X-Build:
-      - 1fbde2b71a
+      - d19605fe96
       X-Frame-Options:
       - sameorigin
       X-Krakend:
@@ -37,9 +37,9 @@ http_interactions:
       X-Krakend-Completed:
       - 'false'
       X-Rack-Responsetime:
-      - '488'
+      - '607'
       X-Uid:
-      - 9db2a007
+      - fb0c7494
       Transfer-Encoding:
       - chunked
       Server:
@@ -50,6 +50,8 @@ http_interactions:
       - '0'
       Referrer-Policy:
       - strict-origin-when-cross-origin
+      Reporting-Endpoints:
+      - default="/api/cspreport-v2"
       Content-Security-Policy:
       - 'upgrade-insecure-requests;frame-ancestors https://*.fortnox.se;report-uri
         /api/cspreport;connect-src ''self'' https://a.storyblok.com wss://*.fortnox.se
@@ -61,8 +63,8 @@ http_interactions:
       - max-age=31536000; includeSubdomains
     body:
       encoding: UTF-8
-      string: '{"Order":{"@url":"https:\/\/api.fortnox.se\/3\/orders\/44","@urlTaxReductionList":"https:\/\/api.fortnox.se\/3\/taxreductions?filter=orders&referencenumber=44","Address1":"","Address2":"","AdministrationFee":0,"AdministrationFeeVAT":0,"BasisTaxReduction":0,"Cancelled":false,"City":"","Comments":"","ContributionPercent":0,"ContributionValue":0,"CopyRemarks":false,"CostCenter":"","Country":"","Currency":"SEK","CurrencyRate":1,"CurrencyUnit":1,"CustomerName":"Customer
-        with IDN email","CustomerNumber":"1","DeliveryAddress1":"","DeliveryAddress2":"","DeliveryCity":"","DeliveryCountry":"","DeliveryDate":null,"DeliveryName":"","DeliveryState":"delivery","DeliveryZipCode":"","DocumentNumber":"44","EmailInformation":{"EmailAddressFrom":null,"EmailAddressTo":"user@test.se","EmailAddressCC":null,"EmailAddressBCC":null,"EmailSubject":"Order
-        {no} bifogas","EmailBody":" "},"ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","Freight":0,"FreightVAT":0,"Gross":0,"HouseWork":false,"InvoiceReference":"0","Labels":[],"Language":"SV","Net":0,"NotCompleted":false,"OfferReference":"0","OrderDate":"2026-04-29","OrderRows":[{"AccountNumber":3001,"ArticleNumber":"101","ContributionPercent":"0","ContributionValue":"0","Cost":0,"CostCenter":"","DeliveredQuantity":"0","Description":"Hammer","Discount":0,"DiscountType":"PERCENT","HouseWork":true,"HouseWorkHoursToReport":null,"HouseWorkType":"CLEANING","OrderedQuantity":"1","Price":0,"Project":"","ReservedQuantity":"0","RowId":57,"StockPointCode":null,"StockPointId":null,"Total":0,"Unit":"","VAT":25,"VATCode":"MP1"}],"OrderType":"Order","OrganisationNumber":"","OurReference":"","OutboundDate":"2026-04-29","Phone1":"","Phone2":"","PriceList":"A","PrintTemplate":"oc","Project":"","Remarks":"","RoundOff":0,"Sent":false,"StockPointCode":null,"StockPointId":null,"TaxReduction":null,"TaxReductionType":"rut","TermsOfDelivery":"","TermsOfPayment":"30","TimeBasisReference":null,"Total":0,"TotalToPay":0,"TotalVAT":0,"VATIncluded":false,"WarehouseReady":true,"WayOfDelivery":"","YourOrderNumber":"","YourReference":"","ZipCode":""}}'
-  recorded_at: Wed, 29 Apr 2026 09:11:21 GMT
+      string: '{"Order":{"@url":"https:\/\/api.fortnox.se\/3\/orders\/71","@urlTaxReductionList":"https:\/\/api.fortnox.se\/3\/taxreductions?filter=orders&referencenumber=71","Address1":"","Address2":"","AdministrationFee":0,"AdministrationFeeVAT":0,"BasisTaxReduction":0,"Cancelled":false,"City":"","Comments":"","ContributionPercent":0,"ContributionValue":0,"CopyRemarks":false,"CostCenter":"","Country":"","Currency":"SEK","CurrencyRate":1,"CurrencyUnit":1,"CustomerName":"Customer
+        with IDN email","CustomerNumber":"1","DeliveryAddress1":"","DeliveryAddress2":"","DeliveryCity":"","DeliveryCountry":"","DeliveryDate":null,"DeliveryName":"","DeliveryState":"reservation","DeliveryZipCode":"","DocumentNumber":"71","EmailInformation":{"EmailAddressFrom":null,"EmailAddressTo":"user@test.se","EmailAddressCC":null,"EmailAddressBCC":null,"EmailSubject":"Order
+        {no} bifogas","EmailBody":" "},"ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","Freight":0,"FreightVAT":0,"Gross":0,"HouseWork":false,"InvoiceReference":"0","Labels":[],"Language":"SV","Net":0,"NotCompleted":false,"OfferReference":"0","OrderDate":"2026-08-04","OrderRows":[{"AccountNumber":3001,"ArticleNumber":"101","ContributionPercent":"0","ContributionValue":"0","Cost":0,"CostCenter":"","DeliveredQuantity":"0","Description":"Hammer","Discount":0,"DiscountType":"PERCENT","HouseWork":true,"HouseWorkHoursToReport":null,"HouseWorkType":"CLEANING","OrderedQuantity":"1","Price":0,"Project":"","ReservedQuantity":"0","RowId":136,"StockPointCode":null,"StockPointId":null,"Total":0,"Unit":"","VAT":25,"VATCode":"MP1"}],"OrderType":"Order","OrganisationNumber":"","OurReference":"","OutboundDate":"2026-08-04","Phone1":"","Phone2":"","PriceList":"A","PrintTemplate":"oc","Project":"","Remarks":"","RoundOff":0,"Sent":false,"StockPointCode":null,"StockPointId":null,"TaxReduction":null,"TaxReductionType":"rut","TermsOfDelivery":"","TermsOfPayment":"30","TimeBasisReference":null,"Total":0,"TotalToPay":0,"TotalVAT":0,"VATIncluded":false,"WarehouseReady":false,"WayOfDelivery":"","YourOrderNumber":"","YourReference":"","ZipCode":""}}'
+  recorded_at: Tue, 04 Aug 2026 07:55:06 GMT
 recorded_with: VCR 6.4.0

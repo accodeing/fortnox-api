@@ -8,7 +8,7 @@ http_interactions:
       string: ''
     headers:
       User-Agent:
-      - Faraday v2.14.1
+      - Faraday v2.14.3
       Content-Type:
       - application/json
       Accept:
@@ -25,11 +25,11 @@ http_interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 29 Apr 2026 09:11:59 GMT
+      - Tue, 04 Aug 2026 07:54:53 GMT
       Vary:
       - Accept-Encoding
       X-Build:
-      - 1fbde2b71a
+      - d19605fe96
       X-Frame-Options:
       - sameorigin
       X-Krakend:
@@ -37,9 +37,9 @@ http_interactions:
       X-Krakend-Completed:
       - 'false'
       X-Rack-Responsetime:
-      - '152'
+      - '212'
       X-Uid:
-      - e65a8fab
+      - '95794173'
       Transfer-Encoding:
       - chunked
       Server:
@@ -50,6 +50,8 @@ http_interactions:
       - '0'
       Referrer-Policy:
       - strict-origin-when-cross-origin
+      Reporting-Endpoints:
+      - default="/api/cspreport-v2"
       Content-Security-Policy:
       - 'upgrade-insecure-requests;frame-ancestors https://*.fortnox.se;report-uri
         /api/cspreport;connect-src ''self'' https://a.storyblok.com wss://*.fortnox.se
@@ -61,7 +63,7 @@ http_interactions:
       - max-age=31536000; includeSubdomains
     body:
       encoding: UTF-8
-      string: '{"MetaInformation":{"@TotalResources":52,"@TotalPages":1,"@CurrentPage":1},"Orders":[{"@url":"https:\/\/api.fortnox.se\/3\/orders\/1","Cancelled":false,"Currency":"SEK","CustomerName":"Customer
+      string: '{"MetaInformation":{"@TotalResources":59,"@TotalPages":1,"@CurrentPage":1},"Orders":[{"@url":"https:\/\/api.fortnox.se\/3\/orders\/1","Cancelled":false,"Currency":"SEK","CustomerName":"Customer
         with IDN email","CustomerNumber":"1","DeliveryDate":null,"DocumentNumber":"1","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","OrderDate":"2026-04-17","OrderType":"Order","Project":"","Sent":false,"Total":0},{"@url":"https:\/\/api.fortnox.se\/3\/orders\/2","Cancelled":false,"Currency":"SEK","CustomerName":"Customer
         with IDN email","CustomerNumber":"1","DeliveryDate":null,"DocumentNumber":"2","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","OrderDate":"2026-04-17","OrderType":"Order","Project":"","Sent":false,"Total":0},{"@url":"https:\/\/api.fortnox.se\/3\/orders\/3","Cancelled":false,"Currency":"SEK","CustomerName":"Customer
         with IDN email","CustomerNumber":"1","DeliveryDate":null,"DocumentNumber":"3","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","OrderDate":"2026-04-17","OrderType":"Order","Project":"","Sent":false,"Total":0},{"@url":"https:\/\/api.fortnox.se\/3\/orders\/4","Cancelled":false,"Currency":"SEK","CustomerName":"Customer
@@ -113,6 +115,13 @@ http_interactions:
         with IDN email","CustomerNumber":"1","DeliveryDate":null,"DocumentNumber":"49","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","OrderDate":"2026-04-29","OrderType":"Order","Project":"","Sent":false,"Total":0},{"@url":"https:\/\/api.fortnox.se\/3\/orders\/50","Cancelled":false,"Currency":"SEK","CustomerName":"Customer
         with IDN email","CustomerNumber":"1","DeliveryDate":null,"DocumentNumber":"50","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","OrderDate":"2026-04-29","OrderType":"Order","Project":"","Sent":false,"Total":0},{"@url":"https:\/\/api.fortnox.se\/3\/orders\/51","Cancelled":false,"Currency":"SEK","CustomerName":"Customer
         with IDN email","CustomerNumber":"1","DeliveryDate":null,"DocumentNumber":"51","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","OrderDate":"2026-04-29","OrderType":"Order","Project":"","Sent":false,"Total":0},{"@url":"https:\/\/api.fortnox.se\/3\/orders\/52","Cancelled":false,"Currency":"SEK","CustomerName":"Customer
-        with IDN email","CustomerNumber":"1","DeliveryDate":null,"DocumentNumber":"52","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","OrderDate":"2026-04-29","OrderType":"Order","Project":"","Sent":false,"Total":0}]}'
-  recorded_at: Wed, 29 Apr 2026 09:11:59 GMT
+        with IDN email","CustomerNumber":"1","DeliveryDate":null,"DocumentNumber":"52","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","OrderDate":"2026-04-29","OrderType":"Order","Project":"","Sent":false,"Total":0},{"@url":"https:\/\/api.fortnox.se\/3\/orders\/53","Cancelled":false,"Currency":"SEK","CustomerName":"Customer
+        with IDN email","CustomerNumber":"1","DeliveryDate":null,"DocumentNumber":"53","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","OrderDate":"2026-04-29","OrderType":"Order","Project":"","Sent":false,"Total":0},{"@url":"https:\/\/api.fortnox.se\/3\/orders\/54","Cancelled":false,"Currency":"SEK","CustomerName":"Customer
+        with IDN email","CustomerNumber":"1","DeliveryDate":"2026-06-01","DocumentNumber":"54","ExternalInvoiceReference1":"EXT-1","ExternalInvoiceReference2":"EXT-2","OrderDate":"2026-05-01","OrderType":"Order","Project":"1","Sent":false,"Total":219},{"@url":"https:\/\/api.fortnox.se\/3\/orders\/55","Cancelled":false,"Currency":"SEK","CustomerName":"Customer
+        with IDN email","CustomerNumber":"1","DeliveryDate":"2026-06-01","DocumentNumber":"55","ExternalInvoiceReference1":"EXT-1","ExternalInvoiceReference2":"EXT-2","OrderDate":"2026-05-01","OrderType":"Order","Project":"1","Sent":false,"Total":219},{"@url":"https:\/\/api.fortnox.se\/3\/orders\/56","Cancelled":false,"Currency":"SEK","CustomerName":"Customer
+        with IDN email","CustomerNumber":"1","DeliveryDate":null,"DocumentNumber":"56","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","OrderDate":"2026-08-04","OrderType":"Order","Project":"","Sent":false,"Total":0},{"@url":"https:\/\/api.fortnox.se\/3\/orders\/57","Cancelled":false,"Currency":"SEK","CustomerName":"Customer
+        with IDN email","CustomerNumber":"1","DeliveryDate":null,"DocumentNumber":"57","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","OrderDate":"2026-08-04","OrderType":"Order","Project":"","Sent":false,"Total":0},{"@url":"https:\/\/api.fortnox.se\/3\/orders\/58","Cancelled":false,"Currency":"SEK","CustomerName":"Customer
+        with IDN email","CustomerNumber":"1","DeliveryDate":null,"DocumentNumber":"58","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","OrderDate":"2026-08-04","OrderType":"Order","Project":"","Sent":false,"Total":0},{"@url":"https:\/\/api.fortnox.se\/3\/orders\/59","Cancelled":false,"Currency":"SEK","CustomerName":"Customer
+        with IDN email","CustomerNumber":"1","DeliveryDate":"2026-06-01","DocumentNumber":"59","ExternalInvoiceReference1":"EXT-1","ExternalInvoiceReference2":"EXT-2","OrderDate":"2026-05-01","OrderType":"Order","Project":"1","Sent":false,"Total":219}]}'
+  recorded_at: Tue, 04 Aug 2026 07:54:53 GMT
 recorded_with: VCR 6.4.0

@@ -6,17 +6,17 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"Order":{"AdministrationFee":50.0,"Address1":"Storgatan 1","Address2":"Box
-        100","City":"Stockholm","Comments":"A fully populated order","Country":"Sverige","CostCenter":"","Currency":"SEK","CurrencyRate":1.0,"CurrencyUnit":1.0,"CustomerName":"Customer
+        100","City":"Stockholm","Comments":"A fully populated order","Country":"Sverige","CostCenter":"1","Currency":"SEK","CurrencyRate":1.0,"CurrencyUnit":1.0,"CustomerName":"Customer
         with IDN email","CustomerNumber":"1","DeliveryAddress1":"Leveransvägen 2","DeliveryAddress2":"Port
         B","DeliveryCity":"Göteborg","DeliveryCountry":"Sverige","DeliveryDate":"2026-06-01","DeliveryName":"Delivery
         Recipient","DeliveryZipCode":"41100","EmailInformation":{"EmailAddressTo":"order@example.com","EmailAddressCC":"order-cc@example.com","EmailAddressBCC":"order-bcc@example.com","EmailSubject":"Order
         {no}","EmailBody":"Body"},"ExternalInvoiceReference1":"EXT-1","ExternalInvoiceReference2":"EXT-2","Freight":25.0,"Labels":[{"Id":1},{"Id":2}],"NotCompleted":false,"OurReference":"Bilbo","Phone1":"+46
         8 4444444","Phone2":"+46 8 5555555","PriceList":"A","PrintTemplate":"oc","Project":"1","Remarks":"Some
-        remarks","TaxReductionType":"none","TermsOfDelivery":"","TermsOfPayment":"30","VATIncluded":false,"WayOfDelivery":"","YourOrderNumber":"YO-1","YourReference":"Frodo","ZipCode":"11122","Language":"SV","OutboundDate":"2026-05-15","CopyRemarks":true,"OrderDate":"2026-05-01","OrderRows":[{"AccountNumber":3001,"ArticleNumber":"101","CostCenter":"","DeliveredQuantity":1.0,"Description":"Row
+        remarks","TaxReductionType":"none","TermsOfDelivery":"FVL","TermsOfPayment":"30","VATIncluded":false,"WayOfDelivery":"P","YourOrderNumber":"YO-1","YourReference":"Frodo","ZipCode":"11122","Language":"SV","OutboundDate":"2026-05-15","CopyRemarks":true,"OrderDate":"2026-05-01","OrderRows":[{"AccountNumber":3001,"ArticleNumber":"101","CostCenter":"1","DeliveredQuantity":1.0,"Description":"Row
         description","Discount":0.0,"DiscountType":"PERCENT","Price":100.0,"Project":"1","Unit":"blarg10","VAT":25,"OrderedQuantity":1.0}],"DeliveryState":"delivery"}}'
     headers:
       User-Agent:
-      - Faraday v2.14.1
+      - Faraday v2.14.3
       Content-Type:
       - application/json
       Accept:
@@ -33,11 +33,11 @@ http_interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 08 May 2026 10:25:45 GMT
+      - Tue, 04 Aug 2026 08:44:25 GMT
       Location:
       - orders
       X-Build:
-      - b653d4094e
+      - d19605fe96
       X-Frame-Options:
       - sameorigin
       X-Krakend:
@@ -45,9 +45,9 @@ http_interactions:
       X-Krakend-Completed:
       - 'false'
       X-Rack-Responsetime:
-      - '905'
+      - '777'
       X-Uid:
-      - 23611d38
+      - 55c02650
       Transfer-Encoding:
       - chunked
       Server:
@@ -58,6 +58,8 @@ http_interactions:
       - '0'
       Referrer-Policy:
       - strict-origin-when-cross-origin
+      Reporting-Endpoints:
+      - default="/api/cspreport-v2"
       Content-Security-Policy:
       - 'upgrade-insecure-requests;frame-ancestors https://*.fortnox.se;report-uri
         /api/cspreport;connect-src ''self'' https://a.storyblok.com wss://*.fortnox.se
@@ -69,15 +71,15 @@ http_interactions:
       - max-age=31536000; includeSubdomains
     body:
       encoding: UTF-8
-      string: '{"Order":{"@url":"https:\/\/api.fortnox.se\/3\/orders\/54","@urlTaxReductionList":"https:\/\/api.fortnox.se\/3\/taxreductions?filter=orders&referencenumber=54","Address1":"Storgatan
+      string: '{"Order":{"@url":"https:\/\/api.fortnox.se\/3\/orders\/78","@urlTaxReductionList":"https:\/\/api.fortnox.se\/3\/taxreductions?filter=orders&referencenumber=78","Address1":"Storgatan
         1","Address2":"Box 100","AdministrationFee":50,"AdministrationFeeVAT":12.5,"BasisTaxReduction":0,"Cancelled":false,"City":"Stockholm","Comments":"A
-        fully populated order","ContributionPercent":100,"ContributionValue":100,"CopyRemarks":true,"CostCenter":"","Country":"Sverige","Currency":"SEK","CurrencyRate":1,"CurrencyUnit":1,"CustomerName":"Customer
+        fully populated order","ContributionPercent":100,"ContributionValue":100,"CopyRemarks":true,"CostCenter":"1","Country":"Sverige","Currency":"SEK","CurrencyRate":1,"CurrencyUnit":1,"CustomerName":"Customer
         with IDN email","CustomerNumber":"1","DeliveryAddress1":"Leveransv\u00e4gen
         2","DeliveryAddress2":"Port B","DeliveryCity":"G\u00f6teborg","DeliveryCountry":"Sverige","DeliveryDate":"2026-06-01","DeliveryName":"Delivery
-        Recipient","DeliveryState":"delivery","DeliveryZipCode":"41100","DocumentNumber":"54","EmailInformation":{"EmailAddressFrom":null,"EmailAddressTo":"order@example.com","EmailAddressCC":"order-cc@example.com","EmailAddressBCC":"order-bcc@example.com","EmailSubject":"Order
-        {no}","EmailBody":"Body"},"ExternalInvoiceReference1":"EXT-1","ExternalInvoiceReference2":"EXT-2","Freight":25,"FreightVAT":6.25,"Gross":100,"HouseWork":false,"InvoiceReference":"0","Labels":[{"Id":1},{"Id":2}],"Language":"SV","Net":100,"NotCompleted":false,"OfferReference":"0","OrderDate":"2026-05-01","OrderRows":[{"AccountNumber":3001,"ArticleNumber":"101","ContributionPercent":"100","ContributionValue":"100","Cost":0,"CostCenter":"","DeliveredQuantity":"1","Description":"Row
-        description","Discount":0,"DiscountType":"PERCENT","HouseWork":false,"HouseWorkHoursToReport":null,"HouseWorkType":null,"OrderedQuantity":"1","Price":100,"Project":"1","ReservedQuantity":"0","RowId":79,"StockPointCode":null,"StockPointId":null,"Total":100,"Unit":"blarg10","VAT":25,"VATCode":"MP1"}],"OrderType":"Order","OrganisationNumber":"","OurReference":"Bilbo","OutboundDate":"2026-05-15","Phone1":"+46
+        Recipient","DeliveryState":"delivery","DeliveryZipCode":"41100","DocumentNumber":"78","EmailInformation":{"EmailAddressFrom":null,"EmailAddressTo":"order@example.com","EmailAddressCC":"order-cc@example.com","EmailAddressBCC":"order-bcc@example.com","EmailSubject":"Order
+        {no}","EmailBody":"Body"},"ExternalInvoiceReference1":"EXT-1","ExternalInvoiceReference2":"EXT-2","Freight":25,"FreightVAT":6.25,"Gross":100,"HouseWork":false,"InvoiceReference":"0","Labels":[{"Id":1},{"Id":2}],"Language":"SV","Net":100,"NotCompleted":false,"OfferReference":"0","OrderDate":"2026-05-01","OrderRows":[{"AccountNumber":3001,"ArticleNumber":"101","ContributionPercent":"100","ContributionValue":"100","Cost":0,"CostCenter":"1","DeliveredQuantity":"1","Description":"Row
+        description","Discount":0,"DiscountType":"PERCENT","HouseWork":false,"HouseWorkHoursToReport":null,"HouseWorkType":null,"OrderedQuantity":"1","Price":100,"Project":"1","ReservedQuantity":"0","RowId":144,"StockPointCode":null,"StockPointId":null,"Total":100,"Unit":"blarg10","VAT":25,"VATCode":"MP1"}],"OrderType":"Order","OrganisationNumber":"","OurReference":"Bilbo","OutboundDate":"2026-05-15","Phone1":"+46
         8 4444444","Phone2":"+46 8 5555555","PriceList":"A","PrintTemplate":"oc","Project":"1","Remarks":"Some
-        remarks","RoundOff":0.25,"Sent":false,"StockPointCode":null,"StockPointId":null,"TaxReduction":null,"TaxReductionType":"none","TermsOfDelivery":"","TermsOfPayment":"30","TimeBasisReference":null,"Total":219,"TotalToPay":219,"TotalVAT":43.75,"VATIncluded":false,"WarehouseReady":false,"WayOfDelivery":"","YourOrderNumber":"YO-1","YourReference":"Frodo","ZipCode":"11122"}}'
-  recorded_at: Fri, 08 May 2026 10:25:45 GMT
+        remarks","RoundOff":0.25,"Sent":false,"StockPointCode":null,"StockPointId":null,"TaxReduction":null,"TaxReductionType":"none","TermsOfDelivery":"FVL","TermsOfPayment":"30","TimeBasisReference":null,"Total":219,"TotalToPay":219,"TotalVAT":43.75,"VATIncluded":false,"WarehouseReady":false,"WayOfDelivery":"P","YourOrderNumber":"YO-1","YourReference":"Frodo","ZipCode":"11122"}}'
+  recorded_at: Tue, 04 Aug 2026 08:44:25 GMT
 recorded_with: VCR 6.4.0

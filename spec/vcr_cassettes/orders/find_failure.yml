@@ -8,7 +8,7 @@ http_interactions:
       string: ''
     headers:
       User-Agent:
-      - Faraday v2.14.1
+      - Faraday v2.14.3
       Content-Type:
       - application/json
       Accept:
@@ -27,11 +27,11 @@ http_interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 29 Apr 2026 09:12:00 GMT
+      - Tue, 04 Aug 2026 07:54:54 GMT
       Vary:
       - Accept-Encoding
       X-Build:
-      - 1fbde2b71a
+      - d19605fe96
       X-Frame-Options:
       - sameorigin
       X-Krakend:
@@ -39,9 +39,9 @@ http_interactions:
       X-Krakend-Completed:
       - 'false'
       X-Rack-Responsetime:
-      - '175'
+      - '204'
       X-Uid:
-      - ac0892b8
+      - e5234006
       Server:
       - Fortnox
       X-Content-Type-Options:
@@ -50,6 +50,8 @@ http_interactions:
       - '0'
       Referrer-Policy:
       - strict-origin-when-cross-origin
+      Reporting-Endpoints:
+      - default="/api/cspreport-v2"
       Content-Security-Policy:
       - 'upgrade-insecure-requests;frame-ancestors https://*.fortnox.se;report-uri
         /api/cspreport;connect-src ''self'' https://a.storyblok.com wss://*.fortnox.se
@@ -62,5 +64,5 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"ErrorInformation":{"Error":1,"Message":"Kan inte hitta ordern.","Code":2000439}}'
-  recorded_at: Wed, 29 Apr 2026 09:12:00 GMT
+  recorded_at: Tue, 04 Aug 2026 07:54:53 GMT
 recorded_with: VCR 6.4.0

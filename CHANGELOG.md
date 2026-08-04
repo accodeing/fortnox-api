@@ -8,6 +8,49 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Changed
+
+- String attributes now normalise `''` to `nil` at the type level. This
+  is the mechanism behind the reset fix below: Fortnox silently ignores
+  empty strings in update payloads — updating an attribute to `''` kept
+  the original value — and a field can only be cleared with an explicit
+  `null`. Normalising in the type also changes the read side: unset
+  string attributes read as `nil` in the model, never `''`. Fortnox
+  spells "unset" as `""` or `null` depending on endpoint and record
+  history, so the model value was previously unpredictable. Consumers
+  comparing against `''` must switch to `nil` checks (or call `.to_s`
+  if they prefer empty strings). On create, an attribute set to `''`
+  is now omitted from the POST body entirely (new records strip
+  `nil`s), leaving the field to Fortnox's default — previously `""`
+  was sent, which Fortnox ignores, with the same end result.
+  Enum-typed attributes whose value set
+  includes `''` (`payment_way`, `accounting_method`, `invoice_type`,
+  `tax_reduction_type`, `delivery_state`) are exempt: there `''` is a
+  real Fortnox value, not an unset spelling. For required string attributes
+  (`Customer#name`, `Article#description`, `Unit#code`/`#description`,
+  `TermsOfPayment#code`) this means updating to `''` now raises
+  `Fortnox::MissingAttributeError` before any request is made —
+  previously the empty string was sent and silently ignored by Fortnox
+  (clearing a required field is invalid: Fortnox rejects `null` for
+  them with a 400 and ignores `""`).
+
+### Fixed
+
+- Resetting a string attribute to `''` on update now clears the value in
+  Fortnox. Previously the empty string was silently ignored by Fortnox
+  and the old value was left intact (reported for `Customer#comments`).
+  Since `''` now coerces to `nil` (see above), both `update(attr: '')`
+  and `update(attr: nil)` reach Fortnox as `null`, which clears. This
+  includes the country attributes on documents (`country_code`,
+  `delivery_country`), whose mapper previously turned `nil` back into
+  `""` on the wire, so countries could never be cleared at all.
+- Numeric attributes no longer raise `Fortnox::ConstraintError` when
+  Fortnox returns `""` for an unset value — blank coerces to `nil`,
+  extending the 1.0.0.rc10 `Types::AccountNumber` fix to all integer
+  and float attributes (e.g. `Customer#invoice_discount`,
+  `Invoice#balance`). Like that bug, this was introduced in 1.0.0.rc1
+  and did not exist in 0.x, which coerced `""` to `0`/`0.0`.
+
 ## [1.0.0.rc12] - 2026-06-26
 
 ### Fixed

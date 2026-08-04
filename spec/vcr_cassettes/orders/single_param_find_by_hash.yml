@@ -8,7 +8,7 @@ http_interactions:
       string: ''
     headers:
       User-Agent:
-      - Faraday v2.14.1
+      - Faraday v2.14.3
       Content-Type:
       - application/json
       Accept:
@@ -27,11 +27,11 @@ http_interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 29 Apr 2026 09:12:00 GMT
+      - Tue, 04 Aug 2026 07:54:54 GMT
       Vary:
       - Accept-Encoding
       X-Build:
-      - 1fbde2b71a
+      - d19605fe96
       X-Frame-Options:
       - sameorigin
       X-Krakend:
@@ -39,9 +39,9 @@ http_interactions:
       X-Krakend-Completed:
       - 'false'
       X-Rack-Responsetime:
-      - '151'
+      - '263'
       X-Uid:
-      - 89a35068
+      - 742fae0d
       Server:
       - Fortnox
       X-Content-Type-Options:
@@ -50,6 +50,8 @@ http_interactions:
       - '0'
       Referrer-Policy:
       - strict-origin-when-cross-origin
+      Reporting-Endpoints:
+      - default="/api/cspreport-v2"
       Content-Security-Policy:
       - 'upgrade-insecure-requests;frame-ancestors https://*.fortnox.se;report-uri
         /api/cspreport;connect-src ''self'' https://a.storyblok.com wss://*.fortnox.se
@@ -64,7 +66,7 @@ http_interactions:
       string: '{"MetaInformation":{"@TotalResources":2,"@TotalPages":1,"@CurrentPage":1},"Orders":[{"@url":"https:\/\/api.fortnox.se\/3\/orders\/1","Cancelled":false,"Currency":"SEK","CustomerName":"Customer
         with IDN email","CustomerNumber":"1","DeliveryDate":null,"DocumentNumber":"1","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","OrderDate":"2026-04-17","OrderType":"Order","Project":"","Sent":false,"Total":0},{"@url":"https:\/\/api.fortnox.se\/3\/orders\/2","Cancelled":false,"Currency":"SEK","CustomerName":"Customer
         with IDN email","CustomerNumber":"1","DeliveryDate":null,"DocumentNumber":"2","ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","OrderDate":"2026-04-17","OrderType":"Order","Project":"","Sent":false,"Total":0}]}'
-  recorded_at: Wed, 29 Apr 2026 09:12:00 GMT
+  recorded_at: Tue, 04 Aug 2026 07:54:54 GMT
 - request:
     method: get
     uri: https://api.fortnox.se/3/orders/1
@@ -73,7 +75,7 @@ http_interactions:
       string: ''
     headers:
       User-Agent:
-      - Faraday v2.14.1
+      - Faraday v2.14.3
       Content-Type:
       - application/json
       Accept:
@@ -88,15 +90,15 @@ http_interactions:
       message: OK
     headers:
       Content-Length:
-      - '1655'
+      - '1659'
       Content-Type:
       - application/json
       Date:
-      - Wed, 29 Apr 2026 09:12:00 GMT
+      - Tue, 04 Aug 2026 07:54:55 GMT
       Vary:
       - Accept-Encoding
       X-Build:
-      - 1fbde2b71a
+      - d19605fe96
       X-Frame-Options:
       - sameorigin
       X-Krakend:
@@ -104,9 +106,9 @@ http_interactions:
       X-Krakend-Completed:
       - 'false'
       X-Rack-Responsetime:
-      - '298'
+      - '292'
       X-Uid:
-      - dea3e01e
+      - 4ded351b
       Server:
       - Fortnox
       X-Content-Type-Options:
@@ -115,6 +117,8 @@ http_interactions:
       - '0'
       Referrer-Policy:
       - strict-origin-when-cross-origin
+      Reporting-Endpoints:
+      - default="/api/cspreport-v2"
       Content-Security-Policy:
       - 'upgrade-insecure-requests;frame-ancestors https://*.fortnox.se;report-uri
         /api/cspreport;connect-src ''self'' https://a.storyblok.com wss://*.fortnox.se
@@ -127,10 +131,10 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"Order":{"@url":"https:\/\/api.fortnox.se\/3\/orders\/1","@urlTaxReductionList":"https:\/\/api.fortnox.se\/3\/taxreductions?filter=orders&referencenumber=1","Address1":"","Address2":"","AdministrationFee":0,"AdministrationFeeVAT":0,"BasisTaxReduction":0,"Cancelled":false,"City":"","Comments":"","ContributionPercent":0,"ContributionValue":0,"CopyRemarks":false,"CostCenter":"","Country":"","Currency":"SEK","CurrencyRate":1,"CurrencyUnit":1,"CustomerName":"Customer
-        with IDN email","CustomerNumber":"1","DeliveryAddress1":"","DeliveryAddress2":"","DeliveryCity":"","DeliveryCountry":"","DeliveryDate":null,"DeliveryName":"","DeliveryState":"delivery","DeliveryZipCode":"","DocumentNumber":"1","EmailInformation":{"EmailAddressFrom":null,"EmailAddressTo":"user@test.se","EmailAddressCC":null,"EmailAddressBCC":null,"EmailSubject":"Order
+        with IDN email","CustomerNumber":"1","DeliveryAddress1":"","DeliveryAddress2":"","DeliveryCity":"","DeliveryCountry":"","DeliveryDate":null,"DeliveryName":"","DeliveryState":"reservation","DeliveryZipCode":"","DocumentNumber":"1","EmailInformation":{"EmailAddressFrom":null,"EmailAddressTo":"user@test.se","EmailAddressCC":null,"EmailAddressBCC":null,"EmailSubject":"Order
         {no} bifogas","EmailBody":" "},"ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","Freight":0,"FreightVAT":0,"Gross":0,"HouseWork":false,"InvoiceReference":"0","Labels":[],"Language":"SV","Net":0,"NotCompleted":false,"OfferReference":"0","OrderDate":"2026-04-17","OrderRows":[],"OrderType":"Order","OrganisationNumber":"","OurReference":"Belladonna
-        Took","OutboundDate":"2026-04-17","Phone1":"","Phone2":"","PriceList":"A","PrintTemplate":"oc","Project":"","Remarks":"","RoundOff":0,"Sent":false,"StockPointCode":null,"StockPointId":null,"TaxReduction":null,"TaxReductionType":"none","TermsOfDelivery":"","TermsOfPayment":"30","TimeBasisReference":null,"Total":0,"TotalToPay":0,"TotalVAT":0,"VATIncluded":false,"WarehouseReady":true,"WayOfDelivery":"","YourOrderNumber":"","YourReference":"","ZipCode":""}}'
-  recorded_at: Wed, 29 Apr 2026 09:12:00 GMT
+        Took","OutboundDate":"2026-04-17","Phone1":"","Phone2":"","PriceList":"A","PrintTemplate":"oc","Project":"","Remarks":"","RoundOff":0,"Sent":false,"StockPointCode":null,"StockPointId":null,"TaxReduction":null,"TaxReductionType":"none","TermsOfDelivery":"","TermsOfPayment":"30","TimeBasisReference":null,"Total":0,"TotalToPay":0,"TotalVAT":0,"VATIncluded":false,"WarehouseReady":false,"WayOfDelivery":"","YourOrderNumber":"","YourReference":"","ZipCode":""}}'
+  recorded_at: Tue, 04 Aug 2026 07:54:54 GMT
 - request:
     method: get
     uri: https://api.fortnox.se/3/orders/2
@@ -139,7 +143,7 @@ http_interactions:
       string: ''
     headers:
       User-Agent:
-      - Faraday v2.14.1
+      - Faraday v2.14.3
       Content-Type:
       - application/json
       Accept:
@@ -154,15 +158,15 @@ http_interactions:
       message: OK
     headers:
       Content-Length:
-      - '1669'
+      - '1673'
       Content-Type:
       - application/json
       Date:
-      - Wed, 29 Apr 2026 09:12:00 GMT
+      - Tue, 04 Aug 2026 07:54:55 GMT
       Vary:
       - Accept-Encoding
       X-Build:
-      - 1fbde2b71a
+      - d19605fe96
       X-Frame-Options:
       - sameorigin
       X-Krakend:
@@ -170,9 +174,9 @@ http_interactions:
       X-Krakend-Completed:
       - 'false'
       X-Rack-Responsetime:
-      - '237'
+      - '264'
       X-Uid:
-      - 4229d644
+      - 3a59b006
       Server:
       - Fortnox
       X-Content-Type-Options:
@@ -181,6 +185,8 @@ http_interactions:
       - '0'
       Referrer-Policy:
       - strict-origin-when-cross-origin
+      Reporting-Endpoints:
+      - default="/api/cspreport-v2"
       Content-Security-Policy:
       - 'upgrade-insecure-requests;frame-ancestors https://*.fortnox.se;report-uri
         /api/cspreport;connect-src ''self'' https://a.storyblok.com wss://*.fortnox.se
@@ -193,9 +199,9 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"Order":{"@url":"https:\/\/api.fortnox.se\/3\/orders\/2","@urlTaxReductionList":"https:\/\/api.fortnox.se\/3\/taxreductions?filter=orders&referencenumber=2","Address1":"","Address2":"","AdministrationFee":0,"AdministrationFeeVAT":0,"BasisTaxReduction":0,"Cancelled":false,"City":"","Comments":"","ContributionPercent":0,"ContributionValue":0,"CopyRemarks":false,"CostCenter":"","Country":"","Currency":"SEK","CurrencyRate":1,"CurrencyUnit":1,"CustomerName":"Customer
-        with IDN email","CustomerNumber":"1","DeliveryAddress1":"","DeliveryAddress2":"","DeliveryCity":"","DeliveryCountry":"","DeliveryDate":null,"DeliveryName":"","DeliveryState":"delivery","DeliveryZipCode":"","DocumentNumber":"2","EmailInformation":{"EmailAddressFrom":null,"EmailAddressTo":"user@test.se","EmailAddressCC":null,"EmailAddressBCC":null,"EmailSubject":"Order
+        with IDN email","CustomerNumber":"1","DeliveryAddress1":"","DeliveryAddress2":"","DeliveryCity":"","DeliveryCountry":"","DeliveryDate":null,"DeliveryName":"","DeliveryState":"reservation","DeliveryZipCode":"","DocumentNumber":"2","EmailInformation":{"EmailAddressFrom":null,"EmailAddressTo":"user@test.se","EmailAddressCC":null,"EmailAddressBCC":null,"EmailSubject":"Order
         {no} bifogas","EmailBody":" "},"ExternalInvoiceReference1":"","ExternalInvoiceReference2":"","Freight":0,"FreightVAT":0,"Gross":0,"HouseWork":false,"InvoiceReference":"0","Labels":[],"Language":"SV","Net":0,"NotCompleted":false,"OfferReference":"0","OrderDate":"2026-04-17","OrderRows":[],"OrderType":"Order","OrganisationNumber":"","OurReference":"Belladonna
-        Took","OutboundDate":"2026-04-17","Phone1":"","Phone2":"","PriceList":"A","PrintTemplate":"oc","Project":"","Remarks":"","RoundOff":0,"Sent":false,"StockPointCode":null,"StockPointId":null,"TaxReduction":null,"TaxReductionType":"none","TermsOfDelivery":"","TermsOfPayment":"30","TimeBasisReference":null,"Total":0,"TotalToPay":0,"TotalVAT":0,"VATIncluded":false,"WarehouseReady":true,"WayOfDelivery":"","YourOrderNumber":"","YourReference":"Bodo
+        Took","OutboundDate":"2026-04-17","Phone1":"","Phone2":"","PriceList":"A","PrintTemplate":"oc","Project":"","Remarks":"","RoundOff":0,"Sent":false,"StockPointCode":null,"StockPointId":null,"TaxReduction":null,"TaxReductionType":"none","TermsOfDelivery":"","TermsOfPayment":"30","TimeBasisReference":null,"Total":0,"TotalToPay":0,"TotalVAT":0,"VATIncluded":false,"WarehouseReady":false,"WayOfDelivery":"","YourOrderNumber":"","YourReference":"Bodo
         Proudfoot","ZipCode":""}}'
-  recorded_at: Wed, 29 Apr 2026 09:12:00 GMT
+  recorded_at: Tue, 04 Aug 2026 07:54:55 GMT
 recorded_with: VCR 6.4.0

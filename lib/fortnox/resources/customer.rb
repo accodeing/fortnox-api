@@ -25,7 +25,7 @@ module Fortnox
     end
 
     # Direct URL to the record.
-    attr :url <=> '@url', Coercible::String.optional, :read_only
+    attr :url <=> '@url', UnsizedString, :read_only
 
     # First address of the customer
     attr :address1, Sized::String[1024]
@@ -37,7 +37,7 @@ module Fortnox
     attr :city, Sized::String[1024]
 
     # Country of the customer
-    attr :country, Coercible::String.optional, :read_only
+    attr :country, UnsizedString, :read_only
 
     # Comments
     attr :comments, Sized::String[1024]
@@ -46,7 +46,7 @@ module Fortnox
     attr :currency, Currencies
 
     # Cost center of the customer
-    attr :cost_center, Coercible::String.optional
+    attr :cost_center, UnsizedString
 
     # Country code of the customer
     attr :country_code, Sized::String[2]
@@ -70,7 +70,7 @@ module Fortnox
     attr :delivery_city, Sized::String[1024]
 
     # Delivery country of the customer
-    attr :delivery_country, Coercible::String.optional, :read_only
+    attr :delivery_country, UnsizedString, :read_only
 
     # Delivery country code of the customer
     attr :delivery_country_code, Sized::String[2]
@@ -145,7 +145,7 @@ module Fortnox
     attr :our_reference, Sized::String[50]
 
     # Phone number of the customer. Only present in collection responses.
-    attr :phone, Coercible::String.optional, :read_only
+    attr :phone, UnsizedString, :read_only
 
     # First phone number of the customer
     attr :phone1, Sized::String[1024]
@@ -154,10 +154,10 @@ module Fortnox
     attr :phone2, Sized::String[1024]
 
     # Price list of the customer
-    attr :price_list, Coercible::String.optional
+    attr :price_list, UnsizedString
 
     # Project of the customer
-    attr :project, Coercible::String.optional
+    attr :project, UnsizedString
 
     # Sales account of the customer
     attr :sales_account, Types::AccountNumber
@@ -166,16 +166,16 @@ module Fortnox
     attr :show_price_vat_included <=> 'ShowPriceVATIncluded', Bool.optional, Boolean
 
     # Terms of delivery code
-    attr :terms_of_delivery, Coercible::String.optional
+    attr :terms_of_delivery, UnsizedString
 
     # Terms of payment code
-    attr :terms_of_payment, Coercible::String.optional
+    attr :terms_of_payment, UnsizedString
 
     # Customer type
     attr :type, CustomerTypes
 
     # VAT number of the customer
-    attr :vat_number <=> 'VATNumber', Coercible::String.optional
+    attr :vat_number <=> 'VATNumber', UnsizedString
 
     # VAT type of the customer
     attr :vat_type <=> 'VATType', VATTypes
@@ -187,7 +187,7 @@ module Fortnox
     attr :visiting_city, Sized::String[128]
 
     # Visit country of the customer
-    attr :visiting_country, Coercible::String.optional, :read_only
+    attr :visiting_country, UnsizedString, :read_only
 
     # Visiting country code
     attr :visiting_country_code, Sized::String[2]
@@ -196,7 +196,7 @@ module Fortnox
     attr :visiting_zip_code, Sized::String[10]
 
     # Way of delivery code
-    attr :way_of_delivery, Coercible::String.optional
+    attr :way_of_delivery, UnsizedString
 
     # Your reference
     attr :your_reference, Sized::String[50]

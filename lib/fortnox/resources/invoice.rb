@@ -15,7 +15,7 @@ module Fortnox
     attr :accounting_method, AccountingMethods, :read_only
 
     # Balance Balance of the invoice.
-    attr :balance, Coercible::Float.optional, :read_only
+    attr :balance, UnsizedFloat, :read_only
 
     # Booked If the invoice is bookkept.
     attr :booked, Bool.optional, :read_only, Boolean
@@ -24,10 +24,10 @@ module Fortnox
     attr :credit, Bool.optional, :read_only, Boolean
 
     # CreditInvoiceReference Reference to the credit invoice, if one exists.
-    attr :credit_invoice_reference, Coercible::Integer.optional
+    attr :credit_invoice_reference, UnsizedInteger
 
     # ContractReference Reference to the contract, if one exists.
-    attr :contract_reference, Coercible::Integer.optional, :read_only
+    attr :contract_reference, UnsizedInteger, :read_only
 
     # DueDate Due date of the invoice.
     attr :due_date, Date.optional, Mappers::Date
@@ -51,10 +51,10 @@ module Fortnox
     attr :invoice_period_end, Date.optional, :read_only, Mappers::Date
 
     # InvoicePeriodReference Reference to the invoice period.
-    attr :invoice_period_reference, Coercible::String.optional, :read_only
+    attr :invoice_period_reference, UnsizedString, :read_only
 
     # InvoiceReference Reference to another invoice.
-    attr :invoice_reference, Coercible::String.optional, :read_only
+    attr :invoice_reference, UnsizedString, :read_only
 
     # InvoiceRows Separate object
     attr :invoice_rows, Strict::Array.of(Structs::InvoiceRow), Mappers::StructArray.for(Mappers::InvoiceRow)
@@ -69,24 +69,24 @@ module Fortnox
     attr :nox_finans, Bool.optional, :read_only, Boolean
 
     # OCR OCR number of the invoice.
-    attr :ocr <=> 'OCR', Coercible::String.optional
+    attr :ocr <=> 'OCR', UnsizedString
 
     # OrderReference Reference to the order, if one exists.
-    attr :order_reference, Coercible::Integer.optional, :read_only
+    attr :order_reference, UnsizedInteger, :read_only
 
     # PaymentWay Payment way of the invoice.
     attr :payment_way, PaymentWays
 
     # Reminders Number of reminders sent to the customer.
-    attr :reminders, Coercible::Integer.optional, :read_only
+    attr :reminders, UnsizedInteger, :read_only
 
     # VoucherNumber Voucher number for the invoice.
-    attr :voucher_number, Coercible::Integer.optional, :read_only
+    attr :voucher_number, UnsizedInteger, :read_only
 
     # VoucherSeries Voucher series for the invoice.
-    attr :voucher_series, Coercible::String.optional, :read_only
+    attr :voucher_series, UnsizedString, :read_only
 
     # VoucherYear Voucher year for the invoice.
-    attr :voucher_year, Coercible::Integer.optional, :read_only
+    attr :voucher_year, UnsizedInteger, :read_only
   end
 end

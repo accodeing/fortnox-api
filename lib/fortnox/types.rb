@@ -94,35 +94,65 @@ module Fortnox
       '', 'none', 'rot', 'rut', 'green'
     )
 
+    # Fortnox silently ignores "" in update payloads — updating an
+    # attribute to '' keeps the original value; only an explicit null
+    # clears it. On reads, Fortnox spells "unset" as "" or null depending
+    # on endpoint and record history. Normalise at the type boundary:
+    # blank coerces to nil on parse and update alike, so "no value" is
+    # always nil in the model and always null on the wire. (Enum types
+    # that include '' as a valid member are exempt on purpose.)
+    BLANK_TO_NIL = ->(value) { value == '' ? nil : value }
+
     # Fortnox sometimes returns "" for unset attributes using AccountNumber as type.
-    # Without this constructor, "" falls through to Coercible::Integer and
+    # Without the blank normalisation, "" falls through to Coercible::Integer and
     # `Integer("")` raises, surfacing as Fortnox::ConstraintError.
     AccountNumber = Coercible::Integer
                     .constrained(gteq: 0, lteq: 9999)
                     .optional
-                    .constructor { |v| v == '' ? nil : v }
+                    .constructor(BLANK_TO_NIL)
 
     Email = Strict::String
-            .constrained(max_size: 1024, format: /\A\z|\A[[[:alnum:]]+-_.]+@[[[:alnum:]]+-_.]+\.[a-z]+\z/i)
+            .constrained(max_size: 1024, format: /\A[[[:alnum:]]+-_.]+@[[[:alnum:]]+-_.]+\.[a-z]+\z/i)
             .optional
-            .constructor { |v| v&.to_s&.downcase }
+            .constructor { |value| BLANK_TO_NIL[value]&.to_s&.downcase }
+
+    UnsizedString = Types::Coercible::String
+                    .optional
+                    .constructor(BLANK_TO_NIL)
+
+    UnsizedInteger = Types::Coercible::Integer
+                     .optional
+                     .constructor(BLANK_TO_NIL)
+
+    UnsizedFloat = Types::Coercible::Float
+                   .optional
+                   .constructor(BLANK_TO_NIL)
 
     module Sized
       module String
         def self.[](size)
-          Types::Coercible::String.constrained(max_size: size).optional
+          Types::Coercible::String
+            .constrained(max_size: size)
+            .optional
+            .constructor(BLANK_TO_NIL)
         end
       end
 
       module Integer
         def self.[](low, high)
-          Types::Coercible::Integer.constrained(gteq: low, lteq: high).optional
+          Types::Coercible::Integer
+            .constrained(gteq: low, lteq: high)
+            .optional
+            .constructor(BLANK_TO_NIL)
         end
       end
 
       module Float
         def self.[](low, high)
-          Types::Coercible::Float.constrained(gteq: low, lteq: high).optional
+          Types::Coercible::Float
+            .constrained(gteq: low, lteq: high)
+            .optional
+            .constructor(BLANK_TO_NIL)
         end
       end
     end
