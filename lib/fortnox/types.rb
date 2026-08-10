@@ -7,7 +7,13 @@ module Fortnox
   module Types
     include Dry.Types()
 
-    THE_TRUTH = { true => true, 'true' => true, false => false, 'false' => false }.freeze
+    # Booleans reach us as strings whenever the caller is a Rails app passing
+    # controller params through. Resource attributes already coerce those:
+    # rest-easy's `Boolean` is `Dry::Types['params.bool']`, and it wins over
+    # the strict type declared alongside it. Struct attributes have to ask for
+    # the same coercion explicitly, or the two paths disagree about whether
+    # 'true' is a boolean.
+    CoercibleBool = Types::Params::Bool
 
     ArticleTypes = Types::Strict::String.enum(
       'SERVICE', 'STOCK'

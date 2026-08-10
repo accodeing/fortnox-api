@@ -208,10 +208,7 @@ invoice = Fortnox::Invoice.stub(
 )
 ```
 
-### Struct construction is stricter than resource construction
-
-Resources and structs do **not** coerce their input the same way, and the
-struct side is the stricter of the two. Two things bite during a migration.
+### Nested struct gotchas
 
 **Hash keys must be snake_case symbols.** `stub` and `update` accept plain
 hashes in place of struct instances and coerce them for you — but only when
@@ -241,23 +238,20 @@ rows = params_rows.map { |r| Fortnox::Structs::OrderRow.new(**r.symbolize_keys) 
 Fortnox::Order.stub(customer_number: '1', order_rows: rows)
 ```
 
-**Structs don't coerce strings to booleans; resources do.** Resource
-attributes accept the usual param spellings (`'true'`, `'false'`, `'yes'`,
-`'no'`, `'1'`, `'0'`, `'on'`, `'off'`), raising `Fortnox::ConstraintError` on
-anything else. The same value on a struct attribute is rejected outright:
+**Booleans accept the usual param spellings.** Both resource and struct
+attributes coerce `'true'`, `'false'`, `'yes'`, `'no'`, `'1'`, `'0'`, `'on'`
+and `'off'`, raising `Fortnox::ConstraintError` on anything else, so a
+controller can hand string params straight through:
 
 ```ruby
-Fortnox::Article.stub(description: 'x', active: 'true')  # => active == true
-Fortnox::Structs::OrderRow.new(housework: 'true')        # => Dry::Struct::Error
+Fortnox::Structs::OrderRow.new(housework: 'true').housework # => true
 ```
 
-Note the exception class: struct construction raises `Dry::Struct::Error`,
-which is **not** a `Fortnox::Error` and so escapes a `rescue Fortnox::Error`
-block. Cast before constructing:
-
-```ruby
-housework: ActiveModel::Type::Boolean.new.cast(params[:housework])
-```
+Up to and including 1.0.0.rc13 this only worked at the resource level —
+struct attributes rejected every string, and did so with a
+`Dry::Struct::Error` that escaped `rescue Fortnox::Error`. If you are
+upgrading from one of those releases you can drop any
+`ActiveModel::Type::Boolean` casting you added to work around it.
 
 ## Stricter attribute validation
 
@@ -528,13 +522,13 @@ end
 
 `model.attributes` is the same source `to_json` uses, so the two agree.
 
-### Params need coercing before they reach a struct
+### Symbolize keys before params reach a struct
 
-Controller params arrive as strings with string keys, and nested structs
-accept neither. See
-[Struct construction is stricter than resource construction](#struct-construction-is-stricter-than-resource-construction)
-— in particular the silently-empty rows, which produce a successful request
-and a wrong record in Fortnox rather than an exception.
+String *values* are fine — booleans and numbers coerce from their param
+spellings. String *keys* are not: they are silently ignored, and a nested
+`order_rows` hash straight out of `params` produces empty rows, a successful
+request, and a wrong record in Fortnox rather than an exception. See
+[Nested struct gotchas](#nested-struct-gotchas).
 
 ### Check for gems you were getting for free
 

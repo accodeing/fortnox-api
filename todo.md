@@ -10,19 +10,6 @@
     to miss for someone upgrading from 0.x in one jump. Cross-reference
     `MIGRATING_TO_1.0.md`.
 - [ ] Adjust github workflow to include `development` and `main`, not `rest-easy`.
-- [ ] Close the resource/struct coercion asymmetry (surfaced by Portal's 1.0
-  migration; documented as a gotcha in `MIGRATING_TO_1.0.md`, not yet fixed).
-  Resource attributes coerce via dry-types Params — `active: 'true'` → `true`,
-  junk raises `Fortnox::ConstraintError`. Nested structs (`Fortnox::Structs::*`)
-  use strict `Types::Bool` and reject every string. Same shape as the `:required`
-  asymmetry fixed in rc11. Two parts:
-  - Params-coerce struct attributes, or at least booleans. Note
-    `Fortnox::Types::THE_TRUTH` in `lib/fortnox/types.rb` is dead code that
-    already encodes the `'true'`/`'false'` mapping — it is defined and never
-    referenced, so this was started and dropped.
-  - Struct construction raises `Dry::Struct::Error`, which is not a
-    `Fortnox::Error` and escapes `rescue Fortnox::Error`. rc13 translated
-    `#update`/`#serialise`/`.new` on resources; the struct path was missed.
 - [ ] Decide whether to ship a `require 'fortnox/rails'` bridge defining
   `Resource#as_json`. Every Rails consumer needs the same three-line adapter
   or `render json:` leaks `{api_data:, model_attributes:, changes:, meta:}`

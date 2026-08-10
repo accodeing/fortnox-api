@@ -34,7 +34,7 @@ module Fortnox
       attribute? :discount_type, Types::DiscountTypes
 
       # HouseWork If the row is housework
-      attribute? :housework, Types::Bool.optional
+      attribute? :housework, Types::CoercibleBool.optional
 
       # HouseWorkHoursToReport Hours to be reported if the quantity of the row
       # should not be used as hours. 5 digits

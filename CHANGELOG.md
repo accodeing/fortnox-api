@@ -8,6 +8,28 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Fixed
+
+- Nested structs (`Fortnox::Structs::*`) now coerce boolean attributes from
+  the string spellings params arrive as (`'true'`, `'false'`, `'yes'`,
+  `'no'`, `'1'`, `'0'`, `'on'`, `'off'`), matching what resource attributes
+  have always accepted. Previously the struct-level type was strict and
+  rejected every string, so `Order.stub(order_rows: [{ housework: 'true' }])`
+  failed while the equivalent value on a resource attribute coerced cleanly
+  — callers passing Rails controller params had to cast booleans by hand
+  before building rows. Affects `DocumentRow#housework` and the `InvoiceRow`
+  and `OrderRow` subclasses. This asymmetry was introduced in 1.0.0.rc1 and
+  did not exist in 0.x.
+- Struct construction now raises Fortnox-namespaced errors. A bad value in a
+  nested struct — reached directly via `Fortnox::Structs::OrderRow.new` or
+  indirectly via `stub`/`update` with a nested hash — previously raised
+  `Dry::Struct::Error`, which is a `TypeError` outside the `Fortnox::Error`
+  hierarchy, so `rescue Fortnox::AttributeError` blocks didn't catch it. It
+  now raises `Fortnox::ConstraintError` carrying `.attribute_name` and
+  `.value`, with the same message format as the resource-level error. This
+  extends the error translation added in 1.0.0.rc13, which covered resources
+  but not structs.
+
 ## [1.0.0.rc13] - 2026-08-04
 
 ### Changed
