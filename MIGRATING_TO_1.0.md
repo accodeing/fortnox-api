@@ -208,6 +208,57 @@ invoice = Fortnox::Invoice.stub(
 )
 ```
 
+### Struct construction is stricter than resource construction
+
+Resources and structs do **not** coerce their input the same way, and the
+struct side is the stricter of the two. Two things bite during a migration.
+
+**Hash keys must be snake_case symbols.** `stub` and `update` accept plain
+hashes in place of struct instances and coerce them for you — but only when
+the keys are exactly the attribute names as symbols. Any other key (a string,
+the PascalCase Fortnox API name, a typo) is **silently dropped**, leaving an
+empty struct. This fails quietly all the way to Fortnox, which accepts the
+request and creates the record with empty rows:
+
+```ruby
+# Coerced correctly — snake_case symbols
+Fortnox::Order.stub(customer_number: '1', order_rows: [{ article_number: '101' }])
+# => {"Order":{"CustomerNumber":"1","OrderRows":[{"ArticleNumber":"101"}]}}
+
+# Silently empty — string keys, PascalCase keys, or a misspelled key
+Fortnox::Order.stub(customer_number: '1', order_rows: [{ 'article_number' => '101' }])
+Fortnox::Order.stub(customer_number: '1', order_rows: [{ 'ArticleNumber' => '101' }])
+# => {"Order":{"CustomerNumber":"1","OrderRows":[{}]}}
+```
+
+This is the common failure mode for Rails apps, where params arrive as string
+keys — see [Rails applications](#rails-applications). Either symbolize the
+keys or build the struct explicitly, which turns the silent drop into a raised
+error:
+
+```ruby
+rows = params_rows.map { |r| Fortnox::Structs::OrderRow.new(**r.symbolize_keys) }
+Fortnox::Order.stub(customer_number: '1', order_rows: rows)
+```
+
+**Structs don't coerce strings to booleans; resources do.** Resource
+attributes accept the usual param spellings (`'true'`, `'false'`, `'yes'`,
+`'no'`, `'1'`, `'0'`, `'on'`, `'off'`), raising `Fortnox::ConstraintError` on
+anything else. The same value on a struct attribute is rejected outright:
+
+```ruby
+Fortnox::Article.stub(description: 'x', active: 'true')  # => active == true
+Fortnox::Structs::OrderRow.new(housework: 'true')        # => Dry::Struct::Error
+```
+
+Note the exception class: struct construction raises `Dry::Struct::Error`,
+which is **not** a `Fortnox::Error` and so escapes a `rescue Fortnox::Error`
+block. Cast before constructing:
+
+```ruby
+housework: ActiveModel::Type::Boolean.new.cast(params[:housework])
+```
+
 ## Stricter attribute validation
 
 Several attributes that 0.9 accepted permissively are now validated client-side
@@ -398,3 +449,95 @@ end
 ```
 
 See the [Debugging section in the README](README.md#debugging) for details.
+
+## Dependency changes
+
+The rewrite replaced the HTTP and configuration stack, so several gems 0.9
+installed into your bundle are gone. If your app called into one of them
+directly — without declaring it in its own `Gemfile` — it will fail to load
+after the upgrade, with a `LoadError` that points at your code rather than at
+this gem:
+
+| Gem              | 0.9         | 1.x                                       |
+| ---------------- | ----------- | ----------------------------------------- |
+| `httparty`       | direct dep  | **gone** — replaced by `faraday`          |
+| `jwt`            | direct dep  | **gone** — no longer used                 |
+| `dry-container`  | direct dep  | **gone**                                  |
+| `dry-types`      | direct dep  | still installed, transitively             |
+| `dry-configurable`| direct dep | still installed, transitively             |
+
+`httparty` is the one that bites in practice: an inline `HTTParty.get(...)`
+somewhere unrelated to Fortnox keeps working until this gem stops supplying
+it. `dry-types` and `dry-configurable` are still in the bundle — they come in
+via `rest-easy` and `dry-struct` — but that is an implementation detail of
+this gem, not a promise. Declare anything you use directly in your own
+`Gemfile`.
+
+## Testing with VCR
+
+Resource paths lost their trailing slash. 0.9 declared endpoints as
+`URI = '/customers/'` against a `https://api.fortnox.se/3/` base; 1.x
+declares `path 'customers'` against `https://api.fortnox.se/3`:
+
+```
+# Before
+https://api.fortnox.se/3/customers/
+https://api.fortnox.se/3/customers/1/
+
+# After
+https://api.fortnox.se/3/customers
+https://api.fortnox.se/3/customers/1
+```
+
+Every cassette your app recorded against 0.9 therefore fails to match. There
+is no rewriting shortcut worth the effort — delete the affected cassettes and
+re-record. Note that the request headers changed too (client credentials
+instead of refresh tokens), so a URL-only search-and-replace would leave you
+with cassettes that match the URL and then miss on the headers.
+
+## Rails applications
+
+Most of the friction in a Rails upgrade is at the integration seam rather
+than in Fortnox behaviour itself. Three things to check.
+
+### `render json:` needs an `as_json` bridge
+
+Resource instances define `to_json`, so serialising one on its own is fine.
+But `render json: { invoices: [...] }` doesn't call `to_json` on the nested
+resources — ActiveSupport walks the structure calling `as_json`, which
+resources don't define. It falls through to `Object#as_json`, which
+serialises instance variables, and you get the gem's internals in your
+response body:
+
+```ruby
+render json: Fortnox::Invoice.find(1)          # => {"document_number":1,…}  ✓
+render json: { invoices: [Fortnox::Invoice.find(1)] }
+# => {"invoices":[{"api_data":{…},"model_attributes":{…},"changes":[…],"meta":{…}}]}
+```
+
+Add the bridge once, in an initializer:
+
+```ruby
+# config/initializers/fortnox.rb
+module Fortnox
+  class Resource
+    def as_json(*) = model.attributes.transform_keys(&:to_s)
+  end
+end
+```
+
+`model.attributes` is the same source `to_json` uses, so the two agree.
+
+### Params need coercing before they reach a struct
+
+Controller params arrive as strings with string keys, and nested structs
+accept neither. See
+[Struct construction is stricter than resource construction](#struct-construction-is-stricter-than-resource-construction)
+— in particular the silently-empty rows, which produce a successful request
+and a wrong record in Fortnox rather than an exception.
+
+### Check for gems you were getting for free
+
+See [Dependency changes](#dependency-changes). `httparty` is the usual
+casualty in a Rails app, since it tends to get used for unrelated one-off
+lookups.

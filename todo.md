@@ -10,6 +10,33 @@
     to miss for someone upgrading from 0.x in one jump. Cross-reference
     `MIGRATING_TO_1.0.md`.
 - [ ] Adjust github workflow to include `development` and `main`, not `rest-easy`.
+- [ ] Close the resource/struct coercion asymmetry (surfaced by Portal's 1.0
+  migration; documented as a gotcha in `MIGRATING_TO_1.0.md`, not yet fixed).
+  Resource attributes coerce via dry-types Params — `active: 'true'` → `true`,
+  junk raises `Fortnox::ConstraintError`. Nested structs (`Fortnox::Structs::*`)
+  use strict `Types::Bool` and reject every string. Same shape as the `:required`
+  asymmetry fixed in rc11. Two parts:
+  - Params-coerce struct attributes, or at least booleans. Note
+    `Fortnox::Types::THE_TRUTH` in `lib/fortnox/types.rb` is dead code that
+    already encodes the `'true'`/`'false'` mapping — it is defined and never
+    referenced, so this was started and dropped.
+  - Struct construction raises `Dry::Struct::Error`, which is not a
+    `Fortnox::Error` and escapes `rescue Fortnox::Error`. rc13 translated
+    `#update`/`#serialise`/`.new` on resources; the struct path was missed.
+- [ ] Decide whether to ship a `require 'fortnox/rails'` bridge defining
+  `Resource#as_json`. Every Rails consumer needs the same three-line adapter
+  or `render json:` leaks `{api_data:, model_attributes:, changes:, meta:}`
+  into responses (ActiveSupport walks children with `as_json`, which resources
+  don't define, so `Object#as_json` serialises ivars). Documented in the Rails
+  appendix of `MIGRATING_TO_1.0.md` as an initializer; shipping it would mean
+  an optional-require file and a decision on whether `as_json` should emit
+  model names or API names (`to_json` uses model names; `to_api` uses API ones).
+- [ ] Consider making unknown keys in nested-struct hashes raise instead of
+  being silently dropped. `stub(order_rows: [{'article_number' => '101'}])`
+  (string keys, e.g. Rails params) yields `"OrderRows":[{}]` and Fortnox
+  cheerfully creates the record with empty rows. dry-struct ignores unknown
+  keys by default; `schema schema.strict` would make it raise. Needs thought
+  about the parse path, which must stay tolerant of unknown API fields.
 - [ ] Decide how to expose Fortnox field length limits to callers (open design question).
 
   **Context:** Downstream consumers need to enforce or truncate user input
