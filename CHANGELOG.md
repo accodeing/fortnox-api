@@ -12,7 +12,7 @@ and this project adheres to
 
 ### Changed
 
-- String attributes now normalise `''` to `nil` at the type level. This
+- **Breaking** String attributes now normalise `''` to `nil` at the type level. This
   is the mechanism behind the reset fix below: Fortnox silently ignores
   empty strings in update payloads — updating an attribute to `''` kept
   the original value — and a field can only be cleared with an explicit

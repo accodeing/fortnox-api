@@ -18,6 +18,11 @@ and Semantic Versioning. Conventions:
 - When a bug was introduced by the 1.0 rest-easy rewrite (rc1) and did
   not exist in 0.x, say so explicitly in the entry (existing precedent
   in the file).
+- Any entry that requires consumer code changes gets a `**Breaking**`
+  prefix on the bullet, whatever section it sits in. A behaviour change
+  counts even when it is the mechanism behind a fix — rc13's `''` → `nil`
+  normalisation broke a consumer (Portal) and was initially logged as a
+  plain `Changed` entry.
 
 The full release procedure is in
 [DEVELOPER_README.md](DEVELOPER_README.md#release-process).
