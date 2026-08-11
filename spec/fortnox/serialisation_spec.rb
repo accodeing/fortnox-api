@@ -63,6 +63,35 @@ RSpec.describe Fortnox::Serialisation do
     end
   end
 
+  describe 'render options' do
+    subject(:customer) { Fortnox::Customer.stub(name: 'Acme', city: 'Gothenburg') }
+
+    # ActiveSupport's Hash#as_json slices a symbol-keyed hash, so a string
+    # list would match nothing and silently render {}. Both spellings work.
+    it 'applies :only given symbols' do
+      expect(JSON.parse(customer.to_json(only: [:name]))).to eq('name' => 'Acme')
+    end
+
+    it 'applies :only given strings' do
+      expect(JSON.parse(customer.to_json(only: ['name']))).to eq('name' => 'Acme')
+    end
+
+    it 'applies :except' do
+      expect(JSON.parse(customer.to_json(except: ['city']))).to eq('name' => 'Acme')
+    end
+
+    it 'applies :only to every record of a collection' do
+      collection = Fortnox::Collection.new([customer], total: 1)
+
+      expect(JSON.parse(collection.to_json(only: ['name']))).to eq([{ 'name' => 'Acme' }])
+    end
+
+    # JSON.generate hands to_json a JSON::State, which is not a render option.
+    it 'ignores a non-options argument when nested inside JSON.generate' do
+      expect(JSON.parse(JSON.generate(customer: customer))['customer']).to include('name' => 'Acme')
+    end
+  end
+
   describe '.json_safe' do
     it 'walks nested arrays and hashes, stringifying keys at every level' do
       value = { rows: [Fortnox::Structs::OrderRow.new(article_number: '101')] }

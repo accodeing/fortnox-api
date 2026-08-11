@@ -17,23 +17,26 @@ module Fortnox
   # Deliberately not named `Rails`: inside `module Fortnox` that constant would
   # shadow the framework's own for every other file in the gem.
   module RailsSerialisation
+    # `:only` / `:except` are applied by Fortnox::Serialisation rather than by
+    # ActiveSupport, so they accept string and symbol names alike. The inner
+    # `as_json` is then called without options — it only needs to stringify
+    # keys and recurse into nested structs.
     module ResourceMethods
-      # Same representation `to_json` produces — model attribute names, with
-      # ActiveSupport stringifying keys and recursing into nested structs.
+      # Same representation `to_json` produces: model attribute names.
       def as_json(options = nil)
-        model.attributes.as_json(options)
+        Serialisation.filter(model.attributes, options).as_json
       end
     end
 
     module StructMethods
       def as_json(options = nil)
-        to_h.as_json(options)
+        Serialisation.filter(to_h, options).as_json
       end
     end
 
     module CollectionMethods
       def as_json(options = nil)
-        to_a.as_json(options)
+        to_a.map { |item| item.as_json(options) }
       end
     end
   end

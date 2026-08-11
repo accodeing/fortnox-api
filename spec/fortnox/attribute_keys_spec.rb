@@ -20,12 +20,19 @@ RSpec.describe Fortnox::AttributeKeys do
       expect { customer.update(nmae: 'Other') }.to raise_error(Fortnox::UnknownAttributeError)
     end
 
-    it 'names the resource and every unknown attribute', :aggregate_failures do
-      Fortnox::Customer.stub(name: 'Acme', nmae: 'x', citty: 'y')
-    rescue Fortnox::UnknownAttributeError => e
-      expect(e.attribute_names).to eq([:nmae, :citty])
-      expect(e.attribute_name).to eq(:nmae)
-      expect(e.message).to include('Fortnox::Customer')
+    it 'lists every unknown attribute', :aggregate_failures do
+      expect { Fortnox::Customer.stub(name: 'Acme', nmae: 'x', citty: 'y') }
+        .to raise_error(Fortnox::UnknownAttributeError) { |error|
+          expect(error.attribute_names).to eq([:nmae, :citty])
+        }
+    end
+
+    it 'names the resource and the first unknown attribute', :aggregate_failures do
+      expect { Fortnox::Customer.stub(nmae: 'x') }
+        .to raise_error(Fortnox::UnknownAttributeError) { |error|
+          expect(error.attribute_name).to eq(:nmae)
+          expect(error.message).to include('Fortnox::Customer')
+        }
     end
 
     it 'is caught by a rescue on the shared attribute-error superclass' do
@@ -99,6 +106,19 @@ RSpec.describe Fortnox::AttributeKeys do
     it 'tolerates an undeclared field on a nested struct', :aggregate_failures do
       expect(order.order_rows.first.article_number).to eq('101')
       expect(order.order_rows.first.to_h).not_to have_key(:another_new_field)
+    end
+  end
+
+  describe 'keys that cannot be symbolised' do
+    # transform_keys(&:to_sym) would raise NoMethodError from outside the
+    # Fortnox::Error hierarchy. Report it as an unknown attribute instead.
+    it 'is reported as an attribute error on a struct' do
+      expect { Fortnox::Structs::OrderRow.new(1 => 'x') }
+        .to raise_error(Fortnox::UnknownAttributeError)
+    end
+
+    it 'is reported as an attribute error on a resource' do
+      expect { Fortnox::Customer.stub(1 => 'x') }.to raise_error(Fortnox::UnknownAttributeError)
     end
   end
 

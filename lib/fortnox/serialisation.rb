@@ -11,6 +11,26 @@ module Fortnox
   # All three render the model representation — snake_case attribute names —
   # not the Fortnox wire format. Use `to_api` for the latter.
   module Serialisation
+    # Applies Rails' `:only` / `:except` render options.
+    #
+    # ActiveSupport's `Hash#as_json` slices a symbol-keyed hash, so a caller
+    # passing `only: ['name']` would match nothing and silently render `{}`.
+    # Normalise both sides instead, and accept either spelling.
+    #
+    # Anything that isn't an options hash is ignored — `JSON.generate` passes a
+    # `JSON::State` here when a resource is nested inside another structure.
+    def self.filter(attributes, options)
+      return attributes unless options.is_a?(::Hash)
+
+      if options[:only]
+        attributes.slice(*Array(options[:only]).map(&:to_sym))
+      elsif options[:except]
+        attributes.except(*Array(options[:except]).map(&:to_sym))
+      else
+        attributes
+      end
+    end
+
     # Converts model values into JSON-safe primitives.
     def self.json_safe(value)
       case value
@@ -22,14 +42,14 @@ module Fortnox
     end
 
     module ResourceJSON
-      def to_json(*_args)
-        ::JSON.generate(Serialisation.json_safe(model.attributes))
+      def to_json(options = nil)
+        ::JSON.generate(Serialisation.json_safe(Serialisation.filter(model.attributes, options)))
       end
     end
 
     module StructJSON
-      def to_json(*_args)
-        ::JSON.generate(Serialisation.json_safe(to_h))
+      def to_json(options = nil)
+        ::JSON.generate(Serialisation.json_safe(Serialisation.filter(to_h, options)))
       end
     end
 
@@ -37,8 +57,11 @@ module Fortnox
       # Renders as its records, the way an Array of them would. Pagination
       # metadata stays addressable on the collection for callers that want to
       # render it alongside.
-      def to_json(*_args)
-        ::JSON.generate(to_a.map { |item| Serialisation.json_safe(item.model.attributes) })
+      def to_json(options = nil)
+        rendered = to_a.map do |item|
+          Serialisation.json_safe(Serialisation.filter(item.model.attributes, options))
+        end
+        ::JSON.generate(rendered)
       end
     end
   end

@@ -38,6 +38,33 @@ RSpec.describe Fortnox::RailsSerialisation do
     end
   end
 
+  describe 'render options' do
+    subject(:customer) { Fortnox::Customer.stub(name: 'Acme', city: 'Gothenburg') }
+
+    it 'applies :only given symbols' do
+      expect(customer.as_json(only: [:name])).to eq('name' => 'Acme')
+    end
+
+    it 'applies :only given strings' do
+      expect(customer.as_json(only: ['name'])).to eq('name' => 'Acme')
+    end
+
+    it 'applies :except' do
+      expect(customer.as_json(except: [:city])).to eq('name' => 'Acme')
+    end
+
+    it 'agrees with to_json for the same options' do
+      expect(customer.as_json(only: ['name']).to_json).to eq(customer.to_json(only: [:name]))
+    end
+
+    # ActiveSupport hands an Array's options to each element, so options set
+    # on a collection render reach the individual resources. (A Hash applies
+    # :only to its own keys instead — that is ActiveSupport's rule, not ours.)
+    it 'applies options to each resource of an array' do
+      expect([customer].as_json(only: ['name'])).to eq([{ 'name' => 'Acme' }])
+    end
+  end
+
   describe 'Struct#as_json' do
     it 'renders its attributes' do
       expect(Fortnox::Structs::OrderRow.new(article_number: '101').as_json).to eq('article_number' => '101')

@@ -25,7 +25,13 @@ module Fortnox
     # Rails hands params through with string keys. Accept them rather than
     # reporting every attribute in the hash as unknown.
     def normalise(data)
-      data.to_h { |key, value| [key.respond_to?(:to_sym) ? key.to_sym : key, value] }
+      data.to_h { |key, value| [symbolise(key), value] }
+    end
+
+    # Left alone if it can't be a symbol, so it falls through to the unknown
+    # check and is reported as an attribute error rather than a NoMethodError.
+    def symbolise(key)
+      key.respond_to?(:to_sym) ? key.to_sym : key
     end
   end
 end

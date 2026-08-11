@@ -71,16 +71,16 @@ RSpec.describe Fortnox::Struct do
     end
 
     it 'identifies the offending attribute and value', :aggregate_failures do
-      FortnoxStructTestStructs::Simple.new(count: 'not-a-number')
-    rescue Fortnox::ConstraintError => e
-      expect(e.attribute_name).to eq(:count)
-      expect(e.value).to eq('not-a-number')
+      expect { FortnoxStructTestStructs::Simple.new(count: 'not-a-number') }
+        .to raise_error(Fortnox::ConstraintError) { |error|
+          expect(error.attribute_name).to eq(:count)
+          expect(error.value).to eq('not-a-number')
+        }
     end
 
     it 'reports the failure the same way a resource attribute does' do
-      FortnoxStructTestStructs::WithBool.new(flag: 'maybe')
-    rescue Fortnox::ConstraintError => e
-      expect(e.message).to eq("Attribute 'flag': maybe cannot be coerced to false")
+      expect { FortnoxStructTestStructs::WithBool.new(flag: 'maybe') }
+        .to raise_error(Fortnox::ConstraintError, "Attribute 'flag': maybe cannot be coerced to false")
     end
 
     it 'still builds structs when every attribute is omitted' do

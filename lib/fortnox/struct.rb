@@ -6,8 +6,10 @@ module Fortnox
   class Struct < Dry::Struct
     include Serialisation::StructJSON
 
-    # Accept the string keys Rails params arrive with.
-    transform_keys(&:to_sym)
+    # Accept the string keys Rails params arrive with. Not `&:to_sym` — a key
+    # that can't be symbolised would raise NoMethodError from outside the
+    # Fortnox::Error hierarchy instead of being reported as unknown.
+    transform_keys { |key| AttributeKeys.symbolise(key) }
 
     # Reject attribute names the struct doesn't declare. Dry::Struct ignores
     # them by default, so a misspelled key silently produced an empty row that
