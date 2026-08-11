@@ -8,6 +8,13 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Changed
+
+- The `base64` runtime dependency is now bounded to `~> 0.2`, matching what
+  `rest-easy` already requires. It was declared open-ended when it was added
+  in 1.0.0.rc7, so a future `base64` 1.0 with a breaking change would have
+  been resolved into consumers' bundles unannounced.
+
 ### Added
 
 - **Breaking** `Fortnox::UnknownAttributeError`, raised when `new`, `stub` or
