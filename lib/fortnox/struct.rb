@@ -6,6 +6,15 @@ module Fortnox
   class Struct < Dry::Struct
     include Serialisation::StructJSON
 
+    # Accept the string keys Rails params arrive with.
+    transform_keys(&:to_sym)
+
+    # Reject attribute names the struct doesn't declare. Dry::Struct ignores
+    # them by default, so a misspelled key silently produced an empty row that
+    # Fortnox then accepted. Parsing stays tolerant of undeclared fields —
+    # Mappers::Struct slices API data to the declared attributes first.
+    schema schema.strict
+
     # Lets us tell "no attributes given" apart from "given an empty hash", so
     # Dry::Struct still gets to apply its own defaults in the former case.
     NO_ATTRIBUTES = ::Object.new.freeze
@@ -34,36 +43,41 @@ module Fortnox
       # entry points as resources (`Resource.stub` coerces nested hashes into
       # structs), so they translate their errors the same way.
       # rubocop:disable Style/OptionalBooleanParameter
-      # `safe` is positional in Dry::Struct's own signature, and dry-types
-      # calls it that way internally, so it can't become a keyword here.
+      # `safe` is Dry::Struct's own second positional parameter — it picks the
+      # non-raising coercion path — so it has to stay positional here. We only
+      # pass it through.
       def new(attributes = NO_ATTRIBUTES, safe = false, &)
         return super() if NO_ATTRIBUTES.equal?(attributes)
 
-        super(checked_attributes(attributes), safe, &)
+        super
       rescue Dry::Struct::Error => e
         raise translated_error(e, attributes)
       end
+      # rubocop:enable Style/OptionalBooleanParameter
 
-      # Attribute names this struct accepts. Dry::Struct ignores anything else,
-      # so without this a misspelled or string key silently produced an empty
-      # row that Fortnox then accepted.
+      # Attribute names this struct accepts.
       def attribute_names
         schema.keys.map(&:name)
       end
-      # rubocop:enable Style/OptionalBooleanParameter
 
       private
-
-      def checked_attributes(attributes)
-        return attributes unless attributes.is_a?(::Hash)
-
-        AttributeKeys.check(attributes, known: attribute_names, subject: self)
-      end
 
       def translated_error(error, attributes)
         return Fortnox::AttributeError.new(error.message) unless attributes.is_a?(::Hash)
 
-        failing_attribute_error(attributes) || Fortnox::AttributeError.new(error.message)
+        unknown_attribute_error(attributes) ||
+          failing_attribute_error(attributes) ||
+          Fortnox::AttributeError.new(error.message)
+      end
+
+      # Dry::Struct reports a strict-schema rejection as "unexpected keys […]"
+      # in the message only. Recompute the names from the input rather than
+      # parsing that string back out.
+      def unknown_attribute_error(attributes)
+        unknown = AttributeKeys.normalise(attributes).keys - attribute_names
+        return nil if unknown.empty?
+
+        Fortnox::UnknownAttributeError.new(unknown, self)
       end
 
       # Dry::Struct discards the underlying coercion error, keeping only its
