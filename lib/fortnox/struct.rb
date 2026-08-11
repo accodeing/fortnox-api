@@ -4,6 +4,8 @@ require 'dry-struct'
 
 module Fortnox
   class Struct < Dry::Struct
+    include Serialisation::StructJSON
+
     # Lets us tell "no attributes given" apart from "given an empty hash", so
     # Dry::Struct still gets to apply its own defaults in the former case.
     NO_ATTRIBUTES = ::Object.new.freeze

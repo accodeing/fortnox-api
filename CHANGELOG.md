@@ -10,6 +10,15 @@ and this project adheres to
 
 ### Fixed
 
+- `to_json` on a resource holding nested structs no longer renders them
+  through `to_s`. An invoice or order with rows serialised them as
+  `"#<Fortnox::Structs::InvoiceRow:0x…>"`. `Fortnox::Struct#to_json` and
+  `Fortnox::Collection#to_json` are defined for the same reason — both
+  previously fell back to the default `Object#to_json`, producing an
+  inspect string rather than JSON. All three render the model representation
+  (snake_case attribute names); `to_api` still produces the Fortnox wire
+  format. This affects all consumers, not only Rails apps.
+
 - Nested structs (`Fortnox::Structs::*`) now coerce boolean attributes from
   the string spellings params arrive as (`'true'`, `'false'`, `'yes'`,
   `'no'`, `'1'`, `'0'`, `'on'`, `'off'`), matching what resource attributes

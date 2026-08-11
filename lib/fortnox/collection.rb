@@ -7,6 +7,7 @@ module Fortnox
   # the pagination metadata Fortnox returns alongside collection responses.
   class Collection
     include Enumerable
+    include Serialisation::CollectionJSON
     extend Forwardable
 
     def_delegators :@items, :each, :first, :last, :size, :length, :empty?, :[], :to_a

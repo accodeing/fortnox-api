@@ -23,6 +23,13 @@ Style/AccessorGrouping:
 Style/Documentation:
   Enabled: false
 
+# Resource is the gem's central class — the error-translation wrappers alone
+# account for a third of it. Splitting it to satisfy the metric would spread
+# one cohesive seam across files.
+Metrics/ClassLength:
+  Exclude:
+    - 'lib/fortnox/resource.rb'
+
 Style/WordArray:
   EnforcedStyle: brackets
 

@@ -3,6 +3,7 @@
 module Fortnox
   class Resource < RestEasy::Resource
     include Fortnox::Types
+    include Serialisation::ResourceJSON
 
     settings do
       setting :instance_wrapper, reader: true
