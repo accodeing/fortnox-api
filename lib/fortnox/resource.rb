@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 module Fortnox
-  # TODO: this class is too large and should be split — see todo.md.
+  # TODO: this class is still over the length limit even with error
+  # translation extracted — see todo.md.
   # rubocop:disable Metrics/ClassLength
   class Resource < RestEasy::Resource
     include Fortnox::Types
@@ -28,24 +29,6 @@ module Fortnox
     end
 
     after_serialise { |data| default_after_serialise(data) }
-
-    # Translate rest-easy errors at the gem boundary so callers only see
-    # Fortnox-namespaced exceptions.
-    module ErrorTranslation
-      private
-
-      def with_translated_errors
-        yield
-      rescue RestEasy::ConstraintError => e
-        raise Fortnox::ConstraintError.new(e.attribute_name, e.value, e.message)
-      rescue RestEasy::MissingAttributeError => e
-        raise Fortnox::MissingAttributeError, e.attribute_name
-      rescue RestEasy::AttributeError => e
-        raise Fortnox::AttributeError, e.message
-      rescue RestEasy::RequestError => e
-        raise Fortnox::RequestError, e.response || e.message
-      end
-    end
 
     include ErrorTranslation # instance-level methods
     extend ErrorTranslation # class-level methods

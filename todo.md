@@ -10,11 +10,14 @@
     to miss for someone upgrading from 0.x in one jump. Cross-reference
     `MIGRATING_TO_1.0.md`.
 - [ ] Adjust github workflow to include `development` and `main`, not `rest-easy`.
-- [ ] Split `Fortnox::Resource` — it trips `Metrics/ClassLength` and carries an
-  explicit `rubocop:disable` in the class as a reminder. Candidates to extract:
-  the `ErrorTranslation` module, the class-level query methods (`find`,
-  `search`, `only`, `find_all_by`), and the HTTP verb wrappers. Remove the
-  disable comment once it fits.
+- [ ] Split `Fortnox::Resource` — still trips `Metrics/ClassLength` (103/100)
+  and carries an explicit `rubocop:disable` in the class as a reminder.
+  `ErrorTranslation` is already extracted to its own module and that was not
+  enough on its own. Remaining candidates here: the class-level query methods
+  (`find`, `search`, `only`, `find_all_by`) and the HTTP verb wrappers. Worth
+  waiting on the rest-easy-level split first — how the base class divides
+  there should tell us where the seam belongs in this one. Remove the disable
+  comment once it fits.
 - [ ] Decide how to expose Fortnox field length limits to callers (open design question).
 
   **Context:** Downstream consumers need to enforce or truncate user input
