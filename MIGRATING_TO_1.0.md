@@ -511,10 +511,8 @@ Add the bridge once, in an initializer:
 
 ```ruby
 # config/initializers/fortnox.rb
-module Fortnox
-  class Resource
-    def as_json(*) = model.attributes.transform_keys(&:to_s)
-  end
+Fortnox::Resource.class_eval do
+  def as_json(*) = model.attributes.transform_keys(&:to_s)
 end
 ```
 

@@ -397,6 +397,48 @@ hitting some other schema-drift issue — please open an issue. There's a
 maintainer-only knob to surface those warnings; see the
 [Developer readme](DEVELOPER_README.md) for details.
 
+### Rails
+
+Two things are worth setting up before you render or receive Fortnox data in
+a Rails app.
+
+**Rendering.** Resource instances define `to_json`, so rendering one on its
+own works. Rendering one *inside* another structure does not: ActiveSupport
+walks the structure calling `as_json`, which resources don't define, so it
+falls through to `Object#as_json` and serialises the gem's internals into
+your response body.
+
+```ruby
+render json: Fortnox::Invoice.find(1)          # => {"document_number":1,…}
+render json: { invoices: [Fortnox::Invoice.find(1)] }
+# => {"invoices":[{"api_data":{…},"model_attributes":{…},"changes":[…],"meta":{…}}]}
+```
+
+Add the bridge once, in an initializer:
+
+```ruby
+# config/initializers/fortnox.rb
+Fortnox::Resource.class_eval do
+  def as_json(*) = model.attributes.transform_keys(&:to_s)
+end
+```
+
+`model.attributes` is the same source `to_json` reads, so the two agree.
+
+**Receiving params.** String *values* are fine — booleans coerce from
+`'true'`/`'false'`/`'1'`/`'0'`/`'yes'`/`'no'`/`'on'`/`'off'`, and numbers
+from their string forms. String *keys* are not: they are silently ignored.
+That is easy to miss on nested rows, where it yields an empty row rather
+than a visibly unset attribute, and Fortnox accepts the result:
+
+```ruby
+# Silently produces "OrderRows":[{}]
+Fortnox::Order.stub(order_rows: [{ 'article_number' => '101' }])
+
+# Symbolize first
+Fortnox::Order.stub(order_rows: params_rows.map(&:symbolize_keys))
+```
+
 ### Gotchas
 
 See [docs/gotchas.md](docs/gotchas.md) for known quirks and edge cases in the
