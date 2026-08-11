@@ -8,6 +8,17 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Added
+
+- Optional Rails integration, `require 'fortnox/rails'`. Defines `as_json` on
+  resources, collections and nested structs so `render json:` works when they
+  are nested inside another structure — ActiveSupport walks nested objects
+  with `as_json`, and without a definition falls through to `Object#as_json`,
+  which serialises instance variables and leaks `api_data`,
+  `model_attributes`, `changes` and `meta` into response bodies. The file is
+  not loaded with the rest of the gem and ActiveSupport is not a runtime
+  dependency; requiring it is opt-in for apps that already have Rails.
+
 ### Fixed
 
 - `to_json` on a resource holding nested structs no longer renders them
@@ -18,7 +29,6 @@ and this project adheres to
   inspect string rather than JSON. All three render the model representation
   (snake_case attribute names); `to_api` still produces the Fortnox wire
   format. This affects all consumers, not only Rails apps.
-
 - Nested structs (`Fortnox::Structs::*`) now coerce boolean attributes from
   the string spellings params arrive as (`'true'`, `'false'`, `'yes'`,
   `'no'`, `'1'`, `'0'`, `'on'`, `'off'`), matching what resource attributes

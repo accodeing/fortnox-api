@@ -494,31 +494,28 @@ than in Fortnox behaviour itself. The two below are the day-one ones; also
 work through [Dependency changes](#dependency-changes), since `httparty` is
 the usual casualty in a Rails app.
 
-### `render json:` needs an `as_json` bridge
+### `render json:` needs the Rails integration
 
-Resource instances define `to_json`, so serialising one on its own is fine.
-But `render json: { invoices: [...] }` doesn't call `to_json` on the nested
-resources — ActiveSupport walks the structure calling `as_json`, which
-resources don't define. It falls through to `Object#as_json`, which
-serialises instance variables, and you get the gem's internals in your
+0.9 returned plain model objects that Rails knew how to serialise. 1.x
+resources need one require, in an initializer:
+
+```ruby
+# config/initializers/fortnox.rb
+require 'fortnox/rails'
+```
+
+Without it, `render json: { invoices: [...] }` doesn't call `to_json` on the
+nested resources — ActiveSupport walks the structure calling `as_json`, falls
+through to `Object#as_json`, and serialises instance variables into your
 response body:
 
 ```ruby
-render json: Fortnox::Invoice.find(1)          # => {"document_number":1,…}  ✓
 render json: { invoices: [Fortnox::Invoice.find(1)] }
 # => {"invoices":[{"api_data":{…},"model_attributes":{…},"changes":[…],"meta":{…}}]}
 ```
 
-Add the bridge once, in an initializer:
-
-```ruby
-# config/initializers/fortnox.rb
-Fortnox::Resource.class_eval do
-  def as_json(*) = model.attributes.transform_keys(&:to_s)
-end
-```
-
-`model.attributes` is the same source `to_json` uses, so the two agree.
+It covers resources, collections, and nested structs. See the
+[README](README.md#rails) for what it renders.
 
 ### Symbolize keys before params reach a struct
 

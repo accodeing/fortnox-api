@@ -10,14 +10,6 @@
     to miss for someone upgrading from 0.x in one jump. Cross-reference
     `MIGRATING_TO_1.0.md`.
 - [ ] Adjust github workflow to include `development` and `main`, not `rest-easy`.
-- [ ] Decide whether to ship a `require 'fortnox/rails'` bridge defining
-  `Resource#as_json`. Every Rails consumer needs the same three-line adapter
-  or `render json:` leaks `{api_data:, model_attributes:, changes:, meta:}`
-  into responses (ActiveSupport walks children with `as_json`, which resources
-  don't define, so `Object#as_json` serialises ivars). Documented in the Rails
-  appendix of `MIGRATING_TO_1.0.md` as an initializer; shipping it would mean
-  an optional-require file and a decision on whether `as_json` should emit
-  model names or API names (`to_json` uses model names; `to_api` uses API ones).
 - [ ] Consider making unknown keys in nested-struct hashes raise instead of
   being silently dropped. `stub(order_rows: [{'article_number' => '101'}])`
   (string keys, e.g. Rails params) yields `"OrderRows":[{}]` and Fortnox

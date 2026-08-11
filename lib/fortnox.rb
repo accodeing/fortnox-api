@@ -8,6 +8,9 @@ require 'zeitwerk'
 module Fortnox
   @loader = Zeitwerk::Loader.for_gem
   @loader.collapse("#{__dir__}/fortnox/resources")
+  # Optional Rails integration — required explicitly by consumers, never
+  # autoloaded, and it defines no constant matching its path.
+  @loader.ignore("#{__dir__}/fortnox/rails.rb")
   @loader.inflector.inflect(
     'edi_information' => 'EDIInformation'
   )

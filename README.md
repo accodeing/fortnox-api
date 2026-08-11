@@ -402,28 +402,37 @@ maintainer-only knob to surface those warnings; see the
 Two things are worth setting up before you render or receive Fortnox data in
 a Rails app.
 
-**Rendering.** Resource instances define `to_json`, so rendering one on its
-own works. Rendering one *inside* another structure does not: ActiveSupport
-walks the structure calling `as_json`, which resources don't define, so it
-falls through to `Object#as_json` and serialises the gem's internals into
-your response body.
-
-```ruby
-render json: Fortnox::Invoice.find(1)          # => {"document_number":1,…}
-render json: { invoices: [Fortnox::Invoice.find(1)] }
-# => {"invoices":[{"api_data":{…},"model_attributes":{…},"changes":[…],"meta":{…}}]}
-```
-
-Add the bridge once, in an initializer:
+**Rendering.** Require the Rails integration once, in an initializer:
 
 ```ruby
 # config/initializers/fortnox.rb
-Fortnox::Resource.class_eval do
-  def as_json(*) = model.attributes.transform_keys(&:to_s)
-end
+require 'fortnox/rails'
 ```
 
-`model.attributes` is the same source `to_json` reads, so the two agree.
+Without it, `render json:` only works for a resource passed on its own.
+Rendering one *inside* another structure walks it with `as_json`, which the
+gem's types don't define outside this file, so ActiveSupport falls back to
+serialising instance variables and your response body gets the gem's
+internals:
+
+```ruby
+# Without fortnox/rails
+render json: { invoices: [Fortnox::Invoice.find(1)] }
+# => {"invoices":[{"api_data":{…},"model_attributes":{…},"changes":[…],"meta":{…}}]}
+
+# With it
+# => {"invoices":[{"document_number":1,"invoice_rows":[{"article_number":"101"}],…}]}
+```
+
+It covers resources, collections, and nested structs, and produces the same
+representation as `to_json` — model attribute names, not the Fortnox wire
+names. Rendering a collection yields its records, as an array would;
+pagination stays on the object (`.total`, `.pages`, `.current_page`) for you
+to render alongside if you want it.
+
+The file is not loaded with the rest of the gem and ActiveSupport is not a
+dependency of this gem — requiring it is opt-in, for apps that already have
+Rails.
 
 **Receiving params.** String *values* are fine — booleans coerce from
 `'true'`/`'false'`/`'1'`/`'0'`/`'yes'`/`'no'`/`'on'`/`'off'`, and numbers
