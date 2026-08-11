@@ -10,6 +10,11 @@
     to miss for someone upgrading from 0.x in one jump. Cross-reference
     `MIGRATING_TO_1.0.md`.
 - [ ] Adjust github workflow to include `development` and `main`, not `rest-easy`.
+- [ ] Split `Fortnox::Resource` — it trips `Metrics/ClassLength` and carries an
+  explicit `rubocop:disable` in the class as a reminder. Candidates to extract:
+  the `ErrorTranslation` module, the class-level query methods (`find`,
+  `search`, `only`, `find_all_by`), and the HTTP verb wrappers. Remove the
+  disable comment once it fits.
 - [ ] Consider making unknown keys in nested-struct hashes raise instead of
   being silently dropped. `stub(order_rows: [{'article_number' => '101'}])`
   (string keys, e.g. Rails params) yields `"OrderRows":[{}]` and Fortnox

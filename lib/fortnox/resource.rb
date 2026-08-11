@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 module Fortnox
+  # TODO: this class is too large and should be split — see todo.md.
+  # rubocop:disable Metrics/ClassLength
   class Resource < RestEasy::Resource
     include Fortnox::Types
     include Serialisation::ResourceJSON
@@ -160,4 +162,5 @@ module Fortnox
       { config.instance_wrapper => data }
     end
   end
+  # rubocop:enable Metrics/ClassLength
 end
