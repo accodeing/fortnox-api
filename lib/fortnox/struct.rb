@@ -37,13 +37,28 @@ module Fortnox
       # `safe` is positional in Dry::Struct's own signature, and dry-types
       # calls it that way internally, so it can't become a keyword here.
       def new(attributes = NO_ATTRIBUTES, safe = false, &)
-        NO_ATTRIBUTES.equal?(attributes) ? super() : super
+        return super() if NO_ATTRIBUTES.equal?(attributes)
+
+        super(checked_attributes(attributes), safe, &)
       rescue Dry::Struct::Error => e
         raise translated_error(e, attributes)
+      end
+
+      # Attribute names this struct accepts. Dry::Struct ignores anything else,
+      # so without this a misspelled or string key silently produced an empty
+      # row that Fortnox then accepted.
+      def attribute_names
+        schema.keys.map(&:name)
       end
       # rubocop:enable Style/OptionalBooleanParameter
 
       private
+
+      def checked_attributes(attributes)
+        return attributes unless attributes.is_a?(::Hash)
+
+        AttributeKeys.check(attributes, known: attribute_names, subject: self)
+      end
 
       def translated_error(error, attributes)
         return Fortnox::AttributeError.new(error.message) unless attributes.is_a?(::Hash)

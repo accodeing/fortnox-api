@@ -434,19 +434,20 @@ The file is not loaded with the rest of the gem and ActiveSupport is not a
 dependency of this gem — requiring it is opt-in, for apps that already have
 Rails.
 
-**Receiving params.** String *values* are fine — booleans coerce from
-`'true'`/`'false'`/`'1'`/`'0'`/`'yes'`/`'no'`/`'on'`/`'off'`, and numbers
-from their string forms. String *keys* are not: they are silently ignored.
-That is easy to miss on nested rows, where it yields an empty row rather
-than a visibly unset attribute, and Fortnox accepts the result:
+**Receiving params.** Controller params can be passed through as they arrive.
+String keys are accepted, and string values coerce — booleans from
+`'true'`/`'false'`/`'1'`/`'0'`/`'yes'`/`'no'`/`'on'`/`'off'`, numbers from
+their string forms:
 
 ```ruby
-# Silently produces "OrderRows":[{}]
-Fortnox::Order.stub(order_rows: [{ 'article_number' => '101' }])
-
-# Symbolize first
-Fortnox::Order.stub(order_rows: params_rows.map(&:symbolize_keys))
+Fortnox::Order.stub('customer_number' => '1', 'order_rows' => [{ 'article_number' => '101' }])
 ```
+
+An attribute the resource or struct doesn't declare raises
+`Fortnox::UnknownAttributeError` rather than being dropped, so a typo or a
+stray param surfaces at the call site instead of producing a record that is
+quietly missing a field. Filter params to the attributes you mean to accept,
+as you would for a model.
 
 ### Gotchas
 

@@ -66,12 +66,12 @@ module Fortnox
         end
       end
 
-      def new(...)
-        with_translated_errors { super }
+      def new(model_data = {}, **kwargs)
+        with_translated_errors { super(checked_attributes(model_data.merge(kwargs))) }
       end
 
       def stub(**model_data)
-        with_translated_errors { super }
+        with_translated_errors { super(**checked_attributes(model_data)) }
       end
 
       def save(instance)
@@ -122,6 +122,13 @@ module Fortnox
 
       private
 
+      # Attribute names a caller may pass. Read-only attributes are included:
+      # rest-easy drops them from the payload later, and rejecting them here
+      # would break round-tripping a parsed record back through `update`.
+      def checked_attributes(data)
+        AttributeKeys.check(data, known: all_attribute_definitions.keys, subject: self)
+      end
+
       def extract_pagination(data)
         return {} unless data.is_a?(Hash) && data.key?('MetaInformation')
 
@@ -134,8 +141,8 @@ module Fortnox
       end
     end
 
-    def update(...)
-      with_translated_errors { super }
+    def update(changes = {}, **kwargs)
+      with_translated_errors { super(self.class.send(:checked_attributes, changes.merge(kwargs))) }
     end
 
     def serialise(...)

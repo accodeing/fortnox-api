@@ -15,12 +15,6 @@
   the `ErrorTranslation` module, the class-level query methods (`find`,
   `search`, `only`, `find_all_by`), and the HTTP verb wrappers. Remove the
   disable comment once it fits.
-- [ ] Consider making unknown keys in nested-struct hashes raise instead of
-  being silently dropped. `stub(order_rows: [{'article_number' => '101'}])`
-  (string keys, e.g. Rails params) yields `"OrderRows":[{}]` and Fortnox
-  cheerfully creates the record with empty rows. dry-struct ignores unknown
-  keys by default; `schema schema.strict` would make it raise. Needs thought
-  about the parse path, which must stay tolerant of unknown API fields.
 - [ ] Decide how to expose Fortnox field length limits to callers (open design question).
 
   **Context:** Downstream consumers need to enforce or truncate user input

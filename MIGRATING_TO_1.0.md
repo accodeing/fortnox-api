@@ -210,33 +210,25 @@ invoice = Fortnox::Invoice.stub(
 
 ### Nested struct gotchas
 
-**Hash keys must be snake_case symbols.** `stub` and `update` accept plain
-hashes in place of struct instances and coerce them for you — but only when
-the keys are exactly the attribute names as symbols. Any other key (a string,
-the PascalCase Fortnox API name, a typo) is **silently dropped**, leaving an
-empty struct. This fails quietly all the way to Fortnox, which accepts the
-request and creates the record with empty rows:
+**Hash keys are the snake_case attribute names.** `stub` and `update` accept
+plain hashes in place of struct instances and coerce them for you. Symbol and
+string keys both work; the PascalCase Fortnox API name does not — that is the
+wire format, and these are model attributes:
 
 ```ruby
-# Coerced correctly — snake_case symbols
 Fortnox::Order.stub(customer_number: '1', order_rows: [{ article_number: '101' }])
-# => {"Order":{"CustomerNumber":"1","OrderRows":[{"ArticleNumber":"101"}]}}
-
-# Silently empty — string keys, PascalCase keys, or a misspelled key
 Fortnox::Order.stub(customer_number: '1', order_rows: [{ 'article_number' => '101' }])
+# both => {"Order":{"CustomerNumber":"1","OrderRows":[{"ArticleNumber":"101"}]}}
+
 Fortnox::Order.stub(customer_number: '1', order_rows: [{ 'ArticleNumber' => '101' }])
-# => {"Order":{"CustomerNumber":"1","OrderRows":[{}]}}
+# => Fortnox::UnknownAttributeError
 ```
 
-This is the common failure mode for Rails apps, where params arrive as string
-keys — see [Rails applications](#rails-applications). Either symbolize the
-keys or build the struct explicitly, which turns the silent drop into a raised
-error:
-
-```ruby
-rows = params_rows.map { |r| Fortnox::Structs::OrderRow.new(**r.symbolize_keys) }
-Fortnox::Order.stub(customer_number: '1', order_rows: rows)
-```
+0.9 ignored an attribute name it didn't recognise. 1.x raises
+`Fortnox::UnknownAttributeError`, which carries `.attribute_names`. If you
+relied on passing a wider hash than the resource declares — a record from
+elsewhere in your app, say — slice it down to the attributes you mean to
+send.
 
 **Booleans accept the usual param spellings.** Both resource and struct
 attributes coerce `'true'`, `'false'`, `'yes'`, `'no'`, `'1'`, `'0'`, `'on'`
@@ -517,10 +509,10 @@ render json: { invoices: [Fortnox::Invoice.find(1)] }
 It covers resources, collections, and nested structs. See the
 [README](README.md#rails) for what it renders.
 
-### Symbolize keys before params reach a struct
+### Filter params before they reach a resource
 
-String *values* are fine — booleans and numbers coerce from their param
-spellings. String *keys* are not: they are silently ignored, and a nested
-`order_rows` hash straight out of `params` produces empty rows, a successful
-request, and a wrong record in Fortnox rather than an exception. See
-[Nested struct gotchas](#nested-struct-gotchas).
+Params can be passed through as they arrive — string keys and string values
+both work. But an attribute the resource doesn't declare now raises
+`Fortnox::UnknownAttributeError` rather than being ignored, so a form field
+that isn't a Fortnox attribute will take a request down. Permit and slice as
+you would for a model. See [Nested struct gotchas](#nested-struct-gotchas).

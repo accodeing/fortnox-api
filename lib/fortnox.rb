@@ -92,6 +92,21 @@ module Fortnox
     end
   end
 
+  class UnknownAttributeError < AttributeError
+    attr_reader :attribute_names, :subject
+
+    def initialize(attribute_names, subject = nil)
+      @attribute_names = Array(attribute_names)
+      @subject = subject
+      super("Unknown attribute#{'s' if @attribute_names.length > 1} for #{subject}: " \
+            "#{@attribute_names.map(&:inspect).join(', ')}")
+    end
+
+    def attribute_name
+      @attribute_names.first
+    end
+  end
+
   class MissingAccessToken < Error; end
 
   OAUTH_TOKEN_URL = 'https://apps.fortnox.se/oauth-v1/token'

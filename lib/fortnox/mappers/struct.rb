@@ -33,7 +33,11 @@ module Fortnox
           attributes = data.transform_keys do |api_key|
             api_to_model_map[api_key] || CONVENTION.parse(api_key)
           end
-          struct_class.new(attributes)
+          # Drop fields the struct doesn't declare. Fortnox adds them over
+          # time, and a response must not fail to parse because of one — the
+          # strictness on `new` is aimed at what a caller passes, not at what
+          # the API returns.
+          struct_class.new(attributes.slice(*struct_class.attribute_names))
         end
 
         def serialise(struct)

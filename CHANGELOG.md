@@ -10,6 +10,22 @@ and this project adheres to
 
 ### Added
 
+- **Breaking** `Fortnox::UnknownAttributeError`, raised when `new`, `stub` or
+  `update` is passed an attribute the resource or struct doesn't declare.
+  Previously the attribute was silently discarded: the request went out
+  without it and Fortnox accepted the result, so a typo cost a field with no
+  indication anything was wrong. Worst on nested rows, where
+  `stub(order_rows: [{ artcile_number: '1' }])` sent `"OrderRows":[{}]` and
+  created an order with empty rows. Subclasses `Fortnox::AttributeError` and
+  carries `.attribute_names` (all of them) and `.attribute_name` (the first).
+  Consumers passing a wider hash than the resource declares must slice it
+  first. Parsing an API response is unaffected and stays tolerant of fields
+  the gem doesn't declare — Fortnox adds them over time, and a response must
+  not fail to parse because of one.
+- Attribute hashes now accept string keys as well as symbols, on `new`,
+  `stub`, `update` and struct constructors. Previously a string key matched
+  nothing and was dropped, which is how a Rails controller passing `params`
+  through produced records missing every field.
 - Optional Rails integration, `require 'fortnox/rails'`. Defines `as_json` on
   resources, collections and nested structs so `render json:` works when they
   are nested inside another structure — ActiveSupport walks nested objects
