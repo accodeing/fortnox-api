@@ -247,11 +247,9 @@ controller can hand string params straight through:
 Fortnox::Structs::OrderRow.new(housework: 'true').housework # => true
 ```
 
-Up to and including 1.0.0.rc13 this only worked at the resource level —
-struct attributes rejected every string, and did so with a
-`Dry::Struct::Error` that escaped `rescue Fortnox::Error`. If you are
-upgrading from one of those releases you can drop any
-`ActiveModel::Type::Boolean` casting you added to work around it.
+Note that the same is true one level down: a nested row hash gets the same
+coercion as a top-level attribute, so there is no need to cast booleans
+yourself before building rows.
 
 ## Stricter attribute validation
 

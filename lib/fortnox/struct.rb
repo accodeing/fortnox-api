@@ -28,10 +28,9 @@ module Fortnox
       # Dry::Struct signals a bad value with Dry::Struct::Error, a TypeError
       # that sits outside the Fortnox::Error hierarchy — so a caller's
       # `rescue Fortnox::AttributeError` misses it and the failure surfaces as
-      # an unhandled crash. Resources have translated their errors since
-      # 1.0.0.rc13, and structs are reachable through the same public entry
-      # points (`Resource.stub` coerces nested hashes into structs), so they
-      # need the same treatment.
+      # an unhandled crash. Structs are reachable through the same public
+      # entry points as resources (`Resource.stub` coerces nested hashes into
+      # structs), so they translate their errors the same way.
       # rubocop:disable Style/OptionalBooleanParameter
       # `safe` is positional in Dry::Struct's own signature, and dry-types
       # calls it that way internally, so it can't become a keyword here.

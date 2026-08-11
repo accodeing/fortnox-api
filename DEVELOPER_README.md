@@ -151,7 +151,7 @@ When bumping:
 
 - `development` is the default branch — PRs target it (see
   [CONTRIBUTE.md](CONTRIBUTE.md)).
-- Releases are tagged `v<VERSION>` (e.g. `v1.0.0.rc6`).
+- Releases are tagged `v<VERSION>` (e.g. `v1.0.0`).
 - Long-lived feature branches like `rest-easy` exist for large rewrites
   and get merged back into `development` when ready.
 
