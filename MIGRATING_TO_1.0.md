@@ -490,7 +490,9 @@ with cassettes that match the URL and then miss on the headers.
 ## Rails applications
 
 Most of the friction in a Rails upgrade is at the integration seam rather
-than in Fortnox behaviour itself. Three things to check.
+than in Fortnox behaviour itself. The two below are the day-one ones; also
+work through [Dependency changes](#dependency-changes), since `httparty` is
+the usual casualty in a Rails app.
 
 ### `render json:` needs an `as_json` bridge
 
@@ -525,9 +527,3 @@ spellings. String *keys* are not: they are silently ignored, and a nested
 `order_rows` hash straight out of `params` produces empty rows, a successful
 request, and a wrong record in Fortnox rather than an exception. See
 [Nested struct gotchas](#nested-struct-gotchas).
-
-### Check for gems you were getting for free
-
-See [Dependency changes](#dependency-changes). `httparty` is the usual
-casualty in a Rails app, since it tends to get used for unrelated one-off
-lookups.
