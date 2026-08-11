@@ -8,6 +8,8 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [1.0.0.rc14] - 2026-08-11
+
 ### Changed
 
 - The `base64` runtime dependency is now bounded to `~> 0.2`, matching what
@@ -396,7 +398,8 @@ for the full list of breaking changes.
 For changes prior to the 1.0 rewrite, see the
 [0.x changelog](https://github.com/accodeing/fortnox-api/blob/v0.9.2/CHANGELOG.md).
 
-[Unreleased]: https://github.com/accodeing/fortnox-api/compare/v1.0.0.rc13...HEAD
+[Unreleased]: https://github.com/accodeing/fortnox-api/compare/v1.0.0.rc14...HEAD
+[1.0.0.rc14]: https://github.com/accodeing/fortnox-api/compare/v1.0.0.rc13...v1.0.0.rc14
 [1.0.0.rc13]: https://github.com/accodeing/fortnox-api/compare/v1.0.0.rc12...v1.0.0.rc13
 [1.0.0.rc12]: https://github.com/accodeing/fortnox-api/compare/v1.0.0.rc11...v1.0.0.rc12
 [1.0.0.rc11]: https://github.com/accodeing/fortnox-api/compare/v1.0.0.rc10...v1.0.0.rc11
