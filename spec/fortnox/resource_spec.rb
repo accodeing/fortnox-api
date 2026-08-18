@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'spec_helper'
+require 'yaml'
 
 class TestResource < Fortnox::Resource
   configure do
@@ -174,6 +175,74 @@ RSpec.describe Fortnox::Resource do
     it 'marks an instance parsed from a single-resource response as not partial' do
       instance = TestResource.send(:parse, 'Thing' => { 'Name' => 'a' })
       expect(instance.meta.partial?).to be(false)
+    end
+  end
+
+  # A parsed resource has to behave as a plain value object: nothing in
+  # Fortnox's mappers or structs may hold state a generic serialiser cannot
+  # walk, and nothing may depend on an object answering respond_to?
+  # dishonestly. That property is what broke — rest-easy's Meta claimed to
+  # implement every method, and Marshal was only the first caller to take the
+  # claim seriously. Marshal and YAML below are two probes for the one
+  # property, not two features; Marshal is the operationally important one,
+  # since Rails' :memory_store and :file_store both marshal cache entries.
+  #
+  # rest-easy checks this against its own fixtures. What is covered here is
+  # the part it structurally cannot reach: a real Order's payload — dry-struct
+  # rows, Date and ISO country mapper output, and a nested Label, itself a
+  # Resource carrying its own meta, inside a parent's attribute array.
+  describe 'serialisation round-trip' do
+    let(:order) do
+      Fortnox::Order.send(:parse, 'Order' => {
+                            'CustomerNumber' => '1',
+                            'OrderDate' => '2026-08-18',
+                            'Country' => 'Sverige',
+                            'Labels' => [{ 'Id' => 7 }],
+                            'OrderRows' => [{ 'ArticleNumber' => '101', 'DeliveredQuantity' => 2 }]
+                          })
+    end
+
+    context 'with Marshal' do
+      let(:restored) { Marshal.load(Marshal.dump(order)) }
+
+      it 'preserves mapper output' do
+        expect(restored).to have_attributes(order_date: Date.new(2026, 8, 18), country_code: 'SE')
+      end
+
+      it 'preserves dry-struct rows' do
+        expect(restored.order_rows.first).to have_attributes(article_number: '101', delivered_quantity: 2)
+      end
+
+      it 'preserves a nested resource inside an attribute array' do
+        expect(restored.labels.first).to have_attributes(id: 7)
+      end
+
+      it "preserves a nested resource's own meta" do
+        expect(restored.labels.first.meta.partial?).to be(false)
+      end
+    end
+
+    # A second, unrelated serialiser, to show the property is not a quirk of
+    # Marshal. Psych reaches the object a different way — it allocates and
+    # then probes init_with — so it fails differently when state is hidden.
+    context 'with YAML' do
+      let(:restored) { YAML.unsafe_load(YAML.dump(order)) }
+
+      it 'preserves mapper output' do
+        expect(restored).to have_attributes(order_date: Date.new(2026, 8, 18), country_code: 'SE')
+      end
+
+      it 'preserves a nested resource and its meta' do
+        expect(restored.labels.first.meta.partial?).to be(false)
+      end
+    end
+
+    # Collection is Fortnox's own wrapper — rest-easy has no equivalent, so
+    # its pagination fields are only covered here.
+    it 'preserves pagination metadata on a Collection' do
+      restored = Marshal.load(Marshal.dump(Fortnox::Collection.new([], total: 59, pages: 3, current_page: 2)))
+
+      expect(restored).to have_attributes(total: 59, pages: 3, current_page: 2)
     end
   end
 end

@@ -8,6 +8,25 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Fixed
+
+- **Cached resources no longer raise on the first cache hit.** The
+  `rest-easy` dependency is now `~> 1.4.1`, which stops `RestEasy::Meta`
+  claiming to implement methods it has no value for. Because it claimed
+  `marshal_dump`, marshalling a parsed resource silently wrote `nil` where
+  the meta state should be, and reading it back raised `NoMethodError:
+  undefined method '[]' for nil:NilClass`. Every parsed Fortnox resource
+  carries a `meta` — it is where the `partial` flag lives — so any consumer
+  caching resources in a store that marshals its entries (Rails'
+  `:memory_store` and `:file_store` among them) wrote an unusable entry on
+  the first request and raised on every cache hit after that.
+
+  **Upgrading with a warm cache:** entries written before this release are
+  not recoverable and now fail with `TypeError: instance of RestEasy::Meta
+  needs to have method 'marshal_load'`. Flush the cache or bump its key
+  namespace when upgrading. A process-local `:memory_store` clears itself on
+  restart and needs nothing.
+
 ## [1.0.0.rc14] - 2026-08-11
 
 ### Changed

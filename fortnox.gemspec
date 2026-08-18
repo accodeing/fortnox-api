@@ -24,7 +24,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'base64', '~> 0.2'
   spec.add_dependency 'countries', '~> 7.1'
   spec.add_dependency 'dry-struct', '~> 1.5'
-  spec.add_dependency 'rest-easy', '~> 1.4.0'
+  spec.add_dependency 'rest-easy', '~> 1.4.1'
 
   spec.metadata['rubygems_mfa_required'] = 'true'
 end
