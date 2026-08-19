@@ -6,6 +6,7 @@ require 'dry-types'
 module Fortnox
   module Types
     include Dry.Types()
+    include Housework
 
     # Booleans reach us as strings whenever the caller is a Rails app passing
     # controller params through. Resource attributes already coerce those:
@@ -22,18 +23,6 @@ module Fortnox
     DiscountTypes = Types::Strict::String.enum(
       'AMOUNT', 'PERCENT'
     )
-
-    CURRENT_HOUSEWORK_TYPES = [
-      'CONSTRUCTION', 'ELECTRICITY', 'GLASSMETALWORK', 'GROUNDDRAINAGEWORK',
-      'MASONRY', 'PAINTINGWALLPAPERING', 'HVAC', 'MAJORAPPLIANCEREPAIR',
-      'MOVINGSERVICES', 'ITSERVICES', 'CLEANING', 'TEXTILECLOTHING',
-      'SNOWPLOWING', 'GARDENING', 'BABYSITTING', 'OTHERCARE', 'OTHERCOSTS',
-      'FURNISHING', 'HOMEMAINTENANCE', 'TRANSPORTATIONSERVICES',
-      'WASHINGANDCAREOFCLOTHING', 'SOLARCELLS', 'STORAGESELFPRODUCEDELECTRICITY',
-      'CHARGINGSTATIONELECTRICVEHICLE', 'EMPTYHOUSEWORK'
-    ].freeze
-
-    LEGACY_HOUSEWORK_TYPES = ['COOKING', 'TUTORING'].freeze
 
     HouseworkTypes = Types::Strict::String.enum(
       *(CURRENT_HOUSEWORK_TYPES + LEGACY_HOUSEWORK_TYPES)

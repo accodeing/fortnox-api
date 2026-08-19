@@ -8,6 +8,21 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Added
+
+- **Housework types grouped by tax reduction type.**
+  `Fortnox::Types::HOUSEWORK_TYPES_BY_TAX_REDUCTION` maps `'rot'`, `'rut'`
+  and `'green'` to the housework types a document of that type may carry,
+  with `ROT_HOUSEWORK_TYPES`, `RUT_HOUSEWORK_TYPES`, `GREEN_HOUSEWORK_TYPES`
+  and `ANY_TAX_REDUCTION_HOUSEWORK_TYPES` available individually. Fortnox
+  enforces the grouping — a document declaring one reduction type is
+  rejected outright if it carries a row from another ("Dokument med
+  skattereduktionstypen 'rut' får inte innehålla rader med ...") — but the
+  gem previously exposed only the flat `CURRENT_HOUSEWORK_TYPES`, leaving
+  every consumer to hard-code the split in order to build a UI that cannot
+  produce an unsaveable document. `OTHERCOSTS` and `EMPTYHOUSEWORK` mark a
+  row as not being housework and appear under every reduction type.
+
 ## [1.0.0.rc15] - 2026-08-18
 
 ### Fixed
