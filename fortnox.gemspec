@@ -12,9 +12,17 @@ Gem::Specification.new do |spec|
   spec.version       = Fortnox::VERSION.dup
 
   spec.summary       = 'Fortnox F3 REST API library, based on rest-easy.'
-  spec.description   = spec.summary
+  spec.description   = <<~DESCRIPTION
+    Fortnox's REST API wraps every payload in a type key, spells its
+    attributes in PascalCase, and treats an empty string as "leave this
+    field alone" when you meant to clear it. This gem turns it into
+    ordinary immutable Ruby objects with typed, constrained attributes,
+    so a value Fortnox would reject raises before it costs an API call,
+    and authorization, pagination and JSON mapping are handled for you.
+  DESCRIPTION
   spec.homepage      = 'https://github.com/accodeing/fortnox'
-  spec.files         = Dir['CHANGELOG.md', 'LICENSE.md', 'README.md', 'fortnox.gemspec', 'lib/**/*']
+  spec.files         = Dir['CHANGELOG.md', 'LICENSE.md', 'MIGRATING_TO_1.0.md', 'README.md',
+                           'fortnox.gemspec', 'lib/**/*']
   spec.bindir        = 'bin'
   spec.executables   = ['fortnox-setup', 'fortnox-update-env']
   spec.require_paths = ['lib']
