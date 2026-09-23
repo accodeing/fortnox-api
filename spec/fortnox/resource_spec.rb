@@ -176,6 +176,32 @@ RSpec.describe Fortnox::Resource do
       instance = TestResource.send(:parse, 'Thing' => { 'Name' => 'a' })
       expect(instance.meta.partial?).to be(false)
     end
+
+    it 'keeps the flag when a partial instance is updated' do
+      collection = TestResource.send(:parse, 'Things' => [{ 'Name' => 'a' }])
+      expect(collection.first.update(comment: 'c').meta.partial?).to be(true)
+    end
+  end
+
+  describe 'payload after update' do
+    it 'leaves a never-saved record new when it is updated before saving' do
+      updated = TestResource.stub(name: 'a', comment: 'c').update(count: 1)
+
+      expect(updated.meta.new?).to be(true)
+    end
+
+    it 'sends every attribute when a never-saved record is updated before saving' do
+      updated = TestResource.stub(name: 'a', comment: 'c').update(count: 1)
+
+      expect(updated.serialise['Thing']).to eq('Name' => 'a', 'Comment' => 'c', 'Count' => 1)
+    end
+
+    it 'sends the union of the changed attributes across chained updates' do
+      parsed = TestResource.send(:parse, 'Thing' => { 'Name' => 'a', 'Comment' => 'c', 'Count' => 1 })
+      updated = parsed.update(comment: 'new').update(count: 2)
+
+      expect(updated.serialise['Thing']).to eq('Comment' => 'new', 'Count' => 2)
+    end
   end
 
   # A parsed resource has to behave as a plain value object: nothing in

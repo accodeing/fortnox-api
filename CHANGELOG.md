@@ -8,6 +8,31 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Fixed
+
+- **Updating a record before its first save no longer drops the attributes it
+  was built with.** Calling `.update` on a stubbed record marked it as already
+  persisted, so `save` sent a PUT for a record that does not exist yet, and the
+  request body shrank to only the updated fields — everything passed to `stub`
+  never reached Fortnox. This is the bug reported in #233 against 0.x and fixed
+  there in 2023; the 1.0 rest-easy rewrite reintroduced it, and made it worse by
+  switching the verb as well as the body.
+- **Chained updates no longer lose all but the last.**
+  `record.update(phone1: '1').update(email: 'x@y.se')` sent only `Email`, while
+  `phone1` still read back as `'1'` on the instance — the object and the request
+  body disagreed, with nothing raised. Both attributes are now sent. Introduced
+  by the 1.0 rewrite.
+- **`meta.partial?` survives an update.** Instances parsed from a collection
+  response are flagged partial, and `.update` silently cleared the flag, so the
+  check the README recommends before re-fetching reported a shallow record as
+  complete the moment anything touched it. The flag is new in 1.0, so this
+  never affected 0.x.
+
+### Changed
+
+- The `rest-easy` dependency is now `~> 1.4.2`, which carries the three fixes
+  above — all of them live in its `update`, not in this gem.
+
 ## [1.0.0] - 2026-09-23
 
 The first stable release of the 1.0 line. No code changes since
