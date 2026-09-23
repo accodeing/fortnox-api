@@ -8,6 +8,13 @@ and this project adheres to
 
 ## [Unreleased]
 
+The first stable release of the 1.0 line. No code changes since
+`1.0.0.rc16` — the release candidate series is over and the 1.0 API is
+now settled. Consumers pinned to `1.0.0.rc16` can move to `1.0.0` as is;
+from an earlier release candidate, see the entries below for what
+changed in between. Upgrading from 0.x is a rewrite — see
+[MIGRATING_TO_1.0.md](MIGRATING_TO_1.0.md).
+
 ## [1.0.0.rc16] - 2026-08-19
 
 ### Added
