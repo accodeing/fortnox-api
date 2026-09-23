@@ -8,6 +8,8 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [1.0.0] - 2026-09-23
+
 The first stable release of the 1.0 line. No code changes since
 `1.0.0.rc16` — the release candidate series is over and the 1.0 API is
 now settled. Consumers pinned to `1.0.0.rc16` can move to `1.0.0` as is;
@@ -492,7 +494,8 @@ for the full list of breaking changes.
 For changes prior to the 1.0 rewrite, see the
 [0.x changelog](https://github.com/accodeing/fortnox-api/blob/v0.9.2/CHANGELOG.md).
 
-[Unreleased]: https://github.com/accodeing/fortnox-api/compare/v1.0.0.rc16...HEAD
+[Unreleased]: https://github.com/accodeing/fortnox-api/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/accodeing/fortnox-api/compare/v1.0.0.rc16...v1.0.0
 [1.0.0.rc16]: https://github.com/accodeing/fortnox-api/compare/v1.0.0.rc15...v1.0.0.rc16
 [1.0.0.rc15]: https://github.com/accodeing/fortnox-api/compare/v1.0.0.rc14...v1.0.0.rc15
 [1.0.0.rc14]: https://github.com/accodeing/fortnox-api/compare/v1.0.0.rc13...v1.0.0.rc14
