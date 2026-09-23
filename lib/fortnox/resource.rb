@@ -2,7 +2,7 @@
 
 module Fortnox
   # TODO: this class is still over the length limit even with error
-  # translation extracted — see todo.md.
+  # translation extracted — see TODO.md.
   # rubocop:disable Metrics/ClassLength
   class Resource < RestEasy::Resource
     include Fortnox::Types
