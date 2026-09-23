@@ -2,13 +2,6 @@
 
 ## TODO
 
-- [ ] Release 1.0.0
-  - [ ] Consolidate the breaking changes for 1.0.0 final under their own
-    `### Breaking changes` header at the top of the release entry, ahead of
-    `Added`/`Changed`/`Fixed`. Today they are `**Breaking**`-prefixed bullets
-    scattered across the rc entries (rc1, rc7, rc13) — fine per-rc, too easy
-    to miss for someone upgrading from 0.x in one jump. Cross-reference
-    `MIGRATING_TO_1.0.md`.
 - [ ] Split `Fortnox::Resource` — still trips `Metrics/ClassLength` (103/100)
   and carries an explicit `rubocop:disable` in the class as a reminder.
   `ErrorTranslation` is already extracted to its own module and that was not

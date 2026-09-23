@@ -12,8 +12,57 @@ The first stable release of the 1.0 line. No code changes since
 `1.0.0.rc16` — the release candidate series is over and the 1.0 API is
 now settled. Consumers pinned to `1.0.0.rc16` can move to `1.0.0` as is;
 from an earlier release candidate, see the entries below for what
-changed in between. Upgrading from 0.x is a rewrite — see
-[MIGRATING_TO_1.0.md](MIGRATING_TO_1.0.md).
+changed in between.
+
+### Breaking changes
+
+1.0 is a complete rewrite and is **not** a drop-in replacement for 0.x.
+[MIGRATING_TO_1.0.md](MIGRATING_TO_1.0.md) is the guided upgrade; this is
+the checklist to read it against. Each entry names the release candidate
+that introduced it, where the full reasoning and the exact before/after
+live.
+
+- **The gem is rebuilt on [rest-easy](https://github.com/accodeing/rest-easy)**,
+  one resource class per entity in place of HTTParty + Data Mapper, and the
+  namespace moves from `Fortnox::API` to `Fortnox` — `Fortnox::API::Repository::Customer`
+  is now `Fortnox::Customer`. (rc1)
+- **Ruby 3.2 or later.** rc1 raised the floor to 3.1 and rc7 to 3.2; coming
+  from 0.x, 3.2 is the only number that matters. (rc1, rc7)
+- **Authorization is the Fortnox client credentials flow.** Refresh tokens
+  are neither needed nor supported, and a tenant ID is now required — the
+  new `fortnox-setup` executable obtains one. (rc1)
+- **Environment variables lose the `_API_` infix** (`FORTNOX_API_CLIENT_ID`
+  → `FORTNOX_CLIENT_ID`, and so on). `FORTNOX_API_REFRESH_TOKEN`,
+  `FORTNOX_API_REDIRECT_URI` and `FORTNOX_API_SCOPES` are gone;
+  `FORTNOX_TENANT_ID` is new and required. (rc1)
+- **`Fortnox.request_access_token` replaces
+  `Fortnox::API::Repository::Authentication`** for token management. (rc1)
+- **Configuration moves to module-level setters** such as
+  `Fortnox.access_token=`, from `Fortnox::API.configuration`. (rc1)
+- **Country attributes accept ISO alpha-2 codes only** (`'NO'`, not
+  `'Norge'`), on `country_code` and `delivery_country`. (rc1)
+- **Exception classes are renamed and consolidated**, `Fortnox::API::Exception`
+  → `Fortnox::Error` at the root. `Fortnox::API::MissingConfiguration` is
+  removed, `Fortnox::ConstraintError` is new, and `MissingAccessToken` now
+  raises lazily on first call rather than eagerly at construction. rc1 carries
+  the full 0.x → 1.0 mapping. (rc1)
+- **Collection-returning methods return `Fortnox::Collection`, not `Array`.**
+  It is `Enumerable` and delegates the common Array methods, so most usage is
+  unchanged; `is_a?(Array)` checks and `==` against Array literals are not. (rc1)
+- **`Invoice#accounting_method` and `#invoice_type` are enums**, where 0.x
+  took any string client-side. (rc1)
+- **String attributes normalise `''` to `nil`.** Unset string attributes now
+  read as `nil`, never `''`, so comparisons against `''` must become `nil`
+  checks. This is what makes clearing a field work at all — Fortnox ignores
+  empty strings in updates — and it means updating a required string
+  attribute to `''` raises `Fortnox::MissingAttributeError` before any
+  request goes out. Enum attributes whose value set genuinely includes `''`
+  are exempt. (rc13)
+- **Unknown attributes raise `Fortnox::UnknownAttributeError`** on `new`,
+  `stub` and `update`, where 0.x discarded them silently — a typo cost a
+  field with nothing to show for it. Code passing a wider hash than the
+  resource declares must slice it first. Parsing an API response stays
+  tolerant of undeclared fields. (rc14)
 
 ## [1.0.0.rc16] - 2026-08-19
 
