@@ -1,0 +1,11 @@
+# Fortnox sandbox test tokens; the expired one ended 2023-01-30 and the other is an unsigned fake.
+5136d00472c07a41033117ef93e09eb2c3b2854b:spec/fortnox/api/base_spec.rb:generic-api-key:88
+56360088b8b7a0f29ca45593b9ab3065ca5104c9:.env.test:jwt:4
+81105ed58213f5a6f45977c80d7dbb58938750dd:test_httparty.rb:generic-api-key:3
+81105ed58213f5a6f45977c80d7dbb58938750dd:test_net_http.rb:generic-api-key:3
+957f6a28e83c332a2732d418a01e0317bc2c13f0:.env.test:jwt:4
+a0bfa671866efd27e9a45b0b4a4c566f880169d9:.env.test:generic-api-key:3
+
+# CodeClimate reporter token; the service is no longer used.
+98e631ca417beca3caff4649db3fe5090e632212:.travis.yml:generic-api-key:7
+c3f7964116c2e283021741a1c318face63efee34:.travis.yml:generic-api-key:21
