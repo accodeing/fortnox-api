@@ -8,6 +8,11 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Changed
+
+- The `rest-easy` dependency is now `~> 1.5`, allowing any 1.x release from
+  1.5.0 on instead of capping at 1.4.x.
+
 ## [1.0.1] - 2026-09-23
 
 ### Fixed
